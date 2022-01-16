@@ -1,0 +1,114 @@
+{
+    "aboutScreen": {
+        "buildTime": "Build Time",
+        "channel": "Channel",
+        "discord": "Discord",
+        "gitHub": "GitHub",
+        "launchError": {
+            "title": "@website URL failed to launch"
+        },
+        "server": "Server",
+        "serverVersion": "Server version"
+    },
+    "appTitle": "Tachidesk",
+    "appearanceScreen": {
+        "darkTheme": {
+            "subtitle": "Turn on Dark Mode",
+            "title": "Dark Theme"
+        }
+    },
+    "backupSettings": {
+        "create": {
+            "subtitle": "Backup library as a Tachyomi backup",
+            "title": "Create Backup"
+        },
+        "restore": {
+            "subtitle": "Restore Tachyomi from backup",
+            "title": "Restore Backup"
+        },
+        "restored": {
+            "subtitle": "Restored Tachyomi from backup",
+            "title": "Backup Restored"
+        },
+        "restoring": {
+            "subtitle": "Restoring Tachyomi from backup",
+            "title": "Restoring Backup..."
+        }
+    },
+    "browserSettingsScreen": {
+        "nsfw": {
+            "info": "This does not prevent unofficial or potentially incorrectly flaged extensions from surfacing NSFW(18+) content within app",
+            "subtitle": "Show NSFW extensions and sources in the list",
+            "title": "Show NSFW extensions and sources"
+        }
+    },
+    "downloadScreen": {
+        "pause": "Pause",
+        "resume": "Resume"
+    },
+    "editCategoriesScreen": {
+        "add": "Add",
+        "addCategory": "Add Category",
+        "defaultCategory": "Default category when adding new manga to library",
+        "editCategory": "Edit Category",
+        "emptyCategory": {
+            "message": "Category name can't be empty",
+            "title": "Empty name!"
+        },
+        "name": "Category Name"
+    },
+    "error": {
+        "filePick": {
+            "message": "Please select a file to start Restoring",
+            "title": "File not selected"
+        },
+        "filePickUnknownExtension": {
+            "message": "Please select a file with proto.gz extension",
+            "title": "Unknown file extension"
+        },
+        "invalidURL": {
+            "message": "Invalid URL",
+            "title": "Enter a valid URL"
+        },
+        "launchURL": {
+            "message": "Failed to launch @website",
+            "title": "Copying @url to clipboard"
+        },
+        "restoreBackup": {
+            "message": "Please try again",
+            "title": "Failed to Restore backup"
+        }
+    },
+    "loading": "Loading",
+    "no": "No",
+    "sourceScreen": {
+        "latest" : "Latest",
+        "search" : "Search",
+        "browse" : "Browse"
+    },
+    "screenTitle": {
+        "about": "About",
+        "browse": "Browse",
+        "categories": "Categories",
+        "downloads": "Downloads",
+        "library": "Library",
+        "more": "More",
+        "settings": "Settings",
+        "updates": "Updates",
+        "extensions": "Extensions",
+        "sources" : "Sources"
+    },
+    "serverSettingsScreen": {
+        "url": "Server URL",
+        "webUI": "Open in WEB"
+    },
+    "settingsScreen": {
+        "appearance": "Appearance",
+        "backup": "Backup & Restore",
+        "browse": "Browse Settings",
+        "general": "General Settings",
+        "library": "Library Settings",
+        "reader": "Reader Settings",
+        "server": "Server Settings"
+    }
+}

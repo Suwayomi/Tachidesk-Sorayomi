@@ -1,0 +1,9 @@
+const String aboutURL = '/api/v1/settings/about';
+const String backupURL = '/api/v1/backup/export/file';
+const String restoreURL = '/api/v1/backup/import/file';
+const String categoryListURL = '/api/v1/category';
+const String logoURL = "assets/images/icon.ico";
+const String reorderURL = "/api/v1/category/reorder";
+const String downloadsURL = "/api/v1/downloads";
+const String sourceURL = "/api/v1/source";
+const String updateRecentChapterUrl = "/api/v1/update/recentChapters";

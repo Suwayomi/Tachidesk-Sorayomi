@@ -1,0 +1,54 @@
+{
+    "hasNextPage": false,
+    "page": [
+        {
+            "chapter": {
+                "bookmarked": false,
+                "chapterCount": 2,
+                "chapterNumber": 2,
+                "downloaded": false,
+                "fetchedAt": 1641810894,
+                "index": 2,
+                "lastPageRead": 0,
+                "lastReadAt": 0,
+                "mangaId": 346,
+                "name": "Chapter 2: Throw Her Out",
+                "pageCount": -1,
+                "read": false,
+                "scanlator": null,
+                "uploadDate": 1641666600000,
+                "url": "/im-deleting-them-from-my-life/chapter-2-throw-her-out-ooZ-c1273203.html"
+            },
+            "manga": {
+                "artist": "Miraenavi",
+                "author": "Miraenavi",
+                "description": "Antonia Serhii lost her voice after her parents’ death. Left with the Serhii countship as a defenseless young child, she endured cruel manipulation and abuse from her covetous uncle, his staff, and later, her violent husband. But when Antonia gets a chance to redo her childhood, she’ll stop at nothing to wreak vengeance upon her abusers! Armed with her memories and her new cunning nature, she swears to delete them from her life, one by one. But will Antonia succeed, or will her dismal past repeat itself?",
+                "downloadCount": null,
+                "freshData": false,
+                "genre": [
+                    "Shoujo",
+                    "Adaptation",
+                    "Drama",
+                    "Fantasy",
+                    "Full Color",
+                    "Historical",
+                    "Romance",
+                    "Time Travel",
+                    "Tragedy"
+                ],
+                "id": 346,
+                "inLibrary": true,
+                "inLibraryAt": 1641810891,
+                "initialized": true,
+                "realUrl": "https://mangahasu.se/im-deleting-them-from-my-life-ooZ-p58880.html",
+                "source": null,
+                "sourceId": "720698779193817891",
+                "status": "ONGOING",
+                "thumbnailUrl": "/api/v1/manga/346/thumbnail",
+                "title": "I'm Deleting Them From My Life",
+                "unreadCount": null,
+                "url": "/im-deleting-them-from-my-life-ooZ-p58880.html"
+            }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "displayName": "Kissmanga.in (EN)",
+    "iconUrl": "/api/v1/extension/icon/tachiyomi-en.kissmangain-v1.2.17.apk",
+    "id": "3112384885023225761",
+    "isConfigurable": false,
+    "isNsfw": false,
+    "lang": "en",
+    "name": "Kissmanga.in",
+    "supportsLatest": true
+}
