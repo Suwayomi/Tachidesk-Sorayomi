@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
+import '../../../core/constants/api_url.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/days_ago.dart';
@@ -52,6 +53,12 @@ class UpdatesView extends GetView<UpdatesController> {
                           height: 48,
                           width: 48,
                           fit: BoxFit.cover,
+                          errorBuilder: (context, object, stack) => Image.asset(
+                            logoURL,
+                            height: 48,
+                            width: 48,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       title: Text(
@@ -75,12 +82,10 @@ class UpdatesView extends GetView<UpdatesController> {
                     );
                   },
                   groupSeparatorBuilder: (DateTime value) => ListTile(
-                    title: Text(
-                      convertToAgo(value),
-                    ),
+                    title: Text(convertToAgo(value)),
                   ),
                 )
-              : EmptyView(emptyType: LocaleKeys.screenTitle_updates.tr)),
+              : EmoticonsView(emptyType: LocaleKeys.screenTitle_updates.tr)),
     );
   }
 }

@@ -1,18 +1,16 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:get/get.dart';
+import 'package:tachidesk_flutter/app/modules/library/controllers/library_controller.dart';
 
 import '../../../data/category_model.dart';
 import '../../../data/repository/category_repository.dart';
 
 class EditCategoriesController extends GetxController {
-  //TODO: Implement EditCategoriesController
   final CategoryRepository _categoryRepository = CategoryRepository();
   final TextEditingController textEditingController = TextEditingController();
   final RxBool _defaultCategory = false.obs;
   final RxList<Category?> _categoryList = <Category>[].obs;
   List<Category?> get categoryList => _categoryList;
-
   set categoryList(List<Category?> categoryList) =>
       _categoryList.value = categoryList;
 
@@ -42,6 +40,7 @@ class EditCategoriesController extends GetxController {
     categoryListJson.removeAt(0);
     categoryList =
         (categoryListJson.map<Category>((e) => Category.fromJson(e)).toList());
+    Get.find<LibraryController>().loadCategoryList();
   }
 
   Future<void> reorder({required int from, required int to}) async {
@@ -53,16 +52,8 @@ class EditCategoriesController extends GetxController {
   }
 
   @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
   void onReady() async {
     reloadCategoryList();
     super.onReady();
   }
-
-  @override
-  void onClose() {}
 }

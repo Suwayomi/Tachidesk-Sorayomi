@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
@@ -31,7 +30,6 @@ class HomeController extends GetxController {
     _selectedIndex.listen((index) {
       pageController.jumpToPage(index);
     });
-
     super.onInit();
   }
 }

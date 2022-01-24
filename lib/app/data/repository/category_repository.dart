@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../category_model.dart';
+import '../manga_model.dart';
 import '../providers/category_provider.dart';
 
 class CategoryRepository {
@@ -8,6 +9,10 @@ class CategoryRepository {
 
   Future getCategoryList() {
     return _categoryProvider.getCategoryList();
+  }
+
+  Future<List<Manga>> getMangaListFromCategoryId(int id) {
+    return _categoryProvider.getMangaListFromCategoryId(id);
   }
 
   Future<Response> editCategory(Category category) {

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tachidesk_flutter/app/data/manga_model.dart';
 
 import '../../../main.dart';
 import '../../core/constants/api_url.dart';
@@ -8,7 +9,15 @@ class CategoryProvider extends GetConnect {
       Get.find<LocalStorageService>();
 
   Future getCategoryList() async {
-    final response = await get(_localStorageService.baseURL + categoryListURL);
+    final response = await get(_localStorageService.baseURL + categoryURL);
+    return response.body;
+  }
+
+  Future<List<Manga>> getMangaListFromCategoryId(int id) async {
+    final response = await get(
+        _localStorageService.baseURL + categoryURL + "/$id",
+        decoder: (map) =>
+            map.map<Manga>((item) => Manga.fromJson(item)).toList());
     return response.body;
   }
 
@@ -17,7 +26,7 @@ class CategoryProvider extends GetConnect {
     required bool defaultCategory,
   }) async {
     return await post(
-        _localStorageService.baseURL + categoryListURL,
+        _localStorageService.baseURL + categoryURL,
         FormData({
           "name": name,
           "default": defaultCategory,
@@ -30,7 +39,7 @@ class CategoryProvider extends GetConnect {
     required bool defaultCategory,
   }) async {
     return await patch(
-        _localStorageService.baseURL + categoryListURL + "/$id",
+        _localStorageService.baseURL + categoryURL + "/$id",
         FormData({
           "name": name,
           "default": defaultCategory,
@@ -38,7 +47,7 @@ class CategoryProvider extends GetConnect {
   }
 
   Future<Response> deleteCategory(int id) async {
-    return await delete(_localStorageService.baseURL + categoryListURL + '/$id');
+    return await delete(_localStorageService.baseURL + categoryURL + '/$id');
   }
 
   Future<Response> reorderCategory({required int from, required int to}) {

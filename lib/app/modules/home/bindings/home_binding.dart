@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/modules/browse/controllers/browse_controller.dart';
-import 'package:tachidesk_flutter/app/modules/extensions/controllers/extensions_controller.dart';
-import 'package:tachidesk_flutter/app/modules/sources/controllers/sources_controller.dart';
+import 'package:tachidesk_flutter/app/modules/library/controllers/library_controller.dart';
+import '../../browse/controllers/browse_controller.dart';
+import '../../extensions/controllers/extensions_controller.dart';
+import '../../sources/controllers/sources_controller.dart';
 
 import '../../downloads/controllers/downloads_controller.dart';
 import '../../more/controllers/more_controller.dart';
@@ -18,5 +19,6 @@ class HomeBinding extends Bindings {
     Get.lazyPut<BrowseController>(() => BrowseController());
     Get.lazyPut<ExtensionsController>(() => ExtensionsController());
     Get.lazyPut<SourcesController>(() => SourcesController());
+    Get.lazyPut<LibraryController>(() => LibraryController());
   }
 }

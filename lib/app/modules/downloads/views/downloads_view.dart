@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -85,7 +84,7 @@ class DownloadsView extends GetView<DownloadsController> {
               },
               onReorder: (int oldIndex, int newIndex) {},
             )
-          : EmptyView(emptyType: LocaleKeys.screenTitle_downloads.tr)),
+          : EmoticonsView(emptyType: LocaleKeys.screenTitle_downloads.tr)),
     );
   }
 }

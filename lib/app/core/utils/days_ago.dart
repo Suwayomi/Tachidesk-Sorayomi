@@ -5,9 +5,9 @@ String convertToAgo(DateTime input) {
 
   if (diff.inDays < 1) {
     return "Today";
-  } else if (diff.inDays >= 1 && diff.inDays < 2) {
+  } else if (diff.inDays < 2) {
     return 'Yesterday';
-  } else if (diff.inDays >= 2 && diff.inDays < 10) {
+  } else if (diff.inDays < 10) {
     return '${diff.inDays} days ago';
   } else {
     return DateFormat.yMd().format(input);

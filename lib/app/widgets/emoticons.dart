@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 import '../../generated/locales.g.dart';
@@ -15,8 +14,8 @@ const errorFaces = [
   '(･Д･。',
 ];
 
-class EmptyView extends StatelessWidget {
-  const EmptyView({
+class EmoticonsView extends StatelessWidget {
+  const EmoticonsView({
     Key? key,
     required this.emptyType,
   }) : super(key: key);

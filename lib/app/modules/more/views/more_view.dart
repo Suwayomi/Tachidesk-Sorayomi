@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -38,7 +37,7 @@ class MoreView extends GetView<MoreController> {
                 subtitle:
                     Text(LocaleKeys.appearanceScreen_darkTheme_subtitle.tr),
                 onChanged: (value) =>
-                    controller.localStorageService.changeTheme(value),
+                    controller.localStorageService.isDark = value,
               )),
           ListTile(
             title: Text(LocaleKeys.settingsScreen_backup.tr),

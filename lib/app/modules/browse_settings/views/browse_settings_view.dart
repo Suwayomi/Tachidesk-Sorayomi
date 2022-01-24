@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -17,8 +16,10 @@ class BrowseSettingsView extends GetView<BrowseSettingsController> {
             Obx(() => SwitchListTile(
                   value: controller.showNSFW,
                   onChanged: (value) =>
-                      controller.localStorageService.changeNSFW(value),
+                      controller.localStorageService.showNSFW = value,
                   title: Text(LocaleKeys.browserSettingsScreen_nsfw_title.tr),
+                  subtitle:
+                      Text(LocaleKeys.browserSettingsScreen_nsfw_subtitle.tr),
                 )),
             ListTile(
               leading: Icon(Icons.info_outline),

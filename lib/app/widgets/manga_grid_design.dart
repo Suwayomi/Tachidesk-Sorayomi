@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tachidesk_flutter/app/core/constants/api_url.dart';
+import 'package:tachidesk_flutter/app/data/manga_model.dart';
+import 'package:tachidesk_flutter/generated/locales.g.dart';
+
+import '../../main.dart';
+
+class MangaGridDesign extends StatelessWidget {
+  const MangaGridDesign({
+    Key? key,
+    required this.manga,
+    this.isLibraryScreen = false,
+    this.onTap, this.onDoubleTap,
+  }) : super(key: key);
+  final Manga manga;
+  final void Function()? onTap;
+  final void Function()? onDoubleTap;
+  final bool isLibraryScreen;
+  @override
+  Widget build(BuildContext context) {
+    LocalStorageService localStorageService = Get.find<LocalStorageService>();
+    return InkResponse(
+      onTap: onTap,
+      onDoubleTap: () {},
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: GridTile(
+          header: !isLibraryScreen
+              ? manga.inLibrary ?? false
+                  ? Card(
+                      color: Get.theme.colorScheme.secondary,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 2.0,
+                          horizontal: 4.0,
+                        ),
+                        child: Text(
+                          LocaleKeys.MangaGridDesign_inLibrary,
+                          style: TextStyle(
+                            color: Get.theme.colorScheme.onSecondary,
+                          ),
+                        ),
+                      ),
+                    )
+                  : null
+              : Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    (manga.unreadCount ?? 0) != 0
+                        ? Card(
+                            margin: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.horizontal(
+                                left: Radius.circular(5),
+                                right: (manga.downloadCount ?? 0) == 0
+                                    ? Radius.circular(5)
+                                    : Radius.zero,
+                              ),
+                            ),
+                            color: Get.theme.colorScheme.secondary,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2.0,
+                                horizontal: 4.0,
+                              ),
+                              child: Text(
+                                "${manga.unreadCount}",
+                                style: TextStyle(
+                                  color: Get.theme.colorScheme.onSecondary,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(),
+                    (manga.downloadCount ?? 0) != 0
+                        ? Card(
+                            margin: EdgeInsets.zero,
+                            color: Colors.greenAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.horizontal(
+                                right: Radius.circular(5),
+                                left: (manga.unreadCount ?? 0) == 0
+                                    ? Radius.circular(5)
+                                    : Radius.zero,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2.0,
+                                horizontal: 4.0,
+                              ),
+                              child: Text(
+                                "${manga.downloadCount}",
+                                style: TextStyle(
+                                  color: Get.theme.colorScheme.onSecondary,
+                                ),
+                              ),
+                            ),
+                          )
+                        : Container(),
+                  ]),
+                ),
+          child: manga.thumbnailUrl != null && manga.thumbnailUrl!.isNotEmpty
+              ? Container(
+                  child: Image.network(
+                    localStorageService.baseURL + manga.thumbnailUrl.toString(),
+                    errorBuilder: (context, error, stackTrace) =>
+                        Image.asset(logoURL),
+                  ),
+                  foregroundDecoration: BoxDecoration(
+                    border: Border.all(
+                      width: 0,
+                      color: Get.theme.canvasColor,
+                    ),
+                    boxShadow: !isLibraryScreen && (manga.inLibrary ?? false)
+                        ? [
+                            BoxShadow(
+                                color: Get.theme.canvasColor.withOpacity(.5))
+                          ]
+                        : null,
+                    gradient: LinearGradient(
+                      begin: Alignment.center,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Get.theme.canvasColor.withOpacity(0),
+                        Get.theme.canvasColor.withOpacity(0.4),
+                        Get.theme.canvasColor.withOpacity(0.9),
+                      ],
+                    ),
+                  ),
+                )
+              : Image.asset(logoURL),
+          footer: ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+            dense: true,
+            title: Text(
+              (manga.title ?? manga.author ?? ""),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

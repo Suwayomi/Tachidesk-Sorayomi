@@ -1,0 +1,13 @@
+{
+    "apkName": "tachiyomi-all.asurascans-v1.2.22.apk",
+    "hasUpdate": false,
+    "iconUrl": "/api/v1/extension/icon/tachiyomi-all.asurascans-v1.2.22.apk",
+    "installed": false,
+    "isNsfw": false,
+    "lang": "all",
+    "name": "Asura Scans",
+    "obsolete": false,
+    "pkgName": "eu.kanade.tachiyomi.extension.all.asurascans",
+    "versionCode": 22,
+    "versionName": "1.2.22"
+}

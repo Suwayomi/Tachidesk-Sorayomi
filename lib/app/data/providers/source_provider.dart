@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/core/constants/api_url.dart';
-import 'package:tachidesk_flutter/main.dart';
+import '../../core/constants/api_url.dart';
+import '../../../main.dart';
 
 import '../source_model.dart';
 

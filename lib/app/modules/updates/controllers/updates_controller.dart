@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:get/get.dart';
+
 import '../../../../main.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/repository/download_queue_value_repository.dart';
@@ -11,7 +11,7 @@ import '../../downloads/controllers/downloads_controller.dart';
 class UpdatesController extends GetxController {
   int _page = 0;
   final ScrollController scrollController = ScrollController();
-  final LocalStorageService localStorageService = LocalStorageService();
+  final LocalStorageService localStorageService =Get.find<LocalStorageService>();
 
   final DownloadQueueValueRepository downloadQueueValueRepository =
       DownloadQueueValueRepository();

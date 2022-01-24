@@ -42,12 +42,12 @@ class BackupController extends GetxController {
       if (result != null && !result.files.single.path!.endsWith("proto.gz")) {
         Get.rawSnackbar(
           title: LocaleKeys.error_filePickUnknownExtension_title.tr,
-          message: LocaleKeys.error_filePickUnknownExtension_message.tr,
+          message: LocaleKeys.error_filePickUnknownExtension_message.trParams({"extensionName" : ".proto.gz"}),
         );
       } else {
         Get.rawSnackbar(
           title: LocaleKeys.error_filePick_title.tr,
-          message: LocaleKeys.error_filePick_message.tr,
+          message: LocaleKeys.error_filePick_message.trParams({"process" : "Backup"}),
         );
       }
     }

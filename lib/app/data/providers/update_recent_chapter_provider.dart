@@ -4,7 +4,7 @@ import '../../../main.dart';
 import '../../core/constants/api_url.dart';
 
 class UpdateRecentChapterProvider extends GetConnect {
-  final LocalStorageService _localStorageService = LocalStorageService();
+  final LocalStorageService _localStorageService = Get.find<LocalStorageService>();
 
   Future<dynamic> getUpdateRecentChapter(int id) async {
     final response = await get(

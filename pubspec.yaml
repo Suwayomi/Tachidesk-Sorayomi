@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   cached_network_image_builder: ^0.2.0
+  collection: ^1.15.0
   cupertino_icons: ^1.0.2
   file_picker: ^4.3.0
   flutter:

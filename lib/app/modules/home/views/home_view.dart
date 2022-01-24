@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tachidesk_flutter/app/modules/library/widgets/library_appbar_actions.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../browse/views/browse_view.dart';
+import '../../browse/widgets/browse_appbar_actions.dart';
 import '../../downloads/views/downloads_view.dart';
 import '../../library/views/library_view.dart';
 import '../../more/views/more_view.dart';
@@ -28,6 +30,14 @@ class HomeView extends GetView<HomeController> {
           title: Obx(
             () => Text(navigationBarTitles[controller.selectedIndex].tr),
           ),
+          actions: [
+            Obx(() => controller.selectedIndex == 0
+                ? LibraryAppBarActions()
+                : Container()),
+            Obx(() => controller.selectedIndex == 2
+                ? BrowseAppBarActions()
+                : Container())
+          ],
         ),
         bottomNavigationBar: context.width > 600.0
             ? null

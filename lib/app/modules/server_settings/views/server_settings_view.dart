@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,14 +26,14 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
                   controller: controller.textEditingController,
                   onSubmitted: (value) => controller.submitURL(value),
                   decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: (LocaleKeys.screenTitle_categories.tr),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: context.theme.colorScheme.secondary,
+                    border: OutlineInputBorder(),
+                    hintText: (LocaleKeys.screenTitle_categories.tr),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: context.theme.colorScheme.secondary,
+                      ),
+                    ),
                   ),
-                ),
-              ),
                 ),
                 onConfirm: () =>
                     controller.submitURL(controller.textEditingController.text),

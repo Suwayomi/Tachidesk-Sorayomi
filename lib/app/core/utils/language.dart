@@ -54,20 +54,8 @@ class Language {
   int get hashCode => code.hashCode ^ name.hashCode ^ nativeName.hashCode;
 }
 
-List<Map<String, String>> iSOLanguageMap = [
+List<Map<String, String>> iSOMainLanguageMap = [
   {"code": 'all', "name": 'All', "nativeName": 'All'},
-  {"code": 'installed', "name": 'Installed', "nativeName": 'Installed'},
-  {
-    "code": 'updates pending',
-    "name": 'Updates pending',
-    "nativeName": 'Updates pending'
-  },
-  {"code": 'other', "name": 'other langs?', "nativeName": 'Other'},
-  {
-    "code": 'localsourcelang',
-    "name": 'Local source',
-    "nativeName": 'Local source'
-  },
   {"code": 'en', "name": 'English', "nativeName": 'English'},
   {"code": 'ca', "name": 'Catalan; Valencian', "nativeName": 'Català'},
   {"code": 'de', "name": 'German', "nativeName": 'Deutsch'},
@@ -134,56 +122,90 @@ List<Map<String, String>> iSOLanguageMap = [
   {"code": 'sv', "name": 'Swedish', "nativeName": 'svenska'},
   {"code": 'sv', "name": 'Swedish', "nativeName": 'svenska'},
 ];
-List<Language> iSOLanguages = iSOLanguageMap.map<Language>(
-  (map) => Language.fromMap(map),
-).toList();
+
+List<Map<String, String>> customLanguageMap = iSOMainLanguageMap +
+    [
+      {
+        "code": 'localsourcelang',
+        "name": 'Local source',
+        "nativeName": 'Local source'
+      },
+      {"code": 'installed', "name": 'Installed', "nativeName": 'Installed'},
+      {"code": "lastused", "name": "Last Used", "nativeName": "Last Used"},
+      {
+        "code": 'update',
+        "name": 'Updates pending',
+        "nativeName": 'Updates pending'
+      },
+      {"code": 'other', "name": 'other langs', "nativeName": 'Other'},
+    ];
+
+List<Language> iSOMainLanguage = iSOMainLanguageMap
+    .map<Language>(
+      (map) => Language.fromMap(map),
+    )
+    .toList();
+
+List<Language> customLanguages = customLanguageMap
+    .map<Language>(
+      (map) => Language.fromMap(map),
+    )
+    .toList();
+
 Language langCodeToName(String code) {
   final int whereToCut = code.contains('-') ? code.indexOf('-') : code.length;
 
   final String proccessedCode = code.toLowerCase().substring(0, whereToCut);
 
-  return iSOLanguages.firstWhere(
+  return customLanguages.firstWhere(
       (language) =>
           language.code == proccessedCode ||
           language.code == code.toLowerCase(),
       orElse: () =>
-          iSOLanguages.firstWhere((element) => element.code == "other"));
+          customLanguages.firstWhere((element) => element.code == "other"));
 }
 
-Language defaultNativeLang() {
-  return iSOLanguages.firstWhere(
-      (element) => element.code == "en"); // TODO: infer from the browser
+String defaultNativeLang() {
+  return "en";
 }
 
-List<Language> extensionDefaultLangs() {
+List<String> extensionDefaultLangs() {
   return [
     defaultNativeLang(),
-    iSOLanguages.firstWhere((element) => element.code == "all"),
+    "all",
   ];
 }
 
-List<Language> sourceDefualtLangs() {
+List<String> sourceDefualtLangs() {
+  return extensionDefaultLangs() +
+      [
+        "localsourcelang",
+      ];
+}
+
+List<String> sourceForcedDefaultLangs() {
   return [
-    defaultNativeLang(),
-    iSOLanguages.firstWhere((element) => element.code == "localsourcelang"),
+    "localsourcelang",
   ];
 }
 
-List<Language> sourceForcedDefaultLangs(){
-    return [
-    iSOLanguages.firstWhere((element) => element.code == "localsourcelang"),
-    ];
-}
-
-int langSortCmp(String a, String b){
-    // puts english first for convience
-    final aLang = langCodeToName(a);
-    final bLang = langCodeToName(b);
-
-    if (a == 'en') return -1;
-    if (b == 'en') return 1;
-    if (a == 'localSourceLang') return 1;
-    if (b == 'localSourceLang') return -1;
-
-    return aLang.nativeName.compareTo(bLang.nativeName);
+int langSortCmp(Language lang1, Language lang2) {
+  // puts english first for convience
+  String l1 = lang1.code;
+  String l2 = lang2.code;
+  if (l1 == 'installed') return -1;
+  if (l2 == 'installed') return 1;
+  if (l1 == 'update') return -1;
+  if (l2 == 'update') return 1;
+  if (l1 == 'lastused') return -1;
+  if (l2 == 'lastused') return 1;
+  if (l1 == 'all') return -1;
+  if (l2 == 'all') return 1;
+  if (l1 == 'en') return -1;
+  if (l2 == 'en') return 1;
+  if (l1 == 'localSourceLang') return 1;
+  if (l2 == 'localSourceLang') return -1;
+  if (l1 == 'other') return 1;
+  if (l2 == 'other') return -1;
+  return l1.compareTo(l2);
 }
