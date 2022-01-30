@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/core/constants/api_url.dart';
-import 'package:tachidesk_flutter/app/data/manga_model.dart';
-import 'package:tachidesk_flutter/generated/locales.g.dart';
 
+import 'package:get/get.dart';
+
+import '../../generated/locales.g.dart';
 import '../../main.dart';
+import '../core/constants/api_url.dart';
+import '../data/manga_model.dart';
 
 class MangaGridDesign extends StatelessWidget {
   const MangaGridDesign({
     Key? key,
     required this.manga,
     this.isLibraryScreen = false,
-    this.onTap, this.onDoubleTap,
+    this.onTap,
+    this.onDoubleTap,
   }) : super(key: key);
   final Manga manga;
   final void Function()? onTap;
@@ -37,7 +39,7 @@ class MangaGridDesign extends StatelessWidget {
                           horizontal: 4.0,
                         ),
                         child: Text(
-                          LocaleKeys.MangaGridDesign_inLibrary,
+                          LocaleKeys.mangaGridDesign_inLibrary,
                           style: TextStyle(
                             color: Get.theme.colorScheme.onSecondary,
                           ),
@@ -106,8 +108,24 @@ class MangaGridDesign extends StatelessWidget {
               ? Container(
                   child: Image.network(
                     localStorageService.baseURL + manga.thumbnailUrl.toString(),
-                    errorBuilder: (context, error, stackTrace) =>
-                        Image.asset(logoURL),
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Image.asset(
+                      logoCropURL,
+                      fit: BoxFit.cover,
+                    ),
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                          color: context.theme.colorScheme.secondary,
+                        ),
+                      );
+                    },
                   ),
                   foregroundDecoration: BoxDecoration(
                     border: Border.all(
@@ -131,7 +149,7 @@ class MangaGridDesign extends StatelessWidget {
                     ),
                   ),
                 )
-              : Image.asset(logoURL),
+              : Image.asset(logoCropURL),
           footer: ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             dense: true,

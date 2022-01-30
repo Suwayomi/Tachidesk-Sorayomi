@@ -16,6 +16,7 @@ dependencies:
   get_storage: ^2.0.3
   grouped_list: ^4.1.0
   intl: ^0.17.0
+  readmore: ^2.1.0
   url_launcher: ^6.0.17
 
 dev_dependencies:

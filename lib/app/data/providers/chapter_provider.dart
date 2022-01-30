@@ -1,8 +1,12 @@
 import 'package:get/get.dart';
 
+import '../../../main.dart';
+import '../../core/constants/api_url.dart';
 import '../chapter_model.dart';
 
 class ChapterProvider extends GetConnect {
+  final LocalStorageService _localStorageService =
+      Get.find<LocalStorageService>();
   @override
   void onInit() {
     httpClient.defaultDecoder = (map) {
@@ -14,12 +18,25 @@ class ChapterProvider extends GetConnect {
     httpClient.baseUrl = 'YOUR-API-URL';
   }
 
+  Future<List<Chapter>?> getChaptersList(int mangaId) async {
+    final response = await get(
+        _localStorageService.baseURL + mangaUrl + '/$mangaId/chapters',
+        decoder: (map) =>
+            map.map<Chapter>((item) => Chapter.fromJson(item)).toList());
+    return response.body;
+  }
+
   Future<Chapter?> getChapter(int id) async {
     final response = await get('chapter/$id');
     return response.body;
   }
 
-  Future<Response<Chapter>> postChapter(Chapter chapter) async =>
-      await post('chapter', chapter);
+  Future<Response<Chapter>> patchChapter(
+          int mangaId, int chapterIndex, Map<String, dynamic> formdata) async =>
+      await patch(
+          _localStorageService.baseURL +
+              mangaUrl +
+              '/$mangaId/chapter/$chapterIndex',
+          FormData(formdata));
   Future<Response> deleteChapter(int id) async => await delete('chapter/$id');
 }

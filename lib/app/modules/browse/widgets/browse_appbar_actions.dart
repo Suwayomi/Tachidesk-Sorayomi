@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import '../controllers/browse_controller.dart';
+
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
+import '../controllers/browse_controller.dart';
 
 class BrowseAppBarActions extends StatelessWidget {
   BrowseAppBarActions({Key? key}) : super(key: key);
@@ -44,7 +46,8 @@ class BrowseAppBarActions extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ))
+                        ),
+                      )
                     : IconButton(
                         onPressed: () => controller.isSearching = true,
                         icon: Icon(Icons.search_rounded),

@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: lines_longer_than_80_chars, constant_identifier_names
 // ignore: avoid_classes_with_only_static_members
 class AppTranslation {
   static Map<String, Map<String, String>> translations = {
@@ -10,7 +10,6 @@ class AppTranslation {
 
 class LocaleKeys {
   LocaleKeys._();
-  static const MangaGridDesign_inLibrary = 'MangaGridDesign_inLibrary';
   static const aboutScreen_buildTime = 'aboutScreen_buildTime';
   static const aboutScreen_channel = 'aboutScreen_channel';
   static const aboutScreen_discord = 'aboutScreen_discord';
@@ -87,9 +86,32 @@ class LocaleKeys {
   static const extensionScreen_uninstall = 'extensionScreen_uninstall';
   static const extensionScreen_update = 'extensionScreen_update';
   static const extensionScreen_wait = 'extensionScreen_wait';
-  static const loading = 'loading';
   static const libraryScreen_manga = 'libraryScreen_manga';
   static const libraryScreen_mangaSearch = 'libraryScreen_mangaSearch';
+  static const loading = 'loading';
+  static const mangaGridDesign_inLibrary = 'mangaGridDesign_inLibrary';
+  static const mangaScreen_artist = 'mangaScreen_artist';
+  static const mangaScreen_author = 'mangaScreen_author';
+  static const mangaScreen_manga = 'mangaScreen_manga';
+  static const mangaScreen_source = 'mangaScreen_source';
+  static const mangaScreen_status = 'mangaScreen_status';
+  static const mangaScreen_unknown = 'mangaScreen_unknown';
+  static const mangaScreen_addToLibrary = 'mangaScreen_addToLibrary';
+  static const mangaScreen_inLibrary = 'mangaScreen_inLibrary';
+  static const mangaScreen_webView = 'mangaScreen_webView';
+  static const mangaScreen_chapters = 'mangaScreen_chapters';
+  static const mangaScreen_chapterList_bookmark =
+      'mangaScreen_chapterList_bookmark';
+  static const mangaScreen_chapterList_removeBookmark =
+      'mangaScreen_chapterList_removeBookmark';
+  static const mangaScreen_chapterList_markAsRead =
+      'mangaScreen_chapterList_markAsRead';
+  static const mangaScreen_chapterList_markAsUnread =
+      'mangaScreen_chapterList_markAsUnread';
+  static const mangaScreen_chapterList_markPrevAsRead =
+      'mangaScreen_chapterList_markPrevAsRead';
+  static const mangaScreen_chapterList_markPrevAsUnread =
+      'mangaScreen_chapterList_markPrevAsUnread';
   static const no = 'no';
   static const screenTitle_about = 'screenTitle_about';
   static const screenTitle_browse = 'screenTitle_browse';
@@ -115,11 +137,17 @@ class LocaleKeys {
   static const sourceScreen_languages = 'sourceScreen_languages';
   static const sourceScreen_latest = 'sourceScreen_latest';
   static const sourceScreen_search = 'sourceScreen_search';
+  static const sourceMangaScreen_manga = 'sourceMangaScreen_manga';
+  static const sourceMangaScreen_latest = 'sourceMangaScreen_latest';
+  static const sourceMangaScreen_browse = 'sourceMangaScreen_browse';
+  static const sourceMangaScreen_loadMore = 'sourceMangaScreen_loadMore';
+  static const sourceMangaScreen_reload = 'sourceMangaScreen_reload';
+  static const searchManga_searchManga = 'searchManga_searchManga';
+  static const searchManga_search = 'searchManga_search';
 }
 
 class Locales {
   static const en_US = {
-    'MangaGridDesign_inLibrary': 'In library',
     'aboutScreen_buildTime': 'Build Time',
     'aboutScreen_channel': 'Channel',
     'aboutScreen_discord': 'Discord',
@@ -178,9 +206,26 @@ class Locales {
     'extensionScreen_uninstall': 'Uninstall',
     'extensionScreen_update': 'Update',
     'extensionScreen_wait': 'wait!',
-    'loading': 'Loading',
     'libraryScreen_manga': 'Manga',
     'libraryScreen_mangaSearch': 'Search manga..',
+    'loading': 'Loading',
+    'mangaGridDesign_inLibrary': 'In library',
+    'mangaScreen_artist': 'Artist',
+    'mangaScreen_author': 'Author',
+    'mangaScreen_manga': 'Manga',
+    'mangaScreen_source': 'Source',
+    'mangaScreen_status': 'Status',
+    'mangaScreen_unknown': 'Unknown',
+    'mangaScreen_addToLibrary': 'Add to Library',
+    'mangaScreen_inLibrary': 'In library',
+    'mangaScreen_webView': 'WebView',
+    'mangaScreen_chapters': 'Chapters',
+    'mangaScreen_chapterList_bookmark': 'Bookmark',
+    'mangaScreen_chapterList_removeBookmark': 'Remove bookmark',
+    'mangaScreen_chapterList_markAsRead': 'Mark as read',
+    'mangaScreen_chapterList_markAsUnread': 'Mark as unread',
+    'mangaScreen_chapterList_markPrevAsRead': 'Mark previous as read',
+    'mangaScreen_chapterList_markPrevAsUnread': 'Mark previous as unread',
     'no': 'No',
     'screenTitle_about': 'About',
     'screenTitle_browse': 'Browse',
@@ -206,5 +251,12 @@ class Locales {
     'sourceScreen_languages': 'Languages',
     'sourceScreen_latest': 'Latest',
     'sourceScreen_search': 'Search',
+    'sourceMangaScreen_manga': 'Manga',
+    'sourceMangaScreen_latest': 'Latest manga',
+    'sourceMangaScreen_browse': 'Browse manga',
+    'sourceMangaScreen_loadMore': 'Load more!',
+    'sourceMangaScreen_reload': 'Reload!',
+    'searchManga_searchManga': 'Search manga..',
+    'searchManga_search': 'Search',
   };
 }

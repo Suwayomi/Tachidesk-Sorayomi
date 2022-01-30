@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -80,6 +81,10 @@ class DownloadsView extends GetView<DownloadsController> {
                   //     ),
                   //   ],
                   // ),
+                  trailing: IconButton(
+                      onPressed: () =>
+                          controller.deleteFromDownloadQueue(item!),
+                      icon: Icon(Icons.delete)),
                 );
               },
               onReorder: (int oldIndex, int newIndex) {},

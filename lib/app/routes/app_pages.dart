@@ -20,14 +20,20 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/library/bindings/library_binding.dart';
 import '../modules/library/views/library_view.dart';
+import '../modules/manga/bindings/manga_binding.dart';
+import '../modules/manga/views/manga_view.dart';
 import '../modules/more/bindings/more_binding.dart';
 import '../modules/more/views/more_view.dart';
 import '../modules/reader_settings/bindings/reader_settings_binding.dart';
 import '../modules/reader_settings/views/reader_settings_view.dart';
+import '../modules/search_source/bindings/search_source_binding.dart';
+import '../modules/search_source/views/search_source_view.dart';
 import '../modules/server_settings/bindings/server_settings_binding.dart';
 import '../modules/server_settings/views/server_settings_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
+import '../modules/source_manga/bindings/source_manga_binding.dart';
+import '../modules/source_manga/views/source_manga_view.dart';
 import '../modules/sources/bindings/sources_binding.dart';
 import '../modules/sources/views/sources_view.dart';
 import '../modules/updates/bindings/updates_binding.dart';
@@ -112,14 +118,29 @@ class AppPages {
       binding: EditCategoriesBinding(),
     ),
     GetPage(
-      name: _Paths.EXTENSIONS,
+      name: _Paths.extensions,
       page: () => ExtensionsView(),
       binding: ExtensionsBinding(),
     ),
     GetPage(
-      name: _Paths.SOURCES,
+      name: _Paths.sources,
       page: () => SourcesView(),
       binding: SourcesBinding(),
+    ),
+    GetPage(
+      name: _Paths.manga + "/:mangaId",
+      page: () => MangaView(),
+      binding: MangaBinding(),
+    ),
+    GetPage(
+      name: _Paths.sourceManga + "/:sourceId/search",
+      page: () => SearchSourceView(),
+      binding: SearchSourceBinding(),
+    ),
+    GetPage(
+      name: _Paths.sourceManga + "/:sourceId/:sourceType",
+      page: () => SourceMangaView(),
+      binding: SourceMangaBinding(),
     ),
   ];
 }

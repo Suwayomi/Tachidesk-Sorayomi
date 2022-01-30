@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'page_model.dart';
+import 'manga_page_model.dart';
 
 class UpdateRecentChapter {
   bool? hasNextPage;

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+
+import '../../../../generated/locales.g.dart';
 import '../../../core/constants/api_url.dart';
 import '../../../core/utils/language.dart';
-import '../../../../generated/locales.g.dart';
-
 import '../../../data/source_model.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/sources_controller.dart';
 
 class SourcesView extends GetView<SourcesController> {
@@ -32,6 +33,15 @@ class SourcesView extends GetView<SourcesController> {
                   return Container(
                     key: Key('$currentKey-${source.toString()}-$iterator'),
                     child: ListTile(
+                      onTap: (() {
+                        controller.localStorageService.lastUsed = source.id;
+                        controller.groupByMap[langCodeToName("lastused")] = [
+                          source
+                        ];
+                        Get.toNamed(
+                          Routes.sourceManga + "/${source.id}/popular",
+                        );
+                      }),
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.network(
@@ -58,12 +68,30 @@ class SourcesView extends GetView<SourcesController> {
                                   .groupByMap[langCodeToName("lastused")] = [
                                 source
                               ];
+                              Get.toNamed(
+                                  Routes.sourceManga + "/${source.id}/latest");
                             },
                             child: Text(
                               LocaleKeys.sourceScreen_latest.tr,
                               style: TextStyle(
                                 color: context.theme.indicatorColor,
                               ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              controller.localStorageService.lastUsed =
+                                  source.id;
+                              controller
+                                  .groupByMap[langCodeToName("lastused")] = [
+                                source
+                              ];
+                              Get.toNamed(
+                                  Routes.sourceManga + "/${source.id}/search");
+                            },
+                            icon: Icon(
+                              Icons.search,
+                              color: context.theme.indicatorColor,
                             ),
                           ),
                         ],
@@ -133,4 +161,3 @@ Iterable<E> mapIndexed<E, T>(
 //               );
 //             },
 //           ),
-        

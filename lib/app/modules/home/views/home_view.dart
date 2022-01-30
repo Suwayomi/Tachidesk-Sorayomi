@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/modules/library/widgets/library_appbar_actions.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../browse/views/browse_view.dart';
 import '../../browse/widgets/browse_appbar_actions.dart';
 import '../../downloads/views/downloads_view.dart';
 import '../../library/views/library_view.dart';
+import '../../library/widgets/library_appbar_actions.dart';
 import '../../more/views/more_view.dart';
 import '../../updates/views/updates_view.dart';
 import '../controllers/home_controller.dart';

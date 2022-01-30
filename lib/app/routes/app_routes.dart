@@ -17,8 +17,10 @@ abstract class Routes {
   static const readerSettings = _Paths.readerSettings;
   static const serverSettings = _Paths.serverSettings;
   static const editCategories = _Paths.editCategories;
-  static const EXTENSIONS = _Paths.EXTENSIONS;
-  static const SOURCES = _Paths.SOURCES;
+  static const extensions = _Paths.extensions;
+  static const sources = _Paths.sources;
+  static const manga = _Paths.manga;
+  static const sourceManga = _Paths.sourceManga;
 }
 
 abstract class _Paths {
@@ -37,6 +39,8 @@ abstract class _Paths {
   static const readerSettings = '/reader-settings';
   static const serverSettings = '/server-settings';
   static const editCategories = '/edit-categories';
-  static const EXTENSIONS = '/extensions';
-  static const SOURCES = '/sources';
+  static const extensions = '/extensions';
+  static const sources = '/sources';
+  static const manga = '/manga';
+  static const sourceManga = '/source';
 }

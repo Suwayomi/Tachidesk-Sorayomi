@@ -1,7 +1,4 @@
 {
-    "MangaGridDesign": {
-        "inLibrary": "In library"
-    },
     "aboutScreen": {
         "buildTime": "Build Time",
         "channel": "Channel",
@@ -105,10 +102,33 @@
         "update": "Update",
         "wait": "wait!"
     },
-    "loading": "Loading",
-    "libraryScreen" : {
+    "libraryScreen": {
         "manga": "Manga",
         "mangaSearch": "Search manga.."
+    },
+    "loading": "Loading",
+    "mangaGridDesign": {
+        "inLibrary": "In library"
+    },
+    "mangaScreen": {
+        "artist": "Artist",
+        "author": "Author",
+        "manga": "Manga",
+        "source": "Source",
+        "status": "Status",
+        "unknown" : "Unknown",
+        "addToLibrary" : "Add to Library",
+        "inLibrary" : "In library",
+        "webView" : "WebView",
+        "chapters": "Chapters",
+        "chapterList": {
+            "bookmark" : "Bookmark",
+            "removeBookmark" : "Remove bookmark",
+            "markAsRead" : "Mark as read",
+            "markAsUnread" : "Mark as unread",
+            "markPrevAsRead" : "Mark previous as read",
+            "markPrevAsUnread" : "Mark previous as unread"
+        }
     },
     "no": "No",
     "screenTitle": {
@@ -142,5 +162,16 @@
         "languages": "Languages",
         "latest": "Latest",
         "search": "Search"
+    },
+    "sourceMangaScreen":{
+        "manga" : "Manga",
+        "latest" : "Latest manga" ,
+        "browse" : "Browse manga",
+        "loadMore" : "Load more!",
+        "reload" : "Reload!"
+    },
+    "searchManga" : {
+        "searchManga" : "Search manga..",
+        "search" : "Search"
     }
 }

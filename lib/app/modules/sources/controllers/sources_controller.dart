@@ -34,11 +34,6 @@ class SourcesController extends GetxController {
   }
 
   @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
   void onReady() async {
     sourceList.listen((p0) => groupByMap.value = groupBy);
     localStorageService.box.listenKey(sourceLangKey, (value) {
@@ -47,7 +42,4 @@ class SourcesController extends GetxController {
     await updateSourceList();
     super.onReady();
   }
-
-  @override
-  void onClose() {}
 }

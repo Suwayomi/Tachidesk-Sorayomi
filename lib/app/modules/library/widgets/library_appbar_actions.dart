@@ -1,9 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/modules/library/controllers/library_controller.dart';
+
 import '../../../../generated/locales.g.dart';
+import '../controllers/library_controller.dart';
 
 class LibraryAppBarActions extends StatelessWidget {
   LibraryAppBarActions({Key? key}) : super(key: key);

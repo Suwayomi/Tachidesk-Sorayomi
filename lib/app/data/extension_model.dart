@@ -88,7 +88,8 @@ class Extension {
 
   String toJson() => json.encode(toMap());
 
-  factory Extension.fromJson(Map<String, dynamic> source) => Extension.fromMap(source);
+  factory Extension.fromJson(Map<String, dynamic> source) =>
+      Extension.fromMap(source);
 
   @override
   String toString() {
@@ -98,33 +99,33 @@ class Extension {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is Extension &&
-      other.apkName == apkName &&
-      other.hasUpdate == hasUpdate &&
-      other.iconUrl == iconUrl &&
-      other.installed == installed &&
-      other.isNsfw == isNsfw &&
-      other.lang == lang &&
-      other.name == name &&
-      other.obsolete == obsolete &&
-      other.pkgName == pkgName &&
-      other.versionCode == versionCode &&
-      other.versionName == versionName;
+        other.apkName == apkName &&
+        other.hasUpdate == hasUpdate &&
+        other.iconUrl == iconUrl &&
+        other.installed == installed &&
+        other.isNsfw == isNsfw &&
+        other.lang == lang &&
+        other.name == name &&
+        other.obsolete == obsolete &&
+        other.pkgName == pkgName &&
+        other.versionCode == versionCode &&
+        other.versionName == versionName;
   }
 
   @override
   int get hashCode {
     return apkName.hashCode ^
-      hasUpdate.hashCode ^
-      iconUrl.hashCode ^
-      installed.hashCode ^
-      isNsfw.hashCode ^
-      lang.hashCode ^
-      name.hashCode ^
-      obsolete.hashCode ^
-      pkgName.hashCode ^
-      versionCode.hashCode ^
-      versionName.hashCode;
+        hasUpdate.hashCode ^
+        iconUrl.hashCode ^
+        installed.hashCode ^
+        isNsfw.hashCode ^
+        lang.hashCode ^
+        name.hashCode ^
+        obsolete.hashCode ^
+        pkgName.hashCode ^
+        versionCode.hashCode ^
+        versionName.hashCode;
   }
 }

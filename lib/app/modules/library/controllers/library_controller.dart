@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/data/manga_model.dart';
-import 'package:tachidesk_flutter/app/modules/home/controllers/home_controller.dart';
 
 import '../../../data/category_model.dart';
+import '../../../data/manga_model.dart';
 import '../../../data/repository/category_repository.dart';
+import '../../home/controllers/home_controller.dart';
 
 class LibraryController extends GetxController {
   final CategoryRepository _categoryRepository = CategoryRepository();
@@ -14,6 +15,10 @@ class LibraryController extends GetxController {
   final RxBool _isSearching = false.obs;
   bool get isSearching => _isSearching.value;
   set isSearching(bool value) => _isSearching.value = value;
+
+  final RxBool _isLoading = false.obs;
+  bool get isLoading => _isLoading.value;
+  set isLoading(bool value) => _isLoading.value = value;
 
   final RxList<Category?> _categoryList = <Category>[].obs;
   List<Category?> get categoryList => _categoryList;
@@ -33,6 +38,7 @@ class LibraryController extends GetxController {
   }
 
   Future loadMangaListWithCategoryId() async {
+    isLoading = true;
     if (textEditingController.text.isNotEmpty) {
       mangaList = (await _categoryRepository
               .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))
@@ -44,24 +50,23 @@ class LibraryController extends GetxController {
       mangaList = (await _categoryRepository
           .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!));
     }
+    isLoading = false;
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  // }
 
   @override
   void onReady() async {
     await loadCategoryList();
     await loadMangaListWithCategoryId();
-    tabIndex.listen(
-      (value) => loadMangaListWithCategoryId(),
-    );
     textEditingController.addListener(
       () => loadMangaListWithCategoryId(),
     );
     Get.find<HomeController>().selectedIndexObs.listen((value) {
+      tabIndex.value = 0;
       if (value.isEqual(0)) loadMangaListWithCategoryId();
     });
     super.onReady();

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
-import '../../../core/constants/api_url.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../core/constants/api_url.dart';
 import '../../../core/utils/days_ago.dart';
 import '../../../data/download_queue_value_model.dart';
-import '../../../data/page_model.dart';
+import '../../../data/manga_page_model.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/updates_controller.dart';
 
@@ -19,12 +19,17 @@ class UpdatesView extends GetView<UpdatesController> {
     return Scaffold(
       floatingActionButton: Obx(() => FloatingActionButton(
             child: controller.isFirstPage
-                ? CircularProgressIndicator()
+                ? CircularProgressIndicator(
+                    color: context.theme.colorScheme.secondary,
+                  )
                 : Icon(Icons.refresh_outlined),
             onPressed: () => controller.getNextPage(isRefresh: true),
           )),
       body: Obx(() => controller.isFirstPage
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(
+              color: context.theme.colorScheme.secondary,
+            ))
           : ((controller.updateRecentChapter.pageList?.isNotEmpty ?? false))
               ? GroupedListView(
                   padding: EdgeInsets.all(8),
@@ -106,7 +111,6 @@ class DownloadState extends StatelessWidget {
         )
         .obs;
     late StreamSubscription subscription;
-
     if (isDownloading.value == true) {
       subscription = controller.downloadsController.downloadsListObs
           .listen((downloads) async {
@@ -116,14 +120,20 @@ class DownloadState extends StatelessWidget {
               element.mangaId == item.chapter!.mangaId,
           orElse: () => DownloadQueueValue(),
         );
-        if (downloadingChapter.value.chapterIndex != null &&
-            isDownloading.value == false) {
+        if (downloadingChapter.value.state == "Queued" ||
+            downloadingChapter.value.state == "Downloading") {
           isDownloading.value = true;
         }
-        if (isDownloading.value == true &&
-            downloadingChapter.value.chapterIndex == null) {
+        if (downloadingChapter.value.state == "Finished") {
           isDownloading.value = false;
           item.chapter!.downloaded = true;
+          controller.updateRecentChapterObs.refresh();
+          subscription.cancel();
+        }
+        if (downloadingChapter.value.state == null &&
+            !item.chapter!.downloaded!) {
+          isDownloading.value = false;
+          item.chapter!.downloaded = false;
           controller.updateRecentChapterObs.refresh();
           subscription.cancel();
         }
@@ -133,18 +143,23 @@ class DownloadState extends StatelessWidget {
     return Obx(() => IconButton(
           icon: isDownloading.value
               ? CircularProgressIndicator(
-                  value: downloadingChapter.value.progress != 0
+                  value: downloadingChapter.value.state != "Queued"
                       ? downloadingChapter.value.progress
                       : null,
                   color: Get.theme.iconTheme.color,
                 )
               : Icon(
-                  item.chapter?.downloaded ?? false
+                  (item.chapter?.downloaded ?? false) ||
+                          downloadingChapter.value.state == "Finished"
                       ? Icons.check_circle_rounded
                       : Icons.download_for_offline_outlined,
                 ),
           onPressed: () async {
-            if (isDownloading.value == true) return;
+            if (isDownloading.value == true) {
+              isDownloading.value = false;
+              controller.deleteFromDownloadQueue(item.chapter!);
+              return;
+            }
             if (item.chapter?.downloaded ?? false) {
               await controller.deleteDownload(item.chapter!);
               item.chapter!.downloaded = false;
@@ -152,7 +167,6 @@ class DownloadState extends StatelessWidget {
             } else {
               isDownloading.value = true;
               await controller.startDownload(item.chapter!);
-              isDownloading.value = false;
               subscription = controller.downloadsController.downloadsListObs
                   .listen((downloads) async {
                 downloadingChapter.value = downloads.queue!.firstWhere(
@@ -161,16 +175,22 @@ class DownloadState extends StatelessWidget {
                       element.mangaId == item.chapter!.mangaId,
                   orElse: () => DownloadQueueValue(),
                 );
-                if (downloadingChapter.value.chapterIndex != null &&
-                    isDownloading.value == false) {
+                if (downloadingChapter.value.state == "Queued" ||
+                    downloadingChapter.value.state == "Downloading") {
                   isDownloading.value = true;
                 }
-                if (isDownloading.value == true &&
-                    downloadingChapter.value.chapterIndex == null) {
+                if (downloadingChapter.value.state == "Finished") {
                   isDownloading.value = false;
                   item.chapter!.downloaded = true;
+                  subscription.cancel();
                   controller.updateRecentChapterObs.refresh();
-                  await subscription.cancel();
+                }
+                if (downloadingChapter.value.state == null &&
+                    !item.chapter!.downloaded!) {
+                  isDownloading.value = false;
+                  item.chapter!.downloaded = false;
+                  subscription.cancel();
+                  controller.updateRecentChapterObs.refresh();
                 }
               });
             }

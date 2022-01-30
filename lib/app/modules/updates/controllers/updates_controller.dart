@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
@@ -11,7 +12,8 @@ import '../../downloads/controllers/downloads_controller.dart';
 class UpdatesController extends GetxController {
   int _page = 0;
   final ScrollController scrollController = ScrollController();
-  final LocalStorageService localStorageService =Get.find<LocalStorageService>();
+  final LocalStorageService localStorageService =
+      Get.find<LocalStorageService>();
 
   final DownloadQueueValueRepository downloadQueueValueRepository =
       DownloadQueueValueRepository();
@@ -62,11 +64,8 @@ class UpdatesController extends GetxController {
 
   Future deleteDownload(Chapter chapter) =>
       downloadQueueValueRepository.deleteDownload(chapter);
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  Future deleteFromDownloadQueue(Chapter chapter) =>
+      downloadQueueValueRepository.deleteFromDownloadQueue(chapter);
 
   @override
   void onReady() async {

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/data/manga_model.dart';
 
 import '../../../main.dart';
 import '../../core/constants/api_url.dart';
+import '../manga_model.dart';
 
 class CategoryProvider extends GetConnect {
   final LocalStorageService _localStorageService =

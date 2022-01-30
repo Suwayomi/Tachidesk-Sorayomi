@@ -18,4 +18,10 @@ class DownloadQueueValueRepository {
         mangaId: chapter.mangaId!,
         chapterIndex: chapter.index!,
       );
+
+  Future<Response> deleteFromDownloadQueue(Chapter chapter) =>
+      _downloadQueueValueProvider.deleteFromDownloadQueue(
+        mangaId: chapter.mangaId!,
+        chapterIndex: chapter.index!,
+      );
 }
