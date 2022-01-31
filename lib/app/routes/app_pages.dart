@@ -24,6 +24,8 @@ import '../modules/manga/bindings/manga_binding.dart';
 import '../modules/manga/views/manga_view.dart';
 import '../modules/more/bindings/more_binding.dart';
 import '../modules/more/views/more_view.dart';
+import '../modules/reader/bindings/reader_binding.dart';
+import '../modules/reader/views/reader_view.dart';
 import '../modules/reader_settings/bindings/reader_settings_binding.dart';
 import '../modules/reader_settings/views/reader_settings_view.dart';
 import '../modules/search_source/bindings/search_source_binding.dart';
@@ -141,6 +143,11 @@ class AppPages {
       name: _Paths.sourceManga + "/:sourceId/:sourceType",
       page: () => SourceMangaView(),
       binding: SourceMangaBinding(),
+    ),
+    GetPage(
+      name: _Paths.manga + "/:mangaId/chapter/:chapterIndex",
+      page: () => ReaderView(),
+      binding: ReaderBinding(),
     ),
   ];
 }

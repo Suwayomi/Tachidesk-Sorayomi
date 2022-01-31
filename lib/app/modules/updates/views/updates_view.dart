@@ -10,6 +10,7 @@ import '../../../core/constants/api_url.dart';
 import '../../../core/utils/days_ago.dart';
 import '../../../data/download_queue_value_model.dart';
 import '../../../data/manga_page_model.dart';
+import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/updates_controller.dart';
 
@@ -48,6 +49,8 @@ class UpdatesView extends GetView<UpdatesController> {
                   },
                   itemBuilder: (context, MangaPage item) {
                     return ListTile(
+                      onTap: () => Get.toNamed(Routes.manga +
+                          "/${item.manga!.id}/chapter/${item.chapter!.index}"),
                       contentPadding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       leading: ClipRRect(

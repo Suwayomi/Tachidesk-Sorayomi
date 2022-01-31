@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/days_ago.dart';
 import '../../../data/chapter_model.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/manga_controller.dart';
 import 'chapter_download_state.dart';
 
@@ -21,7 +22,8 @@ class ChapterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: (() {}),
+      onTap: (() => Get.toNamed(
+          Routes.manga + "/${chapter!.mangaId}/chapter/${chapter!.index}")),
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

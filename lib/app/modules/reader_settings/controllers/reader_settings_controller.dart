@@ -1,11 +1,25 @@
 import 'package:get/get.dart';
 
+import '../../../../main.dart';
+import '../../../core/constants/db_keys.dart';
+import '../../../core/enums/reader_mode.dart';
+
 class ReaderSettingsController extends GetxController {
   //TODO: Implement ReaderSettingsController
 
-  final count = 0.obs;
+  final LocalStorageService localStorageService =
+      Get.find<LocalStorageService>();
+
+  final Rx<ReaderMode> readerMode = ReaderMode.webtoon.obs;
   @override
   void onInit() {
+    readerMode.value = localStorageService.readerMode;
+
+    localStorageService.box.listenKey(
+      readerModeKey,
+      (value) =>
+          readerMode.value = stringToReaderMode(value) ?? readerMode.value,
+    );
     super.onInit();
   }
 
@@ -16,5 +30,4 @@ class ReaderSettingsController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

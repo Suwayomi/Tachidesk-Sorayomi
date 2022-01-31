@@ -18,6 +18,10 @@ class MangaController extends GetxController {
   final RxBool isLoading = false.obs;
   final RxBool isPageLoading = false.obs;
 
+  final Rx<Chapter> _firstUnreadChapter = Chapter(index: -1).obs;
+  Chapter get firstUnreadChapter => _firstUnreadChapter.value;
+  set firstUnreadChapter(Chapter value) => _firstUnreadChapter.value = value;
+
   final DownloadQueueValueRepository downloadQueueValueRepository =
       DownloadQueueValueRepository();
 
@@ -56,6 +60,13 @@ class MangaController extends GetxController {
     }
   }
 
+  void getFirstUnreadChapter() {
+    List<Chapter?> chapterLst = chapterList.value.reversed.toList();
+    firstUnreadChapter = chapterLst.firstWhereOrNull(
+            (element) => ((element?.read ?? true) == false)) ??
+        firstUnreadChapter;
+  }
+
   Future<void> loadChapterList({bool loadingWidget = true}) async {
     if (loadingWidget) {
       isLoading.value = true;
@@ -64,6 +75,7 @@ class MangaController extends GetxController {
     } else {
       chapterList.value = await chapterRepository.getChaptersList(id);
     }
+    getFirstUnreadChapter();
   }
 
   Future modifyChapter(Chapter chapter, String key, dynamic value) async {

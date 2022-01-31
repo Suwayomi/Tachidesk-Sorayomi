@@ -6,7 +6,7 @@ environment:
   sdk: '>=2.16.0-80.1.beta <3.0.0'
 
 dependencies:
-  cached_network_image_builder: ^0.2.0
+  cached_network_image: ^3.2.0
   collection: ^1.15.0
   cupertino_icons: ^1.0.2
   file_picker: ^4.3.0

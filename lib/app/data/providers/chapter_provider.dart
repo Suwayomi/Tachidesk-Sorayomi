@@ -26,9 +26,22 @@ class ChapterProvider extends GetConnect {
     return response.body;
   }
 
-  Future<Chapter?> getChapter(int id) async {
-    final response = await get('chapter/$id');
+  Future<Chapter?> getChapter(
+      {required int mangaId, required int chapterIndex}) async {
+    final response = await get(
+      _localStorageService.baseURL +
+          mangaUrl +
+          '/$mangaId/chapter/$chapterIndex',
+      decoder: (data) => Chapter.fromMap(data),
+    );
     return response.body;
+  }
+
+  String getChapterPage(
+      {required int mangaId, required int chapterIndex, required int page}) {
+    return _localStorageService.baseURL +
+        mangaUrl +
+        '/$mangaId/chapter/$chapterIndex/page/$page?useCache=true';
   }
 
   Future<Response<Chapter>> patchChapter(

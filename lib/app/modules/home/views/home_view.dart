@@ -26,58 +26,59 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Obx(
-            () => Text(navigationBarTitles[controller.selectedIndex].tr),
-          ),
-          actions: [
-            Obx(() => controller.selectedIndex == 0
-                ? LibraryAppBarActions()
-                : Container()),
-            Obx(() => controller.selectedIndex == 2
-                ? BrowseAppBarActions()
-                : Container())
-          ],
+      appBar: AppBar(
+        title: Obx(
+          () => Text(navigationBarTitles[controller.selectedIndex].tr),
         ),
-        bottomNavigationBar: context.width > 600.0
-            ? null
-            : SmallScreenNavigationBar(
-                controller: controller,
-                navigationBarTitles: navigationBarTitles,
-              ),
-        body: Row(
-          children: [
-            context.width > 600.0
-                ? context.height < 500
-                    ? SingleChildScrollView(
-                        controller: ScrollController(),
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(maxHeight: 500),
-                          child: BigScreenNavigationBar(
-                            controller: controller,
-                            navigationBarTitles: navigationBarTitles,
-                          ),
-                        ),
-                      )
-                    : BigScreenNavigationBar(
-                        controller: controller,
-                        navigationBarTitles: navigationBarTitles,
-                      )
-                : Container(),
-            Expanded(
-              child: PageView(
-                controller: controller.pageController,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  LibraryView(),
-                  UpdatesView(),
-                  BrowseView(),
-                  DownloadsView(),
-                  MoreView(),
-                ],
-              ),
+        actions: [
+          Obx(() => controller.selectedIndex == 0
+              ? LibraryAppBarActions()
+              : Container()),
+          Obx(() => controller.selectedIndex == 2
+              ? BrowseAppBarActions()
+              : Container())
+        ],
+      ),
+      bottomNavigationBar: context.width > 600.0
+          ? null
+          : SmallScreenNavigationBar(
+              controller: controller,
+              navigationBarTitles: navigationBarTitles,
             ),
-          ],
-        ));
+      body: Row(
+        children: [
+          context.width > 600.0
+              ? context.height < 500
+                  ? SingleChildScrollView(
+                      controller: ScrollController(),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(maxHeight: 500),
+                        child: BigScreenNavigationBar(
+                          controller: controller,
+                          navigationBarTitles: navigationBarTitles,
+                        ),
+                      ),
+                    )
+                  : BigScreenNavigationBar(
+                      controller: controller,
+                      navigationBarTitles: navigationBarTitles,
+                    )
+              : Container(),
+          Expanded(
+            child: PageView(
+              controller: controller.pageController,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                LibraryView(),
+                UpdatesView(),
+                BrowseView(),
+                DownloadsView(),
+                MoreView(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

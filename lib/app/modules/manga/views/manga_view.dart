@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../data/chapter_model.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/manga_controller.dart';
 import '../widgets/chapter_card.dart';
 import '../widgets/manga_description.dart';
@@ -19,12 +20,25 @@ class MangaView extends GetView<MangaController> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          icon: Icon(Icons.play_arrow_rounded),
-          label: Text("Resume"),
-          isExtended: context.width > 600 ? true : false,
-        ),
+        floatingActionButton: Obx(() => FloatingActionButton.extended(
+              onPressed: () {
+                if (controller.firstUnreadChapter.index == -1) {
+                  Get.rawSnackbar(
+                    title: LocaleKeys.mangaScreen_noNewChapter.tr,
+                    message: LocaleKeys.mangaScreen_noNewChapter.tr,
+                  );
+                } else {
+                  Chapter chapter = controller.firstUnreadChapter;
+                  Get.toNamed(Routes.manga +
+                      "/${chapter.mangaId}/chapter/${chapter.index}");
+                }
+              },
+              icon: Icon(Icons.play_arrow_rounded),
+              label: controller.firstUnreadChapter.index != 1
+                  ? Text("Resume")
+                  : Text("Start"),
+              isExtended: context.width > 600 ? true : false,
+            )),
         body: Obx(
           () => controller.isPageLoading.value
               ? Center(
@@ -67,8 +81,7 @@ class MangaView extends GetView<MangaController> {
                                             controller.chapterList.length;
                                         return ListTile(
                                           title: Text(
-                                            (length.isEqual(0) ? 0 : length - 1)
-                                                    .toString() +
+                                            length.toString() +
                                                 " " +
                                                 LocaleKeys
                                                     .mangaScreen_chapters.tr,
@@ -129,8 +142,7 @@ class MangaView extends GetView<MangaController> {
                                   int length = controller.chapterList.length;
                                   return ListTile(
                                     title: Text(
-                                      (length.isEqual(0) ? 0 : length - 1)
-                                              .toString() +
+                                      length.toString() +
                                           " " +
                                           LocaleKeys.mangaScreen_chapters.tr,
                                     ),
