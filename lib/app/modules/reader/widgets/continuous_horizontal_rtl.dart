@@ -26,7 +26,11 @@ class ContinuousHorizontalRTL extends StatelessWidget {
             reverse: true,
             controller: scrollController,
             itemCount: controller.chapter.pageCount,
-            itemBuilder: (context, index) => Padding(
+            itemBuilder: (context, index) {
+              if (index == (controller.chapter.pageCount! - 1)) {
+                controller.markAsRead();
+              }
+              return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: CachedNetworkImage(
                 fit: BoxFit.fitHeight,
@@ -48,7 +52,8 @@ class ContinuousHorizontalRTL extends StatelessWidget {
                       EmoticonsView(emptyType: LocaleKeys.readerScreen_image),
                 ),
               ),
-            ),
+            );
+            },
           ),
         ),
         Row(

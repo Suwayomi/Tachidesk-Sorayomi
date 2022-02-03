@@ -20,25 +20,28 @@ class MangaView extends GetView<MangaController> {
             ),
           ),
         ),
-        floatingActionButton: Obx(() => FloatingActionButton.extended(
-              onPressed: () {
-                if (controller.firstUnreadChapter.index == -1) {
-                  Get.rawSnackbar(
-                    title: LocaleKeys.mangaScreen_noNewChapter.tr,
-                    message: LocaleKeys.mangaScreen_noNewChapter.tr,
-                  );
-                } else {
-                  Chapter chapter = controller.firstUnreadChapter;
-                  Get.toNamed(Routes.manga +
-                      "/${chapter.mangaId}/chapter/${chapter.index}");
-                }
-              },
-              icon: Icon(Icons.play_arrow_rounded),
-              label: controller.firstUnreadChapter.index != 1
-                  ? Text("Resume")
-                  : Text("Start"),
-              isExtended: context.width > 600 ? true : false,
-            )),
+        floatingActionButton:
+            Obx(() => controller.firstUnreadChapter.index != -1
+                ? FloatingActionButton.extended(
+                    onPressed: () {
+                      if (controller.firstUnreadChapter.index == -1) {
+                        Get.rawSnackbar(
+                          title: LocaleKeys.mangaScreen_noNewChapter.tr,
+                          message: LocaleKeys.mangaScreen_noNewChapter.tr,
+                        );
+                      } else {
+                        Chapter chapter = controller.firstUnreadChapter;
+                        Get.toNamed(Routes.manga +
+                            "/${chapter.mangaId}/chapter/${chapter.index}");
+                      }
+                    },
+                    icon: Icon(Icons.play_arrow_rounded),
+                    label: controller.firstUnreadChapter.index != 1
+                        ? Text("Resume")
+                        : Text("Start"),
+                    isExtended: context.width > 600 ? true : false,
+                  )
+                : Container()),
         body: Obx(
           () => controller.isPageLoading.value
               ? Center(

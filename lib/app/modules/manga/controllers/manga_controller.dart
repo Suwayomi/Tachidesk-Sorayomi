@@ -61,7 +61,7 @@ class MangaController extends GetxController {
   }
 
   void getFirstUnreadChapter() {
-    List<Chapter?> chapterLst = chapterList.value.reversed.toList();
+    List<Chapter?> chapterLst = chapterList.reversed.toList();
     firstUnreadChapter = chapterLst.firstWhereOrNull(
             (element) => ((element?.read ?? true) == false)) ??
         firstUnreadChapter;

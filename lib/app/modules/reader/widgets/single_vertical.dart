@@ -26,7 +26,11 @@ class SingleVertical extends StatelessWidget {
             itemCount: controller.chapter.pageCount,
             controller: pageController,
             scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) => InteractiveViewer(
+            itemBuilder: (context, index) {
+              if (index == (controller.chapter.pageCount! - 1)) {
+                controller.markAsRead();
+              }
+              return InteractiveViewer(
               child: CachedNetworkImage(
                 fit: BoxFit.fitHeight,
                 imageUrl: controller.getChapterPage(index),
@@ -46,7 +50,8 @@ class SingleVertical extends StatelessWidget {
                       EmoticonsView(emptyType: LocaleKeys.readerScreen_image),
                 ),
               ),
-            ),
+            );
+            },
           ),
         ),
         Column(

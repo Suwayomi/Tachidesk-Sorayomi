@@ -32,7 +32,7 @@ class ReaderView extends GetView<ReaderController> {
                   ? Icon(Icons.visibility_rounded)
                   : Icon(
                       Icons.visibility_off_rounded,
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey.withOpacity(0.5),
                     ),
             ),
           ],
@@ -128,19 +128,31 @@ class ReaderView extends GetView<ReaderController> {
                       (controller.chapter.index!) >= 1
                           ? TextButton.icon(
                               onPressed: () => controller.prevChapter(),
-                              icon: Icon(Icons.arrow_back_ios),
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                                color: context.theme.colorScheme.secondary,
+                              ),
                               label: Text(
                                 LocaleKeys.readerScreen_previousChapter.tr,
+                                style: TextStyle(
+                                  color: context.theme.colorScheme.secondary,
+                                ),
                               ),
                             )
                           : Container(),
                       controller.chapter.index! <
                               controller.chapter.chapterCount!
                           ? TextButton.icon(
-                              label: Icon(Icons.arrow_forward_ios),
+                              label: Icon(
+                                Icons.arrow_forward_ios,
+                                color: context.theme.colorScheme.secondary,
+                              ),
                               onPressed: () => controller.nextChapter(),
                               icon: Text(
                                 LocaleKeys.readerScreen_nextChapter.tr,
+                                style: TextStyle(
+                                  color: context.theme.colorScheme.secondary,
+                                ),
                               ),
                             )
                           : Container(),

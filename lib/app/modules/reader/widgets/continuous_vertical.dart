@@ -24,7 +24,11 @@ class ContinuousVertical extends StatelessWidget {
           child: ListView.builder(
             itemCount: controller.chapter.pageCount,
             controller: scrollController,
-            itemBuilder: (context, index) => Padding(
+            itemBuilder: (context, index) {
+              if (index == (controller.chapter.pageCount! - 1)) {
+                controller.markAsRead();
+              }
+              return Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CachedNetworkImage(
                 fit: BoxFit.fitWidth,
@@ -45,7 +49,8 @@ class ContinuousVertical extends StatelessWidget {
                       EmoticonsView(emptyType: LocaleKeys.readerScreen_image),
                 ),
               ),
-            ),
+            );
+            },
           ),
         ),
         Column(

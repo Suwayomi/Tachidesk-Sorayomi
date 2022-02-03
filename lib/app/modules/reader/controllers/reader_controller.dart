@@ -10,7 +10,6 @@ import '../../../data/repository/manga_repository.dart';
 import '../../../routes/app_pages.dart';
 
 class ReaderController extends GetxController {
-  //TODO: Implement ReaderController
   late final int mangaId;
   late final int chapterIndex;
 
@@ -66,6 +65,11 @@ class ReaderController extends GetxController {
         Routes.manga + "/${chapter.mangaId}/chapter/${chapter.index! + 1}");
   }
 
+  Future markAsRead() async {
+    Map<String, dynamic> formData = {"read": true, "lastPageRead": "1"};
+    await chapterRepository.patchChapter(chapter, formData);
+  }
+
   void prevChapter() {
     if ((chapter.index ?? 0) > 1) {
       Get.offNamed(
@@ -87,9 +91,7 @@ class ReaderController extends GetxController {
     manga = (await mangaRepository.getManga(mangaId)) ?? manga;
     isDataLoading = true;
     isLoading = false;
-    if (chapter.index == null) {
-      Get.back();
-    }
+
     super.onReady();
   }
 

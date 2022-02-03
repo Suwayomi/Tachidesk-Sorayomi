@@ -1,0 +1,34 @@
+name: tachidesk-flutter
+version: 0.1.0
+summary: UI for Tachidesk Server
+description: Tachidesk Flutter is a UI app based on Flutter for Tachidesk Server
+
+confinement: strict
+base: core18
+grade: devel
+
+slots:
+  dbus-tachidesk-flutter: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: org.suwayomi.tachidesk_flutter # adjust accordingly to your app name and
+    
+apps:
+  tachidesk-flutter:
+    command: tachidesk_flutter
+    extensions: [flutter-beta] # Where "master" defines which Flutter channel to use for the build
+    plugs:
+    - network
+    slots:
+      - dbus-tachidesk-flutter
+parts:
+  tachidesk-flutter:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application
+
+plugs:
+  tachidesk-flutter-home:
+    interface: home
+  tachidesk-flutter-network:
+    interface: network

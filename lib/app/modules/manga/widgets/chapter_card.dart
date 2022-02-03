@@ -22,8 +22,11 @@ class ChapterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: (() => Get.toNamed(
-          Routes.manga + "/${chapter!.mangaId}/chapter/${chapter!.index}")),
+      onTap: (() async {
+        await Get.toNamed(
+            Routes.manga + "/${chapter!.mangaId}/chapter/${chapter!.index}");
+        controller.loadChapterList();
+      }),
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
