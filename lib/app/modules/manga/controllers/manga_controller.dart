@@ -12,8 +12,6 @@ import '../../library/controllers/library_controller.dart';
 class MangaController extends GetxController {
   final Rx<Manga> manga = Manga().obs;
   final RxList<Chapter?> chapterList = <Chapter?>[].obs;
-  final MangaRepository mangaRepository = MangaRepository();
-  final ChapterRepository chapterRepository = ChapterRepository();
   late int id;
   final RxBool isLoading = false.obs;
   final RxBool isPageLoading = false.obs;
@@ -22,10 +20,6 @@ class MangaController extends GetxController {
   Chapter get firstUnreadChapter => _firstUnreadChapter.value;
   set firstUnreadChapter(Chapter value) => _firstUnreadChapter.value = value;
 
-  final DownloadQueueValueRepository downloadQueueValueRepository =
-      DownloadQueueValueRepository();
-
-  final DownloadsRepository downloadsRepository = DownloadsRepository();
   late final GetSocket downloadSocket;
   final Rx<Downloads> _downloadsList = Downloads(queue: []).obs;
 
@@ -34,14 +28,14 @@ class MangaController extends GetxController {
   set downloadsList(Downloads value) => _downloadsList.value = value;
 
   Future<void> loadManga() async {
-    manga.value = await mangaRepository.getManga(id,
+    manga.value = await MangaRepository.getManga(id,
             fetchFreshData: manga.value.freshData == null ||
                 !(manga.value.freshData ?? false)) ??
         manga.value;
   }
 
   Future<void> removeMangaFromLibrary() async {
-    await mangaRepository.removeMangaFromLibrary(id);
+    await MangaRepository.removeMangaFromLibrary(id);
     loadManga();
     try {
       await Get.find<LibraryController>().loadMangaListWithCategoryId();
@@ -51,7 +45,7 @@ class MangaController extends GetxController {
   }
 
   Future<void> addMangaToLibrary() async {
-    await mangaRepository.addMangaToLibrary(id);
+    await MangaRepository.addMangaToLibrary(id);
     loadManga();
     try {
       await Get.find<LibraryController>().loadMangaListWithCategoryId();
@@ -70,10 +64,10 @@ class MangaController extends GetxController {
   Future<void> loadChapterList({bool loadingWidget = true}) async {
     if (loadingWidget) {
       isLoading.value = true;
-      chapterList.value = await chapterRepository.getChaptersList(id);
+      chapterList.value = (await ChapterRepository.getChaptersList(id));
       isLoading.value = false;
     } else {
-      chapterList.value = await chapterRepository.getChaptersList(id);
+      chapterList.value = await ChapterRepository.getChaptersList(id);
     }
     getFirstUnreadChapter();
   }
@@ -81,22 +75,22 @@ class MangaController extends GetxController {
   Future modifyChapter(Chapter chapter, String key, dynamic value) async {
     Map<String, dynamic> formData = {key: value};
     if (key == "read") formData['lastPageRead'] = '1';
-    await chapterRepository.patchChapter(chapter, formData);
+    await ChapterRepository.patchChapter(chapter, formData);
     await loadChapterList(loadingWidget: false);
   }
 
   Future startDownload(Chapter chapter) =>
-      downloadQueueValueRepository.startDownload(chapter);
+      DownloadQueueValueRepository.startDownload(chapter);
 
   Future deleteDownload(Chapter chapter) =>
-      downloadQueueValueRepository.deleteDownload(chapter);
+      DownloadQueueValueRepository.deleteDownload(chapter);
   Future deleteFromDownloadQueue(Chapter chapter) =>
-      downloadQueueValueRepository.deleteFromDownloadQueue(chapter);
+      DownloadQueueValueRepository.deleteFromDownloadQueue(chapter);
 
   @override
   void onInit() {
     id = int.parse(Get.parameters["mangaId"]!);
-    downloadSocket = downloadsRepository.socketDownloads();
+    downloadSocket = DownloadsRepository.socketDownloads();
     super.onInit();
   }
 

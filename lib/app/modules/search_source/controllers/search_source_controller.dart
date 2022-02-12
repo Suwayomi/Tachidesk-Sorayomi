@@ -10,7 +10,6 @@ class SearchSourceController extends GetxController {
   int _page = 1;
   late String sourceId;
   final ScrollController scrollController = ScrollController();
-  final SourceRepository sourceRepository = SourceRepository();
   final TextEditingController textEditingController = TextEditingController();
   final Rx<Source> _source = Source().obs;
 
@@ -31,7 +30,7 @@ class SearchSourceController extends GetxController {
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
         print(_page);
-        final sourceMangaListTemp = await sourceRepository.getSourceSearch(
+        final sourceMangaListTemp = await SourceRepository.getSourceSearch(
             searchTerm: textEditingController.text,
             pageNum: _page,
             sourceId: sourceId);
@@ -45,7 +44,7 @@ class SearchSourceController extends GetxController {
     } else {
       isFirstPage = true;
       _page = 1;
-      sourceMangaList = (await sourceRepository.getSourceSearch(
+      sourceMangaList = (await SourceRepository.getSourceSearch(
               searchTerm: textEditingController.text,
               pageNum: _page,
               sourceId: sourceId)) ??
@@ -64,7 +63,7 @@ class SearchSourceController extends GetxController {
 
   @override
   void onReady() async {
-    source = (await sourceRepository.getSource(sourceId: sourceId)) ?? source;
+    source = (await SourceRepository.getSource(sourceId: sourceId)) ?? source;
     scrollController.addListener(() async {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {

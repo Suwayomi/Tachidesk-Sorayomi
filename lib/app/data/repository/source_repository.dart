@@ -4,11 +4,11 @@ import '../source_manga_list_model.dart';
 import '../source_model.dart';
 
 class SourceRepository {
-  final SourceProvider _sourceProvider = SourceProvider();
+  static final SourceProvider _sourceProvider = SourceProvider();
 
-  Future<List<Source>?> getSourceList() => _sourceProvider.getSourceList();
+  static Future<List<Source>?> getSourceList() => _sourceProvider.getSourceList();
 
-  Future<SourceMangaList?> getSourceMangaList({
+  static Future<SourceMangaList?> getSourceMangaList({
     required String sourceId,
     required int pageNum,
     required SourceType sourceType,
@@ -19,7 +19,7 @@ class SourceRepository {
         sourceType: sourceType,
       );
 
-  Future<SourceMangaList?> getSourceSearch({
+  static Future<SourceMangaList?> getSourceSearch({
     required String sourceId,
     required int pageNum,
     required String searchTerm,
@@ -30,6 +30,6 @@ class SourceRepository {
         searchTerm: searchTerm,
       );
 
-  Future<Source?> getSource({required String sourceId}) =>
+  static Future<Source?> getSource({required String sourceId}) =>
       _sourceProvider.getSource(sourceId: sourceId);
 }

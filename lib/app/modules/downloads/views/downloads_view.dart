@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tachidesk_flutter/app/data/repository/downloads_repository.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../widgets/emoticons.dart';
@@ -15,9 +16,9 @@ class DownloadsView extends GetView<DownloadsController> {
               ? FloatingActionButton.extended(
                   onPressed: () {
                     if (controller.downloadsList.status == "Stopped") {
-                      controller.downloadsRepository.startDownloads();
+                      DownloadsRepository.startDownloads();
                     } else {
-                      controller.downloadsRepository.stopDownloads();
+                      DownloadsRepository.stopDownloads();
                     }
                   },
                   icon: Icon(controller.downloadsList.status == "Stopped"

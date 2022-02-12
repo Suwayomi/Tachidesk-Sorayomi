@@ -12,8 +12,6 @@ class BackupController extends GetxController {
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
-  final RestoreRepository _restoreRepository = RestoreRepository();
-
   String get totalBackupURL => _localStorageService.baseURL + backupURL;
 
   void restoreBackup() async {
@@ -26,7 +24,7 @@ class BackupController extends GetxController {
         message: LocaleKeys.backupSettings_restoring_subtitle.tr,
       );
 
-      Response res = await _restoreRepository.postRestore(file);
+      Response res = await RestoreRepository.postRestore(file);
       if (res.statusCode == null || res.statusCode == 200) {
         Get.rawSnackbar(
           title: LocaleKeys.backupSettings_restored_title.tr,

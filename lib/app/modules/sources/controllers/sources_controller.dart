@@ -7,7 +7,6 @@ import '../../../data/repository/source_repository.dart';
 import '../../../data/source_model.dart';
 
 class SourcesController extends GetxController {
-  final SourceRepository _sourceRepository = SourceRepository();
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
   final RxList<Source> sourceList = <Source>[].obs;
@@ -30,7 +29,7 @@ class SourcesController extends GetxController {
   }
 
   Future<void> updateSourceList() async {
-    sourceList.value = (await _sourceRepository.getSourceList()) ?? sourceList;
+    sourceList.value = (await SourceRepository.getSourceList()) ?? sourceList;
   }
 
   @override

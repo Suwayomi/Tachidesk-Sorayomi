@@ -5,8 +5,8 @@ import '../providers/downloads_provider.dart';
 class DownloadsRepository {
   static final DownloadsProvider _downloadsProvider = DownloadsProvider();
 
-  Future<int?> startDownloads() => _downloadsProvider.startDownloads();
-  Future<int?> stopDownloads() => _downloadsProvider.stopDownloads();
-  Future<int?> clearDownloads() => _downloadsProvider.clearDownloads();
-  GetSocket socketDownloads() => _downloadsProvider.socketDownloads();
+  static Future<int?> startDownloads() => _downloadsProvider.startDownloads();
+  static Future<int?> stopDownloads() => _downloadsProvider.stopDownloads();
+  static Future<int?> clearDownloads() => _downloadsProvider.clearDownloads();
+  static GetSocket socketDownloads() => _downloadsProvider.socketDownloads();
 }

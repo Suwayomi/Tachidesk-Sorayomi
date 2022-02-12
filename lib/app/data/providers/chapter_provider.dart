@@ -7,22 +7,13 @@ import '../chapter_model.dart';
 class ChapterProvider extends GetConnect {
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
-  @override
-  void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return Chapter.fromJson(map);
-      if (map is List) {
-        return map.map((item) => Chapter.fromJson(item)).toList();
-      }
-    };
-    httpClient.baseUrl = 'YOUR-API-URL';
-  }
 
   Future<List<Chapter>?> getChaptersList(int mangaId) async {
+    
     final response = await get(
-        _localStorageService.baseURL + mangaUrl + '/$mangaId/chapters',
-        decoder: (map) =>
-            map.map<Chapter>((item) => Chapter.fromJson(item)).toList());
+            _localStorageService.baseURL + mangaUrl + '/$mangaId/chapters',
+            decoder: (map) =>
+                map.map<Chapter>((item) => Chapter.fromJson(item)).toList());
     return response.body;
   }
 

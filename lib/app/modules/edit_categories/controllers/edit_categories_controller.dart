@@ -7,7 +7,6 @@ import '../../../data/repository/category_repository.dart';
 import '../../library/controllers/library_controller.dart';
 
 class EditCategoriesController extends GetxController {
-  final CategoryRepository _categoryRepository = CategoryRepository();
   final TextEditingController textEditingController = TextEditingController();
   final RxBool _defaultCategory = false.obs;
   final RxList<Category?> _categoryList = <Category>[].obs;
@@ -20,24 +19,24 @@ class EditCategoriesController extends GetxController {
   set defaultCategory(bool value) => _defaultCategory.value = value;
 
   Future<void> editCategory({required Category category}) async {
-    await _categoryRepository.editCategory(category.copyWith(
+    await CategoryRepository.editCategory(category.copyWith(
         name: textEditingController.text, defaultCategory: defaultCategory));
     reloadCategoryList();
   }
 
   Future<void> createCategory() async {
-    await _categoryRepository.createCategory(Category(
+    await CategoryRepository.createCategory(Category(
         name: textEditingController.text, defaultCategory: defaultCategory));
     reloadCategoryList();
   }
 
   Future<void> deleteCategory(int id) async {
-    await _categoryRepository.deleteCategory(id);
+    await CategoryRepository.deleteCategory(id);
     reloadCategoryList();
   }
 
   Future reloadCategoryList() async {
-    List categoryListJson = (await _categoryRepository.getCategoryList());
+    List categoryListJson = (await CategoryRepository.getCategoryList());
     categoryListJson.removeAt(0);
     categoryList =
         (categoryListJson.map<Category>((e) => Category.fromJson(e)).toList());
@@ -48,7 +47,7 @@ class EditCategoriesController extends GetxController {
     if (from < to) to -= 1;
     final Category? item = categoryList.removeAt(from);
     categoryList.insert(to, item);
-    await _categoryRepository.reorderCategory(from: from + 1, to: to + 1);
+    await CategoryRepository.reorderCategory(from: from + 1, to: to + 1);
     reloadCategoryList();
   }
 

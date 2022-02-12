@@ -21,8 +21,6 @@ class ReaderController extends GetxController {
   Chapter get chapter => _chapter.value;
   set chapter(Chapter value) => _chapter.value = value;
 
-  final MangaRepository mangaRepository = MangaRepository();
-  final ChapterRepository chapterRepository = ChapterRepository();
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
   final Rx<ReaderMode> readerMode = ReaderMode.webtoon.obs;
@@ -43,7 +41,7 @@ class ReaderController extends GetxController {
   bool get expandedState => _expandedState.value;
   set expandedState(bool value) => _expandedState.value = value;
 
-  String getChapterPage(int page) => chapterRepository.getChapterPage(
+  String getChapterPage(int page) => ChapterRepository.getChapterPage(
       mangaId: mangaId, chapterIndex: chapterIndex, page: page);
 
   @override
@@ -56,7 +54,7 @@ class ReaderController extends GetxController {
 
   void nextChapter() {
     if ((chapter.index ?? 1) < (chapter.chapterCount ?? 1)) {
-      chapterRepository.patchChapter(chapter, {
+      ChapterRepository.patchChapter(chapter, {
         "lastPageRead": chapter.pageCount! - 1,
         "read": true,
       });
@@ -67,7 +65,7 @@ class ReaderController extends GetxController {
 
   Future markAsRead() async {
     Map<String, dynamic> formData = {"read": true, "lastPageRead": "1"};
-    await chapterRepository.patchChapter(chapter, formData);
+    await ChapterRepository.patchChapter(chapter, formData);
   }
 
   void prevChapter() {
@@ -85,10 +83,10 @@ class ReaderController extends GetxController {
           readerMode.value = stringToReaderMode(value) ?? readerMode.value,
     );
     isLoading = true;
-    chapter = (await chapterRepository.getChapter(
+    chapter = (await ChapterRepository.getChapter(
             mangaId: mangaId, chapterIndex: chapterIndex)) ??
         chapter;
-    manga = (await mangaRepository.getManga(mangaId)) ?? manga;
+    manga = (await MangaRepository.getManga(mangaId)) ?? manga;
     isDataLoading = true;
     isLoading = false;
 

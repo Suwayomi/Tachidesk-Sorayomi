@@ -4,11 +4,11 @@ import '../providers/chapter_provider.dart';
 class ChapterRepository {
   static final ChapterProvider _categoryProvider = ChapterProvider();
 
-  Future getChaptersList(int mangaId) {
+  static Future getChaptersList(int mangaId) {
     return _categoryProvider.getChaptersList(mangaId);
   }
 
-  Future<Chapter?> getChapter({
+  static Future<Chapter?> getChapter({
     required int mangaId,
     required int chapterIndex,
   }) {
@@ -16,7 +16,7 @@ class ChapterRepository {
         mangaId: mangaId, chapterIndex: chapterIndex);
   }
 
-  String getChapterPage(
+  static String getChapterPage(
       {required int mangaId, required int chapterIndex, required int page}) {
     return _categoryProvider.getChapterPage(
       mangaId: mangaId,
@@ -25,7 +25,7 @@ class ChapterRepository {
     );
   }
 
-  Future patchChapter(Chapter chapter, Map<String, dynamic> formData) {
+  static Future patchChapter(Chapter chapter, Map<String, dynamic> formData) {
     return _categoryProvider.patchChapter(
       chapter.mangaId!,
       chapter.index!,
