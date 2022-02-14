@@ -32,3 +32,10 @@ plugs:
     interface: home
   tachidesk-flutter-network:
     interface: network
+architectures:
+  - build-on: s390x
+  - build-on: ppc64el
+  - build-on: arm64
+  - build-on: armhf
+  - build-on: amd64
+  - build-on: i386
