@@ -6,7 +6,8 @@ import '../source_model.dart';
 class SourceRepository {
   static final SourceProvider _sourceProvider = SourceProvider();
 
-  static Future<List<Source>?> getSourceList() => _sourceProvider.getSourceList();
+  static Future<List<Source>?> getSourceList() =>
+      _sourceProvider.getSourceList();
 
   static Future<SourceMangaList?> getSourceMangaList({
     required String sourceId,

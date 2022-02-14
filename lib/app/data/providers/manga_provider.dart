@@ -5,16 +5,9 @@ import '../../core/constants/api_url.dart';
 import '../manga_model.dart';
 
 class MangaProvider extends GetConnect {
+  MangaProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
-  @override
-  void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return Manga.fromJson(map);
-      if (map is List) return map.map((item) => Manga.fromJson(item)).toList();
-    };
-    httpClient.baseUrl = _localStorageService.baseURL + mangaUrl;
-  }
 
   Future<Manga?> getManga(int id, {bool fetchFreshData = true}) async {
     final response = await get(

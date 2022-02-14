@@ -7,6 +7,7 @@ import '../../../main.dart';
 import '../../core/constants/api_url.dart';
 
 class RestoreProvider extends GetConnect {
+  RestoreProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 

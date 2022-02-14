@@ -34,7 +34,8 @@ class CategoryRepository {
     return _categoryProvider.deleteCategory(id);
   }
 
-  static Future<Response> reorderCategory({required int from, required int to}) {
+  static Future<Response> reorderCategory(
+      {required int from, required int to}) {
     return _categoryProvider.reorderCategory(from: from, to: to);
   }
 }

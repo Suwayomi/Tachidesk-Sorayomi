@@ -106,6 +106,7 @@ class LocaleKeys {
   static const mangaScreen_chapterList_removeBookmark =
       'mangaScreen_chapterList_removeBookmark';
   static const mangaScreen_noNewChapter = 'mangaScreen_noNewChapter';
+  static const mangaScreen_noChapter = 'mangaScreen_noChapter';
   static const mangaScreen_chapters = 'mangaScreen_chapters';
   static const mangaScreen_inLibrary = 'mangaScreen_inLibrary';
   static const mangaScreen_manga = 'mangaScreen_manga';
@@ -113,6 +114,7 @@ class LocaleKeys {
   static const mangaScreen_status = 'mangaScreen_status';
   static const mangaScreen_unknown = 'mangaScreen_unknown';
   static const mangaScreen_webView = 'mangaScreen_webView';
+  static const mangaScreen_reload = 'mangaScreen_reload';
   static const no = 'no';
   static const readerScreen_chapter = 'readerScreen_chapter';
   static const readerScreen_nextChapter = 'readerScreen_nextChapter';
@@ -241,6 +243,7 @@ class Locales {
     'mangaScreen_chapterList_markPrevAsUnread': 'Mark previous as unread',
     'mangaScreen_chapterList_removeBookmark': 'Remove bookmark',
     'mangaScreen_noNewChapter': 'No new chapter',
+    'mangaScreen_noChapter': 'chapter found',
     'mangaScreen_chapters': 'Chapters',
     'mangaScreen_inLibrary': 'In library',
     'mangaScreen_manga': 'Manga',
@@ -248,6 +251,7 @@ class Locales {
     'mangaScreen_status': 'Status',
     'mangaScreen_unknown': 'Unknown',
     'mangaScreen_webView': 'WebView',
+    'mangaScreen_reload': 'Reload',
     'no': 'No',
     'readerScreen_chapter': 'Chapter',
     'readerScreen_nextChapter': 'Next Chapter',

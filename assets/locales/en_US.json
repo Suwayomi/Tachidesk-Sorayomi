@@ -123,13 +123,15 @@
             "removeBookmark": "Remove bookmark"
         },
         "noNewChapter": "No new chapter",
+        "noChapter": "chapter found",
         "chapters": "Chapters",
         "inLibrary": "In library",
         "manga": "Manga",
         "source": "Source",
         "status": "Status",
         "unknown": "Unknown",
-        "webView": "WebView"
+        "webView": "WebView",
+        "reload" : "Reload"
     },
     "no": "No",
     "readerScreen": {

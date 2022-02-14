@@ -4,8 +4,9 @@ import '../providers/chapter_provider.dart';
 class ChapterRepository {
   static final ChapterProvider _categoryProvider = ChapterProvider();
 
-  static Future getChaptersList(int mangaId) {
-    return _categoryProvider.getChaptersList(mangaId);
+  static Future<List<Chapter>?> getChaptersList(int mangaId,
+      {bool onlineFetch = false}) {
+    return _categoryProvider.getChaptersList(mangaId, onlineFetch: onlineFetch);
   }
 
   static Future<Chapter?> getChapter({

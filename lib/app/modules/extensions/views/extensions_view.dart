@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/data/repository/extension_repository.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/constants/api_url.dart';
 import '../../../core/utils/language.dart';
 import '../../../data/extension_model.dart';
+import '../../../data/repository/extension_repository.dart';
 import '../controllers/extensions_controller.dart';
 
 class ExtensionsView extends GetView<ExtensionsController> {

@@ -5,6 +5,7 @@ import '../../core/constants/api_url.dart';
 import '../about_model.dart';
 
 class AboutProvider extends GetConnect {
+  AboutProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 

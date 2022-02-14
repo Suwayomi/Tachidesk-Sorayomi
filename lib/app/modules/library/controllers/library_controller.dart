@@ -39,16 +39,16 @@ class LibraryController extends GetxController {
   Future loadMangaListWithCategoryId() async {
     isLoading = true;
     if (textEditingController.text.isNotEmpty) {
-      mangaList = (await CategoryRepository
-              .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))
+      mangaList = (await CategoryRepository.getMangaListFromCategoryId(
+              categoryList[tabIndex.value]!.id!))
           .where((element) => (element.title ?? "")
               .toLowerCase()
               .contains(textEditingController.text.toLowerCase()))
           .toList();
     } else {
       if (categoryList.isNotEmpty) {
-        mangaList = (await CategoryRepository
-          .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!));
+        mangaList = (await CategoryRepository.getMangaListFromCategoryId(
+            categoryList[tabIndex.value]!.id!));
       }
     }
     isLoading = false;

@@ -5,7 +5,6 @@ import '../../../core/constants/db_keys.dart';
 import '../../../core/enums/reader_mode.dart';
 
 class ReaderSettingsController extends GetxController {
-
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
 

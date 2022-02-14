@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/data/repository/about_repository.dart';
-import 'package:tachidesk_flutter/app/routes/app_pages.dart';
+
+import '../../../data/repository/about_repository.dart';
+import '../../../routes/app_pages.dart';
 
 class HomeEnsureServerMiddleware extends GetMiddleware {
   @override

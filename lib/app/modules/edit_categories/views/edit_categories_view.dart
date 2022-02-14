@@ -138,7 +138,9 @@ class EditCategoriesView extends GetView<EditCategoriesController> {
                   ),
                 ),
               )
-            : EmoticonsView(emptyType: LocaleKeys.screenTitle_categories.tr),
+            : EmoticonsView(
+                emptyType: LocaleKeys.screenTitle_categories.tr,
+              ),
       ),
     );
   }

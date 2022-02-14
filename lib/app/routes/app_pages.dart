@@ -51,13 +51,10 @@ class AppPages {
 
   static final routes = [
     GetPage(
-      name: _Paths.home,
-      page: () => HomeView(),
-      binding: HomeBinding(),
-      middlewares: [
-        HomeEnsureServerMiddleware()
-      ]
-    ),
+        name: _Paths.home,
+        page: () => HomeView(),
+        binding: HomeBinding(),
+        middlewares: [HomeEnsureServerMiddleware()]),
     GetPage(
       name: _Paths.library,
       page: () => LibraryView(),

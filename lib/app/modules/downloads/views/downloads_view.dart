@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/data/repository/downloads_repository.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../data/repository/downloads_repository.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/downloads_controller.dart';
 

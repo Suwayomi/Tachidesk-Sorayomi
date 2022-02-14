@@ -30,31 +30,31 @@ class SingleHorizontalRTL extends StatelessWidget {
                 controller.markAsRead();
               }
               return InteractiveViewer(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fitHeight,
-                    imageUrl: controller.getChapterPage(index),
-                    filterQuality: FilterQuality.medium,
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => SizedBox(
-                      height: context.height,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          value: downloadProgress.progress,
-                          color: context.theme.colorScheme.secondary,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.fitHeight,
+                      imageUrl: controller.getChapterPage(index),
+                      filterQuality: FilterQuality.medium,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => SizedBox(
+                        height: context.height,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            value: downloadProgress.progress,
+                            color: context.theme.colorScheme.secondary,
+                          ),
                         ),
                       ),
-                    ),
-                    errorWidget: (context, url, error) => Center(
-                      child: EmoticonsView(
-                          emptyType: LocaleKeys.readerScreen_image),
+                      errorWidget: (context, url, error) => Center(
+                        child: EmoticonsView(
+                            emptyType: LocaleKeys.readerScreen_image),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
+              );
             },
           ),
         ),

@@ -11,10 +11,14 @@ import '../../library/controllers/library_controller.dart';
 
 class MangaController extends GetxController {
   final Rx<Manga> manga = Manga().obs;
-  final RxList<Chapter?> chapterList = <Chapter?>[].obs;
   late int id;
   final RxBool isLoading = false.obs;
   final RxBool isPageLoading = false.obs;
+  final RxList<Chapter?> _chapterList = <Chapter?>[].obs;
+
+  List<Chapter?> get chapterList => _chapterList;
+  set chapterList(List<Chapter?> value) => _chapterList.value = value;
+  void chapterListRefresh() => _chapterList.refresh();
 
   final Rx<Chapter> _firstUnreadChapter = Chapter(index: -1).obs;
   Chapter get firstUnreadChapter => _firstUnreadChapter.value;
@@ -29,8 +33,7 @@ class MangaController extends GetxController {
 
   Future<void> loadManga() async {
     manga.value = await MangaRepository.getManga(id,
-            fetchFreshData: manga.value.freshData == null ||
-                !(manga.value.freshData ?? false)) ??
+            fetchFreshData: !(manga.value.freshData ?? true)) ??
         manga.value;
   }
 
@@ -55,19 +58,24 @@ class MangaController extends GetxController {
   }
 
   void getFirstUnreadChapter() {
-    List<Chapter?> chapterLst = chapterList.reversed.toList();
+    List<Chapter?> chapterLst = _chapterList.reversed.toList();
     firstUnreadChapter = chapterLst.firstWhereOrNull(
             (element) => ((element?.read ?? true) == false)) ??
         firstUnreadChapter;
   }
 
-  Future<void> loadChapterList({bool loadingWidget = true}) async {
+  Future<void> loadChapterList(
+      {bool loadingWidget = true, bool onlineFetch = false}) async {
     if (loadingWidget) {
       isLoading.value = true;
-      chapterList.value = (await ChapterRepository.getChaptersList(id));
+      chapterList = (await ChapterRepository.getChaptersList(id,
+              onlineFetch: onlineFetch)) ??
+          chapterList;
       isLoading.value = false;
     } else {
-      chapterList.value = await ChapterRepository.getChaptersList(id);
+      chapterList = (await ChapterRepository.getChaptersList(id,
+              onlineFetch: onlineFetch)) ??
+          chapterList;
     }
     getFirstUnreadChapter();
   }

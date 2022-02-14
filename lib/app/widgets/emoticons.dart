@@ -19,24 +19,30 @@ class EmoticonsView extends StatelessWidget {
   const EmoticonsView({
     Key? key,
     required this.emptyType,
+    this.button,
   }) : super(key: key);
   final String emptyType;
+  final Widget? button;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Transform.scale(
-        scale: 3,
-        child: ListTile(
-          title: Text(
-            errorFaces[Random().nextInt(6)],
-            textAlign: TextAlign.center,
+    return Transform.scale(
+      scale: 3,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ListTile(
+            title: Text(
+              errorFaces[Random().nextInt(6)],
+              textAlign: TextAlign.center,
+            ),
+            subtitle: Text(
+              LocaleKeys.no.tr + " " + emptyType,
+              textAlign: TextAlign.center,
+            ),
           ),
-          subtitle: Text(
-            LocaleKeys.no.tr + " " + emptyType,
-            textAlign: TextAlign.center,
-          ),
-        ),
+          Transform.scale(scale: .5, child: button ?? Container())
+        ],
       ),
     );
   }

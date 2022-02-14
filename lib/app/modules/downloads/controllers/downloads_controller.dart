@@ -7,7 +7,6 @@ import '../../../data/repository/download_queue_value_repository.dart';
 import '../../../data/repository/downloads_repository.dart';
 
 class DownloadsController extends GetxController {
-
   late final GetSocket downloadSocket;
   final Rx<Downloads> _downloadsList = Downloads().obs;
 

@@ -74,20 +74,20 @@ class SourceMangaView extends GetView<SourceMangaController> {
                   },
                 )
               : Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      EmoticonsView(
-                        emptyType: (controller.sourceType == SourceType.latest
-                            ? LocaleKeys.sourceMangaScreen_latest.tr
-                            : LocaleKeys.sourceMangaScreen_browse.tr),
+                  child: EmoticonsView(
+                    emptyType: (controller.sourceType == SourceType.latest
+                        ? LocaleKeys.sourceMangaScreen_latest.tr
+                        : LocaleKeys.sourceMangaScreen_browse.tr),
+                    button: TextButton.icon(
+                      onPressed: () => controller.getNextPage(isRefresh: true),
+                      style: TextButton.styleFrom(
+                        primary: Get.theme.colorScheme.secondary,
                       ),
-                      TextButton(
-                        onPressed: () =>
-                            controller.getNextPage(isRefresh: true),
-                        child: Text(LocaleKeys.sourceMangaScreen_reload.tr),
-                      )
-                    ],
+                      icon: Icon(Icons.refresh),
+                      label: Text(
+                        LocaleKeys.mangaScreen_reload.tr,
+                      ),
+                    ),
                   ),
                 )),
     );
