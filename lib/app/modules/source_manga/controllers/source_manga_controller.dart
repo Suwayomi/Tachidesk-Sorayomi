@@ -12,7 +12,6 @@ class SourceMangaController extends GetxController {
   late String sourceId;
   late SourceType sourceType;
   final ScrollController scrollController = ScrollController();
-  final SourceRepository sourceRepository = SourceRepository();
   final Rx<Source> _source = Source().obs;
 
   Source get source => _source.value;
@@ -31,7 +30,7 @@ class SourceMangaController extends GetxController {
   Future getNextPage({bool isRefresh = false}) async {
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
-        final sourceMangaListTemp = await sourceRepository.getSourceMangaList(
+        final sourceMangaListTemp = await SourceRepository.getSourceMangaList(
             sourceType: sourceType, pageNum: _page, sourceId: sourceId);
         _page += 1;
         sourceMangaList.hasNextPage = sourceMangaListTemp?.hasNextPage ?? true;
@@ -42,7 +41,7 @@ class SourceMangaController extends GetxController {
     } else {
       isFirstPage = true;
       _page = 1;
-      sourceMangaList = (await sourceRepository.getSourceMangaList(
+      sourceMangaList = (await SourceRepository.getSourceMangaList(
               sourceType: sourceType, pageNum: _page, sourceId: sourceId)) ??
           sourceMangaList;
       _page += 1;
@@ -61,7 +60,7 @@ class SourceMangaController extends GetxController {
 
   @override
   void onReady() async {
-    source = await sourceRepository.getSource(sourceId: sourceId) ?? source;
+    source = await SourceRepository.getSource(sourceId: sourceId) ?? source;
     await getNextPage();
     scrollController.addListener(() async {
       if (scrollController.position.pixels ==

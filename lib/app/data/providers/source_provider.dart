@@ -7,6 +7,7 @@ import '../source_manga_list_model.dart';
 import '../source_model.dart';
 
 class SourceProvider extends GetConnect {
+  SourceProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
   @override

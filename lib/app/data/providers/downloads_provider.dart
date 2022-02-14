@@ -4,6 +4,7 @@ import '../../../main.dart';
 import '../../core/constants/api_url.dart';
 
 class DownloadsProvider extends GetConnect {
+  DownloadsProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 

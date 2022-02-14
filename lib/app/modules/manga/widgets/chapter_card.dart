@@ -22,20 +22,17 @@ class ChapterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: (() => Get.toNamed(
-          Routes.manga + "/${chapter!.mangaId}/chapter/${chapter!.index}")),
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            chapter?.name ?? chapter?.chapterNumber!.toString() ?? "",
-            style: TextStyle(
-              color: (chapter?.read ?? false) ? Colors.grey : null,
-            ),
-          ),
-          SizedBox(width: 10),
-          (chapter?.bookmarked ?? false) ? Icon(Icons.bookmark) : Container(),
-        ],
+      onTap: (() async {
+        await Get.toNamed(
+            Routes.manga + "/${chapter!.mangaId}/chapter/${chapter!.index}");
+        controller.loadChapterList();
+      }),
+      title: Text(
+        chapter?.name ?? chapter?.chapterNumber!.toString() ?? "",
+        style: TextStyle(
+          color: (chapter?.read ?? false) ? Colors.grey : null,
+        ),
+        overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         (chapter?.scanlator ?? "") +
@@ -50,58 +47,68 @@ class ChapterCard extends StatelessWidget {
         style: context.textTheme.caption?.copyWith(
           height: 1.5,
           color: (chapter?.read ?? false) ? Colors.grey : null,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
       leading: ChapterDownloadState(controller: controller, item: chapter!),
-      trailing: PopupMenuButton(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            child: Text(
-              chapter?.bookmarked ?? false
-                  ? LocaleKeys.mangaScreen_chapterList_removeBookmark.tr
-                  : LocaleKeys.mangaScreen_chapterList_bookmark.tr,
-            ),
-            onTap: () {
-              controller.modifyChapter(
-                chapter!,
-                'bookmarked',
-                !(chapter?.bookmarked ?? true),
-              );
-            },
-          ),
-          PopupMenuItem(
-            child: Text(
-              chapter?.read ?? false
-                  ? LocaleKeys.mangaScreen_chapterList_markAsUnread.tr
-                  : LocaleKeys.mangaScreen_chapterList_markAsRead.tr,
-            ),
-            onTap: () {
-              controller.modifyChapter(
-                chapter!,
-                'read',
-                !(chapter?.read ?? true),
-              );
-            },
-          ),
-          PopupMenuItem(
-            child: Text(LocaleKeys.mangaScreen_chapterList_markPrevAsRead.tr),
-            onTap: () {
-              controller.modifyChapter(
-                chapter!,
-                'markPrevRead',
-                true,
-              );
-            },
-          ),
-          PopupMenuItem(
-            child: Text(LocaleKeys.mangaScreen_chapterList_markPrevAsUnread.tr),
-            onTap: () {
-              controller.modifyChapter(
-                chapter!,
-                'markPrevRead',
-                false,
-              );
-            },
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          (chapter?.bookmarked ?? false) ? Icon(Icons.bookmark) : Container(),
+          SizedBox(width: 10),
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text(
+                  chapter?.bookmarked ?? false
+                      ? LocaleKeys.mangaScreen_chapterList_removeBookmark.tr
+                      : LocaleKeys.mangaScreen_chapterList_bookmark.tr,
+                ),
+                onTap: () {
+                  controller.modifyChapter(
+                    chapter!,
+                    'bookmarked',
+                    !(chapter?.bookmarked ?? true),
+                  );
+                },
+              ),
+              PopupMenuItem(
+                child: Text(
+                  chapter?.read ?? false
+                      ? LocaleKeys.mangaScreen_chapterList_markAsUnread.tr
+                      : LocaleKeys.mangaScreen_chapterList_markAsRead.tr,
+                ),
+                onTap: () {
+                  controller.modifyChapter(
+                    chapter!,
+                    'read',
+                    !(chapter?.read ?? true),
+                  );
+                },
+              ),
+              PopupMenuItem(
+                child:
+                    Text(LocaleKeys.mangaScreen_chapterList_markPrevAsRead.tr),
+                onTap: () {
+                  controller.modifyChapter(
+                    chapter!,
+                    'markPrevRead',
+                    true,
+                  );
+                },
+              ),
+              PopupMenuItem(
+                child: Text(
+                    LocaleKeys.mangaScreen_chapterList_markPrevAsUnread.tr),
+                onTap: () {
+                  controller.modifyChapter(
+                    chapter!,
+                    'markPrevRead',
+                    false,
+                  );
+                },
+              ),
+            ],
           ),
         ],
       ),

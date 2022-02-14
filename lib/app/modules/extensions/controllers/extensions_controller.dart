@@ -10,7 +10,6 @@ import '../../sources/controllers/sources_controller.dart';
 
 class ExtensionsController extends GetxController {
   final RxBool isLoading = true.obs;
-  final ExtensionRepository extensionRepository = ExtensionRepository();
   final SourcesController _sourcesController = Get.find<SourcesController>();
   final BrowseController _browseController = Get.find<BrowseController>();
   final LocalStorageService localStorageService =
@@ -56,7 +55,7 @@ class ExtensionsController extends GetxController {
 
   Future<void> updateExtensionList() async {
     extensionList.value =
-        (await extensionRepository.getExtensionList()) ?? extensionList;
+        (await ExtensionRepository.getExtensionList()) ?? extensionList;
     await _sourcesController.updateSourceList();
   }
 

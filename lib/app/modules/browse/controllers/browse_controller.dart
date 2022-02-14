@@ -16,7 +16,6 @@ class BrowseController extends GetxController
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
 
-  final ExtensionRepository extensionRepository = ExtensionRepository();
   final RxInt _tabIndex = 0.obs;
   int get tabIndex => _tabIndex.value;
 
@@ -36,7 +35,7 @@ class BrowseController extends GetxController
         message: LocaleKeys.extensionScreen_installFile_subtitle.tr,
       );
 
-      Response res = await extensionRepository.installExtensionFile(file);
+      Response res = await ExtensionRepository.installExtensionFile(file);
       if (res.statusCode == null || res.statusCode == 200) {
         try {
           Get.find<ExtensionsController>().updateExtensionList();

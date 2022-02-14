@@ -4,6 +4,7 @@ import '../../../main.dart';
 import '../../core/constants/api_url.dart';
 
 class UpdateRecentChapterProvider extends GetConnect {
+  UpdateRecentChapterProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 

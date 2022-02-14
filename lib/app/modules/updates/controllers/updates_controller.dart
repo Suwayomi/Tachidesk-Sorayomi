@@ -15,14 +15,8 @@ class UpdatesController extends GetxController {
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
 
-  final DownloadQueueValueRepository downloadQueueValueRepository =
-      DownloadQueueValueRepository();
-
   final DownloadsController downloadsController =
       Get.find<DownloadsController>();
-
-  final UpdateRecentChapterRepository _updateRecentChapterRepository =
-      UpdateRecentChapterRepository();
 
   final Rx<UpdateRecentChapter> _updateRecentChapter =
       UpdateRecentChapter(hasNextPage: true, pageList: []).obs;
@@ -41,7 +35,7 @@ class UpdatesController extends GetxController {
     if (!isRefresh) {
       if (updateRecentChapter.hasNextPage ?? true) {
         final updateRecentChapterTemp =
-            await _updateRecentChapterRepository.getUpdateRecentChapter(_page);
+            await UpdateRecentChapterRepository.getUpdateRecentChapter(_page);
         updateRecentChapter.hasNextPage = updateRecentChapterTemp.hasNextPage;
         updateRecentChapter.pageList
             ?.addAll(updateRecentChapterTemp.pageList ?? []);
@@ -53,19 +47,19 @@ class UpdatesController extends GetxController {
       isFirstPage = true;
       _page = 0;
       updateRecentChapter =
-          await _updateRecentChapterRepository.getUpdateRecentChapter(_page);
+          await UpdateRecentChapterRepository.getUpdateRecentChapter(_page);
       _page += 1;
       isFirstPage = false;
     }
   }
 
   Future startDownload(Chapter chapter) =>
-      downloadQueueValueRepository.startDownload(chapter);
+      DownloadQueueValueRepository.startDownload(chapter);
 
   Future deleteDownload(Chapter chapter) =>
-      downloadQueueValueRepository.deleteDownload(chapter);
+      DownloadQueueValueRepository.deleteDownload(chapter);
   Future deleteFromDownloadQueue(Chapter chapter) =>
-      downloadQueueValueRepository.deleteFromDownloadQueue(chapter);
+      DownloadQueueValueRepository.deleteFromDownloadQueue(chapter);
 
   @override
   void onReady() async {

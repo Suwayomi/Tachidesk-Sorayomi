@@ -25,11 +25,17 @@ class BrowseAppBarActions extends StatelessWidget {
                           controller: controller.textEditingController,
                           cursorColor: context.theme.colorScheme.secondary,
                           autofocus: true,
+                          style: TextStyle(
+                            color: context.theme.colorScheme.onSecondary,
+                          ),
                           decoration: InputDecoration(
+                            hintStyle: TextStyle(
+                              color: context.theme.colorScheme.onSecondary,
+                            ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 Icons.close,
-                                color: context.theme.colorScheme.secondary,
+                                color: context.theme.colorScheme.onSecondary,
                               ),
                               onPressed: () {
                                 controller.isSearching = false;
@@ -42,7 +48,7 @@ class BrowseAppBarActions extends StatelessWidget {
                                 : LocaleKeys.browserScreen_SourceSearch.tr),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: context.theme.colorScheme.secondary,
+                                color: context.theme.colorScheme.onSecondary,
                               ),
                             ),
                           ),

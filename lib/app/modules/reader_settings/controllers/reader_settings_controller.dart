@@ -5,8 +5,6 @@ import '../../../core/constants/db_keys.dart';
 import '../../../core/enums/reader_mode.dart';
 
 class ReaderSettingsController extends GetxController {
-  //TODO: Implement ReaderSettingsController
-
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
 
@@ -23,11 +21,11 @@ class ReaderSettingsController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  // @override
+  // void onReady() {
+  //   super.onReady();
+  // }
 
-  @override
-  void onClose() {}
+  // @override
+  // void onClose() {}
 }

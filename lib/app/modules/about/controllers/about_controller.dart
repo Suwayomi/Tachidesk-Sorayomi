@@ -4,7 +4,6 @@ import '../../../data/about_model.dart';
 import '../../../data/repository/about_repository.dart';
 
 class AboutController extends GetxController {
-  final AboutRepository _aboutRepository = AboutRepository();
   final Rx<About?> _about = About().obs;
 
   About? get getAbout => _about.value;
@@ -12,7 +11,7 @@ class AboutController extends GetxController {
 
   @override
   void onReady() async {
-    setAbout = await _aboutRepository.getAbout();
+    setAbout = await AboutRepository.getAbout();
     super.onReady();
   }
 }

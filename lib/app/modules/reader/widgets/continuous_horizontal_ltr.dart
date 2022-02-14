@@ -25,29 +25,34 @@ class ContinuousHorizontalLTR extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             controller: scrollController,
             itemCount: controller.chapter.pageCount,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: CachedNetworkImage(
-                fit: BoxFit.fitHeight,
-                imageUrl: controller.getChapterPage(index),
-                filterQuality: FilterQuality.medium,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    SizedBox(
-                  height: context.height,
-                  width: context.width * .7,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      value: downloadProgress.progress,
-                      color: context.theme.colorScheme.secondary,
+            itemBuilder: (context, index) {
+              if (index == (controller.chapter.pageCount! - 1)) {
+                controller.markAsRead();
+              }
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: CachedNetworkImage(
+                  fit: BoxFit.fitHeight,
+                  imageUrl: controller.getChapterPage(index),
+                  filterQuality: FilterQuality.medium,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      SizedBox(
+                    height: context.height,
+                    width: context.width * .7,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: downloadProgress.progress,
+                        color: context.theme.colorScheme.secondary,
+                      ),
                     ),
                   ),
+                  errorWidget: (context, url, error) => Center(
+                    child:
+                        EmoticonsView(emptyType: LocaleKeys.readerScreen_image),
+                  ),
                 ),
-                errorWidget: (context, url, error) => Center(
-                  child:
-                      EmoticonsView(emptyType: LocaleKeys.readerScreen_image),
-                ),
-              ),
-            ),
+              );
+            },
           ),
         ),
         Row(

@@ -13,7 +13,6 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.settingsScreen_server.tr),
-        centerTitle: true,
       ),
       body: ListView(
         children: [

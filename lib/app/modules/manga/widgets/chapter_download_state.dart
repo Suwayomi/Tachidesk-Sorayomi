@@ -39,13 +39,13 @@ class ChapterDownloadState extends StatelessWidget {
         if (downloadingChapter.value.state == "Finished") {
           isDownloading.value = false;
           item.downloaded = true;
-          controller.chapterList.refresh();
+          controller.chapterListRefresh();
           subscription.cancel();
         }
         if (downloadingChapter.value.state == null && !item.downloaded!) {
           isDownloading.value = false;
           item.downloaded = false;
-          controller.chapterList.refresh();
+          controller.chapterListRefresh();
           subscription.cancel();
         }
       });
@@ -74,7 +74,7 @@ class ChapterDownloadState extends StatelessWidget {
             if (item.downloaded ?? false) {
               await controller.deleteDownload(item);
               item.downloaded = false;
-              controller.chapterList.refresh();
+              controller.chapterListRefresh();
             } else {
               isDownloading.value = true;
               await controller.startDownload(item);
@@ -94,14 +94,14 @@ class ChapterDownloadState extends StatelessWidget {
                   isDownloading.value = false;
                   item.downloaded = true;
                   subscription.cancel();
-                  controller.chapterList.refresh();
+                  controller.chapterListRefresh();
                 }
                 if (downloadingChapter.value.state == null &&
                     !item.downloaded!) {
                   isDownloading.value = false;
                   item.downloaded = false;
                   subscription.cancel();
-                  controller.chapterList.refresh();
+                  controller.chapterListRefresh();
                 }
               });
             }

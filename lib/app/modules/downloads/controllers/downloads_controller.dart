@@ -7,10 +7,6 @@ import '../../../data/repository/download_queue_value_repository.dart';
 import '../../../data/repository/downloads_repository.dart';
 
 class DownloadsController extends GetxController {
-  final DownloadsRepository downloadsRepository = DownloadsRepository();
-  final DownloadQueueValueRepository downloadQueueValueRepository =
-      DownloadQueueValueRepository();
-
   late final GetSocket downloadSocket;
   final Rx<Downloads> _downloadsList = Downloads().obs;
 
@@ -18,7 +14,7 @@ class DownloadsController extends GetxController {
   Downloads get downloadsList => _downloadsList.value;
   set downloadsList(Downloads value) => _downloadsList.value = value;
   void deleteFromDownloadQueue(DownloadQueueValue downloadQueueValue) async {
-    await downloadQueueValueRepository.deleteFromDownloadQueue(
+    await DownloadQueueValueRepository.deleteFromDownloadQueue(
       Chapter(
         mangaId: downloadQueueValue.mangaId,
         index: downloadQueueValue.chapterIndex,
@@ -28,7 +24,7 @@ class DownloadsController extends GetxController {
 
   @override
   void onInit() {
-    downloadSocket = downloadsRepository.socketDownloads();
+    downloadSocket = DownloadsRepository.socketDownloads();
     super.onInit();
   }
 

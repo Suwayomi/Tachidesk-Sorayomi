@@ -8,6 +8,7 @@ import '../../core/constants/api_url.dart';
 import '../extension_model.dart';
 
 class ExtensionProvider extends GetConnect {
+  ExtensionProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
   @override

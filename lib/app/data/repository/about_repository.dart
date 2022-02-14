@@ -4,5 +4,5 @@ import '../providers/about_provider.dart';
 class AboutRepository {
   static final AboutProvider _aboutProvider = AboutProvider();
 
-  Future<About?> getAbout() => _aboutProvider.getAbout();
+  static Future<About?> getAbout() => _aboutProvider.getAbout();
 }

@@ -8,7 +8,6 @@ import '../../../data/repository/category_repository.dart';
 import '../../home/controllers/home_controller.dart';
 
 class LibraryController extends GetxController {
-  final CategoryRepository _categoryRepository = CategoryRepository();
   final TextEditingController textEditingController = TextEditingController();
   final RxInt tabIndex = 0.obs;
 
@@ -32,7 +31,7 @@ class LibraryController extends GetxController {
   int get mangaListLength => _mangaList.length;
 
   Future loadCategoryList() async {
-    List categoryListJson = (await _categoryRepository.getCategoryList());
+    List categoryListJson = (await CategoryRepository.getCategoryList());
     categoryList =
         (categoryListJson.map<Category>((e) => Category.fromJson(e)).toList());
   }
@@ -40,15 +39,17 @@ class LibraryController extends GetxController {
   Future loadMangaListWithCategoryId() async {
     isLoading = true;
     if (textEditingController.text.isNotEmpty) {
-      mangaList = (await _categoryRepository
-              .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))
+      mangaList = (await CategoryRepository.getMangaListFromCategoryId(
+              categoryList[tabIndex.value]!.id!))
           .where((element) => (element.title ?? "")
               .toLowerCase()
               .contains(textEditingController.text.toLowerCase()))
           .toList();
     } else {
-      mangaList = (await _categoryRepository
-          .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!));
+      if (categoryList.isNotEmpty) {
+        mangaList = (await CategoryRepository.getMangaListFromCategoryId(
+            categoryList[tabIndex.value]!.id!));
+      }
     }
     isLoading = false;
   }

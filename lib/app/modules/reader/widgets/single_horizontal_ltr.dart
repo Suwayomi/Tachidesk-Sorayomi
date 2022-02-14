@@ -16,7 +16,6 @@ class SingleHorizontalLTR extends StatelessWidget {
   final ReaderController controller;
   final PageController pageController = PageController();
 
-  final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,12 +24,14 @@ class SingleHorizontalLTR extends StatelessWidget {
           child: PageView.builder(
             controller: pageController,
             itemCount: controller.chapter.pageCount,
-            itemBuilder: (context, index) => InteractiveViewer(
-              child: Center(
-                child: SingleChildScrollView(
-                  controller: scrollController,
+            itemBuilder: (context, index) {
+              if (index == (controller.chapter.pageCount! - 1)) {
+                controller.markAsRead();
+              }
+              return InteractiveViewer(
+                child: Center(
                   child: CachedNetworkImage(
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fitHeight,
                     imageUrl: controller.getChapterPage(index),
                     filterQuality: FilterQuality.medium,
                     progressIndicatorBuilder:
@@ -49,33 +50,9 @@ class SingleHorizontalLTR extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            InkWell(
-              onTap: () {
-                scrollController.animateTo(scrollController.offset - 300,
-                    duration: Duration(seconds: 1), curve: Curves.ease);
-              },
-              child: Container(
-                height: context.height * .2,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                scrollController.animateTo(scrollController.offset + 300,
-                    duration: Duration(seconds: 1), curve: Curves.ease);
-              },
-              child: Container(
-                height: context.height * .2,
-              ),
-            ),
-          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

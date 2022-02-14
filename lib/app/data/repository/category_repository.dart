@@ -7,15 +7,15 @@ import '../providers/category_provider.dart';
 class CategoryRepository {
   static final CategoryProvider _categoryProvider = CategoryProvider();
 
-  Future getCategoryList() {
+  static Future getCategoryList() {
     return _categoryProvider.getCategoryList();
   }
 
-  Future<List<Manga>> getMangaListFromCategoryId(int id) {
+  static Future<List<Manga>> getMangaListFromCategoryId(int id) {
     return _categoryProvider.getMangaListFromCategoryId(id);
   }
 
-  Future<Response> editCategory(Category category) {
+  static Future<Response> editCategory(Category category) {
     return _categoryProvider.patchCategory(
       id: category.id!,
       defaultCategory: category.defaultCategory!,
@@ -23,18 +23,19 @@ class CategoryRepository {
     );
   }
 
-  Future<Response> createCategory(Category category) {
+  static Future<Response> createCategory(Category category) {
     return _categoryProvider.postCategory(
       name: category.name!,
       defaultCategory: category.defaultCategory!,
     );
   }
 
-  Future<Response> deleteCategory(int id) {
+  static Future<Response> deleteCategory(int id) {
     return _categoryProvider.deleteCategory(id);
   }
 
-  Future<Response> reorderCategory({required int from, required int to}) {
+  static Future<Response> reorderCategory(
+      {required int from, required int to}) {
     return _categoryProvider.reorderCategory(from: from, to: to);
   }
 }
