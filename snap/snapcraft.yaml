@@ -19,6 +19,7 @@ apps:
     extensions: [flutter-beta] # Where "master" defines which Flutter channel to use for the build
     plugs:
     - network
+    - home
     slots:
       - dbus-tachidesk-flutter
 parts:
@@ -27,11 +28,6 @@ parts:
     plugin: flutter
     flutter-target: lib/main.dart # The main entry-point file of the application
 
-plugs:
-  tachidesk-flutter-home:
-    interface: home
-  tachidesk-flutter-network:
-    interface: network
 architectures:
   - build-on: s390x
   - build-on: ppc64el
