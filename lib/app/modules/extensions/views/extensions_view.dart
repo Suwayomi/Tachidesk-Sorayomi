@@ -16,9 +16,7 @@ class ExtensionsView extends GetView<ExtensionsController> {
         body: Obx(
       () => controller.isLoading.value
           ? Center(
-              child: CircularProgressIndicator(
-                color: context.theme.colorScheme.secondary,
-              ),
+              child: CircularProgressIndicator(),
             )
           : ListView.builder(
               itemCount: controller.groupByMap.keys.length,
@@ -122,21 +120,18 @@ class ExtensionsView extends GetView<ExtensionsController> {
                                             }
                                           },
                                     child: Text(
-                                        isWaiting.value
-                                            ? LocaleKeys.extensionScreen_wait.tr
-                                            : source.installed ?? false
-                                                ? (source.hasUpdate ?? false
-                                                    ? LocaleKeys
-                                                        .extensionScreen_update
-                                                        .tr
-                                                    : LocaleKeys
-                                                        .extensionScreen_uninstall
-                                                        .tr)
-                                                : LocaleKeys
-                                                    .extensionScreen_install.tr,
-                                        style: TextStyle(
-                                          color: context.theme.indicatorColor,
-                                        )),
+                                      isWaiting.value
+                                          ? LocaleKeys.extensionScreen_wait.tr
+                                          : source.installed ?? false
+                                              ? (source.hasUpdate ?? false
+                                                  ? LocaleKeys
+                                                      .extensionScreen_update.tr
+                                                  : LocaleKeys
+                                                      .extensionScreen_uninstall
+                                                      .tr)
+                                              : LocaleKeys
+                                                  .extensionScreen_install.tr,
+                                    ),
                                   ),
                                 ),
                               ],

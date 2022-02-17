@@ -28,11 +28,6 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: (LocaleKeys.screenTitle_categories.tr),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: context.theme.colorScheme.secondary,
-                      ),
-                    ),
                   ),
                 ),
                 onConfirm: () =>

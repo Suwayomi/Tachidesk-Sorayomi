@@ -20,17 +20,12 @@ class UpdatesView extends GetView<UpdatesController> {
     return Scaffold(
       floatingActionButton: Obx(() => FloatingActionButton(
             child: controller.isFirstPage
-                ? CircularProgressIndicator(
-                    color: context.theme.colorScheme.secondary,
-                  )
+                ? CircularProgressIndicator()
                 : Icon(Icons.refresh_outlined),
             onPressed: () => controller.getNextPage(isRefresh: true),
           )),
       body: Obx(() => controller.isFirstPage
-          ? Center(
-              child: CircularProgressIndicator(
-              color: context.theme.colorScheme.secondary,
-            ))
+          ? Center(child: CircularProgressIndicator())
           : ((controller.updateRecentChapter.pageList?.isNotEmpty ?? false))
               ? GroupedListView(
                   padding: EdgeInsets.all(8),

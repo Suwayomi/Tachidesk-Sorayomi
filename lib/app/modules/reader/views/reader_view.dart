@@ -125,18 +125,14 @@ class ReaderView extends GetView<ReaderController> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      (controller.chapter.index!) >= 1
+                      (controller.chapter.index!) > 1
                           ? TextButton.icon(
                               onPressed: () => controller.prevChapter(),
                               icon: Icon(
                                 Icons.arrow_back_ios,
-                                color: context.theme.colorScheme.secondary,
                               ),
                               label: Text(
                                 LocaleKeys.readerScreen_previousChapter.tr,
-                                style: TextStyle(
-                                  color: context.theme.colorScheme.secondary,
-                                ),
                               ),
                             )
                           : Container(),
@@ -145,14 +141,10 @@ class ReaderView extends GetView<ReaderController> {
                           ? TextButton.icon(
                               label: Icon(
                                 Icons.arrow_forward_ios,
-                                color: context.theme.colorScheme.secondary,
                               ),
                               onPressed: () => controller.nextChapter(),
                               icon: Text(
                                 LocaleKeys.readerScreen_nextChapter.tr,
-                                style: TextStyle(
-                                  color: context.theme.colorScheme.secondary,
-                                ),
                               ),
                             )
                           : Container(),
@@ -183,9 +175,7 @@ class ReaderView extends GetView<ReaderController> {
                 }
               })
             : Center(
-                child: CircularProgressIndicator(
-                  color: context.theme.colorScheme.secondary,
-                ),
+                child: CircularProgressIndicator(),
               ),
       ),
     );

@@ -29,7 +29,6 @@ class SearchSourceController extends GetxController {
   Future getNextPage({bool isRefresh = false}) async {
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
-        print(_page);
         final sourceMangaListTemp = await SourceRepository.getSourceSearch(
             searchTerm: textEditingController.text,
             pageNum: _page,
@@ -49,7 +48,6 @@ class SearchSourceController extends GetxController {
               pageNum: _page,
               sourceId: sourceId)) ??
           sourceMangaList;
-      print(_page);
       _page += 1;
       isFirstPage = false;
     }

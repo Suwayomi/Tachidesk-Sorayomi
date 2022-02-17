@@ -47,8 +47,18 @@ void main() async {
       fallbackLocale: Locale('en', 'US'),
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.light(),
+        iconTheme: IconThemeData(
+          color: ColorScheme.light().primary,
+        ),
+      ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.dark(),
+        iconTheme: IconThemeData(
+          color: ColorScheme.dark().primary,
+        ),
+      ),
       themeMode: controller.theme,
       debugShowCheckedModeBanner: false,
     ),

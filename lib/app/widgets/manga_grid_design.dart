@@ -31,20 +31,24 @@ class MangaGridDesign extends StatelessWidget {
         child: GridTile(
           header: !isLibraryScreen
               ? manga.inLibrary ?? false
-                  ? Card(
-                      color: Get.theme.colorScheme.secondary,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2.0,
-                          horizontal: 4.0,
-                        ),
-                        child: Text(
-                          LocaleKeys.mangaGridDesign_inLibrary,
-                          style: TextStyle(
-                            color: Get.theme.colorScheme.onSecondary,
+                  ? Row(
+                      children: [
+                        Card(
+                          color: Get.theme.colorScheme.primary,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 2.0,
+                              horizontal: 4.0,
+                            ),
+                            child: Text(
+                              LocaleKeys.mangaGridDesign_inLibrary.tr,
+                              style: TextStyle(
+                                color: Get.theme.colorScheme.onPrimary,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     )
                   : null
               : Padding(
@@ -61,7 +65,7 @@ class MangaGridDesign extends StatelessWidget {
                                     : Radius.zero,
                               ),
                             ),
-                            color: Get.theme.colorScheme.secondary,
+                            color: Get.theme.colorScheme.primary,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 2.0,
@@ -70,7 +74,7 @@ class MangaGridDesign extends StatelessWidget {
                               child: Text(
                                 "${manga.unreadCount}",
                                 style: TextStyle(
-                                  color: Get.theme.colorScheme.onSecondary,
+                                  color: Get.theme.colorScheme.onPrimary,
                                 ),
                               ),
                             ),
@@ -79,7 +83,7 @@ class MangaGridDesign extends StatelessWidget {
                     (manga.downloadCount ?? 0) != 0
                         ? Card(
                             margin: EdgeInsets.zero,
-                            color: Colors.greenAccent,
+                            color: Get.theme.colorScheme.secondary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.horizontal(
                                 right: Radius.circular(5),
@@ -96,7 +100,7 @@ class MangaGridDesign extends StatelessWidget {
                               child: Text(
                                 "${manga.downloadCount}",
                                 style: TextStyle(
-                                  color: Get.theme.colorScheme.onSecondary,
+                                  color: Get.theme.colorScheme.onPrimary,
                                 ),
                               ),
                             ),
@@ -122,7 +126,6 @@ class MangaGridDesign extends StatelessWidget {
                               ? loadingProgress.cumulativeBytesLoaded /
                                   loadingProgress.expectedTotalBytes!
                               : null,
-                          color: context.theme.colorScheme.secondary,
                         ),
                       );
                     },

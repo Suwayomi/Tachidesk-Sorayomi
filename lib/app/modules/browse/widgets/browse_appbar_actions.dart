@@ -23,19 +23,11 @@ class BrowseAppBarActions extends StatelessWidget {
                         width: min(context.width * .5, 300),
                         child: TextField(
                           controller: controller.textEditingController,
-                          cursorColor: context.theme.colorScheme.secondary,
                           autofocus: true,
-                          style: TextStyle(
-                            color: context.theme.colorScheme.onSecondary,
-                          ),
                           decoration: InputDecoration(
-                            hintStyle: TextStyle(
-                              color: context.theme.colorScheme.onSecondary,
-                            ),
                             suffixIcon: IconButton(
                               icon: Icon(
                                 Icons.close,
-                                color: context.theme.colorScheme.onSecondary,
                               ),
                               onPressed: () {
                                 controller.isSearching = false;
@@ -46,11 +38,6 @@ class BrowseAppBarActions extends StatelessWidget {
                             hintText: (controller.tabIndex == 0
                                 ? LocaleKeys.browserScreen_mangaSearch.tr
                                 : LocaleKeys.browserScreen_SourceSearch.tr),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: context.theme.colorScheme.onSecondary,
-                              ),
-                            ),
                           ),
                         ),
                       )
@@ -110,7 +97,6 @@ class BrowseAppBarActions extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(
-                        primary: context.theme.colorScheme.secondary,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),

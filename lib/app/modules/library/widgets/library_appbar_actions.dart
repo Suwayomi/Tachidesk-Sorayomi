@@ -18,19 +18,11 @@ class LibraryAppBarActions extends StatelessWidget {
             width: min(context.width * .5, 300),
             child: TextField(
               controller: controller.textEditingController,
-              cursorColor: context.theme.colorScheme.secondary,
               autofocus: true,
-              style: TextStyle(
-                color: context.theme.colorScheme.onSecondary,
-              ),
               decoration: InputDecoration(
-                hintStyle: TextStyle(
-                  color: context.theme.colorScheme.onSecondary,
-                ),
                 suffixIcon: IconButton(
                   icon: Icon(
                     Icons.close,
-                    color: context.theme.colorScheme.onSecondary,
                   ),
                   onPressed: () {
                     controller.isSearching = false;
@@ -39,11 +31,6 @@ class LibraryAppBarActions extends StatelessWidget {
                 ),
                 border: OutlineInputBorder(),
                 hintText: LocaleKeys.libraryScreen_mangaSearch.tr,
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: context.theme.colorScheme.onSecondary,
-                  ),
-                ),
               ),
             ))
         : IconButton(

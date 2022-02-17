@@ -65,10 +65,7 @@ class LibraryView extends GetView<LibraryController> {
                                 )
                               : (controller.isLoading
                                   ? Center(
-                                      child: CircularProgressIndicator(
-                                        color:
-                                            context.theme.colorScheme.secondary,
-                                      ),
+                                      child: CircularProgressIndicator(),
                                     )
                                   : EmoticonsView(
                                       emptyType:

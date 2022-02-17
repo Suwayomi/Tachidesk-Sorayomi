@@ -27,15 +27,9 @@ class EditCategoriesView extends GetView<EditCategoriesController> {
           children: [
             TextField(
               autofocus: true,
-              cursorColor: context.theme.colorScheme.secondary,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: (LocaleKeys.screenTitle_categories.tr),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: context.theme.colorScheme.secondary,
-                  ),
-                ),
               ),
               controller: controller.textEditingController,
             ),
