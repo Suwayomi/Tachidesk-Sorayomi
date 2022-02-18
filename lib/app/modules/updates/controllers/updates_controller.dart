@@ -46,10 +46,14 @@ class UpdatesController extends GetxController {
     } else {
       isFirstPage = true;
       _page = 0;
-      updateRecentChapter =
-          await UpdateRecentChapterRepository.getUpdateRecentChapter(_page);
-      _page += 1;
-      isFirstPage = false;
+      try {
+        updateRecentChapter =
+            await UpdateRecentChapterRepository.getUpdateRecentChapter(_page);
+        _page += 1;
+      } catch (e){
+        //
+      }
+        isFirstPage = false;
     }
   }
 
@@ -63,7 +67,7 @@ class UpdatesController extends GetxController {
 
   @override
   void onReady() async {
-    await getNextPage();
+    await getNextPage(isRefresh: true);
     scrollController.addListener(() async {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {

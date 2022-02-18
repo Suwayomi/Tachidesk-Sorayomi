@@ -15,7 +15,6 @@ class ChapterProvider extends GetConnect {
         _localStorageService.baseURL + mangaUrl + '/$mangaId/chapters',
         decoder: (map) =>
             map.map<Chapter>((item) => Chapter.fromJson(item)).toList());
-    print(response.statusText);
     return response.body;
   }
 

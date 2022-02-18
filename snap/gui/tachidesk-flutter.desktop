@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Tachidesk Flutter
-Comment=Tachidesk UI flutter
-Exec=tachidesk-flutter
-Icon=${SNAP}/meta/gui/tachidesk-flutter.png # replace name to your app name
-Terminal=false
-Type=Application
-Categories=Entertainment; #adjust accordingly your snap category

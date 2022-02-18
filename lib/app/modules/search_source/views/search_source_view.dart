@@ -24,27 +24,18 @@ class SearchSourceView extends GetView<SearchSourceController> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   controller: controller.textEditingController,
-                  cursorColor: context.theme.colorScheme.secondary,
                   autofocus: true,
                   onEditingComplete: () =>
                       controller.getNextPage(isRefresh: true),
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        color: context.theme.colorScheme.secondary,
-                      ),
+                      icon: Icon(Icons.search),
                       onPressed: () {
                         controller.getNextPage(isRefresh: true);
                       },
                     ),
                     border: OutlineInputBorder(),
                     hintText: LocaleKeys.searchManga_searchManga.tr,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: context.theme.colorScheme.secondary,
-                      ),
-                    ),
                   ),
                 ),
               ),
@@ -55,27 +46,18 @@ class SearchSourceView extends GetView<SearchSourceController> {
                   width: 300,
                   child: TextField(
                     controller: controller.textEditingController,
-                    cursorColor: context.theme.colorScheme.secondary,
                     autofocus: true,
                     onEditingComplete: () =>
                         controller.getNextPage(isRefresh: true),
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.search,
-                          color: context.theme.colorScheme.secondary,
-                        ),
+                        icon: Icon(Icons.search),
                         onPressed: () {
                           controller.getNextPage(isRefresh: true);
                         },
                       ),
                       border: OutlineInputBorder(),
                       hintText: LocaleKeys.searchManga_searchManga.tr,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: context.theme.colorScheme.secondary,
-                        ),
-                      ),
                     ),
                   ),
                 )
@@ -83,10 +65,7 @@ class SearchSourceView extends GetView<SearchSourceController> {
         ],
       ),
       body: Obx(() => controller.isFirstPage
-          ? Center(
-              child: CircularProgressIndicator(
-              color: context.theme.colorScheme.secondary,
-            ))
+          ? Center(child: CircularProgressIndicator())
           : ((controller.sourceMangaList.mangaList?.isNotEmpty ?? false))
               ? GridView.builder(
                   physics: AlwaysScrollableScrollPhysics(),

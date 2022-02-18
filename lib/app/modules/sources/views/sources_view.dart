@@ -73,9 +73,6 @@ class SourcesView extends GetView<SourcesController> {
                             },
                             child: Text(
                               LocaleKeys.sourceScreen_latest.tr,
-                              style: TextStyle(
-                                color: context.theme.indicatorColor,
-                              ),
                             ),
                           ),
                           IconButton(
@@ -87,11 +84,12 @@ class SourcesView extends GetView<SourcesController> {
                                 source
                               ];
                               Get.toNamed(
-                                  Routes.sourceManga + "/${source.id}/search");
+                                Routes.sourceManga + "/${source.id}/search",
+                              );
                             },
                             icon: Icon(
                               Icons.search,
-                              color: context.theme.indicatorColor,
+                              color: context.theme.colorScheme.primary,
                             ),
                           ),
                         ],

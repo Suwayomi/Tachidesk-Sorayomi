@@ -31,10 +31,7 @@ class SourceMangaView extends GetView<SourceMangaController> {
         ],
       ),
       body: Obx(() => controller.isFirstPage
-          ? Center(
-              child: CircularProgressIndicator(
-              color: context.theme.colorScheme.secondary,
-            ))
+          ? Center(child: CircularProgressIndicator())
           : ((controller.sourceMangaList.mangaList?.isNotEmpty ?? false))
               ? GridView.builder(
                   physics: AlwaysScrollableScrollPhysics(),
@@ -80,9 +77,7 @@ class SourceMangaView extends GetView<SourceMangaController> {
                         : LocaleKeys.sourceMangaScreen_browse.tr),
                     button: TextButton.icon(
                       onPressed: () => controller.getNextPage(isRefresh: true),
-                      style: TextButton.styleFrom(
-                        primary: Get.theme.colorScheme.secondary,
-                      ),
+                      style: TextButton.styleFrom(),
                       icon: Icon(Icons.refresh),
                       label: Text(
                         LocaleKeys.mangaScreen_reload.tr,

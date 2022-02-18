@@ -109,9 +109,7 @@ class MangaDescription extends StatelessWidget {
                       : Icons.favorite_border_outlined,
                 ),
                 style: TextButton.styleFrom(
-                  primary: manga.inLibrary ?? false
-                      ? context.theme.colorScheme.secondary
-                      : Colors.grey,
+                  primary: manga.inLibrary ?? false ? null : Colors.grey,
                 ),
                 label: Text(
                   LocaleKeys.mangaScreen_addToLibrary.tr,
@@ -152,8 +150,9 @@ class MangaDescription extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: ReadMoreText(
             manga.description ?? "",
-            moreStyle: TextStyle(color: context.theme.colorScheme.secondary),
-            lessStyle: TextStyle(color: context.theme.colorScheme.secondary),
+            style: context.textTheme.bodyText1,
+            moreStyle: TextStyle(color: context.theme.colorScheme.primary),
+            lessStyle: TextStyle(color: context.theme.colorScheme.primary),
           ),
         ),
         Wrap(

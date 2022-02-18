@@ -45,10 +45,7 @@ class MangaView extends GetView<MangaController> {
                 : Container()),
         body: Obx(
           () => controller.isPageLoading.value
-              ? Center(
-                  child: CircularProgressIndicator(
-                  color: context.theme.colorScheme.secondary,
-                ))
+              ? Center(child: CircularProgressIndicator())
               : context.width > 600
                   ? Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -71,10 +68,7 @@ class MangaView extends GetView<MangaController> {
                           child: Obx(
                             () => controller.isLoading.value
                                 ? Center(
-                                    child: CircularProgressIndicator(
-                                      color:
-                                          context.theme.colorScheme.secondary,
-                                    ),
+                                    child: CircularProgressIndicator(),
                                   )
                                 : controller.chapterList.isEmpty
                                     ? EmoticonsView(
@@ -84,10 +78,7 @@ class MangaView extends GetView<MangaController> {
                                           onPressed: () =>
                                               controller.loadChapterList(
                                                   onlineFetch: true),
-                                          style: TextButton.styleFrom(
-                                            primary:
-                                                Get.theme.colorScheme.secondary,
-                                          ),
+                                          style: TextButton.styleFrom(),
                                           icon: Icon(Icons.refresh),
                                           label: Text(
                                             LocaleKeys.mangaScreen_reload.tr,
@@ -147,10 +138,7 @@ class MangaView extends GetView<MangaController> {
                                 ),
                                 Expanded(
                                   child: Center(
-                                    child: CircularProgressIndicator(
-                                      color:
-                                          context.theme.colorScheme.secondary,
-                                    ),
+                                    child: CircularProgressIndicator(),
                                   ),
                                 ),
                               ],
@@ -161,10 +149,9 @@ class MangaView extends GetView<MangaController> {
                                       LocaleKeys.mangaScreen_noChapter.tr,
                                   button: TextButton.icon(
                                     onPressed: () => controller.loadChapterList(
-                                        onlineFetch: true),
-                                    style: TextButton.styleFrom(
-                                      primary: Get.theme.colorScheme.secondary,
+                                      onlineFetch: true,
                                     ),
+                                    style: TextButton.styleFrom(),
                                     icon: Icon(Icons.refresh),
                                     label: Text(
                                       LocaleKeys.mangaScreen_reload.tr,

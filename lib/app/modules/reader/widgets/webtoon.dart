@@ -36,7 +36,6 @@ class Webtoon extends StatelessWidget {
                 child: Center(
                   child: CircularProgressIndicator(
                     value: downloadProgress.progress,
-                    color: context.theme.colorScheme.secondary,
                   ),
                 ),
               ),

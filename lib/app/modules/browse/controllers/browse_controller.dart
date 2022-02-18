@@ -61,7 +61,7 @@ class BrowseController extends GetxController
         Get.rawSnackbar(
           title: LocaleKeys.error_filePick_title.tr,
           message: LocaleKeys.error_filePick_message
-              .trParams({"process": "installing"}),
+              .trParams({"process": "Install"}),
         );
       }
     }
