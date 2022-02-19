@@ -104,7 +104,8 @@
     },
     "libraryScreen": {
         "manga": "Manga",
-        "mangaSearch": "Search manga.."
+        "mangaSearch": "Search manga..",
+        "refresh" : "Refresh"
     },
     "loading": "Loading",
     "mangaGridDesign": {

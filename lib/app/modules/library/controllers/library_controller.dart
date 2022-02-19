@@ -59,20 +59,21 @@ class LibraryController extends GetxController {
   //   super.onInit();
   // }
 
-  @override
-  void onReady() async {
+  Future<void> refreshLibraryScreen() async {
     await loadCategoryList();
     await loadMangaListWithCategoryId();
-    textEditingController.addListener(
-      () => loadMangaListWithCategoryId(),
-    );
-    Get.find<HomeController>().selectedIndexObs.listen((value) {
-      tabIndex.value = 0;
-      if (value.isEqual(0)) loadMangaListWithCategoryId();
-    });
-    super.onReady();
   }
 
   @override
-  void onClose() {}
+  void onReady() async {
+    await refreshLibraryScreen();
+    textEditingController.addListener(
+      () => loadMangaListWithCategoryId(),
+    );
+    Get.find<HomeController>().selectedIndexObs.listen((value) async {
+      tabIndex.value = 0;
+      if (value.isEqual(0)) await refreshLibraryScreen();
+    });
+    super.onReady();
+  }
 }

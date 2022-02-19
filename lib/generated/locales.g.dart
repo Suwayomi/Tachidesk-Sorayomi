@@ -88,6 +88,7 @@ class LocaleKeys {
   static const extensionScreen_wait = 'extensionScreen_wait';
   static const libraryScreen_manga = 'libraryScreen_manga';
   static const libraryScreen_mangaSearch = 'libraryScreen_mangaSearch';
+  static const libraryScreen_refresh = 'libraryScreen_refresh';
   static const loading = 'loading';
   static const mangaGridDesign_inLibrary = 'mangaGridDesign_inLibrary';
   static const mangaScreen_addToLibrary = 'mangaScreen_addToLibrary';
@@ -231,6 +232,7 @@ class Locales {
     'extensionScreen_wait': 'wait!',
     'libraryScreen_manga': 'Manga',
     'libraryScreen_mangaSearch': 'Search manga..',
+    'libraryScreen_refresh': 'Refresh',
     'loading': 'Loading',
     'mangaGridDesign_inLibrary': 'In library',
     'mangaScreen_addToLibrary': 'Add to Library',
