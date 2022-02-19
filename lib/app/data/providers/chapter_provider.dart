@@ -5,14 +5,16 @@ import '../../core/constants/api_url.dart';
 import '../chapter_model.dart';
 
 class ChapterProvider extends GetConnect {
-  ChapterProvider() : super(timeout: Duration(minutes: 1));
+  ChapterProvider() : super(timeout: Duration(minutes: 5));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
   Future<List<Chapter>?> getChaptersList(int mangaId,
       {bool onlineFetch = false}) async {
     Response response = await get(
-        _localStorageService.baseURL + mangaUrl + '/$mangaId/chapters',
+        _localStorageService.baseURL +
+            mangaUrl +
+            '/$mangaId/chapters?onlineFetch=$onlineFetch',
         decoder: (map) =>
             map.map<Chapter>((item) => Chapter.fromJson(item)).toList());
     return response.body;
