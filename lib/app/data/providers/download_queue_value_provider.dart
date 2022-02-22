@@ -1,28 +1,29 @@
 import 'package:get/get.dart';
 
 import '../../../main.dart';
-import '../../core/constants/api_url.dart';
+import '../../core/values/api_url.dart';
 
 class DownloadQueueValueProvider extends GetConnect {
-  DownloadQueueValueProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
+  @override
+  void onInit() {
+    httpClient.baseUrl = _localStorageService.baseURL + downloadURL;
+    httpClient.timeout = Duration(minutes: 1);
+  }
+
   Future<Response> startDownload(
           {required int mangaId, required int chapterIndex}) async =>
-      await get(_localStorageService.baseURL +
-          downloadURL +
-          "/$mangaId/chapter/$chapterIndex");
+      await get("/$mangaId/chapter/$chapterIndex");
 
-  Future<Response> deleteDownload(
-          {required int mangaId, required int chapterIndex}) =>
-      delete(_localStorageService.baseURL +
-          mangaUrl +
-          "/$mangaId/chapter/$chapterIndex");
+  // Future<Response> deleteDownload(
+  //         {required int mangaId, required int chapterIndex}) =>
+  //     delete(_localStorageService.baseURL +
+  //         mangaUrl +
+  //         "/$mangaId/chapter/$chapterIndex");
 
   Future<Response> deleteFromDownloadQueue(
           {required int mangaId, required int chapterIndex}) =>
-      delete(_localStorageService.baseURL +
-          downloadURL +
-          "/$mangaId/chapter/$chapterIndex");
+      delete("/$mangaId/chapter/$chapterIndex");
 }

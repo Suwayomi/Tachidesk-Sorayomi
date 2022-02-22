@@ -116,7 +116,7 @@ class Manga {
       description: map['description'],
       downloadCount: map['downloadCount']?.toInt(),
       freshData: map['freshData'],
-      genre: List<String>.from(map['genre']),
+      genre: map['genre'] != null ? List<String>.from(map['genre']) : null,
       id: map['id']?.toInt(),
       inLibrary: map['inLibrary'],
       inLibraryAt: map['inLibraryAt']?.toInt(),
@@ -134,11 +134,16 @@ class Manga {
 
   String toJson() => json.encode(toMap());
 
-  factory Manga.fromJson(Map<String, dynamic> source) => Manga.fromMap(source);
+  factory Manga.fromJson(String source) => Manga.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, freshData: $freshData, genre: $genre, id: $id, inLibrary: $inLibrary, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, title: $title, unreadCount: $unreadCount, url: $url)';
+    return 'Manga(artist: $artist, author: $author, description: $description,'
+        ' downloadCount: $downloadCount, freshData: $freshData, genre: $genre,'
+        ' id: $id, inLibrary: $inLibrary, inLibraryAt: $inLibraryAt,'
+        ' initialized: $initialized, realUrl: $realUrl, source: $source,'
+        ' sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl,'
+        ' title: $title, unreadCount: $unreadCount, url: $url)';
   }
 
   @override

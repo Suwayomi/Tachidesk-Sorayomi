@@ -16,6 +16,7 @@ class LocaleKeys {
   static const aboutScreen_gitHub = 'aboutScreen_gitHub';
   static const aboutScreen_launchError_title = 'aboutScreen_launchError_title';
   static const aboutScreen_server = 'aboutScreen_server';
+  static const aboutScreen_flutter = 'aboutScreen_flutter';
   static const aboutScreen_serverVersion = 'aboutScreen_serverVersion';
   static const appTitle = 'appTitle';
   static const appearanceScreen_darkTheme_subtitle =
@@ -91,6 +92,9 @@ class LocaleKeys {
   static const libraryScreen_refresh = 'libraryScreen_refresh';
   static const loading = 'loading';
   static const mangaGridDesign_inLibrary = 'mangaGridDesign_inLibrary';
+  static const readerSettingsScreen_readerMode =
+      'readerSettingsScreen_readerMode';
+  static const readerSettingsScreen_category = 'readerSettingsScreen_category';
   static const mangaScreen_addToLibrary = 'mangaScreen_addToLibrary';
   static const mangaScreen_artist = 'mangaScreen_artist';
   static const mangaScreen_author = 'mangaScreen_author';
@@ -116,6 +120,8 @@ class LocaleKeys {
   static const mangaScreen_unknown = 'mangaScreen_unknown';
   static const mangaScreen_webView = 'mangaScreen_webView';
   static const mangaScreen_reload = 'mangaScreen_reload';
+  static const mangaScreen_category = 'mangaScreen_category';
+  static const mangaScreen_addCategoryHint = 'mangaScreen_addCategoryHint';
   static const no = 'no';
   static const readerScreen_chapter = 'readerScreen_chapter';
   static const readerScreen_nextChapter = 'readerScreen_nextChapter';
@@ -147,6 +153,8 @@ class LocaleKeys {
   static const screenTitle_settings = 'screenTitle_settings';
   static const screenTitle_sources = 'screenTitle_sources';
   static const screenTitle_updates = 'screenTitle_updates';
+  static const screenTitle_readerSettingsView =
+      'screenTitle_readerSettingsView';
   static const searchManga_search = 'searchManga_search';
   static const searchManga_searchManga = 'searchManga_searchManga';
   static const serverSettingsScreen_url = 'serverSettingsScreen_url';
@@ -178,6 +186,7 @@ class Locales {
     'aboutScreen_gitHub': 'GitHub',
     'aboutScreen_launchError_title': '@website URL failed to launch',
     'aboutScreen_server': 'Server',
+    'aboutScreen_flutter': 'Flutter',
     'aboutScreen_serverVersion': 'Server version',
     'appTitle': 'Tachidesk',
     'appearanceScreen_darkTheme_subtitle': 'Turn on Dark Mode',
@@ -235,6 +244,8 @@ class Locales {
     'libraryScreen_refresh': 'Refresh',
     'loading': 'Loading',
     'mangaGridDesign_inLibrary': 'In library',
+    'readerSettingsScreen_readerMode': 'Readering Mode',
+    'readerSettingsScreen_category': 'Category',
     'mangaScreen_addToLibrary': 'Add to Library',
     'mangaScreen_artist': 'Artist',
     'mangaScreen_author': 'Author',
@@ -254,13 +265,15 @@ class Locales {
     'mangaScreen_unknown': 'Unknown',
     'mangaScreen_webView': 'WebView',
     'mangaScreen_reload': 'Reload',
+    'mangaScreen_category': 'Category',
+    'mangaScreen_addCategoryHint': 'Add new categories in settings',
     'no': 'No',
     'readerScreen_chapter': 'Chapter',
     'readerScreen_nextChapter': 'Next Chapter',
     'readerScreen_previousChapter': 'Previous Chapter',
     'readerScreen_manga': 'Manga',
     'readerScreen_image': 'Image',
-    'readerScreen_readerMode_': 'Mode',
+    'readerScreen_readerMode_': 'Reading Mode',
     'readerScreen_readerMode_continuousHorizontalLTR':
         '(LTR) Continuous Horizontal',
     'readerScreen_readerMode_continuousHorizontalRTL':
@@ -280,6 +293,7 @@ class Locales {
     'screenTitle_settings': 'Settings',
     'screenTitle_sources': 'Sources',
     'screenTitle_updates': 'Updates',
+    'screenTitle_readerSettingsView': 'Reader Settings',
     'searchManga_search': 'Search',
     'searchManga_searchManga': 'Search manga..',
     'serverSettingsScreen_url': 'Server URL',

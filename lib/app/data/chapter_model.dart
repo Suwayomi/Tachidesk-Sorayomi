@@ -120,12 +120,17 @@ class Chapter {
 
   String toJson() => json.encode(toMap());
 
-  factory Chapter.fromJson(Map<String, dynamic> source) =>
-      Chapter.fromMap((source));
+  factory Chapter.fromJson(String source) =>
+      Chapter.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Chapter(bookmarked: $bookmarked, chapterCount: $chapterCount, chapterNumber: $chapterNumber, downloaded: $downloaded, fetchedAt: $fetchedAt, index: $index, lastPageRead: $lastPageRead, lastReadAt: $lastReadAt, mangaId: $mangaId, name: $name, pageCount: $pageCount, read: $read, scanlator: $scanlator, uploadDate: $uploadDate, url: $url, meta: $meta)';
+    return 'Chapter(bookmarked: $bookmarked, chapterCount: $chapterCount,'
+        ' chapterNumber: $chapterNumber, downloaded: $downloaded,'
+        ' fetchedAt: $fetchedAt, index: $index, lastPageRead: $lastPageRead,'
+        ' lastReadAt: $lastReadAt, mangaId: $mangaId, name: $name,'
+        ' pageCount: $pageCount, read: $read, scanlator: $scanlator,'
+        ' uploadDate: $uploadDate, url: $url, meta: $meta)';
   }
 
   @override

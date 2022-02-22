@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
-import '../../../core/constants/db_keys.dart';
+import '../../../core/values/db_keys.dart';
 
 class MoreController extends GetxController {
   final LocalStorageService localStorageService =

@@ -6,7 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/constants/api_url.dart';
+import '../../../core/values/api_url.dart';
+import '../../../core/values/string.dart';
 import '../controllers/about_controller.dart';
 
 class AboutView extends GetView<AboutController> {
@@ -55,10 +56,38 @@ class AboutView extends GetView<AboutController> {
               ),
               Divider(thickness: 2),
               ListTile(
-                title: Text(LocaleKeys.aboutScreen_gitHub.tr),
+                title: Text(
+                  LocaleKeys.aboutScreen_gitHub.tr +
+                      " (${LocaleKeys.aboutScreen_server.tr})",
+                ),
                 subtitle: Text(controller.getAbout?.github ?? ""),
                 onTap: () async {
                   if (!await launch(controller.getAbout?.github ?? "",
+                      forceSafariVC: false, forceWebView: false)) {
+                    Clipboard.setData(
+                      ClipboardData(
+                        text: controller.getAbout?.github,
+                      ),
+                    );
+                    Get.rawSnackbar(
+                      title: LocaleKeys.error_launchURL_title.trParams({
+                        "website": LocaleKeys.aboutScreen_gitHub.tr,
+                      }),
+                      message: LocaleKeys.error_launchURL_message.trParams(
+                        {"url": controller.getAbout?.github ?? ""},
+                      ),
+                    );
+                  }
+                },
+              ),
+              ListTile(
+                title: Text(
+                  LocaleKeys.aboutScreen_gitHub.tr +
+                      " (${LocaleKeys.aboutScreen_flutter.tr})",
+                ),
+                subtitle: Text(flutterGithubUrl),
+                onTap: () async {
+                  if (!await launch(flutterGithubUrl,
                       forceSafariVC: false, forceWebView: false)) {
                     Clipboard.setData(
                       ClipboardData(

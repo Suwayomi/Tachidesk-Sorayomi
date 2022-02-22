@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'app/core/constants/db_keys.dart';
-import 'app/core/enums/reader_mode.dart';
 import 'app/core/utils/language.dart';
+import 'app/core/values/db_keys.dart';
+import 'app/data/enums/reader_mode.dart';
 import 'app/routes/app_pages.dart';
 import 'generated/locales.g.dart';
 

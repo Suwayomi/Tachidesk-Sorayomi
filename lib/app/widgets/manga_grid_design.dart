@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../generated/locales.g.dart';
 import '../../main.dart';
-import '../core/constants/api_url.dart';
+import '../core/values/api_url.dart';
 import '../data/manga_model.dart';
 
 class MangaGridDesign extends StatelessWidget {

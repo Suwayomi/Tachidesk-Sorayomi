@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 
 import '../../../../main.dart';
 import '../../../data/chapter_model.dart';
-import '../../../data/repository/download_queue_value_repository.dart';
-import '../../../data/repository/update_recent_chapter_repository.dart';
 import '../../../data/update_recent_chapter_model.dart';
 import '../../downloads/controllers/downloads_controller.dart';
+import '../repository/updates_repository.dart';
 
 class UpdatesController extends GetxController {
+  final UpdatesRepository repository = UpdatesRepository();
   int _page = 0;
   final ScrollController scrollController = ScrollController();
   final LocalStorageService localStorageService =
@@ -35,7 +35,7 @@ class UpdatesController extends GetxController {
     if (!isRefresh) {
       if (updateRecentChapter.hasNextPage ?? true) {
         final updateRecentChapterTemp =
-            await UpdateRecentChapterRepository.getUpdateRecentChapter(_page);
+            await repository.getUpdateRecentChapter(_page);
         updateRecentChapter.hasNextPage = updateRecentChapterTemp.hasNextPage;
         updateRecentChapter.pageList
             ?.addAll(updateRecentChapterTemp.pageList ?? []);
@@ -47,23 +47,22 @@ class UpdatesController extends GetxController {
       isFirstPage = true;
       _page = 0;
       try {
-        updateRecentChapter =
-            await UpdateRecentChapterRepository.getUpdateRecentChapter(_page);
+        updateRecentChapter = await repository.getUpdateRecentChapter(_page);
         _page += 1;
-      } catch (e){
+      } catch (e) {
         //
       }
-        isFirstPage = false;
+      isFirstPage = false;
     }
   }
 
-  Future startDownload(Chapter chapter) =>
-      DownloadQueueValueRepository.startDownload(chapter);
+  Future startDownload(Chapter chapter) => repository.startDownload(chapter);
 
   Future deleteDownload(Chapter chapter) =>
-      DownloadQueueValueRepository.deleteDownload(chapter);
+      repository.deletedownloadedChapter(chapter);
+
   Future deleteFromDownloadQueue(Chapter chapter) =>
-      DownloadQueueValueRepository.deleteFromDownloadQueue(chapter);
+      repository.deleteFromDownloadQueue(chapter);
 
   @override
   void onReady() async {

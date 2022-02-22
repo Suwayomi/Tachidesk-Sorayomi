@@ -46,12 +46,13 @@ class Category {
 
   String toJson() => json.encode(toMap());
 
-  factory Category.fromJson(Map<String, dynamic> source) =>
-      Category.fromMap(source);
+  factory Category.fromJson(String source) =>
+      Category.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Category(id: $id, name: $name, order: $order, default: $defaultCategory)';
+    return 'Category(id: $id, name: $name,'
+        ' order: $order, default: $defaultCategory)';
   }
 
   @override

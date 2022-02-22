@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/enums/source_type.dart';
+import '../../../data/enums/source_type.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
 import '../../../widgets/manga_grid_design.dart';

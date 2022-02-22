@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
-import '../../../core/constants/db_keys.dart';
-import '../../../core/enums/reader_mode.dart';
+import '../../../core/values/db_keys.dart';
 import '../../../data/chapter_model.dart';
+import '../../../data/enums/reader_mode.dart';
 import '../../../data/manga_model.dart';
-import '../../../data/repository/chapter_repository.dart';
-import '../../../data/repository/manga_repository.dart';
 import '../../../routes/app_pages.dart';
+import '../repository/reader_repository.dart';
 
 class ReaderController extends GetxController {
+  final ReaderRepository repository = ReaderRepository();
   late final int mangaId;
   late final int chapterIndex;
 
@@ -41,7 +41,7 @@ class ReaderController extends GetxController {
   bool get expandedState => _expandedState.value;
   set expandedState(bool value) => _expandedState.value = value;
 
-  String getChapterPage(int page) => ChapterRepository.getChapterPage(
+  String getChapterPage(int page) => repository.getChapterPage(
       mangaId: mangaId, chapterIndex: chapterIndex, page: page);
 
   @override
@@ -54,7 +54,7 @@ class ReaderController extends GetxController {
 
   void nextChapter() {
     if ((chapter.index ?? 1) < (chapter.chapterCount ?? 1)) {
-      ChapterRepository.patchChapter(chapter, {
+      repository.patchChapter(chapter, {
         "lastPageRead": chapter.pageCount! - 1,
         "read": true,
       });
@@ -65,7 +65,7 @@ class ReaderController extends GetxController {
 
   Future markAsRead() async {
     Map<String, dynamic> formData = {"read": true, "lastPageRead": "1"};
-    await ChapterRepository.patchChapter(chapter, formData);
+    await repository.patchChapter(chapter, formData);
   }
 
   void prevChapter() {
@@ -83,10 +83,10 @@ class ReaderController extends GetxController {
           readerMode.value = stringToReaderMode(value) ?? readerMode.value,
     );
     isLoading = true;
-    chapter = (await ChapterRepository.getChapter(
+    chapter = (await repository.getChapter(
             mangaId: mangaId, chapterIndex: chapterIndex)) ??
         chapter;
-    manga = (await MangaRepository.getManga(mangaId)) ?? manga;
+    manga = (await repository.getManga(mangaId)) ?? manga;
     isDataLoading = true;
     isLoading = false;
 

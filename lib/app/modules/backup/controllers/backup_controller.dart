@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../../main.dart';
-import '../../../core/constants/api_url.dart';
-import '../../../data/repository/restore_repository.dart';
+import '../../../core/values/api_url.dart';
+import '../repository/backup_repository.dart';
 
 class BackupController extends GetxController {
+  final BackupRepository repository = BackupRepository();
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
@@ -24,7 +25,7 @@ class BackupController extends GetxController {
         message: LocaleKeys.backupSettings_restoring_subtitle.tr,
       );
 
-      Response res = await RestoreRepository.postRestore(file);
+      Response res = await repository.postRestore(file);
       if (res.statusCode == null || res.statusCode == 200) {
         Get.rawSnackbar(
           title: LocaleKeys.backupSettings_restored_title.tr,

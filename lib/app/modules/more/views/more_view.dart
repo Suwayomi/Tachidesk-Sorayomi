@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/constants/api_url.dart';
+import '../../../core/values/api_url.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/more_controller.dart';
 

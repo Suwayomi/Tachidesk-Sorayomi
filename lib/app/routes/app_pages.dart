@@ -17,7 +17,6 @@ import '../modules/edit_categories/views/edit_categories_view.dart';
 import '../modules/extensions/bindings/extensions_binding.dart';
 import '../modules/extensions/views/extensions_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/bindings/home_middleware.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/library/bindings/library_binding.dart';
 import '../modules/library/views/library_view.dart';
@@ -51,10 +50,10 @@ class AppPages {
 
   static final routes = [
     GetPage(
-        name: _Paths.home,
-        page: () => HomeView(),
-        binding: HomeBinding(),
-        middlewares: [HomeEnsureServerMiddleware()]),
+      name: _Paths.home,
+      page: () => HomeView(),
+      binding: HomeBinding(),
+    ),
     GetPage(
       name: _Paths.library,
       page: () => LibraryView(),

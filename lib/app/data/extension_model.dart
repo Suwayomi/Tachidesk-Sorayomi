@@ -88,12 +88,15 @@ class Extension {
 
   String toJson() => json.encode(toMap());
 
-  factory Extension.fromJson(Map<String, dynamic> source) =>
-      Extension.fromMap(source);
+  factory Extension.fromJson(String source) =>
+      Extension.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Extension(apkName: $apkName, hasUpdate: $hasUpdate, iconUrl: $iconUrl, installed: $installed, isNsfw: $isNsfw, lang: $lang, name: $name, obsolete: $obsolete, pkgName: $pkgName, versionCode: $versionCode, versionName: $versionName)';
+    return 'Extension(apkName: $apkName, hasUpdate: $hasUpdate,'
+        ' iconUrl: $iconUrl, installed: $installed, isNsfw: $isNsfw,'
+        ' lang: $lang, name: $name, obsolete: $obsolete, pkgName: $pkgName,'
+        ' versionCode: $versionCode, versionName: $versionName)';
   }
 
   @override

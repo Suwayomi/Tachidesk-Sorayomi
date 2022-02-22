@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../../main.dart';
-import '../../../core/constants/api_url.dart';
+import '../../../core/values/api_url.dart';
 import '../../../data/manga_model.dart';
 
 class MangaDescription extends StatelessWidget {

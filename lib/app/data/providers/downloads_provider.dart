@@ -1,35 +1,36 @@
 import 'package:get/get.dart';
 
 import '../../../main.dart';
-import '../../core/constants/api_url.dart';
+import '../../core/values/api_url.dart';
 
 class DownloadsProvider extends GetConnect {
-  DownloadsProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
-  Future<int?> startDownloads() async {
-    final response =
-        await get(_localStorageService.baseURL + downloadsURL + '/start');
-    return response.statusCode;
+  @override
+  void onInit() {
+    httpClient.baseUrl = _localStorageService.baseURL + downloadsURL;
+    httpClient.timeout = Duration(minutes: 5);
   }
 
-  Future<int?> stopDownloads() async {
-    final response =
-        await get(_localStorageService.baseURL + downloadsURL + '/stop');
-    return response.statusCode;
+  Future<Response> startDownloads() async {
+    final response = await get('/start');
+    return response;
   }
 
-  Future<int?> clearDownloads() async {
-    final response =
-        await get(_localStorageService.baseURL + downloadsURL + '/clear');
-    return response.statusCode;
+  Future<Response> stopDownloads() async {
+    final response = await get('/stop');
+    return response;
+  }
+
+  Future<Response> clearDownloads() async {
+    final response = await get('/clear');
+    return response;
   }
 
   GetSocket socketDownloads() {
     final _socket = GetSocket(
-      (_localStorageService.baseURL + downloadsURL)
-          .replaceFirst(RegExp("http"), "ws"),
+      httpClient.baseUrl!.replaceFirst(RegExp("http"), "ws"),
       allowSelfSigned: false,
     );
     sockets.add(_socket);

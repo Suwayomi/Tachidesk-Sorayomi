@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 
 import '../../../data/category_model.dart';
 import '../../../data/manga_model.dart';
-import '../../../data/repository/category_repository.dart';
 import '../../home/controllers/home_controller.dart';
+import '../repository/library_repository.dart';
 
 class LibraryController extends GetxController {
+  final LibraryRepository repository = LibraryRepository();
   final TextEditingController textEditingController = TextEditingController();
   final RxInt tabIndex = 0.obs;
 
@@ -18,6 +19,10 @@ class LibraryController extends GetxController {
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
   set isLoading(bool value) => _isLoading.value = value;
+
+  final RxBool _isCategoryLoading = false.obs;
+  bool get isCategoryLoading => _isCategoryLoading.value;
+  set isCategoryLoading(bool value) => _isCategoryLoading.value = value;
 
   final RxList<Category?> _categoryList = <Category>[].obs;
   List<Category?> get categoryList => _categoryList;
@@ -31,24 +36,24 @@ class LibraryController extends GetxController {
   int get mangaListLength => _mangaList.length;
 
   Future loadCategoryList() async {
-    List categoryListJson = (await CategoryRepository.getCategoryList());
-    categoryList =
-        (categoryListJson.map<Category>((e) => Category.fromJson(e)).toList());
+    isCategoryLoading = true;
+    categoryList = (await repository.getCategoryList());
+    isCategoryLoading = false;
   }
 
   Future loadMangaListWithCategoryId() async {
     isLoading = true;
     if (textEditingController.text.isNotEmpty) {
-      mangaList = (await CategoryRepository.getMangaListFromCategoryId(
-              categoryList[tabIndex.value]!.id!))
+      mangaList = (await repository
+              .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))
           .where((element) => (element.title ?? "")
               .toLowerCase()
               .contains(textEditingController.text.toLowerCase()))
           .toList();
     } else {
       if (categoryList.isNotEmpty) {
-        mangaList = (await CategoryRepository.getMangaListFromCategoryId(
-            categoryList[tabIndex.value]!.id!));
+        mangaList = (await repository
+            .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!));
       }
     }
     isLoading = false;
