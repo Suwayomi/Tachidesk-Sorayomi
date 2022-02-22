@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/constants/api_url.dart';
-import '../../../core/enums/reader_mode.dart';
+import '../../../core/values/api_url.dart';
+import '../../../data/enums/reader_mode.dart';
 import '../controllers/reader_controller.dart';
 import '../widgets/continuous_horizontal_ltr.dart';
 import '../widgets/continuous_horizontal_rtl.dart';
@@ -22,6 +22,24 @@ class ReaderView extends GetView<ReaderController> {
         appBar: AppBar(
           actionsIconTheme: IconThemeData(color: Colors.grey),
           actions: [
+            controller.visibility && (controller.chapter.index ?? 0) > 1
+                ? IconButton(
+                    onPressed: () => controller.prevChapter(),
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                    ),
+                  )
+                : Container(),
+            controller.visibility &&
+                    (controller.chapter.index ?? 1) <
+                        (controller.chapter.chapterCount ?? 0)
+                ? IconButton(
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                    ),
+                    onPressed: () => controller.nextChapter(),
+                  )
+                : Container(),
             controller.visibility
                 ? IconButton(
                     onPressed: () => Get.back(), icon: Icon(Icons.close))
@@ -102,7 +120,9 @@ class ReaderView extends GetView<ReaderController> {
                 ),
               ),
               ListTile(
-                leading: Text(LocaleKeys.readerScreen_readerMode_.tr),
+                subtitle: Text(LocaleKeys.readerScreen_readerMode_.tr),
+                leading: Icon(Icons.app_settings_alt_outlined),
+                isThreeLine: true,
                 title: DropdownButton(
                   value: controller.readerMode.value,
                   isExpanded: true,

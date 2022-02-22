@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
-import '../../../core/constants/db_keys.dart';
+import '../../../core/values/db_keys.dart';
 
 class BrowseSettingsController extends GetxController {
   final LocalStorageService localStorageService =

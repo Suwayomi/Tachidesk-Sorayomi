@@ -1,4 +1,1 @@
-enum SourceType {
-  popular,
-  latest,
-}
+// TODO Implement this library.

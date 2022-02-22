@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/constants/api_url.dart';
 import '../../../core/utils/days_ago.dart';
+import '../../../core/values/api_url.dart';
 import '../../../data/download_queue_value_model.dart';
 import '../../../data/manga_page_model.dart';
 import '../../../routes/app_pages.dart';

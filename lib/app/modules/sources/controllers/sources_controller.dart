@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
-import '../../../core/constants/db_keys.dart';
 import '../../../core/utils/language.dart';
-import '../../../data/repository/source_repository.dart';
+import '../../../core/values/db_keys.dart';
 import '../../../data/source_model.dart';
+import '../repository/sources_repository.dart';
 
 class SourcesController extends GetxController {
+  final SourcesRepository repository = SourcesRepository();
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
   final RxList<Source> sourceList = <Source>[].obs;
@@ -29,7 +30,7 @@ class SourcesController extends GetxController {
   }
 
   Future<void> updateSourceList() async {
-    sourceList.value = (await SourceRepository.getSourceList()) ?? sourceList;
+    sourceList.value = (await repository.getSourceList()) ?? sourceList;
   }
 
   @override

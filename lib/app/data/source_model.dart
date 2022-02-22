@@ -70,12 +70,13 @@ class Source {
 
   String toJson() => json.encode(toMap());
 
-  factory Source.fromJson(Map<String, dynamic> source) =>
-      Source.fromMap(source);
+  factory Source.fromJson(String source) => Source.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'Source(displayName: $displayName, iconUrl: $iconUrl, id: $id, isConfigurable: $isConfigurable, isNsfw: $isNsfw, lang: $lang, name: $name, supportsLatest: $supportsLatest)';
+    return 'Source(displayName: $displayName, iconUrl: $iconUrl,'
+        ' id: $id, isConfigurable: $isConfigurable, isNsfw: $isNsfw,'
+        ' lang: $lang, name: $name, supportsLatest: $supportsLatest)';
   }
 
   @override

@@ -1,39 +1,60 @@
 import 'package:get/get.dart';
 
 import '../../../main.dart';
-import '../../core/constants/api_url.dart';
+import '../../core/values/api_url.dart';
+import '../category_model.dart';
 import '../manga_model.dart';
 
 class MangaProvider extends GetConnect {
-  MangaProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
+  @override
+  void onInit() {
+    httpClient.defaultDecoder = (map) {
+      if (map is List) {
+        return map.map<Manga>((item) => Manga.fromMap(item)).toList();
+      }
+      if (map is Map<String, dynamic>) return Manga.fromMap(map);
+    };
+    httpClient.baseUrl = _localStorageService.baseURL + mangaUrl;
+    httpClient.timeout = Duration(minutes: 1);
+  }
+
   Future<Manga?> getManga(int id, {bool fetchFreshData = true}) async {
+    final response = await get('/$id/?onlineFetch=$fetchFreshData');
+    if (response.hasError) return Manga();
+    return response.body;
+  }
+
+  Future<List<Category>?> getMangaCategoryList(int id) async {
     final response = await get(
-      _localStorageService.baseURL +
-          mangaUrl +
-          '/$id/?onlineFetch=$fetchFreshData',
-      decoder: (data) => Manga.fromMap(data),
+      '/$id/category',
+      decoder: (map) =>
+          map.map<Category>((item) => Category.fromMap(item)).toList(),
     );
+    if (response.hasError) return <Category>[];
+    print(response.body);
     return response.body;
   }
 
-  Future addMangaToLibrary(int id) async {
-    final response = await get(
-      _localStorageService.baseURL + mangaUrl + '/$id/library',
-    );
-    return response.body;
+  Future<Response> addMangaToLibrary(int id) async {
+    final response = await get('/$id/library');
+    return response;
   }
 
-  Future removeMangaFromLibrary(int id) async {
-    final response = await delete(
-      _localStorageService.baseURL + mangaUrl + '/$id/library',
-    );
-    return response.body;
+  Future<Response> removeMangaFromLibrary(int id) async {
+    final response = await delete('/$id/library');
+    return response;
   }
 
-  Future<Response<Manga>> postManga(Manga manga) async =>
-      await post('manga', manga);
-  Future<Response> deleteManga(int id) async => await delete('manga/$id');
+  Future<Response> addMangaToCategory(int mangaId, int categoryId) async {
+    final response = await get('/$mangaId/category/$categoryId');
+    return response;
+  }
+
+  Future<Response> removeMangaFromCategory(int mangaId, int categoryId) async {
+    final response = await delete('/$mangaId/category/$categoryId');
+    return response;
+  }
 }

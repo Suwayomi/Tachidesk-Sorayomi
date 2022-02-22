@@ -3,6 +3,7 @@
         "buildTime": "Build Time",
         "channel": "Channel",
         "discord": "Discord",
+        "flutter": "Flutter",
         "gitHub": "GitHub",
         "launchError": {
             "title": "@website URL failed to launch"
@@ -105,16 +106,18 @@
     "libraryScreen": {
         "manga": "Manga",
         "mangaSearch": "Search manga..",
-        "refresh" : "Refresh"
+        "refresh": "Refresh"
     },
     "loading": "Loading",
     "mangaGridDesign": {
         "inLibrary": "In library"
     },
     "mangaScreen": {
+        "addCategoryHint": "Add new categories in settings",
         "addToLibrary": "Add to Library",
         "artist": "Artist",
         "author": "Author",
+        "category": "Category",
         "chapterList": {
             "bookmark": "Bookmark",
             "markAsRead": "Mark as read",
@@ -123,34 +126,38 @@
             "markPrevAsUnread": "Mark previous as unread",
             "removeBookmark": "Remove bookmark"
         },
-        "noNewChapter": "No new chapter",
-        "noChapter": "chapter found",
         "chapters": "Chapters",
         "inLibrary": "In library",
         "manga": "Manga",
+        "noChapter": "chapter found",
+        "noNewChapter": "No new chapter",
+        "reload": "Reload",
         "source": "Source",
         "status": "Status",
         "unknown": "Unknown",
-        "webView": "WebView",
-        "reload" : "Reload"
+        "webView": "WebView"
     },
     "no": "No",
     "readerScreen": {
         "chapter": "Chapter",
+        "image": "Image",
+        "manga": "Manga",
         "nextChapter": "Next Chapter",
         "previousChapter": "Previous Chapter",
-        "manga": "Manga",
-        "image": "Image",
-        "readerMode_" : "Mode",
-        "readerMode" : {
-            "continuousHorizontalLTR" : "(LTR) Continuous Horizontal",
-            "continuousHorizontalRTL" : "(RTL) Continuous Horizontal",
-            "continuousVertical" : "Continuous Vertical",
-            "singleHorizontalLTR" : "(LTR) Single Horizontal",
-            "singleHorizontalRTL" : "(RTL) Single Horizontal ",
-            "singleVertical" : "Single Vertical",
-            "webtoon" : "Webtoon"
-        }
+        "readerMode": {
+            "continuousHorizontalLTR": "(LTR) Continuous Horizontal",
+            "continuousHorizontalRTL": "(RTL) Continuous Horizontal",
+            "continuousVertical": "Continuous Vertical",
+            "singleHorizontalLTR": "(LTR) Single Horizontal",
+            "singleHorizontalRTL": "(RTL) Single Horizontal ",
+            "singleVertical": "Single Vertical",
+            "webtoon": "Webtoon"
+        },
+        "readerMode_": "Reading Mode"
+    },
+    "readerSettingsScreen": {
+        "category": "Category",
+        "readerMode": "Readering Mode"
     },
     "screenTitle": {
         "about": "About",
@@ -160,6 +167,7 @@
         "extensions": "Extensions",
         "library": "Library",
         "more": "More",
+        "readerSettingsView": "Reader Settings",
         "settings": "Settings",
         "sources": "Sources",
         "updates": "Updates"

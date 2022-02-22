@@ -36,6 +36,7 @@ class ChapterCard extends StatelessWidget {
       ),
       subtitle: Text(
         (chapter?.scanlator ?? "") +
+            " " +
             convertToAgo(
               DateTime.fromMillisecondsSinceEpoch(
                 chapter?.uploadDate ?? 0,

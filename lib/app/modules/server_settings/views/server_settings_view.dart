@@ -27,7 +27,7 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
                   onSubmitted: (value) => controller.submitURL(value),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: (LocaleKeys.screenTitle_categories.tr),
+                    hintText: (LocaleKeys.serverSettingsScreen_url.tr),
                   ),
                 ),
                 onConfirm: () =>

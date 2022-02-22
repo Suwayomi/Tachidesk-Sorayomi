@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../data/repository/downloads_repository.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/downloads_controller.dart';
 
@@ -16,9 +15,9 @@ class DownloadsView extends GetView<DownloadsController> {
               ? FloatingActionButton.extended(
                   onPressed: () {
                     if (controller.downloadsList.status == "Stopped") {
-                      DownloadsRepository.startDownloads();
+                      controller.repository.startDownloads();
                     } else {
-                      DownloadsRepository.stopDownloads();
+                      controller.repository.stopDownloads();
                     }
                   },
                   icon: Icon(controller.downloadsList.status == "Stopped"

@@ -7,11 +7,12 @@ import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../../main.dart';
-import '../../../data/repository/extension_repository.dart';
 import '../../extensions/controllers/extensions_controller.dart';
+import '../repository/browse_repository.dart';
 
 class BrowseController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  final BrowseRepository repository = Get.put(BrowseRepository());
   late TabController tabController;
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
@@ -26,8 +27,10 @@ class BrowseController extends GetxController
   set isSearching(bool value) => _isSearching.value = value;
 
   void installExtensionApk() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowedExtensions: [".apk"]);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      allowedExtensions: ["apk"],
+      type: FileType.custom,
+    );
     if (result != null && result.files.single.path!.endsWith("apk")) {
       File file = File(result.files.single.path!);
       Get.rawSnackbar(
@@ -35,7 +38,7 @@ class BrowseController extends GetxController
         message: LocaleKeys.extensionScreen_installFile_subtitle.tr,
       );
 
-      Response res = await ExtensionRepository.installExtensionFile(file);
+      Response res = await repository.installExtensionFile(file);
       if (res.statusCode == null || res.statusCode == 200) {
         try {
           Get.find<ExtensionsController>().updateExtensionList();

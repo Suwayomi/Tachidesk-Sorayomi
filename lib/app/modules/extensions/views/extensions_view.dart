@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/constants/api_url.dart';
 import '../../../core/utils/language.dart';
+import '../../../core/values/api_url.dart';
 import '../../../data/extension_model.dart';
-import '../../../data/repository/extension_repository.dart';
 import '../controllers/extensions_controller.dart';
 
 class ExtensionsView extends GetView<ExtensionsController> {
@@ -98,14 +97,14 @@ class ExtensionsView extends GetView<ExtensionsController> {
                                             if (source.installed ?? false) {
                                               if (source.hasUpdate ?? false) {
                                                 isWaiting.value = true;
-                                                await ExtensionRepository
+                                                await controller.repository
                                                     .updateExtension(
                                                         source.pkgName!);
                                                 controller
                                                     .updateExtensionList();
                                               } else {
                                                 isWaiting.value = true;
-                                                await ExtensionRepository
+                                                await controller.repository
                                                     .uninstallExtension(
                                                         source.pkgName!);
                                                 controller
@@ -113,7 +112,7 @@ class ExtensionsView extends GetView<ExtensionsController> {
                                               }
                                             } else {
                                               isWaiting.value = true;
-                                              await ExtensionRepository
+                                              await controller.repository
                                                   .installExtension(
                                                       source.pkgName!);
                                               controller.updateExtensionList();

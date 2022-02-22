@@ -67,12 +67,14 @@ class DownloadQueueValue {
 
   String toJson() => json.encode(toMap());
 
-  factory DownloadQueueValue.fromJson(Map<String, dynamic> source) =>
-      DownloadQueueValue.fromMap(source);
+  factory DownloadQueueValue.fromJson(String source) =>
+      DownloadQueueValue.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'DownloadQueueValue(chapter: chapter, chapterIndex: $chapterIndex, manga: manga, mangaId: $mangaId, progress: $progress, state: $state, tries: $tries)';
+    return 'DownloadQueueValue(chapter: chapter, chapterIndex: $chapterIndex,'
+        ' manga: manga, mangaId: $mangaId, progress: $progress,'
+        ' state: $state, tries: $tries)';
   }
 
   @override

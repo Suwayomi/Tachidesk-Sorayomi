@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
-import '../../../core/constants/db_keys.dart';
 import '../../../core/utils/language.dart';
+import '../../../core/values/db_keys.dart';
 import '../../../data/extension_model.dart';
-import '../../../data/repository/extension_repository.dart';
 import '../../browse/controllers/browse_controller.dart';
 import '../../sources/controllers/sources_controller.dart';
+import '../repository/extension_repository.dart';
 
 class ExtensionsController extends GetxController {
+  final ExtensionRepository repository = ExtensionRepository();
   final RxBool isLoading = true.obs;
   final SourcesController _sourcesController = Get.find<SourcesController>();
   final BrowseController _browseController = Get.find<BrowseController>();
@@ -55,7 +56,7 @@ class ExtensionsController extends GetxController {
 
   Future<void> updateExtensionList() async {
     extensionList.value =
-        (await ExtensionRepository.getExtensionList()) ?? extensionList;
+        (await repository.getExtensionList()) ?? extensionList;
     await _sourcesController.updateSourceList();
   }
 

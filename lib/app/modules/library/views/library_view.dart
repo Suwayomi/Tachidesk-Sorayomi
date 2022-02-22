@@ -43,7 +43,7 @@ class LibraryView extends GetView<LibraryController> {
                     children: controller.categoryList.map<Widget>(
                       (e) {
                         return Obx(
-                          () => controller.mangaListLength != (0)
+                          () => controller.mangaListLength != 0
                               ? GridView.builder(
                                   gridDelegate:
                                       const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -75,17 +75,21 @@ class LibraryView extends GetView<LibraryController> {
                       },
                     ).toList(),
                   )
-                : EmoticonsView(
-                    emptyType: LocaleKeys.libraryScreen_manga.tr,
-                    button: TextButton.icon(
-                      onPressed: () => controller.refreshLibraryScreen(),
-                      style: TextButton.styleFrom(),
-                      icon: Icon(Icons.refresh),
-                      label: Text(
-                        LocaleKeys.libraryScreen_refresh.tr,
-                      ),
-                    ),
-                  ),
+                : (controller.isCategoryLoading
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : EmoticonsView(
+                        emptyType: LocaleKeys.libraryScreen_manga.tr,
+                        button: TextButton.icon(
+                          onPressed: () => controller.refreshLibraryScreen(),
+                          style: TextButton.styleFrom(),
+                          icon: Icon(Icons.refresh),
+                          label: Text(
+                            LocaleKeys.libraryScreen_refresh.tr,
+                          ),
+                        ),
+                      )),
           ),
         ),
       ),

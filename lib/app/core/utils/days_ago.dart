@@ -10,6 +10,6 @@ String convertToAgo(DateTime input) {
   } else if (diff.inDays < 10) {
     return '${diff.inDays} days ago';
   } else {
-    return DateFormat("dd/MM/yy").format(input);
+    return DateFormat("dd/MM/yyyy").format(input);
   }
 }

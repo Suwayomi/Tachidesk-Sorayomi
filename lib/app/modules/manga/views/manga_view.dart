@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../data/category_model.dart';
 import '../../../data/chapter_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
@@ -20,6 +21,75 @@ class MangaView extends GetView<MangaController> {
               controller.manga.value.title ?? LocaleKeys.mangaScreen_manga.tr,
             ),
           ),
+          actions: [
+            IconButton(
+              onPressed: () async {
+                await controller.loadCategoryList();
+                Get.defaultDialog(
+                  title: LocaleKeys.mangaScreen_category.tr,
+                  content: SizedBox(
+                    height: 250,
+                    width: 250,
+                    child: controller.categoryList.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: controller.categoryList.length,
+                            itemBuilder: (context, index) {
+                              RxBool isEnabled = controller.mangaCategoryList
+                                  .contains(controller.categoryList[index])
+                                  .obs;
+                              Category category =
+                                  controller.categoryList[index];
+                              return Obx(
+                                () => SwitchListTile(
+                                  value: isEnabled.value,
+                                  title: Text(
+                                    category.name ??
+                                        LocaleKeys.mangaScreen_category.tr,
+                                  ),
+                                  onChanged: (value) {
+                                    isEnabled.value = value;
+                                    if (value) {
+                                      controller.repository.addMangaToCategory(
+                                          controller.manga.value.id!,
+                                          category.id!);
+                                    } else {
+                                      controller.repository
+                                          .removeMangaFromCategory(
+                                              controller.manga.value.id!,
+                                              category.id!);
+                                    }
+                                  },
+                                ),
+                              );
+                            },
+                          )
+                        : ListTile(
+                            title: Text(
+                              LocaleKeys.mangaScreen_addCategoryHint.tr,
+                            ),
+                            onTap: () {
+                              Get.back();
+                              Get.toNamed(Routes.editCategories);
+                            },
+                          ),
+                  ),
+                  cancel: ElevatedButton(
+                    onPressed: () => Get.back(),
+                    child: Text(
+                      LocaleKeys.sourceScreen_close.tr,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              icon: Icon(Icons.category_outlined),
+            ),
+          ],
         ),
         floatingActionButton:
             Obx(() => controller.firstUnreadChapter.index != -1
@@ -181,6 +251,14 @@ class MangaView extends GetView<MangaController> {
                                               " " +
                                               LocaleKeys
                                                   .mangaScreen_chapters.tr,
+                                        ),
+                                        trailing: IconButton(
+                                          onPressed: () =>
+                                              controller.loadChapterList(
+                                                  onlineFetch: true),
+                                          icon: Icon(
+                                            Icons.refresh,
+                                          ),
                                         ),
                                       );
                                     }

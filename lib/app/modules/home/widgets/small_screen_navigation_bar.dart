@@ -18,6 +18,7 @@ class SmallScreenNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => BottomNavigationBar(
           showUnselectedLabels: true,
+          type: BottomNavigationBarType.fixed,
           unselectedItemColor: Get.theme.unselectedWidgetColor,
           selectedItemColor: Get.theme.indicatorColor,
           currentIndex: controller.selectedIndex,

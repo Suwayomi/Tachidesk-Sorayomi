@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/repository/source_repository.dart';
 import '../../../data/source_manga_list_model.dart';
 import '../../../data/source_model.dart';
+import '../repository/search_source_repository.dart';
 
 class SearchSourceController extends GetxController {
+  final SearchSourceRepository repository = SearchSourceRepository();
   int _page = 1;
   late String sourceId;
   final ScrollController scrollController = ScrollController();
@@ -29,7 +30,7 @@ class SearchSourceController extends GetxController {
   Future getNextPage({bool isRefresh = false}) async {
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
-        final sourceMangaListTemp = await SourceRepository.getSourceSearch(
+        final sourceMangaListTemp = await repository.getSourceSearch(
             searchTerm: textEditingController.text,
             pageNum: _page,
             sourceId: sourceId);
@@ -43,7 +44,7 @@ class SearchSourceController extends GetxController {
     } else {
       isFirstPage = true;
       _page = 1;
-      sourceMangaList = (await SourceRepository.getSourceSearch(
+      sourceMangaList = (await repository.getSourceSearch(
               searchTerm: textEditingController.text,
               pageNum: _page,
               sourceId: sourceId)) ??
@@ -61,7 +62,7 @@ class SearchSourceController extends GetxController {
 
   @override
   void onReady() async {
-    source = (await SourceRepository.getSource(sourceId: sourceId)) ?? source;
+    source = (await repository.getSource(sourceId: sourceId)) ?? source;
     scrollController.addListener(() async {
       if (scrollController.position.pixels ==
           scrollController.position.maxScrollExtent) {

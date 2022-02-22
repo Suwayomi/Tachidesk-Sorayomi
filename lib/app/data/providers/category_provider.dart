@@ -1,24 +1,36 @@
 import 'package:get/get.dart';
 
 import '../../../main.dart';
-import '../../core/constants/api_url.dart';
+import '../../core/values/api_url.dart';
+import '../category_model.dart';
 import '../manga_model.dart';
 
 class CategoryProvider extends GetConnect {
-  CategoryProvider() : super(timeout: Duration(minutes: 1));
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
 
-  Future getCategoryList() async {
-    final response = await get(_localStorageService.baseURL + categoryURL);
-    return response.body;
+  @override
+  void onInit() {
+    httpClient.defaultDecoder = (map) {
+      if (map is List) {
+        return map.map((item) => Category.fromMap(item)).toList();
+      }
+      if (map is Map<String, dynamic>) return Category.fromMap(map);
+    };
+    httpClient.baseUrl = _localStorageService.baseURL + categoryURL;
+    httpClient.timeout = Duration(minutes: 1);
   }
 
   Future<List<Manga>> getMangaListFromCategoryId(int id) async {
-    final response = await get(
-        _localStorageService.baseURL + categoryURL + "/$id",
+    final response = await get("/$id",
         decoder: (map) =>
-            map.map<Manga>((item) => Manga.fromJson(item)).toList());
+            map.map<Manga>((item) => Manga.fromMap(item)).toList());
+    return response.body;
+  }
+
+  Future<List<Category>> getCategoryList() async {
+    final response = await get("");
+    if (response.hasError) return <Category>[];
     return response.body;
   }
 
@@ -27,7 +39,7 @@ class CategoryProvider extends GetConnect {
     required bool defaultCategory,
   }) async {
     return await post(
-        _localStorageService.baseURL + categoryURL,
+        "",
         FormData({
           "name": name,
           "default": defaultCategory,
@@ -40,7 +52,7 @@ class CategoryProvider extends GetConnect {
     required bool defaultCategory,
   }) async {
     return await patch(
-        _localStorageService.baseURL + categoryURL + "/$id",
+        "/$id",
         FormData({
           "name": name,
           "default": defaultCategory,
@@ -48,12 +60,12 @@ class CategoryProvider extends GetConnect {
   }
 
   Future<Response> deleteCategory(int id) async {
-    return await delete(_localStorageService.baseURL + categoryURL + '/$id');
+    return await delete('/$id');
   }
 
   Future<Response> reorderCategory({required int from, required int to}) {
     return patch(
-      _localStorageService.baseURL + reorderURL,
+      reorderURL,
       FormData({'from': from, 'to': to}),
     );
   }

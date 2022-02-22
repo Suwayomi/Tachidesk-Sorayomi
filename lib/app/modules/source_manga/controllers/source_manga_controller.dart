@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../core/enums/source_type.dart';
-import '../../../data/repository/source_repository.dart';
+import '../../../data/enums/source_type.dart';
 import '../../../data/source_manga_list_model.dart';
 import '../../../data/source_model.dart';
+import '../repository/source_manga_repository.dart';
 
 class SourceMangaController extends GetxController {
+  final SourceMangaRepository repository = SourceMangaRepository();
   int _page = 1;
   late String sourceId;
   late SourceType sourceType;
@@ -30,7 +31,7 @@ class SourceMangaController extends GetxController {
   Future getNextPage({bool isRefresh = false}) async {
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
-        final sourceMangaListTemp = await SourceRepository.getSourceMangaList(
+        final sourceMangaListTemp = await repository.getSourceMangaList(
             sourceType: sourceType, pageNum: _page, sourceId: sourceId);
         _page += 1;
         sourceMangaList.hasNextPage = sourceMangaListTemp?.hasNextPage ?? true;
@@ -41,7 +42,7 @@ class SourceMangaController extends GetxController {
     } else {
       isFirstPage = true;
       _page = 1;
-      sourceMangaList = (await SourceRepository.getSourceMangaList(
+      sourceMangaList = (await repository.getSourceMangaList(
               sourceType: sourceType, pageNum: _page, sourceId: sourceId)) ??
           sourceMangaList;
       _page += 1;
@@ -60,7 +61,7 @@ class SourceMangaController extends GetxController {
 
   @override
   void onReady() async {
-    source = await SourceRepository.getSource(sourceId: sourceId) ?? source;
+    source = await repository.getSource(sourceId: sourceId) ?? source;
     await getNextPage();
     scrollController.addListener(() async {
       if (scrollController.position.pixels ==

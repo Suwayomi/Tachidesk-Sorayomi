@@ -64,11 +64,13 @@ class About {
 
   String toJson() => json.encode(toMap());
 
-  factory About.fromJson(Map<String, dynamic> source) => About.fromMap(source);
+  factory About.fromJson(String source) => About.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'About(name: $name, version: $version, revision: $revision, buildType: $buildType, buildTime: $buildTime, github: $github, discord: $discord)';
+    return 'About(name: $name, version: $version, revision: $revision,'
+        ' buildType: $buildType, buildTime: $buildTime,'
+        ' github: $github, discord: $discord)';
   }
 
   @override
