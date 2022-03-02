@@ -26,7 +26,8 @@ jobs:
           bundle="Tachidesk-Flutter-linux-x64-${GITHUB_REF#refs/tags/}"
           tar -C build/linux/x64/release --transform s/bundle/$bundle/ \
             -cvf - "$bundle" | gzip -9 - > "$bundle.tar.gz"
-        run: ls -la
+      
+      - run: ls -la
     
       - name: Upload
         uses: xresloader/upload-to-github-release@v1
