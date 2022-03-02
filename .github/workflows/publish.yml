@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    if: github.ref_type == "tag"
+    if: github.ref_type == 'tag'
     name: Publish
     runs-on: ubuntu-latest
     permissions:
