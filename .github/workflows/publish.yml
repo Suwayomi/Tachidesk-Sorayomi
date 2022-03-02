@@ -10,8 +10,7 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     permissions:
-      # softprops/action-gh-release needs this permission
-      contents: write
+      contents: write # softprops/action-gh-release needs this permission
     steps:
       - if: github.ref_type == 'branch'
         uses: actions/github-script@v3
