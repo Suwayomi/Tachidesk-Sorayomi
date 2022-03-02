@@ -1,12 +1,15 @@
 name: Publish
 on:
   release:
+    types: [published]
 jobs:
   publish:
     name: Publish
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+    env:
+      NAME: tachidesk-flutter-${GITHUB_REF#refs/tags/}
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
@@ -20,10 +23,8 @@ jobs:
           flutter build linux --release
 
       - name: Package
-        run: |
-          bundle="Tachidesk-Flutter-linux-x64-${GITHUB_REF#refs/tags/}"
-          tar -C build/linux/x64/release --transform s/bundle/$bundle/ \
-            -cvf - "$bundle" | gzip -9 - > "$bundle.tar.gz"
+        run: tar --transform s/bundle/$NAME-linux-x64/ -cvf - \
+          -C build/linux/x64/release bundle | gzip -9 - > $NAME-linux-x64.tar.gz
 
       - run: ls -la
 
@@ -31,4 +32,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          files: "$bundle.tar.gz"
+          files: $NAME-linux-x64
