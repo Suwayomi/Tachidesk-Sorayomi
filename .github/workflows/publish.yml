@@ -1,5 +1,6 @@
 name: Publish
 on:
+  workflow_dispatch
   release:
     types: [published]
 jobs:
@@ -9,7 +10,10 @@ jobs:
     permissions:
       contents: write # see https://github.com/softprops/action-gh-release
     steps:
-      - uses: actions/checkout@v2
+      # - name: Set environment variables
+      #   run: echo "name=tachidesk-flutter-${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      - uses: actions/checkout@v3
+
       - uses: subosito/flutter-action@v2
         with:
           channel: "beta"
@@ -22,14 +26,13 @@ jobs:
 
       - name: Package
         run: |
-          echo "name=tachidesk-flutter-${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV 
-          tar --transform s/bundle/${{ env.name }}-linux-x64/ -cvf - \
-            -C build/linux/x64/release bundle | gzip -9 - > ${{ env.name }}-linux-x64.tar.gz
+          pkg="tachidesk-flutter-${GITHUB_REF#refs/tags/}-linux-x64"
+          tar --transform "s/bundle/$pkg/" -cvf - \
+            -C build/linux/x64/release bundle | gzip -9 - > "$pkg.tar.gz"
 
       - run: ls -la
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          draft: true
-          files: ${{ env.name }}-linux-x64
+          files: tachidesk-flutter-*
