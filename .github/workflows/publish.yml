@@ -12,6 +12,7 @@ jobs:
     permissions:
       # softprops/action-gh-release needs this permission
       contents: write
+    if: ${{ ${GITHUB_REF%/*} == "refs/tags" }}
     steps:
       - uses: actions/checkout@v3
 
