@@ -1,7 +1,6 @@
 name: Publish
 on:
   release:
-    types: [published]
 jobs:
   publish:
     name: Publish
