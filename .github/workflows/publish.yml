@@ -7,13 +7,13 @@ on:
 
 jobs:
   publish:
-    if: github.ref_type == tag
+    if: github.ref_type == "tag"
     name: Publish
     runs-on: ubuntu-latest
     permissions:
       # softprops/action-gh-release needs this permission
       contents: write
-    
+
     steps:
       - uses: actions/checkout@v3
 
