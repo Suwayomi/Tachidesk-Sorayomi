@@ -7,14 +7,18 @@ on:
 
 jobs:
   publish:
-    if: github.ref_type == 'tag'
     name: Publish
     runs-on: ubuntu-latest
     permissions:
       # softprops/action-gh-release needs this permission
       contents: write
-
     steps:
+      - if: github.ref_type == 'branch'
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Use workflow from a tag')
+
       - uses: actions/checkout@v3
 
       - uses: subosito/flutter-action@v2
