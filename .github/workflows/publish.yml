@@ -7,9 +7,7 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-    env:
-      NAME: tachidesk-flutter-${GITHUB_REF#refs/tags/}
+      contents: write # see https://github.com/softprops/action-gh-release
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
@@ -23,8 +21,10 @@ jobs:
           flutter build linux --release
 
       - name: Package
-        run: tar --transform s/bundle/$NAME-linux-x64/ -cvf - \
-          -C build/linux/x64/release bundle | gzip -9 - > $NAME-linux-x64.tar.gz
+        run: |
+          echo "name=tachidesk-flutter-${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV 
+          tar --transform s/bundle/${{ env.name }}-linux-x64/ -cvf - \
+            -C build/linux/x64/release bundle | gzip -9 - > ${{ env.name }}-linux-x64.tar.gz
 
       - run: ls -la
 
@@ -32,4 +32,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          files: $NAME-linux-x64
+          files: ${{ env.name }}-linux-x64
