@@ -17,7 +17,7 @@ class SourceProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Source.fromMap(map);
     };
     httpClient.baseUrl = _localStorageService.baseURL + sourceURL;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<List<Source>?> getSourceList() async {
