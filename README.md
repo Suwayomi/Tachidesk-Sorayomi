@@ -29,18 +29,6 @@ Tachidesk-Flutter supports Linux, Windows and Android.
 
 ---
 
-## Table of Contents
-
-- [Is this working?](##is-this-application-usable-should-i-test-it)
-- [How it works](#working)
-- [Usage](#usage)
-- [Getting Started](#getting_started)
-- [Built Using](#built_using)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
-
----
-
 ## Is this application usable? Should I test it?
 
 Here is a list of current features for interaction with Tachidesk-Flutter:
