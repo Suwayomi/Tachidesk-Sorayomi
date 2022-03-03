@@ -6,6 +6,7 @@ import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
 import '../../../core/values/api_url.dart';
 import '../../../data/extension_model.dart';
+import '../../../widgets/emoticons.dart';
 import '../controllers/extensions_controller.dart';
 
 class ExtensionsView extends GetView<ExtensionsController> {
@@ -17,7 +18,7 @@ class ExtensionsView extends GetView<ExtensionsController> {
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
+          : controller.groupByMap.keys.isNotEmpty ? ListView.builder(
               itemCount: controller.groupByMap.keys.length,
               itemBuilder: (context, index) {
                 final currentKey = controller.groupByLanguageList[index];
@@ -142,6 +143,12 @@ class ExtensionsView extends GetView<ExtensionsController> {
                   ],
                 );
               },
+            ) : EmoticonsView(
+              emptyType: LocaleKeys.extensionScreen_extensionsError.tr,
+              button: TextButton(
+                child: Text(LocaleKeys.extensionScreen_reload.tr),
+                onPressed: () => controller.extensionList(),
+              ),
             ),
     ));
   }

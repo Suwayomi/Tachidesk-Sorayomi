@@ -75,13 +75,7 @@ class ReaderController extends GetxController {
     }
   }
 
-  @override
-  void onReady() async {
-    localStorageService.box.listenKey(
-      readerModeKey,
-      (value) =>
-          readerMode.value = stringToReaderMode(value) ?? readerMode.value,
-    );
+  Future<void> reloadReader() async {
     isLoading = true;
     chapter = (await repository.getChapter(
             mangaId: mangaId, chapterIndex: chapterIndex)) ??
@@ -89,7 +83,16 @@ class ReaderController extends GetxController {
     manga = (await repository.getManga(mangaId)) ?? manga;
     isDataLoading = true;
     isLoading = false;
+  }
 
+  @override
+  void onReady() async {
+    localStorageService.box.listenKey(
+      readerModeKey,
+      (value) =>
+          readerMode.value = stringToReaderMode(value) ?? readerMode.value,
+    );
+    await reloadReader();
     super.onReady();
   }
 

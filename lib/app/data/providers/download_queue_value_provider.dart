@@ -10,7 +10,7 @@ class DownloadQueueValueProvider extends GetConnect {
   @override
   void onInit() {
     httpClient.baseUrl = _localStorageService.baseURL + downloadURL;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<Response> startDownload(

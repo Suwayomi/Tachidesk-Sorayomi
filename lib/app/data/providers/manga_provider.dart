@@ -18,7 +18,7 @@ class MangaProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Manga.fromMap(map);
     };
     httpClient.baseUrl = _localStorageService.baseURL + mangaUrl;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<Manga?> getManga(int id, {bool fetchFreshData = true}) async {

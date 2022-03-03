@@ -18,14 +18,14 @@ class CategoryProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Category.fromMap(map);
     };
     httpClient.baseUrl = _localStorageService.baseURL + categoryURL;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<List<Manga>> getMangaListFromCategoryId(int id) async {
     final response = await get("/$id",
         decoder: (map) =>
             map.map<Manga>((item) => Manga.fromMap(item)).toList());
-    return response.body;
+    return response.body ?? <Manga>[];
   }
 
   Future<List<Category>> getCategoryList() async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tachidesk_flutter/app/widgets/emoticons.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
@@ -13,96 +14,110 @@ class SourcesView extends GetView<SourcesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Obx(
-      () => ListView.builder(
-        itemCount: controller.groupByMap.keys.length,
-        itemBuilder: (context, index) {
-          final currentKey = controller.groupByLanguageList[index];
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                key: Key(currentKey.toString()),
-                child: ListTile(
-                  title: Text(currentKey.nativeName),
-                ),
-              ),
-              ...mapIndexed(
-                controller.groupByMap[currentKey]?.reversed,
-                (iterator, Source source) {
-                  return Container(
-                    key: Key('$currentKey-${source.toString()}-$iterator'),
-                    child: ListTile(
-                      onTap: (() {
-                        controller.localStorageService.lastUsed = source.id;
-                        controller.groupByMap[langCodeToName("lastused")] = [
-                          source
-                        ];
-                        Get.toNamed(
-                          Routes.sourceManga + "/${source.id}/popular",
-                        );
-                      }),
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          controller.localStorageService.baseURL +
-                              (source.iconUrl ?? ""),
-                          height: 48,
-                          width: 48,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Image.asset(logoURL),
+      body: controller.groupByMap.keys.isNotEmpty
+          ? Obx(
+              () => ListView.builder(
+                itemCount: controller.groupByMap.keys.length,
+                itemBuilder: (context, index) {
+                  final currentKey = controller.groupByLanguageList[index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        key: Key(currentKey.toString()),
+                        child: ListTile(
+                          title: Text(currentKey.nativeName),
                         ),
                       ),
-                      title: Text(source.displayName ?? source.name ?? ""),
-                      subtitle:
-                          Text(langCodeToName(source.lang ?? "").nativeName),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              controller.localStorageService.lastUsed =
-                                  source.id;
-                              controller
-                                  .groupByMap[langCodeToName("lastused")] = [
-                                source
-                              ];
-                              Get.toNamed(
-                                  Routes.sourceManga + "/${source.id}/latest");
-                            },
-                            child: Text(
-                              LocaleKeys.sourceScreen_latest.tr,
+                      ...mapIndexed(
+                        controller.groupByMap[currentKey]?.reversed,
+                        (iterator, Source source) {
+                          return Container(
+                            key: Key(
+                                '$currentKey-${source.toString()}-$iterator'),
+                            child: ListTile(
+                              onTap: (() {
+                                controller.localStorageService.lastUsed =
+                                    source.id;
+                                controller
+                                    .groupByMap[langCodeToName("lastused")] = [
+                                  source
+                                ];
+                                Get.toNamed(
+                                  Routes.sourceManga + "/${source.id}/popular",
+                                );
+                              }),
+                              leading: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  controller.localStorageService.baseURL +
+                                      (source.iconUrl ?? ""),
+                                  height: 48,
+                                  width: 48,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(logoURL),
+                                ),
+                              ),
+                              title:
+                                  Text(source.displayName ?? source.name ?? ""),
+                              subtitle: Text(
+                                  langCodeToName(source.lang ?? "").nativeName),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      controller.localStorageService.lastUsed =
+                                          source.id;
+                                      controller.groupByMap[
+                                          langCodeToName("lastused")] = [
+                                        source
+                                      ];
+                                      Get.toNamed(Routes.sourceManga +
+                                          "/${source.id}/latest");
+                                    },
+                                    child: Text(
+                                      LocaleKeys.sourceScreen_latest.tr,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      controller.localStorageService.lastUsed =
+                                          source.id;
+                                      controller.groupByMap[
+                                          langCodeToName("lastused")] = [
+                                        source
+                                      ];
+                                      Get.toNamed(
+                                        Routes.sourceManga +
+                                            "/${source.id}/search",
+                                      );
+                                    },
+                                    icon: Icon(
+                                      Icons.search,
+                                      color: context.theme.colorScheme.primary,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              controller.localStorageService.lastUsed =
-                                  source.id;
-                              controller
-                                  .groupByMap[langCodeToName("lastused")] = [
-                                source
-                              ];
-                              Get.toNamed(
-                                Routes.sourceManga + "/${source.id}/search",
-                              );
-                            },
-                            icon: Icon(
-                              Icons.search,
-                              color: context.theme.colorScheme.primary,
-                            ),
-                          ),
-                        ],
+                          );
+                        },
                       ),
-                    ),
+                    ],
                   );
                 },
               ),
-            ],
-          );
-        },
-      ),
-    ));
+            )
+          : EmoticonsView(
+              emptyType: LocaleKeys.sourceScreen_extensions.tr,
+              button: TextButton(
+                child: Text(LocaleKeys.sourceScreen_reload.tr),
+                onPressed: () => controller.updateSourceList(),
+              ),
+            ),
+    );
   }
 }
 

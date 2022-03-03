@@ -19,7 +19,7 @@ class ExtensionProvider extends GetConnect {
       if (map is Map<String, dynamic>) return Extension.fromMap(map);
     };
     httpClient.baseUrl = _localStorageService.baseURL + extensionURL;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<List<Extension>?> getExtensionList() async {

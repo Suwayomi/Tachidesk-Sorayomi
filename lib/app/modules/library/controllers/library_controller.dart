@@ -41,8 +41,9 @@ class LibraryController extends GetxController {
     isCategoryLoading = false;
   }
 
-  Future loadMangaListWithCategoryId() async {
+  Future<void> loadMangaListWithCategoryId() async {
     isLoading = true;
+    if (categoryList.isEmpty) return;
     if (textEditingController.text.isNotEmpty) {
       mangaList = (await repository
               .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))

@@ -93,6 +93,8 @@
             "subtitle": "Extension Installed successfully",
             "title": "Extension Installed!"
         },
+        "extensionsError": "Extensions to Install",
+        "reload": "Reload!",
         "install": "Install",
         "installFile": {
             "subtitle": "Installing Tachdesk Extension",
@@ -153,7 +155,9 @@
             "singleVertical": "Single Vertical",
             "webtoon": "Webtoon"
         },
-        "readerMode_": "Reading Mode"
+        "readerMode_": "Reading Mode",
+        "reload": "Reload!",
+        "chapterError" : "Chapter to Load"
     },
     "readerSettingsScreen": {
         "category": "Category",
@@ -199,8 +203,10 @@
     "sourceScreen": {
         "browse": "Browse",
         "close": "Close",
+        "extensions": "Installed Extensions",
         "languages": "Languages",
         "latest": "Latest",
+        "reload": "Reload!",
         "search": "Search"
     }
 }

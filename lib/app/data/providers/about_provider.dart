@@ -17,7 +17,7 @@ class AboutProvider extends GetConnect {
       if (map is Map<String, dynamic>) return About.fromMap(map);
     };
     httpClient.baseUrl = _localStorageService.baseURL;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<About?> getAbout() async {

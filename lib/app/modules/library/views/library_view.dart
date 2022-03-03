@@ -70,6 +70,14 @@ class LibraryView extends GetView<LibraryController> {
                                   : EmoticonsView(
                                       emptyType:
                                           LocaleKeys.libraryScreen_manga.tr,
+                                          button: TextButton.icon(
+                          onPressed: () => controller.loadMangaListWithCategoryId(),
+                          style: TextButton.styleFrom(),
+                          icon: Icon(Icons.refresh),
+                          label: Text(
+                            LocaleKeys.libraryScreen_refresh.tr,
+                          ),
+                        ),
                                     )),
                         );
                       },

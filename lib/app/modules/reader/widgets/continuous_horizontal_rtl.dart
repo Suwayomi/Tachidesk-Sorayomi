@@ -46,9 +46,13 @@ class ContinuousHorizontalRTL extends StatelessWidget {
                       ),
                     ),
                   ),
-                  errorWidget: (context, url, error) => Center(
-                    child:
-                        EmoticonsView(emptyType: LocaleKeys.readerScreen_image),
+                  errorWidget: (context, url, error) => SizedBox(
+                    height: context.height,
+                    child: Center(
+                      child: EmoticonsView(
+                        emptyType: LocaleKeys.readerScreen_image.tr,
+                      ),
+                    ),
                   ),
                 ),
               );
