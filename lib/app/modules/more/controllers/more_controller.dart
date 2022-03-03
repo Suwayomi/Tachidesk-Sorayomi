@@ -44,10 +44,9 @@ class MoreController extends GetxController {
     }
   }
 
-
   @override
   void onInit() {
-        textEditingController =
+    textEditingController =
         TextEditingController(text: localStorageService.baseURL);
     _baseURL = localStorageService.baseURL.obs;
     localStorageService.box.listenKey(baseUrlKey, (value) {

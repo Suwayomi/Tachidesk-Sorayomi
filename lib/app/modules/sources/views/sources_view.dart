@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/widgets/emoticons.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
 import '../../../core/values/api_url.dart';
 import '../../../data/source_model.dart';
 import '../../../routes/app_pages.dart';
+import '../../../widgets/emoticons.dart';
 import '../controllers/sources_controller.dart';
 
 class SourcesView extends GetView<SourcesController> {

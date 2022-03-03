@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_flutter/app/widgets/emoticons.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/values/api_url.dart';
 import '../../../data/enums/reader_mode.dart';
+import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 import '../widgets/continuous_horizontal_ltr.dart';
 import '../widgets/continuous_horizontal_rtl.dart';
