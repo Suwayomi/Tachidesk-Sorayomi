@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - "*"
+      - "*.*.*"
 env:
   pkg_name: tachidesk-flutter
 jobs:
@@ -108,14 +108,14 @@ jobs:
         run: compress-archive -Path * -DestinationPath ${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip
         working-directory: ${{ matrix.build_path }}
       - name: Create MSI Package
-        if: matrix.target == 'windows'
+        if: matrix.target == 'windows' && startsWith(github.ref, 'refs/tags/')
         run: |
           $env:Path += ";C:\Program Files (x86)\WiX Toolset v3.11\bin"
           $upgradeCode = [guid]::NewGuid().Guid
           Copy-Item ${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs .
           Copy-Item ${env:GITHUB_WORKSPACE}\assets\images\icon.ico .
           heat dir data -cg data -dr data -sreg -sfrag -gg -o data.wxs
-          candle -arch x64 -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" ${{ env.pkg_name }}-x64.wxs data.wxs 
+          candle -arch x64 -dVersion="0.1.0" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" ${{ env.pkg_name }}-x64.wxs data.wxs 
           light ${{ env.pkg_name }}-x64.wixobj data.wixobj -o "${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi"
         working-directory: ${{ matrix.build_path }}
 
