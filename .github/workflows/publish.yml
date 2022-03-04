@@ -20,31 +20,25 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # - os: ubuntu-20.04
-          #   target: android
-          #   build_target: apk
-          #   build_path: build/app/outputs/flutter-apk
-          # - os: ubuntu-20.04
-          #   target: linux
-          #   build_target: linux
-          #   build_path: build/linux/x64/release/bundle
-          # - os: macos-10.15 # Catalina
-          #   target: macos
-          #   build_target: macos
-          #   build_path: build/macos/Build/Products/Release
+          - os: ubuntu-20.04
+            target: android
+            build_target: apk
+            build_path: build/app/outputs/flutter-apk
+          - os: ubuntu-20.04
+            target: linux
+            build_target: linux
+            build_path: build/linux/x64/release/bundle
+          - os: macos-10.15 # Catalina
+            target: macos
+            build_target: macos
+            build_path: build/macos/Build/Products/Release
           - os: windows-2019
             target: windows
             build_target: windows
             build_path: build\windows\runner\Release
 
     steps:
-      # - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
-      #   with:
-      #     channel: master
       - uses: subosito/flutter-action@v2
-        with:
-          channel: "beta"
-
       - name: Install Linux dependencies
         if: matrix.target == 'linux'
         run: |
@@ -112,11 +106,12 @@ jobs:
         run: |
           $env:Path += ";C:\Program Files (x86)\WiX Toolset v3.11\bin"
           $upgradeCode = [guid]::NewGuid().Guid
-          Copy-Item ${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs .
-          Copy-Item ${env:GITHUB_WORKSPACE}\assets\images\icon.ico .
+          Copy-Item "${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs" .
+          Copy-Item "${env:GITHUB_WORKSPACE}\assets\images\icon.ico" .
           heat dir data -cg data -dr data -sreg -sfrag -gg -o data.wxs
-          candle -arch x64 -dVersion="0.1.0" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" ${{ env.pkg_name }}-x64.wxs data.wxs 
-          light -b data ${{ env.pkg_name }}-x64.wixobj data.wixobj -o "${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi"
+          candle -arch x64 -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" "${{ env.pkg_name }}-x64.wxs" data.wxs 
+          light -b data "${{ env.pkg_name }}-x64.wixobj" data.wixobj -o "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi"
+          Move-Item "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi" "${env:GITHUB_WORKSPACE}"
         working-directory: ${{ matrix.build_path }}
 
       - name: Add packaged build to release draft
