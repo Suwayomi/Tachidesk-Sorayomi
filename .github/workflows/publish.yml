@@ -90,7 +90,10 @@ jobs:
         working-directory: ${{ matrix.build_path }}
       - name: Compress build for Linux
         if: matrix.target == 'linux'
-        run: GZIP=-9 tar czf $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz *
+        run: |
+          cp "${env:GITHUB_WORKSPACE}/scripts/${{ env.pkg_name }}.desktop" ./
+          cp "${env:GITHUB_WORKSPACE}/assets/images/icon.png" "./${{ env.pkg_name }}.png"
+          GZIP=-9 tar czf $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz *
         working-directory: ${{ matrix.build_path }}
       - name: Compress build for macOS
         if: matrix.target == 'macos'
