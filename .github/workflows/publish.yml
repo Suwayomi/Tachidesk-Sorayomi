@@ -93,6 +93,7 @@ jobs:
         run: |
           cp "$GITHUB_WORKSPACE/scripts/${{ env.pkg_name }}.desktop" ./
           cp "$GITHUB_WORKSPACE/assets/images/icon.png" "./${{ env.pkg_name }}.png"
+          ls -la
           GZIP=-9 tar czf "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz" *
         working-directory: ${{ matrix.build_path }}
       - name: Compress build for macOS
