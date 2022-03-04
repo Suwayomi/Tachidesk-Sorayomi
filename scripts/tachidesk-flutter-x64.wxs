@@ -30,7 +30,7 @@
     <!-- Component -->
     <DirectoryRef Id="INSTALLDIR">
       <Component Id="tachidesk_flutter.exe" Guid="*" Win64="yes">
-        <File Id="tachidesk_flutter.exe" Source="$(var.SourceDir)/tachidesk_flutter.exe" KeyPath="yes">
+        <File Id="tachidesk_flutter.exe" Source="$(var.SourceDir)\tachidesk_flutter.exe" KeyPath="yes">
           <Shortcut Id="tachidesk_flutter_desktop.lnk" Name="Tachidesk Flutter" Directory="DesktopFolder"
             WorkingDirectory="INSTALLDIR" Icon="tachidesk_flutter.ico" IconIndex="0" Advertise="yes" />
           <Shortcut Id="tachidesk_flutter_program_menu.lnk" Name="Tachidesk Flutter" Directory="ProgramMenuDir"
@@ -40,19 +40,19 @@
       </Component>
 
       <Component Id="vcruntime140_1.dll" Guid="*" Win64="yes">
-        <File Id="vcruntime140_1.dll" Source="$(var.SourceDir)/vcruntime140_1.dll" KeyPath="yes"/>
+        <File Id="vcruntime140_1.dll" Source="$(var.SourceDir)\vcruntime140_1.dll" KeyPath="yes"/>
       </Component>
       <Component Id="vcruntime140.dll" Guid="*" Win64="yes">
-        <File Id="vcruntime140.dll" Source="$(var.SourceDir)/vcruntime140.dll" KeyPath="yes"/>
+        <File Id="vcruntime140.dll" Source="$(var.SourceDir)\vcruntime140.dll" KeyPath="yes"/>
       </Component>
       <Component Id="url_launcher_windows_plugin.dll" Guid="*" Win64="yes">
-        <File Id="url_launcher_windows_plugin.dll" Source="$(var.SourceDir)/url_launcher_windows_plugin.dll" KeyPath="yes"/>
+        <File Id="url_launcher_windows_plugin.dll" Source="$(var.SourceDir)\url_launcher_windows_plugin.dll" KeyPath="yes"/>
       </Component>
       <Component Id="msvcp140.dll" Guid="*" Win64="yes">
-        <File Id="msvcp140.dll" Source="$(var.SourceDir)/msvcp140.dll" KeyPath="yes"/>
+        <File Id="msvcp140.dll" Source="$(var.SourceDir)\msvcp140.dll" KeyPath="yes"/>
       </Component>
       <Component Id="flutter_windows.dll" Guid="*" Win64="yes">
-        <File Id="flutter_windows.dll" Source="$(var.SourceDir)/flutter_windows.dll" KeyPath="yes"/>
+        <File Id="flutter_windows.dll" Source="$(var.SourceDir)\flutter_windows.dll" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
 
