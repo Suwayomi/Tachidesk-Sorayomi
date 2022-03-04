@@ -2,6 +2,9 @@ name: Publish
 on:
   # Enable manual run
   workflow_dispatch:
+  on:
+  release:
+    types: [unpublished]
   push:
     tags:
       - "*.*.*"
@@ -15,23 +18,26 @@ jobs:
       contents: write
 
     strategy:
+      # Disable fail-fast as we want results from all even if one fails.
+      fail-fast: false
       matrix:
-        target: [macos, windows, linux, android]
         include:
+          - os: ubuntu-20.04
+            target: android
+            build_target: apk
+            build_path: build/app/outputs/flutter-apk
+          - os: ubuntu-20.04
+            target: linux
+            build_target: linux
+            build_path: build/linux/x64/release/bundle
           - os: macos-10.15 # Catalina
+            target: macos
             build_target: macos
             build_path: build/macos/Build/Products/Release
           - os: windows-2019
+            target: windows
             build_target: windows
             build_path: build\windows\runner\Release
-          - os: ubuntu-20.04
-            build_target: linux
-            build_path: build/linux/x64/release/bundle
-          - os: ubuntu-20.04
-            build_target: apk
-            build_path: build/app/outputs/flutter-apk
-      # Disable fail-fast as we want results from all even if one fails.
-      fail-fast: false
 
     steps:
       # - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
