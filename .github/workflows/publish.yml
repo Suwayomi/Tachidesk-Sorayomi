@@ -115,8 +115,7 @@ jobs:
           Copy-Item ${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs .
           Copy-Item ${env:GITHUB_WORKSPACE}\assets\images\icon.ico .
           heat dir data -cg data -dr data -sreg -sfrag -gg -o data.wxs
-          dir
-          candle -arch x64 -dSourceDir=. -dDataDir=data -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" ${{ env.pkg_name }}-x64.wxs data.wxs 
+          candle -arch x64 -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" ${{ env.pkg_name }}-x64.wxs data.wxs 
           light ${{ env.pkg_name }}-x64.wixobj data.wixobj -o "${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi"
         working-directory: ${{ matrix.build_path }}
 
