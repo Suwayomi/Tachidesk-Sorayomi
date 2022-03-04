@@ -16,35 +16,35 @@ jobs:
 
     strategy:
       matrix:
-        target: [android, linux, macos, windows]
+        target: [macos, windows, linux, android]
         include:
-          - os: ubuntu-20.04
-            build_target: apk
-            build_path: build/app/outputs/flutter-apk
-          - os: ubuntu-20.04
-            build_target: linux
-            build_path: build/linux/x64/release/bundle
           - os: macos-10.15 # Catalina
             build_target: macos
             build_path: build/macos/Build/Products/Release
           - os: windows-2019
             build_target: windows
             build_path: build\windows\runner\Release
+          - os: ubuntu-20.04
+            build_target: linux
+            build_path: build/linux/x64/release/bundle
+          - os: ubuntu-20.04
+            build_target: apk
+            build_path: build/app/outputs/flutter-apk
       # Disable fail-fast as we want results from all even if one fails.
       fail-fast: false
 
     steps:
-      - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
-        with:
-          channel: master
-      # - uses: subosito/flutter-action@v2
+      # - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
       #   with:
-      #     channel: "beta"
+      #     channel: master
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "beta"
 
       - name: Install Linux dependencies
         if: matrix.target == 'linux'
         run: |
-          sudo apt-get update
+          sudo apt-get update -y
           sudo apt-get install -y libgtk-3-dev libx11-dev pkg-config cmake ninja-build libblkid-dev
       - name: Install Android dependencies
         if: matrix.target == 'android'
@@ -59,8 +59,8 @@ jobs:
           flutter config --enable-windows-desktop
       - run: flutter doctor -v
       - uses: actions/checkout@v3
-      - run: flutter create .
-      - run: flutter pub get
+      # - run: flutter create .
+      # - run: flutter pub get
 
       - name: Configure Keystore for Android
         if: matrix.target == 'android'
