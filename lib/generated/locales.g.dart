@@ -13,10 +13,10 @@ class LocaleKeys {
   static const aboutScreen_buildTime = 'aboutScreen_buildTime';
   static const aboutScreen_channel = 'aboutScreen_channel';
   static const aboutScreen_discord = 'aboutScreen_discord';
+  static const aboutScreen_flutter = 'aboutScreen_flutter';
   static const aboutScreen_gitHub = 'aboutScreen_gitHub';
   static const aboutScreen_launchError_title = 'aboutScreen_launchError_title';
   static const aboutScreen_server = 'aboutScreen_server';
-  static const aboutScreen_flutter = 'aboutScreen_flutter';
   static const aboutScreen_serverVersion = 'aboutScreen_serverVersion';
   static const appTitle = 'appTitle';
   static const appearanceScreen_darkTheme_subtitle =
@@ -78,6 +78,9 @@ class LocaleKeys {
       'extensionScreen_extensionInstalled_subtitle';
   static const extensionScreen_extensionInstalled_title =
       'extensionScreen_extensionInstalled_title';
+  static const extensionScreen_extensionsError =
+      'extensionScreen_extensionsError';
+  static const extensionScreen_reload = 'extensionScreen_reload';
   static const extensionScreen_install = 'extensionScreen_install';
   static const extensionScreen_installFile_subtitle =
       'extensionScreen_installFile_subtitle';
@@ -92,12 +95,11 @@ class LocaleKeys {
   static const libraryScreen_refresh = 'libraryScreen_refresh';
   static const loading = 'loading';
   static const mangaGridDesign_inLibrary = 'mangaGridDesign_inLibrary';
-  static const readerSettingsScreen_readerMode =
-      'readerSettingsScreen_readerMode';
-  static const readerSettingsScreen_category = 'readerSettingsScreen_category';
+  static const mangaScreen_addCategoryHint = 'mangaScreen_addCategoryHint';
   static const mangaScreen_addToLibrary = 'mangaScreen_addToLibrary';
   static const mangaScreen_artist = 'mangaScreen_artist';
   static const mangaScreen_author = 'mangaScreen_author';
+  static const mangaScreen_category = 'mangaScreen_category';
   static const mangaScreen_chapterList_bookmark =
       'mangaScreen_chapterList_bookmark';
   static const mangaScreen_chapterList_markAsRead =
@@ -110,25 +112,22 @@ class LocaleKeys {
       'mangaScreen_chapterList_markPrevAsUnread';
   static const mangaScreen_chapterList_removeBookmark =
       'mangaScreen_chapterList_removeBookmark';
-  static const mangaScreen_noNewChapter = 'mangaScreen_noNewChapter';
-  static const mangaScreen_noChapter = 'mangaScreen_noChapter';
   static const mangaScreen_chapters = 'mangaScreen_chapters';
   static const mangaScreen_inLibrary = 'mangaScreen_inLibrary';
   static const mangaScreen_manga = 'mangaScreen_manga';
+  static const mangaScreen_noChapter = 'mangaScreen_noChapter';
+  static const mangaScreen_noNewChapter = 'mangaScreen_noNewChapter';
+  static const mangaScreen_reload = 'mangaScreen_reload';
   static const mangaScreen_source = 'mangaScreen_source';
   static const mangaScreen_status = 'mangaScreen_status';
   static const mangaScreen_unknown = 'mangaScreen_unknown';
   static const mangaScreen_webView = 'mangaScreen_webView';
-  static const mangaScreen_reload = 'mangaScreen_reload';
-  static const mangaScreen_category = 'mangaScreen_category';
-  static const mangaScreen_addCategoryHint = 'mangaScreen_addCategoryHint';
   static const no = 'no';
   static const readerScreen_chapter = 'readerScreen_chapter';
+  static const readerScreen_image = 'readerScreen_image';
+  static const readerScreen_manga = 'readerScreen_manga';
   static const readerScreen_nextChapter = 'readerScreen_nextChapter';
   static const readerScreen_previousChapter = 'readerScreen_previousChapter';
-  static const readerScreen_manga = 'readerScreen_manga';
-  static const readerScreen_image = 'readerScreen_image';
-  static const readerScreen_readerMode_ = 'readerScreen_readerMode_';
   static const readerScreen_readerMode_continuousHorizontalLTR =
       'readerScreen_readerMode_continuousHorizontalLTR';
   static const readerScreen_readerMode_continuousHorizontalRTL =
@@ -143,6 +142,12 @@ class LocaleKeys {
       'readerScreen_readerMode_singleVertical';
   static const readerScreen_readerMode_webtoon =
       'readerScreen_readerMode_webtoon';
+  static const readerScreen_readerMode_ = 'readerScreen_readerMode_';
+  static const readerScreen_reload = 'readerScreen_reload';
+  static const readerScreen_chapterError = 'readerScreen_chapterError';
+  static const readerSettingsScreen_category = 'readerSettingsScreen_category';
+  static const readerSettingsScreen_readerMode =
+      'readerSettingsScreen_readerMode';
   static const screenTitle_about = 'screenTitle_about';
   static const screenTitle_browse = 'screenTitle_browse';
   static const screenTitle_categories = 'screenTitle_categories';
@@ -150,11 +155,11 @@ class LocaleKeys {
   static const screenTitle_extensions = 'screenTitle_extensions';
   static const screenTitle_library = 'screenTitle_library';
   static const screenTitle_more = 'screenTitle_more';
+  static const screenTitle_readerSettingsView =
+      'screenTitle_readerSettingsView';
   static const screenTitle_settings = 'screenTitle_settings';
   static const screenTitle_sources = 'screenTitle_sources';
   static const screenTitle_updates = 'screenTitle_updates';
-  static const screenTitle_readerSettingsView =
-      'screenTitle_readerSettingsView';
   static const searchManga_search = 'searchManga_search';
   static const searchManga_searchManga = 'searchManga_searchManga';
   static const serverSettingsScreen_url = 'serverSettingsScreen_url';
@@ -173,8 +178,10 @@ class LocaleKeys {
   static const sourceMangaScreen_reload = 'sourceMangaScreen_reload';
   static const sourceScreen_browse = 'sourceScreen_browse';
   static const sourceScreen_close = 'sourceScreen_close';
+  static const sourceScreen_extensions = 'sourceScreen_extensions';
   static const sourceScreen_languages = 'sourceScreen_languages';
   static const sourceScreen_latest = 'sourceScreen_latest';
+  static const sourceScreen_reload = 'sourceScreen_reload';
   static const sourceScreen_search = 'sourceScreen_search';
 }
 
@@ -183,10 +190,10 @@ class Locales {
     'aboutScreen_buildTime': 'Build Time',
     'aboutScreen_channel': 'Channel',
     'aboutScreen_discord': 'Discord',
+    'aboutScreen_flutter': 'Flutter',
     'aboutScreen_gitHub': 'GitHub',
     'aboutScreen_launchError_title': '@website URL failed to launch',
     'aboutScreen_server': 'Server',
-    'aboutScreen_flutter': 'Flutter',
     'aboutScreen_serverVersion': 'Server version',
     'appTitle': 'Tachidesk',
     'appearanceScreen_darkTheme_subtitle': 'Turn on Dark Mode',
@@ -232,6 +239,8 @@ class Locales {
     'extensionScreen_extensionInstalled_subtitle':
         'Extension Installed successfully',
     'extensionScreen_extensionInstalled_title': 'Extension Installed!',
+    'extensionScreen_extensionsError': 'Extensions to Install',
+    'extensionScreen_reload': 'Reload!',
     'extensionScreen_install': 'Install',
     'extensionScreen_installFile_subtitle': 'Installing Tachdesk Extension',
     'extensionScreen_installFile_title': 'Installing Extension...',
@@ -244,36 +253,33 @@ class Locales {
     'libraryScreen_refresh': 'Refresh',
     'loading': 'Loading',
     'mangaGridDesign_inLibrary': 'In library',
-    'readerSettingsScreen_readerMode': 'Readering Mode',
-    'readerSettingsScreen_category': 'Category',
+    'mangaScreen_addCategoryHint': 'Add new categories in settings',
     'mangaScreen_addToLibrary': 'Add to Library',
     'mangaScreen_artist': 'Artist',
     'mangaScreen_author': 'Author',
+    'mangaScreen_category': 'Category',
     'mangaScreen_chapterList_bookmark': 'Bookmark',
     'mangaScreen_chapterList_markAsRead': 'Mark as read',
     'mangaScreen_chapterList_markAsUnread': 'Mark as unread',
     'mangaScreen_chapterList_markPrevAsRead': 'Mark previous as read',
     'mangaScreen_chapterList_markPrevAsUnread': 'Mark previous as unread',
     'mangaScreen_chapterList_removeBookmark': 'Remove bookmark',
-    'mangaScreen_noNewChapter': 'No new chapter',
-    'mangaScreen_noChapter': 'chapter found',
     'mangaScreen_chapters': 'Chapters',
     'mangaScreen_inLibrary': 'In library',
     'mangaScreen_manga': 'Manga',
+    'mangaScreen_noChapter': 'chapter found',
+    'mangaScreen_noNewChapter': 'No new chapter',
+    'mangaScreen_reload': 'Reload',
     'mangaScreen_source': 'Source',
     'mangaScreen_status': 'Status',
     'mangaScreen_unknown': 'Unknown',
     'mangaScreen_webView': 'WebView',
-    'mangaScreen_reload': 'Reload',
-    'mangaScreen_category': 'Category',
-    'mangaScreen_addCategoryHint': 'Add new categories in settings',
     'no': 'No',
     'readerScreen_chapter': 'Chapter',
+    'readerScreen_image': 'Image',
+    'readerScreen_manga': 'Manga',
     'readerScreen_nextChapter': 'Next Chapter',
     'readerScreen_previousChapter': 'Previous Chapter',
-    'readerScreen_manga': 'Manga',
-    'readerScreen_image': 'Image',
-    'readerScreen_readerMode_': 'Reading Mode',
     'readerScreen_readerMode_continuousHorizontalLTR':
         '(LTR) Continuous Horizontal',
     'readerScreen_readerMode_continuousHorizontalRTL':
@@ -283,6 +289,11 @@ class Locales {
     'readerScreen_readerMode_singleHorizontalRTL': '(RTL) Single Horizontal ',
     'readerScreen_readerMode_singleVertical': 'Single Vertical',
     'readerScreen_readerMode_webtoon': 'Webtoon',
+    'readerScreen_readerMode_': 'Reading Mode',
+    'readerScreen_reload': 'Reload!',
+    'readerScreen_chapterError': 'Chapter to Load',
+    'readerSettingsScreen_category': 'Category',
+    'readerSettingsScreen_readerMode': 'Readering Mode',
     'screenTitle_about': 'About',
     'screenTitle_browse': 'Browse',
     'screenTitle_categories': 'Categories',
@@ -290,10 +301,10 @@ class Locales {
     'screenTitle_extensions': 'Extensions',
     'screenTitle_library': 'Library',
     'screenTitle_more': 'More',
+    'screenTitle_readerSettingsView': 'Reader Settings',
     'screenTitle_settings': 'Settings',
     'screenTitle_sources': 'Sources',
     'screenTitle_updates': 'Updates',
-    'screenTitle_readerSettingsView': 'Reader Settings',
     'searchManga_search': 'Search',
     'searchManga_searchManga': 'Search manga..',
     'serverSettingsScreen_url': 'Server URL',
@@ -312,8 +323,10 @@ class Locales {
     'sourceMangaScreen_reload': 'Reload!',
     'sourceScreen_browse': 'Browse',
     'sourceScreen_close': 'Close',
+    'sourceScreen_extensions': 'Installed Extensions',
     'sourceScreen_languages': 'Languages',
     'sourceScreen_latest': 'Latest',
+    'sourceScreen_reload': 'Reload!',
     'sourceScreen_search': 'Search',
   };
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../generated/locales.g.dart';
 import '../../../core/values/api_url.dart';
 import '../../../data/enums/reader_mode.dart';
+import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 import '../widgets/continuous_horizontal_ltr.dart';
 import '../widgets/continuous_horizontal_rtl.dart';
@@ -145,7 +146,8 @@ class ReaderView extends GetView<ReaderController> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      (controller.chapter.index!) > 1
+                      controller.chapter.index != null &&
+                              (controller.chapter.index!) > 1
                           ? TextButton.icon(
                               onPressed: () => controller.prevChapter(),
                               icon: Icon(
@@ -156,8 +158,9 @@ class ReaderView extends GetView<ReaderController> {
                               ),
                             )
                           : Container(),
-                      controller.chapter.index! <
-                              controller.chapter.chapterCount!
+                      controller.chapter.index != null &&
+                              controller.chapter.index! <
+                                  controller.chapter.chapterCount!
                           ? TextButton.icon(
                               label: Icon(
                                 Icons.arrow_forward_ios,
@@ -173,27 +176,39 @@ class ReaderView extends GetView<ReaderController> {
             ],
           ),
         )),
-        body: controller.chapter.pageCount != null
-            ? Obx(() {
-                switch (controller.readerMode.value) {
-                  case ReaderMode.continuousHorizontalLTR:
-                    return ContinuousHorizontalLTR(controller: controller);
-                  case ReaderMode.continuousHorizontalRTL:
-                    return ContinuousHorizontalRTL(controller: controller);
-                  case ReaderMode.continuousVertical:
-                    return ContinuousVertical(controller: controller);
-                  case ReaderMode.singleHorizontalLTR:
-                    return SingleHorizontalLTR(controller: controller);
-                  case ReaderMode.singleHorizontalRTL:
-                    return SingleHorizontalRTL(controller: controller);
-                  case ReaderMode.singleVertical:
-                    return SingleVertical(controller: controller);
-                  case ReaderMode.webtoon:
-                    return Webtoon(controller: controller);
-                  default:
-                    return Webtoon(controller: controller);
-                }
-              })
+        body: !controller.isLoading
+            ? controller.chapter.pageCount != null
+                ? Obx(() {
+                    switch (controller.readerMode.value) {
+                      case ReaderMode.continuousHorizontalLTR:
+                        return ContinuousHorizontalLTR(controller: controller);
+                      case ReaderMode.continuousHorizontalRTL:
+                        return ContinuousHorizontalRTL(controller: controller);
+                      case ReaderMode.continuousVertical:
+                        return ContinuousVertical(controller: controller);
+                      case ReaderMode.singleHorizontalLTR:
+                        return SingleHorizontalLTR(controller: controller);
+                      case ReaderMode.singleHorizontalRTL:
+                        return SingleHorizontalRTL(controller: controller);
+                      case ReaderMode.singleVertical:
+                        return SingleVertical(controller: controller);
+                      case ReaderMode.webtoon:
+                        return Webtoon(controller: controller);
+                      default:
+                        return Webtoon(controller: controller);
+                    }
+                  })
+                : EmoticonsView(
+                    emptyType: LocaleKeys.readerScreen_chapterError.tr,
+                    button: TextButton.icon(
+                      onPressed: () => controller.reloadReader(),
+                      style: TextButton.styleFrom(),
+                      icon: Icon(Icons.refresh),
+                      label: Text(
+                        LocaleKeys.readerScreen_reload.tr,
+                      ),
+                    ),
+                  )
             : Center(
                 child: CircularProgressIndicator(),
               ),

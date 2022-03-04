@@ -13,7 +13,7 @@ class RestoreProvider extends GetConnect {
   @override
   void onInit() {
     httpClient.baseUrl = _localStorageService.baseURL;
-    httpClient.timeout = Duration(minutes: 1);
+    httpClient.timeout = Duration(minutes: 5);
   }
 
   Future<Response> postRestore(File file) async {
