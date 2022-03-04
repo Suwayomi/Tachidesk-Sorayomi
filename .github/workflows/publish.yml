@@ -1,42 +1,118 @@
 name: Publish
-
 on:
+  # Enable manual run
   workflow_dispatch:
-  release:
-    types: [published]
+  push:
+    tags:
+      - "*.*.*"
 
 jobs:
-  publish:
-    name: Publish
-    runs-on: ubuntu-latest
+  create-build:
+    name: Create ${{ matrix.target }} build
+    runs-on: ${{ matrix.os }}
+    # softprops/action-gh-release needs this permission
     permissions:
-      contents: write # softprops/action-gh-release needs this permission
+      contents: write
+
+    strategy:
+      matrix:
+        target: [android, linux, macos, windows]
+        include:
+          - os: ubuntu-20.04
+            build_target: apk
+            build_path: build/app/outputs/flutter-apk
+          - os: ubuntu-20.04
+            build_target: linux
+            build_path: build/linux/x64/release/bundle
+          - os: macos-10.15 # Catalina
+            build_target: macos
+            build_path: build/macos/Build/Products/Release
+          - os: windows-2019
+            build_target: windows
+            build_path: build\windows\runner\Release
+      # Disable fail-fast as we want results from all even if one fails.
+      fail-fast: false
+
     steps:
-      - if: github.ref_type == 'branch'
-        uses: actions/github-script@v3
+      - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
-          script: |
-            core.setFailed('Use workflow from a tag')
+          channel: master
+      # - uses: subosito/flutter-action@v2
+      #   with:
+      #     channel: "beta"
 
-      - uses: actions/checkout@v3
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: "beta"
-      - name: Build
+      - name: Install Linux dependencies
+        if: matrix.target == 'linux'
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y ninja-build libgtk-3-dev
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libx11-dev pkg-config cmake ninja-build libblkid-dev
+      - name: Install Android dependencies
+        if: matrix.target == 'android'
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - name: Enable desktop support
+        if: matrix.target != 'android'
+        run: |
           flutter config --enable-linux-desktop
-          flutter build linux --release
+          flutter config --enable-macos-desktop
+          flutter config --enable-windows-desktop
+      - run: flutter doctor -v
+      - uses: actions/checkout@v3
+      - run: flutter create .
+      - run: flutter pub get
 
-      - name: Package
+      - name: Configure Keystore for Android
+        if: matrix.target == 'android'
         run: |
-          pkg="tachidesk-flutter-${{ github.ref_name }}-linux-x64"
-          tar --transform "s/bundle/$pkg/" -cvf - \
-            -C build/linux/x64/release bundle | gzip -9 - > "$pkg.tar.gz"
+          echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
+          echo "storeFile=upload-keystore.jks" >> key.properties
+          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
+          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
+          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+        env:
+          PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+        working-directory: android
 
-      - name: Release
+      - run: flutter build -v ${{ matrix.build_target }} --release
+
+      - name: Copy VC redistributables to release directory for Windows
+        if: matrix.target == 'windows'
+        run: |
+          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\msvcp140.dll') .
+          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140.dll') .
+          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140_1.dll') .
+        working-directory: ${{ matrix.build_path }}
+      - name: Rename build for Android
+        if: matrix.target == 'android'
+        run: mv app-release.apk $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.apk
+        working-directory: ${{ matrix.build_path }}
+      - name: Compress build for Linux
+        if: matrix.target == 'linux'
+        run: tar czf $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.tar.gz *
+        working-directory: ${{ matrix.build_path }}
+      - name: Compress build for macOS
+        if: matrix.target == 'macos'
+        run: ditto -c -k --sequesterRsrc $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.zip
+        # run: ditto -c -k --sequesterRsrc --keepParent Flutter\ Gallery.app $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.zip
+        working-directory: ${{ matrix.build_path }}
+      - name: Compress build for Windows
+        if: matrix.target == 'windows'
+        run: compress-archive -Path * -DestinationPath ${env:GITHUB_WORKSPACE}\tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.zip
+        working-directory: ${{ matrix.build_path }}
+
+      - name: Add packaged build to release draft
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: tachidesk-flutter-*
+          draft: true
+          files: tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.*
+
+      # - name: Package
+      #   run: |
+      #     pkg="tachidesk-flutter-${{ github.ref_name }}-linux-x64"
+      #     tar --transform "s/bundle/$pkg/" -cvf - \
+      #       -C build/linux/x64/release bundle | gzip -9 - > "$pkg.tar.gz"
