@@ -2,12 +2,11 @@ name: Publish
 on:
   # Enable manual run
   workflow_dispatch:
-  release:
-    types: [unpublished]
   push:
     tags:
-      - "*.*.*"
-
+      - "*"
+env:
+  pkg_name: tachidesk-flutter
 jobs:
   create-build:
     name: Create ${{ matrix.target }} build
@@ -93,20 +92,31 @@ jobs:
         working-directory: ${{ matrix.build_path }}
       - name: Rename build for Android
         if: matrix.target == 'android'
-        run: mv app-release.apk $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.apk
+        run: mv app-release.apk $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.apk
         working-directory: ${{ matrix.build_path }}
       - name: Compress build for Linux
         if: matrix.target == 'linux'
-        run: tar czf $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.tar.gz *
+        run: GZIP=-9 tar czf $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz *
         working-directory: ${{ matrix.build_path }}
       - name: Compress build for macOS
         if: matrix.target == 'macos'
-        run: ditto -c -k --sequesterRsrc $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.zip
-        # run: ditto -c -k --sequesterRsrc --keepParent Flutter\ Gallery.app $GITHUB_WORKSPACE/tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.zip
+        run: ditto -c -k --sequesterRsrc $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip
+        # run: ditto -c -k --sequesterRsrc --keepParent Flutter\ Gallery.app $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip
         working-directory: ${{ matrix.build_path }}
       - name: Compress build for Windows
         if: matrix.target == 'windows'
-        run: compress-archive -Path * -DestinationPath ${env:GITHUB_WORKSPACE}\tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.zip
+        run: compress-archive -Path * -DestinationPath ${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip
+        working-directory: ${{ matrix.build_path }}
+      - name: Create MSI Package for Windows
+        if: matrix.target == 'windows'
+        run: | 
+          $env:Path += ";C:\Program Files (x86)\WiX Toolset v3.11\bin"
+          $upgradeCode = [guid]::NewGuid().Guid
+          Copy-Item ${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs .
+          Copy-Item ${env:GITHUB_WORKSPACE}\assets\images\icon.ico .
+          heat dir data -cg data -dr data -sreg -sfrag -gg -o data.wxs   
+          candle -arch x64 -dSourceDir=. -dDataDir=data -dVersion=${{ github.ref_name }} -dUpgradeCode=$upgradeCode -dIcon=icon.ico ${{ env.pkg_name }}-x64.wxs  data.wxs 
+          light ${{ env.pkg_name }}-x64.wixobj data.wixobj -o ${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi
         working-directory: ${{ matrix.build_path }}
 
       - name: Add packaged build to release draft
@@ -114,10 +124,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: true
-          files: tachidesk-flutter-${{ github.ref_name }}-${{ matrix.target }}.*
-
-      # - name: Package
-      #   run: |
-      #     pkg="tachidesk-flutter-${{ github.ref_name }}-linux-x64"
-      #     tar --transform "s/bundle/$pkg/" -cvf - \
-      #       -C build/linux/x64/release bundle | gzip -9 - > "$pkg.tar.gz"
+          files: ${{ env.pkg_name }}-*
