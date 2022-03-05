@@ -39,6 +39,8 @@ jobs:
 
     steps:
       - uses: subosito/flutter-action@v2
+        with:
+          channel: 'beta'
       - name: Install Linux dependencies
         if: matrix.target == 'linux'
         run: |
