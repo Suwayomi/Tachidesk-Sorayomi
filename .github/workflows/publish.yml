@@ -77,7 +77,7 @@ jobs:
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
           echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
 
-      - run: flutter build -v ${{ matrix.build_target }} --release
+      - run: flutter build ${{ matrix.build_target }} --release
 
       - name: Copy VC redistributables to release directory for Windows
         if: matrix.target == 'windows'
