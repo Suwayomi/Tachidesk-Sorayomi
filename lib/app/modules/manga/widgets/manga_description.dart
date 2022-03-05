@@ -159,7 +159,7 @@ class MangaDescription extends StatelessWidget {
           children: (manga.genre
                   ?.map<Widget>(
                     (e) => Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: Chip(
                         label: Text(e),
                       ),

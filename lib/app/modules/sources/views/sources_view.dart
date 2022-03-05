@@ -14,9 +14,9 @@ class SourcesView extends GetView<SourcesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: controller.groupByMap.keys.isNotEmpty
-          ? Obx(
-              () => ListView.builder(
+      body: Obx(
+        () => controller.groupByMap.keys.isNotEmpty
+            ? ListView.builder(
                 itemCount: controller.groupByMap.keys.length,
                 itemBuilder: (context, index) {
                   final currentKey = controller.groupByLanguageList[index];
@@ -108,15 +108,19 @@ class SourcesView extends GetView<SourcesController> {
                     ],
                   );
                 },
-              ),
-            )
-          : EmoticonsView(
-              emptyType: LocaleKeys.sourceScreen_extensions.tr,
-              button: TextButton(
-                child: Text(LocaleKeys.sourceScreen_reload.tr),
-                onPressed: () => controller.updateSourceList(),
-              ),
-            ),
+              )
+            : controller.isLoading
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : EmoticonsView(
+                    emptyType: LocaleKeys.sourceScreen_extensions.tr,
+                    button: TextButton(
+                      child: Text(LocaleKeys.sourceScreen_reload.tr),
+                      onPressed: () => controller.updateSourceList(),
+                    ),
+                  ),
+      ),
     );
   }
 }

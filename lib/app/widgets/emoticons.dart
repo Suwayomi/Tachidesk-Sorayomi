@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/get.dart';
 
 import '../../generated/locales.g.dart';
 
@@ -26,24 +26,23 @@ class EmoticonsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: 3,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ListTile(
-            title: Text(
-              errorFaces[Random().nextInt(6)],
-              textAlign: TextAlign.center,
-            ),
-            subtitle: Text(
-              LocaleKeys.no.tr + " " + emptyType,
-              textAlign: TextAlign.center,
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ListTile(
+          title: Text(
+            errorFaces[Random().nextInt(6)],
+            textAlign: TextAlign.center,
+            style: Get.textTheme.headlineLarge,
           ),
-          Transform.scale(scale: .5, child: button ?? Container())
-        ],
-      ),
+          subtitle: Text(
+            LocaleKeys.no.tr + " " + emptyType,
+            textAlign: TextAlign.center,
+            style: Get.textTheme.headlineSmall,
+          ),
+        ),
+        button ?? Container()
+      ],
     );
   }
 }

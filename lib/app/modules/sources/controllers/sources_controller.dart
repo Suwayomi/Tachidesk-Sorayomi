@@ -11,10 +11,16 @@ class SourcesController extends GetxController {
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
   final RxList<Source> sourceList = <Source>[].obs;
+
+  final RxBool _isLoading = true.obs;
+  bool get isLoading => _isLoading.value;
+  set isLoading(bool value) => _isLoading.value = value;
+
   List<Language> groupByLanguageList = [];
+
   RxMap<Language, List<Source>> groupByMap = <Language, List<Source>>{}.obs;
 
-  Map<Language, List<Source>> get groupBy {
+  Map<Language, List<Source>> groupBy() {
     var map = <Language, List<Source>>{};
     for (var element in sourceList) {
       if (localStorageService.sourceLanguages.contains(element.lang!)) {
@@ -30,14 +36,17 @@ class SourcesController extends GetxController {
   }
 
   Future<void> updateSourceList() async {
+    isLoading = true;
     sourceList.value = (await repository.getSourceList()) ?? sourceList;
+    groupByMap.value = groupBy();
+    isLoading = false;
   }
 
   @override
   void onReady() async {
-    sourceList.listen((p0) => groupByMap.value = groupBy);
+    // sourceList.listen((p0) => groupByMap.value = groupBy);
     localStorageService.box.listenKey(sourceLangKey, (value) {
-      groupByMap.value = groupBy;
+      groupByMap.value = groupBy();
     });
     await updateSourceList();
     super.onReady();
