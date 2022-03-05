@@ -1,0 +1,7 @@
+#!/usr/bin/dh-exec
+
+data              opt/tachidesk-flutter/
+lib               opt/tachidesk-flutter/
+tachidesk_flutter opt/tachidesk-flutter/
+tachidesk-flutter.png     usr/share/pixmaps/
+tachidesk-flutter.desktop usr/share/applications/
