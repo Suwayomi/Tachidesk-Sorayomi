@@ -214,19 +214,33 @@ class MangaView extends GetView<MangaController> {
                               ],
                             )
                           : controller.chapterList.isEmpty
-                              ? EmoticonsView(
-                                  emptyType:
-                                      LocaleKeys.mangaScreen_noChapter.tr,
-                                  button: TextButton.icon(
-                                    onPressed: () => controller.loadChapterList(
-                                      onlineFetch: true,
+                              ? Column(
+                                  children: [
+                                    Obx(
+                                      () => MangaDescription(
+                                        manga: controller.manga.value,
+                                        addMangaToLibrary:
+                                            controller.addMangaToLibrary,
+                                        removeMangaFromLibrary:
+                                            controller.removeMangaFromLibrary,
+                                      ),
                                     ),
-                                    style: TextButton.styleFrom(),
-                                    icon: Icon(Icons.refresh),
-                                    label: Text(
-                                      LocaleKeys.mangaScreen_reload.tr,
+                                    EmoticonsView(
+                                      emptyType:
+                                          LocaleKeys.mangaScreen_noChapter.tr,
+                                      button: TextButton.icon(
+                                        onPressed: () =>
+                                            controller.loadChapterList(
+                                          onlineFetch: true,
+                                        ),
+                                        style: TextButton.styleFrom(),
+                                        icon: Icon(Icons.refresh),
+                                        label: Text(
+                                          LocaleKeys.mangaScreen_reload.tr,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 )
                               : ListView.builder(
                                   itemCount: controller.chapterList.length + 2,
