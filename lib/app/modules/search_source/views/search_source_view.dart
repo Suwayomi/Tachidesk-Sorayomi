@@ -71,10 +71,10 @@ class SearchSourceView extends GetView<SearchSourceController> {
                   physics: AlwaysScrollableScrollPhysics(),
                   controller: controller.scrollController,
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 300,
+                    maxCrossAxisExtent: 250,
                     crossAxisSpacing: 2.0,
                     mainAxisSpacing: 2.0,
-                    childAspectRatio: 0.65,
+                    childAspectRatio: 0.7,
                   ),
                   itemCount:
                       (controller.sourceMangaList.mangaList?.length ?? 0) + 1,
