@@ -81,6 +81,7 @@ Download the latest rpm release from [the releases section][release].
 
 ### Arch based Linux 
 
+
 Download the latest release from [the aur](https://aur.archlinux.org/packages/tachidesk-sorayomi-bin).
 
 If you use yay, you can run `yay -S tachidesk-sorayomi-bin` inside a terminal window. 
