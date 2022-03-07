@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -56,7 +55,7 @@ class SourcesView extends GetView<SourcesController> {
                                   width: 48,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) =>
-                                      Image.asset(logoURL),
+                                      Image.asset(iconPngURL),
                                 ),
                               ),
                               title:

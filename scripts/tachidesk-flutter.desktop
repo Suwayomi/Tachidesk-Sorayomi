@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Tachidesk Flutter
-Comment=Tachidesk UI flutter
-Exec=tachidesk-flutter
-Icon=tachidesk-flutter
-Terminal=false
-Type=Application
-Categories=Network;

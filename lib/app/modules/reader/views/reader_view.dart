@@ -78,12 +78,13 @@ class ReaderView extends GetView<ReaderController> {
                                   "/?useCache=true",
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(
-                                logoURL,
-                                fit: BoxFit.fitWidth,
+                                  ImageIcon(
+                                AssetImage(iconLightTextNbgPngURL),
                               ),
                             )
-                          : Image.asset(logoURL),
+                          : ImageIcon(
+                              AssetImage(iconLightTextNbgPngURL),
+                            ),
                       foregroundDecoration: BoxDecoration(
                         border: Border.all(
                           width: 0,

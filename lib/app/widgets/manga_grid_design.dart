@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../generated/locales.g.dart';
 import '../../main.dart';
-import '../core/values/api_url.dart';
 import '../data/manga_model.dart';
 
 class MangaGridDesign extends StatelessWidget {
@@ -113,9 +111,13 @@ class MangaGridDesign extends StatelessWidget {
                   child: Image.network(
                     localStorageService.baseURL + manga.thumbnailUrl.toString(),
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Image.asset(
-                      logoCropURL,
-                      fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => SizedBox(
+                      height: context.height * .3,
+                      child: Icon(
+                        Icons.book_rounded,
+                        color: Colors.grey,
+                        size: context.height * .2,
+                      ),
                     ),
                     loadingBuilder: (BuildContext context, Widget child,
                         ImageChunkEvent? loadingProgress) {
@@ -152,7 +154,14 @@ class MangaGridDesign extends StatelessWidget {
                     ),
                   ),
                 )
-              : Image.asset(logoCropURL),
+              : SizedBox(
+                  height: context.height * .3,
+                  child: Icon(
+                    Icons.book_rounded,
+                    color: Colors.grey,
+                    size: context.height * .2,
+                  ),
+                ),
           footer: ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             dense: true,

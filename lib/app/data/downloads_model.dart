@@ -34,7 +34,7 @@ class Downloads {
       queue: map['queue'] != null
           ? List<DownloadQueueValue>.from(
               map['queue']?.map((x) => DownloadQueueValue.fromMap(x)))
-          : null,
+          : <DownloadQueueValue>[],
       status: map['status'],
     );
   }

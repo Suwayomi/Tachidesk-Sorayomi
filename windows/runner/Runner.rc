@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.suwayomi" "\0"
-            VALUE "FileDescription", "tachidesk_flutter" "\0"
+            VALUE "FileDescription", "tachidesk_sorayomi" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tachidesk_flutter" "\0"
+            VALUE "InternalName", "tachidesk_sorayomi" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.suwayomi. All rights reserved." "\0"
-            VALUE "OriginalFilename", "tachidesk_flutter.exe" "\0"
-            VALUE "ProductName", "tachidesk_flutter" "\0"
+            VALUE "OriginalFilename", "tachidesk_sorayomi.exe" "\0"
+            VALUE "ProductName", "tachidesk_sorayomi" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

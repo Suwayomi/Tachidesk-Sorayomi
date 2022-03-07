@@ -1,7 +1,7 @@
 #!/usr/bin/dh-exec
 
-data              opt/tachidesk-flutter/
-lib               opt/tachidesk-flutter/
-tachidesk_flutter opt/tachidesk-flutter/
-tachidesk-flutter.png     usr/share/pixmaps/
-tachidesk-flutter.desktop usr/share/applications/
+data              opt/tachidesk-sorayomi/
+lib               opt/tachidesk-sorayomi/
+tachidesk_sorayomi opt/tachidesk-sorayomi/
+tachidesk-sorayomi.png     usr/share/pixmaps/
+tachidesk-sorayomi.desktop usr/share/applications/

@@ -1,6 +1,6 @@
 {
-    "name": "tachidesk_flutter",
-    "short_name": "tachidesk_flutter",
+    "name": "tachidesk_sorayomi",
+    "short_name": "tachidesk_sorayomi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

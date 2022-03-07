@@ -1,1 +1,2 @@
-const String flutterGithubUrl = "https://github.com/Suwayomi/Tachidesk-Flutter";
+const String flutterGithubUrl =
+    "https://github.com/Suwayomi/Tachidesk-Sorayomi";
