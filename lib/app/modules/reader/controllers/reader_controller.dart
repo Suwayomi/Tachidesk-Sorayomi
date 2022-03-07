@@ -63,7 +63,7 @@ class ReaderController extends GetxController {
         Routes.manga + "/${chapter.mangaId}/chapter/${chapter.index! + 1}");
   }
 
-  Future markAsRead() async {
+  Future<void> markAsRead() async {
     Map<String, dynamic> formData = {"read": true, "lastPageRead": "1"};
     await repository.patchChapter(chapter, formData);
   }

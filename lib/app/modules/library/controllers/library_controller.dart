@@ -34,7 +34,7 @@ class LibraryController extends GetxController {
   set mangaList(List<Manga> mangaList) => _mangaList.value = mangaList;
   int get mangaListLength => _mangaList.length;
 
-  Future loadCategoryList() async {
+  Future<void> loadCategoryList() async {
     isCategoryLoading = true;
     categoryList = (await repository.getCategoryList());
     isCategoryLoading = false;

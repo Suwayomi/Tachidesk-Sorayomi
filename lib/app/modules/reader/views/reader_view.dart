@@ -57,7 +57,7 @@ class ReaderView extends GetView<ReaderController> {
           ],
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.grey),
-          backgroundColor: Color(0x00FFFFFF),
+          backgroundColor: controller.visibility ? null : Color(0x00FFFFFF),
           automaticallyImplyLeading:
               controller.isDataLoading && controller.visibility,
         ),

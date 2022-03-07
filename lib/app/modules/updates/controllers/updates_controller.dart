@@ -31,7 +31,7 @@ class UpdatesController extends GetxController {
   set updateRecentChapter(UpdateRecentChapter value) =>
       _updateRecentChapter.value = value;
 
-  Future getNextPage({bool isRefresh = false}) async {
+  Future<void> getNextPage({bool isRefresh = false}) async {
     if (!isRefresh) {
       if (updateRecentChapter.hasNextPage ?? true) {
         final updateRecentChapterTemp =
@@ -56,12 +56,12 @@ class UpdatesController extends GetxController {
     }
   }
 
-  Future startDownload(Chapter chapter) => repository.startDownload(chapter);
+  Future<Response<dynamic>> startDownload(Chapter chapter) => repository.startDownload(chapter);
 
-  Future deleteDownload(Chapter chapter) =>
+  Future<Response<dynamic>> deleteDownload(Chapter chapter) =>
       repository.deletedownloadedChapter(chapter);
 
-  Future deleteFromDownloadQueue(Chapter chapter) =>
+  Future<Response<dynamic>> deleteFromDownloadQueue(Chapter chapter) =>
       repository.deleteFromDownloadQueue(chapter);
 
   @override

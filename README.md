@@ -86,6 +86,9 @@ Download the latest release from [the aur](https://aur.archlinux.org/packages/ta
 
 If you use yay, you can run `yay -S tachidesk-sorayomi-bin` inside a terminal window. 
 
+## Post installation
+
+  - Configure your server address in `Navigation bar > more screen > Server URL`.
 
 ## Building from source
 

@@ -35,7 +35,7 @@ class EditCategoriesController extends GetxController {
     reloadCategoryList();
   }
 
-  Future reloadCategoryList() async {
+  Future<void> reloadCategoryList() async {
     List<Category> categoryListTemp = (await repository.getCategoryList());
     if (categoryListTemp.isNotEmpty) {
       categoryListTemp.removeAt(0);

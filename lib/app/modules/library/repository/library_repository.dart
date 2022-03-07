@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../data/category_model.dart';
+import '../../../data/manga_model.dart';
 import '../../../data/providers/category_provider.dart';
 
 class LibraryRepository {
@@ -9,6 +10,6 @@ class LibraryRepository {
   Future<List<Category>> getCategoryList() async =>
       _categoryProvider.getCategoryList();
 
-  Future getMangaListFromCategoryId(int id) =>
+  Future<List<Manga>> getMangaListFromCategoryId(int id) =>
       _categoryProvider.getMangaListFromCategoryId(id);
 }
