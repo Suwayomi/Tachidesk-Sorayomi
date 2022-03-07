@@ -51,13 +51,19 @@ These are the versions of [Tachidesk-Server][tachidesk-server] that Flutter supp
 
 - [Tachidesk-Server][tachidesk-server] v0.6.0+
 
-<!-- 
 
 ## Downloading and Running the app
+
+### Android 
+
+Download the latest apk release from [the releases section][release].
+
 
 ### Windows 
 
 Download the latest msi release from [the releases section][release].
+
+<!-- 
 
 ### MacOS 
 
@@ -71,13 +77,14 @@ Download the latest deb release from [the releases section][release].
 
 Download the latest rpm release from [the releases section][release].
 
+-->
+
 ### Arch based Linux 
 
-Download the latest release from [the aur](https://aur.archlinux.org/packages/tachidesk-sorayomi/).
+Download the latest release from [the aur](https://aur.archlinux.org/packages/tachidesk-sorayomi-bin).
 
-If you use yay, you can run `yay -S tachidesk-sorayomi` inside a terminal window. 
+If you use yay, you can run `yay -S tachidesk-sorayomi-bin` inside a terminal window. 
 
--->
 
 ## Building from source
 
@@ -91,7 +98,7 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
   $ Flutter version 2.11.0-0.1.pre Channel beta
 ```
 
-### Installing
+### Building
 
 1.  Clone the repository:
 
