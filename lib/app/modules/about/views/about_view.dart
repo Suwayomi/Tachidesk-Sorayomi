@@ -21,10 +21,9 @@ class AboutView extends GetView<AboutController> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: context.height * .05),
-                child: Image.asset(
-                  logoURL,
-                  height: context.height * .1,
-                  cacheHeight: (context.height * .1).toInt(),
+                child: ImageIcon(
+                  AssetImage(iconLightTextNbgPngURL),
+                  size: context.height * .1,
                 ),
               ),
               Divider(thickness: 2),
@@ -82,7 +81,7 @@ class AboutView extends GetView<AboutController> {
               ListTile(
                 title: Text(
                   LocaleKeys.aboutScreen_gitHub.tr +
-                      " (${LocaleKeys.aboutScreen_flutter.tr})",
+                      " (${LocaleKeys.appTitle.tr})",
                 ),
                 subtitle: Text(flutterGithubUrl),
                 onTap: () async {

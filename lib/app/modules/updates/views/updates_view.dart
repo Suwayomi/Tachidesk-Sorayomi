@@ -62,7 +62,7 @@ class UpdatesView extends GetView<UpdatesController> {
                           width: 48,
                           fit: BoxFit.cover,
                           errorBuilder: (context, object, stack) => Image.asset(
-                            logoURL,
+                            iconPngURL,
                             height: 48,
                             width: 48,
                             fit: BoxFit.cover,

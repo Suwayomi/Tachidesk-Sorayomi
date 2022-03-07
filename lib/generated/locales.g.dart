@@ -195,7 +195,7 @@ class Locales {
     'aboutScreen_launchError_title': '@website URL failed to launch',
     'aboutScreen_server': 'Server',
     'aboutScreen_serverVersion': 'Server version',
-    'appTitle': 'Tachidesk',
+    'appTitle': 'Tachidesk Sorayomi',
     'appearanceScreen_darkTheme_subtitle': 'Turn on Dark Mode',
     'appearanceScreen_darkTheme_title': 'Dark Theme',
     'backupSettings_create_subtitle': 'Backup library as a Tachdesk backup',

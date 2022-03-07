@@ -6,7 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../../main.dart';
-import '../../../core/values/api_url.dart';
 import '../../../data/manga_model.dart';
 
 class MangaDescription extends StatelessWidget {
@@ -42,9 +41,23 @@ class MangaDescription extends StatelessWidget {
                               "/?useCache=true",
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
-                              Image.asset(logoCropURL),
+                              SizedBox(
+                            height: context.height * .3,
+                            child: Icon(
+                              Icons.book_rounded,
+                              color: Colors.grey,
+                              size: context.height * .2,
+                            ),
+                          ),
                         )
-                      : Image.asset(logoCropURL),
+                      : SizedBox(
+                          height: context.height * .3,
+                          child: Icon(
+                            Icons.book_rounded,
+                            color: Colors.grey,
+                            size: context.height * .2,
+                          ),
+                        ),
                 ),
               ),
               Expanded(

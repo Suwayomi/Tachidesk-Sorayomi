@@ -91,10 +91,9 @@ class EditCategoriesView extends GetView<EditCategoriesController> {
                     Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: context.height * .05),
-                      child: Image.asset(
-                        logoURL,
-                        height: context.height * .1,
-                        cacheHeight: (context.height * .1).toInt(),
+                      child: ImageIcon(
+                        AssetImage(iconLightTextNbgPngURL),
+                        size: context.height * .1,
                       ),
                     ),
                     Divider(thickness: 2)

@@ -54,7 +54,7 @@ class ExtensionsView extends GetView<ExtensionsController> {
                                     fit: BoxFit.cover,
                                     errorBuilder:
                                         (context, error, stackTrace) =>
-                                            Image.asset(logoURL),
+                                            Image.asset(iconPngURL),
                                   ),
                                 ),
                                 title: Text(source.name ?? source.name ?? ""),
