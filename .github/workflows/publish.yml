@@ -118,5 +118,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          draft: true
+          draft: false
           files: ${{ env.pkg_name }}-*
