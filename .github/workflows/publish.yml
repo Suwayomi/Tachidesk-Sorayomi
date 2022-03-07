@@ -6,7 +6,7 @@ on:
     tags:
       - "*.*.*"
 env:
-  pkg_name: tachidesk-flutter
+  pkg_name: tachidesk-sorayomi
 jobs:
   create-build:
     name: Create ${{ matrix.target }} build

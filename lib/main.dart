@@ -41,7 +41,7 @@ void main() async {
   final controller = Get.put(LocalStorageService());
   runApp(
     GetMaterialApp(
-      title: "TachiDesk Flutter",
+      title: "Tachidesk Sorayomi",
       translationsKeys: AppTranslation.translations,
       locale: Get.deviceLocale,
       fallbackLocale: Locale('en', 'US'),

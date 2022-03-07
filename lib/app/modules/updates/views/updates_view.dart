@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
 
@@ -19,9 +18,15 @@ class UpdatesView extends GetView<UpdatesController> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Obx(() => FloatingActionButton(
+            backgroundColor: Get.theme.colorScheme.primary,
             child: controller.isFirstPage
-                ? CircularProgressIndicator()
-                : Icon(Icons.refresh_outlined),
+                ? CircularProgressIndicator(
+                    color: Get.theme.colorScheme.onPrimary,
+                  )
+                : Icon(
+                    Icons.refresh_outlined,
+                    color: Get.theme.colorScheme.onPrimary,
+                  ),
             onPressed: () => controller.getNextPage(isRefresh: true),
           )),
       body: Obx(() => controller.isFirstPage

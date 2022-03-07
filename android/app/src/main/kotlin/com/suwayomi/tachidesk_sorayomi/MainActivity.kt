@@ -1,4 +1,4 @@
-package com.suwayomi.tachidesk_flutter
+package com.suwayomi.tachidesk_sorayomi
 
 import io.flutter.embedding.android.FlutterActivity
 
