@@ -22,19 +22,15 @@ jobs:
         include:
           - os: ubuntu-20.04
             target: android
-            build_target: apk
             build_path: build/app/outputs/flutter-apk
           - os: ubuntu-20.04
             target: linux
-            build_target: linux
             build_path: build/linux/x64/release/bundle
           #- os: macos-10.15 # Catalina
             #target: macos
-            #build_target: macos
             #build_path: build/macos/Build/Products/Release
           - os: windows-2019
             target: windows
-            build_target: windows
             build_path: build\windows\runner\Release
 
     steps:
@@ -72,7 +68,12 @@ jobs:
           echo "storePassword=${{ secrets.KEYSTORE_STORE_PASSWORD }}" >> key.properties
           echo "keyPassword=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> key.properties
 
-      - run: flutter build ${{ matrix.build_target }} --release
+      - if: matrix.target != 'android'
+        run: flutter build ${{ matrix.target }} --release
+      - if: matrix.target == 'android'
+        run: |
+          flutter build apk --release
+          flutter build apk --split-per-abi --release
 
       - name: Copy VC redistributables to release directory for Windows
         if: matrix.target == 'windows'
@@ -84,7 +85,12 @@ jobs:
       - name: Rename build for Android
         if: matrix.target == 'android'
         working-directory: ${{ matrix.build_path }}
-        run: mv app-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.apk"
+        run: |
+          mv app-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-all.apk"
+          mv app-arm64-v8a-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-arm64-v8a.apk"
+          mv app-armeabi-v7a-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-armeabi-v7a.apk"
+          mv app-x86_64-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x86_64.apk"
+
       - name: Compress build for Linux
         if: matrix.target == 'linux'
         working-directory: ${{ matrix.build_path }}
