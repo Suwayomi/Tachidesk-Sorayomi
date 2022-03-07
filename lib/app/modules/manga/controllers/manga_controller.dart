@@ -88,17 +88,17 @@ class MangaController extends GetxController {
     getFirstUnreadChapter();
   }
 
-  Future modifyChapter(Chapter chapter, String key, dynamic value) async {
+  Future<void> modifyChapter(Chapter chapter, String key, dynamic value) async {
     Map<String, dynamic> formData = {key: value};
     if (key == "read") formData['lastPageRead'] = '1';
     await repository.patchChapter(chapter, formData);
     await loadChapterList(loadingWidget: false);
   }
 
-  Future startDownload(Chapter chapter) => repository.startDownload(chapter);
+  Future<void> startDownload(Chapter chapter) => repository.startDownload(chapter);
 
-  Future deleteDownload(Chapter chapter) => repository.deleteChapter(chapter);
-  Future deleteFromDownloadQueue(Chapter chapter) =>
+  Future<void> deleteDownload(Chapter chapter) => repository.deleteChapter(chapter);
+  Future<void> deleteFromDownloadQueue(Chapter chapter) =>
       repository.deleteFromDownloadQueue(chapter);
 
   Future<void> loadCategoryList() async {

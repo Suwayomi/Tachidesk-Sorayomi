@@ -26,7 +26,7 @@ class SearchSourceController extends GetxController {
   bool get isFirstPage => _isFirstPage.value;
   set isFirstPage(bool value) => _isFirstPage.value = value;
 
-  Future getNextPage({bool isRefresh = false}) async {
+  Future<void> getNextPage({bool isRefresh = false}) async {
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
         final sourceMangaListTemp = await repository.getSourceSearch(
