@@ -105,6 +105,10 @@
         "update": "Update",
         "wait": "wait!"
     },
+    "globalSearchScreen": {
+        "globalSearch": "Global Search",
+        "searchGlobally": "Search Globally"
+    },
     "libraryScreen": {
         "manga": "Manga",
         "mangaSearch": "Search manga..",

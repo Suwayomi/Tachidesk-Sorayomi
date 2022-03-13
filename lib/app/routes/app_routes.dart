@@ -21,6 +21,7 @@ abstract class Routes {
   static const sources = _Paths.sources;
   static const manga = _Paths.manga;
   static const sourceManga = _Paths.sourceManga;
+  static const globalSearch = _Paths.globalSearch;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const sources = '/sources';
   static const manga = '/manga';
   static const sourceManga = '/source';
+  static const globalSearch = '/global-search';
 }

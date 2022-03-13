@@ -22,6 +22,7 @@ class UpdateRecentChapterProvider extends GetConnect {
 
   Future<UpdateRecentChapter> getUpdateRecentChapter(int id) async {
     final response = await get('/$id');
+    if (response.hasError) return UpdateRecentChapter();
     return response.body;
   }
 

@@ -114,10 +114,12 @@ class MangaGridDesign extends StatelessWidget {
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) => SizedBox(
                       height: context.height * .3,
-                      child: Icon(
-                        Icons.book_rounded,
-                        color: Colors.grey,
-                        size: context.height * .2,
+                      child: Center(
+                        child: Icon(
+                          Icons.book_rounded,
+                          color: Colors.grey,
+                          size: context.height * .1,
+                        ),
                       ),
                     ),
                     loadingBuilder: (BuildContext context, Widget child,

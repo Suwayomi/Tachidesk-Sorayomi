@@ -30,8 +30,11 @@ class MangaProvider extends GetConnect {
   Future<List<Category>?> getMangaCategoryList(int id) async {
     final response = await get(
       '/$id/category',
-      decoder: (map) =>
-          map.map<Category>((item) => Category.fromMap(item)).toList(),
+      decoder: (map) {
+        if (map is List) {
+          return map.map<Category>((item) => Category.fromMap(item)).toList();
+        }
+      },
     );
     if (response.hasError) return <Category>[];
     return response.body;

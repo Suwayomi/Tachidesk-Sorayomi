@@ -67,42 +67,48 @@ class SearchSourceView extends GetView<SearchSourceController> {
       body: Obx(() => controller.isFirstPage
           ? Center(child: CircularProgressIndicator())
           : ((controller.sourceMangaList.mangaList?.isNotEmpty ?? false))
-              ? GridView.builder(
-                  physics: AlwaysScrollableScrollPhysics(),
+              ? Scrollbar(
+                  thumbVisibility: true,
                   controller: controller.scrollController,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 250,
-                    crossAxisSpacing: 2.0,
-                    mainAxisSpacing: 2.0,
-                    childAspectRatio: 0.7,
-                  ),
-                  itemCount:
-                      (controller.sourceMangaList.mangaList?.length ?? 0) + 1,
-                  itemBuilder: (context, index) {
-                    if (index == controller.sourceMangaList.mangaList?.length) {
-                      return controller.sourceMangaList.hasNextPage ?? false
-                          ? Card(
-                              child: InkWell(
-                                onTap: () => controller.getNextPage(),
-                                child: GridTile(
-                                  child: Icon(Icons.arrow_downward),
-                                  footer: ListTile(
-                                      title: Text(LocaleKeys
-                                          .sourceMangaScreen_loadMore.tr)),
+                  child: GridView.builder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    controller: controller.scrollController,
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 250,
+                      crossAxisSpacing: 2.0,
+                      mainAxisSpacing: 2.0,
+                      childAspectRatio: 0.7,
+                    ),
+                    itemCount:
+                        (controller.sourceMangaList.mangaList?.length ?? 0) + 1,
+                    itemBuilder: (context, index) {
+                      if (index ==
+                          controller.sourceMangaList.mangaList?.length) {
+                        return controller.sourceMangaList.hasNextPage ?? false
+                            ? Card(
+                                child: InkWell(
+                                  onTap: () => controller.getNextPage(),
+                                  child: GridTile(
+                                    child: Icon(Icons.arrow_downward),
+                                    footer: ListTile(
+                                        title: Text(LocaleKeys
+                                            .sourceMangaScreen_loadMore.tr)),
+                                  ),
                                 ),
-                              ),
-                            )
-                          : Container();
-                    }
-                    return MangaGridDesign(
-                      manga: controller.sourceMangaList.mangaList![index],
-                      onTap: () => Get.toNamed(
-                        Routes.manga +
-                            "/${controller.sourceMangaList.mangaList![index].id}",
-                      ),
-                      isLibraryScreen: true,
-                    );
-                  },
+                              )
+                            : Container();
+                      }
+                      return MangaGridDesign(
+                        manga: controller.sourceMangaList.mangaList![index],
+                        onTap: () => Get.toNamed(
+                          Routes.manga +
+                              "/${controller.sourceMangaList.mangaList![index].id}",
+                        ),
+                        isLibraryScreen: true,
+                      );
+                    },
+                  ),
                 )
               : Center(
                   child: EmoticonsView(

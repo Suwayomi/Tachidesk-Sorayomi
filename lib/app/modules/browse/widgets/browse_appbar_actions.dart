@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/browse_controller.dart';
 
 class BrowseAppBarActions extends StatelessWidget {
@@ -16,6 +17,14 @@ class BrowseAppBarActions extends StatelessWidget {
     return Obx(() => Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            controller.tabIndex == 0
+                ? IconButton(
+                    onPressed: () => Get.toNamed(Routes.globalSearch),
+                    icon: Icon(
+                      Icons.travel_explore_rounded,
+                    ),
+                  )
+                : Container(),
             controller.tabIndex == 1
                 ? controller.isSearching
                     ? Container(
@@ -34,7 +43,7 @@ class BrowseAppBarActions extends StatelessWidget {
                                 controller.textEditingController.clear();
                               },
                             ),
-                            border: OutlineInputBorder(),
+                            border: InputBorder.none,
                             hintText: (controller.tabIndex == 0
                                 ? LocaleKeys.browserScreen_mangaSearch.tr
                                 : LocaleKeys.browserScreen_SourceSearch.tr),

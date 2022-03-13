@@ -81,24 +81,6 @@ class SourcesView extends GetView<SourcesController> {
                                       LocaleKeys.sourceScreen_latest.tr,
                                     ),
                                   ),
-                                  IconButton(
-                                    onPressed: () {
-                                      controller.localStorageService.lastUsed =
-                                          source.id;
-                                      controller.groupByMap[
-                                          langCodeToName("lastused")] = [
-                                        source
-                                      ];
-                                      Get.toNamed(
-                                        Routes.sourceManga +
-                                            "/${source.id}/search",
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.search,
-                                      color: context.theme.colorScheme.primary,
-                                    ),
-                                  ),
                                 ],
                               ),
                             ),
