@@ -1,5 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -7,7 +8,7 @@ import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 
 class ContinuousHorizontalRTL extends StatelessWidget {
-  ContinuousHorizontalRTL({
+  ContinuousHorizontalRTL.asFunction({
     Key? key,
     required this.controller,
   }) : super(key: key);

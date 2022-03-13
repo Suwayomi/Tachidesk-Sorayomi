@@ -8,7 +8,7 @@ import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 
 class SingleVertical extends StatelessWidget {
-  SingleVertical({
+  SingleVertical.asFunction({
     Key? key,
     required this.controller,
   }) : super(key: key);

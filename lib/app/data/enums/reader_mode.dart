@@ -1,6 +1,5 @@
-import 'package:collection/collection.dart';
-
 enum ReaderMode {
+  defaultReader,
   continuousHorizontalLTR,
   continuousHorizontalRTL,
   continuousVertical,
@@ -10,6 +9,9 @@ enum ReaderMode {
   webtoon,
 }
 
-ReaderMode? stringToReaderMode(String? value) {
-  return ReaderMode.values.firstWhereOrNull((element) => element.name == value);
+ReaderMode stringToReaderMode(String? value) {
+  return ReaderMode.values.firstWhere(
+    (element) => element.name == value,
+    orElse: () => ReaderMode.webtoon,
+  );
 }

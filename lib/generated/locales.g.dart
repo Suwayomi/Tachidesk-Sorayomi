@@ -142,6 +142,8 @@ class LocaleKeys {
       'readerScreen_readerMode_singleVertical';
   static const readerScreen_readerMode_webtoon =
       'readerScreen_readerMode_webtoon';
+  static const readerScreen_readerMode_defaultReader =
+      'readerScreen_readerMode_defaultReader';
   static const readerScreen_readerMode_ = 'readerScreen_readerMode_';
   static const readerScreen_reload = 'readerScreen_reload';
   static const readerScreen_chapterError = 'readerScreen_chapterError';
@@ -289,6 +291,7 @@ class Locales {
     'readerScreen_readerMode_singleHorizontalRTL': '(RTL) Single Horizontal ',
     'readerScreen_readerMode_singleVertical': 'Single Vertical',
     'readerScreen_readerMode_webtoon': 'Webtoon',
+    'readerScreen_readerMode_defaultReader': 'Default',
     'readerScreen_readerMode_': 'Reading Mode',
     'readerScreen_reload': 'Reload!',
     'readerScreen_chapterError': 'Chapter to Load',

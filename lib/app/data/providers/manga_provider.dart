@@ -34,9 +34,12 @@ class MangaProvider extends GetConnect {
           map.map<Category>((item) => Category.fromMap(item)).toList(),
     );
     if (response.hasError) return <Category>[];
-    print(response.body);
     return response.body;
   }
+
+  Future<Response> patchMangaMeta(
+          int mangaId, Map<String, dynamic> formdata) async =>
+      await patch('/$mangaId/meta', FormData(formdata));
 
   Future<Response> addMangaToLibrary(int id) async {
     final response = await get('/$id/library');

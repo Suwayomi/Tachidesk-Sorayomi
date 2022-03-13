@@ -56,7 +56,8 @@ class UpdatesController extends GetxController {
     }
   }
 
-  Future<Response<dynamic>> startDownload(Chapter chapter) => repository.startDownload(chapter);
+  Future<Response<dynamic>> startDownload(Chapter chapter) =>
+      repository.startDownload(chapter);
 
   Future<Response<dynamic>> deleteDownload(Chapter chapter) =>
       repository.deletedownloadedChapter(chapter);

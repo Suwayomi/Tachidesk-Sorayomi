@@ -95,9 +95,11 @@ class MangaController extends GetxController {
     await loadChapterList(loadingWidget: false);
   }
 
-  Future<void> startDownload(Chapter chapter) => repository.startDownload(chapter);
+  Future<void> startDownload(Chapter chapter) =>
+      repository.startDownload(chapter);
 
-  Future<void> deleteDownload(Chapter chapter) => repository.deleteChapter(chapter);
+  Future<void> deleteDownload(Chapter chapter) =>
+      repository.deleteChapter(chapter);
   Future<void> deleteFromDownloadQueue(Chapter chapter) =>
       repository.deleteFromDownloadQueue(chapter);
 

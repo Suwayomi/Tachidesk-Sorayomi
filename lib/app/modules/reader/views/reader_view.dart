@@ -7,13 +7,6 @@ import '../../../core/values/api_url.dart';
 import '../../../data/enums/reader_mode.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
-import '../widgets/continuous_horizontal_ltr.dart';
-import '../widgets/continuous_horizontal_rtl.dart';
-import '../widgets/continuous_vertical.dart';
-import '../widgets/single_horizontal_ltr.dart';
-import '../widgets/single_horizontal_rtl.dart';
-import '../widgets/single_vertical.dart';
-import '../widgets/webtoon.dart';
 
 class ReaderView extends GetView<ReaderController> {
   @override
@@ -57,7 +50,7 @@ class ReaderView extends GetView<ReaderController> {
           ],
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.grey),
-          backgroundColor: controller.visibility ? null : Color(0x00FFFFFF),
+          backgroundColor: controller.visibility ? null : Colors.transparent,
           automaticallyImplyLeading:
               controller.isDataLoading && controller.visibility,
         ),
@@ -126,7 +119,7 @@ class ReaderView extends GetView<ReaderController> {
                 leading: Icon(Icons.app_settings_alt_outlined),
                 isThreeLine: true,
                 title: DropdownButton(
-                  value: controller.readerMode.value,
+                  value: controller.readerMode,
                   isExpanded: true,
                   hint: Text(LocaleKeys.readerScreen_readerMode_.tr),
                   items: ReaderMode.values
@@ -139,8 +132,7 @@ class ReaderView extends GetView<ReaderController> {
                             value: e,
                           ))
                       .toList(),
-                  onChanged: (ReaderMode? e) => controller.localStorageService
-                      .readerMode = e ?? controller.readerMode.value,
+                  onChanged: (ReaderMode? e) => controller.changeReaderMode(e),
                 ),
               ),
               Obx(() => Row(
@@ -180,24 +172,12 @@ class ReaderView extends GetView<ReaderController> {
         body: !controller.isLoading
             ? controller.chapter.pageCount != null
                 ? Obx(() {
-                    switch (controller.readerMode.value) {
-                      case ReaderMode.continuousHorizontalLTR:
-                        return ContinuousHorizontalLTR(controller: controller);
-                      case ReaderMode.continuousHorizontalRTL:
-                        return ContinuousHorizontalRTL(controller: controller);
-                      case ReaderMode.continuousVertical:
-                        return ContinuousVertical(controller: controller);
-                      case ReaderMode.singleHorizontalLTR:
-                        return SingleHorizontalLTR(controller: controller);
-                      case ReaderMode.singleHorizontalRTL:
-                        return SingleHorizontalRTL(controller: controller);
-                      case ReaderMode.singleVertical:
-                        return SingleVertical(controller: controller);
-                      case ReaderMode.webtoon:
-                        return Webtoon(controller: controller);
-                      default:
-                        return Webtoon(controller: controller);
-                    }
+                    ReaderMode readerMode =
+                        controller.readerMode == ReaderMode.defaultReader
+                            ? controller.localStorageService.readerMode
+                            : controller.readerMode;
+                    return controller.readerModeMap[readerMode]!(
+                        controller: controller);
                   })
                 : EmoticonsView(
                     emptyType: LocaleKeys.readerScreen_chapterError.tr,

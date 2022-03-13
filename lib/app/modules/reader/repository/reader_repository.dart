@@ -17,6 +17,13 @@ class ReaderRepository {
     );
   }
 
+  Future<Response> patchMangaMeta(Manga manga, Map<String, dynamic> formData) {
+    return _mangaProvider.patchMangaMeta(
+      manga.id!,
+      formData,
+    );
+  }
+
   Future<Manga?> getManga(int id, {bool fetchFreshData = true}) =>
       _mangaProvider.getManga(id, fetchFreshData: fetchFreshData);
 
