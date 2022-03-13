@@ -8,7 +8,7 @@ import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 
 class SingleHorizontalRTL extends StatelessWidget {
-  SingleHorizontalRTL({
+  SingleHorizontalRTL.asFunction({
     Key? key,
     required this.controller,
   }) : super(key: key);

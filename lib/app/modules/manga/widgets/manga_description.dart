@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -7,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../../generated/locales.g.dart';
 import '../../../../main.dart';
 import '../../../data/manga_model.dart';
+import '../../../routes/app_pages.dart';
 
 class MangaDescription extends StatelessWidget {
   const MangaDescription(
@@ -65,11 +67,16 @@ class MangaDescription extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      (manga.title ?? LocaleKeys.mangaScreen_unknown.tr),
-                      style: context.textTheme.headline6,
-                      overflow: TextOverflow.ellipsis,
-                      semanticsLabel: manga.title,
+                    InkWell(
+                      onTap: () => Get.toNamed(
+                        Routes.globalSearch + "?query=${manga.title}",
+                      ),
+                      child: Text(
+                        (manga.title ?? LocaleKeys.mangaScreen_unknown.tr),
+                        style: context.textTheme.headline6,
+                        overflow: TextOverflow.ellipsis,
+                        semanticsLabel: manga.title,
+                      ),
                     ),
                     Text(
                       LocaleKeys.mangaScreen_author.tr +

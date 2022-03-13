@@ -94,16 +94,20 @@
             "title": "Extension Installed!"
         },
         "extensionsError": "Extensions to Install",
-        "reload": "Reload!",
         "install": "Install",
         "installFile": {
             "subtitle": "Installing Tachdesk Extension",
             "title": "Installing Extension..."
         },
         "nsfw": "18+",
+        "reload": "Reload!",
         "uninstall": "Uninstall",
         "update": "Update",
         "wait": "wait!"
+    },
+    "globalSearchScreen": {
+        "globalSearch": "Global Search",
+        "searchGlobally": "Search Globally"
     },
     "libraryScreen": {
         "manga": "Manga",
@@ -142,6 +146,7 @@
     "no": "No",
     "readerScreen": {
         "chapter": "Chapter",
+        "chapterError": "Chapter to Load",
         "image": "Image",
         "manga": "Manga",
         "nextChapter": "Next Chapter",
@@ -150,14 +155,14 @@
             "continuousHorizontalLTR": "(LTR) Continuous Horizontal",
             "continuousHorizontalRTL": "(RTL) Continuous Horizontal",
             "continuousVertical": "Continuous Vertical",
+            "defaultReader": "Default",
             "singleHorizontalLTR": "(LTR) Single Horizontal",
             "singleHorizontalRTL": "(RTL) Single Horizontal ",
             "singleVertical": "Single Vertical",
             "webtoon": "Webtoon"
         },
         "readerMode_": "Reading Mode",
-        "reload": "Reload!",
-        "chapterError" : "Chapter to Load"
+        "reload": "Reload!"
     },
     "readerSettingsScreen": {
         "category": "Category",

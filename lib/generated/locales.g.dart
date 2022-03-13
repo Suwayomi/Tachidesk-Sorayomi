@@ -23,6 +23,10 @@ class LocaleKeys {
       'appearanceScreen_darkTheme_subtitle';
   static const appearanceScreen_darkTheme_title =
       'appearanceScreen_darkTheme_title';
+  static const globalSearchScreen_searchGlobally =
+      'globalSearchScreen_searchGlobally';
+  static const globalSearchScreen_globalSearch =
+      'globalSearchScreen_globalSearch';
   static const backupSettings_create_subtitle =
       'backupSettings_create_subtitle';
   static const backupSettings_create_title = 'backupSettings_create_title';
@@ -80,13 +84,13 @@ class LocaleKeys {
       'extensionScreen_extensionInstalled_title';
   static const extensionScreen_extensionsError =
       'extensionScreen_extensionsError';
-  static const extensionScreen_reload = 'extensionScreen_reload';
   static const extensionScreen_install = 'extensionScreen_install';
   static const extensionScreen_installFile_subtitle =
       'extensionScreen_installFile_subtitle';
   static const extensionScreen_installFile_title =
       'extensionScreen_installFile_title';
   static const extensionScreen_nsfw = 'extensionScreen_nsfw';
+  static const extensionScreen_reload = 'extensionScreen_reload';
   static const extensionScreen_uninstall = 'extensionScreen_uninstall';
   static const extensionScreen_update = 'extensionScreen_update';
   static const extensionScreen_wait = 'extensionScreen_wait';
@@ -124,6 +128,7 @@ class LocaleKeys {
   static const mangaScreen_webView = 'mangaScreen_webView';
   static const no = 'no';
   static const readerScreen_chapter = 'readerScreen_chapter';
+  static const readerScreen_chapterError = 'readerScreen_chapterError';
   static const readerScreen_image = 'readerScreen_image';
   static const readerScreen_manga = 'readerScreen_manga';
   static const readerScreen_nextChapter = 'readerScreen_nextChapter';
@@ -134,6 +139,8 @@ class LocaleKeys {
       'readerScreen_readerMode_continuousHorizontalRTL';
   static const readerScreen_readerMode_continuousVertical =
       'readerScreen_readerMode_continuousVertical';
+  static const readerScreen_readerMode_defaultReader =
+      'readerScreen_readerMode_defaultReader';
   static const readerScreen_readerMode_singleHorizontalLTR =
       'readerScreen_readerMode_singleHorizontalLTR';
   static const readerScreen_readerMode_singleHorizontalRTL =
@@ -144,7 +151,6 @@ class LocaleKeys {
       'readerScreen_readerMode_webtoon';
   static const readerScreen_readerMode_ = 'readerScreen_readerMode_';
   static const readerScreen_reload = 'readerScreen_reload';
-  static const readerScreen_chapterError = 'readerScreen_chapterError';
   static const readerSettingsScreen_category = 'readerSettingsScreen_category';
   static const readerSettingsScreen_readerMode =
       'readerSettingsScreen_readerMode';
@@ -198,6 +204,8 @@ class Locales {
     'appTitle': 'Tachidesk Sorayomi',
     'appearanceScreen_darkTheme_subtitle': 'Turn on Dark Mode',
     'appearanceScreen_darkTheme_title': 'Dark Theme',
+    'globalSearchScreen_searchGlobally': 'Search Globally',
+    'globalSearchScreen_globalSearch': 'Global Search',
     'backupSettings_create_subtitle': 'Backup library as a Tachdesk backup',
     'backupSettings_create_title': 'Create Backup',
     'backupSettings_restore_subtitle': 'Restore Tachdesk from backup',
@@ -240,11 +248,11 @@ class Locales {
         'Extension Installed successfully',
     'extensionScreen_extensionInstalled_title': 'Extension Installed!',
     'extensionScreen_extensionsError': 'Extensions to Install',
-    'extensionScreen_reload': 'Reload!',
     'extensionScreen_install': 'Install',
     'extensionScreen_installFile_subtitle': 'Installing Tachdesk Extension',
     'extensionScreen_installFile_title': 'Installing Extension...',
     'extensionScreen_nsfw': '18+',
+    'extensionScreen_reload': 'Reload!',
     'extensionScreen_uninstall': 'Uninstall',
     'extensionScreen_update': 'Update',
     'extensionScreen_wait': 'wait!',
@@ -276,6 +284,7 @@ class Locales {
     'mangaScreen_webView': 'WebView',
     'no': 'No',
     'readerScreen_chapter': 'Chapter',
+    'readerScreen_chapterError': 'Chapter to Load',
     'readerScreen_image': 'Image',
     'readerScreen_manga': 'Manga',
     'readerScreen_nextChapter': 'Next Chapter',
@@ -285,13 +294,13 @@ class Locales {
     'readerScreen_readerMode_continuousHorizontalRTL':
         '(RTL) Continuous Horizontal',
     'readerScreen_readerMode_continuousVertical': 'Continuous Vertical',
+    'readerScreen_readerMode_defaultReader': 'Default',
     'readerScreen_readerMode_singleHorizontalLTR': '(LTR) Single Horizontal',
     'readerScreen_readerMode_singleHorizontalRTL': '(RTL) Single Horizontal ',
     'readerScreen_readerMode_singleVertical': 'Single Vertical',
     'readerScreen_readerMode_webtoon': 'Webtoon',
     'readerScreen_readerMode_': 'Reading Mode',
     'readerScreen_reload': 'Reload!',
-    'readerScreen_chapterError': 'Chapter to Load',
     'readerSettingsScreen_category': 'Category',
     'readerSettingsScreen_readerMode': 'Readering Mode',
     'screenTitle_about': 'About',

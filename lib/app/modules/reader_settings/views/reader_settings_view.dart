@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -24,7 +25,8 @@ class ReaderSettingsView extends GetView<ReaderSettingsController> {
                   value: controller.readerMode.value,
                   isExpanded: true,
                   hint: Text(LocaleKeys.readerScreen_readerMode_.tr),
-                  items: ReaderMode.values
+                  items: (ReaderMode.values
+                          .skipWhile((e) => e == ReaderMode.defaultReader))
                       .map<DropdownMenuItem<ReaderMode>>((e) =>
                           DropdownMenuItem<ReaderMode>(
                             child: Text(

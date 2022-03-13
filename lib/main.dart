@@ -28,8 +28,7 @@ class LocalStorageService extends GetxService {
   bool get showNSFW => box.read(showNsfwKey) ?? false;
   set showNSFW(bool val) => box.write(showNsfwKey, val);
 
-  ReaderMode get readerMode =>
-      stringToReaderMode(box.read(readerModeKey)) ?? ReaderMode.webtoon;
+  ReaderMode get readerMode => stringToReaderMode(box.read(readerModeKey));
   set readerMode(ReaderMode val) => box.write(readerModeKey, val.name);
 
   String get baseURL => box.read(baseUrlKey) ?? "http://127.0.0.1:4567";

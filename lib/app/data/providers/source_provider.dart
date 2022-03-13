@@ -36,9 +36,13 @@ class SourceProvider extends GetConnect {
       {required String sourceId,
       required String searchTerm,
       required int pageNum}) async {
-    final response = await get<SourceMangaList>(
+    final response = await get<SourceMangaList?>(
         "/$sourceId/search?searchTerm=$searchTerm&pageNum=$pageNum",
-        decoder: (map) => SourceMangaList.fromMap(map));
+        decoder: (map) {
+      if (map is Map<String, dynamic>) return SourceMangaList.fromMap(map);
+      return null;
+    });
+    if (response.hasError) return SourceMangaList();
     return response.body;
   }
 
@@ -47,9 +51,14 @@ class SourceProvider extends GetConnect {
     required int pageNum,
     required SourceType sourceType,
   }) async {
-    final response = await get<SourceMangaList>(
-        "/$sourceId/${sourceType.name}/$pageNum",
-        decoder: (map) => SourceMangaList.fromMap(map));
+    final response = await get<SourceMangaList?>(
+      "/$sourceId/${sourceType.name}/$pageNum",
+      decoder: (map) {
+        if (map is Map<String, dynamic>) return SourceMangaList.fromMap(map);
+        return null;
+      },
+    );
+    if (response.hasError) return SourceMangaList();
     return response.body;
   }
 }

@@ -7,6 +7,13 @@ import '../../../data/enums/reader_mode.dart';
 import '../../../data/manga_model.dart';
 import '../../../routes/app_pages.dart';
 import '../repository/reader_repository.dart';
+import '../widgets/continuous_horizontal_ltr.dart';
+import '../widgets/continuous_horizontal_rtl.dart';
+import '../widgets/continuous_vertical.dart';
+import '../widgets/single_horizontal_ltr.dart';
+import '../widgets/single_horizontal_rtl.dart';
+import '../widgets/single_vertical.dart';
+import '../widgets/webtoon.dart';
 
 class ReaderController extends GetxController {
   final ReaderRepository repository = ReaderRepository();
@@ -23,7 +30,9 @@ class ReaderController extends GetxController {
 
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
-  final Rx<ReaderMode> readerMode = ReaderMode.webtoon.obs;
+  final Rx<ReaderMode> _readerMode = ReaderMode.defaultReader.obs;
+  ReaderMode get readerMode => _readerMode.value;
+  set readerMode(ReaderMode value) => _readerMode.value = value;
 
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
@@ -44,11 +53,20 @@ class ReaderController extends GetxController {
   String getChapterPage(int page) => repository.getChapterPage(
       mangaId: mangaId, chapterIndex: chapterIndex, page: page);
 
+  final Map<ReaderMode, Function> readerModeMap = {
+    ReaderMode.continuousHorizontalLTR: ContinuousHorizontalLTR.asFunction,
+    ReaderMode.continuousHorizontalRTL: ContinuousHorizontalRTL.asFunction,
+    ReaderMode.continuousVertical: ContinuousVertical.asFunction,
+    ReaderMode.singleHorizontalLTR: SingleHorizontalLTR.asFunction,
+    ReaderMode.singleHorizontalRTL: SingleHorizontalRTL.asFunction,
+    ReaderMode.singleVertical: SingleVertical.asFunction,
+    ReaderMode.webtoon: Webtoon.asFunction,
+  };
+
   @override
   void onInit() {
     mangaId = int.parse(Get.parameters["mangaId"]!);
     chapterIndex = int.parse(Get.parameters["chapterIndex"]!);
-    readerMode.value = localStorageService.readerMode;
     super.onInit();
   }
 
@@ -61,6 +79,17 @@ class ReaderController extends GetxController {
     }
     Get.offNamed(
         Routes.manga + "/${chapter.mangaId}/chapter/${chapter.index! + 1}");
+  }
+
+  void changeReaderMode(ReaderMode? readerMode) async {
+    this.readerMode = readerMode ?? this.readerMode;
+    await repository.patchMangaMeta(
+      manga,
+      {
+        "key": readerModeKey,
+        "value": this.readerMode.name,
+      },
+    );
   }
 
   Future<void> markAsRead() async {
@@ -81,17 +110,16 @@ class ReaderController extends GetxController {
             mangaId: mangaId, chapterIndex: chapterIndex)) ??
         chapter;
     manga = (await repository.getManga(mangaId)) ?? manga;
+    print(manga.meta?[readerModeKey]);
+    readerMode = (manga.meta?[readerModeKey] != null
+        ? stringToReaderMode(manga.meta![readerModeKey])
+        : readerMode);
     isDataLoading = true;
     isLoading = false;
   }
 
   @override
   void onReady() async {
-    localStorageService.box.listenKey(
-      readerModeKey,
-      (value) =>
-          readerMode.value = stringToReaderMode(value) ?? readerMode.value,
-    );
     await reloadReader();
     super.onReady();
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../data/category_model.dart';
@@ -9,6 +10,7 @@ import '../repository/library_repository.dart';
 class LibraryController extends GetxController {
   final LibraryRepository repository = LibraryRepository();
   final TextEditingController textEditingController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
   final RxInt tabIndex = 0.obs;
 
   final RxBool _isSearching = false.obs;

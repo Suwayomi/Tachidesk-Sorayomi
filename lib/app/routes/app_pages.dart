@@ -16,6 +16,8 @@ import '../modules/edit_categories/bindings/edit_categories_binding.dart';
 import '../modules/edit_categories/views/edit_categories_view.dart';
 import '../modules/extensions/bindings/extensions_binding.dart';
 import '../modules/extensions/views/extensions_view.dart';
+import '../modules/global_search/bindings/global_search_binding.dart';
+import '../modules/global_search/views/global_search_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/library/bindings/library_binding.dart';
@@ -148,6 +150,11 @@ class AppPages {
       name: _Paths.manga + "/:mangaId/chapter/:chapterIndex",
       page: () => ReaderView(),
       binding: ReaderBinding(),
+    ),
+    GetPage(
+      name: _Paths.globalSearch,
+      page: () => GlobalSearchView(),
+      binding: GlobalSearchBinding(),
     ),
   ];
 }

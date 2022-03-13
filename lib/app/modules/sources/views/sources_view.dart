@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
@@ -78,24 +79,6 @@ class SourcesView extends GetView<SourcesController> {
                                     },
                                     child: Text(
                                       LocaleKeys.sourceScreen_latest.tr,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      controller.localStorageService.lastUsed =
-                                          source.id;
-                                      controller.groupByMap[
-                                          langCodeToName("lastused")] = [
-                                        source
-                                      ];
-                                      Get.toNamed(
-                                        Routes.sourceManga +
-                                            "/${source.id}/search",
-                                      );
-                                    },
-                                    icon: Icon(
-                                      Icons.search,
-                                      color: context.theme.colorScheme.primary,
                                     ),
                                   ),
                                 ],

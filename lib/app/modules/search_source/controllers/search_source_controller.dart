@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../data/source_manga_list_model.dart';
@@ -27,6 +28,7 @@ class SearchSourceController extends GetxController {
   set isFirstPage(bool value) => _isFirstPage.value = value;
 
   Future<void> getNextPage({bool isRefresh = false}) async {
+    if (textEditingController.text.isEmpty) return;
     if (!isRefresh) {
       if (sourceMangaList.hasNextPage ?? true) {
         final sourceMangaListTemp = await repository.getSourceSearch(
@@ -56,6 +58,7 @@ class SearchSourceController extends GetxController {
   @override
   void onInit() {
     sourceId = Get.parameters['sourceId']!;
+    textEditingController.text = Get.parameters["query"] ?? "";
     super.onInit();
   }
 
@@ -68,6 +71,7 @@ class SearchSourceController extends GetxController {
         await getNextPage();
       }
     });
+    await getNextPage(isRefresh: true);
     super.onReady();
   }
 

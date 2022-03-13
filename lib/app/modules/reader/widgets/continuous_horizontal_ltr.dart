@@ -8,7 +8,7 @@ import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 
 class ContinuousHorizontalLTR extends StatelessWidget {
-  ContinuousHorizontalLTR({
+  ContinuousHorizontalLTR.asFunction({
     Key? key,
     required this.controller,
   }) : super(key: key);

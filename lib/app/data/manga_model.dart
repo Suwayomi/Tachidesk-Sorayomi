@@ -23,6 +23,7 @@ class Manga {
   String? title;
   int? unreadCount;
   String? url;
+  Map<String, dynamic>? meta;
   Manga({
     this.artist,
     this.author,
@@ -42,6 +43,7 @@ class Manga {
     this.title,
     this.unreadCount,
     this.url,
+    this.meta,
   });
 
   Manga copyWith({
@@ -63,6 +65,7 @@ class Manga {
     String? title,
     int? unreadCount,
     String? url,
+    Map<String, dynamic>? meta,
   }) {
     return Manga(
       artist: artist ?? this.artist,
@@ -83,6 +86,7 @@ class Manga {
       title: title ?? this.title,
       unreadCount: unreadCount ?? this.unreadCount,
       url: url ?? this.url,
+      meta: meta ?? this.meta,
     );
   }
 
@@ -106,6 +110,7 @@ class Manga {
       'title': title,
       'unreadCount': unreadCount,
       'url': url,
+      'meta': meta,
     };
   }
 
@@ -129,6 +134,7 @@ class Manga {
       title: map['title'],
       unreadCount: map['unreadCount']?.toInt(),
       url: map['url'],
+      meta: map['meta'],
     );
   }
 
@@ -143,7 +149,7 @@ class Manga {
         ' id: $id, inLibrary: $inLibrary, inLibraryAt: $inLibraryAt,'
         ' initialized: $initialized, realUrl: $realUrl, source: $source,'
         ' sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl,'
-        ' title: $title, unreadCount: $unreadCount, url: $url)';
+        ' title: $title, unreadCount: $unreadCount, url: $url, meta: $meta)';
   }
 
   @override
@@ -168,6 +174,7 @@ class Manga {
         other.thumbnailUrl == thumbnailUrl &&
         other.title == title &&
         other.unreadCount == unreadCount &&
+        other.meta == meta &&
         other.url == url;
   }
 
@@ -190,6 +197,7 @@ class Manga {
         thumbnailUrl.hashCode ^
         title.hashCode ^
         unreadCount.hashCode ^
+        meta.hashCode ^
         url.hashCode;
   }
 }
