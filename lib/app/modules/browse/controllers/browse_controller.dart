@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -31,14 +32,21 @@ class BrowseController extends GetxController
       allowedExtensions: ["apk"],
       type: FileType.custom,
     );
-    if (result != null && result.files.single.path!.endsWith("apk")) {
-      File file = File(result.files.single.path!);
+    if (result != null && result.files.single.extension == "apk") {
       Get.rawSnackbar(
         title: LocaleKeys.extensionScreen_installFile_title.tr,
         message: LocaleKeys.extensionScreen_installFile_subtitle.tr,
       );
-
-      Response res = await repository.installExtensionFile(file);
+      Uint8List bytefile;
+      if (result.files.single.bytes == null) {
+        bytefile = await File(result.files.single.path!).readAsBytes();
+      } else {
+        bytefile = result.files.single.bytes!;
+      }
+      Response res = await repository.installExtensionFile(
+        bytefile: bytefile,
+        filename: result.files.single.name,
+      );
       if (res.statusCode == null || res.statusCode == 200) {
         try {
           Get.find<ExtensionsController>().updateExtensionList();

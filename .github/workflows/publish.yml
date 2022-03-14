@@ -24,6 +24,9 @@ jobs:
             target: android
             build_path: build/app/outputs/flutter-apk
           - os: ubuntu-20.04
+            target: web
+            build_path: build/web
+          - os: ubuntu-20.04
             target: linux
             build_path: build/linux/x64/release/bundle
           #- os: macos-10.15 # Catalina
@@ -91,6 +94,11 @@ jobs:
           mv app-armeabi-v7a-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-armeabi-v7a.apk"
           mv app-x86_64-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x86_64.apk"
 
+      - name: Compress build for Web
+        if: matrix.target == 'web'
+        working-directory: ${{ matrix.build_path }}
+        run: GZIP=-9 tar czf "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.tar.gz" *
+      
       - name: Compress build for Linux
         if: matrix.target == 'linux'
         working-directory: ${{ matrix.build_path }}

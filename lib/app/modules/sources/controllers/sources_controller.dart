@@ -48,6 +48,9 @@ class SourcesController extends GetxController {
     localStorageService.box.listenKey(sourceLangKey, (value) {
       groupByMap.value = groupBy();
     });
+    localStorageService.box.listenKey(lastUsedKey, (value) {
+      groupByMap.value = groupBy();
+    });
     await updateSourceList();
     super.onReady();
   }

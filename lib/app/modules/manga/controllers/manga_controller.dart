@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../core/utils/check_if_json.dart';
 import '../../../data/category_model.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/downloads_model.dart';
@@ -127,8 +128,10 @@ class MangaController extends GetxController {
     await loadManga();
     isPageLoading.value = false;
     await loadChapterList();
-    downloadSocket.onMessage((val) {
-      downloadsList = Downloads.fromJson(val);
+    downloadSocket.onMessage((source) {
+      if (checkIfJson(source)) {
+        downloadsList = Downloads.fromJson(source);
+      }
     });
     super.onReady();
   }

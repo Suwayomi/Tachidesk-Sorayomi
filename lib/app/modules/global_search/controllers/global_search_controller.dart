@@ -23,7 +23,6 @@ class GlobalSearchController extends GetxController {
             ?.skipWhile((value) => value.id == '0')
             .toList() ??
         sourceList;
-    // print(sourceList);
   }
 
   @override

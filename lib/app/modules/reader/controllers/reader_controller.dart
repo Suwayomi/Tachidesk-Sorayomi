@@ -110,7 +110,6 @@ class ReaderController extends GetxController {
             mangaId: mangaId, chapterIndex: chapterIndex)) ??
         chapter;
     manga = (await repository.getManga(mangaId)) ?? manga;
-    print(manga.meta?[readerModeKey]);
     readerMode = (manga.meta?[readerModeKey] != null
         ? stringToReaderMode(manga.meta![readerModeKey])
         : readerMode);
