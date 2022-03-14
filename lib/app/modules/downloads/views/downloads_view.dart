@@ -74,7 +74,7 @@ class DownloadsView extends GetView<DownloadsController> {
                   //   itemBuilder: (context) => [
                   //     PopupMenuItem(
                   //       child: Text("Delete"),
-                  //       onTap: () async => print((await controller
+                  //       onTap: () async => ((await controller
                   //               .downloadQueueValueRepository
                   //               .startDownload(item!))
                   //           .body),

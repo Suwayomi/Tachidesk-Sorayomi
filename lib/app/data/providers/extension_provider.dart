@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:get/get.dart';
@@ -43,13 +42,17 @@ class ExtensionProvider extends GetConnect {
     return response;
   }
 
-  Future<Response> installExtensionFile(File file) async {
-    Uint8List bytefile = await file.readAsBytes();
+  Future<Response> installExtensionFile({
+    required Uint8List bytefile,
+    required String filename,
+  }) async {
     return await post(
       "/install",
       FormData({
-        'file': MultipartFile(bytefile,
-            filename: file.path.split("/").last.split('\\').last)
+        'file': MultipartFile(
+          bytefile,
+          filename: filename,
+        )
       }),
     );
   }

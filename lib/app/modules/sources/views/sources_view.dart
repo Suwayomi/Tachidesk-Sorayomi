@@ -39,10 +39,6 @@ class SourcesView extends GetView<SourcesController> {
                               onTap: (() {
                                 controller.localStorageService.lastUsed =
                                     source.id;
-                                controller
-                                    .groupByMap[langCodeToName("lastused")] = [
-                                  source
-                                ];
                                 Get.toNamed(
                                   Routes.sourceManga + "/${source.id}/popular",
                                 );
@@ -70,10 +66,6 @@ class SourcesView extends GetView<SourcesController> {
                                     onPressed: () {
                                       controller.localStorageService.lastUsed =
                                           source.id;
-                                      controller.groupByMap[
-                                          langCodeToName("lastused")] = [
-                                        source
-                                      ];
                                       Get.toNamed(Routes.sourceManga +
                                           "/${source.id}/latest");
                                     },

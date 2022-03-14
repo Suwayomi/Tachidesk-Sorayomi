@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../core/utils/check_if_json.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/download_queue_value_model.dart';
 import '../../../data/downloads_model.dart';
@@ -31,8 +32,10 @@ class DownloadsController extends GetxController {
 
   @override
   void onReady() async {
-    downloadSocket.onMessage((val) {
-      downloadsList = Downloads.fromJson(val);
+    downloadSocket.onMessage((source) {
+      if (checkIfJson(source)) {
+        downloadsList = Downloads.fromJson(source);
+      }
     });
     super.onReady();
   }
