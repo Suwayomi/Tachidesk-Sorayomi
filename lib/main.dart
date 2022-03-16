@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:tachidesk_sorayomi/app/data/manga_filter_model.dart';
 
 import 'app/core/utils/language.dart';
 import 'app/core/values/db_keys.dart';
@@ -12,27 +13,37 @@ import 'generated/locales.g.dart';
 class LocalStorageService extends GetxService {
   final box = GetStorage();
 
+  // Library Screen
+  MangaFilter get mangaFilter => MangaFilter.fromJson(
+        box.read(mangaFilterKey) ?? MangaFilter(sortTitle: true).toJson(),
+      );
+  Future<void> setMangeFilter(MangaFilter val) =>
+      box.write(mangaFilterKey, val.toJson());
+  // End
+
   // Browse Source Screen Start
   String? get lastUsed => box.read<String>(lastUsedKey);
-  Future<void>  setLastUsed(String? source) => box.write(lastUsedKey, source);
+  Future<void> setLastUsed(String? source) => box.write(lastUsedKey, source);
 
   List get sourceLanguages =>
       box.read<List?>(sourceLangKey) ?? sourceDefualtLangs();
-  Future<void>  setSourceLanguages(List langs) => box.write(sourceLangKey, langs);
+  Future<void> setSourceLanguages(List langs) =>
+      box.write(sourceLangKey, langs);
   // End
 
   bool get isDark => box.read(darkModeKey) ?? false;
   ThemeMode get theme => isDark ? ThemeMode.dark : ThemeMode.light;
-  Future<void>  setIsDark(bool val) => box.write(darkModeKey, val);
+  Future<void> setIsDark(bool val) => box.write(darkModeKey, val);
 
   bool get showNSFW => box.read(showNsfwKey) ?? false;
-  Future<void>  setShowNSFW(bool val) => box.write(showNsfwKey, val);
+  Future<void> setShowNSFW(bool val) => box.write(showNsfwKey, val);
 
   ReaderMode get readerMode => stringToReaderMode(box.read(readerModeKey));
-  Future<void>  setReaderMode(ReaderMode val) => box.write(readerModeKey, val.name);
+  Future<void> setReaderMode(ReaderMode val) =>
+      box.write(readerModeKey, val.name);
 
   String get baseURL => box.read(baseUrlKey) ?? "http://127.0.0.1:4567";
-  Future<void>  setBaseURL(String val) => box.write(baseUrlKey, val);
+  Future<void> setBaseURL(String val) => box.write(baseUrlKey, val);
 }
 
 void main() async {

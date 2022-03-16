@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tachidesk_sorayomi/app/data/manga_filter_model.dart';
 
+import '../../../../main.dart';
 import '../../../data/category_model.dart';
 import '../../../data/manga_model.dart';
 import '../../home/controllers/home_controller.dart';
@@ -10,8 +12,16 @@ import '../repository/library_repository.dart';
 class LibraryController extends GetxController {
   final LibraryRepository repository = LibraryRepository();
   final TextEditingController textEditingController = TextEditingController();
+  final LocalStorageService _localStorageService =
+      Get.find<LocalStorageService>();
   final ScrollController scrollController = ScrollController();
   final RxInt tabIndex = 0.obs;
+  final Rx<MangaFilter> _mangaFilter = MangaFilter(sortTitle: true).obs;
+
+  void mangaFilterUpdate(void Function(MangaFilter?) fn) =>
+      _mangaFilter.update(fn);
+  MangaFilter get mangaFilter => _mangaFilter.value;
+  set mangaFilter(MangaFilter value) => _mangaFilter.value = value;
 
   final RxBool _isSearching = false.obs;
   bool get isSearching => _isSearching.value;
@@ -35,6 +45,7 @@ class LibraryController extends GetxController {
   List<Manga> get mangaList => _mangaList;
   set mangaList(List<Manga> mangaList) => _mangaList.value = mangaList;
   int get mangaListLength => _mangaList.length;
+  List<Manga> mangaListCopy = [];
 
   Future<void> loadCategoryList() async {
     isCategoryLoading = true;
@@ -45,26 +56,23 @@ class LibraryController extends GetxController {
   Future<void> loadMangaListWithCategoryId() async {
     isLoading = true;
     if (categoryList.isEmpty) return;
-    if (textEditingController.text.isNotEmpty) {
-      mangaList = (await repository
-              .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))
-          .where((element) => (element.title ?? "")
-              .toLowerCase()
-              .contains(textEditingController.text.toLowerCase()))
-          .toList();
-    } else {
-      if (categoryList.isNotEmpty) {
-        mangaList = (await repository
-            .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!));
-      }
-    }
+    mangaListCopy = await repository
+        .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!);
+    applyFilter();
     isLoading = false;
   }
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
+  void applyFilter() {
+    mangaList = mangaListCopy
+        .where((element) =>
+            (element.title ?? "")
+                .toLowerCase()
+                .contains(textEditingController.text.toLowerCase()) &&
+            mangaFilter.applyFilter(element))
+        .toList()
+      ..sort((a, b) => mangaFilter.applySort(a, b));
+    print(mangaList);
+  }
 
   Future<void> refreshLibraryScreen() async {
     await loadCategoryList();
@@ -73,10 +81,14 @@ class LibraryController extends GetxController {
 
   @override
   void onReady() async {
+    mangaFilter = _localStorageService.mangaFilter;
+    _mangaFilter.listen((val) async {
+      applyFilter();
+      await _localStorageService.setMangeFilter(val);
+    });
+    textEditingController.addListener(() => applyFilter());
     await refreshLibraryScreen();
-    textEditingController.addListener(
-      () => loadMangaListWithCategoryId(),
-    );
+
     Get.find<HomeController>().selectedIndexObs.listen((value) async {
       tabIndex.value = 0;
       if (value.isEqual(0)) await refreshLibraryScreen();

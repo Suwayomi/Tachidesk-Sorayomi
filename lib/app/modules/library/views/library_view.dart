@@ -14,7 +14,7 @@ class LibraryView extends GetView<LibraryController> {
     return Obx(
       () => DefaultTabController(
         length: controller.categoryListLength,
-        animationDuration: Duration(),
+        // animationDuration: Duration(),
         initialIndex: controller.tabIndex.value,
         child: Scaffold(
           appBar: controller.categoryListLength <= 1

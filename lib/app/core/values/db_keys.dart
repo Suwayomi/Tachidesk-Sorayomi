@@ -5,3 +5,4 @@ const lastUsedKey = "lastUsed";
 const pinnedSourcesKey = "pinnedSources";
 const sourceLangKey = "sourceLangKey";
 const readerModeKey = "flutter_readerMode";
+const mangaFilterKey = "flutter_mangaFilter";
