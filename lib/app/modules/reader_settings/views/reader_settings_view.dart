@@ -36,8 +36,9 @@ class ReaderSettingsView extends GetView<ReaderSettingsController> {
                             value: e,
                           ))
                       .toList(),
-                  onChanged: (ReaderMode? e) => controller.localStorageService
-                      .readerMode = e ?? controller.readerMode.value,
+                  onChanged: (ReaderMode? e) async => await controller
+                      .localStorageService
+                      .setReaderMode(e ?? controller.readerMode.value),
                 ),
               ),
             ),

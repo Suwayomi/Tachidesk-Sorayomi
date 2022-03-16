@@ -36,9 +36,9 @@ class SourcesView extends GetView<SourcesController> {
                             key: Key(
                                 '$currentKey-${source.toString()}-$iterator'),
                             child: ListTile(
-                              onTap: (() {
-                                controller.localStorageService.lastUsed =
-                                    source.id;
+                              onTap: (() async {
+                                await controller.localStorageService
+                                    .setLastUsed(source.id);
                                 Get.toNamed(
                                   Routes.sourceManga + "/${source.id}/popular",
                                 );
@@ -63,9 +63,9 @@ class SourcesView extends GetView<SourcesController> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TextButton(
-                                    onPressed: () {
-                                      controller.localStorageService.lastUsed =
-                                          source.id;
+                                    onPressed: () async {
+                                      await controller.localStorageService
+                                          .setLastUsed(source.id);
                                       Get.toNamed(Routes.sourceManga +
                                           "/${source.id}/latest");
                                     },

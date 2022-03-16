@@ -79,19 +79,19 @@ class BrowseAppBarActions extends StatelessWidget {
                             () => SwitchListTile(
                               value: isEnabled.value,
                               title: Text(iSOMainLanguage[index].nativeName),
-                              onChanged: (value) {
+                              onChanged: (value) async {
                                 isEnabled.value = value;
                                 if (value) {
-                                  controller
-                                      .localStorageService.sourceLanguages += [
-                                    iSOMainLanguage[index].code
-                                  ];
+                                  await controller.localStorageService
+                                      .setSourceLanguages(controller
+                                              .localStorageService
+                                              .sourceLanguages +
+                                          [iSOMainLanguage[index].code]);
                                 } else {
-                                  controller
-                                          .localStorageService.sourceLanguages =
-                                      controller
+                                  await controller.localStorageService
+                                      .setSourceLanguages(controller
                                           .localStorageService.sourceLanguages
-                                        ..remove(iSOMainLanguage[index].code);
+                                        ..remove(iSOMainLanguage[index].code));
                                 }
                               },
                             ),
