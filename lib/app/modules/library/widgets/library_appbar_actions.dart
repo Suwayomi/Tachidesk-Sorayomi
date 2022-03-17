@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_sorayomi/app/modules/library/widgets/library_filter_list_view.dart';
-import 'package:tachidesk_sorayomi/app/modules/library/widgets/library_sort_list_view.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../controllers/library_controller.dart';
+import 'library_filter_list_view.dart';
+import 'library_sort_list_view.dart';
 
 class LibraryAppBarActions extends StatelessWidget {
   LibraryAppBarActions({Key? key}) : super(key: key);

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:tachidesk_sorayomi/app/modules/library/controllers/library_controller.dart';
-import 'package:tachidesk_sorayomi/generated/locales.g.dart';
+
+import '../../../../generated/locales.g.dart';
+import '../../../data/enums/manga/manga_filter.dart';
+import '../controllers/library_controller.dart';
 
 class LibraryFilterListView extends StatelessWidget {
   final LibraryController controller;
@@ -31,29 +34,26 @@ class LibraryFilterListView extends StatelessWidget {
             CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
               tristate: true,
-              value: controller.mangaFilter.filterUnread,
+              value: controller.mangaFilter[MangaFilter.unread],
               title: Text(LocaleKeys.libraryScreen_filterUnread.tr),
-              onChanged: (value) => controller
-                  .mangaFilterUpdate((mf) => mf?.filterUnread = value),
+              onChanged: (value) =>
+                  controller.mangaFilter[MangaFilter.unread] = value,
             ),
             CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
               tristate: true,
-              value: controller.mangaFilter.filterDownloaded,
+              value: controller.mangaFilter[MangaFilter.downloaded],
               title: Text(LocaleKeys.libraryScreen_filterDownloaded.tr),
-              onChanged: (value) => controller
-                  .mangaFilterUpdate((mf) => mf?.filterDownloaded = value),
+              onChanged: (value) =>
+                  controller.mangaFilter[MangaFilter.downloaded] = value,
             ),
             CheckboxListTile(
               controlAffinity: ListTileControlAffinity.leading,
               tristate: true,
-              value: controller.mangaFilter.filterCompleted,
+              value: controller.mangaFilter[MangaFilter.completed],
               title: Text(LocaleKeys.libraryScreen_filterCompleted.tr),
-              onChanged: (value) {
-                print(value);
-                controller
-                    .mangaFilterUpdate((mf) => mf?.filterCompleted = value);
-              },
+              onChanged: (value) =>
+                  controller.mangaFilter[MangaFilter.completed] = value,
             ),
           ],
         ));

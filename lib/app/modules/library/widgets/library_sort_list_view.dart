@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:tachidesk_sorayomi/app/modules/library/controllers/library_controller.dart';
-import 'package:tachidesk_sorayomi/generated/locales.g.dart';
+
+import '../../../../generated/locales.g.dart';
+import '../../../core/utils/manga/apply_manga_sort.dart';
+import '../../../data/enums/manga/manga_sort.dart';
+import '../controllers/library_controller.dart';
 
 class LibrarySortListView extends StatelessWidget {
   final LibraryController controller;
@@ -29,42 +33,59 @@ class LibrarySortListView extends StatelessWidget {
                   ),
             // context.width < 600 ? Container() : Divider(),
             ListTile(
-              leading: controller.mangaFilter.sortTitle != null
+              leading: controller.mangaSort.key == MangaSort.title
                   ? Icon(
-                      controller.mangaFilter.sortTitle!
+                      controller.mangaSort.value
                           ? Icons.arrow_upward_rounded
                           : Icons.arrow_downward_rounded,
                     )
                   : SizedBox(width: Get.theme.iconTheme.size),
               title: Text(LocaleKeys.libraryScreen_sortTitle.tr),
-              onTap: () => controller.mangaFilterUpdate(
-                (mf) => mf?.toggleSortTitle(),
+              onTap: () => controller.mangaSort = toggleMangaSort(
+                previous: controller.mangaSort,
+                present: MangaSort.title,
               ),
             ),
             ListTile(
-              leading: controller.mangaFilter.sortInLibraryAt != null
+              leading: controller.mangaSort.key == MangaSort.inLibraryAt
                   ? Icon(
-                      controller.mangaFilter.sortInLibraryAt!
+                      controller.mangaSort.value
                           ? Icons.arrow_upward_rounded
                           : Icons.arrow_downward_rounded,
                     )
                   : SizedBox(width: Get.theme.iconTheme.size),
               title: Text(LocaleKeys.libraryScreen_sortInLibraryAt.tr),
-              onTap: () => controller.mangaFilterUpdate(
-                (mf) => mf?.toggleSortInLibraryAt(),
+              onTap: () => controller.mangaSort = toggleMangaSort(
+                previous: controller.mangaSort,
+                present: MangaSort.inLibraryAt,
               ),
             ),
             ListTile(
-              leading: controller.mangaFilter.sortUnread != null
+              leading: controller.mangaSort.key == MangaSort.unread
                   ? Icon(
-                      controller.mangaFilter.sortUnread!
+                      controller.mangaSort.value
                           ? Icons.arrow_upward_rounded
                           : Icons.arrow_downward_rounded,
                     )
                   : SizedBox(width: Get.theme.iconTheme.size),
               title: Text(LocaleKeys.libraryScreen_sortUnread.tr),
-              onTap: () => controller.mangaFilterUpdate(
-                (mf) => mf?.toggleSortUnread(),
+              onTap: () => controller.mangaSort = toggleMangaSort(
+                previous: controller.mangaSort,
+                present: MangaSort.unread,
+              ),
+            ),
+            ListTile(
+              leading: controller.mangaSort.key == MangaSort.id
+                  ? Icon(
+                      controller.mangaSort.value
+                          ? Icons.arrow_upward_rounded
+                          : Icons.arrow_downward_rounded,
+                    )
+                  : SizedBox(width: Get.theme.iconTheme.size),
+              title: Text(LocaleKeys.libraryScreen_sortId.tr),
+              onTap: () => controller.mangaSort = toggleMangaSort(
+                previous: controller.mangaSort,
+                present: MangaSort.id,
               ),
             ),
           ],

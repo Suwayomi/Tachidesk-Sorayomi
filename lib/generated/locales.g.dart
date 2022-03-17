@@ -109,6 +109,7 @@ class LocaleKeys {
   static const libraryScreen_sortInLibraryAt = 'libraryScreen_sortInLibraryAt';
   static const libraryScreen_sortTitle = 'libraryScreen_sortTitle';
   static const libraryScreen_sortUnread = 'libraryScreen_sortUnread';
+  static const libraryScreen_sortId = 'libraryScreen_sortId';
   static const loading = 'loading';
   static const mangaGridDesign_inLibrary = 'mangaGridDesign_inLibrary';
   static const mangaScreen_addCategoryHint = 'mangaScreen_addCategoryHint';
@@ -282,6 +283,7 @@ class Locales {
     'libraryScreen_sortInLibraryAt': 'In Library',
     'libraryScreen_sortTitle': 'Title',
     'libraryScreen_sortUnread': 'Unread',
+    'libraryScreen_sortId': 'Id',
     'loading': 'Loading',
     'mangaGridDesign_inLibrary': 'In library',
     'mangaScreen_addCategoryHint': 'Add new categories in settings',

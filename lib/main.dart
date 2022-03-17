@@ -2,31 +2,67 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:tachidesk_sorayomi/app/data/manga_filter_model.dart';
 
 import 'app/core/utils/language.dart';
 import 'app/core/values/db_keys.dart';
+import 'app/data/enums/manga/manga_filter.dart';
+import 'app/data/enums/manga/manga_sort.dart';
 import 'app/data/enums/reader_mode.dart';
+import 'app/data/settings_model.dart';
 import 'app/routes/app_pages.dart';
 import 'generated/locales.g.dart';
 
 class LocalStorageService extends GetxService {
   final box = GetStorage();
+  final Rx<Settings> _settings = Settings().obs;
+  Settings get settings => _settings.value;
+
+  set settings(Settings value) => _settings.value = value;
+  // final SettingsProvider _settingsProvider = Get.put(SettingsProvider());
+
+//  @override
+//  void onReady() async {
+  // settings = await _settingsProvider.getSettings() ?? settings;
+//    super.onReady();
+//  }
 
   // Library Screen
-  MangaFilter get mangaFilter => MangaFilter.fromJson(
-        box.read(mangaFilterKey) ?? MangaFilter(sortTitle: true).toJson(),
+  Map<MangaFilter, bool?> get mangaFilter {
+    Map<String, bool?> map = Map<String, bool?>.from(box.read(mangaFilterKey) ??
+        {for (var element in MangaFilter.values) element.name: null});
+
+    return map.map((key, value) => MapEntry(mangaFilterFromString(key), value));
+  }
+
+  Future<void> setMangeFilter(Map<MangaFilter, bool?> val) => box.write(
+        mangaFilterKey,
+        val.map<String, bool?>((key, value) => MapEntry(key.name, value)),
       );
-  Future<void> setMangeFilter(MangaFilter val) =>
-      box.write(mangaFilterKey, val.toJson());
+
+  MapEntry<MangaSort, bool?> get mangaSort {
+    Map<String, dynamic> map = box.read(mangaSortKey) ??
+        {
+          "key": MangaSort.id.name,
+          "value": true,
+        };
+    return MapEntry(map["key"], map["value"]);
+  }
+
+  Future<void> setMangeSort(MapEntry<MangaSort, bool?> val) => box.write(
+        mangaSortKey,
+        {
+          "key": val.key.name,
+          "value": val.value,
+        },
+      );
   // End
 
   // Browse Source Screen Start
   String? get lastUsed => box.read<String>(lastUsedKey);
   Future<void> setLastUsed(String? source) => box.write(lastUsedKey, source);
 
-  List get sourceLanguages =>
-      box.read<List?>(sourceLangKey) ?? sourceDefualtLangs();
+  List<String> get sourceLanguages =>
+      box.read<List<String>?>(sourceLangKey) ?? sourceDefualtLangs();
   Future<void> setSourceLanguages(List langs) =>
       box.write(sourceLangKey, langs);
   // End
@@ -38,7 +74,7 @@ class LocalStorageService extends GetxService {
   bool get showNSFW => box.read(showNsfwKey) ?? false;
   Future<void> setShowNSFW(bool val) => box.write(showNsfwKey, val);
 
-  ReaderMode get readerMode => stringToReaderMode(box.read(readerModeKey));
+  ReaderMode get readerMode => readerModeFromString(box.read(readerModeKey));
   Future<void> setReaderMode(ReaderMode val) =>
       box.write(readerModeKey, val.name);
 

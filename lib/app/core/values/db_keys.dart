@@ -6,3 +6,4 @@ const pinnedSourcesKey = "pinnedSources";
 const sourceLangKey = "sourceLangKey";
 const readerModeKey = "flutter_readerMode";
 const mangaFilterKey = "flutter_mangaFilter";
+const mangaSortKey = "flutter_mangaSort";

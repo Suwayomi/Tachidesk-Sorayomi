@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_sorayomi/app/data/manga_filter_model.dart';
 
 import '../../../../main.dart';
+import '../../../core/utils/manga/apply_manga_filter.dart';
+import '../../../core/utils/manga/apply_manga_sort.dart';
 import '../../../data/category_model.dart';
+import '../../../data/enums/manga/manga_filter.dart';
+import '../../../data/enums/manga/manga_sort.dart';
 import '../../../data/manga_model.dart';
 import '../../home/controllers/home_controller.dart';
 import '../repository/library_repository.dart';
@@ -16,12 +19,17 @@ class LibraryController extends GetxController {
       Get.find<LocalStorageService>();
   final ScrollController scrollController = ScrollController();
   final RxInt tabIndex = 0.obs;
-  final Rx<MangaFilter> _mangaFilter = MangaFilter(sortTitle: true).obs;
 
-  void mangaFilterUpdate(void Function(MangaFilter?) fn) =>
-      _mangaFilter.update(fn);
-  MangaFilter get mangaFilter => _mangaFilter.value;
-  set mangaFilter(MangaFilter value) => _mangaFilter.value = value;
+  final RxMap<MangaFilter, bool?> _mangaFilter = <MangaFilter, bool?>{
+    for (var element in MangaFilter.values) element: null
+  }.obs;
+  Map<MangaFilter, bool?> get mangaFilter => _mangaFilter;
+  set mangaFilter(Map<MangaFilter, bool?> value) => _mangaFilter.value = value;
+
+  final Rx<MapEntry<MangaSort, bool>> _mangaSort =
+      MapEntry(MangaSort.id, true).obs;
+  MapEntry<MangaSort, bool> get mangaSort => _mangaSort.value;
+  set mangaSort(MapEntry<MangaSort, bool> value) => _mangaSort.value = value;
 
   final RxBool _isSearching = false.obs;
   bool get isSearching => _isSearching.value;
@@ -68,10 +76,9 @@ class LibraryController extends GetxController {
             (element.title ?? "")
                 .toLowerCase()
                 .contains(textEditingController.text.toLowerCase()) &&
-            mangaFilter.applyFilter(element))
+            applyMangaFilter(mangaFilter, element))
         .toList()
-      ..sort((a, b) => mangaFilter.applySort(a, b));
-    print(mangaList);
+      ..sort((a, b) => applyMangaSort(mangaSort, a, b));
   }
 
   Future<void> refreshLibraryScreen() async {
@@ -85,6 +92,10 @@ class LibraryController extends GetxController {
     _mangaFilter.listen((val) async {
       applyFilter();
       await _localStorageService.setMangeFilter(val);
+    });
+    _mangaSort.listen((val) async {
+      applyFilter();
+      await _localStorageService.setMangeSort(val);
     });
     textEditingController.addListener(() => applyFilter());
     await refreshLibraryScreen();

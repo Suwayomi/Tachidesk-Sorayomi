@@ -34,7 +34,8 @@ class MoreController extends GetxController {
         r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)";
     final String urlLocal = "http://localhost:";
     if (url.startsWith(urlLocal) || RegExp(urlRegx).hasMatch(url)) {
-      await localStorageService.setBaseURL(removeTrailing("/", url).toLowerCase());
+      await localStorageService
+          .setBaseURL(removeTrailing("/", url).toLowerCase());
       Get.back();
     } else {
       Get.rawSnackbar(
