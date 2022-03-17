@@ -106,10 +106,10 @@ class LocaleKeys {
   static const libraryScreen_mangaSearch = 'libraryScreen_mangaSearch';
   static const libraryScreen_refresh = 'libraryScreen_refresh';
   static const libraryScreen_sort = 'libraryScreen_sort';
+  static const libraryScreen_sortId = 'libraryScreen_sortId';
   static const libraryScreen_sortInLibraryAt = 'libraryScreen_sortInLibraryAt';
   static const libraryScreen_sortTitle = 'libraryScreen_sortTitle';
   static const libraryScreen_sortUnread = 'libraryScreen_sortUnread';
-  static const libraryScreen_sortId = 'libraryScreen_sortId';
   static const loading = 'loading';
   static const mangaGridDesign_inLibrary = 'mangaGridDesign_inLibrary';
   static const mangaScreen_addCategoryHint = 'mangaScreen_addCategoryHint';
@@ -130,11 +130,19 @@ class LocaleKeys {
   static const mangaScreen_chapterList_removeBookmark =
       'mangaScreen_chapterList_removeBookmark';
   static const mangaScreen_chapters = 'mangaScreen_chapters';
+  static const mangaScreen_filter = 'mangaScreen_filter';
+  static const mangaScreen_filterBookmarked = 'mangaScreen_filterBookmarked';
+  static const mangaScreen_filterDownloaded = 'mangaScreen_filterDownloaded';
+  static const mangaScreen_filterUnread = 'mangaScreen_filterUnread';
   static const mangaScreen_inLibrary = 'mangaScreen_inLibrary';
   static const mangaScreen_manga = 'mangaScreen_manga';
   static const mangaScreen_noChapter = 'mangaScreen_noChapter';
   static const mangaScreen_noNewChapter = 'mangaScreen_noNewChapter';
   static const mangaScreen_reload = 'mangaScreen_reload';
+  static const mangaScreen_setAsDefault = 'mangaScreen_setAsDefault';
+  static const mangaScreen_sort = 'mangaScreen_sort';
+  static const mangaScreen_sortFetchedAt = 'mangaScreen_sortFetchedAt';
+  static const mangaScreen_sortScanlator = 'mangaScreen_sortScanlator';
   static const mangaScreen_source = 'mangaScreen_source';
   static const mangaScreen_status = 'mangaScreen_status';
   static const mangaScreen_unknown = 'mangaScreen_unknown';
@@ -280,10 +288,10 @@ class Locales {
     'libraryScreen_mangaSearch': 'Search manga..',
     'libraryScreen_refresh': 'Refresh',
     'libraryScreen_sort': 'Sort',
+    'libraryScreen_sortId': 'Id',
     'libraryScreen_sortInLibraryAt': 'In Library',
     'libraryScreen_sortTitle': 'Title',
     'libraryScreen_sortUnread': 'Unread',
-    'libraryScreen_sortId': 'Id',
     'loading': 'Loading',
     'mangaGridDesign_inLibrary': 'In library',
     'mangaScreen_addCategoryHint': 'Add new categories in settings',
@@ -298,11 +306,19 @@ class Locales {
     'mangaScreen_chapterList_markPrevAsUnread': 'Mark previous as unread',
     'mangaScreen_chapterList_removeBookmark': 'Remove bookmark',
     'mangaScreen_chapters': 'Chapters',
+    'mangaScreen_filter': 'Filter',
+    'mangaScreen_filterBookmarked': 'Bookmarked',
+    'mangaScreen_filterDownloaded': 'Downloaded',
+    'mangaScreen_filterUnread': 'Unread',
     'mangaScreen_inLibrary': 'In library',
     'mangaScreen_manga': 'Manga',
     'mangaScreen_noChapter': 'chapter found',
     'mangaScreen_noNewChapter': 'No new chapter',
     'mangaScreen_reload': 'Reload',
+    'mangaScreen_setAsDefault': 'Set as default',
+    'mangaScreen_sort': 'Sort',
+    'mangaScreen_sortFetchedAt': 'Fetched date',
+    'mangaScreen_sortScanlator': 'Source',
     'mangaScreen_source': 'Source',
     'mangaScreen_status': 'Status',
     'mangaScreen_unknown': 'Unknown',

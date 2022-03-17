@@ -24,8 +24,8 @@ class SettingsProvider extends GetConnect {
     return response.body;
   }
 
-  Future<Response> patchSettingsMeta(int mangaId, Settings formdata) async =>
-      await patch('', FormData(formdata.toMap()));
+  // Future<Response> patchSettingsMeta(int mangaId, Settings formdata) async =>
+  //     await patch('', FormData(formdata.toMap()));
 
   // Future<Response<Settings>> postSettings(Settings settings) async =>
   //     await post('settings', settings);

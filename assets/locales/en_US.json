@@ -121,10 +121,10 @@
         "mangaSearch": "Search manga..",
         "refresh": "Refresh",
         "sort": "Sort",
+        "sortId": "Id",
         "sortInLibraryAt": "In Library",
         "sortTitle": "Title",
-        "sortUnread": "Unread",
-        "sortId" : "Id"
+        "sortUnread": "Unread"
     },
     "loading": "Loading",
     "mangaGridDesign": {
@@ -145,11 +145,19 @@
             "removeBookmark": "Remove bookmark"
         },
         "chapters": "Chapters",
+        "filter": "Filter",
+        "filterBookmarked": "Bookmarked",
+        "filterDownloaded": "Downloaded",
+        "filterUnread": "Unread",
         "inLibrary": "In library",
         "manga": "Manga",
         "noChapter": "chapter found",
         "noNewChapter": "No new chapter",
         "reload": "Reload",
+        "setAsDefault":"Set as default",
+        "sort": "Sort",
+        "sortFetchedAt": "Fetched date",
+        "sortScanlator": "Source",
         "source": "Source",
         "status": "Status",
         "unknown": "Unknown",

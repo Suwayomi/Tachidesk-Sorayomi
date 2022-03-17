@@ -41,8 +41,16 @@ class MangaProvider extends GetConnect {
   }
 
   Future<Response> patchMangaMeta(
-          int mangaId, Map<String, dynamic> formdata) async =>
-      await patch('/$mangaId/meta', FormData(formdata));
+          int mangaId, MapEntry<String, String> formdata) async =>
+      await patch(
+        '/$mangaId/meta',
+        FormData(
+          {
+            "key": formdata.key,
+            "value": formdata.value,
+          },
+        ),
+      );
 
   Future<Response> addMangaToLibrary(int id) async {
     final response = await get('/$id/library');

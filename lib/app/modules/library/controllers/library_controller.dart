@@ -89,6 +89,7 @@ class LibraryController extends GetxController {
   @override
   void onReady() async {
     mangaFilter = _localStorageService.mangaFilter;
+    mangaSort = _localStorageService.mangaSort;
     _mangaFilter.listen((val) async {
       applyFilter();
       await _localStorageService.setMangeFilter(val);
