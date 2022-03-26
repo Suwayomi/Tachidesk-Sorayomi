@@ -19,8 +19,8 @@ class AppearanceView extends GetView<AppearanceController> {
                 title: Text(LocaleKeys.appearanceScreen_darkTheme_title.tr),
                 subtitle:
                     Text(LocaleKeys.appearanceScreen_darkTheme_subtitle.tr),
-                onChanged: (value) =>
-                    controller.localStorageService.isDark = value,
+                onChanged: (value) async =>
+                    await controller.localStorageService.setIsDark(value),
               ))
         ],
       ),

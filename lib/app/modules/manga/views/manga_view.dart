@@ -9,6 +9,8 @@ import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/manga_controller.dart';
 import '../widgets/chapter_card.dart';
+import '../widgets/manga_chapter_filter_list_view.dart';
+import '../widgets/manga_chapter_sort_list_view.dart';
 import '../widgets/manga_description.dart';
 
 class MangaView extends GetView<MangaController> {
@@ -25,69 +27,214 @@ class MangaView extends GetView<MangaController> {
             IconButton(
               onPressed: () async {
                 await controller.loadCategoryList();
-                Get.defaultDialog(
-                  title: LocaleKeys.mangaScreen_category.tr,
-                  content: SizedBox(
-                    height: 250,
-                    width: 250,
-                    child: controller.categoryList.isNotEmpty
-                        ? ListView.builder(
-                            itemCount: controller.categoryList.length,
-                            itemBuilder: (context, index) {
-                              RxBool isEnabled = controller.mangaCategoryList
-                                  .contains(controller.categoryList[index])
-                                  .obs;
-                              Category category =
-                                  controller.categoryList[index];
-                              return Obx(
-                                () => SwitchListTile(
-                                  value: isEnabled.value,
-                                  title: Text(
-                                    category.name ??
-                                        LocaleKeys.mangaScreen_category.tr,
+                Get.bottomSheet(
+                  BottomSheet(
+                    onClosing: () {},
+                    builder: (context) => DefaultTabController(
+                      length: 3,
+                      child: Scaffold(
+                        appBar: AppBar(
+                          actions: [
+                            // // TODO Need to fix a bug in Tachidesk-server
+                            // https://github.com/Suwayomi/Tachidesk-Server/issues/313
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     controller.setMangaFilterAsDefault();
+                            //   },
+                            //   child: Text(
+                            //     LocaleKeys.mangaScreen_setAsDefault.tr,
+                            //   ),
+                            // ),
+                          ],
+                          bottom: context.width > 600
+                              ? null
+                              : TabBar(
+                                  padding: EdgeInsets.all(8),
+                                  isScrollable: false,
+                                  labelColor: context.theme.indicatorColor,
+                                  unselectedLabelColor:
+                                      context.textTheme.bodyText1!.color,
+                                  indicator: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: context.theme.indicatorColor
+                                        .withOpacity(.3),
                                   ),
-                                  onChanged: (value) {
-                                    isEnabled.value = value;
-                                    if (value) {
-                                      controller.repository.addMangaToCategory(
-                                          controller.manga.value.id!,
-                                          category.id!);
-                                    } else {
-                                      controller.repository
-                                          .removeMangaFromCategory(
-                                              controller.manga.value.id!,
-                                              category.id!);
-                                    }
-                                  },
-                                ),
-                              );
-                            },
-                          )
-                        : ListTile(
-                            title: Text(
-                              LocaleKeys.mangaScreen_addCategoryHint.tr,
-                            ),
-                            onTap: () {
-                              Get.back();
-                              Get.toNamed(Routes.editCategories);
-                            },
-                          ),
-                  ),
-                  cancel: ElevatedButton(
-                    onPressed: () => Get.back(),
-                    child: Text(
-                      LocaleKeys.sourceScreen_close.tr,
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                                  tabs: [
+                                      Tab(
+                                        text: LocaleKeys.mangaScreen_filter.tr,
+                                      ),
+                                      Tab(
+                                        text: LocaleKeys.mangaScreen_sort.tr,
+                                      ),
+                                      Tab(
+                                        text:
+                                            LocaleKeys.mangaScreen_category.tr,
+                                      ),
+                                    ]),
+                        ),
+                        body: context.width > 600
+                            ? Row(
+                                children: [
+                                  Expanded(
+                                    child: MangaChapterFilterListView(
+                                      controller: controller,
+                                    ),
+                                  ),
+                                  VerticalDivider(),
+                                  Expanded(
+                                    child: MangaChapterSortListView(
+                                      controller: controller,
+                                    ),
+                                  ),
+                                  VerticalDivider(),
+                                  Expanded(
+                                    child: controller.categoryList.isNotEmpty
+                                        ? ListView.builder(
+                                            itemCount:
+                                                controller.categoryList.length +
+                                                    1,
+                                            itemBuilder: (context, index) {
+                                              if (index == 0) {
+                                                return context.width < 600
+                                                    ? Container()
+                                                    : ListTile(
+                                                        leading: Chip(
+                                                          backgroundColor:
+                                                              context.theme
+                                                                  .indicatorColor
+                                                                  .withOpacity(
+                                                                      .3),
+                                                          label: Text(
+                                                            LocaleKeys
+                                                                .mangaScreen_category
+                                                                .tr,
+                                                          ),
+                                                          labelStyle: TextStyle(
+                                                              color: context
+                                                                  .theme
+                                                                  .indicatorColor),
+                                                        ),
+                                                      );
+                                              }
+                                              index -= 1;
+                                              RxBool isEnabled = controller
+                                                  .mangaCategoryList
+                                                  .contains(controller
+                                                      .categoryList[index])
+                                                  .obs;
+                                              Category category = controller
+                                                  .categoryList[index];
+                                              return Obx(
+                                                () => SwitchListTile(
+                                                  value: isEnabled.value,
+                                                  title: Text(
+                                                    category.name ??
+                                                        LocaleKeys
+                                                            .mangaScreen_category
+                                                            .tr,
+                                                  ),
+                                                  onChanged: (value) {
+                                                    isEnabled.value = value;
+                                                    if (value) {
+                                                      controller.repository
+                                                          .addMangaToCategory(
+                                                              controller.manga
+                                                                  .value.id!,
+                                                              category.id!);
+                                                    } else {
+                                                      controller.repository
+                                                          .removeMangaFromCategory(
+                                                              controller.manga
+                                                                  .value.id!,
+                                                              category.id!);
+                                                    }
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                          )
+                                        : ListTile(
+                                            title: Text(
+                                              LocaleKeys
+                                                  .mangaScreen_addCategoryHint
+                                                  .tr,
+                                            ),
+                                            onTap: () {
+                                              Get.back();
+                                              Get.toNamed(
+                                                  Routes.editCategories);
+                                            },
+                                          ),
+                                  )
+                                ],
+                              )
+                            : TabBarView(
+                                children: [
+                                  MangaChapterFilterListView(
+                                    controller: controller,
+                                  ),
+                                  MangaChapterSortListView(
+                                    controller: controller,
+                                  ),
+                                  controller.categoryList.isNotEmpty
+                                      ? ListView.builder(
+                                          itemCount:
+                                              controller.categoryList.length,
+                                          itemBuilder: (context, index) {
+                                            RxBool isEnabled = controller
+                                                .mangaCategoryList
+                                                .contains(controller
+                                                    .categoryList[index])
+                                                .obs;
+                                            Category category =
+                                                controller.categoryList[index];
+                                            return Obx(
+                                              () => SwitchListTile(
+                                                value: isEnabled.value,
+                                                title: Text(
+                                                  category.name ??
+                                                      LocaleKeys
+                                                          .mangaScreen_category
+                                                          .tr,
+                                                ),
+                                                onChanged: (value) {
+                                                  isEnabled.value = value;
+                                                  if (value) {
+                                                    controller.repository
+                                                        .addMangaToCategory(
+                                                            controller.manga
+                                                                .value.id!,
+                                                            category.id!);
+                                                  } else {
+                                                    controller.repository
+                                                        .removeMangaFromCategory(
+                                                            controller.manga
+                                                                .value.id!,
+                                                            category.id!);
+                                                  }
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : ListTile(
+                                          title: Text(
+                                            LocaleKeys
+                                                .mangaScreen_addCategoryHint.tr,
+                                          ),
+                                          onTap: () {
+                                            Get.back();
+                                            Get.toNamed(Routes.editCategories);
+                                          },
+                                        ),
+                                ],
+                              ),
                       ),
                     ),
                   ),
                 );
               },
-              icon: Icon(Icons.category_outlined),
+              icon: Icon(Icons.filter_list_rounded),
             ),
           ],
         ),
@@ -142,7 +289,8 @@ class MangaView extends GetView<MangaController> {
                                   )
                                 : controller.chapterList.isEmpty
                                     ? EmoticonsView(
-                                        emptyType:
+                                        text: LocaleKeys.no.tr +
+                                            " " +
                                             LocaleKeys.mangaScreen_noChapter.tr,
                                         button: TextButton.icon(
                                           onPressed: () =>
@@ -226,7 +374,8 @@ class MangaView extends GetView<MangaController> {
                                       ),
                                     ),
                                     EmoticonsView(
-                                      emptyType:
+                                      text: LocaleKeys.no.tr +
+                                          " " +
                                           LocaleKeys.mangaScreen_noChapter.tr,
                                       button: TextButton.icon(
                                         onPressed: () =>

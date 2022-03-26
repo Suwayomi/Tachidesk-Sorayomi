@@ -24,12 +24,13 @@ class ServerSettingsController extends GetxController {
     return from.substring(0, i);
   }
 
-  void submitURL(String url) {
+  void submitURL(String url) async {
     final String urlRegx =
         r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)";
     final String urlLocal = "http://localhost:";
     if (url.startsWith(urlLocal) || RegExp(urlRegx).hasMatch(url)) {
-      localStorageService.baseURL = (removeTrailing("/", url).toLowerCase());
+      await localStorageService
+          .setBaseURL(removeTrailing("/", url).toLowerCase());
       Get.back();
     } else {
       Get.rawSnackbar(

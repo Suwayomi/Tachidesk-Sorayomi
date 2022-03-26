@@ -27,6 +27,11 @@ class BrowseController extends GetxController
   bool get isSearching => _isSearching.value;
   set isSearching(bool value) => _isSearching.value = value;
 
+  final RxBool _isGlobalMangaSearching = false.obs;
+  bool get isGlobalMangaSearching => _isGlobalMangaSearching.value;
+  set isGlobalMangaSearching(bool value) =>
+      _isGlobalMangaSearching.value = value;
+
   void installExtensionApk() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowedExtensions: ["apk"],

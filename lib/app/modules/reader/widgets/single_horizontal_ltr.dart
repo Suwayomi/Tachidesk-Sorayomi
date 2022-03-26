@@ -47,7 +47,9 @@ class SingleHorizontalLTR extends StatelessWidget {
                       height: context.height,
                       child: Center(
                         child: EmoticonsView(
-                          emptyType: LocaleKeys.readerScreen_image.tr,
+                          text: LocaleKeys.no.tr +
+                              " " +
+                              LocaleKeys.readerScreen_image.tr,
                         ),
                       ),
                     ),

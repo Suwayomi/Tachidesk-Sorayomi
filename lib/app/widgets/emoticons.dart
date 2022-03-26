@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../generated/locales.g.dart';
-
 const errorFaces = [
   '(･o･;)',
   'Σ(ಠ_ಠ)',
@@ -18,10 +16,10 @@ const errorFaces = [
 class EmoticonsView extends StatelessWidget {
   const EmoticonsView({
     Key? key,
-    required this.emptyType,
+    required this.text,
     this.button,
   }) : super(key: key);
-  final String emptyType;
+  final String text;
   final Widget? button;
 
   @override
@@ -36,7 +34,7 @@ class EmoticonsView extends StatelessWidget {
             style: Get.textTheme.headlineLarge,
           ),
           subtitle: Text(
-            LocaleKeys.no.tr + " " + emptyType,
+            text,
             textAlign: TextAlign.center,
             style: Get.textTheme.headlineSmall,
           ),

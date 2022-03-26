@@ -15,7 +15,7 @@ class ReaderSettingsController extends GetxController {
 
     localStorageService.box.listenKey(
       readerModeKey,
-      (value) => readerMode.value = stringToReaderMode(value),
+      (value) => readerMode.value = readerModeFromString(value),
     );
     super.onInit();
   }

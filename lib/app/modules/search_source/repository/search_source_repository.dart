@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
 
 import '../../../data/providers/source_provider.dart';
-import '../../../data/source_manga_list_model.dart';
 import '../../../data/source_model.dart';
 
 class SearchSourceRepository {
   final SourceProvider _sourceProvider = Get.put(SourceProvider());
 
-  Future<SourceMangaList?> getSourceSearch({
+  Future<Map<String, dynamic>?> getSourceSearch({
     required String sourceId,
     required int pageNum,
     required String searchTerm,

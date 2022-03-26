@@ -9,7 +9,7 @@ enum ReaderMode {
   webtoon,
 }
 
-ReaderMode stringToReaderMode(String? value) {
+ReaderMode readerModeFromString(String? value) {
   return ReaderMode.values.firstWhere(
     (element) => element.name == value,
     orElse: () => ReaderMode.webtoon,

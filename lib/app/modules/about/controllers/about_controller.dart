@@ -7,12 +7,12 @@ class AboutController extends GetxController {
   final Rx<About?> _about = About().obs;
   final AboutRepository repository = AboutRepository();
 
-  About? get getAbout => _about.value;
-  set setAbout(About? about) => _about.value = about;
+  About? get about => _about.value;
+  set about(About? about) => _about.value = about;
 
   @override
   void onReady() async {
-    setAbout = await repository.getAbout();
+    about = await repository.getAbout();
     super.onReady();
   }
 }

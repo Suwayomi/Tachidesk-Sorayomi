@@ -16,8 +16,8 @@ class BrowseSettingsView extends GetView<BrowseSettingsController> {
           children: [
             Obx(() => SwitchListTile(
                   value: controller.showNSFW,
-                  onChanged: (value) =>
-                      controller.localStorageService.showNSFW = value,
+                  onChanged: (value) async =>
+                      await controller.localStorageService.setShowNSFW(value),
                   title: Text(LocaleKeys.browserSettingsScreen_nsfw_title.tr),
                   subtitle:
                       Text(LocaleKeys.browserSettingsScreen_nsfw_subtitle.tr),

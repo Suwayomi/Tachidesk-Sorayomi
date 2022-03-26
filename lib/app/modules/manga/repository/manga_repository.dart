@@ -33,6 +33,16 @@ class MangaRepository {
     );
   }
 
+  Future<Response> patchMangaMeta(
+    Manga manga,
+    MapEntry<String, String> formData,
+  ) {
+    return _mangaProvider.patchMangaMeta(
+      manga.id!,
+      formData,
+    );
+  }
+
   Future<Response> deleteChapter(Chapter chapter) {
     return _chapterProvider.deletedownloadedChapter(
       mangaId: chapter.mangaId!,

@@ -2,6 +2,8 @@
     "aboutScreen": {
         "buildTime": "Build Time",
         "channel": "Channel",
+        "client": "Client",
+        "clientVersion": "Client Version",
         "discord": "Discord",
         "flutter": "Flutter",
         "gitHub": "GitHub",
@@ -9,7 +11,8 @@
             "title": "@website URL failed to launch"
         },
         "server": "Server",
-        "serverVersion": "Server version"
+        "serverVersion": "Server version",
+        "sorayomi": "Soroyomi"
     },
     "appTitle": "Tachidesk Sorayomi",
     "appearanceScreen": {
@@ -110,9 +113,18 @@
         "searchGlobally": "Search Globally"
     },
     "libraryScreen": {
+        "filter": "Filter",
+        "filterCompleted": "Completed",
+        "filterDownloaded": "Downloaded",
+        "filterUnread": "Unread",
         "manga": "Manga",
         "mangaSearch": "Search manga..",
-        "refresh": "Refresh"
+        "refresh": "Refresh",
+        "sort": "Sort",
+        "sortId": "Id",
+        "sortInLibraryAt": "In Library",
+        "sortTitle": "Title",
+        "sortUnread": "Unread"
     },
     "loading": "Loading",
     "mangaGridDesign": {
@@ -133,11 +145,19 @@
             "removeBookmark": "Remove bookmark"
         },
         "chapters": "Chapters",
+        "filter": "Filter",
+        "filterBookmarked": "Bookmarked",
+        "filterDownloaded": "Downloaded",
+        "filterUnread": "Unread",
         "inLibrary": "In library",
         "manga": "Manga",
         "noChapter": "chapter found",
         "noNewChapter": "No new chapter",
         "reload": "Reload",
+        "setAsDefault":"Set as default",
+        "sort": "Sort",
+        "sortFetchedAt": "Fetched date",
+        "sortScanlator": "Source",
         "source": "Source",
         "status": "Status",
         "unknown": "Unknown",
@@ -183,7 +203,8 @@
     },
     "searchManga": {
         "search": "Search",
-        "searchManga": "Search manga.."
+        "searchManga": "Search manga..",
+        "noMangaFound": "No Manga Found"
     },
     "serverSettingsScreen": {
         "url": "Server URL",
@@ -201,8 +222,10 @@
     "sourceMangaScreen": {
         "browse": "Browse manga",
         "latest": "Latest manga",
-        "loadMore": "Load more!",
+        "loading": "Loading!",
         "manga": "Manga",
+        "filter": "Filter",
+        "reset": "Reset",
         "reload": "Reload!"
     },
     "sourceScreen": {

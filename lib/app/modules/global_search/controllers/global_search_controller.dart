@@ -17,14 +17,6 @@ class GlobalSearchController extends GetxController {
   List<Source> get sourceList => _sourceList;
   set sourceList(List<Source> value) => _sourceList.value = value;
 
-  void search() async {
-    query = textEditingController.text;
-    sourceList = (await repository.getSourceList())
-            ?.skipWhile((value) => value.id == '0')
-            .toList() ??
-        sourceList;
-  }
-
   @override
   void onInit() {
     textEditingController.text = Get.parameters["query"] ?? "";

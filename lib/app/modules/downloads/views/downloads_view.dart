@@ -30,66 +30,72 @@ class DownloadsView extends GetView<DownloadsController> {
                   ),
                 )
               : Container()),
-      body: Obx(() => controller.downloadsList.queue?.isNotEmpty ?? false
-          ? ReorderableListView.builder(
-              itemCount: controller.downloadsList.queue?.length ?? 0,
-              buildDefaultDragHandles: false,
-              itemBuilder: (context, index) {
-                final item = controller.downloadsList.queue?[index];
-                return ListTile(
-                  key: ValueKey(item),
-                  title: Text(item?.manga?.title ?? ""),
-                  subtitle: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(item?.chapter?.name ?? ""),
-                            Text("${((item?.progress ?? 0) * 100).toInt()}%"),
-                          ],
+      body: Obx(
+        () => controller.downloadsList.queue?.isNotEmpty ?? false
+            ? ReorderableListView.builder(
+                itemCount: controller.downloadsList.queue?.length ?? 0,
+                buildDefaultDragHandles: false,
+                itemBuilder: (context, index) {
+                  final item = controller.downloadsList.queue?[index];
+                  return ListTile(
+                    key: ValueKey(item),
+                    title: Text(item?.manga?.title ?? ""),
+                    subtitle: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(item?.chapter?.name ?? ""),
+                              Text("${((item?.progress ?? 0) * 100).toInt()}%"),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        child: LinearProgressIndicator(
-                          value: item?.progress,
-                          color: context.theme.indicatorColor,
-                          semanticsValue:
-                              "${(item?.progress ?? 0 * 100).toInt()}%",
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: LinearProgressIndicator(
+                            value: item?.progress,
+                            color: context.theme.indicatorColor,
+                            semanticsValue:
+                                "${(item?.progress ?? 0 * 100).toInt()}%",
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  // leading: ReorderableDragStartListener(
-                  //   index: index,
-                  //   child: Icon(
-                  //     Icons.drag_handle_outlined,
-                  //   ),
-                  // ),
-                  // trailing: PopupMenuButton(
-                  //   itemBuilder: (context) => [
-                  //     PopupMenuItem(
-                  //       child: Text("Delete"),
-                  //       onTap: () async => ((await controller
-                  //               .downloadQueueValueRepository
-                  //               .startDownload(item!))
-                  //           .body),
-                  //     ),
-                  //   ],
-                  // ),
-                  trailing: IconButton(
-                      onPressed: () =>
-                          controller.deleteFromDownloadQueue(item!),
-                      icon: Icon(Icons.delete)),
-                );
-              },
-              onReorder: (int oldIndex, int newIndex) {},
-            )
-          : EmoticonsView(emptyType: LocaleKeys.screenTitle_downloads.tr)),
+                      ],
+                    ),
+                    // leading: ReorderableDragStartListener(
+                    //   index: index,
+                    //   child: Icon(
+                    //     Icons.drag_handle_outlined,
+                    //   ),
+                    // ),
+                    // trailing: PopupMenuButton(
+                    //   itemBuilder: (context) => [
+                    //     PopupMenuItem(
+                    //       child: Text("Delete"),
+                    //       onTap: () async => ((await controller
+                    //               .downloadQueueValueRepository
+                    //               .startDownload(item!))
+                    //           .body),
+                    //     ),
+                    //   ],
+                    // ),
+                    trailing: IconButton(
+                        onPressed: () =>
+                            controller.deleteFromDownloadQueue(item!),
+                        icon: Icon(Icons.delete)),
+                  );
+                },
+                onReorder: (int oldIndex, int newIndex) {},
+              )
+            : EmoticonsView(
+                text: LocaleKeys.no.tr +
+                    " " +
+                    LocaleKeys.screenTitle_downloads.tr,
+              ),
+      ),
     );
   }
 }

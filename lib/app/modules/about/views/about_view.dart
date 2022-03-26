@@ -29,19 +29,32 @@ class AboutView extends GetView<AboutController> {
               ),
               Divider(thickness: 2),
               ListTile(
+                title: Text(LocaleKeys.aboutScreen_client.tr),
+                subtitle: Text(LocaleKeys.aboutScreen_sorayomi.tr),
+              ),
+              // ListTile(
+              //   title: Text(LocaleKeys.aboutScreen_clientVersion.tr),
+              //   subtitle: Text(controller.about?.version ??
+              //       "" +
+              //           (controller.about?.buildType == "Stable"
+              //               ? " - ${controller.about?.revision}"
+              //               : "")),
+              // ),
+              Divider(thickness: 2),
+              ListTile(
                 title: Text(LocaleKeys.aboutScreen_server.tr),
-                subtitle: Text(controller.getAbout?.name ?? ""),
+                subtitle: Text(controller.about?.name ?? ""),
               ),
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_channel.tr),
-                subtitle: Text(controller.getAbout?.buildType ?? ""),
+                subtitle: Text(controller.about?.buildType ?? ""),
               ),
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_serverVersion.tr),
-                subtitle: Text(controller.getAbout?.version ??
+                subtitle: Text(controller.about?.version ??
                     "" +
-                        (controller.getAbout?.buildType == "Stable"
-                            ? " - ${controller.getAbout?.revision}"
+                        (controller.about?.buildType == "Stable"
+                            ? " - ${controller.about?.revision}"
                             : "")),
               ),
               ListTile(
@@ -49,7 +62,7 @@ class AboutView extends GetView<AboutController> {
                 subtitle: Text(
                   DateFormat("MMMM dd, yyyy hh:mm aaa").format(
                     DateTime.fromMillisecondsSinceEpoch(
-                        (controller.getAbout?.buildTime ?? 0) * 1000),
+                        (controller.about?.buildTime ?? 0) * 1000),
                   ),
                 ),
               ),
@@ -59,13 +72,13 @@ class AboutView extends GetView<AboutController> {
                   LocaleKeys.aboutScreen_gitHub.tr +
                       " (${LocaleKeys.aboutScreen_server.tr})",
                 ),
-                subtitle: Text(controller.getAbout?.github ?? ""),
+                subtitle: Text(controller.about?.github ?? ""),
                 onTap: () async {
-                  if (!await launch(controller.getAbout?.github ?? "",
+                  if (!await launch(controller.about?.github ?? "",
                       forceSafariVC: false, forceWebView: false)) {
                     Clipboard.setData(
                       ClipboardData(
-                        text: controller.getAbout?.github,
+                        text: controller.about?.github,
                       ),
                     );
                     Get.rawSnackbar(
@@ -73,7 +86,7 @@ class AboutView extends GetView<AboutController> {
                         "website": LocaleKeys.aboutScreen_gitHub.tr,
                       }),
                       message: LocaleKeys.error_launchURL_message.trParams(
-                        {"url": controller.getAbout?.github ?? ""},
+                        {"url": controller.about?.github ?? ""},
                       ),
                     );
                   }
@@ -90,7 +103,7 @@ class AboutView extends GetView<AboutController> {
                       forceSafariVC: false, forceWebView: false)) {
                     Clipboard.setData(
                       ClipboardData(
-                        text: controller.getAbout?.github,
+                        text: controller.about?.github,
                       ),
                     );
                     Get.rawSnackbar(
@@ -98,7 +111,7 @@ class AboutView extends GetView<AboutController> {
                         "website": LocaleKeys.aboutScreen_gitHub.tr,
                       }),
                       message: LocaleKeys.error_launchURL_message.trParams(
-                        {"url": controller.getAbout?.github ?? ""},
+                        {"url": controller.about?.github ?? ""},
                       ),
                     );
                   }
@@ -106,13 +119,13 @@ class AboutView extends GetView<AboutController> {
               ),
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_discord.tr),
-                subtitle: Text(controller.getAbout?.discord ?? ""),
+                subtitle: Text(controller.about?.discord ?? ""),
                 onTap: () async {
-                  if (!await launch(controller.getAbout?.discord ?? "",
+                  if (!await launch(controller.about?.discord ?? "",
                       forceSafariVC: false, forceWebView: false)) {
                     Clipboard.setData(
                       ClipboardData(
-                        text: controller.getAbout?.discord,
+                        text: controller.about?.discord,
                       ),
                     );
                     Get.rawSnackbar(
@@ -120,7 +133,7 @@ class AboutView extends GetView<AboutController> {
                         "website": LocaleKeys.aboutScreen_discord.tr,
                       }),
                       message: LocaleKeys.error_launchURL_message.trParams(
-                        {"url": controller.getAbout?.discord ?? ""},
+                        {"url": controller.about?.discord ?? ""},
                       ),
                     );
                   }

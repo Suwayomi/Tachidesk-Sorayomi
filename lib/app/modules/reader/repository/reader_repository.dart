@@ -17,7 +17,10 @@ class ReaderRepository {
     );
   }
 
-  Future<Response> patchMangaMeta(Manga manga, Map<String, dynamic> formData) {
+  Future<Response> patchMangaMeta(
+    Manga manga,
+    MapEntry<String, String> formData,
+  ) {
     return _mangaProvider.patchMangaMeta(
       manga.id!,
       formData,

@@ -85,10 +85,10 @@ class ReaderController extends GetxController {
     this.readerMode = readerMode ?? this.readerMode;
     await repository.patchMangaMeta(
       manga,
-      {
-        "key": readerModeKey,
-        "value": this.readerMode.name,
-      },
+      MapEntry(
+        readerModeKey,
+        this.readerMode.name,
+      ),
     );
   }
 
@@ -111,7 +111,7 @@ class ReaderController extends GetxController {
         chapter;
     manga = (await repository.getManga(mangaId)) ?? manga;
     readerMode = (manga.meta?[readerModeKey] != null
-        ? stringToReaderMode(manga.meta![readerModeKey])
+        ? readerModeFromString(manga.meta![readerModeKey])
         : readerMode);
     isDataLoading = true;
     isLoading = false;

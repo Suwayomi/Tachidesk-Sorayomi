@@ -1,20 +1,32 @@
 import 'package:get/get.dart';
 
+import '../../../../main.dart';
+import '../../../core/utils/chapter/apply_chapter_filter.dart';
+import '../../../core/utils/chapter/apply_chapter_sort.dart';
 import '../../../core/utils/check_if_json.dart';
 import '../../../data/category_model.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/downloads_model.dart';
+import '../../../data/enums/chapter/chapter_filter.dart';
+import '../../../data/enums/chapter/chapter_sort.dart';
 import '../../../data/manga_model.dart';
 import '../../library/controllers/library_controller.dart';
 import '../repository/manga_repository.dart';
 
 class MangaController extends GetxController {
+  final LocalStorageService _localStorageService =
+      Get.find<LocalStorageService>();
   final MangaRepository repository = MangaRepository();
   final Rx<Manga> manga = Manga().obs;
   late int id;
   final RxBool isLoading = false.obs;
   final RxBool isPageLoading = false.obs;
+
   final RxList<Chapter?> _chapterList = <Chapter?>[].obs;
+  List<Chapter?> chapterListCopy = <Chapter?>[];
+  List<Chapter?> get chapterList => _chapterList;
+  set chapterList(List<Chapter?> value) => _chapterList.value = value;
+  void chapterListRefresh() => _chapterList.refresh();
 
   final RxList<Category> _categoryList = <Category>[].obs;
   set categoryList(List<Category> value) => _categoryList.value = value;
@@ -24,10 +36,6 @@ class MangaController extends GetxController {
   set mangaCategoryList(List<Category> value) =>
       _mangaCategoryList.value = value;
   List<Category> get mangaCategoryList => _mangaCategoryList;
-
-  List<Chapter?> get chapterList => _chapterList;
-  set chapterList(List<Chapter?> value) => _chapterList.value = value;
-  void chapterListRefresh() => _chapterList.refresh();
 
   final Rx<Chapter> _firstUnreadChapter = Chapter(index: -1).obs;
   Chapter get firstUnreadChapter => _firstUnreadChapter.value;
@@ -40,10 +48,39 @@ class MangaController extends GetxController {
   Downloads get downloadsList => _downloadsList.value;
   set downloadsList(Downloads value) => _downloadsList.value = value;
 
+  final RxMap<ChapterFilter, bool?> _chapterFilter = <ChapterFilter, bool?>{
+    for (var element in ChapterFilter.values) element: null
+  }.obs;
+  Map<ChapterFilter, bool?> get chapterFilter => _chapterFilter;
+  set chapterFilter(Map<ChapterFilter, bool?> value) =>
+      _chapterFilter.value = value;
+
+  final Rx<MapEntry<ChapterSort, bool>> _chapterSort =
+      MapEntry(ChapterSort.fetchedAt, true).obs;
+  MapEntry<ChapterSort, bool> get chapterSort => _chapterSort.value;
+  set chapterSort(MapEntry<ChapterSort, bool> value) =>
+      _chapterSort.value = value;
+
   Future<void> loadManga() async {
     manga.value = await repository.getManga(id,
             fetchFreshData: !(manga.value.freshData ?? true)) ??
         manga.value;
+
+    // //#TODO  Need to fix a bug in Tachidesk-server
+    // https://github.com/Suwayomi/Tachidesk-Server/issues/313
+
+    // print(manga.value.meta);
+    // chapterFilter =
+    // manga.value.meta?[chapterFilterKey] != null
+    //     ? jsonDecode(manga.value.meta?[chapterFilterKey])
+    //         .map((key, value) => MapEntry(chapterFilterFromString(key), value))
+    //     : chapterFilter;
+    // Map? map = manga.value.meta?[chapterSortKey] != null
+    //     ? jsonDecode(manga.value.meta?[chapterSortKey])
+    //     : null;
+    // chapterSort = map != null
+    //     ? MapEntry(chapterSortfromString(map["key"]), map["value"])
+    //     : chapterSort;
   }
 
   Future<void> removeMangaFromLibrary() async {
@@ -77,16 +114,31 @@ class MangaController extends GetxController {
       {bool loadingWidget = true, bool onlineFetch = false}) async {
     if (loadingWidget) {
       isLoading.value = true;
-      chapterList =
+      chapterListCopy =
           (await repository.getChaptersList(id, onlineFetch: onlineFetch)) ??
-              chapterList;
+              chapterListCopy;
       isLoading.value = false;
     } else {
-      chapterList =
+      chapterListCopy =
           (await repository.getChaptersList(id, onlineFetch: onlineFetch)) ??
-              chapterList;
+              chapterListCopy;
     }
+    applyFilter();
     getFirstUnreadChapter();
+  }
+
+  void applyFilter() {
+    chapterList = chapterListCopy
+        .where(
+          (element) => element != null
+              ? applyChapterFilter(chapterFilter, element)
+              : false,
+        )
+        .toList()
+      ..sort((a, b) {
+        if (a == null || b == null) return 0;
+        return applyChapterSort(chapterSort, a, b);
+      });
   }
 
   Future<void> modifyChapter(Chapter chapter, String key, dynamic value) async {
@@ -115,6 +167,11 @@ class MangaController extends GetxController {
             mangaCategoryList;
   }
 
+  Future<void> setMangaFilterAsDefault() async {
+    await _localStorageService.setChapterSort(chapterSort);
+    await _localStorageService.setChapterFilter(chapterFilter);
+  }
+
   @override
   void onInit() {
     id = int.parse(Get.parameters["mangaId"]!);
@@ -124,6 +181,39 @@ class MangaController extends GetxController {
 
   @override
   void onReady() async {
+    chapterFilter = _localStorageService.chapterFilter;
+    chapterSort = _localStorageService.chapterSort;
+    _chapterFilter.listen((val) async {
+      applyFilter();
+      await _localStorageService.setChapterFilter(chapterFilter);
+
+      // // TODO  Need to fix a bug in Tachidesk-server
+      // https://github.com/Suwayomi/Tachidesk-Server/issues/313
+      // await repository.patchMangaMeta(
+      //     manga.value,
+      //     MapEntry(
+      //       chapterFilterKey,
+      //       jsonEncode(val.map<String, bool?>(
+      //         (key, value) => MapEntry(key.name, value),
+      //       )),
+      //     ));
+    });
+    _chapterSort.listen((val) async {
+      applyFilter();
+      await _localStorageService.setChapterSort(chapterSort);
+
+      // // TODO  Need to fix a bug in Tachidesk-server
+      // https://github.com/Suwayomi/Tachidesk-Server/issues/313
+      // await repository.patchMangaMeta(
+      //   manga.value,
+      //   MapEntry(
+      //     chapterSortKey,
+      //     jsonEncode(
+      //       {"key": val.key.name, "value": val.value},
+      //     ),
+      //   ),
+      // );
+    });
     isPageLoading.value = true;
     await loadManga();
     isPageLoading.value = false;

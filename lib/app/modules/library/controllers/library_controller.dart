@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../main.dart';
+import '../../../core/utils/manga/apply_manga_filter.dart';
+import '../../../core/utils/manga/apply_manga_sort.dart';
 import '../../../data/category_model.dart';
+import '../../../data/enums/manga/manga_filter.dart';
+import '../../../data/enums/manga/manga_sort.dart';
 import '../../../data/manga_model.dart';
 import '../../home/controllers/home_controller.dart';
 import '../repository/library_repository.dart';
@@ -10,8 +15,21 @@ import '../repository/library_repository.dart';
 class LibraryController extends GetxController {
   final LibraryRepository repository = LibraryRepository();
   final TextEditingController textEditingController = TextEditingController();
+  final LocalStorageService _localStorageService =
+      Get.find<LocalStorageService>();
   final ScrollController scrollController = ScrollController();
   final RxInt tabIndex = 0.obs;
+
+  final RxMap<MangaFilter, bool?> _mangaFilter = <MangaFilter, bool?>{
+    for (var element in MangaFilter.values) element: null
+  }.obs;
+  Map<MangaFilter, bool?> get mangaFilter => _mangaFilter;
+  set mangaFilter(Map<MangaFilter, bool?> value) => _mangaFilter.value = value;
+
+  final Rx<MapEntry<MangaSort, bool>> _mangaSort =
+      MapEntry(MangaSort.id, true).obs;
+  MapEntry<MangaSort, bool> get mangaSort => _mangaSort.value;
+  set mangaSort(MapEntry<MangaSort, bool> value) => _mangaSort.value = value;
 
   final RxBool _isSearching = false.obs;
   bool get isSearching => _isSearching.value;
@@ -35,6 +53,7 @@ class LibraryController extends GetxController {
   List<Manga> get mangaList => _mangaList;
   set mangaList(List<Manga> mangaList) => _mangaList.value = mangaList;
   int get mangaListLength => _mangaList.length;
+  List<Manga> mangaListCopy = [];
 
   Future<void> loadCategoryList() async {
     isCategoryLoading = true;
@@ -45,26 +64,22 @@ class LibraryController extends GetxController {
   Future<void> loadMangaListWithCategoryId() async {
     isLoading = true;
     if (categoryList.isEmpty) return;
-    if (textEditingController.text.isNotEmpty) {
-      mangaList = (await repository
-              .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!))
-          .where((element) => (element.title ?? "")
-              .toLowerCase()
-              .contains(textEditingController.text.toLowerCase()))
-          .toList();
-    } else {
-      if (categoryList.isNotEmpty) {
-        mangaList = (await repository
-            .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!));
-      }
-    }
+    mangaListCopy = await repository
+        .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!);
+    applyFilter();
     isLoading = false;
   }
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
+  void applyFilter() {
+    mangaList = mangaListCopy
+        .where((element) =>
+            (element.title ?? "")
+                .toLowerCase()
+                .contains(textEditingController.text.toLowerCase()) &&
+            applyMangaFilter(mangaFilter, element))
+        .toList()
+      ..sort((a, b) => applyMangaSort(mangaSort, a, b));
+  }
 
   Future<void> refreshLibraryScreen() async {
     await loadCategoryList();
@@ -73,10 +88,19 @@ class LibraryController extends GetxController {
 
   @override
   void onReady() async {
+    mangaFilter = _localStorageService.mangaFilter;
+    mangaSort = _localStorageService.mangaSort;
+    _mangaFilter.listen((val) async {
+      applyFilter();
+      await _localStorageService.setMangeFilter(val);
+    });
+    _mangaSort.listen((val) async {
+      applyFilter();
+      await _localStorageService.setMangeSort(val);
+    });
+    textEditingController.addListener(() => applyFilter());
     await refreshLibraryScreen();
-    textEditingController.addListener(
-      () => loadMangaListWithCategoryId(),
-    );
+
     Get.find<HomeController>().selectedIndexObs.listen((value) async {
       tabIndex.value = 0;
       if (value.isEqual(0)) await refreshLibraryScreen();
