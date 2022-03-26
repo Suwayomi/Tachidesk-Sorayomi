@@ -29,8 +29,8 @@ class SearchSourceController extends GetxController {
   Future<void> getNextPage(int pageKey) async {
     if (textEditingController.text.isEmpty) return;
     Map<String, dynamic>? sourceMangaListTemp =
-        await repository.getSourceSearch(
-            searchTerm: textEditingController.text,
+        await repository.getSourceMangaList(
+            query: textEditingController.text,
             pageNum: pageKey,
             sourceId: sourceId);
     if (sourceMangaListTemp != null) {
@@ -38,7 +38,7 @@ class SearchSourceController extends GetxController {
         pagingController.appendPage(
             sourceMangaListTemp["mangaList"], pageKey + 1);
       } else {
-        pagingController.appendLastPage([]);
+        pagingController.appendLastPage(sourceMangaListTemp["mangaList"]);
       }
     }
   }

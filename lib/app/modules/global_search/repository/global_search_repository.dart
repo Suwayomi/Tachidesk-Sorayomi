@@ -8,13 +8,13 @@ class GlobalSearchRepository {
 
   Future<List<Source>?> getSourceList() => _sourceProvider.getSourceList();
 
-  Future<Map<String, dynamic>?> getSourceSearch({
+  Future<Map<String, dynamic>?> getSourceMangaList({
     required String sourceId,
-    required String searchTerm,
+    required String query,
   }) =>
-      _sourceProvider.getSourceSearch(
+      _sourceProvider.getSourceMangaList(
         sourceId: sourceId,
         pageNum: 1,
-        searchTerm: searchTerm,
+        query: query,
       );
 }

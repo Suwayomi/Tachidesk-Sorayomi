@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 import '../../../main.dart';
@@ -50,62 +52,56 @@ class SourceProvider extends GetConnect {
     required List<Map<String, dynamic>> sourceFilter,
   }) async {
     List<Map<String, dynamic>> filter = [];
+    var oldSourceFilter = await getSourceFilter(sourceId: sourceId);
     for (int i = 0; i < sourceFilter.length; i++) {
+      if (jsonEncode(oldSourceFilter[i]) == jsonEncode(sourceFilter[i])) {
+        continue;
+      }
       if (sourceFilter[i]["type"] == "Group") {
         for (int j = 0;
             j < (sourceFilter[i]["filter"]["state"] as List).length;
             j++) {
+          if (jsonEncode(oldSourceFilter[i]["filter"]["state"][j]) ==
+              jsonEncode(sourceFilter[i]["filter"]["state"][j])) continue;
           filter.add(({
             "position": i,
-            "state": {
+            "state": jsonEncode({
               "position": j,
-              "state": sourceFilter[i]["filter"]["state"][j]["filter"]["state"],
-            }
+              "state": sourceFilter[i]["filter"]["state"][j]["type"] == "Text"
+                  ? sourceFilter[i]["filter"]["state"][j]["filter"]["state"]
+                  : jsonEncode(
+                      sourceFilter[i]["filter"]["state"][j]["filter"]["state"]),
+            })
           }));
         }
       } else {
         filter.add(({
           "position": i,
-          "state": sourceFilter[i]["filter"]["state"],
+          "state": sourceFilter[i]["type"] == "Text"
+              ? sourceFilter[i]["filter"]["state"]
+              : jsonEncode(sourceFilter[i]["filter"]["state"]),
         }));
       }
     }
-
-    Response response = (await post('/$sourceId/filters', (filter)));
-    print(response.statusCode);
-  }
-
-  Future<Map<String, dynamic>?> getSourceSearch(
-      {required String sourceId,
-      required String searchTerm,
-      required int pageNum}) async {
-    final response = await get<Map<String, dynamic>?>(
-      "/$sourceId/search?searchTerm=$searchTerm&pageNum=$pageNum",
-      decoder: (map) {
-        if (map is Map<String, dynamic>) {
-          return {
-            "hasNextPage": map['hasNextPage'],
-            "mangaList": map['mangaList'] != null
-                ? List<Manga>.from(
-                    map['mangaList']?.map((x) => Manga.fromMap(x)))
-                : null,
-          };
-        }
-        return null;
-      },
-    );
-    if (response.hasError) return {"hasNextPage": true, "mangaList": <Manga>[]};
-
-    return response.body;
+    //TODO NEED to Fix (Send request as list insted of spamming)
+    //after version 0.6.2
+    for (var i in filter) {
+      await post('/$sourceId/filters', jsonEncode(i));
+    }
   }
 
   Future<Map<String, dynamic>?> getSourceMangaList({
     required String sourceId,
     required int pageNum,
-    required SourceType sourceType,
+    SourceType sourceType = SourceType.popular,
+    String? query,
+    bool isFilter = false,
   }) async {
     final response = await get<Map<String, dynamic>?>(
-      "/$sourceId/${sourceType.name}/$pageNum",
+      "/$sourceId/" +
+          (((query != null && query.isNotEmpty) || isFilter)
+              ? 'search?pageNum=$pageNum&searchTerm=' + (query ?? "")
+              : (sourceType.name + "/$pageNum")),
       decoder: (map) {
         if (map is Map<String, dynamic>) {
           return {

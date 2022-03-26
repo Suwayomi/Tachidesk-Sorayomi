@@ -11,11 +11,13 @@ class SourceMangaRepository {
     required String sourceId,
     required int pageNum,
     required SourceType sourceType,
+    bool isFilter = false,
   }) =>
       _sourceProvider.getSourceMangaList(
         sourceId: sourceId,
         pageNum: pageNum,
         sourceType: sourceType,
+        isFilter: isFilter,
       );
 
   Future<Source?> getSource({required String sourceId}) =>
