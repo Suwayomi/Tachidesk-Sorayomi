@@ -38,7 +38,7 @@ class SearchSourceController extends GetxController {
         pagingController.appendPage(
             sourceMangaListTemp["mangaList"], pageKey + 1);
       } else {
-        pagingController.appendLastPage([]);
+        pagingController.appendLastPage(sourceMangaListTemp["mangaList"]);
       }
     }
   }
