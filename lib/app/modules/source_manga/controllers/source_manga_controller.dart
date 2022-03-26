@@ -1,53 +1,74 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../data/enums/source_type.dart';
-import '../../../data/source_manga_list_model.dart';
+import '../../../data/manga_model.dart';
 import '../../../data/source_model.dart';
 import '../repository/source_manga_repository.dart';
 
 class SourceMangaController extends GetxController {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final PagingController<int, Manga> pagingController =
+      PagingController(firstPageKey: 1);
+  final TextEditingController textEditingController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+
   final SourceMangaRepository repository = SourceMangaRepository();
-  int _page = 1;
+
   late String sourceId;
   late SourceType sourceType;
-  final ScrollController scrollController = ScrollController();
-  final Rx<Source> _source = Source().obs;
 
+  final RxList<Map<String, dynamic>> _sourceMangaFilterList =
+      <Map<String, dynamic>>[].obs;
+  List<Map<String, dynamic>> get sourceMangaFilterList =>
+      _sourceMangaFilterList;
+  set sourceMangaFilterList(List<Map<String, dynamic>> value) =>
+      _sourceMangaFilterList.value = value;
+  void sourceMangaFilterListRefresh() => _sourceMangaFilterList.refresh();
+
+  final RxBool _isSearching = false.obs;
+  bool get isSearching => _isSearching.value;
+  set isSearching(bool value) => _isSearching.value = value;
+
+  final Rx<Source> _source = Source().obs;
   Source get source => _source.value;
   set source(Source value) => _source.value = value;
-
-  final Rx<SourceMangaList> _sourceMangaList =
-      SourceMangaList(mangaList: [], hasNextPage: true).obs;
-  SourceMangaList get sourceMangaList => _sourceMangaList.value;
-  set sourceMangaList(SourceMangaList value) => _sourceMangaList.value = value;
 
   final RxBool _isFirstPage = true.obs;
 
   bool get isFirstPage => _isFirstPage.value;
   set isFirstPage(bool value) => _isFirstPage.value = value;
 
-  Future getNextPage({bool isRefresh = false}) async {
-    if (!isRefresh) {
-      if (sourceMangaList.hasNextPage ?? true) {
-        final sourceMangaListTemp = await repository.getSourceMangaList(
-            sourceType: sourceType, pageNum: _page, sourceId: sourceId);
-        _page += 1;
-        sourceMangaList.hasNextPage = sourceMangaListTemp?.hasNextPage ?? true;
-        sourceMangaList.mangaList?.addAll(sourceMangaListTemp?.mangaList ?? []);
-        _sourceMangaList.refresh();
-        isFirstPage = false;
+  Future<void> getNextPage(int pageKey) async {
+    Map<String, dynamic>? sourceMangaListTemp =
+        await repository.getSourceMangaList(
+            sourceType: sourceType, pageNum: pageKey, sourceId: sourceId);
+    if (sourceMangaListTemp != null) {
+      if (sourceMangaListTemp["hasNextPage"]) {
+        pagingController.appendPage(
+            sourceMangaListTemp["mangaList"], pageKey + 1);
+      } else {
+        pagingController.appendLastPage([]);
       }
-    } else {
-      isFirstPage = true;
-      _page = 1;
-      sourceMangaList = (await repository.getSourceMangaList(
-              sourceType: sourceType, pageNum: _page, sourceId: sourceId)) ??
-          sourceMangaList;
-      _page += 1;
-      isFirstPage = false;
     }
+  }
+
+  Future<void> getFilter([bool isReset = false]) async {
+    sourceMangaFilterList = await repository.getSourceFilter(
+      sourceId: sourceId,
+      isReset: isReset,
+    );
+  }
+
+  Future<void> applyFilter() async {
+    await repository.postSourceFilter(
+      sourceId: sourceId,
+      filter: sourceMangaFilterList,
+    );
+    pagingController.refresh();
   }
 
   @override
@@ -56,19 +77,17 @@ class SourceMangaController extends GetxController {
     sourceType = Get.parameters['sourceType']! == SourceType.latest.name
         ? SourceType.latest
         : SourceType.popular;
+    pagingController.addPageRequestListener((pageKey) {
+      getNextPage(pageKey);
+    });
     super.onInit();
   }
 
   @override
   void onReady() async {
+    getFilter();
+    // print(sourceMangaFilterList);
     source = await repository.getSource(sourceId: sourceId) ?? source;
-    await getNextPage();
-    scrollController.addListener(() async {
-      if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) {
-        await getNextPage();
-      }
-    });
     super.onReady();
   }
 

@@ -180,7 +180,9 @@ class ReaderView extends GetView<ReaderController> {
                         controller: controller);
                   })
                 : EmoticonsView(
-                    emptyType: LocaleKeys.readerScreen_chapterError.tr,
+                    text: LocaleKeys.no.tr +
+                        " " +
+                        LocaleKeys.readerScreen_chapterError.tr,
                     button: TextButton.icon(
                       onPressed: () => controller.reloadReader(),
                       style: TextButton.styleFrom(),

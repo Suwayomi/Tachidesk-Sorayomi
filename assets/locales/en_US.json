@@ -203,7 +203,8 @@
     },
     "searchManga": {
         "search": "Search",
-        "searchManga": "Search manga.."
+        "searchManga": "Search manga..",
+        "noMangaFound": "No Manga Found"
     },
     "serverSettingsScreen": {
         "url": "Server URL",
@@ -221,8 +222,10 @@
     "sourceMangaScreen": {
         "browse": "Browse manga",
         "latest": "Latest manga",
-        "loadMore": "Load more!",
+        "loading": "Loading!",
         "manga": "Manga",
+        "filter": "Filter",
+        "reset": "Reset",
         "reload": "Reload!"
     },
     "sourceScreen": {

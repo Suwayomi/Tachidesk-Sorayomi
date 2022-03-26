@@ -30,71 +30,78 @@ class UpdatesView extends GetView<UpdatesController> {
                   ),
             onPressed: () => controller.getNextPage(isRefresh: true),
           )),
-      body: Obx(() => controller.isFirstPage
-          ? Center(child: CircularProgressIndicator())
-          : ((controller.updateRecentChapter.pageList?.isNotEmpty ?? false))
-              ? GroupedListView(
-                  padding: EdgeInsets.all(8),
-                  controller: controller.scrollController,
-                  order: GroupedListOrder.DESC,
-                  itemComparator: (MangaPage element1, MangaPage element2) =>
-                      element1.chapter!.uploadDate!.compareTo(
-                    element2.chapter!.uploadDate!,
-                  ),
-                  elements: controller.updateRecentChapter.pageList!.reversed
-                      .toList(),
-                  groupBy: (MangaPage element) {
-                    final time = DateTime.fromMillisecondsSinceEpoch(
-                        element.chapter!.fetchedAt! * 1000);
-                    return DateTime(time.year, time.month, time.day);
-                  },
-                  itemBuilder: (context, MangaPage item) {
-                    return ListTile(
-                      onTap: () => Get.toNamed(Routes.manga +
-                          "/${item.manga!.id}/chapter/${item.chapter!.index}"),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          controller.localStorageService.baseURL +
-                              (item.manga?.thumbnailUrl ?? ""),
-                          height: 48,
-                          width: 48,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, object, stack) => Image.asset(
-                            iconPngURL,
+      body: Obx(
+        () => controller.isFirstPage
+            ? Center(child: CircularProgressIndicator())
+            : ((controller.updateRecentChapter.pageList?.isNotEmpty ?? false))
+                ? GroupedListView(
+                    padding: EdgeInsets.all(8),
+                    controller: controller.scrollController,
+                    order: GroupedListOrder.DESC,
+                    itemComparator: (MangaPage element1, MangaPage element2) =>
+                        element1.chapter!.uploadDate!.compareTo(
+                      element2.chapter!.uploadDate!,
+                    ),
+                    elements: controller.updateRecentChapter.pageList!.reversed
+                        .toList(),
+                    groupBy: (MangaPage element) {
+                      final time = DateTime.fromMillisecondsSinceEpoch(
+                          element.chapter!.fetchedAt! * 1000);
+                      return DateTime(time.year, time.month, time.day);
+                    },
+                    itemBuilder: (context, MangaPage item) {
+                      return ListTile(
+                        onTap: () => Get.toNamed(Routes.manga +
+                            "/${item.manga!.id}/chapter/${item.chapter!.index}"),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            controller.localStorageService.baseURL +
+                                (item.manga?.thumbnailUrl ?? ""),
                             height: 48,
                             width: 48,
                             fit: BoxFit.cover,
+                            errorBuilder: (context, object, stack) =>
+                                Image.asset(
+                              iconPngURL,
+                              height: 48,
+                              width: 48,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      title: Text(
-                        item.manga?.title ?? "",
-                        style: TextStyle(
-                            color: item.chapter?.read ?? false
-                                ? Colors.grey
-                                : null),
-                      ),
-                      subtitle: Text(
-                        item.chapter?.name ?? "",
-                        style: TextStyle(
-                            color: item.chapter?.read ?? false
-                                ? Colors.grey
-                                : null),
-                      ),
-                      trailing: DownloadState(
-                        controller: controller,
-                        item: item,
-                      ),
-                    );
-                  },
-                  groupSeparatorBuilder: (DateTime value) => ListTile(
-                    title: Text(convertToAgo(value)),
+                        title: Text(
+                          item.manga?.title ?? "",
+                          style: TextStyle(
+                              color: item.chapter?.read ?? false
+                                  ? Colors.grey
+                                  : null),
+                        ),
+                        subtitle: Text(
+                          item.chapter?.name ?? "",
+                          style: TextStyle(
+                              color: item.chapter?.read ?? false
+                                  ? Colors.grey
+                                  : null),
+                        ),
+                        trailing: DownloadState(
+                          controller: controller,
+                          item: item,
+                        ),
+                      );
+                    },
+                    groupSeparatorBuilder: (DateTime value) => ListTile(
+                      title: Text(convertToAgo(value)),
+                    ),
+                  )
+                : EmoticonsView(
+                    text: LocaleKeys.no.tr +
+                        " " +
+                        LocaleKeys.screenTitle_updates.tr,
                   ),
-                )
-              : EmoticonsView(emptyType: LocaleKeys.screenTitle_updates.tr)),
+      ),
     );
   }
 }

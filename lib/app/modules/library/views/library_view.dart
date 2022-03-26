@@ -51,7 +51,7 @@ class LibraryView extends GetView<LibraryController> {
                                     controller: controller.scrollController,
                                     gridDelegate:
                                         SliverGridDelegateWithMaxCrossAxisExtent(
-                                      maxCrossAxisExtent: 250,
+                                      maxCrossAxisExtent: 200,
                                       crossAxisSpacing: 2.0,
                                       mainAxisSpacing: 2.0,
                                       childAspectRatio: 0.7,
@@ -73,7 +73,8 @@ class LibraryView extends GetView<LibraryController> {
                                       child: CircularProgressIndicator(),
                                     )
                                   : EmoticonsView(
-                                      emptyType:
+                                      text: LocaleKeys.no.tr +
+                                          " " +
                                           LocaleKeys.libraryScreen_manga.tr,
                                       button: TextButton.icon(
                                         onPressed: () => controller
@@ -94,7 +95,9 @@ class LibraryView extends GetView<LibraryController> {
                         child: CircularProgressIndicator(),
                       )
                     : EmoticonsView(
-                        emptyType: LocaleKeys.libraryScreen_manga.tr,
+                        text: LocaleKeys.no.tr +
+                            " " +
+                            LocaleKeys.libraryScreen_manga.tr,
                         button: TextButton.icon(
                           onPressed: () => controller.refreshLibraryScreen(),
                           style: TextButton.styleFrom(),

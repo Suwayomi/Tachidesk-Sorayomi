@@ -189,6 +189,7 @@ class LocaleKeys {
   static const screenTitle_updates = 'screenTitle_updates';
   static const searchManga_search = 'searchManga_search';
   static const searchManga_searchManga = 'searchManga_searchManga';
+  static const searchManga_noMangaFound = 'searchManga_noMangaFound';
   static const serverSettingsScreen_url = 'serverSettingsScreen_url';
   static const serverSettingsScreen_webUI = 'serverSettingsScreen_webUI';
   static const settingsScreen_appearance = 'settingsScreen_appearance';
@@ -200,8 +201,10 @@ class LocaleKeys {
   static const settingsScreen_server = 'settingsScreen_server';
   static const sourceMangaScreen_browse = 'sourceMangaScreen_browse';
   static const sourceMangaScreen_latest = 'sourceMangaScreen_latest';
-  static const sourceMangaScreen_loadMore = 'sourceMangaScreen_loadMore';
+  static const sourceMangaScreen_loading = 'sourceMangaScreen_loading';
   static const sourceMangaScreen_manga = 'sourceMangaScreen_manga';
+  static const sourceMangaScreen_filter = 'sourceMangaScreen_filter';
+  static const sourceMangaScreen_reset = 'sourceMangaScreen_reset';
   static const sourceMangaScreen_reload = 'sourceMangaScreen_reload';
   static const sourceScreen_browse = 'sourceScreen_browse';
   static const sourceScreen_close = 'sourceScreen_close';
@@ -357,6 +360,7 @@ class Locales {
     'screenTitle_updates': 'Updates',
     'searchManga_search': 'Search',
     'searchManga_searchManga': 'Search manga..',
+    'searchManga_noMangaFound': 'No Manga Found',
     'serverSettingsScreen_url': 'Server URL',
     'serverSettingsScreen_webUI': 'Open in WEB',
     'settingsScreen_appearance': 'Appearance',
@@ -368,8 +372,10 @@ class Locales {
     'settingsScreen_server': 'Server Settings',
     'sourceMangaScreen_browse': 'Browse manga',
     'sourceMangaScreen_latest': 'Latest manga',
-    'sourceMangaScreen_loadMore': 'Load more!',
+    'sourceMangaScreen_loading': 'Loading!',
     'sourceMangaScreen_manga': 'Manga',
+    'sourceMangaScreen_filter': 'Filter',
+    'sourceMangaScreen_reset': 'Reset',
     'sourceMangaScreen_reload': 'Reload!',
     'sourceScreen_browse': 'Browse',
     'sourceScreen_close': 'Close',

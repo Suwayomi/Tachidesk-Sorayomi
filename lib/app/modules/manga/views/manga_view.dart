@@ -289,7 +289,8 @@ class MangaView extends GetView<MangaController> {
                                   )
                                 : controller.chapterList.isEmpty
                                     ? EmoticonsView(
-                                        emptyType:
+                                        text: LocaleKeys.no.tr +
+                                            " " +
                                             LocaleKeys.mangaScreen_noChapter.tr,
                                         button: TextButton.icon(
                                           onPressed: () =>
@@ -373,7 +374,8 @@ class MangaView extends GetView<MangaController> {
                                       ),
                                     ),
                                     EmoticonsView(
-                                      emptyType:
+                                      text: LocaleKeys.no.tr +
+                                          " " +
                                           LocaleKeys.mangaScreen_noChapter.tr,
                                       button: TextButton.icon(
                                         onPressed: () =>

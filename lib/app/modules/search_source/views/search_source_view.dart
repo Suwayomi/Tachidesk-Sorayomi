@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../data/manga_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
 import '../../../widgets/manga_grid_design.dart';
 import '../controllers/search_source_controller.dart';
+import '../widgets/search_text_field.dart';
 
 class SearchSourceView extends GetView<SearchSourceController> {
   @override
@@ -20,101 +23,69 @@ class SearchSourceView extends GetView<SearchSourceController> {
                         controller.source.name ??
                         "")),
               )
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: controller.textEditingController,
-                  autofocus: true,
-                  onEditingComplete: () =>
-                      controller.getNextPage(isRefresh: true),
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () {
-                        controller.getNextPage(isRefresh: true);
-                      },
-                    ),
-                    border: OutlineInputBorder(),
-                    hintText: LocaleKeys.searchManga_searchManga.tr,
-                  ),
-                ),
-              ),
+            : SearchTextField(controller: controller),
         actions: [
           context.width > 600
-              ? Container(
-                  padding: EdgeInsets.all(8.0),
-                  width: 300,
-                  child: TextField(
-                    controller: controller.textEditingController,
-                    autofocus: true,
-                    onEditingComplete: () =>
-                        controller.getNextPage(isRefresh: true),
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {
-                          controller.getNextPage(isRefresh: true);
-                        },
-                      ),
-                      border: OutlineInputBorder(),
-                      hintText: LocaleKeys.searchManga_searchManga.tr,
-                    ),
-                  ),
-                )
+              ? SearchTextField(controller: controller, width: 300)
               : Container(),
         ],
       ),
-      body: Obx(() => controller.isFirstPage
-          ? Center(child: CircularProgressIndicator())
-          : ((controller.sourceMangaList.mangaList?.isNotEmpty ?? false))
-              ? Scrollbar(
-                  thumbVisibility: true,
-                  controller: controller.scrollController,
-                  child: GridView.builder(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    controller: controller.scrollController,
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 250,
-                      crossAxisSpacing: 2.0,
-                      mainAxisSpacing: 2.0,
-                      childAspectRatio: 0.7,
-                    ),
-                    itemCount:
-                        (controller.sourceMangaList.mangaList?.length ?? 0) + 1,
-                    itemBuilder: (context, index) {
-                      if (index ==
-                          controller.sourceMangaList.mangaList?.length) {
-                        return controller.sourceMangaList.hasNextPage ?? false
-                            ? Card(
-                                child: InkWell(
-                                  onTap: () => controller.getNextPage(),
-                                  child: GridTile(
-                                    child: Icon(Icons.arrow_downward),
-                                    footer: ListTile(
-                                        title: Text(LocaleKeys
-                                            .sourceMangaScreen_loadMore.tr)),
-                                  ),
-                                ),
-                              )
-                            : Container();
-                      }
-                      return MangaGridDesign(
-                        manga: controller.sourceMangaList.mangaList![index],
-                        onTap: () => Get.toNamed(
-                          Routes.manga +
-                              "/${controller.sourceMangaList.mangaList![index].id}",
-                        ),
-                        isLibraryScreen: true,
-                      );
-                    },
-                  ),
-                )
-              : Center(
-                  child: EmoticonsView(
-                    emptyType: LocaleKeys.searchManga_search.tr,
-                  ),
-                )),
+      body: PagedGridView<int, Manga>(
+        pagingController: controller.pagingController,
+        builderDelegate: PagedChildBuilderDelegate(
+          itemBuilder: (context, manga, index) {
+            return MangaGridDesign(
+              manga: manga,
+              onTap: () => Get.toNamed(
+                Routes.manga + "/${manga.id}",
+              ),
+              isLibraryScreen: false,
+            );
+          },
+          noItemsFoundIndicatorBuilder: (context) => Center(
+            child: EmoticonsView(
+              text: LocaleKeys.searchManga_noMangaFound.tr,
+              button: TextButton.icon(
+                onPressed: () => controller.pagingController.refresh(),
+                style: TextButton.styleFrom(),
+                icon: Icon(Icons.refresh),
+                label: Text(
+                  LocaleKeys.mangaScreen_reload.tr,
+                ),
+              ),
+            ),
+          ),
+          newPageProgressIndicatorBuilder: (context) => Card(
+            child: GridTile(
+              child: Center(child: CircularProgressIndicator()),
+              footer: ListTile(
+                title: Text(
+                  LocaleKeys.sourceMangaScreen_loading.tr,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+          ),
+          firstPageErrorIndicatorBuilder: (context) => Center(
+            child: EmoticonsView(
+              text: LocaleKeys.no.tr + " " + LocaleKeys.searchManga_search.tr,
+              button: TextButton.icon(
+                onPressed: () => controller.pagingController.refresh(),
+                icon: Icon(Icons.refresh),
+                label: Text(
+                  LocaleKeys.mangaScreen_reload.tr,
+                ),
+              ),
+            ),
+          ),
+        ),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          crossAxisSpacing: 2.0,
+          mainAxisSpacing: 2.0,
+          childAspectRatio: 0.7,
+        ),
+      ),
     );
   }
 }

@@ -88,7 +88,9 @@ class SourcesView extends GetView<SourcesController> {
                     child: CircularProgressIndicator(),
                   )
                 : EmoticonsView(
-                    emptyType: LocaleKeys.sourceScreen_extensions.tr,
+                    text: LocaleKeys.no.tr +
+                        " " +
+                        LocaleKeys.sourceScreen_extensions.tr,
                     button: TextButton(
                       child: Text(LocaleKeys.sourceScreen_reload.tr),
                       onPressed: () => controller.updateSourceList(),
