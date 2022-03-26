@@ -18,6 +18,7 @@ class SourceMangaController extends GetxController {
 
   final SourceMangaRepository repository = SourceMangaRepository();
 
+  bool _isFilter = false;
   late String sourceId;
   late SourceType sourceType;
 
@@ -42,16 +43,20 @@ class SourceMangaController extends GetxController {
   bool get isFirstPage => _isFirstPage.value;
   set isFirstPage(bool value) => _isFirstPage.value = value;
 
-  Future<void> getNextPage(int pageKey) async {
+  Future<void> getNextPage(int pageKey, bool isFilter) async {
     Map<String, dynamic>? sourceMangaListTemp =
         await repository.getSourceMangaList(
-            sourceType: sourceType, pageNum: pageKey, sourceId: sourceId);
+      sourceType: sourceType,
+      pageNum: pageKey,
+      sourceId: sourceId,
+      isFilter: isFilter,
+    );
     if (sourceMangaListTemp != null) {
       if (sourceMangaListTemp["hasNextPage"]) {
         pagingController.appendPage(
             sourceMangaListTemp["mangaList"], pageKey + 1);
       } else {
-        pagingController.appendLastPage([]);
+        pagingController.appendLastPage(sourceMangaListTemp["mangaList"]);
       }
     }
   }
@@ -68,6 +73,7 @@ class SourceMangaController extends GetxController {
       sourceId: sourceId,
       filter: sourceMangaFilterList,
     );
+    _isFilter = true;
     pagingController.refresh();
   }
 
@@ -78,7 +84,7 @@ class SourceMangaController extends GetxController {
         ? SourceType.latest
         : SourceType.popular;
     pagingController.addPageRequestListener((pageKey) {
-      getNextPage(pageKey);
+      getNextPage(pageKey, _isFilter);
     });
     super.onInit();
   }
@@ -86,7 +92,6 @@ class SourceMangaController extends GetxController {
   @override
   void onReady() async {
     getFilter();
-    // print(sourceMangaFilterList);
     source = await repository.getSource(sourceId: sourceId) ?? source;
     super.onReady();
   }

@@ -31,8 +31,8 @@ class SourceSearchGrid extends StatelessWidget {
 
   void searchQuery() async {
     isLoading = true;
-    sourceMangaList = (await repository.getSourceSearch(
-            searchTerm: query, sourceId: source.id!))?["mangaList"] ??
+    sourceMangaList = (await repository.getSourceMangaList(
+            query: query, sourceId: source.id!))?["mangaList"] ??
         sourceMangaList;
     isLoading = false;
   }
