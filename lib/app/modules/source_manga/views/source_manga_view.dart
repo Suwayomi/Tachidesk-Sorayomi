@@ -128,7 +128,6 @@ class SourceMangaView extends GetView<SourceMangaController> {
           ),
         ),
       ),
-
       floatingActionButton: controller.sourceType == SourceType.popular
           ? FloatingActionButton.extended(
               icon: Icon(Icons.filter_list_rounded),
@@ -139,7 +138,6 @@ class SourceMangaView extends GetView<SourceMangaController> {
               },
             )
           : null,
-
       body: PagedGridView<int, Manga>(
         pagingController: controller.pagingController,
         builderDelegate: PagedChildBuilderDelegate(

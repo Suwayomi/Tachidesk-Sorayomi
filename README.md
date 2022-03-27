@@ -1,30 +1,31 @@
 <p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="assets/images/icon.png" alt="Bot logo"></a>
+ <img width=200px height=200px src="assets/images/icon.png" alt="Tachidesk Sorayomi logo"></a>
 </p>
 
 <h1 align="center"> Tachidesk Sorayomi </h1>
 
 <div align="center">
 
-[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20Android-lightgrey)](https://t.me/CR_ALT_BOT)
-[![GitHub Issues](https://img.shields.io/github/issues/Suwayomi/Tachidesk-Sorayomi)](https://github.com/Suwayomi/Tachidesk-Sorayomi/issues)
-[![GitHub Forks](https://img.shields.io/github/forks/Suwayomi/Tachidesk-Sorayomi)](https://github.com/Suwayomi/Tachidesk-Sorayomi)
+[![Platform](https://img.shields.io/badge/platform-Android%20%7C%20Linux%20%7C%20Web%20%7C%20Windows-lightgrey)][release]
+[![GitHub License](https://img.shields.io/github/license/Suwayomi/Tachidesk-Sorayomi)](https://github.com/Suwayomi/Tachidesk-Sorayomi/blob/main/LICENSE)
+[![Discord](https://img.shields.io/discord/801021177333940224.svg?label=discord&labelColor=7289da&color=2c2f33&style=flat)](https://discord.gg/DDZdqZWaHA) 
 
 </div>
+
 <div align="center">
 
 [![GitHub Stars](https://img.shields.io/github/stars/Suwayomi/Tachidesk-Sorayomi)](https://github.com/Suwayomi/Tachidesk-Sorayomi)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Suwayomi/Tachidesk-Sorayomi)](https://github.com/Suwayomi/Tachidesk-Sorayomi/pulls)
-[![GitHub License](https://img.shields.io/github/license/Suwayomi/Tachidesk-Sorayomi)](https://github.com/Suwayomi/Tachidesk-Sorayomi/blob/main/LICENSE)
+![CI](https://github.com/Suwayomi/Tachidesk-Sorayomi/actions/workflows/publish.yml/badge.svg)
+[![stable release](https://img.shields.io/github/release/Suwayomi/Tachidesk-Sorayomi.svg?maxAge=3600&label=download)](https://github.com/Suwayomi/Tachidesk-Sorayomi/releases)
 
 </div>
 
 
+
 <p align="center">  
-A free and open source manga reader to read manga from a <a href="https://github.com/Suwayomi/Tachidesk-Server">Tachidesk-Server</a> instance.</br></br>
+A free and open source manga reader based on <a href="https://flutter.dev/">Flutter</a> to read manga from a <a href="https://github.com/Suwayomi/Tachidesk-Server">Tachidesk-Server</a> instance.</br></br>
 Tachidesk-Sorayomi need to connect with an already hosted server.</br></br>
-Tachidesk-Sorayomi supports Linux, Windows and Android.
+Tachidesk-Sorayomi supports Linux, Windows, Web and Android.
 </p>
 
 ---
@@ -45,7 +46,7 @@ Here is a list of current features for interaction with Tachidesk-Sorayomi:
 
 ### Supported Tachidesk versions
 
-These are the versions of [Tachidesk-Server][tachidesk-server] that Flutter supports.
+These are the versions of [Tachidesk-Server][tachidesk-server] that Tachidesk-Sorayomi supports.
 
 #### [Release build][release]
 
@@ -56,12 +57,12 @@ These are the versions of [Tachidesk-Server][tachidesk-server] that Flutter supp
 
 ### Android 
 
-Download the latest apk release from [the releases section][release].
+Download the latest apk file from [the releases section][release].
 
 
 ### Windows 
 
-Download the latest msi release from [the releases section][release].
+Download the latest msi file from [the releases section][release].
 
 <!-- 
 
@@ -86,6 +87,11 @@ Download the latest release from [the aur](https://aur.archlinux.org/packages/ta
 
 If you use yay, you can run `yay -S tachidesk-sorayomi-bin` inside a terminal window. 
 
+### Web
+
+Download the latest web.tar.gz file from [the releases section][release].
+
+
 ## Post installation
 
   - Configure your server address in `Navigation bar > more screen > Server URL`.
@@ -99,7 +105,7 @@ These instructions will get you a copy of the project up and running on your loc
 You can install Flutter & Dart from [Official website](https://docs.flutter.dev/get-started/install)
 ```
   $ Dart sdk - ">=2.16.0-80.1.beta <3.0.0"
-  $ Flutter version 2.11.0-0.1.pre Channel beta
+  $ Flutter version >= 2.12.0-4.1.pre Channel beta
 ```
 
 ### Building
@@ -138,7 +144,7 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 
 ## Credit
 
-- The `Tachidesk` project is developed by [@AriaMoradi](https://github.com/AriaMoradi) and contributors, 
+- The `Tachidesk-server` project is developed by [@AriaMoradi](https://github.com/AriaMoradi) and contributors, 
 
 - The `Tachidesk-Sorayomi` project is developed by [@DattatreyaReddy](https://github.com/DattatreyaReddy) and contributors, 
 
@@ -148,8 +154,6 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 ## License
 
 A link for [Tachidesk is provided here](https://github.com/Suwayomi/Tachidesk) and is licensed under `Mozilla Public License v2.0`.
-
-Parts of [Tachiyomi-1.x](https://github.com/tachiyomiorg/tachiyomi-1.x) is adopted into this codebase, also licensed under `Mozilla Public License v2.0`.
 
 You can obtain a copy of `Mozilla Public License v2.0` from https://mozilla.org/MPL/2.0/
 
