@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
@@ -18,9 +19,27 @@ class ContinuousVertical extends StatelessWidget {
   final ScrollController scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        InteractiveViewer(
+    return Shortcuts(
+      shortcuts: {
+        LogicalKeySet(LogicalKeyboardKey.arrowUp): PreviousScroll(),
+        LogicalKeySet(LogicalKeyboardKey.arrowDown): NextScroll(),
+      },
+      child: Actions(
+        actions: {
+          PreviousScroll: CallbackAction<PreviousScroll>(
+            onInvoke: (intent) => scrollController.animateTo(
+                scrollController.offset - 300,
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease),
+          ),
+          NextScroll: CallbackAction<NextScroll>(
+            onInvoke: (intent) => scrollController.animateTo(
+                scrollController.offset + 300,
+                duration: Duration(milliseconds: 500),
+                curve: Curves.ease),
+          ),
+        },
+        child: Focus(
           child: ListView.builder(
             itemCount: controller.chapter.pageCount,
             controller: scrollController,
@@ -58,31 +77,7 @@ class ContinuousVertical extends StatelessWidget {
             },
           ),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            InkWell(
-              onTap: () {
-                scrollController.animateTo(scrollController.offset - 300,
-                    duration: Duration(seconds: 1), curve: Curves.ease);
-              },
-              child: Container(
-                height: context.height * .2,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                scrollController.animateTo(scrollController.offset + 300,
-                    duration: Duration(seconds: 1), curve: Curves.ease);
-              },
-              child: Container(
-                height: context.height * .2,
-              ),
-            ),
-          ],
-        ),
-      ],
+      ),
     );
   }
 }

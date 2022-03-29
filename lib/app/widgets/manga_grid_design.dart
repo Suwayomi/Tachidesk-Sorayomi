@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../generated/locales.g.dart';
-import '../../main.dart';
 import '../data/manga_model.dart';
+import '../data/services/local_storage_service.dart';
 
 class MangaGridDesign extends StatelessWidget {
   const MangaGridDesign({

@@ -3,16 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../../main.dart';
 import '../../../core/values/db_keys.dart';
+import '../../../data/enums/auth_type.dart';
+import '../../../data/services/local_storage_service.dart';
 
 class ServerSettingsController extends GetxController {
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
-  late final TextEditingController textEditingController;
+  late final TextEditingController baseUrlEditingController;
+  late final TextEditingController userNameEditingController;
+  late final TextEditingController passwordEditingController;
 
   late RxString _baseURL;
   String get baseURL => _baseURL.value;
+  final Rx<AuthType> _baseAuthType = AuthType.none.obs;
+  AuthType get baseAuthType => _baseAuthType.value;
+  set baseAuthType(AuthType value) => _baseAuthType.value = value;
 
   set baseURL(String value) => _baseURL.value = value;
 
@@ -42,11 +48,20 @@ class ServerSettingsController extends GetxController {
 
   @override
   void onInit() {
-    textEditingController =
+    baseUrlEditingController =
         TextEditingController(text: localStorageService.baseURL);
+    userNameEditingController =
+        TextEditingController(text: localStorageService.authUserName);
+    passwordEditingController =
+        TextEditingController(text: localStorageService.authPassword);
+
     _baseURL = localStorageService.baseURL.obs;
+    baseAuthType = localStorageService.baseAuthType;
     localStorageService.box.listenKey(baseUrlKey, (value) {
       baseURL = value;
+    });
+    localStorageService.box.listenKey(baseAuthTypeKey, (value) {
+      baseAuthType = authTypeFromString(value);
     });
     super.onInit();
   }

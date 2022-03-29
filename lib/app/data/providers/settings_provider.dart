@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../main.dart';
+import '../services/local_storage_service.dart';
 import '../settings_model.dart';
 
 class SettingsProvider extends GetConnect {

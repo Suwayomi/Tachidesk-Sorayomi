@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../data/chapter_model.dart';
+import '../../../data/services/local_storage_service.dart';
 import '../../../data/update_recent_chapter_model.dart';
 import '../../downloads/controllers/downloads_controller.dart';
 import '../repository/updates_repository.dart';

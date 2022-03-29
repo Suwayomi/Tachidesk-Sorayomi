@@ -7,7 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../../main.dart';
+import '../../../data/services/local_storage_service.dart';
 import '../../extensions/controllers/extensions_controller.dart';
 import '../repository/browse_repository.dart';
 

@@ -3,8 +3,8 @@ import 'dart:typed_data';
 
 import 'package:get/get.dart';
 
-import '../../../main.dart';
 import '../../core/values/api_url.dart';
+import '../services/local_storage_service.dart';
 
 class RestoreProvider extends GetConnect {
   final LocalStorageService _localStorageService =

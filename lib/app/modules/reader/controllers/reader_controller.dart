@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../core/values/db_keys.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/enums/reader_mode.dart';
 import '../../../data/manga_model.dart';
+import '../../../data/services/local_storage_service.dart';
 import '../../../routes/app_pages.dart';
 import '../repository/reader_repository.dart';
 import '../widgets/continuous_horizontal_ltr.dart';
@@ -14,6 +16,10 @@ import '../widgets/single_horizontal_ltr.dart';
 import '../widgets/single_horizontal_rtl.dart';
 import '../widgets/single_vertical.dart';
 import '../widgets/webtoon.dart';
+
+class NextScroll extends Intent {}
+
+class PreviousScroll extends Intent {}
 
 class ReaderController extends GetxController {
   final ReaderRepository repository = ReaderRepository();

@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 
-import '../../../main.dart';
 import '../../core/values/api_url.dart';
 import '../enums/source_type.dart';
 import '../manga_model.dart';
+import '../services/local_storage_service.dart';
 import '../source_model.dart';
 
 class SourceProvider extends GetConnect {

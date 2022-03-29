@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../../../main.dart';
 import '../../core/values/api_url.dart';
 import '../category_model.dart';
 import '../manga_model.dart';
+import '../services/local_storage_service.dart';
 
 class CategoryProvider extends GetConnect {
   final LocalStorageService _localStorageService =
@@ -23,8 +23,11 @@ class CategoryProvider extends GetConnect {
 
   Future<List<Manga>> getMangaListFromCategoryId(int id) async {
     final response = await get("/$id",
-        decoder: (map) =>
-            map.map<Manga>((item) => Manga.fromMap(item)).toList());
+        decoder: (map) {
+          if(map is List) {
+            return map.map<Manga>((item) => Manga.fromMap(item)).toList();
+          }
+        });
     return response.body ?? <Manga>[];
   }
 
