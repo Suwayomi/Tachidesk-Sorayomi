@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../../../../main.dart';
@@ -14,6 +16,10 @@ import '../widgets/single_horizontal_ltr.dart';
 import '../widgets/single_horizontal_rtl.dart';
 import '../widgets/single_vertical.dart';
 import '../widgets/webtoon.dart';
+
+class NextScroll extends Intent {}
+
+class PreviousScroll extends Intent {}
 
 class ReaderController extends GetxController {
   final ReaderRepository repository = ReaderRepository();
