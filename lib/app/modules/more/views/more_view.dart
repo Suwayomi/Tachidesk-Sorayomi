@@ -22,26 +22,10 @@ class MoreView extends GetView<MoreController> {
           ),
           Divider(thickness: 2),
           ListTile(
-            leading: Icon(Icons.computer_outlined),
-            title: Text(LocaleKeys.serverSettingsScreen_url.tr),
-            subtitle: Obx(() => Text(controller.baseURL)),
-            onTap: () {
-              Get.defaultDialog(
-                title: LocaleKeys.serverSettingsScreen_url.tr,
-                content: TextField(
-                  controller: controller.textEditingController,
-                  onSubmitted: (value) => controller.submitURL(value),
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: (LocaleKeys.serverSettingsScreen_url.tr),
-                  ),
-                ),
-                onConfirm: () =>
-                    controller.submitURL(controller.textEditingController.text),
-                onCancel: () {},
-              );
-            },
-          ),
+              leading: Icon(Icons.computer_outlined),
+              title: Text(LocaleKeys.serverSettingsScreen_url.tr),
+              subtitle: Obx(() => Text(controller.baseURL)),
+              onTap: () => Get.toNamed(Routes.serverSettings)),
           ListTile(
             title: Text(LocaleKeys.screenTitle_categories.tr),
             leading: Icon(Icons.category_outlined),

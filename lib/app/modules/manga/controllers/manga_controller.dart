@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../core/utils/chapter/apply_chapter_filter.dart';
 import '../../../core/utils/chapter/apply_chapter_sort.dart';
 import '../../../core/utils/check_if_json.dart';
@@ -10,6 +9,7 @@ import '../../../data/downloads_model.dart';
 import '../../../data/enums/chapter/chapter_filter.dart';
 import '../../../data/enums/chapter/chapter_sort.dart';
 import '../../../data/manga_model.dart';
+import '../../../data/services/local_storage_service.dart';
 import '../../library/controllers/library_controller.dart';
 import '../repository/manga_repository.dart';
 

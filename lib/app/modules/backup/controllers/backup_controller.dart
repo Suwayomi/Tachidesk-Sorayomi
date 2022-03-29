@@ -4,8 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../../main.dart';
 import '../../../core/values/api_url.dart';
+import '../../../data/services/local_storage_service.dart';
 import '../repository/backup_repository.dart';
 
 class BackupController extends GetxController {

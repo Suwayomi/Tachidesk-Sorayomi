@@ -44,30 +44,26 @@ class LibraryView extends GetView<LibraryController> {
                       (e) {
                         return Obx(
                           () => controller.mangaListLength != 0
-                              ? Scrollbar(
-                                  thumbVisibility: true,
-                                  controller: controller.scrollController,
-                                  child: GridView.builder(
-                                    controller: controller.scrollController,
-                                    gridDelegate:
-                                        SliverGridDelegateWithMaxCrossAxisExtent(
-                                      maxCrossAxisExtent: 200,
-                                      crossAxisSpacing: 2.0,
-                                      mainAxisSpacing: 2.0,
-                                      childAspectRatio: 0.7,
-                                    ),
-                                    itemCount: controller.mangaListLength,
-                                    itemBuilder: (context, index) =>
-                                        MangaGridDesign(
-                                      manga: controller.mangaList[index],
-                                      onTap: () => Get.toNamed(
-                                        Routes.manga +
-                                            "/${controller.mangaList[index].id}",
-                                      ),
-                                      isLibraryScreen: true,
-                                    ),
+                              ? GridView.builder(
+                                controller: controller.scrollController,
+                                gridDelegate:
+                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                  maxCrossAxisExtent: 200,
+                                  crossAxisSpacing: 2.0,
+                                  mainAxisSpacing: 2.0,
+                                  childAspectRatio: 0.7,
+                                ),
+                                itemCount: controller.mangaListLength,
+                                itemBuilder: (context, index) =>
+                                    MangaGridDesign(
+                                  manga: controller.mangaList[index],
+                                  onTap: () => Get.toNamed(
+                                    Routes.manga +
+                                        "/${controller.mangaList[index].id}",
                                   ),
-                                )
+                                  isLibraryScreen: true,
+                                ),
+                              )
                               : (controller.isLoading
                                   ? Center(
                                       child: CircularProgressIndicator(),

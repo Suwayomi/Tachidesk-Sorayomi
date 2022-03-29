@@ -208,6 +208,10 @@
     },
     "serverSettingsScreen": {
         "url": "Server URL",
+        "baseAuthType" : "Authentication Type",
+        "save" : "Save",
+        "userName" : "User Name",
+        "password" : "Password",
         "webUI": "Open in WEB"
     },
     "settingsScreen": {

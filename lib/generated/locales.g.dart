@@ -191,6 +191,11 @@ class LocaleKeys {
   static const searchManga_searchManga = 'searchManga_searchManga';
   static const searchManga_noMangaFound = 'searchManga_noMangaFound';
   static const serverSettingsScreen_url = 'serverSettingsScreen_url';
+  static const serverSettingsScreen_baseAuthType =
+      'serverSettingsScreen_baseAuthType';
+  static const serverSettingsScreen_save = 'serverSettingsScreen_save';
+  static const serverSettingsScreen_userName = 'serverSettingsScreen_userName';
+  static const serverSettingsScreen_password = 'serverSettingsScreen_password';
   static const serverSettingsScreen_webUI = 'serverSettingsScreen_webUI';
   static const settingsScreen_appearance = 'settingsScreen_appearance';
   static const settingsScreen_backup = 'settingsScreen_backup';
@@ -362,6 +367,10 @@ class Locales {
     'searchManga_searchManga': 'Search manga..',
     'searchManga_noMangaFound': 'No Manga Found',
     'serverSettingsScreen_url': 'Server URL',
+    'serverSettingsScreen_baseAuthType': 'Authentication Type',
+    'serverSettingsScreen_save': 'Save',
+    'serverSettingsScreen_userName': 'User Name',
+    'serverSettingsScreen_password': 'Password',
     'serverSettingsScreen_webUI': 'Open in WEB',
     'settingsScreen_appearance': 'Appearance',
     'settingsScreen_backup': 'Backup & Restore',

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../../../../main.dart';
 import '../../../core/utils/language.dart';
 import '../../../core/values/db_keys.dart';
 import '../../../data/extension_model.dart';
+import '../../../data/services/local_storage_service.dart';
 import '../../browse/controllers/browse_controller.dart';
 import '../../sources/controllers/sources_controller.dart';
 import '../repository/extension_repository.dart';

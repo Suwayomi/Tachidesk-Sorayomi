@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../../main.dart';
 import '../../core/values/api_url.dart';
+import '../services/local_storage_service.dart';
 
 class DownloadsProvider extends GetConnect {
   final LocalStorageService _localStorageService =
