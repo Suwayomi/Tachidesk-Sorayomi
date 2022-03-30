@@ -7,6 +7,7 @@ class GlobalSearchBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<GlobalSearchController>(
       () => GlobalSearchController(),
+      tag: Get.parameters["query"],
     );
   }
 }

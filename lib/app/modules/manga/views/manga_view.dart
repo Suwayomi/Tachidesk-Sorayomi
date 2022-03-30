@@ -15,7 +15,10 @@ import '../widgets/manga_description.dart';
 
 class MangaView extends GetView<MangaController> {
   @override
+  String? get tag => Get.parameters["mangaId"];
+  @override
   Widget build(BuildContext context) {
+    print(tag);
     return Scaffold(
         appBar: AppBar(
           title: Obx(

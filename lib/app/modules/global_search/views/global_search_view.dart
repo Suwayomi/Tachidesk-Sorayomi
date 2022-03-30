@@ -10,6 +10,8 @@ import '../widgets/source_search_grid.dart';
 
 class GlobalSearchView extends GetView<GlobalSearchController> {
   @override
+  String? get tag => Get.parameters["query"];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

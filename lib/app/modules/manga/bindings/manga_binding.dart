@@ -5,8 +5,7 @@ import '../controllers/manga_controller.dart';
 class MangaBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<MangaController>(
-      () => MangaController(),
-    );
+    Get.lazyPut<MangaController>(() => MangaController(),
+        tag: Get.parameters["mangaId"]);
   }
 }
