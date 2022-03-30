@@ -22,12 +22,11 @@ class CategoryProvider extends GetConnect {
   }
 
   Future<List<Manga>> getMangaListFromCategoryId(int id) async {
-    final response = await get("/$id",
-        decoder: (map) {
-          if(map is List) {
-            return map.map<Manga>((item) => Manga.fromMap(item)).toList();
-          }
-        });
+    final response = await get("/$id", decoder: (map) {
+      if (map is List) {
+        return map.map<Manga>((item) => Manga.fromMap(item)).toList();
+      }
+    });
     return response.body ?? <Manga>[];
   }
 
