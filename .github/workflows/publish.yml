@@ -29,9 +29,9 @@ jobs:
           - os: ubuntu-20.04
             target: linux
             build_path: build/linux/x64/release/bundle
-          #- os: macos-10.15 # Catalina
-            #target: macos
-            #build_path: build/macos/Build/Products/Release
+          - os: macos-10.15 # Catalina
+            target: macos
+            build_path: build/macos/Build/Products/Release
           - os: windows-2019
             target: windows
             build_path: build\windows\runner\Release
@@ -109,7 +109,7 @@ jobs:
       - name: Compress build for macOS
         if: matrix.target == 'macos'
         working-directory: ${{ matrix.build_path }}
-        run: ditto -c -k --sequesterRsrc "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip"
+        run: ditto -c -k --sequesterRsrc --keepParent Sorayomi.app "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip"
         # run: ditto -c -k --sequesterRsrc --keepParent Flutter\ Gallery.app $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip
       - name: Compress build for Windows
         if: matrix.target == 'windows'
