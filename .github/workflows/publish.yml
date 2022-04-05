@@ -112,9 +112,9 @@ jobs:
         run: |
           mkdir "build/deb"
           mkdir "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}"
-          cp "${{ matrix.build_path }}"/* "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}/"
+          cp -r "${{ matrix.build_path }}"/* "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}/"
           cp "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz" "build/deb/${{ env.pkg_name }}_${{ github.ref_name }}.orig.tar.gz"
-          cp scripts/debian "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}/"
+          cp -r scripts/debian "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}/"
 
           cd "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}"
           sed -i "s/\$pkgver/${{ github.ref_name }}/" debian/changelog
