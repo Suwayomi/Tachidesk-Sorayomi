@@ -1,8 +1,8 @@
 Source: tachidesk-sorayomi
 Section: web
 Priority: optional
-Maintainer: Mahor Foruzesh <mahorforuzesh@pm.me>
-Build-Depends: debhelper-compat (= 12), dh-exec
+Maintainer: Mahor <mahor1221@pm.me>
+Build-Depends: debhelper-compat (= 13)
 Standards-Version: 4.5.1
 Homepage: https://github.com/Suwayomi/Tachidesk-Sorayomi
 
