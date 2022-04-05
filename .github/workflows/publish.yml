@@ -103,14 +103,31 @@ jobs:
         if: matrix.target == 'linux'
         working-directory: ${{ matrix.build_path }}
         run: |
-          cp "$GITHUB_WORKSPACE/scripts/${{ env.pkg_name }}.desktop" ./
+          cp "$GITHUB_WORKSPACE/scripts/${{ env.pkg_name }}.desktop" .
           cp "$GITHUB_WORKSPACE/assets/images/icon.png" "./${{ env.pkg_name }}.png"
           GZIP=-9 tar czf "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz" *
+
+      - name: Build deb package
+        if: matrix.target == 'linux'
+        run: |
+          mkdir "build/deb"
+          mkdir "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}"
+          cp -r "${{ matrix.build_path }}"/* "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}/"
+          cp "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz" "build/deb/${{ env.pkg_name }}_${{ github.ref_name }}.orig.tar.gz"
+          cp -r scripts/debian "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}/"
+
+          cd "build/deb/${{ env.pkg_name }}-${{ github.ref_name }}"
+          sed -i "s/\$pkgver/${{ github.ref_name }}/" debian/changelog
+          sed -i "s/\$pkgrel/1/"                      debian/changelog
+
+          sudo apt install build-essential devscripts debhelper
+          debuild --no-lintian -us -uc
+          cp "../${{ env.pkg_name }}_${{ github.ref_name }}-1_amd64.deb" "$GITHUB_WORKSPACE/"
+
       - name: Compress build for macOS
         if: matrix.target == 'macos'
         working-directory: ${{ matrix.build_path }}
         run: ditto -c -k --sequesterRsrc --keepParent Sorayomi.app "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip"
-        # run: ditto -c -k --sequesterRsrc --keepParent Flutter\ Gallery.app $GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip
       - name: Compress build for Windows
         if: matrix.target == 'windows'
         working-directory: ${{ matrix.build_path }}
@@ -133,4 +150,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: false
-          files: ${{ env.pkg_name }}-*
+          files: ${{ env.pkg_name }}*
