@@ -120,7 +120,7 @@ jobs:
           sed -i "s/\$pkgver/${{ github.ref_name }}/" debian/changelog
           sed -i "s/\$pkgrel/1/"                      debian/changelog
 
-          sudo apt install devscripts build-essential
+          sudo apt install build-essential devscripts debhelper
           debuild --no-lintian -us -uc
           cp "../${{ env.pkg_name }}_${{ github.ref_name }}-1_amd64.deb" "$GITHUB_WORKSPACE/"
 
