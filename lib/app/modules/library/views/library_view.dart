@@ -48,7 +48,7 @@ class LibraryView extends GetView<LibraryController> {
                                   controller: controller.scrollController,
                                   gridDelegate:
                                       SliverGridDelegateWithMaxCrossAxisExtent(
-                                    maxCrossAxisExtent: 200,
+                                    maxCrossAxisExtent: 205,
                                     crossAxisSpacing: 2.0,
                                     mainAxisSpacing: 2.0,
                                     childAspectRatio: 0.7,

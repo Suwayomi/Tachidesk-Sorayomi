@@ -64,8 +64,6 @@ Download the latest apk file from [the releases section][release].
 
 Download the latest msi file from [the releases section][release].
 
-<!-- 
-
 ### MacOS 
 
 Download the latest dmg release from [the releases section][release].
@@ -73,6 +71,8 @@ Download the latest dmg release from [the releases section][release].
 ### Debian based Linux 
 
 Download the latest deb release from [the releases section][release].
+
+<!-- 
 
 ### Fedora based Linux 
 
@@ -148,7 +148,7 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 
 - The `Tachidesk-Sorayomi` project is developed by [@DattatreyaReddy](https://github.com/DattatreyaReddy) and contributors, 
 
-- CI-CD for `Tachidesk-Sorayomi` is developed by [@mahor1221](github.com/mahor1221)  and contributors.
+- CI-CD for `Tachidesk-Sorayomi` is developed by [@mahor1221](https://github.com/mahor1221)  and contributors.
 
     
 ## License

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/values/api_url.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../data/enums/reader_mode.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
@@ -65,12 +67,20 @@ class ReaderView extends GetView<ReaderController> {
                   () => GridTile(
                     child: Container(
                       child: (controller.manga.thumbnailUrl ?? "").isNotEmpty
-                          ? Image.network(
-                              controller.localStorageService.baseURL +
+                          ? CachedNetworkImage(
+                              imageUrl: controller.localStorageService.baseURL +
                                   (controller.manga.thumbnailUrl ?? "") +
                                   "/?useCache=true",
+                              httpHeaders:
+                                  controller.localStorageService.baseAuthType ==
+                                          AuthType.basic
+                                      ? {
+                                          "Authorization": controller
+                                              .localStorageService.basicAuth,
+                                        }
+                                      : null,
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
+                              errorWidget: (context, error, stackTrace) =>
                                   ImageIcon(
                                 AssetImage(iconLightTextNbgPngURL),
                               ),

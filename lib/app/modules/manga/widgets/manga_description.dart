@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../data/manga_model.dart';
 import '../../../data/services/local_storage_service.dart';
 import '../../../routes/app_pages.dart';
@@ -37,13 +39,19 @@ class MangaDescription extends StatelessWidget {
                 margin: EdgeInsets.all(16.0),
                 child: GridTile(
                   child: (manga.thumbnailUrl ?? "").isNotEmpty
-                      ? Image.network(
-                          localStorageService.baseURL +
+                      ? CachedNetworkImage(
+                          imageUrl: localStorageService.baseURL +
                               (manga.thumbnailUrl ?? "") +
                               "/?useCache=true",
+                          httpHeaders:
+                              localStorageService.baseAuthType == AuthType.basic
+                                  ? {
+                                      "Authorization":
+                                          localStorageService.basicAuth,
+                                    }
+                                  : null,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              SizedBox(
+                          errorWidget: (context, error, stackTrace) => SizedBox(
                             height: context.height * .3,
                             child: Icon(
                               Icons.book_rounded,
@@ -131,7 +139,9 @@ class MangaDescription extends StatelessWidget {
                   primary: manga.inLibrary ?? false ? null : Colors.grey,
                 ),
                 label: Text(
-                  LocaleKeys.mangaScreen_addToLibrary.tr,
+                  manga.inLibrary ?? false
+                      ? LocaleKeys.mangaScreen_inLibrary.tr
+                      : LocaleKeys.mangaScreen_addToLibrary.tr,
                 ),
               ),
               TextButton.icon(

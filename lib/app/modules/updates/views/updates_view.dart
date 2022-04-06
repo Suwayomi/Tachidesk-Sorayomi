@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:grouped_list/grouped_list.dart';
 
@@ -9,6 +10,7 @@ import '../../../../generated/locales.g.dart';
 import '../../../core/utils/days_ago.dart';
 import '../../../core/values/api_url.dart';
 import '../../../data/download_queue_value_model.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../data/manga_page_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
@@ -57,13 +59,21 @@ class UpdatesView extends GetView<UpdatesController> {
                             EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            controller.localStorageService.baseURL +
+                          child: CachedNetworkImage(
+                            imageUrl: controller.localStorageService.baseURL +
                                 (item.manga?.thumbnailUrl ?? ""),
                             height: 48,
+                            httpHeaders:
+                                controller.localStorageService.baseAuthType ==
+                                        AuthType.basic
+                                    ? {
+                                        "Authorization": controller
+                                            .localStorageService.basicAuth,
+                                      }
+                                    : null,
                             width: 48,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, object, stack) =>
+                            errorWidget: (context, object, stack) =>
                                 Image.asset(
                               iconPngURL,
                               height: 48,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../generated/locales.g.dart';
+import '../data/enums/auth_type.dart';
 import '../data/manga_model.dart';
 import '../data/services/local_storage_service.dart';
 
@@ -109,10 +111,17 @@ class MangaGridDesign extends StatelessWidget {
                 ),
           child: manga.thumbnailUrl != null && manga.thumbnailUrl!.isNotEmpty
               ? Container(
-                  child: Image.network(
-                    localStorageService.baseURL + manga.thumbnailUrl.toString(),
+                  child: CachedNetworkImage(
+                    imageUrl: localStorageService.baseURL +
+                        manga.thumbnailUrl.toString(),
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => SizedBox(
+                    httpHeaders:
+                        localStorageService.baseAuthType == AuthType.basic
+                            ? {
+                                "Authorization": localStorageService.basicAuth,
+                              }
+                            : null,
+                    errorWidget: (context, error, stackTrace) => SizedBox(
                       height: context.height * .3,
                       child: Center(
                         child: Icon(
@@ -122,15 +131,11 @@ class MangaGridDesign extends StatelessWidget {
                         ),
                       ),
                     ),
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) return child;
+                    progressIndicatorBuilder: (BuildContext context, _,
+                        DownloadProgress? loadingProgress) {
                       return Center(
                         child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
+                          value: loadingProgress?.progress,
                         ),
                       );
                     },

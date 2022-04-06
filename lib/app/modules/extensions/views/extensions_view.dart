@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
 import '../../../core/values/api_url.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../data/extension_model.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/extensions_controller.dart';
@@ -46,15 +48,23 @@ class ExtensionsView extends GetView<ExtensionsController> {
                               child: ListTile(
                                 leading: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: Image.network(
-                                    controller.localStorageService.baseURL +
-                                        (source.iconUrl ?? ""),
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        controller.localStorageService.baseURL +
+                                            (source.iconUrl ?? ""),
+                                    httpHeaders: controller.localStorageService
+                                                .baseAuthType ==
+                                            AuthType.basic
+                                        ? {
+                                            "Authorization": controller
+                                                .localStorageService.basicAuth,
+                                          }
+                                        : null,
                                     height: 48,
                                     width: 48,
                                     fit: BoxFit.cover,
-                                    errorBuilder:
-                                        (context, error, stackTrace) =>
-                                            Image.asset(iconPngURL),
+                                    errorWidget: (context, error, stackTrace) =>
+                                        Image.asset(iconPngURL),
                                   ),
                                 ),
                                 title: Text(source.name ?? source.name ?? ""),
@@ -160,7 +170,7 @@ class ExtensionsView extends GetView<ExtensionsController> {
                       LocaleKeys.extensionScreen_extensionsError.tr,
                   button: TextButton(
                     child: Text(LocaleKeys.extensionScreen_reload.tr),
-                    onPressed: () => controller.extensionList(),
+                    onPressed: () => controller.updateExtensionList(),
                   ),
                 ),
     ));

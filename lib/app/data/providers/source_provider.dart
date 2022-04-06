@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../../core/values/api_url.dart';
 import '../enums/source_type.dart';
@@ -20,6 +21,12 @@ class SourceProvider extends GetConnect {
     };
     httpClient.baseUrl = _localStorageService.baseURL + sourceURL;
     httpClient.timeout = Duration(minutes: 5);
+    httpClient.addAuthenticator((Request request) async {
+      final token = _localStorageService.basicAuth;
+      // Set the header
+      request.headers['Authorization'] = token;
+      return request;
+    });
   }
 
   Future<List<Source>?> getSourceList() async {
@@ -109,7 +116,7 @@ class SourceProvider extends GetConnect {
             "mangaList": map['mangaList'] != null
                 ? List<Manga>.from(
                     map['mangaList']?.map((x) => Manga.fromMap(x)))
-                : null,
+                : <Manga>[],
           };
         }
         return null;

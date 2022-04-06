@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../services/local_storage_service.dart';
 import '../settings_model.dart';
@@ -16,6 +17,12 @@ class SettingsProvider extends GetConnect {
     };
     httpClient.baseUrl = _localStorageService.baseURL + "/meta";
     httpClient.timeout = Duration(minutes: 5);
+    httpClient.addAuthenticator((Request request) async {
+      final token = _localStorageService.basicAuth;
+      // Set the header
+      request.headers['Authorization'] = token;
+      return request;
+    });
   }
 
   Future<Settings?> getSettings() async {

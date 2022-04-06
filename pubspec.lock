@@ -246,14 +246,14 @@ packages:
       name: package_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.4.1"
   package_info_plus_linux:
     dependency: transitive
     description:
       name: package_info_plus_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   package_info_plus_macos:
     dependency: transitive
     description:
@@ -281,7 +281,7 @@ packages:
       name: package_info_plus_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   path:
     dependency: transitive
     description:
@@ -538,7 +538,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.4"
+    version: "2.5.1"
   xdg_directories:
     dependency: transitive
     description:

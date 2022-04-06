@@ -53,8 +53,12 @@ class SourceMangaController extends GetxController {
     );
     if (sourceMangaListTemp != null) {
       if (sourceMangaListTemp["hasNextPage"]) {
-        pagingController.appendPage(
-            sourceMangaListTemp["mangaList"], pageKey + 1);
+        try {
+          pagingController.appendPage(
+              sourceMangaListTemp["mangaList"], pageKey + 1);
+        } catch (e) {
+          pagingController.appendPage(<Manga>[], pageKey + 1);
+        }
       } else {
         pagingController.appendLastPage(sourceMangaListTemp["mangaList"]);
       }
