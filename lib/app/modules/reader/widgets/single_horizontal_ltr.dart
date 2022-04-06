@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 
@@ -51,6 +52,13 @@ class SingleHorizontalLTR extends StatelessWidget {
               return Center(
                 child: CachedNetworkImage(
                   fit: BoxFit.fitHeight,
+                  httpHeaders: controller.localStorageService.baseAuthType ==
+                          AuthType.basic
+                      ? {
+                          "Authorization":
+                              controller.localStorageService.basicAuth,
+                        }
+                      : null,
                   imageUrl: controller.getChapterPage(index),
                   filterQuality: FilterQuality.medium,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>

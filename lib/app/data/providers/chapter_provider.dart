@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../../core/values/api_url.dart';
 import '../chapter_model.dart';
@@ -17,6 +18,12 @@ class ChapterProvider extends GetConnect {
     };
     httpClient.baseUrl = _localStorageService.baseURL + mangaUrl;
     httpClient.timeout = Duration(minutes: 5);
+    httpClient.addAuthenticator((Request request) async {
+      final token = _localStorageService.basicAuth;
+      // Set the header
+      request.headers['Authorization'] = token;
+      return request;
+    });
   }
 
   Future<List<Chapter>?> getChaptersList(int mangaId,

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../../core/values/api_url.dart';
 import '../extension_model.dart';
@@ -19,6 +20,12 @@ class ExtensionProvider extends GetConnect {
     };
     httpClient.baseUrl = _localStorageService.baseURL + extensionURL;
     httpClient.timeout = Duration(minutes: 5);
+    httpClient.addAuthenticator((Request request) async {
+      final token = _localStorageService.basicAuth;
+      // Set the header
+      request.headers['Authorization'] = token;
+      return request;
+    });
   }
 
   Future<List<Extension>?> getExtensionList() async {

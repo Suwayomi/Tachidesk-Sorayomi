@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../core/utils/language.dart';
 import '../../../core/values/api_url.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../data/source_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/emoticons.dart';
@@ -45,13 +47,22 @@ class SourcesView extends GetView<SourcesController> {
                               }),
                               leading: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  controller.localStorageService.baseURL +
-                                      (source.iconUrl ?? ""),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      controller.localStorageService.baseURL +
+                                          (source.iconUrl ?? ""),
                                   height: 48,
+                                  httpHeaders: controller.localStorageService
+                                              .baseAuthType ==
+                                          AuthType.basic
+                                      ? {
+                                          "Authorization": controller
+                                              .localStorageService.basicAuth,
+                                        }
+                                      : null,
                                   width: 48,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
+                                  errorWidget: (context, error, stackTrace) =>
                                       Image.asset(iconPngURL),
                                 ),
                               ),
@@ -62,17 +73,19 @@ class SourcesView extends GetView<SourcesController> {
                               trailing: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  TextButton(
-                                    onPressed: () async {
-                                      await controller.localStorageService
-                                          .setLastUsed(source.id);
-                                      Get.toNamed(Routes.sourceManga +
-                                          "/${source.id}/latest");
-                                    },
-                                    child: Text(
-                                      LocaleKeys.sourceScreen_latest.tr,
-                                    ),
-                                  ),
+                                  if (source.supportsLatest ?? false) ...[
+                                    TextButton(
+                                      onPressed: () async {
+                                        await controller.localStorageService
+                                            .setLastUsed(source.id);
+                                        Get.toNamed(Routes.sourceManga +
+                                            "/${source.id}/latest");
+                                      },
+                                      child: Text(
+                                        LocaleKeys.sourceScreen_latest.tr,
+                                      ),
+                                    )
+                                  ],
                                 ],
                               ),
                             ),

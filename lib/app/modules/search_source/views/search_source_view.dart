@@ -80,7 +80,7 @@ class SearchSourceView extends GetView<SearchSourceController> {
           ),
         ),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
+          maxCrossAxisExtent: 205,
           crossAxisSpacing: 2.0,
           mainAxisSpacing: 2.0,
           childAspectRatio: 0.7,

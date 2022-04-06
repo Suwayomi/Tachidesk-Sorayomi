@@ -17,30 +17,15 @@ class BrowseAppBarActions extends StatelessWidget {
     return Obx(() => Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            controller.isGlobalMangaSearching
-                ? Container(
-                    padding: EdgeInsets.all(8.0),
-                    width: min(context.width * .5, 300),
-                    child: TextField(
-                      controller: controller.textEditingController,
-                      autofocus: true,
-                      onEditingComplete: () {
-                        if (controller.textEditingController.text.isEmpty) {
-                          return;
-                        }
-                        Get.toNamed(
-                          Routes.globalSearch +
-                              "?query=${controller.textEditingController.text}",
-                        );
-                        controller.isGlobalMangaSearching = false;
-                        controller.textEditingController.clear();
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: IconButton(
-                          icon: Icon(
-                            Icons.search,
-                          ),
-                          onPressed: () {
+            controller.tabIndex == 0
+                ? controller.isGlobalMangaSearching
+                    ? Container(
+                        padding: EdgeInsets.all(8.0),
+                        width: min(context.width * .5, 300),
+                        child: TextField(
+                          controller: controller.textEditingController,
+                          autofocus: true,
+                          onEditingComplete: () {
                             if (controller.textEditingController.text.isEmpty) {
                               return;
                             }
@@ -51,24 +36,43 @@ class BrowseAppBarActions extends StatelessWidget {
                             controller.isGlobalMangaSearching = false;
                             controller.textEditingController.clear();
                           },
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            Icons.close,
+                          decoration: InputDecoration(
+                            prefixIcon: IconButton(
+                              icon: Icon(
+                                Icons.search,
+                              ),
+                              onPressed: () {
+                                if (controller
+                                    .textEditingController.text.isEmpty) {
+                                  return;
+                                }
+                                Get.toNamed(
+                                  Routes.globalSearch +
+                                      "?query=${controller.textEditingController.text}",
+                                );
+                                controller.isGlobalMangaSearching = false;
+                                controller.textEditingController.clear();
+                              },
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                Icons.close,
+                              ),
+                              onPressed: () {
+                                controller.isGlobalMangaSearching = false;
+                                controller.textEditingController.clear();
+                              },
+                            ),
+                            border: OutlineInputBorder(),
+                            hintText: LocaleKeys.libraryScreen_mangaSearch.tr,
                           ),
-                          onPressed: () {
-                            controller.isGlobalMangaSearching = false;
-                            controller.textEditingController.clear();
-                          },
-                        ),
-                        border: OutlineInputBorder(),
-                        hintText: LocaleKeys.libraryScreen_mangaSearch.tr,
-                      ),
-                    ))
-                : IconButton(
-                    onPressed: () => controller.isGlobalMangaSearching = true,
-                    icon: Icon(Icons.travel_explore_rounded),
-                  ),
+                        ))
+                    : IconButton(
+                        onPressed: () =>
+                            controller.isGlobalMangaSearching = true,
+                        icon: Icon(Icons.travel_explore_rounded),
+                      )
+                : Container(),
             controller.tabIndex == 1
                 ? controller.isSearching
                     ? Container(

@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
+import '../../../data/enums/auth_type.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
 
@@ -50,6 +51,13 @@ class Webtoon extends StatelessWidget {
               return CachedNetworkImage(
                 fit: BoxFit.fitWidth,
                 imageUrl: controller.getChapterPage(index),
+                httpHeaders: controller.localStorageService.baseAuthType ==
+                        AuthType.basic
+                    ? {
+                        "Authorization":
+                            controller.localStorageService.basicAuth,
+                      }
+                    : null,
                 filterQuality: FilterQuality.medium,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(

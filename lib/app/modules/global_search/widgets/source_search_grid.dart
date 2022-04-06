@@ -63,7 +63,7 @@ class SourceSearchGrid extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             gridDelegate:
                                 const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
+                              maxCrossAxisExtent: 205,
                               crossAxisSpacing: 2.0,
                               mainAxisSpacing: 2.0,
                               childAspectRatio: 1.43,

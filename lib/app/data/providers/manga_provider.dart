@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../../core/values/api_url.dart';
 import '../category_model.dart';
@@ -19,6 +20,12 @@ class MangaProvider extends GetConnect {
     };
     httpClient.baseUrl = _localStorageService.baseURL + mangaUrl;
     httpClient.timeout = Duration(minutes: 5);
+    httpClient.addAuthenticator((Request request) async {
+      final token = _localStorageService.basicAuth;
+      // Set the header
+      request.headers['Authorization'] = token;
+      return request;
+    });
   }
 
   Future<Manga?> getManga(int id, {bool fetchFreshData = true}) async {

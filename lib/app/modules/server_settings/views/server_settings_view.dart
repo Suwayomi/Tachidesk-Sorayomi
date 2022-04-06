@@ -38,7 +38,6 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
               );
             },
           ),
-          /* TODO: Basic Auth Setup
           Obx(() => ListTile(
                 title: Text(LocaleKeys.serverSettingsScreen_baseAuthType.tr),
                 trailing: DropdownButton(
@@ -107,7 +106,6 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
                   },
                 ),
               )),
-          */
           ListTile(
             title: Text(LocaleKeys.serverSettingsScreen_webUI.tr),
             trailing: Icon(Icons.open_in_new),

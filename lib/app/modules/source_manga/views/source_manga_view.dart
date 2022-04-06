@@ -150,6 +150,23 @@ class SourceMangaView extends GetView<SourceMangaController> {
               isLibraryScreen: false,
             );
           },
+          noItemsFoundIndicatorBuilder: (context) => Center(
+            child: EmoticonsView(
+              text: LocaleKeys.no.tr +
+                  " " +
+                  (controller.sourceType == SourceType.latest
+                      ? LocaleKeys.sourceMangaScreen_latest.tr
+                      : LocaleKeys.sourceMangaScreen_browse.tr),
+              button: TextButton.icon(
+                onPressed: () => controller.pagingController.refresh(),
+                style: TextButton.styleFrom(),
+                icon: Icon(Icons.refresh),
+                label: Text(
+                  LocaleKeys.mangaScreen_reload.tr,
+                ),
+              ),
+            ),
+          ),
           newPageProgressIndicatorBuilder: (context) => Card(
             child: GridTile(
               child: Center(child: CircularProgressIndicator()),
@@ -180,7 +197,7 @@ class SourceMangaView extends GetView<SourceMangaController> {
           ),
         ),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
+          maxCrossAxisExtent: 205,
           crossAxisSpacing: 2.0,
           mainAxisSpacing: 2.0,
           childAspectRatio: 0.7,
