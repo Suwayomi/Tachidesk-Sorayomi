@@ -13,6 +13,8 @@ class GlobalSearchView extends GetView<GlobalSearchController> {
   String? get tag => Get.parameters["query"];
   @override
   Widget build(BuildContext context) {
+    GlobalSearchController controller =
+        Get.find<GlobalSearchController>(tag: tag);
     return Scaffold(
       appBar: AppBar(
         title: context.width > 600

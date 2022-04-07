@@ -128,16 +128,18 @@ class SourceMangaView extends GetView<SourceMangaController> {
           ),
         ),
       ),
-      floatingActionButton: controller.sourceType == SourceType.popular
-          ? FloatingActionButton.extended(
-              icon: Icon(Icons.filter_list_rounded),
-              label: Text(LocaleKeys.sourceMangaScreen_filter.tr),
-              isExtended: true,
-              onPressed: () {
-                controller.scaffoldKey.currentState?.openEndDrawer();
-              },
-            )
-          : null,
+      floatingActionButton: Obx(() =>
+          controller.sourceType == SourceType.popular &&
+                  controller.sourceMangaFilterList.isNotEmpty
+              ? FloatingActionButton.extended(
+                  icon: Icon(Icons.filter_list_rounded),
+                  label: Text(LocaleKeys.sourceMangaScreen_filter.tr),
+                  isExtended: true,
+                  onPressed: () {
+                    controller.scaffoldKey.currentState?.openEndDrawer();
+                  },
+                )
+              : Container()),
       body: PagedGridView<int, Manga>(
         pagingController: controller.pagingController,
         builderDelegate: PagedChildBuilderDelegate(

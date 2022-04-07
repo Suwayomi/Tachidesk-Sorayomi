@@ -5,7 +5,7 @@ import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../../core/values/api_url.dart';
 import '../enums/source_type.dart';
-import '../manga_model.dart';
+import '../manga_list_model.dart';
 import '../services/local_storage_service.dart';
 import '../source_model.dart';
 
@@ -97,32 +97,26 @@ class SourceProvider extends GetConnect {
     }
   }
 
-  Future<Map<String, dynamic>?> getSourceMangaList({
+  Future<MangaListModel?> getSourceMangaList({
     required String sourceId,
     required int pageNum,
     SourceType sourceType = SourceType.popular,
     String? query,
     bool isFilter = false,
   }) async {
-    final response = await get<Map<String, dynamic>?>(
+    final response = await get<MangaListModel?>(
       "/$sourceId/" +
           (((query != null && query.isNotEmpty) || isFilter)
               ? 'search?pageNum=$pageNum&searchTerm=' + (query ?? "")
               : (sourceType.name + "/$pageNum")),
       decoder: (map) {
         if (map is Map<String, dynamic>) {
-          return {
-            "hasNextPage": map['hasNextPage'],
-            "mangaList": map['mangaList'] != null
-                ? List<Manga>.from(
-                    map['mangaList']?.map((x) => Manga.fromMap(x)))
-                : <Manga>[],
-          };
+          return MangaListModel.fromMap(map);
         }
         return null;
       },
     );
-    if (response.hasError) return {"hasNextPage": true, "mangaList": []};
+    if (response.hasError) return MangaListModel(hasNextPage: false);
     return response.body;
   }
 }

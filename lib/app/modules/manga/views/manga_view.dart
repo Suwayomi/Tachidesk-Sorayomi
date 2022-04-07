@@ -18,7 +18,7 @@ class MangaView extends GetView<MangaController> {
   String? get tag => Get.parameters["mangaId"];
   @override
   Widget build(BuildContext context) {
-    print(tag);
+    MangaController controller = Get.find<MangaController>(tag: tag);
     return Scaffold(
         appBar: AppBar(
           title: Obx(

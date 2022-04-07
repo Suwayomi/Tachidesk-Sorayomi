@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../data/manga_list_model.dart';
 import '../../../data/providers/source_provider.dart';
 import '../../../data/source_model.dart';
 
@@ -8,7 +9,7 @@ class GlobalSearchRepository {
 
   Future<List<Source>?> getSourceList() => _sourceProvider.getSourceList();
 
-  Future<Map<String, dynamic>?> getSourceMangaList({
+  Future<MangaListModel?> getSourceMangaList({
     required String sourceId,
     required String query,
   }) =>

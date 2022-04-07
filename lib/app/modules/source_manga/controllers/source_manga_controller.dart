@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../data/enums/source_type.dart';
+import '../../../data/manga_list_model.dart';
 import '../../../data/manga_model.dart';
 import '../../../data/source_model.dart';
 import '../repository/source_manga_repository.dart';
@@ -44,23 +45,22 @@ class SourceMangaController extends GetxController {
   set isFirstPage(bool value) => _isFirstPage.value = value;
 
   Future<void> getNextPage(int pageKey, bool isFilter) async {
-    Map<String, dynamic>? sourceMangaListTemp =
-        await repository.getSourceMangaList(
+    MangaListModel? sourceMangaListTemp = await repository.getSourceMangaList(
       sourceType: sourceType,
       pageNum: pageKey,
       sourceId: sourceId,
       isFilter: isFilter,
     );
     if (sourceMangaListTemp != null) {
-      if (sourceMangaListTemp["hasNextPage"]) {
+      if (sourceMangaListTemp.hasNextPage ?? false) {
         try {
           pagingController.appendPage(
-              sourceMangaListTemp["mangaList"], pageKey + 1);
+              sourceMangaListTemp.mangaList ?? [], pageKey + 1);
         } catch (e) {
           pagingController.appendPage(<Manga>[], pageKey + 1);
         }
       } else {
-        pagingController.appendLastPage(sourceMangaListTemp["mangaList"]);
+        pagingController.appendLastPage(sourceMangaListTemp.mangaList ?? []);
       }
     }
   }
