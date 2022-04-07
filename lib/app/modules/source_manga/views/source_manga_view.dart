@@ -106,8 +106,9 @@ class SourceMangaView extends GetView<SourceMangaController> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    controller.applyFilter();
+                  onPressed: () async {
+                    await controller.applyFilter();
+                    Get.back();
                   },
                   child: Text(
                     LocaleKeys.sourceMangaScreen_filter.tr,

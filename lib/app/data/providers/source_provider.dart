@@ -90,11 +90,7 @@ class SourceProvider extends GetConnect {
         }));
       }
     }
-    //TODO NEED to Fix (Send request as list insted of spamming)
-    //after version 0.6.2
-    for (var i in filter) {
-      await post('/$sourceId/filters', jsonEncode(i));
-    }
+    await post('/$sourceId/filters', jsonEncode(filter));
   }
 
   Future<MangaListModel?> getSourceMangaList({

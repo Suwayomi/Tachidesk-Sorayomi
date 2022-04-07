@@ -37,7 +37,8 @@ class SourcesController extends GetxController {
 
   Future<void> updateSourceList() async {
     isLoading = true;
-    sourceList.value = (await repository.getSourceList()) ?? sourceList;
+    var sourceListTemp = (await repository.getSourceList());
+    if (sourceListTemp != null) sourceList.value = sourceListTemp;
     groupByMap.value = groupBy();
     isLoading = false;
   }

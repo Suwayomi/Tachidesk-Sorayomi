@@ -38,16 +38,18 @@ class MangaView extends GetView<MangaController> {
                       child: Scaffold(
                         appBar: AppBar(
                           actions: [
-                            // // TODO Need to fix a bug in Tachidesk-server
-                            // https://github.com/Suwayomi/Tachidesk-Server/issues/313
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     controller.setMangaFilterAsDefault();
-                            //   },
-                            //   child: Text(
-                            //     LocaleKeys.mangaScreen_setAsDefault.tr,
-                            //   ),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  await controller.setMangaFilterAsDefault();
+                                  Get.back();
+                                },
+                                child: Text(
+                                  LocaleKeys.mangaScreen_setAsDefault.tr,
+                                ),
+                              ),
+                            ),
                           ],
                           bottom: context.width > 600
                               ? null

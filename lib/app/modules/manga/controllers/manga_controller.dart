@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 import '../../../core/utils/chapter/apply_chapter_filter.dart';
 import '../../../core/utils/chapter/apply_chapter_sort.dart';
 import '../../../core/utils/check_if_json.dart';
+import '../../../core/values/db_keys.dart';
 import '../../../data/category_model.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/downloads_model.dart';
@@ -66,21 +69,20 @@ class MangaController extends GetxController {
             fetchFreshData: !(manga.value.freshData ?? true)) ??
         manga.value;
 
-    // //#TODO  Need to fix a bug in Tachidesk-server
-    // https://github.com/Suwayomi/Tachidesk-Server/issues/313
-
-    // print(manga.value.meta);
-    // chapterFilter =
-    // manga.value.meta?[chapterFilterKey] != null
-    //     ? jsonDecode(manga.value.meta?[chapterFilterKey])
-    //         .map((key, value) => MapEntry(chapterFilterFromString(key), value))
-    //     : chapterFilter;
-    // Map? map = manga.value.meta?[chapterSortKey] != null
-    //     ? jsonDecode(manga.value.meta?[chapterSortKey])
-    //     : null;
-    // chapterSort = map != null
-    //     ? MapEntry(chapterSortfromString(map["key"]), map["value"])
-    //     : chapterSort;
+    if (manga.value.meta?[chapterFilterKey] != null) {
+      chapterFilter = jsonDecode(manga.value.meta?[chapterFilterKey])
+          .map<ChapterFilter, bool?>((String key, dynamic value) => MapEntry(
+                chapterFilterFromString(key),
+                value as bool?,
+              ));
+    }
+    Map? map = manga.value.meta?[chapterSortKey] != null
+        ? jsonDecode(manga.value.meta?[chapterSortKey])
+        : null;
+    if (map != null) {
+      chapterSort =
+          MapEntry(chapterSortfromString(map["key"]), map["value"] as bool);
+    }
   }
 
   Future<void> removeMangaFromLibrary() async {
@@ -162,9 +164,9 @@ class MangaController extends GetxController {
       categoryListTemp.removeAt(0);
     }
     categoryList = categoryListTemp;
-    mangaCategoryList =
-        await repository.getMangaCategoryList(manga.value.id!) ??
-            mangaCategoryList;
+    var mangaCatListTemp =
+        await repository.getMangaCategoryList(manga.value.id!);
+    if (mangaCatListTemp != null) mangaCategoryList = mangaCatListTemp;
   }
 
   Future<void> setMangaFilterAsDefault() async {
@@ -185,34 +187,26 @@ class MangaController extends GetxController {
     chapterSort = _localStorageService.chapterSort;
     _chapterFilter.listen((val) async {
       applyFilter();
-      await _localStorageService.setChapterFilter(chapterFilter);
-
-      // // TODO  Need to fix a bug in Tachidesk-server
-      // https://github.com/Suwayomi/Tachidesk-Server/issues/313
-      // await repository.patchMangaMeta(
-      //     manga.value,
-      //     MapEntry(
-      //       chapterFilterKey,
-      //       jsonEncode(val.map<String, bool?>(
-      //         (key, value) => MapEntry(key.name, value),
-      //       )),
-      //     ));
+      await repository.patchMangaMeta(
+          manga.value,
+          MapEntry(
+            chapterFilterKey,
+            jsonEncode(val.map<String, bool?>(
+              (key, value) => MapEntry(key.name, value),
+            )),
+          ));
     });
     _chapterSort.listen((val) async {
       applyFilter();
-      await _localStorageService.setChapterSort(chapterSort);
-
-      // // TODO  Need to fix a bug in Tachidesk-server
-      // https://github.com/Suwayomi/Tachidesk-Server/issues/313
-      // await repository.patchMangaMeta(
-      //   manga.value,
-      //   MapEntry(
-      //     chapterSortKey,
-      //     jsonEncode(
-      //       {"key": val.key.name, "value": val.value},
-      //     ),
-      //   ),
-      // );
+      await repository.patchMangaMeta(
+        manga.value,
+        MapEntry(
+          chapterSortKey,
+          jsonEncode(
+            {"key": val.key.name, "value": val.value},
+          ),
+        ),
+      );
     });
     isPageLoading.value = true;
     await loadManga();
