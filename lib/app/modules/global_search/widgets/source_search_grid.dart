@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../data/manga_model.dart';
+import '../../../data/manga_list_model.dart';
 import '../../../data/source_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/manga_grid_design.dart';
@@ -25,15 +25,16 @@ class SourceSearchGrid extends StatelessWidget {
   bool get isLoading => _isLoading.value;
   set isLoading(bool value) => _isLoading.value = value;
 
-  final RxList<Manga> _sourceMangaList = <Manga>[].obs;
-  List<Manga> get sourceMangaList => _sourceMangaList;
-  set sourceMangaList(List<Manga> value) => _sourceMangaList.value = value;
+  final Rx<MangaListModel> _sourceMangaListModel = MangaListModel().obs;
+  MangaListModel get sourceMangaListModel => _sourceMangaListModel.value;
+  set sourceMangaListModel(MangaListModel value) =>
+      _sourceMangaListModel.value = value;
 
   void searchQuery() async {
     isLoading = true;
-    sourceMangaList = (await repository.getSourceMangaList(
-            query: query, sourceId: source.id!))?["mangaList"] ??
-        sourceMangaList;
+    sourceMangaListModel = (await repository.getSourceMangaList(
+            query: query, sourceId: source.id!)) ??
+        sourceMangaListModel;
     isLoading = false;
   }
 
@@ -52,7 +53,7 @@ class SourceSearchGrid extends StatelessWidget {
             ),
             isLoading
                 ? CircularProgressIndicator()
-                : sourceMangaList.isNotEmpty
+                : sourceMangaListModel.mangaList?.isNotEmpty ?? false
                     ? SizedBox(
                         height: 200,
                         child: Scrollbar(
@@ -68,13 +69,13 @@ class SourceSearchGrid extends StatelessWidget {
                               mainAxisSpacing: 2.0,
                               childAspectRatio: 1.43,
                             ),
-                            itemCount: (sourceMangaList.length),
+                            itemCount: (sourceMangaListModel.mangaList!.length),
                             itemBuilder: (BuildContext context, int index) {
                               return MangaGridDesign(
-                                manga: sourceMangaList[index],
+                                manga: sourceMangaListModel.mangaList![index],
                                 onTap: () => Get.toNamed(
                                   Routes.manga +
-                                      "/${sourceMangaList[index].id}",
+                                      "/${sourceMangaListModel.mangaList?[index].id}",
                                 ),
                                 isLibraryScreen: true,
                               );

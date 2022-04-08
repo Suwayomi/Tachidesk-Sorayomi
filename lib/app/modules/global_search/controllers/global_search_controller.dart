@@ -26,10 +26,10 @@ class GlobalSearchController extends GetxController {
 
   @override
   void onReady() async {
-    sourceList = (await repository.getSourceList())
-            ?.skipWhile((value) => value.id == '0')
-            .toList() ??
-        sourceList;
+    List<Source>? sourceListTemp = (await repository.getSourceList())
+        ?.skipWhile((value) => value.id == '0')
+        .toList();
+    if (sourceListTemp != null) sourceList = sourceListTemp;
     // search();
     super.onReady();
   }

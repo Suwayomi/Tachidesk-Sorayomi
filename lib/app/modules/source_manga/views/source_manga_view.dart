@@ -106,8 +106,9 @@ class SourceMangaView extends GetView<SourceMangaController> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    controller.applyFilter();
+                  onPressed: () async {
+                    await controller.applyFilter();
+                    Get.back();
                   },
                   child: Text(
                     LocaleKeys.sourceMangaScreen_filter.tr,
@@ -128,16 +129,18 @@ class SourceMangaView extends GetView<SourceMangaController> {
           ),
         ),
       ),
-      floatingActionButton: controller.sourceType == SourceType.popular
-          ? FloatingActionButton.extended(
-              icon: Icon(Icons.filter_list_rounded),
-              label: Text(LocaleKeys.sourceMangaScreen_filter.tr),
-              isExtended: true,
-              onPressed: () {
-                controller.scaffoldKey.currentState?.openEndDrawer();
-              },
-            )
-          : null,
+      floatingActionButton: Obx(() =>
+          controller.sourceType == SourceType.popular &&
+                  controller.sourceMangaFilterList.isNotEmpty
+              ? FloatingActionButton.extended(
+                  icon: Icon(Icons.filter_list_rounded),
+                  label: Text(LocaleKeys.sourceMangaScreen_filter.tr),
+                  isExtended: true,
+                  onPressed: () {
+                    controller.scaffoldKey.currentState?.openEndDrawer();
+                  },
+                )
+              : Container()),
       body: PagedGridView<int, Manga>(
         pagingController: controller.pagingController,
         builderDelegate: PagedChildBuilderDelegate(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '../../../data/manga_list_model.dart';
 import '../../../data/manga_model.dart';
 import '../../../data/source_model.dart';
 import '../repository/search_source_repository.dart';
@@ -28,17 +29,16 @@ class SearchSourceController extends GetxController {
 
   Future<void> getNextPage(int pageKey) async {
     if (textEditingController.text.isEmpty) return;
-    Map<String, dynamic>? sourceMangaListTemp =
-        await repository.getSourceMangaList(
-            query: textEditingController.text,
-            pageNum: pageKey,
-            sourceId: sourceId);
+    MangaListModel? sourceMangaListTemp = await repository.getSourceMangaList(
+        query: textEditingController.text,
+        pageNum: pageKey,
+        sourceId: sourceId);
     if (sourceMangaListTemp != null) {
-      if (sourceMangaListTemp["hasNextPage"]) {
+      if (sourceMangaListTemp.hasNextPage ?? false) {
         pagingController.appendPage(
-            sourceMangaListTemp["mangaList"], pageKey + 1);
+            sourceMangaListTemp.mangaList ?? [], pageKey + 1);
       } else {
-        pagingController.appendLastPage(sourceMangaListTemp["mangaList"]);
+        pagingController.appendLastPage(sourceMangaListTemp.mangaList ?? []);
       }
     }
   }

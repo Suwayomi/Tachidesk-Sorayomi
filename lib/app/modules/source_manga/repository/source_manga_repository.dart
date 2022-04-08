@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 
 import '../../../data/enums/source_type.dart';
+import '../../../data/manga_list_model.dart';
 import '../../../data/providers/source_provider.dart';
 import '../../../data/source_model.dart';
 
 class SourceMangaRepository {
   final SourceProvider _sourceProvider = Get.put(SourceProvider());
 
-  Future<Map<String, dynamic>?> getSourceMangaList({
+  Future<MangaListModel?> getSourceMangaList({
     required String sourceId,
     required int pageNum,
     required SourceType sourceType,

@@ -20,12 +20,9 @@ class AboutView extends GetView<AboutController> {
         body: Obx(
           () => ListView(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: context.height * .05),
-                child: ImageIcon(
-                  AssetImage(iconLightTextNbgPngURL),
-                  size: context.height * .1,
-                ),
+              ImageIcon(
+                AssetImage(iconLightTextNbgPngURL),
+                size: context.height * .2,
               ),
               Divider(thickness: 2),
               ListTile(

@@ -56,8 +56,8 @@ class ExtensionsController extends GetxController {
 
   Future<void> updateExtensionList() async {
     isLoading.value = true;
-    extensionList.value =
-        (await repository.getExtensionList()) ?? extensionList;
+    List<Extension>? extensionList2 = await repository.getExtensionList();
+    if (extensionList2 != null) extensionList.value = (extensionList2);
     await _sourcesController.updateSourceList();
     isLoading.value = false;
   }
