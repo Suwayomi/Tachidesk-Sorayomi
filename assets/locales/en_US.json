@@ -154,7 +154,7 @@
         "noChapter": "chapter found",
         "noNewChapter": "No new chapter",
         "reload": "Reload",
-        "setAsDefault":"Set as default",
+        "setAsDefault": "Set as default",
         "sort": "Sort",
         "sortFetchedAt": "Fetched date",
         "sortScanlator": "Source",
@@ -182,7 +182,8 @@
             "webtoon": "Webtoon"
         },
         "readerMode_": "Reading Mode",
-        "reload": "Reload!"
+        "reload": "Reload!",
+        "savedImagePathTitle": "Image path saved to Clipboard"
     },
     "readerSettingsScreen": {
         "category": "Category",
@@ -202,16 +203,16 @@
         "updates": "Updates"
     },
     "searchManga": {
+        "noMangaFound": "No Manga Found",
         "search": "Search",
-        "searchManga": "Search manga..",
-        "noMangaFound": "No Manga Found"
+        "searchManga": "Search manga.."
     },
     "serverSettingsScreen": {
+        "baseAuthType": "Authentication Type",
+        "password": "Password",
+        "save": "Save",
         "url": "Server URL",
-        "baseAuthType" : "Authentication Type",
-        "save" : "Save",
-        "userName" : "User Name",
-        "password" : "Password",
+        "userName": "User Name",
         "webUI": "Open in WEB"
     },
     "settingsScreen": {
@@ -225,12 +226,12 @@
     },
     "sourceMangaScreen": {
         "browse": "Browse manga",
+        "filter": "Filter",
         "latest": "Latest manga",
         "loading": "Loading!",
         "manga": "Manga",
-        "filter": "Filter",
-        "reset": "Reset",
-        "reload": "Reload!"
+        "reload": "Reload!",
+        "reset": "Reset"
     },
     "sourceScreen": {
         "browse": "Browse",

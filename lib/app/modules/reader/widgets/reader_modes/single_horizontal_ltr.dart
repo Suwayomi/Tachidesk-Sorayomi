@@ -4,13 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
-import '../../../../generated/locales.g.dart';
-import '../../../data/enums/auth_type.dart';
-import '../../../widgets/emoticons.dart';
-import '../controllers/reader_controller.dart';
+import '../../../../../generated/locales.g.dart';
+import '../../../../data/enums/auth_type.dart';
+import '../../../../widgets/emoticons.dart';
+import '../../controllers/reader_controller.dart';
+import '../reader_page_bottom_sheet.dart';
 
-class SingleHorizontalRTL extends StatelessWidget {
-  SingleHorizontalRTL.asFunction({
+class SingleHorizontalLTR extends StatelessWidget {
+  SingleHorizontalLTR.asFunction({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -22,8 +23,8 @@ class SingleHorizontalRTL extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.arrowRight): PreviousScroll(),
-        LogicalKeySet(LogicalKeyboardKey.arrowLeft): NextScroll(),
+        LogicalKeySet(LogicalKeyboardKey.arrowLeft): PreviousScroll(),
+        LogicalKeySet(LogicalKeyboardKey.arrowRight): NextScroll(),
       },
       child: Actions(
         actions: {
@@ -45,23 +46,36 @@ class SingleHorizontalRTL extends StatelessWidget {
           child: PageView.builder(
             controller: pageController,
             itemCount: controller.chapter.pageCount,
-            reverse: true,
             itemBuilder: (context, index) {
               if (index == (controller.chapter.pageCount! - 1)) {
                 controller.markAsRead();
               }
+              Map<String, String>? headers =
+                  controller.localStorageService.baseAuthType == AuthType.basic
+                      ? {
+                          "Authorization":
+                              controller.localStorageService.basicAuth,
+                        }
+                      : null;
               return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: GestureDetector(
+                  onSecondaryTap: () {
+                    readerPageBottomSheet(
+                      index: index,
+                      controller: controller,
+                      headers: headers,
+                    );
+                  },
+                  onLongPress: () {
+                    readerPageBottomSheet(
+                      index: index,
+                      controller: controller,
+                      headers: headers,
+                    );
+                  },
                   child: CachedNetworkImage(
                     fit: BoxFit.fitHeight,
-                    httpHeaders: controller.localStorageService.baseAuthType ==
-                            AuthType.basic
-                        ? {
-                            "Authorization":
-                                controller.localStorageService.basicAuth,
-                          }
-                        : null,
+                    httpHeaders: headers,
                     imageUrl: controller.getChapterPage(index),
                     filterQuality: FilterQuality.medium,
                     progressIndicatorBuilder:

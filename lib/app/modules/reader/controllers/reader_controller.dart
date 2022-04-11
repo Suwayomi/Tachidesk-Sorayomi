@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 
 import '../../../core/values/db_keys.dart';
@@ -9,13 +10,13 @@ import '../../../data/manga_model.dart';
 import '../../../data/services/local_storage_service.dart';
 import '../../../routes/app_pages.dart';
 import '../repository/reader_repository.dart';
-import '../widgets/continuous_horizontal_ltr.dart';
-import '../widgets/continuous_horizontal_rtl.dart';
-import '../widgets/continuous_vertical.dart';
-import '../widgets/single_horizontal_ltr.dart';
-import '../widgets/single_horizontal_rtl.dart';
-import '../widgets/single_vertical.dart';
-import '../widgets/webtoon.dart';
+import '../widgets/reader_modes/continuous_horizontal_ltr.dart';
+import '../widgets/reader_modes/continuous_horizontal_rtl.dart';
+import '../widgets/reader_modes/continuous_vertical.dart';
+import '../widgets/reader_modes/single_horizontal_ltr.dart';
+import '../widgets/reader_modes/single_horizontal_rtl.dart';
+import '../widgets/reader_modes/single_vertical.dart';
+import '../widgets/reader_modes/webtoon.dart';
 
 class NextScroll extends Intent {}
 
@@ -23,6 +24,7 @@ class PreviousScroll extends Intent {}
 
 class ReaderController extends GetxController {
   final ReaderRepository repository = ReaderRepository();
+  final CacheManager cacheManager = DefaultCacheManager();
   late final int mangaId;
   late final int chapterIndex;
 
