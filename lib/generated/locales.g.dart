@@ -143,6 +143,7 @@ class LocaleKeys {
   static const mangaScreen_sort = 'mangaScreen_sort';
   static const mangaScreen_sortFetchedAt = 'mangaScreen_sortFetchedAt';
   static const mangaScreen_sortScanlator = 'mangaScreen_sortScanlator';
+  static const mangaScreen_sortSource = 'mangaScreen_sortSource';
   static const mangaScreen_source = 'mangaScreen_source';
   static const mangaScreen_status = 'mangaScreen_status';
   static const mangaScreen_unknown = 'mangaScreen_unknown';
@@ -328,7 +329,8 @@ class Locales {
     'mangaScreen_setAsDefault': 'Set as default',
     'mangaScreen_sort': 'Sort',
     'mangaScreen_sortFetchedAt': 'Fetched date',
-    'mangaScreen_sortScanlator': 'Source',
+    'mangaScreen_sortScanlator': 'Scanlator',
+    'mangaScreen_sortSource': 'Source',
     'mangaScreen_source': 'Source',
     'mangaScreen_status': 'Status',
     'mangaScreen_unknown': 'Unknown',

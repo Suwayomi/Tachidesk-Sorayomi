@@ -47,6 +47,20 @@ class MangaChapterSortListView extends StatelessWidget {
               ),
             ),
             ListTile(
+              leading: controller.chapterSort.key == ChapterSort.chapterIndex
+                  ? Icon(
+                      controller.chapterSort.value
+                          ? Icons.arrow_upward_rounded
+                          : Icons.arrow_downward_rounded,
+                    )
+                  : SizedBox(width: Get.theme.iconTheme.size),
+              title: Text(LocaleKeys.mangaScreen_sortSource.tr),
+              onTap: () => controller.chapterSort = toggleChapterSort(
+                previous: controller.chapterSort,
+                present: ChapterSort.chapterIndex,
+              ),
+            ),
+            ListTile(
               leading: controller.chapterSort.key == ChapterSort.scanlator
                   ? Icon(
                       controller.chapterSort.value

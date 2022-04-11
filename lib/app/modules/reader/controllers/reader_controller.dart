@@ -28,7 +28,6 @@ class ReaderController extends GetxController {
   final CacheManager cacheManager = DefaultCacheManager();
   late final int mangaId;
   late final int chapterIndex;
-
   final Rx<Manga> _manga = Manga().obs;
   Manga get manga => _manga.value;
   set manga(Manga value) => _manga.value = value;

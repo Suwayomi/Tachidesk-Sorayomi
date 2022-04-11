@@ -15,48 +15,6 @@ class ReaderView extends GetView<ReaderController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        // appBar: AppBar(
-        //   actionsIconTheme: IconThemeData(color: Colors.grey),
-        //   actions: [
-        //     controller.visibility && (controller.chapter.index ?? 0) > 1
-        //         ? IconButton(
-        //             onPressed: () => controller.prevChapter(),
-        //             icon: Icon(
-        //               Icons.arrow_back_ios,
-        //             ),
-        //           )
-        //         : Container(),
-        //     controller.visibility &&
-        //             (controller.chapter.index ?? 1) <
-        //                 (controller.chapter.chapterCount ?? 0)
-        //         ? IconButton(
-        //             icon: Icon(
-        //               Icons.arrow_forward_ios,
-        //             ),
-        //             onPressed: () => controller.nextChapter(),
-        //           )
-        //         : Container(),
-        //     controller.visibility
-        //         ? IconButton(
-        //             onPressed: () => Get.back(), icon: Icon(Icons.close))
-        //         : Container(),
-        //     IconButton(
-        //       onPressed: () => controller.toggleVisibility(),
-        //       icon: controller.visibility
-        //           ? Icon(Icons.visibility_rounded)
-        //           : Icon(
-        //               Icons.visibility_off_rounded,
-        //               color: Colors.grey.withOpacity(0.5),
-        //             ),
-        //     ),
-        //   ],
-        //   elevation: 0,
-        //   iconTheme: IconThemeData(color: Colors.grey),
-        //   backgroundColor: controller.visibility ? null : Colors.transparent,
-        //   automaticallyImplyLeading:
-        //       controller.isDataLoading && controller.visibility,
-        // ),
-        // // extendBodyBehindAppBar: true,
         drawer: Drawer(
             child: Obx(
           () => ListView(
