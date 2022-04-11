@@ -15,48 +15,48 @@ class ReaderView extends GetView<ReaderController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        appBar: AppBar(
-          actionsIconTheme: IconThemeData(color: Colors.grey),
-          actions: [
-            controller.visibility && (controller.chapter.index ?? 0) > 1
-                ? IconButton(
-                    onPressed: () => controller.prevChapter(),
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                    ),
-                  )
-                : Container(),
-            controller.visibility &&
-                    (controller.chapter.index ?? 1) <
-                        (controller.chapter.chapterCount ?? 0)
-                ? IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                    ),
-                    onPressed: () => controller.nextChapter(),
-                  )
-                : Container(),
-            controller.visibility
-                ? IconButton(
-                    onPressed: () => Get.back(), icon: Icon(Icons.close))
-                : Container(),
-            IconButton(
-              onPressed: () => controller.toggleVisibility(),
-              icon: controller.visibility
-                  ? Icon(Icons.visibility_rounded)
-                  : Icon(
-                      Icons.visibility_off_rounded,
-                      color: Colors.grey.withOpacity(0.5),
-                    ),
-            ),
-          ],
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.grey),
-          backgroundColor: controller.visibility ? null : Colors.transparent,
-          automaticallyImplyLeading:
-              controller.isDataLoading && controller.visibility,
-        ),
-        extendBodyBehindAppBar: true,
+        // appBar: AppBar(
+        //   actionsIconTheme: IconThemeData(color: Colors.grey),
+        //   actions: [
+        //     controller.visibility && (controller.chapter.index ?? 0) > 1
+        //         ? IconButton(
+        //             onPressed: () => controller.prevChapter(),
+        //             icon: Icon(
+        //               Icons.arrow_back_ios,
+        //             ),
+        //           )
+        //         : Container(),
+        //     controller.visibility &&
+        //             (controller.chapter.index ?? 1) <
+        //                 (controller.chapter.chapterCount ?? 0)
+        //         ? IconButton(
+        //             icon: Icon(
+        //               Icons.arrow_forward_ios,
+        //             ),
+        //             onPressed: () => controller.nextChapter(),
+        //           )
+        //         : Container(),
+        //     controller.visibility
+        //         ? IconButton(
+        //             onPressed: () => Get.back(), icon: Icon(Icons.close))
+        //         : Container(),
+        //     IconButton(
+        //       onPressed: () => controller.toggleVisibility(),
+        //       icon: controller.visibility
+        //           ? Icon(Icons.visibility_rounded)
+        //           : Icon(
+        //               Icons.visibility_off_rounded,
+        //               color: Colors.grey.withOpacity(0.5),
+        //             ),
+        //     ),
+        //   ],
+        //   elevation: 0,
+        //   iconTheme: IconThemeData(color: Colors.grey),
+        //   backgroundColor: controller.visibility ? null : Colors.transparent,
+        //   automaticallyImplyLeading:
+        //       controller.isDataLoading && controller.visibility,
+        // ),
+        // // extendBodyBehindAppBar: true,
         drawer: Drawer(
             child: Obx(
           () => ListView(
@@ -179,32 +179,88 @@ class ReaderView extends GetView<ReaderController> {
             ],
           ),
         )),
-        body: !controller.isLoading
-            ? controller.chapter.pageCount != null
-                ? Obx(() {
-                    ReaderMode readerMode =
-                        controller.readerMode == ReaderMode.defaultReader
-                            ? controller.localStorageService.readerMode
-                            : controller.readerMode;
-                    return controller.readerModeMap[readerMode]!(
-                        controller: controller);
-                  })
-                : EmoticonsView(
-                    text: LocaleKeys.no.tr +
-                        " " +
-                        LocaleKeys.readerScreen_chapterError.tr,
-                    button: TextButton.icon(
-                      onPressed: () => controller.reloadReader(),
-                      style: TextButton.styleFrom(),
-                      icon: Icon(Icons.refresh),
-                      label: Text(
-                        LocaleKeys.readerScreen_reload.tr,
-                      ),
+        body: GestureDetector(
+          onTap: () => controller.toggleVisibility(),
+          child: Stack(
+            children: [
+              !controller.isLoading
+                  ? controller.chapter.pageCount != null
+                      ? Obx(() {
+                          ReaderMode readerMode =
+                              controller.readerMode == ReaderMode.defaultReader
+                                  ? controller.localStorageService.readerMode
+                                  : controller.readerMode;
+                          return controller.readerModeMap[readerMode]!(
+                              controller: controller);
+                        })
+                      : EmoticonsView(
+                          text: LocaleKeys.no.tr +
+                              " " +
+                              LocaleKeys.readerScreen_chapterError.tr,
+                          button: TextButton.icon(
+                            onPressed: () => controller.reloadReader(),
+                            style: TextButton.styleFrom(),
+                            icon: Icon(Icons.refresh),
+                            label: Text(
+                              LocaleKeys.readerScreen_reload.tr,
+                            ),
+                          ),
+                        )
+                  : Center(
+                      child: CircularProgressIndicator(),
                     ),
-                  )
-            : Center(
-                child: CircularProgressIndicator(),
-              ),
+              Obx(() => controller.visibility
+                  ? Container(
+                      clipBehavior: Clip.antiAlias,
+                      margin: EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: kToolbarHeight,
+                      child: AppBar(
+                        actionsIconTheme: IconThemeData(color: Colors.grey),
+                        title: Text(
+                          "${controller.chapter.name} "
+                          "( ${controller.manga.title ?? ''} )",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        actions: [
+                          (controller.chapter.index ?? 0) > 1
+                              ? IconButton(
+                                  onPressed: () => controller.prevChapter(),
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                  ),
+                                )
+                              : Container(),
+                          (controller.chapter.index ?? 1) <
+                                  (controller.chapter.chapterCount ?? 0)
+                              ? IconButton(
+                                  icon: Icon(
+                                    Icons.arrow_forward_ios,
+                                  ),
+                                  onPressed: () => controller.nextChapter(),
+                                )
+                              : Container(),
+                          IconButton(
+                            onPressed: () => Get.back(),
+                            icon: Icon(Icons.close),
+                          ),
+                        ],
+                        elevation: 0,
+                        iconTheme: IconThemeData(color: Colors.grey),
+                        backgroundColor: Colors.black.withOpacity(.8),
+                        automaticallyImplyLeading:
+                            controller.isDataLoading && controller.visibility,
+                      ),
+                    )
+                  : Container()),
+            ],
+          ),
+        ),
       ),
     );
   }
