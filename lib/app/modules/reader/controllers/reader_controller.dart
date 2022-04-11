@@ -23,11 +23,11 @@ class NextScroll extends Intent {}
 class PreviousScroll extends Intent {}
 
 class ReaderController extends GetxController {
+  var readerScaffoldKey = GlobalKey<ScaffoldState>();
   final ReaderRepository repository = ReaderRepository();
   final CacheManager cacheManager = DefaultCacheManager();
   late final int mangaId;
   late final int chapterIndex;
-
   final Rx<Manga> _manga = Manga().obs;
   Manga get manga => _manga.value;
   set manga(Manga value) => _manga.value = value;
