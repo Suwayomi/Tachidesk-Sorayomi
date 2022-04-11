@@ -172,6 +172,8 @@ class LocaleKeys {
       'readerScreen_readerMode_webtoon';
   static const readerScreen_readerMode_ = 'readerScreen_readerMode_';
   static const readerScreen_reload = 'readerScreen_reload';
+  static const readerScreen_savedImagePathTitle =
+      'readerScreen_savedImagePathTitle';
   static const readerSettingsScreen_category = 'readerSettingsScreen_category';
   static const readerSettingsScreen_readerMode =
       'readerSettingsScreen_readerMode';
@@ -187,15 +189,15 @@ class LocaleKeys {
   static const screenTitle_settings = 'screenTitle_settings';
   static const screenTitle_sources = 'screenTitle_sources';
   static const screenTitle_updates = 'screenTitle_updates';
+  static const searchManga_noMangaFound = 'searchManga_noMangaFound';
   static const searchManga_search = 'searchManga_search';
   static const searchManga_searchManga = 'searchManga_searchManga';
-  static const searchManga_noMangaFound = 'searchManga_noMangaFound';
-  static const serverSettingsScreen_url = 'serverSettingsScreen_url';
   static const serverSettingsScreen_baseAuthType =
       'serverSettingsScreen_baseAuthType';
-  static const serverSettingsScreen_save = 'serverSettingsScreen_save';
-  static const serverSettingsScreen_userName = 'serverSettingsScreen_userName';
   static const serverSettingsScreen_password = 'serverSettingsScreen_password';
+  static const serverSettingsScreen_save = 'serverSettingsScreen_save';
+  static const serverSettingsScreen_url = 'serverSettingsScreen_url';
+  static const serverSettingsScreen_userName = 'serverSettingsScreen_userName';
   static const serverSettingsScreen_webUI = 'serverSettingsScreen_webUI';
   static const settingsScreen_appearance = 'settingsScreen_appearance';
   static const settingsScreen_backup = 'settingsScreen_backup';
@@ -205,12 +207,12 @@ class LocaleKeys {
   static const settingsScreen_reader = 'settingsScreen_reader';
   static const settingsScreen_server = 'settingsScreen_server';
   static const sourceMangaScreen_browse = 'sourceMangaScreen_browse';
+  static const sourceMangaScreen_filter = 'sourceMangaScreen_filter';
   static const sourceMangaScreen_latest = 'sourceMangaScreen_latest';
   static const sourceMangaScreen_loading = 'sourceMangaScreen_loading';
   static const sourceMangaScreen_manga = 'sourceMangaScreen_manga';
-  static const sourceMangaScreen_filter = 'sourceMangaScreen_filter';
-  static const sourceMangaScreen_reset = 'sourceMangaScreen_reset';
   static const sourceMangaScreen_reload = 'sourceMangaScreen_reload';
+  static const sourceMangaScreen_reset = 'sourceMangaScreen_reset';
   static const sourceScreen_browse = 'sourceScreen_browse';
   static const sourceScreen_close = 'sourceScreen_close';
   static const sourceScreen_extensions = 'sourceScreen_extensions';
@@ -350,6 +352,7 @@ class Locales {
     'readerScreen_readerMode_webtoon': 'Webtoon',
     'readerScreen_readerMode_': 'Reading Mode',
     'readerScreen_reload': 'Reload!',
+    'readerScreen_savedImagePathTitle': 'Image path saved to Clipboard',
     'readerSettingsScreen_category': 'Category',
     'readerSettingsScreen_readerMode': 'Readering Mode',
     'screenTitle_about': 'About',
@@ -363,14 +366,14 @@ class Locales {
     'screenTitle_settings': 'Settings',
     'screenTitle_sources': 'Sources',
     'screenTitle_updates': 'Updates',
+    'searchManga_noMangaFound': 'No Manga Found',
     'searchManga_search': 'Search',
     'searchManga_searchManga': 'Search manga..',
-    'searchManga_noMangaFound': 'No Manga Found',
-    'serverSettingsScreen_url': 'Server URL',
     'serverSettingsScreen_baseAuthType': 'Authentication Type',
-    'serverSettingsScreen_save': 'Save',
-    'serverSettingsScreen_userName': 'User Name',
     'serverSettingsScreen_password': 'Password',
+    'serverSettingsScreen_save': 'Save',
+    'serverSettingsScreen_url': 'Server URL',
+    'serverSettingsScreen_userName': 'User Name',
     'serverSettingsScreen_webUI': 'Open in WEB',
     'settingsScreen_appearance': 'Appearance',
     'settingsScreen_backup': 'Backup & Restore',
@@ -380,12 +383,12 @@ class Locales {
     'settingsScreen_reader': 'Reader Settings',
     'settingsScreen_server': 'Server Settings',
     'sourceMangaScreen_browse': 'Browse manga',
+    'sourceMangaScreen_filter': 'Filter',
     'sourceMangaScreen_latest': 'Latest manga',
     'sourceMangaScreen_loading': 'Loading!',
     'sourceMangaScreen_manga': 'Manga',
-    'sourceMangaScreen_filter': 'Filter',
-    'sourceMangaScreen_reset': 'Reset',
     'sourceMangaScreen_reload': 'Reload!',
+    'sourceMangaScreen_reset': 'Reset',
     'sourceScreen_browse': 'Browse',
     'sourceScreen_close': 'Close',
     'sourceScreen_extensions': 'Installed Extensions',

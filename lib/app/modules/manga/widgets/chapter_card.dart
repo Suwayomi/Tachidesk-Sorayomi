@@ -31,6 +31,7 @@ class ChapterCard extends StatelessWidget {
         chapter?.name ?? chapter?.chapterNumber!.toString() ?? "",
         style: TextStyle(
           color: (chapter?.read ?? false) ? Colors.grey : null,
+          fontWeight: (chapter?.read ?? false) ? null : FontWeight.bold,
         ),
         overflow: TextOverflow.ellipsis,
       ),
@@ -48,6 +49,7 @@ class ChapterCard extends StatelessWidget {
         style: context.textTheme.caption?.copyWith(
           height: 1.5,
           color: (chapter?.read ?? false) ? Colors.grey : null,
+          fontWeight: (chapter?.read ?? false) ? null : FontWeight.bold,
           overflow: TextOverflow.ellipsis,
         ),
       ),
