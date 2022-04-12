@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../../core/values/api_url.dart';
+import '../enums/auth_type.dart';
 import '../services/local_storage_service.dart';
 
 class DownloadsProvider extends GetConnect {
@@ -12,10 +13,12 @@ class DownloadsProvider extends GetConnect {
   void onInit() {
     httpClient.baseUrl = _localStorageService.baseURL + downloadsURL;
     httpClient.timeout = Duration(minutes: 5);
-    httpClient.addAuthenticator((Request request) async {
+    httpClient.addRequestModifier((Request request) async {
       final token = _localStorageService.basicAuth;
       // Set the header
-      request.headers['Authorization'] = token;
+      if (_localStorageService.baseAuthType == AuthType.basic) {
+        request.headers['Authorization'] = token;
+      }
       return request;
     });
   }
@@ -36,11 +39,7 @@ class DownloadsProvider extends GetConnect {
   }
 
   GetSocket socketDownloads() {
-    final _socket = GetSocket(
-      httpClient.baseUrl!.replaceFirst(RegExp("http"), "ws"),
-      allowSelfSigned: false,
-    );
-    sockets.add(_socket);
+    final _socket = socket(httpClient.baseUrl!);
     _socket.onOpen(() {});
     _socket.connect();
     return _socket;
