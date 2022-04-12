@@ -42,6 +42,11 @@ class ReaderController extends GetxController {
   ReaderMode get readerMode => _readerMode.value;
   set readerMode(ReaderMode value) => _readerMode.value = value;
 
+
+  final RxInt _currentIndex = 1.obs;
+  int get currentIndex => _currentIndex.value;
+  set currentIndex(int value) => _currentIndex.value = value;
+
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
   set isLoading(bool value) => _isLoading.value = value;
@@ -70,6 +75,12 @@ class ReaderController extends GetxController {
     ReaderMode.singleVertical: SingleVertical.asFunction,
     ReaderMode.webtoon: Webtoon.asFunction,
   };
+
+  Future<void> modifyChapter(String key, dynamic value) async {
+    Map<String, dynamic> formData = {key: value};
+    await repository.patchChapter(chapter, formData);
+    await reloadChapter();
+  }
 
   @override
   void onInit() {
@@ -112,11 +123,17 @@ class ReaderController extends GetxController {
     }
   }
 
+  Future<void> reloadChapter() async {
+    final tempChapter = await repository.getChapter(
+      mangaId: mangaId,
+      chapterIndex: chapterIndex,
+    );
+    if (tempChapter != null) chapter = tempChapter;
+  }
+
   Future<void> reloadReader() async {
     isLoading = true;
-    chapter = (await repository.getChapter(
-            mangaId: mangaId, chapterIndex: chapterIndex)) ??
-        chapter;
+    await reloadChapter();
     manga = (await repository.getManga(mangaId)) ?? manga;
     readerMode = (manga.meta?[readerModeKey] != null
         ? readerModeFromString(manga.meta![readerModeKey])

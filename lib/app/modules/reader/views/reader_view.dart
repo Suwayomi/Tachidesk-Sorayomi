@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/locales.g.dart';
-import '../../../core/values/api_url.dart';
-import '../../../data/enums/auth_type.dart';
 import '../../../data/enums/reader_mode.dart';
 import '../../../widgets/emoticons.dart';
 import '../controllers/reader_controller.dart';
@@ -15,128 +12,6 @@ class ReaderView extends GetView<ReaderController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        drawer: Drawer(
-            child: Obx(
-          () => ListView(
-            children: [
-              DrawerHeader(
-                padding: EdgeInsets.zero,
-                child: Obx(
-                  () => GridTile(
-                    child: Container(
-                      child: (controller.manga.thumbnailUrl ?? "").isNotEmpty
-                          ? CachedNetworkImage(
-                              imageUrl: controller.localStorageService.baseURL +
-                                  (controller.manga.thumbnailUrl ?? "") +
-                                  "/?useCache=true",
-                              httpHeaders:
-                                  controller.localStorageService.baseAuthType ==
-                                          AuthType.basic
-                                      ? {
-                                          "Authorization": controller
-                                              .localStorageService.basicAuth,
-                                        }
-                                      : null,
-                              fit: BoxFit.cover,
-                              errorWidget: (context, error, stackTrace) =>
-                                  ImageIcon(
-                                AssetImage(iconLightTextNbgPngURL),
-                              ),
-                            )
-                          : ImageIcon(
-                              AssetImage(iconLightTextNbgPngURL),
-                            ),
-                      foregroundDecoration: BoxDecoration(
-                        border: Border.all(
-                          width: 0,
-                          color: Get.theme.canvasColor,
-                        ),
-                        gradient: LinearGradient(
-                          begin: Alignment.center,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Get.theme.canvasColor.withOpacity(0),
-                            Get.theme.canvasColor.withOpacity(0.4),
-                            Get.theme.canvasColor.withOpacity(0.9),
-                          ],
-                        ),
-                      ),
-                    ),
-                    footer: Obx(() => ListTile(
-                          leading: IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
-                            onPressed: () {
-                              Get.back();
-                            },
-                          ),
-                          title: Text(
-                            controller.manga.title ??
-                                LocaleKeys.readerScreen_manga.tr,
-                            style: context.textTheme.headline6,
-                          ),
-                          subtitle: Text(
-                            controller.chapter.name ??
-                                LocaleKeys.readerScreen_chapter.tr,
-                          ),
-                        )),
-                  ),
-                ),
-              ),
-              ListTile(
-                subtitle: Text(LocaleKeys.readerScreen_readerMode_.tr),
-                leading: Icon(Icons.app_settings_alt_outlined),
-                isThreeLine: true,
-                title: DropdownButton(
-                  value: controller.readerMode,
-                  isExpanded: true,
-                  hint: Text(LocaleKeys.readerScreen_readerMode_.tr),
-                  items: ReaderMode.values
-                      .map<DropdownMenuItem<ReaderMode>>((e) =>
-                          DropdownMenuItem<ReaderMode>(
-                            child: Text(
-                              (LocaleKeys.readerScreen_readerMode_ + e.name).tr,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            value: e,
-                          ))
-                      .toList(),
-                  onChanged: (ReaderMode? e) => controller.changeReaderMode(e),
-                ),
-              ),
-              Obx(() => Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      controller.chapter.index != null &&
-                              (controller.chapter.index!) > 1
-                          ? TextButton.icon(
-                              onPressed: () => controller.prevChapter(),
-                              icon: Icon(
-                                Icons.arrow_back_ios,
-                              ),
-                              label: Text(
-                                LocaleKeys.readerScreen_previousChapter.tr,
-                              ),
-                            )
-                          : Container(),
-                      controller.chapter.index != null &&
-                              controller.chapter.index! <
-                                  controller.chapter.chapterCount!
-                          ? TextButton.icon(
-                              label: Icon(
-                                Icons.arrow_forward_ios,
-                              ),
-                              onPressed: () => controller.nextChapter(),
-                              icon: Text(
-                                LocaleKeys.readerScreen_nextChapter.tr,
-                              ),
-                            )
-                          : Container(),
-                    ],
-                  ))
-            ],
-          ),
-        )),
         body: GestureDetector(
           onTap: () => controller.toggleVisibility(),
           child: Stack(
@@ -168,52 +43,169 @@ class ReaderView extends GetView<ReaderController> {
                       child: CircularProgressIndicator(),
                     ),
               Obx(() => controller.visibility
-                  ? Container(
-                      clipBehavior: Clip.antiAlias,
-                      margin: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      height: kToolbarHeight,
-                      child: AppBar(
-                        actionsIconTheme: IconThemeData(color: Colors.grey),
-                        title: Text(
-                          "${controller.chapter.name} "
-                          "( ${controller.manga.title ?? ''} )",
-                          style: TextStyle(
-                            color: Colors.grey,
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          clipBehavior: Clip.antiAlias,
+                          margin: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
                           ),
-                          overflow: TextOverflow.ellipsis,
+                          height: kToolbarHeight,
+                          child: AppBar(
+                            actionsIconTheme: IconThemeData(color: Colors.grey),
+                            title: ListTile(
+                              title: Text(
+                                controller.manga.title ?? '',
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                "${controller.chapter.name}",
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            actions: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: IconButton(
+                                  onPressed: () => Get.back(),
+                                  icon: Icon(Icons.close),
+                                ),
+                              ),
+                            ],
+                            elevation: 0,
+                            iconTheme: IconThemeData(color: Colors.grey),
+                            backgroundColor: Colors.black.withOpacity(.7),
+                            automaticallyImplyLeading:
+                                controller.isDataLoading &&
+                                    controller.visibility,
+                          ),
                         ),
-                        actions: [
-                          (controller.chapter.index ?? 0) > 1
-                              ? IconButton(
-                                  onPressed: () => controller.prevChapter(),
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
+                        BottomAppBar(
+                          color: Colors.transparent,
+                          elevation: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Card(
+                                      color: Colors.black.withOpacity(.7),
+                                      shape: CircleBorder(),
+                                      child: IconButton(
+                                        onPressed:
+                                            (controller.chapter.index ?? 0) > 1
+                                                ? controller.prevChapter
+                                                : null,
+                                        icon: Icon(Icons.skip_previous_rounded),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Card(
+                                        color: Colors.black.withOpacity(.7),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        child: Obx(() => Slider(
+                                              value: controller.currentIndex
+                                                  .toDouble(),
+                                              min: 1,
+                                              max: (controller
+                                                          .chapter.pageCount ??
+                                                      1)
+                                                  .toDouble(),
+                                              // divisions:
+                                              //     controller.chapter.pageCount,
+                                              onChanged: (value) {
+                                                
+                                                controller.currentIndex =
+                                                    value.toInt();
+                                              },
+                                            )),
+                                      ),
+                                    ),
+                                    Card(
+                                      color: Colors.black.withOpacity(.7),
+                                      shape: CircleBorder(),
+                                      child: IconButton(
+                                        onPressed:
+                                            (controller.chapter.index ?? 1) <
+                                                    (controller.chapter
+                                                            .chapterCount ??
+                                                        0)
+                                                ? controller.nextChapter
+                                                : null,
+                                        icon: Icon(Icons.skip_next_rounded),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Card(
+                                  color: Colors.black.withOpacity(.7),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Obx(
+                                          () => IconButton(
+                                            onPressed: () =>
+                                                controller.modifyChapter(
+                                              'bookmarked',
+                                              !(controller.chapter.bookmarked ??
+                                                  true),
+                                            ),
+                                            icon: Icon((controller
+                                                        .chapter.bookmarked ??
+                                                    true)
+                                                ? Icons.bookmark
+                                                : Icons
+                                                    .bookmark_outline_rounded),
+                                          ),
+                                        ),
+                                        PopupMenuButton(
+                                          icon: Icon(
+                                            Icons.app_settings_alt_outlined,
+                                          ),
+                                          initialValue: controller.readerMode,
+                                          onSelected: (ReaderMode? e) =>
+                                              controller.changeReaderMode(e),
+                                          itemBuilder: (context) {
+                                            return ReaderMode.values
+                                                .map<
+                                                    PopupMenuEntry<ReaderMode>>(
+                                                  (e) => PopupMenuItem(
+                                                    value: e,
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        (LocaleKeys.readerScreen_readerMode_ +
+                                                                e.name)
+                                                            .tr,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                                .toList();
+                                          },
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 )
-                              : Container(),
-                          (controller.chapter.index ?? 1) <
-                                  (controller.chapter.chapterCount ?? 0)
-                              ? IconButton(
-                                  icon: Icon(
-                                    Icons.arrow_forward_ios,
-                                  ),
-                                  onPressed: () => controller.nextChapter(),
-                                )
-                              : Container(),
-                          IconButton(
-                            onPressed: () => Get.back(),
-                            icon: Icon(Icons.close),
+                              ],
+                            ),
                           ),
-                        ],
-                        elevation: 0,
-                        iconTheme: IconThemeData(color: Colors.grey),
-                        backgroundColor: Colors.black.withOpacity(.8),
-                        automaticallyImplyLeading:
-                            controller.isDataLoading && controller.visibility,
-                      ),
+                        )
+                      ],
                     )
                   : Container()),
             ],
