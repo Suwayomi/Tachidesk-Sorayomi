@@ -15,7 +15,6 @@ class GlobalSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller.textEditingController,
-      autofocus: true,
       onEditingComplete: () =>
           controller.query = controller.textEditingController.text,
       decoration: InputDecoration(

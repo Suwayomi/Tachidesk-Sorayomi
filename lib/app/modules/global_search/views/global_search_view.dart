@@ -28,23 +28,7 @@ class GlobalSearchView extends GetView<GlobalSearchController> {
               ? Container(
                   padding: EdgeInsets.all(8.0),
                   width: 300,
-                  child: TextField(
-                    controller: controller.textEditingController,
-                    autofocus: true,
-                    onEditingComplete: () => controller.query =
-                        controller.textEditingController.text,
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {
-                          controller.query =
-                              controller.textEditingController.text;
-                        },
-                      ),
-                      border: OutlineInputBorder(),
-                      hintText: LocaleKeys.searchManga_searchManga.tr,
-                    ),
-                  ),
+                  child: GlobalSearchField(controller: controller),
                 )
               : Container(),
         ],
