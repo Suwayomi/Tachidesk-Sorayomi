@@ -42,6 +42,12 @@ class ReaderController extends GetxController {
   ReaderMode get readerMode => _readerMode.value;
   set readerMode(ReaderMode value) => _readerMode.value = value;
 
+  final RxInt _currentIndex = 0.obs;
+  int get currentIndex => _currentIndex.value;
+  set currentIndex(int value) => _currentIndex.value = value;
+
+  final RxInt sliderValue = 0.obs;
+
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
   set isLoading(bool value) => _isLoading.value = value;
@@ -58,6 +64,8 @@ class ReaderController extends GetxController {
   bool get expandedState => _expandedState.value;
   set expandedState(bool value) => _expandedState.value = value;
 
+  void Function(int)? sliderJumpTo;
+
   String getChapterPage(int page) => repository.getChapterPage(
       mangaId: mangaId, chapterIndex: chapterIndex, page: page);
 
@@ -71,10 +79,19 @@ class ReaderController extends GetxController {
     ReaderMode.webtoon: Webtoon.asFunction,
   };
 
+  Future<void> modifyChapter(String key, dynamic value) async {
+    Map<String, dynamic> formData = {key: value};
+    await repository.patchChapter(chapter, formData);
+    await reloadChapter();
+  }
+
   @override
   void onInit() {
     mangaId = int.parse(Get.parameters["mangaId"]!);
     chapterIndex = int.parse(Get.parameters["chapterIndex"]!);
+    sliderValue.listen((index) {
+      if (sliderJumpTo != null) sliderJumpTo!(index);
+    });
     super.onInit();
   }
 
@@ -91,6 +108,7 @@ class ReaderController extends GetxController {
 
   void changeReaderMode(ReaderMode? readerMode) async {
     this.readerMode = readerMode ?? this.readerMode;
+    currentIndex = 0;
     await repository.patchMangaMeta(
       manga,
       MapEntry(
@@ -112,11 +130,17 @@ class ReaderController extends GetxController {
     }
   }
 
+  Future<void> reloadChapter() async {
+    final tempChapter = await repository.getChapter(
+      mangaId: mangaId,
+      chapterIndex: chapterIndex,
+    );
+    if (tempChapter != null) chapter = tempChapter;
+  }
+
   Future<void> reloadReader() async {
     isLoading = true;
-    chapter = (await repository.getChapter(
-            mangaId: mangaId, chapterIndex: chapterIndex)) ??
-        chapter;
+    await reloadChapter();
     manga = (await repository.getManga(mangaId)) ?? manga;
     readerMode = (manga.meta?[readerModeKey] != null
         ? readerModeFromString(manga.meta![readerModeKey])

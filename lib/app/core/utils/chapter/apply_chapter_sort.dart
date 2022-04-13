@@ -12,7 +12,6 @@ int applyChapterSort(MapEntry<ChapterSort, bool> sort, Chapter c1, Chapter c2) {
           ? (c1.fetchedAt ?? 0).compareTo(c2.fetchedAt ?? 0)
           : (c2.fetchedAt ?? 0).compareTo(c1.fetchedAt ?? 0);
     case ChapterSort.chapterIndex:
-      print(c1.index);
       return sort.value
           ? (c1.index ?? 0).compareTo(c2.index ?? 0)
           : (c2.index ?? 0).compareTo(c1.index ?? 0);
