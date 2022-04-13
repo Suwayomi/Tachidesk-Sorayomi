@@ -22,6 +22,7 @@ dependencies:
   path: ^1.8.1
   path_provider: ^2.0.9
   readmore: ^2.1.0
+  scrollable_positioned_list: ^0.2.3
   url_launcher: ^6.0.17
 
 dev_dependencies:

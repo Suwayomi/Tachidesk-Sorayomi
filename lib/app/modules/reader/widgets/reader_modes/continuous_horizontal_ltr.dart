@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../generated/locales.g.dart';
 import '../../../../data/enums/auth_type.dart';
@@ -18,9 +19,26 @@ class ContinuousHorizontalLTR extends StatelessWidget {
 
   final ReaderController controller;
 
-  final ScrollController scrollController = ScrollController();
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
+  void initListeners() {
+    itemPositionsListener.itemPositions.addListener(() {
+      var positions = itemPositionsListener.itemPositions.value.toList();
+      controller.currentIndex = positions
+          .where((ItemPosition position) => position.itemTrailingEdge > 0)
+          .reduce((ItemPosition min, ItemPosition position) =>
+              position.itemTrailingEdge < min.itemTrailingEdge ? position : min)
+          .index;
+    });
+    controller.sliderJumpTo =
+        (index) => itemScrollController.jumpTo(index: index);
+  }
+
   @override
   Widget build(BuildContext context) {
+    initListeners();
     return Shortcuts(
       shortcuts: {
         LogicalKeySet(LogicalKeyboardKey.arrowLeft): PreviousScroll(),
@@ -30,24 +48,37 @@ class ContinuousHorizontalLTR extends StatelessWidget {
       child: Actions(
         actions: {
           PreviousScroll: CallbackAction<PreviousScroll>(
-            onInvoke: (intent) => scrollController.animateTo(
-                scrollController.offset - 300,
+            onInvoke: (intent) {
+              ItemPosition itemPosition =
+                  itemPositionsListener.itemPositions.value.toList().first;
+              return itemScrollController.scrollTo(
+                index: itemPosition.index,
                 duration: Duration(milliseconds: 500),
-                curve: Curves.ease),
+                curve: Curves.ease,
+                alignment: itemPosition.itemLeadingEdge + .2,
+              );
+            },
           ),
           NextScroll: CallbackAction<NextScroll>(
-            onInvoke: (intent) => scrollController.animateTo(
-                scrollController.offset + 300,
+            onInvoke: (intent) {
+              ItemPosition itemPosition =
+                  itemPositionsListener.itemPositions.value.first;
+              return itemScrollController.scrollTo(
+                index: itemPosition.index,
                 duration: Duration(milliseconds: 500),
-                curve: Curves.ease),
+                curve: Curves.ease,
+                alignment: itemPosition.itemLeadingEdge - .2,
+              );
+            },
           ),
         },
         child: Focus(
           autofocus: true,
-          child: ListView.builder(
+          child: ScrollablePositionedList.builder(
+            itemScrollController: itemScrollController,
+            itemPositionsListener: itemPositionsListener,
+            itemCount: controller.chapter.pageCount ?? 0,
             scrollDirection: Axis.horizontal,
-            controller: scrollController,
-            itemCount: controller.chapter.pageCount,
             itemBuilder: (context, index) {
               if (index == (controller.chapter.pageCount! - 1)) {
                 controller.markAsRead();

@@ -18,9 +18,17 @@ class SingleHorizontalLTR extends StatelessWidget {
 
   final ReaderController controller;
   final PageController pageController = PageController();
+  void initListeners() {
+    pageController.addListener(() {
+      controller.currentIndex = pageController.page!.toInt();
+    });
+    controller.sliderJumpTo =
+        (index) => pageController.jumpTo(index.toDouble());
+  }
 
   @override
   Widget build(BuildContext context) {
+    initListeners();
     return Shortcuts(
       shortcuts: {
         LogicalKeySet(LogicalKeyboardKey.arrowLeft): PreviousScroll(),

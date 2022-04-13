@@ -54,7 +54,6 @@ class ReaderView extends GetView<ReaderController> {
                           ),
                           height: kToolbarHeight,
                           child: AppBar(
-                            actionsIconTheme: IconThemeData(color: Colors.grey),
                             title: ListTile(
                               title: Text(
                                 controller.manga.title ?? '',
@@ -65,143 +64,163 @@ class ReaderView extends GetView<ReaderController> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            actions: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: IconButton(
-                                  onPressed: () => Get.back(),
-                                  icon: Icon(Icons.close),
-                                ),
-                              ),
-                            ],
                             elevation: 0,
-                            iconTheme: IconThemeData(color: Colors.grey),
+                            iconTheme: IconThemeData(color: context.iconColor),
                             backgroundColor: Colors.black.withOpacity(.7),
                             automaticallyImplyLeading:
                                 controller.isDataLoading &&
                                     controller.visibility,
                           ),
                         ),
-                        BottomAppBar(
-                          color: Colors.transparent,
-                          elevation: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Card(
-                                      color: Colors.black.withOpacity(.7),
-                                      shape: CircleBorder(),
-                                      child: IconButton(
-                                        onPressed:
-                                            (controller.chapter.index ?? 0) > 1
-                                                ? controller.prevChapter
-                                                : null,
-                                        icon: Icon(Icons.skip_previous_rounded),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Card(
+                        ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: 600),
+                          child: BottomAppBar(
+                            color: Colors.transparent,
+                            elevation: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Card(
                                         color: Colors.black.withOpacity(.7),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
+                                        shape: CircleBorder(),
+                                        child: IconButton(
+                                          onPressed:
+                                              (controller.chapter.index ?? 0) >
+                                                      1
+                                                  ? controller.prevChapter
+                                                  : null,
+                                          icon:
+                                              Icon(Icons.skip_previous_rounded),
                                         ),
-                                        child: Obx(() => Slider(
-                                              value: controller.currentIndex
-                                                  .toDouble(),
-                                              min: 1,
-                                              max: (controller
-                                                          .chapter.pageCount ??
-                                                      1)
-                                                  .toDouble(),
-                                              // divisions:
-                                              //     controller.chapter.pageCount,
-                                              onChanged: (value) {
-                                                
-                                                controller.currentIndex =
-                                                    value.toInt();
-                                              },
-                                            )),
                                       ),
-                                    ),
-                                    Card(
-                                      color: Colors.black.withOpacity(.7),
-                                      shape: CircleBorder(),
-                                      child: IconButton(
-                                        onPressed:
-                                            (controller.chapter.index ?? 1) <
-                                                    (controller.chapter
-                                                            .chapterCount ??
-                                                        0)
-                                                ? controller.nextChapter
-                                                : null,
-                                        icon: Icon(Icons.skip_next_rounded),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Card(
-                                  color: Colors.black.withOpacity(.7),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Obx(
-                                          () => IconButton(
-                                            onPressed: () =>
-                                                controller.modifyChapter(
-                                              'bookmarked',
-                                              !(controller.chapter.bookmarked ??
-                                                  true),
+                                      Expanded(
+                                        child: Card(
+                                          color: Colors.black.withOpacity(.7),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 16,
                                             ),
-                                            icon: Icon((controller
-                                                        .chapter.bookmarked ??
-                                                    true)
-                                                ? Icons.bookmark
-                                                : Icons
-                                                    .bookmark_outline_rounded),
-                                          ),
-                                        ),
-                                        PopupMenuButton(
-                                          icon: Icon(
-                                            Icons.app_settings_alt_outlined,
-                                          ),
-                                          initialValue: controller.readerMode,
-                                          onSelected: (ReaderMode? e) =>
-                                              controller.changeReaderMode(e),
-                                          itemBuilder: (context) {
-                                            return ReaderMode.values
-                                                .map<
-                                                    PopupMenuEntry<ReaderMode>>(
-                                                  (e) => PopupMenuItem(
-                                                    value: e,
-                                                    child: ListTile(
-                                                      title: Text(
-                                                        (LocaleKeys.readerScreen_readerMode_ +
-                                                                e.name)
-                                                            .tr,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
+                                            child: Obx(() => Row(
+                                                  children: [
+                                                    Text(
+                                                        "${controller.currentIndex + 1}"),
+                                                    Expanded(
+                                                      child: Slider(
+                                                        value: controller
+                                                            .currentIndex
+                                                            .toDouble(),
+                                                        min: 0,
+                                                        max: (controller.chapter
+                                                                        .pageCount ??
+                                                                    1)
+                                                                .toDouble() -
+                                                            1,
+                                                        // divisions:
+                                                        //     controller.chapter.pageCount,
+                                                        onChanged: (value) {
+                                                          controller.sliderValue
+                                                                  .value =
+                                                              value.toInt();
+                                                          controller
+                                                                  .currentIndex =
+                                                              value.toInt();
+                                                        },
                                                       ),
                                                     ),
-                                                  ),
-                                                )
-                                                .toList();
-                                          },
-                                        )
-                                      ],
-                                    ),
+                                                    Text((controller.chapter
+                                                                .pageCount ??
+                                                            1)
+                                                        .toString()),
+                                                  ],
+                                                )),
+                                          ),
+                                        ),
+                                      ),
+                                      Card(
+                                        color: Colors.black.withOpacity(.7),
+                                        shape: CircleBorder(),
+                                        child: IconButton(
+                                          onPressed:
+                                              (controller.chapter.index ?? 1) <
+                                                      (controller.chapter
+                                                              .chapterCount ??
+                                                          0)
+                                                  ? controller.nextChapter
+                                                  : null,
+                                          icon: Icon(Icons.skip_next_rounded),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                )
-                              ],
+                                  Card(
+                                    color: Colors.black.withOpacity(.7),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Obx(
+                                            () => IconButton(
+                                              onPressed: () =>
+                                                  controller.modifyChapter(
+                                                'bookmarked',
+                                                !(controller
+                                                        .chapter.bookmarked ??
+                                                    true),
+                                              ),
+                                              icon: Icon((controller
+                                                          .chapter.bookmarked ??
+                                                      true)
+                                                  ? Icons.bookmark
+                                                  : Icons
+                                                      .bookmark_outline_rounded),
+                                            ),
+                                          ),
+                                          PopupMenuButton(
+                                            icon: Icon(
+                                              Icons.app_settings_alt_outlined,
+                                            ),
+                                            initialValue: controller.readerMode,
+                                            onSelected: (ReaderMode? e) =>
+                                                controller.changeReaderMode(e),
+                                            itemBuilder: (context) {
+                                              return ReaderMode.values
+                                                  .map<
+                                                      PopupMenuEntry<
+                                                          ReaderMode>>(
+                                                    (e) => PopupMenuItem(
+                                                      value: e,
+                                                      child: ListTile(
+                                                        title: Text(
+                                                          (LocaleKeys.readerScreen_readerMode_ +
+                                                                  e.name)
+                                                              .tr,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                  .toList();
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         )

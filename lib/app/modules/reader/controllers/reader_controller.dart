@@ -42,10 +42,11 @@ class ReaderController extends GetxController {
   ReaderMode get readerMode => _readerMode.value;
   set readerMode(ReaderMode value) => _readerMode.value = value;
 
-
-  final RxInt _currentIndex = 1.obs;
+  final RxInt _currentIndex = 0.obs;
   int get currentIndex => _currentIndex.value;
   set currentIndex(int value) => _currentIndex.value = value;
+
+  final RxInt sliderValue = 0.obs;
 
   final RxBool _isLoading = false.obs;
   bool get isLoading => _isLoading.value;
@@ -62,6 +63,8 @@ class ReaderController extends GetxController {
   final RxBool _expandedState = false.obs;
   bool get expandedState => _expandedState.value;
   set expandedState(bool value) => _expandedState.value = value;
+
+  void Function(int)? sliderJumpTo;
 
   String getChapterPage(int page) => repository.getChapterPage(
       mangaId: mangaId, chapterIndex: chapterIndex, page: page);
@@ -86,6 +89,9 @@ class ReaderController extends GetxController {
   void onInit() {
     mangaId = int.parse(Get.parameters["mangaId"]!);
     chapterIndex = int.parse(Get.parameters["chapterIndex"]!);
+    sliderValue.listen((index) {
+      if (sliderJumpTo != null) sliderJumpTo!(index);
+    });
     super.onInit();
   }
 
@@ -102,6 +108,7 @@ class ReaderController extends GetxController {
 
   void changeReaderMode(ReaderMode? readerMode) async {
     this.readerMode = readerMode ?? this.readerMode;
+    currentIndex = 0;
     await repository.patchMangaMeta(
       manga,
       MapEntry(
