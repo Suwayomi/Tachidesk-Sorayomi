@@ -1,23 +1,31 @@
 {
     "aboutScreen": {
-        "buildTime": "Build Time",
+        "buildTime": "Build time",
         "channel": "Channel",
+        "checkForUpdates": "Check for updates",
         "client": "Client",
-        "clientVersion": "Client Version",
+        "clientVersion": "Client version",
         "discord": "Discord",
-        "flutter": "Flutter",
         "gitHub": "GitHub",
         "launchError": {
             "title": "@website URL failed to launch"
         },
+        "noUpdatesAvailable": "No update available",
+        "searchingForUpdates": "Searching for updates...",
         "server": "Server",
         "serverVersion": "Server version",
         "sorayomi": "Soroyomi"
     },
     "appTitle": "Tachidesk Sorayomi",
+    "appUpdate": {
+        "close": "Close",
+        "gitHub": "GitHub",
+        "newUpdateAvilable": "New update avilable",
+        "versionAvilable": "Version v@version avilable!!"
+    },
     "appearanceScreen": {
         "darkTheme": {
-            "subtitle": "Turn on Dark Mode",
+            "subtitle": "Turn on DarkMode",
             "title": "Dark Theme"
         }
     },
@@ -32,21 +40,21 @@
         },
         "restored": {
             "subtitle": "Restored Tachdesk from backup",
-            "title": "Backup Restored"
+            "title": "Backup restored"
         },
         "restoring": {
             "subtitle": "Restoring Tachdesk from backup",
-            "title": "Restoring Backup..."
+            "title": "Restoring backup..."
         }
     },
     "browserScreen": {
         "SourceSearch": "Search..",
-        "mangaSearch": "Global Search.."
+        "mangaSearch": "Global search.."
     },
     "browserSettingsScreen": {
         "nsfw": {
             "info": "This does not prevent unofficial or potentially incorrectly flaged extensions from surfacing NSFW(18+) content within app",
-            "subtitle": "Requires App Restart or Reload",
+            "subtitle": "Requires app Restart or Reload",
             "title": "Show NSFW extensions and sources"
         }
     },
