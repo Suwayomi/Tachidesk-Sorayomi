@@ -76,7 +76,7 @@ class MangaDescription extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
-                      onTap: () => Get.toNamed(
+                      onTap: () => Get.offNamed(
                         Routes.globalSearch + "?query=${manga.title}",
                       ),
                       child: Text(

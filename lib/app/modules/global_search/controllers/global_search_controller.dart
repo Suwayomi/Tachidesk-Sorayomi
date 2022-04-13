@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../data/services/local_storage_service.dart';
 import '../../../data/source_model.dart';
 import '../repository/global_search_repository.dart';
 
 class GlobalSearchController extends GetxController {
+  final LocalStorageService _localStorageService =
+      Get.find<LocalStorageService>();
   final TextEditingController textEditingController = TextEditingController();
   final GlobalSearchRepository repository = GlobalSearchRepository();
 
@@ -26,9 +29,12 @@ class GlobalSearchController extends GetxController {
 
   @override
   void onReady() async {
-    List<Source>? sourceListTemp = (await repository.getSourceList())
-        ?.skipWhile((value) => value.id == '0')
-        .toList();
+    List<Source>? sourceListTemp = await repository.getSourceList();
+    sourceListTemp?.removeWhere(
+      (element) =>
+          element.id == "0" ||
+          !_localStorageService.sourceLanguages.contains(element.lang),
+    );
     if (sourceListTemp != null) sourceList = sourceListTemp;
     // search();
     super.onReady();
