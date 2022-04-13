@@ -12,16 +12,24 @@ class LocaleKeys {
   LocaleKeys._();
   static const aboutScreen_buildTime = 'aboutScreen_buildTime';
   static const aboutScreen_channel = 'aboutScreen_channel';
+  static const aboutScreen_checkForUpdates = 'aboutScreen_checkForUpdates';
   static const aboutScreen_client = 'aboutScreen_client';
   static const aboutScreen_clientVersion = 'aboutScreen_clientVersion';
   static const aboutScreen_discord = 'aboutScreen_discord';
-  static const aboutScreen_flutter = 'aboutScreen_flutter';
   static const aboutScreen_gitHub = 'aboutScreen_gitHub';
   static const aboutScreen_launchError_title = 'aboutScreen_launchError_title';
+  static const aboutScreen_noUpdatesAvailable =
+      'aboutScreen_noUpdatesAvailable';
+  static const aboutScreen_searchingForUpdates =
+      'aboutScreen_searchingForUpdates';
   static const aboutScreen_server = 'aboutScreen_server';
   static const aboutScreen_serverVersion = 'aboutScreen_serverVersion';
   static const aboutScreen_sorayomi = 'aboutScreen_sorayomi';
   static const appTitle = 'appTitle';
+  static const appUpdate_close = 'appUpdate_close';
+  static const appUpdate_gitHub = 'appUpdate_gitHub';
+  static const appUpdate_newUpdateAvilable = 'appUpdate_newUpdateAvilable';
+  static const appUpdate_versionAvilable = 'appUpdate_versionAvilable';
   static const appearanceScreen_darkTheme_subtitle =
       'appearanceScreen_darkTheme_subtitle';
   static const appearanceScreen_darkTheme_title =
@@ -225,33 +233,39 @@ class LocaleKeys {
 
 class Locales {
   static const en_US = {
-    'aboutScreen_buildTime': 'Build Time',
+    'aboutScreen_buildTime': 'Build time',
     'aboutScreen_channel': 'Channel',
+    'aboutScreen_checkForUpdates': 'Check for updates',
     'aboutScreen_client': 'Client',
-    'aboutScreen_clientVersion': 'Client Version',
+    'aboutScreen_clientVersion': 'Client version',
     'aboutScreen_discord': 'Discord',
-    'aboutScreen_flutter': 'Flutter',
     'aboutScreen_gitHub': 'GitHub',
     'aboutScreen_launchError_title': '@website URL failed to launch',
+    'aboutScreen_noUpdatesAvailable': 'No update available',
+    'aboutScreen_searchingForUpdates': 'Searching for updates...',
     'aboutScreen_server': 'Server',
     'aboutScreen_serverVersion': 'Server version',
     'aboutScreen_sorayomi': 'Soroyomi',
     'appTitle': 'Tachidesk Sorayomi',
-    'appearanceScreen_darkTheme_subtitle': 'Turn on Dark Mode',
+    'appUpdate_close': 'Close',
+    'appUpdate_gitHub': 'GitHub',
+    'appUpdate_newUpdateAvilable': 'New update avilable',
+    'appUpdate_versionAvilable': 'Version v@version avilable!!',
+    'appearanceScreen_darkTheme_subtitle': 'Turn on DarkMode',
     'appearanceScreen_darkTheme_title': 'Dark Theme',
     'backupSettings_create_subtitle': 'Backup library as a Tachdesk backup',
     'backupSettings_create_title': 'Create Backup',
     'backupSettings_restore_subtitle': 'Restore Tachdesk from backup',
     'backupSettings_restore_title': 'Restore Backup',
     'backupSettings_restored_subtitle': 'Restored Tachdesk from backup',
-    'backupSettings_restored_title': 'Backup Restored',
+    'backupSettings_restored_title': 'Backup restored',
     'backupSettings_restoring_subtitle': 'Restoring Tachdesk from backup',
-    'backupSettings_restoring_title': 'Restoring Backup...',
+    'backupSettings_restoring_title': 'Restoring backup...',
     'browserScreen_SourceSearch': 'Search..',
-    'browserScreen_mangaSearch': 'Global Search..',
+    'browserScreen_mangaSearch': 'Global search..',
     'browserSettingsScreen_nsfw_info':
         'This does not prevent unofficial or potentially incorrectly flaged extensions from surfacing NSFW(18+) content within app',
-    'browserSettingsScreen_nsfw_subtitle': 'Requires App Restart or Reload',
+    'browserSettingsScreen_nsfw_subtitle': 'Requires app Restart or Reload',
     'browserSettingsScreen_nsfw_title': 'Show NSFW extensions and sources',
     'downloadScreen_pause': 'Pause',
     'downloadScreen_resume': 'Resume',

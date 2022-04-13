@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:tachidesk_sorayomi/app/widgets/app_update_dialog.dart';
 
+import '../../../data/services/local_storage_service.dart';
 import '../../../routes/app_pages.dart';
 
 const List<String> navigationBarPageNames = [
@@ -13,6 +16,8 @@ const List<String> navigationBarPageNames = [
 ];
 
 class HomeController extends GetxController {
+  final LocalStorageService _localStorageService =
+      Get.find<LocalStorageService>();
   final PageController _pageController = PageController();
   final RxInt _selectedIndex = 0.obs;
   final RxBool _expandedState = false.obs;
@@ -32,5 +37,14 @@ class HomeController extends GetxController {
       pageController.jumpToPage(index);
     });
     super.onInit();
+  }
+
+  @override
+  void onReady() async {
+    String? newRelease = await _localStorageService.checkUpdate();
+    if (newRelease != null) {
+      appUpdateDialog(newRelease);
+    }
+    super.onReady();
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tachidesk_sorayomi/app/core/values/string.dart';
 
 import '../../core/utils/language.dart';
 import '../../core/values/db_keys.dart';
@@ -13,6 +15,7 @@ import '../enums/chapter/chapter_sort.dart';
 import '../enums/manga/manga_filter.dart';
 import '../enums/manga/manga_sort.dart';
 import '../enums/reader_mode.dart';
+import 'package:http/http.dart' as http;
 
 class LocalStorageService extends GetxService {
   final box = GetStorage();
@@ -29,6 +32,29 @@ class LocalStorageService extends GetxService {
   //  settings = await _settingsProvider.getSettings() ?? settings;
   //    super.onReady();
   //  }
+  PackageInfo? packageInfo;
+
+  @override
+  void onReady() async {
+    packageInfo = await PackageInfo.fromPlatform();
+    super.onReady();
+  }
+
+  Future<String?> checkUpdate() async {
+    http.Response responce =
+        await http.get(Uri.parse(sorayomiLatestReleaseApiUrl));
+    if (responce.statusCode >= 200 && responce.statusCode <= 299) {
+      String? tag = (jsonDecode(responce.body)["tag_name"]);
+      int? latestReleaseBuildNumber = int.tryParse(tag?.split('+').last ?? "");
+      int? packageBuildNumber = int.tryParse(packageInfo?.buildNumber ?? "");
+      if (latestReleaseBuildNumber != null && packageBuildNumber != null) {
+        return latestReleaseBuildNumber > packageBuildNumber
+            ? tag?.split('+').first
+            : null;
+      }
+    }
+    return null;
+  }
 
   // Manga Screen
   Map<ChapterFilter, bool?> get chapterFilter {

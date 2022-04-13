@@ -9,6 +9,7 @@ import 'generated/locales.g.dart';
 
 void main() async {
   await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
   final controller = Get.put(LocalStorageService());
   runApp(
     GetMaterialApp(
