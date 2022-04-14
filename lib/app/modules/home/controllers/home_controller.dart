@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
-import 'package:tachidesk_sorayomi/app/widgets/app_update_dialog.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import '../../../data/services/local_storage_service.dart';
 import '../../../routes/app_pages.dart';
+import '../../../widgets/app_update_dialog.dart';
 
 const List<String> navigationBarPageNames = [
   Routes.library,
@@ -41,7 +42,7 @@ class HomeController extends GetxController {
 
   @override
   void onReady() async {
-    String? newRelease = await _localStorageService.checkUpdate();
+    Version? newRelease = await _localStorageService.checkUpdate();
     if (newRelease != null) {
       appUpdateDialog(newRelease);
     }

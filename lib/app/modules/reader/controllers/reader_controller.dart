@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../core/values/db_keys.dart';
 import '../../../data/chapter_model.dart';
 import '../../../data/enums/reader_mode.dart';
+import '../../../data/enums/reader_navigation_layout.dart';
 import '../../../data/manga_model.dart';
 import '../../../data/services/local_storage_service.dart';
 import '../../../routes/app_pages.dart';
@@ -17,12 +18,18 @@ import '../widgets/reader_modes/single_horizontal_ltr.dart';
 import '../widgets/reader_modes/single_horizontal_rtl.dart';
 import '../widgets/reader_modes/single_vertical.dart';
 import '../widgets/reader_modes/webtoon.dart';
+import '../widgets/reader_navigation_layout/edge.dart';
+import '../widgets/reader_navigation_layout/kindlish.dart';
+import '../widgets/reader_navigation_layout/l_shaped.dart';
+import '../widgets/reader_navigation_layout/right_and_left.dart';
 
-class NextScroll extends Intent {}
+class NextScrollIntent extends Intent {}
 
-class PreviousScroll extends Intent {}
+class PreviousScrollIntent extends Intent {}
 
 class ReaderController extends GetxController {
+  void Function()? previousScroll;
+  void Function()? nextScroll;
   var readerScaffoldKey = GlobalKey<ScaffoldState>();
   final ReaderRepository repository = ReaderRepository();
   final CacheManager cacheManager = DefaultCacheManager();
@@ -38,9 +45,22 @@ class ReaderController extends GetxController {
 
   final LocalStorageService localStorageService =
       Get.find<LocalStorageService>();
+
   final Rx<ReaderMode> _readerMode = ReaderMode.defaultReader.obs;
   ReaderMode get readerMode => _readerMode.value;
   set readerMode(ReaderMode value) => _readerMode.value = value;
+
+  final Rx<ReaderNavigationLayout> _readerNavigationLayout =
+      ReaderNavigationLayout.disabled.obs;
+  ReaderNavigationLayout get readerNavigationLayout =>
+      _readerNavigationLayout.value;
+  set readerNavigationLayout(ReaderNavigationLayout value) =>
+      _readerNavigationLayout.value = value;
+
+  final RxBool _readerNavigationLayoutInvert = false.obs;
+  bool get readerNavigationLayoutInvert => _readerNavigationLayoutInvert.value;
+  set readerNavigationLayoutInvert(bool value) =>
+      _readerNavigationLayoutInvert.value = value;
 
   final RxInt _currentIndex = 0.obs;
   int get currentIndex => _currentIndex.value;
@@ -67,7 +87,10 @@ class ReaderController extends GetxController {
   void Function(int)? sliderJumpTo;
 
   String getChapterPage(int page) => repository.getChapterPage(
-      mangaId: mangaId, chapterIndex: chapterIndex, page: page);
+        mangaId: mangaId,
+        chapterIndex: chapterIndex,
+        page: page,
+      );
 
   final Map<ReaderMode, Function> readerModeMap = {
     ReaderMode.continuousHorizontalLTR: ContinuousHorizontalLTR.asFunction,
@@ -77,6 +100,13 @@ class ReaderController extends GetxController {
     ReaderMode.singleHorizontalRTL: SingleHorizontalRTL.asFunction,
     ReaderMode.singleVertical: SingleVertical.asFunction,
     ReaderMode.webtoon: Webtoon.asFunction,
+  };
+
+  final Map<ReaderNavigationLayout, Function> readerNavigationLayoutMap = {
+    ReaderNavigationLayout.edge: Edge.asFunction,
+    ReaderNavigationLayout.kindlish: Kindlish.asFunction,
+    ReaderNavigationLayout.lShaped: LShaped.asFunction,
+    ReaderNavigationLayout.rightAndLeft: RightAndLeft.asFunction,
   };
 
   Future<void> modifyChapter(String key, dynamic value) async {
@@ -118,6 +148,32 @@ class ReaderController extends GetxController {
     );
   }
 
+  void changeReaderNavigationLayout(
+      ReaderNavigationLayout? readerNavigationLayout) async {
+    this.readerNavigationLayout =
+        readerNavigationLayout ?? this.readerNavigationLayout;
+    await repository.patchMangaMeta(
+      manga,
+      MapEntry(
+        readerNavigationLayoutKey,
+        this.readerNavigationLayout.name,
+      ),
+    );
+  }
+
+  void changeReaderNavigationLayoutInvert(
+      bool? readerNavigationLayoutInvert) async {
+    this.readerNavigationLayoutInvert =
+        readerNavigationLayoutInvert ?? this.readerNavigationLayoutInvert;
+    await repository.patchMangaMeta(
+      manga,
+      MapEntry(
+        readerNavigationLayoutInvertKey,
+        this.readerNavigationLayoutInvert.toString(),
+      ),
+    );
+  }
+
   Future<void> markAsRead() async {
     Map<String, dynamic> formData = {"read": true, "lastPageRead": "1"};
     await repository.patchChapter(chapter, formData);
@@ -145,6 +201,16 @@ class ReaderController extends GetxController {
     readerMode = (manga.meta?[readerModeKey] != null
         ? readerModeFromString(manga.meta![readerModeKey])
         : readerMode);
+    readerNavigationLayout = (manga.meta?[readerNavigationLayoutKey] != null
+        ? readerNavigationLayoutFromString(
+            manga.meta![readerNavigationLayoutKey])
+        : localStorageService.readerNavigationLayout);
+    readerNavigationLayoutInvert =
+        (manga.meta?[readerNavigationLayoutInvertKey] != null
+            ? (manga.meta![readerNavigationLayoutInvertKey].toLowerCase() ==
+                'true')
+            : localStorageService.readerNavigationLayoutInvert);
+
     isDataLoading = true;
     isLoading = false;
   }

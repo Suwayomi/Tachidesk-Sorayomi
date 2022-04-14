@@ -8,8 +8,8 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../generated/locales.g.dart';
-import '../controllers/reader_controller.dart';
+import '../../../../../generated/locales.g.dart';
+import '../../controllers/reader_controller.dart';
 
 class ReaderPageMenu extends StatelessWidget {
   const ReaderPageMenu({

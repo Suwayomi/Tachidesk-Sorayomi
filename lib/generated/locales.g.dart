@@ -180,12 +180,30 @@ class LocaleKeys {
   static const readerScreen_readerMode_webtoon =
       'readerScreen_readerMode_webtoon';
   static const readerScreen_readerMode_ = 'readerScreen_readerMode_';
+  static const readerScreen_readerNavigationLayout_disabled =
+      'readerScreen_readerNavigationLayout_disabled';
+  static const readerScreen_readerNavigationLayout_edge =
+      'readerScreen_readerNavigationLayout_edge';
+  static const readerScreen_readerNavigationLayout_kindlish =
+      'readerScreen_readerNavigationLayout_kindlish';
+  static const readerScreen_readerNavigationLayout_lShaped =
+      'readerScreen_readerNavigationLayout_lShaped';
+  static const readerScreen_readerNavigationLayout_rightAndLeft =
+      'readerScreen_readerNavigationLayout_rightAndLeft';
+  static const readerScreen_readerNavigationLayoutInvert =
+      'readerScreen_readerNavigationLayoutInvert';
+  static const readerScreen_readerNavigationLayout_ =
+      'readerScreen_readerNavigationLayout_';
   static const readerScreen_reload = 'readerScreen_reload';
   static const readerScreen_savedImagePathTitle =
       'readerScreen_savedImagePathTitle';
   static const readerSettingsScreen_category = 'readerSettingsScreen_category';
   static const readerSettingsScreen_readerMode =
       'readerSettingsScreen_readerMode';
+  static const readerSettingsScreen_readerNavigationLayout =
+      'readerSettingsScreen_readerNavigationLayout';
+  static const readerSettingsScreen_readerNavigationLayoutInvert =
+      'readerSettingsScreen_readerNavigationLayoutInvert';
   static const screenTitle_about = 'screenTitle_about';
   static const screenTitle_browse = 'screenTitle_browse';
   static const screenTitle_categories = 'screenTitle_categories';
@@ -367,10 +385,20 @@ class Locales {
     'readerScreen_readerMode_singleVertical': 'Single Vertical',
     'readerScreen_readerMode_webtoon': 'Webtoon',
     'readerScreen_readerMode_': 'Reading Mode',
+    'readerScreen_readerNavigationLayout_disabled': 'Disabled',
+    'readerScreen_readerNavigationLayout_edge': 'Edge',
+    'readerScreen_readerNavigationLayout_kindlish': 'Kindle-ish',
+    'readerScreen_readerNavigationLayout_lShaped': 'L Shaped',
+    'readerScreen_readerNavigationLayout_rightAndLeft': 'Right and Left',
+    'readerScreen_readerNavigationLayoutInvert': 'Invert tapping',
+    'readerScreen_readerNavigationLayout_': 'Navigation layout',
     'readerScreen_reload': 'Reload!',
     'readerScreen_savedImagePathTitle': 'Image path saved to Clipboard',
     'readerSettingsScreen_category': 'Category',
-    'readerSettingsScreen_readerMode': 'Readering Mode',
+    'readerSettingsScreen_readerMode': 'Default Reading Mode',
+    'readerSettingsScreen_readerNavigationLayout': 'Default Navigation layout',
+    'readerSettingsScreen_readerNavigationLayoutInvert':
+        'Default Invert tapping',
     'screenTitle_about': 'About',
     'screenTitle_browse': 'Browse',
     'screenTitle_categories': 'Categories',

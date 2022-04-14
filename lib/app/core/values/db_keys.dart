@@ -10,5 +10,7 @@ const mangaFilterKey = "flutter_mangaFilter";
 const mangaSortKey = "flutter_mangaSort";
 const pinnedSourcesKey = "pinnedSources";
 const readerModeKey = "flutter_readerMode";
+const readerNavigationLayoutKey = "flutter_readerNavigationLayout";
+const readerNavigationLayoutInvertKey = "flutter_readerNavigationLayoutInvert";
 const showNsfwKey = "showNSFW";
 const sourceLangKey = "sourceLangKey";

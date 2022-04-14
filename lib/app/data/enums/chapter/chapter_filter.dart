@@ -3,6 +3,7 @@ enum ChapterFilter {
   bookmarked,
   downloaded,
 }
+
 ChapterFilter chapterFilterFromString(String? value) {
   return ChapterFilter.values.firstWhere(
     (element) => element.name == value,

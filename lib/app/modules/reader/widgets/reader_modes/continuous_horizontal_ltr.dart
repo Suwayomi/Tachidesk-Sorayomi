@@ -9,7 +9,7 @@ import '../../../../../generated/locales.g.dart';
 import '../../../../data/enums/auth_type.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../controllers/reader_controller.dart';
-import '../reader_page_bottom_sheet.dart';
+import '../reader_page/reader_page_bottom_sheet.dart';
 
 class ContinuousHorizontalLTR extends StatelessWidget {
   ContinuousHorizontalLTR.asFunction({
@@ -32,8 +32,33 @@ class ContinuousHorizontalLTR extends StatelessWidget {
               position.itemTrailingEdge < min.itemTrailingEdge ? position : min)
           .index;
     });
+
+    // Sending functions to reader controller
+    //    for managing reader mode from reader screen
+
     controller.sliderJumpTo =
         (index) => itemScrollController.jumpTo(index: index);
+
+    controller.previousScroll = () {
+      ItemPosition itemPosition =
+          itemPositionsListener.itemPositions.value.toList().first;
+      itemScrollController.scrollTo(
+        index: itemPosition.index,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
+        alignment: itemPosition.itemLeadingEdge + .2,
+      );
+    };
+    controller.nextScroll = () {
+      ItemPosition itemPosition =
+          itemPositionsListener.itemPositions.value.first;
+      itemScrollController.scrollTo(
+        index: itemPosition.index,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
+        alignment: itemPosition.itemLeadingEdge - .2,
+      );
+    };
   }
 
   @override
@@ -41,35 +66,16 @@ class ContinuousHorizontalLTR extends StatelessWidget {
     initListeners();
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.arrowLeft): PreviousScroll(),
-        LogicalKeySet(LogicalKeyboardKey.arrowRight): NextScroll(),
-        // LogicalKeySet(LogicalKeyboardKey )
+        LogicalKeySet(LogicalKeyboardKey.arrowLeft): PreviousScrollIntent(),
+        LogicalKeySet(LogicalKeyboardKey.arrowRight): NextScrollIntent(),
       },
       child: Actions(
         actions: {
-          PreviousScroll: CallbackAction<PreviousScroll>(
-            onInvoke: (intent) {
-              ItemPosition itemPosition =
-                  itemPositionsListener.itemPositions.value.toList().first;
-              return itemScrollController.scrollTo(
-                index: itemPosition.index,
-                duration: Duration(milliseconds: 500),
-                curve: Curves.ease,
-                alignment: itemPosition.itemLeadingEdge + .2,
-              );
-            },
+          PreviousScrollIntent: CallbackAction<PreviousScrollIntent>(
+            onInvoke: (intent) => controller.previousScroll!(),
           ),
-          NextScroll: CallbackAction<NextScroll>(
-            onInvoke: (intent) {
-              ItemPosition itemPosition =
-                  itemPositionsListener.itemPositions.value.first;
-              return itemScrollController.scrollTo(
-                index: itemPosition.index,
-                duration: Duration(milliseconds: 500),
-                curve: Curves.ease,
-                alignment: itemPosition.itemLeadingEdge - .2,
-              );
-            },
+          NextScrollIntent: CallbackAction<NextScrollIntent>(
+            onInvoke: (intent) => controller.nextScroll!(),
           ),
         },
         child: Focus(

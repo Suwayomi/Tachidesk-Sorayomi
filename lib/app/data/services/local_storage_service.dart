@@ -4,18 +4,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tachidesk_sorayomi/app/core/values/string.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import '../../core/utils/language.dart';
 import '../../core/values/db_keys.dart';
+import '../../core/values/string.dart';
 import '../enums/auth_type.dart';
 import '../enums/chapter/chapter_filter.dart';
 import '../enums/chapter/chapter_sort.dart';
 import '../enums/manga/manga_filter.dart';
 import '../enums/manga/manga_sort.dart';
 import '../enums/reader_mode.dart';
-import 'package:http/http.dart' as http;
+import '../enums/reader_navigation_layout.dart';
 
 class LocalStorageService extends GetxService {
   final box = GetStorage();
@@ -40,17 +42,19 @@ class LocalStorageService extends GetxService {
     super.onReady();
   }
 
-  Future<String?> checkUpdate() async {
+  Future<Version?> checkUpdate() async {
     http.Response responce =
         await http.get(Uri.parse(sorayomiLatestReleaseApiUrl));
     if (responce.statusCode >= 200 && responce.statusCode <= 299) {
       String? tag = (jsonDecode(responce.body)["tag_name"]);
-      int? latestReleaseBuildNumber = int.tryParse(tag?.split('+').last ?? "");
-      int? packageBuildNumber = int.tryParse(packageInfo?.buildNumber ?? "");
+      Version? latestReleaseBuildNumber =
+          tag != null ? Version.parse(tag) : null;
+      Version? packageBuildNumber =
+          packageInfo != null ? Version.parse(packageInfo!.version) : null;
       if (latestReleaseBuildNumber != null && packageBuildNumber != null) {
-        return latestReleaseBuildNumber > packageBuildNumber
-            ? tag?.split('+').first
-            : null;
+        if (packageBuildNumber.compareTo(latestReleaseBuildNumber) < 0) {
+          return latestReleaseBuildNumber;
+        }
       }
     }
     return null;
@@ -140,6 +144,16 @@ class LocalStorageService extends GetxService {
   ReaderMode get readerMode => readerModeFromString(box.read(readerModeKey));
   Future<void> setReaderMode(ReaderMode val) =>
       box.write(readerModeKey, val.name);
+
+  ReaderNavigationLayout get readerNavigationLayout =>
+      readerNavigationLayoutFromString(box.read(readerNavigationLayoutKey));
+  Future<void> setReaderNavigationLayout(ReaderNavigationLayout val) =>
+      box.write(readerNavigationLayoutKey, val.name);
+
+  bool get readerNavigationLayoutInvert =>
+      box.read(readerNavigationLayoutInvertKey) ?? false;
+  Future<void> setReaderNavigationLayoutInvert(bool val) =>
+      box.write(readerNavigationLayoutInvertKey, val);
 
   String get baseURL => box.read(baseUrlKey) ?? "http://127.0.0.1:4567";
   Future<void> setBaseURL(String val) => box.write(baseUrlKey, val);
