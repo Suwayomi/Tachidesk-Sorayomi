@@ -10,16 +10,19 @@ class ReaderModePopupMenuButton extends StatelessWidget {
   const ReaderModePopupMenuButton({
     Key? key,
     required this.controller,
+    this.icon,
+    this.child,
   }) : super(key: key);
-
+  final Widget? icon;
+  final Widget? child;
   final ReaderController controller;
 
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      icon: Icon(
-        Icons.app_settings_alt_outlined,
-      ),
+      icon: icon,
+      tooltip: LocaleKeys.readerScreen_readerMode_.tr,
+      child: child,
       initialValue: controller.readerMode,
       onSelected: (ReaderMode? e) => controller.changeReaderMode(e),
       itemBuilder: (context) {

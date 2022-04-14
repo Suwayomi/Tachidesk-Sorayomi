@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/reader_controller.dart';
+import '../../controllers/reader_controller.dart';
 import 'reader_page_menu.dart';
 
 Future<dynamic> readerPageBottomSheet({

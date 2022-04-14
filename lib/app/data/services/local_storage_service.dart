@@ -17,6 +17,7 @@ import '../enums/chapter/chapter_sort.dart';
 import '../enums/manga/manga_filter.dart';
 import '../enums/manga/manga_sort.dart';
 import '../enums/reader_mode.dart';
+import '../enums/reader_navigation_layout.dart';
 
 class LocalStorageService extends GetxService {
   final box = GetStorage();
@@ -143,6 +144,16 @@ class LocalStorageService extends GetxService {
   ReaderMode get readerMode => readerModeFromString(box.read(readerModeKey));
   Future<void> setReaderMode(ReaderMode val) =>
       box.write(readerModeKey, val.name);
+
+  ReaderNavigationLayout get readerNavigationLayout =>
+      readerNavigationLayoutFromString(box.read(readerNavigationLayoutKey));
+  Future<void> setReaderNavigationLayout(ReaderNavigationLayout val) =>
+      box.write(readerNavigationLayoutKey, val.name);
+
+  bool get readerNavigationLayoutInvert =>
+      box.read(readerNavigationLayoutInvertKey) ?? false;
+  Future<void> setReaderNavigationLayoutInvert(bool val) =>
+      box.write(readerNavigationLayoutInvertKey, val);
 
   String get baseURL => box.read(baseUrlKey) ?? "http://127.0.0.1:4567";
   Future<void> setBaseURL(String val) => box.write(baseUrlKey, val);

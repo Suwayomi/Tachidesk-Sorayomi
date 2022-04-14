@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LShaped extends StatelessWidget {
-  const LShaped({Key? key, this.onTopLeftTap, this.onBottomRightTap})
+  const LShaped.asFunction({Key? key, this.onLeftTap, this.onRightTap})
       : super(key: key);
 
-  final void Function()? onTopLeftTap;
-  final void Function()? onBottomRightTap;
+  final void Function()? onLeftTap;
+  final void Function()? onRightTap;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,7 +14,7 @@ class LShaped extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.translucent,
             child: Container(),
-            onTap: onTopLeftTap,
+            onTap: onLeftTap,
           ),
         ),
         Expanded(
@@ -25,7 +25,7 @@ class LShaped extends StatelessWidget {
                 child: GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   child: Container(),
-                  onTap: onTopLeftTap,
+                  onTap: onLeftTap,
                 ),
               ),
               Expanded(child: Container()),
@@ -33,7 +33,7 @@ class LShaped extends StatelessWidget {
                 child: GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   child: Container(),
-                  onTap: onBottomRightTap,
+                  onTap: onRightTap,
                 ),
               ),
             ],
@@ -43,7 +43,7 @@ class LShaped extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.translucent,
             child: Container(),
-            onTap: onBottomRightTap,
+            onTap: onRightTap,
           ),
         ),
       ],

@@ -191,12 +191,23 @@
             "webtoon": "Webtoon"
         },
         "readerMode_": "Reading Mode",
+        "readerNavigationLayout": {
+            "disabled": "Disabled",
+            "edge": "Edge",
+            "kindlish": "Kindle-ish",
+            "lShaped": "L Shaped",
+            "rightAndLeft": "Right and Left"
+        },
+        "readerNavigationLayoutInvert": "Invert tapping",
+        "readerNavigationLayout_": "Navigation layout",
         "reload": "Reload!",
         "savedImagePathTitle": "Image path saved to Clipboard"
     },
     "readerSettingsScreen": {
         "category": "Category",
-        "readerMode": "Readering Mode"
+        "readerMode": "Default Reading Mode",
+        "readerNavigationLayout": "Default Navigation layout",
+        "readerNavigationLayoutInvert": "Default Invert tapping"
     },
     "screenTitle": {
         "about": "About",

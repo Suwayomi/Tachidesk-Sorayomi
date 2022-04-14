@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Edge extends StatelessWidget {
-  const Edge({Key? key, this.onBottomTap, this.onSideTap}) : super(key: key);
-  final void Function()? onBottomTap;
-  final void Function()? onSideTap;
+  const Edge.asFunction({Key? key, this.onLeftTap, this.onRightTap})
+      : super(key: key);
+  final void Function()? onLeftTap;
+  final void Function()? onRightTap;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,7 +14,7 @@ class Edge extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.translucent,
             child: Container(),
-            onTap: onSideTap,
+            onTap: onRightTap,
           ),
         ),
         Expanded(
@@ -27,7 +28,7 @@ class Edge extends StatelessWidget {
                 child: GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   child: Container(),
-                  onTap: onBottomTap,
+                  onTap: onLeftTap,
                 ),
               ),
             ],
@@ -37,7 +38,7 @@ class Edge extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.translucent,
             child: Container(),
-            onTap: onSideTap,
+            onTap: onRightTap,
           ),
         ),
       ],

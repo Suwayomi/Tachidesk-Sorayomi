@@ -8,7 +8,7 @@ import '../../../../../generated/locales.g.dart';
 import '../../../../data/enums/auth_type.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../controllers/reader_controller.dart';
-import '../reader_page_bottom_sheet.dart';
+import '../reader_page/reader_page_bottom_sheet.dart';
 
 class SingleVertical extends StatelessWidget {
   SingleVertical.asFunction({

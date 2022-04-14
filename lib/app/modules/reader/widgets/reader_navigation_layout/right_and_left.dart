@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RightAndLeft extends StatelessWidget {
-  const RightAndLeft({Key? key, this.onLeftTap, this.onRightTap})
+  const RightAndLeft.asFunction({Key? key, this.onLeftTap, this.onRightTap})
       : super(key: key);
   final void Function()? onLeftTap;
   final void Function()? onRightTap;

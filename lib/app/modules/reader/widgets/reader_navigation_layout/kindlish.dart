@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Kindlish extends StatelessWidget {
-  const Kindlish({Key? key, this.onLeftTap, this.onRightTap}) : super(key: key);
+  const Kindlish.asFunction({Key? key, this.onLeftTap, this.onRightTap})
+      : super(key: key);
   final void Function()? onLeftTap;
   final void Function()? onRightTap;
 
