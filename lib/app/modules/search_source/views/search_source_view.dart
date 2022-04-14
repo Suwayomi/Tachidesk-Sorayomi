@@ -16,7 +16,7 @@ class SearchSourceView extends GetView<SearchSourceController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: context.width > 600
+        title: context.width > 700
             ? Obx(
                 () => Text("${LocaleKeys.searchManga_search.tr} " +
                     (controller.source.displayName ??
@@ -25,7 +25,7 @@ class SearchSourceView extends GetView<SearchSourceController> {
               )
             : SearchTextField(controller: controller),
         actions: [
-          context.width > 600
+          context.width > 700
               ? SearchTextField(controller: controller, width: 300)
               : Container(),
         ],

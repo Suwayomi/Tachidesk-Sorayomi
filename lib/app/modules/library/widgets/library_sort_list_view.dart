@@ -18,7 +18,7 @@ class LibrarySortListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => ListView(
           children: [
-            context.width < 600
+            context.width < 700
                 ? Container()
                 : ListTile(
                     leading: Chip(
@@ -31,7 +31,7 @@ class LibrarySortListView extends StatelessWidget {
                           TextStyle(color: context.theme.indicatorColor),
                     ),
                   ),
-            // context.width < 600 ? Container() : Divider(),
+            // context.width < 700 ? Container() : Divider(),
             ListTile(
               leading: controller.mangaSort.key == MangaSort.title
                   ? Icon(

@@ -75,7 +75,7 @@ class ReaderView extends GetView<ReaderController> {
                             ),
                           ),
                           ConstrainedBox(
-                            constraints: BoxConstraints(maxWidth: 600),
+                            constraints: BoxConstraints(maxWidth: 700),
                             child: BottomAppBar(
                               color: Colors.transparent,
                               elevation: 0,

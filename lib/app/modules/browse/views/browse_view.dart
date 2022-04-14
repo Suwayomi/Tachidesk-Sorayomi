@@ -14,7 +14,7 @@ class BrowseView extends GetView<BrowseController> {
       appBar: TabBar(
           controller: controller.tabController,
           padding: EdgeInsets.all(8),
-          isScrollable: context.width > 600 ? true : false,
+          isScrollable: context.width > 700 ? true : false,
           labelColor: context.theme.indicatorColor,
           unselectedLabelColor: context.textTheme.bodyText1!.color,
           indicator: BoxDecoration(

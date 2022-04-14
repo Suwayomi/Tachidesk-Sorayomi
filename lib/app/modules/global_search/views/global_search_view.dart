@@ -9,22 +9,21 @@ import '../widgets/global_search_field.dart';
 import '../widgets/source_search_grid.dart';
 
 class GlobalSearchView extends GetView<GlobalSearchController> {
-  @override
-  String? get tag => Get.parameters["query"];
+  final globalSearchhTag = Get.parameters["query"];
   @override
   Widget build(BuildContext context) {
     GlobalSearchController controller =
-        Get.find<GlobalSearchController>(tag: tag);
+        Get.find<GlobalSearchController>(tag: globalSearchhTag);
     return Scaffold(
       appBar: AppBar(
-        title: context.width > 600
+        title: context.width > 700
             ? Text(LocaleKeys.globalSearchScreen_searchGlobally.tr)
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GlobalSearchField(controller: controller),
               ),
         actions: [
-          context.width > 600
+          context.width > 700
               ? Container(
                   padding: EdgeInsets.all(8.0),
                   width: 300,
