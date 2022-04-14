@@ -14,11 +14,10 @@ import '../widgets/manga_chapter_sort_list_view.dart';
 import '../widgets/manga_description.dart';
 
 class MangaView extends GetView<MangaController> {
-  @override
-  String? get tag => Get.parameters["mangaId"];
+  final String? mangaTag = Get.parameters["mangaId"];
   @override
   Widget build(BuildContext context) {
-    MangaController controller = Get.find<MangaController>(tag: tag);
+    MangaController controller = Get.find<MangaController>(tag: mangaTag);
     return Scaffold(
         appBar: AppBar(
           title: Obx(
@@ -51,7 +50,7 @@ class MangaView extends GetView<MangaController> {
                               ),
                             ),
                           ],
-                          bottom: context.width > 600
+                          bottom: context.width > 700
                               ? null
                               : TabBar(
                                   padding: EdgeInsets.all(8),
@@ -77,7 +76,7 @@ class MangaView extends GetView<MangaController> {
                                       ),
                                     ]),
                         ),
-                        body: context.width > 600
+                        body: context.width > 700
                             ? Row(
                                 children: [
                                   Expanded(
@@ -100,7 +99,7 @@ class MangaView extends GetView<MangaController> {
                                                     1,
                                             itemBuilder: (context, index) {
                                               if (index == 0) {
-                                                return context.width < 600
+                                                return context.width < 700
                                                     ? Container()
                                                     : ListTile(
                                                         leading: Chip(
@@ -262,13 +261,13 @@ class MangaView extends GetView<MangaController> {
                     label: controller.firstUnreadChapter.index != 1
                         ? Text("Resume")
                         : Text("Start"),
-                    isExtended: context.width > 600 ? true : false,
+                    isExtended: context.width > 700 ? true : false,
                   )
                 : Container()),
         body: Obx(
           () => controller.isPageLoading.value
               ? Center(child: CircularProgressIndicator())
-              : context.width > 600
+              : context.width > 700
                   ? Row(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [

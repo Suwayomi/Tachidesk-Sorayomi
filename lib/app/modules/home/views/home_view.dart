@@ -39,7 +39,7 @@ class HomeView extends GetView<HomeController> {
               : Container())
         ],
       ),
-      bottomNavigationBar: context.width > 600.0
+      bottomNavigationBar: context.width > 700.0
           ? null
           : SmallScreenNavigationBar(
               controller: controller,
@@ -47,7 +47,7 @@ class HomeView extends GetView<HomeController> {
             ),
       body: Row(
         children: [
-          context.width > 600.0
+          context.width > 700.0
               ? context.height < 500
                   ? SingleChildScrollView(
                       controller: ScrollController(),

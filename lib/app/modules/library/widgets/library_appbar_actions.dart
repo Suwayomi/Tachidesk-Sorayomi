@@ -50,7 +50,7 @@ class LibraryAppBarActions extends StatelessWidget {
                     builder: (context) => DefaultTabController(
                       length: 2,
                       child: Scaffold(
-                        appBar: context.width > 600
+                        appBar: context.width > 700
                             ? null
                             : TabBar(
                                 padding: EdgeInsets.all(8),
@@ -69,7 +69,7 @@ class LibraryAppBarActions extends StatelessWidget {
                                             LocaleKeys.libraryScreen_filter.tr),
                                     Tab(text: LocaleKeys.libraryScreen_sort.tr),
                                   ]),
-                        body: context.width > 600
+                        body: context.width > 700
                             ? Row(
                                 children: [
                                   Expanded(

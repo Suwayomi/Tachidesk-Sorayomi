@@ -79,7 +79,7 @@ class EditCategoriesView extends GetView<EditCategoriesController> {
         },
         icon: Icon(Icons.add),
         label: Text(LocaleKeys.editCategoriesScreen_add.tr),
-        isExtended: context.width > 600 ? true : false,
+        isExtended: context.width > 700 ? true : false,
       ),
       body: Obx(
         () => controller.categoryList.isNotEmpty
