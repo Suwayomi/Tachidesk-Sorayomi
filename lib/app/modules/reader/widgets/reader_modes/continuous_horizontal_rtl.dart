@@ -44,18 +44,24 @@ class ContinuousHorizontalRTL extends StatelessWidget {
         index: itemPosition.index,
         duration: Duration(milliseconds: 500),
         curve: Curves.ease,
-        alignment: itemPosition.itemLeadingEdge + .2,
+        alignment: itemPosition.itemLeadingEdge + .8,
       );
     };
 
     controller.nextScroll = () {
       ItemPosition itemPosition =
           itemPositionsListener.itemPositions.value.first;
+      int index = itemPosition.itemTrailingEdge > 1
+          ? itemPosition.index
+          : itemPosition.index + 1;
+      if (index >= (controller.chapter.pageCount ?? 0)) return;
       itemScrollController.scrollTo(
-        index: itemPosition.index,
+        index: index,
         duration: Duration(milliseconds: 500),
         curve: Curves.ease,
-        alignment: itemPosition.itemLeadingEdge - .2,
+        alignment: itemPosition.itemTrailingEdge > 1
+            ? itemPosition.itemLeadingEdge - .8
+            : 0,
       );
     };
   }
