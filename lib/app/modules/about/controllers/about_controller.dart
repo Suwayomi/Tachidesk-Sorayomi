@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import '../../../../generated/locales.g.dart';
 import '../../../data/about_model.dart';
@@ -23,7 +24,7 @@ class AboutController extends GetxController {
   Future<void> checkUpdate() async {
     Get.rawSnackbar(message: LocaleKeys.aboutScreen_searchingForUpdates.tr);
 
-    String? newRelease = await localStorageService.checkUpdate();
+    Version? newRelease = await localStorageService.checkUpdate();
     Get.closeAllSnackbars();
     if (newRelease != null) {
       appUpdateDialog(newRelease);

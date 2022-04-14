@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
+import 'package:pub_semver/pub_semver.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../generated/locales.g.dart';
 import '../core/values/string.dart';
 
-Future<void> appUpdateDialog(String newRelease) {
+Future<void> appUpdateDialog(Version newRelease) {
   return Get.defaultDialog(
     title: LocaleKeys.appUpdate_newUpdateAvilable.tr,
     content: Text(
       LocaleKeys.appUpdate_versionAvilable.trParams(
-        {"version": newRelease},
+        {"version": newRelease.canonicalizedVersion},
       ),
     ),
     confirm: ElevatedButton.icon(

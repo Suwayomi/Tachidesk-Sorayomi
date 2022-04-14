@@ -54,7 +54,7 @@ class SourceSearchGrid extends StatelessWidget {
             isLoading
                 ? SizedBox(
                     height: 205,
-                    child: CircularProgressIndicator(),
+                    child: Center(child: CircularProgressIndicator()),
                   )
                 : sourceMangaListModel.mangaList?.isNotEmpty ?? false
                     ? SizedBox(

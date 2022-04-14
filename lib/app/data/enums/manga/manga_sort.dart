@@ -4,6 +4,7 @@ enum MangaSort {
   unread,
   id,
 }
+
 MangaSort mangaSortfromString(String? value) {
   return MangaSort.values.firstWhere(
     (element) => element.name == value,
