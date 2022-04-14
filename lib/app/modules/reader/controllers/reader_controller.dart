@@ -18,11 +18,13 @@ import '../widgets/reader_modes/single_horizontal_rtl.dart';
 import '../widgets/reader_modes/single_vertical.dart';
 import '../widgets/reader_modes/webtoon.dart';
 
-class NextScroll extends Intent {}
+class NextScrollIntent extends Intent {}
 
-class PreviousScroll extends Intent {}
+class PreviousScrollIntent extends Intent {}
 
 class ReaderController extends GetxController {
+  void Function()? previousScroll;
+  void Function()? nextScroll;
   var readerScaffoldKey = GlobalKey<ScaffoldState>();
   final ReaderRepository repository = ReaderRepository();
   final CacheManager cacheManager = DefaultCacheManager();

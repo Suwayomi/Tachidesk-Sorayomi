@@ -19,12 +19,25 @@ class SingleVertical extends StatelessWidget {
   final ReaderController controller;
 
   final PageController pageController = PageController();
+
   void initListeners() {
     pageController.addListener(() {
       controller.currentIndex = pageController.page!.toInt();
     });
-    controller.sliderJumpTo =
-        (index) => pageController.jumpTo(index.toDouble());
+
+    // Sending functions to reader controller
+    //    for managing reader mode from reader screen
+    controller.sliderJumpTo = (index) => pageController.jumpToPage(index);
+
+    controller.previousScroll = () {
+      pageController.animateToPage((pageController.page!).toInt() - 1,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
+    };
+
+    controller.nextScroll = () {
+      pageController.animateToPage((pageController.page!).toInt() + 1,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
+    };
   }
 
   @override
@@ -32,22 +45,16 @@ class SingleVertical extends StatelessWidget {
     initListeners();
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.arrowUp): PreviousScroll(),
-        LogicalKeySet(LogicalKeyboardKey.arrowDown): NextScroll(),
+        LogicalKeySet(LogicalKeyboardKey.arrowUp): PreviousScrollIntent(),
+        LogicalKeySet(LogicalKeyboardKey.arrowDown): NextScrollIntent(),
       },
       child: Actions(
         actions: {
-          PreviousScroll: CallbackAction<PreviousScroll>(
-            onInvoke: (intent) => pageController.animateToPage(
-                (pageController.page!).toInt() - 1,
-                duration: Duration(milliseconds: 500),
-                curve: Curves.ease),
+          PreviousScrollIntent: CallbackAction<PreviousScrollIntent>(
+            onInvoke: (intent) => controller.previousScroll!(),
           ),
-          NextScroll: CallbackAction<NextScroll>(
-            onInvoke: (intent) => pageController.animateToPage(
-                (pageController.page!).toInt() + 1,
-                duration: Duration(milliseconds: 500),
-                curve: Curves.ease),
+          NextScrollIntent: CallbackAction<NextScrollIntent>(
+            onInvoke: (intent) => controller.nextScroll!(),
           ),
         },
         child: Focus(

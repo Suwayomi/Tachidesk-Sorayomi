@@ -22,8 +22,26 @@ class SingleHorizontalRTL extends StatelessWidget {
     pageController.addListener(() {
       controller.currentIndex = pageController.page!.toInt();
     });
-    controller.sliderJumpTo =
-        (index) => pageController.jumpTo(index.toDouble());
+
+    // Sending functions to reader controller
+    //    for managing reader mode from reader screen
+    controller.sliderJumpTo = (index) => pageController.jumpToPage(index);
+
+    controller.previousScroll = () {
+      pageController.animateToPage(
+        (pageController.page!).toInt() - 1,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
+      );
+    };
+
+    controller.nextScroll = () {
+      pageController.animateToPage(
+        (pageController.page!).toInt() + 1,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
+      );
+    };
   }
 
   @override
@@ -31,22 +49,16 @@ class SingleHorizontalRTL extends StatelessWidget {
     initListeners();
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.arrowRight): PreviousScroll(),
-        LogicalKeySet(LogicalKeyboardKey.arrowLeft): NextScroll(),
+        LogicalKeySet(LogicalKeyboardKey.arrowRight): PreviousScrollIntent(),
+        LogicalKeySet(LogicalKeyboardKey.arrowLeft): NextScrollIntent(),
       },
       child: Actions(
         actions: {
-          PreviousScroll: CallbackAction<PreviousScroll>(
-            onInvoke: (intent) => pageController.animateToPage(
-                (pageController.page!).toInt() - 1,
-                duration: Duration(milliseconds: 500),
-                curve: Curves.ease),
+          PreviousScrollIntent: CallbackAction<PreviousScrollIntent>(
+            onInvoke: (intent) => controller.previousScroll!(),
           ),
-          NextScroll: CallbackAction<NextScroll>(
-            onInvoke: (intent) => pageController.animateToPage(
-                (pageController.page!).toInt() + 1,
-                duration: Duration(milliseconds: 500),
-                curve: Curves.ease),
+          NextScrollIntent: CallbackAction<NextScrollIntent>(
+            onInvoke: (intent) => controller.nextScroll!(),
           ),
         },
         child: Focus(
