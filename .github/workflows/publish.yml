@@ -97,7 +97,7 @@ jobs:
       - name: Compress build for Web
         if: matrix.target == 'web'
         working-directory: ${{ matrix.build_path }}
-        run: GZIP=-9 tar czf "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.tar.gz" *
+        run: zip -r "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.zip" *
       
       - name: Compress build for Linux
         if: matrix.target == 'linux'
