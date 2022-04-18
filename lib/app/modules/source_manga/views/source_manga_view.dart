@@ -130,8 +130,8 @@ class SourceMangaView extends GetView<SourceMangaController> {
         ),
       ),
       floatingActionButton: Obx(() =>
-          controller.sourceType == SourceType.popular &&
-                  controller.sourceMangaFilterList.isNotEmpty
+          controller.sourceMangaFilterList.isNotEmpty &&
+                  controller.sourceType == SourceType.popular
               ? FloatingActionButton.extended(
                   icon: Icon(Icons.filter_list_rounded),
                   label: Text(LocaleKeys.sourceMangaScreen_filter.tr),
