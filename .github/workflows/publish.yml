@@ -53,8 +53,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - name: Install iOS dependencies
-        if: matrix.target == 'ios'
         
       - name: Enable desktop support
         if: matrix.target != 'android'
