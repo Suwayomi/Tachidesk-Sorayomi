@@ -55,7 +55,7 @@ jobs:
           java-version: "12.x"
         
       - name: Enable desktop support
-        if: matrix.target != 'android'
+        if: matrix.target != 'android' && matrix.target != 'ios' && matrix.target != 'web'
         run: |
           flutter config --enable-linux-desktop
           flutter config --enable-macos-desktop
@@ -103,7 +103,14 @@ jobs:
       - name: Compress build for iOS
         if: matrix.target == 'ios'
         working-directory: ${{ matrix.build_path }}
-        run: ditto -c -k --sequesterRsrc --keepParent iphoneos/Runner.app "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.ipa"
+        run: |
+          cd iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app-release.ipa Payload
+          mv app-release.ipa "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.ipa"
 
       - name: Compress build for Web
         if: matrix.target == 'web'
