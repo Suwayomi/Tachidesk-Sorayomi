@@ -38,11 +38,11 @@ class EditCategoriesController extends GetxController {
 
   Future<void> reloadCategoryList() async {
     List<Category> categoryListTemp = (await repository.getCategoryList());
-    if (categoryListTemp.isNotEmpty) {
+    if (categoryListTemp.isNotEmpty && categoryListTemp.first.id == 0) {
       categoryListTemp.removeAt(0);
     }
     categoryList = categoryListTemp;
-    Get.find<LibraryController>().loadCategoryList();
+    Get.find<LibraryController>().refreshLibraryScreen();
   }
 
   Future<void> reorder({required int from, required int to}) async {

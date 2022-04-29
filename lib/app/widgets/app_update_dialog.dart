@@ -23,8 +23,10 @@ Future<void> appUpdateDialog(Version newRelease) {
         ),
       ),
       onPressed: () async {
-        if (!await launch(sorayomiLatestReleaseUrl,
-            forceSafariVC: false, forceWebView: false)) {
+        if (!await launchUrl(
+          Uri.parse(sorayomiLatestReleaseUrl),
+          mode: LaunchMode.externalApplication,
+        )) {
           Clipboard.setData(
             ClipboardData(
               text: sorayomiLatestReleaseUrl,

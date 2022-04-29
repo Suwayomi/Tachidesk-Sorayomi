@@ -32,8 +32,10 @@ class ReaderPageMenu extends StatelessWidget {
             title: Text("Save"),
             onTap: () async {
               if (Platform.isAndroid) {
-                if (!await launch(controller.getChapterPage(pageNumber),
-                    forceSafariVC: false, forceWebView: false)) {
+                if (!await launchUrl(
+                  Uri.parse(controller.getChapterPage(pageNumber)),
+                  mode: LaunchMode.externalApplication,
+                )) {
                   Clipboard.setData(
                     ClipboardData(text: controller.getChapterPage(pageNumber)),
                   );

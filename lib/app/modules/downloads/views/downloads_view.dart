@@ -91,9 +91,8 @@ class DownloadsView extends GetView<DownloadsController> {
                 onReorder: (int oldIndex, int newIndex) {},
               )
             : EmoticonsView(
-                text: LocaleKeys.no.tr +
-                    " " +
-                    LocaleKeys.screenTitle_downloads.tr,
+                text: "${LocaleKeys.no.tr} "
+                    "${LocaleKeys.screenTitle_downloads.tr}",
               ),
       ),
     );

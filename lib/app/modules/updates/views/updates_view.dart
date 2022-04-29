@@ -53,8 +53,9 @@ class UpdatesView extends GetView<UpdatesController> {
                     },
                     itemBuilder: (context, MangaPage item) {
                       return ListTile(
-                        onTap: () => Get.toNamed(Routes.manga +
-                            "/${item.manga!.id}/chapter/${item.chapter!.index}"),
+                        onTap: () => Get.toNamed(
+                            "${Routes.manga}/${item.manga!.id}"
+                            "/chapter/${item.chapter!.index}"),
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                         leading: ClipRRect(
@@ -107,9 +108,8 @@ class UpdatesView extends GetView<UpdatesController> {
                     ),
                   )
                 : EmoticonsView(
-                    text: LocaleKeys.no.tr +
-                        " " +
-                        LocaleKeys.screenTitle_updates.tr,
+                    text:
+                        "${LocaleKeys.no.tr} ${LocaleKeys.screenTitle_updates.tr}",
                   ),
       ),
     );

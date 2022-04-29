@@ -49,15 +49,13 @@ class ChapterProvider extends GetConnect {
 
   String getChapterPageUrl(
       {required int mangaId, required int chapterIndex, required int page}) {
-    return httpClient.baseUrl! +
-        '/$mangaId/chapter/$chapterIndex/page/$page?useCache=true';
+    return '${httpClient.baseUrl!}/$mangaId/chapter/$chapterIndex/'
+        'page/$page?useCache=true';
   }
 
   Future<Response> patchChapter(
           int mangaId, int chapterIndex, Map<String, dynamic> formdata) async =>
       await patch('/$mangaId/chapter/$chapterIndex', FormData(formdata));
-
-  // Future<Response> deleteChapter(int id) async => await delete('chapter/$id');
 
   Future<Response> deletedownloadedChapter({
     required int mangaId,

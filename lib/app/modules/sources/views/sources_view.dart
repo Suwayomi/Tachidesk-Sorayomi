@@ -42,7 +42,7 @@ class SourcesView extends GetView<SourcesController> {
                                 await controller.localStorageService
                                     .setLastUsed(source.id);
                                 Get.toNamed(
-                                  Routes.sourceManga + "/${source.id}/popular",
+                                  "${Routes.sourceManga}/${source.id}/popular",
                                 );
                               }),
                               leading: ClipRRect(
@@ -78,7 +78,7 @@ class SourcesView extends GetView<SourcesController> {
                                       onPressed: () async {
                                         await controller.localStorageService
                                             .setLastUsed(source.id);
-                                        Get.toNamed(Routes.sourceManga +
+                                        Get.toNamed("${Routes.sourceManga}"
                                             "/${source.id}/latest");
                                       },
                                       child: Text(
@@ -101,9 +101,8 @@ class SourcesView extends GetView<SourcesController> {
                     child: CircularProgressIndicator(),
                   )
                 : EmoticonsView(
-                    text: LocaleKeys.no.tr +
-                        " " +
-                        LocaleKeys.sourceScreen_extensions.tr,
+                    text: "${LocaleKeys.no.tr} "
+                        "${LocaleKeys.sourceScreen_extensions.tr}",
                     button: TextButton(
                       child: Text(LocaleKeys.sourceScreen_reload.tr),
                       onPressed: () => controller.updateSourceList(),

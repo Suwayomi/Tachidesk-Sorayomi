@@ -24,7 +24,7 @@ class ChapterCard extends StatelessWidget {
     return ListTile(
       onTap: (() async {
         await Get.toNamed(
-            Routes.manga + "/${chapter!.mangaId}/chapter/${chapter!.index}");
+            "${Routes.manga}/${chapter!.mangaId}/chapter/${chapter!.index}");
         controller.loadChapterList();
       }),
       title: Text(
@@ -36,13 +36,11 @@ class ChapterCard extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
-        (chapter?.scanlator ?? "") +
-            " " +
-            convertToAgo(
-              DateTime.fromMillisecondsSinceEpoch(
-                chapter?.uploadDate ?? 0,
-              ),
-            ),
+        "${chapter?.scanlator ?? ""} ${convertToAgo(
+          DateTime.fromMillisecondsSinceEpoch(
+            chapter?.uploadDate ?? 0,
+          ),
+        )}",
         //  + (chapter?.lastPageRead != 0 && chapter?.lastPageRead != 1
         //     ? " · Page: " + (chapter?.lastPageRead.toString() ?? "")
         //     : ""),

@@ -16,7 +16,7 @@ class SettingsProvider extends GetConnect {
         return map.map((item) => Settings.fromJson(item)).toList();
       }
     };
-    httpClient.baseUrl = _localStorageService.baseURL + "/meta";
+    httpClient.baseUrl = "${_localStorageService.baseURL}/meta";
     httpClient.timeout = Duration(minutes: 5);
     httpClient.addRequestModifier((Request request) async {
       final token = _localStorageService.basicAuth;
@@ -33,11 +33,4 @@ class SettingsProvider extends GetConnect {
     if (response.hasError) return Settings();
     return response.body;
   }
-
-  // Future<Response> patchSettingsMeta(int mangaId, Settings formdata) async =>
-  //     await patch('', FormData(formdata.toMap()));
-
-  // Future<Response<Settings>> postSettings(Settings settings) async =>
-  //     await post('settings', settings);
-  // Future<Response> deleteSettings(int id) async => await delete('settings/$id');
 }

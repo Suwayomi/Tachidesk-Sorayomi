@@ -18,10 +18,10 @@ class SearchSourceView extends GetView<SearchSourceController> {
       appBar: AppBar(
         title: context.width > 700
             ? Obx(
-                () => Text("${LocaleKeys.searchManga_search.tr} " +
-                    (controller.source.displayName ??
-                        controller.source.name ??
-                        "")),
+                () => Text(
+                  "${LocaleKeys.searchManga_search.tr} "
+                  "${controller.source.displayName ?? controller.source.name ?? ""}",
+                ),
               )
             : SearchTextField(controller: controller),
         actions: [
@@ -37,7 +37,7 @@ class SearchSourceView extends GetView<SearchSourceController> {
             return MangaGridDesign(
               manga: manga,
               onTap: () => Get.toNamed(
-                Routes.manga + "/${manga.id}",
+                "${Routes.manga}/${manga.id}",
               ),
               isLibraryScreen: false,
             );
@@ -68,7 +68,7 @@ class SearchSourceView extends GetView<SearchSourceController> {
           ),
           firstPageErrorIndicatorBuilder: (context) => Center(
             child: EmoticonsView(
-              text: LocaleKeys.no.tr + " " + LocaleKeys.searchManga_search.tr,
+              text: "${LocaleKeys.no.tr} ${LocaleKeys.searchManga_search.tr}",
               button: TextButton.icon(
                 onPressed: () => controller.pagingController.refresh(),
                 icon: Icon(Icons.refresh),

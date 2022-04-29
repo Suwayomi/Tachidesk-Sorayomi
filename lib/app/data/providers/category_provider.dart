@@ -43,7 +43,7 @@ class CategoryProvider extends GetConnect {
   Future<List<Category>> getCategoryList() async {
     final response = await get("");
     if (response.hasError) return <Category>[];
-    return response.body;
+    return response.body ?? <Category>[];
   }
 
   Future<Response> postCategory({

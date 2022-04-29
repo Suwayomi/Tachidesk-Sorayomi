@@ -128,9 +128,8 @@ class EditCategoriesView extends GetView<EditCategoriesController> {
                 ),
               )
             : EmoticonsView(
-                text: LocaleKeys.no.tr +
-                    " " +
-                    LocaleKeys.screenTitle_categories.tr,
+                text: "${LocaleKeys.no.tr} "
+                    "${LocaleKeys.screenTitle_categories.tr}",
               ),
       ),
     );

@@ -20,8 +20,10 @@ class BackupView extends GetView<BackupController> {
               title: Text(LocaleKeys.backupSettings_create_title.tr),
               subtitle: Text(LocaleKeys.backupSettings_create_subtitle.tr),
               onTap: () async {
-                if (!await launch(controller.totalBackupURL,
-                    forceSafariVC: false, forceWebView: false)) {
+                if (!await launchUrl(
+                  Uri.parse(controller.totalBackupURL),
+                  mode: LaunchMode.externalApplication,
+                )) {
                   Clipboard.setData(
                       ClipboardData(text: controller.totalBackupURL));
                 }

@@ -44,9 +44,8 @@ class GlobalSearchView extends GetView<GlobalSearchController> {
               )
             : Center(
                 child: EmoticonsView(
-                  text: LocaleKeys.no.tr +
-                      " " +
-                      LocaleKeys.globalSearchScreen_globalSearch.tr,
+                  text: "${LocaleKeys.no.tr} "
+                      "${LocaleKeys.globalSearchScreen_globalSearch.tr}",
                 ),
               ),
       ),

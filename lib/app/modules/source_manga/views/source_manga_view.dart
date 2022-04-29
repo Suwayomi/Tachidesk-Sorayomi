@@ -47,9 +47,9 @@ class SourceMangaView extends GetView<SourceMangaController> {
                           return;
                         }
                         Get.toNamed(
-                          Routes.sourceManga +
-                              "/${controller.sourceId}/search" +
-                              "?query=${controller.textEditingController.text}",
+                          "${Routes.sourceManga}/${controller.sourceId}/"
+                          "search?query="
+                          "${controller.textEditingController.text}",
                         );
                         controller.isSearching = false;
                         controller.textEditingController.clear();
@@ -64,8 +64,8 @@ class SourceMangaView extends GetView<SourceMangaController> {
                               return;
                             }
                             Get.toNamed(
-                              Routes.globalSearch +
-                                  "?query=${controller.textEditingController.text}",
+                              "${Routes.globalSearch}?query="
+                              "${controller.textEditingController.text}",
                             );
                             controller.isSearching = false;
                             controller.textEditingController.clear();
@@ -148,18 +148,15 @@ class SourceMangaView extends GetView<SourceMangaController> {
             return MangaGridDesign(
               manga: manga,
               onTap: () => Get.toNamed(
-                Routes.manga + "/${manga.id}",
+                "${Routes.manga}/${manga.id}",
               ),
               isLibraryScreen: false,
             );
           },
           noItemsFoundIndicatorBuilder: (context) => Center(
             child: EmoticonsView(
-              text: LocaleKeys.no.tr +
-                  " " +
-                  (controller.sourceType == SourceType.latest
-                      ? LocaleKeys.sourceMangaScreen_latest.tr
-                      : LocaleKeys.sourceMangaScreen_browse.tr),
+              text: "${LocaleKeys.no.tr} "
+                  "${controller.sourceType == SourceType.latest ? LocaleKeys.sourceMangaScreen_latest.tr : LocaleKeys.sourceMangaScreen_browse.tr}",
               button: TextButton.icon(
                 onPressed: () => controller.pagingController.refresh(),
                 style: TextButton.styleFrom(),
@@ -183,11 +180,8 @@ class SourceMangaView extends GetView<SourceMangaController> {
           ),
           firstPageErrorIndicatorBuilder: (context) => Center(
             child: EmoticonsView(
-              text: LocaleKeys.no.tr +
-                  " " +
-                  (controller.sourceType == SourceType.latest
-                      ? LocaleKeys.sourceMangaScreen_latest.tr
-                      : LocaleKeys.sourceMangaScreen_browse.tr),
+              text: "${LocaleKeys.no.tr} "
+                  "${controller.sourceType == SourceType.latest ? LocaleKeys.sourceMangaScreen_latest.tr : LocaleKeys.sourceMangaScreen_browse.tr}",
               button: TextButton.icon(
                 onPressed: () => controller.pagingController.refresh(),
                 style: TextButton.styleFrom(),
