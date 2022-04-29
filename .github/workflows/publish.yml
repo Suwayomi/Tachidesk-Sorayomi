@@ -23,6 +23,9 @@ jobs:
           - os: ubuntu-20.04
             target: android
             build_path: build/app/outputs/flutter-apk
+          - os: macos-latest
+            target: ios
+            build_path: build/ios
           - os: ubuntu-20.04
             target: web
             build_path: build/web
@@ -50,8 +53,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: "12.x"
+        
       - name: Enable desktop support
-        if: matrix.target != 'android'
+        if: matrix.target != 'android' && matrix.target != 'ios' && matrix.target != 'web'
         run: |
           flutter config --enable-linux-desktop
           flutter config --enable-macos-desktop
@@ -71,12 +75,14 @@ jobs:
           echo "storePassword=${{ secrets.KEYSTORE_STORE_PASSWORD }}" >> key.properties
           echo "keyPassword=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> key.properties
 
-      - if: matrix.target != 'android'
+      - if: matrix.target != 'android' && matrix.target != 'ios'
         run: flutter build ${{ matrix.target }} --release
       - if: matrix.target == 'android'
         run: |
           flutter build apk --release
           flutter build apk --split-per-abi --release
+      - if: matrix.target == 'ios'
+        run: flutter build ios --release --no-codesign
 
       - name: Copy VC redistributables to release directory for Windows
         if: matrix.target == 'windows'
@@ -93,6 +99,18 @@ jobs:
           mv app-arm64-v8a-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-arm64-v8a.apk"
           mv app-armeabi-v7a-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-armeabi-v7a.apk"
           mv app-x86_64-release.apk "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x86_64.apk"
+
+      - name: Compress build for iOS
+        if: matrix.target == 'ios'
+        working-directory: ${{ matrix.build_path }}
+        run: |
+          cd iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app-release.ipa Payload
+          mv app-release.ipa "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}.ipa"
 
       - name: Compress build for Web
         if: matrix.target == 'web'
