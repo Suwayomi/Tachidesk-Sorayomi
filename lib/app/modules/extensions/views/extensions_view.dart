@@ -79,14 +79,12 @@ class ExtensionsView extends GetView<ExtensionsController> {
                                   //           : "")),
                                   TextSpan(
                                       text: langCodeToName(source.lang ?? "")
-                                              .nativeName +
-                                          "  ",
+                                          .nativeName,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                       children: [
                                         TextSpan(
-                                          text:
-                                              (source.versionName ?? "") + "  ",
+                                          text: " ${source.versionName ?? ""} ",
                                           style: TextStyle(
                                               fontWeight: FontWeight.normal),
                                         ),
@@ -165,9 +163,8 @@ class ExtensionsView extends GetView<ExtensionsController> {
                   },
                 )
               : EmoticonsView(
-                  text: LocaleKeys.no.tr +
-                      " " +
-                      LocaleKeys.extensionScreen_extensionsError.tr,
+                  text: "${LocaleKeys.no.tr} "
+                      "${LocaleKeys.extensionScreen_extensionsError.tr}",
                   button: TextButton(
                     child: Text(LocaleKeys.extensionScreen_reload.tr),
                     onPressed: () => controller.updateExtensionList(),

@@ -17,6 +17,7 @@ dependencies:
   get: 4.6.1
   get_storage: ^2.0.3
   grouped_list: ^4.1.0
+  http: ^0.13.4
   infinite_scroll_pagination: ^3.1.0
   intl: ^0.17.0
   package_info_plus: ^1.4.0
@@ -28,10 +29,10 @@ dependencies:
   url_launcher: ^6.0.17
 
 dev_dependencies:
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  lints: 1.0.1
+  lints: 2.0.0
 
 flutter:
   uses-material-design: true

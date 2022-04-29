@@ -40,9 +40,8 @@ class MangaDescription extends StatelessWidget {
                 child: GridTile(
                   child: (manga.thumbnailUrl ?? "").isNotEmpty
                       ? CachedNetworkImage(
-                          imageUrl: localStorageService.baseURL +
-                              (manga.thumbnailUrl ?? "") +
-                              "/?useCache=true",
+                          imageUrl: "${localStorageService.baseURL}"
+                              "${manga.thumbnailUrl ?? ""}/?useCache=true",
                           httpHeaders:
                               localStorageService.baseAuthType == AuthType.basic
                                   ? {
@@ -77,7 +76,7 @@ class MangaDescription extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () => Get.toNamed(
-                        Routes.globalSearch + "?query=${manga.title}",
+                        "${Routes.globalSearch}?query=${manga.title}",
                       ),
                       child: Text(
                         (manga.title ?? LocaleKeys.mangaScreen_unknown.tr),
@@ -87,28 +86,23 @@ class MangaDescription extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      LocaleKeys.mangaScreen_author.tr +
-                          ": " +
-                          (manga.author ?? LocaleKeys.mangaScreen_unknown.tr),
+                      "${LocaleKeys.mangaScreen_author.tr}: "
+                      "${manga.author ?? LocaleKeys.mangaScreen_unknown.tr}",
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      LocaleKeys.mangaScreen_artist.tr +
-                          ": " +
-                          (manga.artist ?? LocaleKeys.mangaScreen_unknown.tr),
+                      "${LocaleKeys.mangaScreen_artist.tr}: "
+                      "${manga.artist ?? LocaleKeys.mangaScreen_unknown.tr}",
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      LocaleKeys.mangaScreen_status.tr +
-                          ": " +
-                          (manga.status ?? LocaleKeys.mangaScreen_unknown.tr),
+                      "${LocaleKeys.mangaScreen_status.tr}: "
+                      "${manga.status ?? LocaleKeys.mangaScreen_unknown.tr}",
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      LocaleKeys.mangaScreen_source.tr +
-                          ": " +
-                          (manga.source?.displayName ??
-                              LocaleKeys.mangaScreen_unknown.tr),
+                      "${LocaleKeys.mangaScreen_source.tr}: "
+                      "${manga.source?.displayName ?? LocaleKeys.mangaScreen_unknown.tr}",
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -146,8 +140,10 @@ class MangaDescription extends StatelessWidget {
               ),
               TextButton.icon(
                 onPressed: () async {
-                  if (!await launch(manga.realUrl ?? "",
-                      forceSafariVC: false, forceWebView: false)) {
+                  if (!await launchUrl(
+                    Uri.tryParse(manga.realUrl ?? "") ?? Uri(),
+                    mode: LaunchMode.externalApplication,
+                  )) {
                     Clipboard.setData(
                       ClipboardData(
                         text: manga.realUrl ?? "",

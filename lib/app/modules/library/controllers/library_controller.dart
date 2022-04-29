@@ -12,13 +12,14 @@ import '../../../data/services/local_storage_service.dart';
 import '../../home/controllers/home_controller.dart';
 import '../repository/library_repository.dart';
 
-class LibraryController extends GetxController {
+class LibraryController extends GetxController
+    with GetTickerProviderStateMixin {
   final LibraryRepository repository = LibraryRepository();
   final TextEditingController textEditingController = TextEditingController();
+  late TabController tabController;
   final LocalStorageService _localStorageService =
       Get.find<LocalStorageService>();
   final ScrollController scrollController = ScrollController();
-  final RxInt tabIndex = 0.obs;
 
   final RxMap<MangaFilter, bool?> _mangaFilter = <MangaFilter, bool?>{
     for (var element in MangaFilter.values) element: null
@@ -49,36 +50,43 @@ class LibraryController extends GetxController {
       _categoryList.value = categoryList;
   int get categoryListLength => _categoryList.length;
 
-  final RxList<Manga> _mangaList = <Manga>[].obs;
-  List<Manga> get mangaList => _mangaList;
-  set mangaList(List<Manga> mangaList) => _mangaList.value = mangaList;
-  int get mangaListLength => _mangaList.length;
-  List<Manga> mangaListCopy = [];
+  // final RxList<Manga> _mangaList = <Manga>[].obs;
+  // List<Manga> get mangaList => _mangaList;
+  // set mangaList(List<Manga> mangaList) => _mangaList.value = mangaList;
+  // int get mangaListLength => _mangaList.length;
+
+  final RxMap<int, List<Manga>> categoryMangaMap = <int, List<Manga>>{}.obs;
+  Map<int, List<Manga>> categoryMangaMapCopy = <int, List<Manga>>{};
 
   Future<void> loadCategoryList() async {
     isCategoryLoading = true;
     categoryList = (await repository.getCategoryList());
+    for (int i = 0; i < (categoryList.length); i++) {
+      categoryMangaMap[i] = <Manga>[];
+    }
     isCategoryLoading = false;
   }
 
   Future<void> loadMangaListWithCategoryId() async {
     isLoading = true;
     if (categoryList.isEmpty) return;
-    mangaListCopy = await repository
-        .getMangaListFromCategoryId(categoryList[tabIndex.value]!.id!);
+    categoryMangaMapCopy[tabController.index] = await repository
+        .getMangaListFromCategoryId(categoryList[tabController.index]!.id!);
     applyFilter();
     isLoading = false;
   }
 
   void applyFilter() {
-    mangaList = mangaListCopy
-        .where((element) =>
-            (element.title ?? "")
-                .toLowerCase()
-                .contains(textEditingController.text.toLowerCase()) &&
-            applyMangaFilter(mangaFilter, element))
-        .toList()
-      ..sort((a, b) => applyMangaSort(mangaSort, a, b));
+    categoryMangaMap[tabController.index] =
+        (categoryMangaMapCopy[tabController.index]
+                ?.where((element) =>
+                    (element.title ?? "")
+                        .toLowerCase()
+                        .contains(textEditingController.text.toLowerCase()) &&
+                    applyMangaFilter(mangaFilter, element))
+                .toList() ??
+            [])
+          ..sort((a, b) => applyMangaSort(mangaSort, a, b));
   }
 
   Future<void> refreshLibraryScreen() async {
@@ -87,7 +95,26 @@ class LibraryController extends GetxController {
   }
 
   @override
+  void onInit() {
+    tabController = TabController(
+      length: categoryListLength,
+      vsync: this,
+      animationDuration: Duration(),
+    );
+    super.onInit();
+  }
+
+  @override
   void onReady() async {
+    _categoryList.listen((cat) {
+      tabController = TabController(
+        length: cat.length,
+        vsync: this,
+        animationDuration: Duration(),
+      );
+      tabController.addListener(() => loadMangaListWithCategoryId());
+    });
+
     mangaFilter = _localStorageService.mangaFilter;
     mangaSort = _localStorageService.mangaSort;
     _mangaFilter.listen((val) async {
@@ -102,8 +129,10 @@ class LibraryController extends GetxController {
     await refreshLibraryScreen();
 
     Get.find<HomeController>().selectedIndexObs.listen((value) async {
-      tabIndex.value = 0;
-      if (value.isEqual(0)) await refreshLibraryScreen();
+      if (value.isEqual(0)) {
+        tabController.animateTo(0);
+        await refreshLibraryScreen();
+      }
     });
     super.onReady();
   }

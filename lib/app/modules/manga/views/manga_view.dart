@@ -253,8 +253,8 @@ class MangaView extends GetView<MangaController> {
                         );
                       } else {
                         Chapter chapter = controller.firstUnreadChapter;
-                        Get.toNamed(Routes.manga +
-                            "/${chapter.mangaId}/chapter/${chapter.index}");
+                        Get.toNamed("${Routes.manga}/${chapter.mangaId}"
+                            "/chapter/${chapter.index}");
                       }
                     },
                     icon: Icon(Icons.play_arrow_rounded),
@@ -293,9 +293,8 @@ class MangaView extends GetView<MangaController> {
                                   )
                                 : controller.chapterList.isEmpty
                                     ? EmoticonsView(
-                                        text: LocaleKeys.no.tr +
-                                            " " +
-                                            LocaleKeys.mangaScreen_noChapter.tr,
+                                        text: "${LocaleKeys.no.tr} "
+                                            "${LocaleKeys.mangaScreen_noChapter.tr}",
                                         button: TextButton.icon(
                                           onPressed: () =>
                                               controller.loadChapterList(
@@ -316,11 +315,7 @@ class MangaView extends GetView<MangaController> {
                                                 controller.chapterList.length;
                                             return ListTile(
                                               title: Text(
-                                                length.toString() +
-                                                    " " +
-                                                    LocaleKeys
-                                                        .mangaScreen_chapters
-                                                        .tr,
+                                                "$length ${LocaleKeys.mangaScreen_chapters.tr}",
                                               ),
                                               trailing: IconButton(
                                                 onPressed: () =>
@@ -378,9 +373,8 @@ class MangaView extends GetView<MangaController> {
                                       ),
                                     ),
                                     EmoticonsView(
-                                      text: LocaleKeys.no.tr +
-                                          " " +
-                                          LocaleKeys.mangaScreen_noChapter.tr,
+                                      text: "${LocaleKeys.no.tr} "
+                                          "${LocaleKeys.mangaScreen_noChapter.tr}",
                                       button: TextButton.icon(
                                         onPressed: () =>
                                             controller.loadChapterList(
@@ -414,10 +408,8 @@ class MangaView extends GetView<MangaController> {
                                           controller.chapterList.length;
                                       return ListTile(
                                         title: Text(
-                                          length.toString() +
-                                              " " +
-                                              LocaleKeys
-                                                  .mangaScreen_chapters.tr,
+                                          "$length "
+                                          "${LocaleKeys.mangaScreen_chapters.tr}",
                                         ),
                                         trailing: IconButton(
                                           onPressed: () =>

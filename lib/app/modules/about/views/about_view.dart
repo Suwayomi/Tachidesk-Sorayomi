@@ -32,7 +32,7 @@ class AboutView extends GetView<AboutController> {
               ),
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_clientVersion.tr),
-                subtitle: Text("v" + (controller.version ?? "")),
+                subtitle: Text("v${controller.version ?? ""}"),
               ),
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_checkForUpdates.tr),
@@ -52,17 +52,17 @@ class AboutView extends GetView<AboutController> {
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_serverVersion.tr),
                 subtitle: Text(controller.about?.version ??
-                    "" +
-                        (controller.about?.buildType == "Stable"
-                            ? " - ${controller.about?.revision}"
-                            : "")),
+                    (controller.about?.buildType == "Stable"
+                        ? " - ${controller.about?.revision}"
+                        : "")),
               ),
               ListTile(
                 title: Text(LocaleKeys.aboutScreen_buildTime.tr),
                 subtitle: Text(
                   DateFormat("MMMM dd, yyyy hh:mm aaa").format(
                     DateTime.fromMillisecondsSinceEpoch(
-                        (controller.about?.buildTime ?? 0) * 1000),
+                      (controller.about?.buildTime ?? 0) * 1000,
+                    ),
                   ),
                 ),
               ),
@@ -74,8 +74,11 @@ class AboutView extends GetView<AboutController> {
                     TextButton.icon(
                       label: Text(LocaleKeys.aboutScreen_discord.tr),
                       onPressed: () async {
-                        if (!await launch(controller.about?.discord ?? "",
-                            forceSafariVC: false, forceWebView: false)) {
+                        if (!await launchUrl(
+                          Uri.tryParse(controller.about?.discord ?? "") ??
+                              Uri(),
+                          mode: LaunchMode.externalApplication,
+                        )) {
                           Clipboard.setData(
                             ClipboardData(
                               text: controller.about?.discord,
@@ -98,12 +101,14 @@ class AboutView extends GetView<AboutController> {
                     ),
                     TextButton.icon(
                       label: Text(
-                        LocaleKeys.aboutScreen_gitHub.tr +
-                            " (${LocaleKeys.aboutScreen_sorayomi.tr})",
+                        "${LocaleKeys.aboutScreen_gitHub.tr} "
+                        "(${LocaleKeys.aboutScreen_sorayomi.tr})",
                       ),
                       onPressed: () async {
-                        if (!await launch(sorayomiGithubUrl,
-                            forceSafariVC: false, forceWebView: false)) {
+                        if (!await launchUrl(
+                          Uri.parse(sorayomiGithubUrl),
+                          mode: LaunchMode.externalApplication,
+                        )) {
                           Clipboard.setData(
                             ClipboardData(
                               text: sorayomiGithubUrl,
@@ -126,12 +131,14 @@ class AboutView extends GetView<AboutController> {
                     ),
                     TextButton.icon(
                       label: Text(
-                        LocaleKeys.aboutScreen_gitHub.tr +
-                            " (${LocaleKeys.aboutScreen_server.tr})",
+                        "${LocaleKeys.aboutScreen_gitHub.tr} "
+                        "(${LocaleKeys.aboutScreen_server.tr})",
                       ),
                       onPressed: () async {
-                        if (!await launch(controller.about?.github ?? "",
-                            forceSafariVC: false, forceWebView: false)) {
+                        if (!await launchUrl(
+                          Uri.tryParse(controller.about?.github ?? "") ?? Uri(),
+                          mode: LaunchMode.externalApplication,
+                        )) {
                           Clipboard.setData(
                             ClipboardData(
                               text: controller.about?.github,

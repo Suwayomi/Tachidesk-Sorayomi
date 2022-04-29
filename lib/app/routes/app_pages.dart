@@ -132,22 +132,22 @@ class AppPages {
       binding: SourcesBinding(),
     ),
     GetPage(
-      name: _Paths.manga + "/:mangaId",
+      name: "${_Paths.manga}/:mangaId",
       page: () => MangaView(),
       binding: MangaBinding(),
     ),
     GetPage(
-      name: _Paths.sourceManga + "/:sourceId/search",
+      name: "${_Paths.sourceManga}/:sourceId/search",
       page: () => SearchSourceView(),
       binding: SearchSourceBinding(),
     ),
     GetPage(
-      name: _Paths.sourceManga + "/:sourceId/:sourceType",
+      name: "${_Paths.sourceManga}/:sourceId/:sourceType",
       page: () => SourceMangaView(),
       binding: SourceMangaBinding(),
     ),
     GetPage(
-      name: _Paths.manga + "/:mangaId/chapter/:chapterIndex",
+      name: "${_Paths.manga}/:mangaId/chapter/:chapterIndex",
       page: () => ReaderView(),
       binding: ReaderBinding(),
     ),

@@ -30,8 +30,8 @@ class BrowseAppBarActions extends StatelessWidget {
                               return;
                             }
                             Get.toNamed(
-                              Routes.globalSearch +
-                                  "?query=${controller.textEditingController.text}",
+                              "${Routes.globalSearch}"
+                              "?query=${controller.textEditingController.text}",
                             );
                             controller.isGlobalMangaSearching = false;
                             controller.textEditingController.clear();
@@ -47,8 +47,8 @@ class BrowseAppBarActions extends StatelessWidget {
                                   return;
                                 }
                                 Get.toNamed(
-                                  Routes.globalSearch +
-                                      "?query=${controller.textEditingController.text}",
+                                  "${Routes.globalSearch}?query="
+                                  "${controller.textEditingController.text}",
                                 );
                                 controller.isGlobalMangaSearching = false;
                                 controller.textEditingController.clear();

@@ -133,7 +133,7 @@ class ReaderController extends GetxController {
       });
     }
     Get.offNamed(
-        Routes.manga + "/${chapter.mangaId}/chapter/${chapter.index! + 1}");
+        "${Routes.manga}/${chapter.mangaId}/chapter/${chapter.index! + 1}");
   }
 
   void changeReaderMode(ReaderMode? readerMode) async {
@@ -182,7 +182,7 @@ class ReaderController extends GetxController {
   void prevChapter() {
     if ((chapter.index ?? 0) > 1) {
       Get.offNamed(
-          Routes.manga + "/${chapter.mangaId}/chapter/${chapter.index! - 1}");
+          "${Routes.manga}/${chapter.mangaId}/chapter/${chapter.index! - 1}");
     }
   }
 

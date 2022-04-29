@@ -48,7 +48,7 @@ class SourceSearchGrid extends StatelessWidget {
               title: Text(source.displayName ?? source.name!),
               trailing: Icon(Icons.arrow_forward_rounded),
               onTap: () => Get.toNamed(
-                Routes.sourceManga + "/${source.id}/search" "?query=$query",
+                "${Routes.sourceManga}/${source.id}/search?query=$query",
               ),
             ),
             isLoading
@@ -77,8 +77,8 @@ class SourceSearchGrid extends StatelessWidget {
                               return MangaGridDesign(
                                 manga: sourceMangaListModel.mangaList![index],
                                 onTap: () => Get.toNamed(
-                                  Routes.manga +
-                                      "/${sourceMangaListModel.mangaList?[index].id}",
+                                  "${Routes.manga}/"
+                                  "${sourceMangaListModel.mangaList?[index].id}",
                                 ),
                                 isLibraryScreen: true,
                               );

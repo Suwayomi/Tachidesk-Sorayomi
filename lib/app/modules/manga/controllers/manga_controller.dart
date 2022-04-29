@@ -160,7 +160,7 @@ class MangaController extends GetxController {
 
   Future<void> loadCategoryList() async {
     List<Category> categoryListTemp = (await repository.getCategoryList());
-    if (categoryListTemp.isNotEmpty) {
+    if (categoryListTemp.isNotEmpty && categoryListTemp.first.id == 0) {
       categoryListTemp.removeAt(0);
     }
     categoryList = categoryListTemp;

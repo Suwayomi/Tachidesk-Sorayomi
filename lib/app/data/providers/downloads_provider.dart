@@ -39,9 +39,9 @@ class DownloadsProvider extends GetConnect {
   }
 
   GetSocket socketDownloads() {
-    final _socket = socket(httpClient.baseUrl!);
-    _socket.onOpen(() {});
-    _socket.connect();
-    return _socket;
+    final localSocket = socket(httpClient.baseUrl!);
+    localSocket.onOpen(() {});
+    localSocket.connect();
+    return localSocket;
   }
 }

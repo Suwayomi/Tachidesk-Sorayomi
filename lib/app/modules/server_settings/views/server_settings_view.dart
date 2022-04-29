@@ -110,8 +110,10 @@ class ServerSettingsView extends GetView<ServerSettingsController> {
             title: Text(LocaleKeys.serverSettingsScreen_webUI.tr),
             trailing: Icon(Icons.open_in_new),
             onTap: () async {
-              if (!await launch(controller.baseURL,
-                  forceSafariVC: false, forceWebView: false)) {
+              if (!await launchUrl(
+                Uri.parse(controller.baseURL),
+                mode: LaunchMode.externalApplication,
+              )) {
                 Clipboard.setData(
                   ClipboardData(text: controller.baseURL),
                 );

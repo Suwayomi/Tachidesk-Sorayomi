@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -155,7 +156,10 @@ class LocalStorageService extends GetxService {
   Future<void> setReaderNavigationLayoutInvert(bool val) =>
       box.write(readerNavigationLayoutInvertKey, val);
 
-  String get baseURL => box.read(baseUrlKey) ?? "http://127.0.0.1:4567";
+  String get baseURL =>
+      box.read(baseUrlKey) ??
+      (kIsWeb ? Uri.base.origin.toString() : "http://127.0.0.1:4567");
+
   Future<void> setBaseURL(String val) => box.write(baseUrlKey, val);
 
   AuthType get baseAuthType =>
@@ -169,9 +173,7 @@ class LocalStorageService extends GetxService {
   String get authPassword => box.read(authPasswordKey) ?? "";
   Future<void> setAuthPassword(String val) => box.write(authPasswordKey, val);
 
-  String get basicAuth =>
-      'Basic ' +
-      base64.encode(
+  String get basicAuth => 'Basic ${base64.encode(
         utf8.encode('$authUserName:$authPassword'),
-      );
+      )}';
 }

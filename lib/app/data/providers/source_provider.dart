@@ -103,11 +103,11 @@ class SourceProvider extends GetConnect {
     String? query,
     bool isFilter = false,
   }) async {
+    String sourceUrl = ((query != null && query.isNotEmpty) || isFilter)
+        ? 'search?pageNum=$pageNum&searchTerm=${query ?? ""}'
+        : ("${sourceType.name}/$pageNum");
     final response = await get<MangaListModel?>(
-      "/$sourceId/" +
-          (((query != null && query.isNotEmpty) || isFilter)
-              ? 'search?pageNum=$pageNum&searchTerm=' + (query ?? "")
-              : (sourceType.name + "/$pageNum")),
+      "/$sourceId/$sourceUrl",
       decoder: (map) {
         if (map is Map<String, dynamic>) {
           return MangaListModel.fromMap(map);

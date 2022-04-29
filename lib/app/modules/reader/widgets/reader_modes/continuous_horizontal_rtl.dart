@@ -138,9 +138,8 @@ class ContinuousHorizontalRTL extends StatelessWidget {
                       height: context.height,
                       child: Center(
                         child: EmoticonsView(
-                          text: LocaleKeys.no.tr +
-                              " " +
-                              LocaleKeys.readerScreen_image.tr,
+                          text: "${LocaleKeys.no.tr} "
+                              "${LocaleKeys.readerScreen_image.tr}",
                         ),
                       ),
                     ),
