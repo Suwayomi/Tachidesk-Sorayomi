@@ -51,20 +51,20 @@ flutter_native_splash:
     # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
     # 768 pixels in diameter.
     #image: assets/android12splash.png
-
+    image: assets/images/icon_darkT_nbg.png
     # App icon background color.
     #icon_background_color: "#111111"
 
     # The image_dark parameter and icon_background_color_dark set the image and icon background
     # color when the device is in dark mode. If they are not specified, the app will use the
     # parameters from above.
-    #image_dark: assets/android12splash-invert.png
+    image_dark: assets/images/icon_lightT_nbg.png
     #icon_background_color_dark: "#eeeeee"
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
   #android: false
-  ios: false
+  # ios: false
   #web: false
 
   # The position of the splash image can be set with android_gravity, ios_content_mode, and
