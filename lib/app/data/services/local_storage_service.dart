@@ -21,7 +21,7 @@ import '../enums/reader_mode.dart';
 import '../enums/reader_navigation_layout.dart';
 
 class LocalStorageService extends GetxService {
-  final box = GetStorage();
+  final box = GetStorage("Tachidesk-Sorayomi");
   // TODO Need Enhancement in Tachidesk-server
   // https://github.com/Suwayomi/Tachidesk-Server/issues/312
   // final Rx<Settings> _settings = Settings().obs;
@@ -130,8 +130,13 @@ class LocalStorageService extends GetxService {
   Future<void> setLastUsed(String? source) => box.write(lastUsedKey, source);
 
   List<String> get sourceLanguages =>
-      box.read<List<String>?>(sourceLangKey) ?? sourceDefualtLangs();
-  Future<void> setSourceLanguages(List langs) =>
+      box
+          .read<List<dynamic>?>(sourceLangKey)
+          ?.map((e) => e.toString())
+          .toList() ??
+      sourceDefualtLangs();
+
+  Future<void> setSourceLanguages(List<String> langs) =>
       box.write(sourceLangKey, langs);
   // End
 
