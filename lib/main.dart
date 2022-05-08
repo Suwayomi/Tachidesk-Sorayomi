@@ -8,9 +8,9 @@ import 'app/routes/app_pages.dart';
 import 'generated/locales.g.dart';
 
 void main() async {
-  await GetStorage.init();
+  await GetStorage.init('Tachidesk-Sorayomi');
   WidgetsFlutterBinding.ensureInitialized();
-  final controller = Get.put(LocalStorageService());
+  final controller = Get.put(LocalStorageService(), permanent: true);
   runApp(
     GetMaterialApp(
       title: "Tachidesk Sorayomi",
