@@ -24,12 +24,14 @@ void main() async {
         iconTheme: IconThemeData(
           color: ColorScheme.light().primary,
         ),
+        useMaterial3: true,
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.dark(),
         iconTheme: IconThemeData(
           color: ColorScheme.dark().primary,
         ),
+        useMaterial3: true,
       ),
       themeMode: controller.theme,
       debugShowCheckedModeBanner: false,
