@@ -9,4 +9,4 @@ jobs:
       - uses: vedantmgoyal2009/winget-releaser@latest
         with:
           identifier: Suwayomi.Tachidesk-Sorayomi
-          token: ${{ secrets.GITHUB_PAT }}
+          token: ${{ secrets.WINGET }}
