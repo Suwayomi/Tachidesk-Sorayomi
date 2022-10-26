@@ -1,4 +1,39 @@
 {
+    "common": {
+        "copyMsg": "\"{msg}\" Copied!",
+        "cancel": "Cancel",
+        "save": "Save",
+        "close": "Close",
+        "delete": "Delete",
+        "create": "Create",
+        "refresh": "Refresh"
+    },
+    "ThemeMode": {
+        "system": "System",
+        "dark": "Dark",
+        "light": "Light"
+    },
+    "AuthType": {
+        "none": "None",
+        "basic": "Basic Auth"
+    },
+    "ReaderMode": {
+        "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
+        "continuousHorizontalRTL": "Continuous Horizontal (RTL)",
+        "continuousVertical": "Continuous Vertical",
+        "defaultReader": "Default",
+        "singleHorizontalLTR": "Single Horizontal (LTR)",
+        "singleHorizontalRTL": "Single Horizontal (RTL)",
+        "singleVertical": "Single Vertical",
+        "webtoon": "Webtoon"
+    },
+    "ReaderNavigationLayout": {
+        "disabled": "Disabled",
+        "edge": "Edge",
+        "kindlish": "Kindle-ish",
+        "lShaped": "L Shaped",
+        "rightAndLeft": "Right and Left"
+    },
     "aboutScreen": {
         "buildTime": "Build time",
         "channel": "Channel",
@@ -7,45 +42,42 @@
         "clientVersion": "Client version",
         "discord": "Discord",
         "gitHub": "GitHub",
-        "launchError": {
-            "title": "@website URL failed to launch"
-        },
-        "noUpdatesAvailable": "No update available",
+        "noUpdatesAvailable": "You're using the latest version",
         "searchingForUpdates": "Searching for updates...",
         "server": "Server",
         "serverVersion": "Server version",
-        "sorayomi": "Soroyomi"
+        "sorayomi": "Sorayomi",
+        "whatsNew": "What's New?"
     },
     "appTitle": "Tachidesk Sorayomi",
     "appUpdate": {
         "close": "Close",
         "gitHub": "GitHub",
-        "newUpdateAvilable": "New update avilable",
-        "versionAvilable": "Version v@version avilable!!"
+        "newUpdateAvailable": "New update available",
+        "versionAvailable": "Version v{version} available!!"
     },
     "appearanceScreen": {
-        "darkTheme": {
-            "subtitle": "Turn on DarkMode",
-            "title": "Dark Theme"
-        }
+        "appTheme": "App Theme"
     },
     "backupSettings": {
         "create": {
-            "subtitle": "Backup library as a Tachdesk backup",
+            "subtitle": "Backup library as a Tachidesk backup",
             "title": "Create Backup"
         },
         "restore": {
-            "subtitle": "Restore Tachdesk from backup",
+            "subtitle": "Restore Tachidesk from backup",
             "title": "Restore Backup"
         },
         "restored": {
-            "subtitle": "Restored Tachdesk from backup",
-            "title": "Backup restored"
+            "subtitle": "Restored Tachidesk from backup",
+            "title": "Backup restored!"
         },
         "restoring": {
-            "subtitle": "Restoring Tachdesk from backup",
+            "subtitle": "Restoring Tachidesk from backup",
             "title": "Restoring backup..."
-        }
+        },
+        "missingExtension" : "Missing Extensions",
+        "missingTrackers" : "Missing Trackers"
     },
     "browserScreen": {
         "SourceSearch": "Search..",
@@ -53,7 +85,7 @@
     },
     "browserSettingsScreen": {
         "nsfw": {
-            "info": "This does not prevent unofficial or potentially incorrectly flaged extensions from surfacing NSFW(18+) content within app",
+            "info": "This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing NSFW(18+) content within app",
             "subtitle": "Requires app Restart or Reload",
             "title": "Show NSFW extensions and sources"
         }
@@ -66,38 +98,23 @@
         "add": "Add",
         "addCategory": "Add Category",
         "defaultCategory": "Default category when adding new manga to library",
-        "editCategory": "Edit Category",
-        "emptyCategory": {
-            "message": "Category name can't be empty",
-            "title": "Empty name!"
+        "deleteCategory" : {
+            "title" : "Are you sure?",
+            "content" : "This will delete all Mangas in this Category!"
         },
-        "name": "Category Name"
+        "editCategory": "Edit Category",
+        "name": "Category Name",
+        "emptyCategory": "You have no Categories. Tap the Plus button to create one for organizing your library"
     },
     "error": {
-        "filePick": {
-            "message": "Please select a file to @process ",
-            "title": "File not selected"
-        },
-        "filePickUnknownExtension": {
-            "message": "Please select a file with @extensionName extension",
-            "title": "Unknown file extension"
-        },
-        "installeExtensionFile": {
-            "message": "Please try again",
-            "title": "Failed to Install"
-        },
-        "invalidURL": {
-            "message": "Invalid URL",
-            "title": "Enter a valid URL"
-        },
-        "launchURL": {
-            "message": "Failed to launch @website",
-            "title": "Copying @url to clipboard"
-        },
-        "restoreBackup": {
-            "message": "Please try again",
-            "title": "Failed to Restore backup"
-        }
+        "filePick": "File not selected!",
+        "filePickUnknownExtension": "Please select a file with {extensionName} extension",
+        "installedExtensionFile": "Failed to Install! Please try again",
+        "invalidURL": "Invalid URL",
+        "launchURL": "Failed to open!\nCopying \"{url}\" to clipboard",
+        "restoreBackup": "Failed to Restore backup!\nPlease try again",
+        "userName": "User Name can't be empty",
+        "password": "Password can't be empty"
     },
     "extensionScreen": {
         "extensionInstalled": {
@@ -107,7 +124,7 @@
         "extensionsError": "Extensions to Install",
         "install": "Install",
         "installFile": {
-            "subtitle": "Installing Tachdesk Extension",
+            "subtitle": "Installing Tachidesk Extension",
             "title": "Installing Extension..."
         },
         "nsfw": "18+",
@@ -180,24 +197,7 @@
         "manga": "Manga",
         "nextChapter": "Next Chapter",
         "previousChapter": "Previous Chapter",
-        "readerMode": {
-            "continuousHorizontalLTR": "(LTR) Continuous Horizontal",
-            "continuousHorizontalRTL": "(RTL) Continuous Horizontal",
-            "continuousVertical": "Continuous Vertical",
-            "defaultReader": "Default",
-            "singleHorizontalLTR": "(LTR) Single Horizontal",
-            "singleHorizontalRTL": "(RTL) Single Horizontal ",
-            "singleVertical": "Single Vertical",
-            "webtoon": "Webtoon"
-        },
-        "readerMode_": "Reading Mode",
-        "readerNavigationLayout": {
-            "disabled": "Disabled",
-            "edge": "Edge",
-            "kindlish": "Kindle-ish",
-            "lShaped": "L Shaped",
-            "rightAndLeft": "Right and Left"
-        },
+        "readerMode": "Reading Mode",
         "readerNavigationLayoutInvert": "Invert tapping",
         "readerNavigationLayout_": "Navigation layout",
         "reload": "Reload!",
@@ -205,9 +205,9 @@
     },
     "readerSettingsScreen": {
         "category": "Category",
-        "readerMode": "Default Reading Mode",
-        "readerNavigationLayout": "Default Navigation layout",
-        "readerNavigationLayoutInvert": "Default Invert tapping"
+        "readerMode": "Reading Mode",
+        "readerNavigationLayout": "Navigation layout",
+        "readerNavigationLayoutInvert":  "Invert tapping"
     },
     "screenTitle": {
         "about": "About",
@@ -232,17 +232,20 @@
         "password": "Password",
         "save": "Save",
         "url": "Server URL",
+        "hintText": "Enter server url",
         "userName": "User Name",
-        "webUI": "Open in WEB"
+        "webUI": "Open in WEB",
+        "credentials": "Credentials"
     },
     "settingsScreen": {
         "appearance": "Appearance",
         "backup": "Backup & Restore",
-        "browse": "Browse Settings",
-        "general": "General Settings",
-        "library": "Library Settings",
-        "reader": "Reader Settings",
-        "server": "Server Settings"
+        "browse": "Browse",
+        "general": "General",
+        "library": "Library",
+        "reader": "Reader",
+        "server": "Server",
+        "help": "Help"
     },
     "sourceMangaScreen": {
         "browse": "Browse manga",

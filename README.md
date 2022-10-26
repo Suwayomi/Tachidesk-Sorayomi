@@ -1,5 +1,5 @@
 <p align="center">
- <img width=200px height=200px src="assets/images/icon.png" alt="Tachidesk Sorayomi logo"></a>
+ <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Tachidesk Sorayomi logo"></a>
 </p>
 
 <h1 align="center"> Tachidesk Sorayomi </h1>
@@ -7,7 +7,7 @@
 <div align="center">
 
 [![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS%20%7C%20Linux%20%7C%20Windows%20%7C%20MacOS%20%7C%20Web-lightgrey)][release]
-[![Discord](https://img.shields.io/discord/801021177333940224.svg?label=discord&labelColor=7289da&color=2c2f33&style=flat)](https://discord.gg/DDZdqZWaHA) 
+[![Discord](https://img.shields.io/discord/801021177333940224.svg?label=discord&labelColor=7289da&color=2c2f33&style=flat)](https://discord.gg/DDZdqZWaHA)
 
 </div>
 
@@ -22,7 +22,7 @@
 
 
 
-<p align="center">  
+<p align="center">
 A free and open source manga reader based on <a href="https://flutter.dev/">Flutter</a> to read manga from a <a href="https://github.com/Suwayomi/Tachidesk-Server">Tachidesk-Server</a> instance.</br></br>
 Tachidesk-Sorayomi need to connect with an already hosted server.</br></br>
 Tachidesk-Sorayomi supports Linux, Windows, MacOS, Web, iOS and Android.
@@ -55,36 +55,36 @@ These are the versions of [Tachidesk-Server][tachidesk-server] that Tachidesk-So
 
 ## Downloading and Running the app
 
-### Android 
+### Android
 
 Download the latest apk file from [the releases section][release].
 
 
-### iOS 
+### iOS
 
 Download the latest ipa file from [the releases section][release].
 
-### Windows 
+### Windows
 
 Download the latest msi file from [the releases section][release].
 
-### MacOS 
+### MacOS
 
 Download the latest dmg release from [the releases section][release].
 
-### Debian based Linux 
+### Debian based Linux
 
 Download the latest deb release from [the releases section][release].
 
-### Arch based Linux 
+### Arch based Linux
 
 Download the latest release from [the aur](https://aur.archlinux.org/packages/tachidesk-sorayomi-bin).
 
-If you use yay, you can run 
+If you use yay, you can run
 ```
 yay -S tachidesk-sorayomi-bin
-``` 
-inside a terminal window. 
+```
+inside a terminal window.
 
 ### Web
 
@@ -102,10 +102,9 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 You can install Flutter & Dart from [Official website](https://docs.flutter.dev/get-started/install)
-```
-  $ Dart sdk
-  $ Flutter - Channel beta
-```
+
+  - Dart sdk
+  - Flutter - Channel beta
 
 ### Building
 
@@ -124,9 +123,14 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 3.  Now enter the following command to start debugging the app:
 
 ```
-  $ flutter run       
+  $ flutter run
 ```
 
+-  Localization generator
+```
+   flutter pub run easy_localization:generate -S assets/locales -O lib/src/i18n
+   flutter pub run easy_localization:generate -S assets/locales -f keys -O lib/src/i18n/ -o locale_keys.g.dart
+```
 
 ## Support and help
 
@@ -135,21 +139,23 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 
 ## Built Using
 
-- [Flutter](https://flutter.dev/) - Flutter is an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
-- [Flutter Getx](https://pub.dev/packages/get) - State, Navigation & Dependencies Manager
-- [Flutter Getx Pattern](https://github.com/kauemurakami/getx_pattern) - A proposal to standardize your development with GetX (File structure).
-    
-    Find other dependencies in [pubspec.yaml](pubspec.yaml)
+- [Flutter](https://flutter.dev/) is an open source framework by Google for building beautiful, natively compiled, multi-platform applications from a single codebase.
+
+- [Flutter Riverpod](https://pub.dev/packages/riverpod/) - A simple way to access state while robust and testable.
+
+- [Riverpod Architecture](https://codewithandrea.com/articles/flutter-app-architecture-riverpod-introduction/) - File architecture developed by [@bizz84](https://github.com/bizz84)
+
+Find other dependencies in [pubspec.yaml](pubspec.yaml)
 
 ## Credit
 
-- The `Tachidesk-server` project is developed by [@AriaMoradi](https://github.com/AriaMoradi) and contributors, 
+- The `Tachidesk-server` project is developed by [@AriaMoradi](https://github.com/AriaMoradi) and contributors,
 
-- The `Tachidesk-Sorayomi` project is developed by [@DattatreyaReddy](https://github.com/DattatreyaReddy) and contributors, 
+- The `Tachidesk-Sorayomi` project is developed by [@DattatreyaReddy](https://github.com/DattatreyaReddy) and contributors,
 
-- CI-CD for `Tachidesk-Sorayomi` is developed by [@mahor1221](https://github.com/mahor1221)  and contributors.
+- CI-CD for `Tachidesk-Sorayomi` is developed by [@mahor1221](https://github.com/mahor1221) and contributors.
 
-    
+
 ## License
 
 A link for [Tachidesk is provided here](https://github.com/Suwayomi/Tachidesk) and is licensed under `Mozilla Public License v2.0`.

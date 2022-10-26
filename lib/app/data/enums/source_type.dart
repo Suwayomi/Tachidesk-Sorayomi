@@ -1,4 +1,0 @@
-enum SourceType {
-  popular,
-  latest,
-}

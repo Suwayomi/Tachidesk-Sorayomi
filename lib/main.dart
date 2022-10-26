@@ -1,40 +1,35 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tachidesk_sorayomi/src/constants/gen/assets.gen.dart';
+import 'package:tachidesk_sorayomi/src/global_providers/package_info_provider.dart';
+import 'package:tachidesk_sorayomi/src/i18n/codegen_loader.g.dart';
+import 'package:tachidesk_sorayomi/src/sorayomi.dart';
+import 'package:tachidesk_sorayomi/src/utils/network/sembast/sembast_client.dart';
 
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-
-import 'app/data/services/local_storage_service.dart';
-import 'app/routes/app_pages.dart';
-import 'generated/locales.g.dart';
-
-void main() async {
-  await GetStorage.init('Tachidesk-Sorayomi');
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final controller = Get.put(LocalStorageService(), permanent: true);
+  await EasyLocalization.ensureInitialized();
+  final packageInfo = await PackageInfo.fromPlatform();
+  final sembastDatabase = await SembastDatabase.makeDefault(packageInfo);
+
+  final container = ProviderContainer(
+    overrides: [
+      sembastDatabaseProvider.overrideWithValue(sembastDatabase),
+      packageInfoProvider.overrideWithValue(packageInfo),
+    ],
+  );
   runApp(
-    GetMaterialApp(
-      title: "Tachidesk Sorayomi",
-      translationsKeys: AppTranslation.translations,
-      locale: Get.deviceLocale,
-      fallbackLocale: Locale('en', 'US'),
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
-      theme: ThemeData(
-        colorScheme: ColorScheme.light(),
-        iconTheme: IconThemeData(
-          color: ColorScheme.light().primary,
-        ),
-        useMaterial3: true,
+    UncontrolledProviderScope(
+      container: container,
+      child: EasyLocalization(
+        supportedLocales: const [Locale('en', 'US')],
+        path: Assets.locales.enUS,
+        fallbackLocale: const Locale('en', "US"),
+        assetLoader: const CodegenLoader(),
+        child: const Sorayomi(),
       ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.dark(),
-        iconTheme: IconThemeData(
-          color: ColorScheme.dark().primary,
-        ),
-        useMaterial3: true,
-      ),
-      themeMode: controller.theme,
-      debugShowCheckedModeBanner: false,
     ),
   );
 }
