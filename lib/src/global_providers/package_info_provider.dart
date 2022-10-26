@@ -1,5 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:tachidesk_sorayomi/src/constants/endpoints.dart';
+import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
 
 import '../constants/db_keys.dart';
 import '../constants/enum.dart';
@@ -14,7 +16,23 @@ final packageInfoProvider =
 final dioClientProvider = Provider<DioClient>(
   (ref) => DioClient(
     dio: ref.watch(networkModuleProvider).provideDio(),
-    ref: ref,
+    updateDio: (dio) async {
+      final String baseUrl =
+          Endpoints.baseApi(baseUrl: await ref.read(serverUrlProvider).get());
+
+      final AuthType authType =
+          await ref.read(authTypeProvider).get() ?? AuthType.none;
+
+      final headers = Map.of(dio.options.headers);
+      if (authType == AuthType.basic) {
+        final baseAuth = await ref.read(baseTokenProvider).get();
+        headers.putIfAbsent("Authorization", () => baseAuth);
+      }
+
+      return dio
+        ..options.baseUrl = baseUrl
+        ..options.headers = headers;
+    },
   ),
 );
 
@@ -27,9 +45,15 @@ final authTypeProvider = Provider.autoDispose(
   ),
 );
 
+final authTypeStreamProvider = StreamProvider.autoDispose(
+    (ref) => ref.watch(authTypeProvider).getStream());
+
 final baseTokenProvider = Provider.autoDispose(
   (ref) => LocalSettingsRepository<String>(
     ref.watch(settingsLocalProvider),
     DBKeys.basicCredentials,
   ),
 );
+
+final basicTokenStreamProvider = StreamProvider.autoDispose(
+    (ref) => ref.watch(baseTokenProvider).getStream());

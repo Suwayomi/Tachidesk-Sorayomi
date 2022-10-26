@@ -15,18 +15,17 @@ class AuthTypeTile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authType =
-        useStream<AuthType?>(ref.watch(authTypeProvider).getStream());
+    final authType = ref.watch(authTypeStreamProvider);
     return ListTile(
       leading: const Icon(Icons.security_rounded),
-      subtitle: authType.hasData ? Text(authType.data.toString().tr()) : null,
+      subtitle: authType.hasValue ? Text(authType.value.toString().tr()) : null,
       title: Text(LocaleKeys.serverSettingsScreen_baseAuthType.tr()),
       onTap: () => showDialog(
         context: context,
         useRootNavigator: false,
         builder: (context) => EnumPopup<AuthType>(
           enumList: AuthType.values,
-          value: authType.data ?? AuthType.none,
+          value: authType.valueOrNull ?? AuthType.none,
           onChange: (enumValue) {
             ref.read(authTypeProvider).update(enumValue);
             context.navPop();

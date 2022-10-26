@@ -14,11 +14,14 @@ final invertTapProvider = Provider(
   ),
 );
 
+final invertTapStreamProvider =
+    StreamProvider((ref) => ref.watch(invertTapProvider).getStream());
+
 class ReaderInvertTapTile extends HookConsumerWidget {
   const ReaderInvertTapTile({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final invertTap = useStream(ref.watch(invertTapProvider).getStream());
+    final invertTap = ref.watch(invertTapStreamProvider);
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.switch_left_rounded),
@@ -28,7 +31,7 @@ class ReaderInvertTapTile extends HookConsumerWidget {
       onChanged: (value) {
         ref.read(invertTapProvider).update(value);
       },
-      value: invertTap.hasData ? invertTap.data! : false,
+      value: invertTap.valueOrNull ?? false,
     );
   }
 }

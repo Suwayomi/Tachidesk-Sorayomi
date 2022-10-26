@@ -17,6 +17,13 @@ import '../../domain/category/category_model.dart';
 import 'category_tile.dart';
 import 'controller/edit_category_controller.dart';
 
+final categoryListProvider = Provider((ref) {
+  final categoryList = List<Category>.from(
+      ref.watch(categoryControllerProvider).asData?.value ?? []);
+  if (categoryList.isNotEmpty) categoryList.removeAt(0);
+  return categoryList;
+});
+
 class EditCategorySettings extends HookConsumerWidget {
   const EditCategorySettings({super.key});
 
@@ -24,15 +31,12 @@ class EditCategorySettings extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
     final categoryController = ref.watch(categoryControllerProvider);
+    final categoryList = ref.watch(categoryListProvider);
 
     ref.listen(
       categoryControllerProvider,
       ((_, state) => state.showToastOnError(toast)),
     );
-
-    final categoryList =
-        List<Category>.from(categoryController.asData?.value ?? []);
-    if (categoryList.isNotEmpty) categoryList.removeAt(0);
 
     useEffect(() {
       Future.microtask(

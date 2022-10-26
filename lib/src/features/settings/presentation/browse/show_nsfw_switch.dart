@@ -14,11 +14,14 @@ final showNSFWProvider = Provider(
   ),
 );
 
+final showNSFWStreamProvider =
+    StreamProvider((ref) => ref.watch(showNSFWProvider).getStream());
+
 class ShowNSFWTile extends HookConsumerWidget {
   const ShowNSFWTile({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final showNSFW = useStream(ref.watch(showNSFWProvider).getStream());
+    final showNSFW = ref.watch(showNSFWStreamProvider);
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.eighteen_up_rating_rounded),
@@ -29,7 +32,7 @@ class ShowNSFWTile extends HookConsumerWidget {
       onChanged: (value) {
         ref.read(showNSFWProvider).update(value);
       },
-      value: showNSFW.hasData ? showNSFW.data! : false,
+      value: showNSFW.hasValue ? showNSFW.valueOrNull! : false,
     );
   }
 }

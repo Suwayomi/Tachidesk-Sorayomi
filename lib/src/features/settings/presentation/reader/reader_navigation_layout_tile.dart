@@ -19,17 +19,21 @@ final readerNavigationLayoutProvider = Provider.autoDispose(
   ),
 );
 
+final readerNavigationLayoutStreamProvider =
+    StreamProvider.autoDispose<ReaderNavigationLayout?>(
+        (ref) => ref.watch(readerNavigationLayoutProvider).getStream());
+
 class ReaderNavigationLayoutTile extends HookConsumerWidget {
   const ReaderNavigationLayoutTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final readerNavigationLayout = useStream<ReaderNavigationLayout?>(
-        ref.watch(readerNavigationLayoutProvider).getStream());
+    final readerNavigationLayout =
+        ref.watch(readerNavigationLayoutStreamProvider);
     return ListTile(
       leading: const Icon(Icons.touch_app_rounded),
-      subtitle: readerNavigationLayout.hasData
-          ? Text(readerNavigationLayout.data.toString().tr())
+      subtitle: readerNavigationLayout.hasValue
+          ? Text(readerNavigationLayout.value.toString().tr())
           : null,
       title: Text(LocaleKeys.readerSettingsScreen_readerNavigationLayout.tr()),
       onTap: () => showDialog(
@@ -37,7 +41,8 @@ class ReaderNavigationLayoutTile extends HookConsumerWidget {
         useRootNavigator: false,
         builder: (context) => EnumPopup<ReaderNavigationLayout>(
           enumList: ReaderNavigationLayout.values.sublist(1),
-          value: readerNavigationLayout.data ?? ReaderNavigationLayout.disabled,
+          value: readerNavigationLayout.valueOrNull ??
+              ReaderNavigationLayout.disabled,
           onChange: (enumValue) => ref
               .read(readerNavigationLayoutProvider)
               .update(enumValue)

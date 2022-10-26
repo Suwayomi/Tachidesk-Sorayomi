@@ -1,7 +1,9 @@
-abstract class Endpoints {
+import 'db_keys.dart';
 
+abstract class Endpoints {
   // base url
-  static String get baseUrl => "http://127.0.0.1:4567/api/v1";
+  static String baseApi({String? baseUrl}) =>
+      "${baseUrl ?? DBKeys.serverUrl.initial}/api/v1";
 
   // receiveTimeout
   static const int receiveTimeout = 5000;
@@ -28,16 +30,16 @@ abstract class ExtensionUrl {
   static const String _extension = "/extension";
 }
 
-abstract class  CategoryUrl {
-  static String reorder="$_category/reorder";
-  static String category=_category;
+abstract class CategoryUrl {
+  static String reorder = "$_category/reorder";
+  static String category = _category;
 
   static String withId(int id) => "$_category/$id";
 
   static const String _category = "/category";
 }
 
-abstract class  MangaUrl {
+abstract class MangaUrl {
   static String getMangaId(int mangaId) => "$_manga/$mangaId";
   static String getMangaThumbnail(int mangaId) => "$_manga/$mangaId/thumbnail";
   static String getMangaCategory(int mangaId) => "$_manga/$mangaId/category";
@@ -61,10 +63,10 @@ abstract class  MangaUrl {
   static const String _manga = "/manga";
 }
 
-abstract class  DownloaderUrl {
-  static String start="$_downloads/start";
-  static String stop="$_downloads/stop";
-  static String clear="$_downloads/clear";
+abstract class DownloaderUrl {
+  static String start = "$_downloads/start";
+  static String stop = "$_downloads/stop";
+  static String clear = "$_downloads/clear";
 
   static String chapter(int mangaId, int chapterIndex) =>
       "/download/$mangaId/chapter/$chapterIndex";
@@ -72,16 +74,16 @@ abstract class  DownloaderUrl {
   static const String _downloads = "/downloads";
 }
 
-abstract class  BackupUrl {
-  static String import="$_backup/import/file";
-  static String validate="$_backup/validate/file";
-  static String export="$_backup/export/file";
+abstract class BackupUrl {
+  static String import = "$_backup/import/file";
+  static String validate = "$_backup/validate/file";
+  static String export = "$_backup/export/file";
 
   static const String _backup = "/backup";
 }
 
-abstract class  SourceUrl {
-  static String sourceList="$_source/list";
+abstract class SourceUrl {
+  static String sourceList = "$_source/list";
 
   static String getSourceId(String sourceId) => "$_source/$sourceId";
   static String getSourceByPopular(String sourceId, int pageNum) =>
@@ -97,9 +99,8 @@ abstract class  SourceUrl {
   static const String _source = "/source";
 }
 
-abstract class  UpdateUrl {
-  static String recentChapters="$_update/recentChapters";
+abstract class UpdateUrl {
+  static String recentChapters = "$_update/recentChapters";
 
   static const String _update = "/update";
-
 }

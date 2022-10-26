@@ -20,8 +20,7 @@ class ServerScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final authType =
-        useStream<AuthType?>(ref.watch(authTypeProvider).getStream());
+    final authType = ref.watch(authTypeStreamProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.settingsScreen_server.tr()),
@@ -30,7 +29,7 @@ class ServerScreen extends HookConsumerWidget {
         children: [
           const ServerUrlTile(),
           const AuthTypeTile(),
-          if (authType.hasData && authType.data != AuthType.none)
+          if (authType.hasValue && authType.valueOrNull != AuthType.none)
             ListTile(
               leading: const Icon(Icons.password_rounded),
               title: Text(LocaleKeys.serverSettingsScreen_credentials.tr()),
@@ -46,7 +45,7 @@ class ServerScreen extends HookConsumerWidget {
               leading: const Icon(Icons.web_rounded),
               title: Text(LocaleKeys.serverSettingsScreen_webUI.tr()),
               onTap: () async {
-                final url = await ref.read(serverUrlProvider).get() as String?;
+                final url = await ref.read(serverUrlProvider).get();
                 if (url.isNotBlank) launchUrlInWeb(url!, toast);
               },
             )

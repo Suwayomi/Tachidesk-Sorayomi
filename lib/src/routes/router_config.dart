@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tachidesk_sorayomi/src/features/about/presentation/about/about_screen.dart';
+import 'package:tachidesk_sorayomi/src/features/browse/presentation/browse/browse_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/presentation/backup/backup_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/browse_settings_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/presentation/category/edit_category_settings.dart';
@@ -73,10 +74,7 @@ final routerConfigProvider = Provider<GoRouter>(
             ),
             GoRoute(
               path: Routes.browse,
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text(Routes.browse)),
-                backgroundColor: Colors.red,
-              ),
+              builder: (context, state) => const BrowseScreen(),
             ),
             GoRoute(
               path: Routes.downloads,

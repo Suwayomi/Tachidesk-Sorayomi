@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../source/source_model.dart';
+import '../../../browse/domain/source/source_model.dart';
 
 part 'manga_model.freezed.dart';
 part 'manga_model.g.dart';

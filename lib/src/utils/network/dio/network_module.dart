@@ -7,11 +7,9 @@ class DioNetworkModule {
   ///
   /// Calling it multiple times will return the same instance.
   Dio provideDio() {
-
     final dio = Dio();
 
     dio
-      ..options.baseUrl = Endpoints.baseUrl
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
       ..options.headers = {

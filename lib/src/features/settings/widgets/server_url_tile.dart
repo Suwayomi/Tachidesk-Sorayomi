@@ -10,31 +10,29 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/contex
 
 import 'package:tachidesk_sorayomi/src/utils/network/sembast/sembast_client.dart';
 
-final serverUrlProvider = Provider.autoDispose<LocalSettingsRepository>(
+final serverUrlProvider = Provider.autoDispose<LocalSettingsRepository<String>>(
   (ref) => LocalSettingsRepository<String>(
     ref.watch(settingsLocalProvider),
     DBKeys.serverUrl,
   ),
 );
 
+final serverUrlStreamProvider = StreamProvider.autoDispose((ref) =>
+    ref.watch(serverUrlProvider).getStream().map((event) => event?.toString()));
+
 class ServerUrlTile extends HookConsumerWidget {
   const ServerUrlTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final serverUrl = useStream(ref
-        .watch(serverUrlProvider)
-        .getStream()
-        .map((event) => event?.toString()));
+    final serverUrl = ref.watch(serverUrlStreamProvider);
     return ListTile(
       leading: const Icon(Icons.computer_rounded),
       title: Text(LocaleKeys.serverSettingsScreen_url.tr()),
-      subtitle: (serverUrl.hasData) ? Text(serverUrl.data!) : null,
+      subtitle: (serverUrl.hasValue) ? Text(serverUrl.value!) : null,
       onTap: () => showDialog(
         context: context,
-        builder: (context) => ServerUrlField(
-          initialUrl: (serverUrl.hasData) ? serverUrl.data! : null,
-        ),
+        builder: (context) => ServerUrlField(initialUrl: serverUrl.valueOrNull),
       ),
     );
   }

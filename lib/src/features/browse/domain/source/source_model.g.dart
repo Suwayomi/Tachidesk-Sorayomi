@@ -7,23 +7,23 @@ part of 'source_model.dart';
 // **************************************************************************
 
 _$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
-      lang: json['lang'] as String?,
+      displayName: json['displayName'] as String?,
       iconUrl: json['iconUrl'] as String?,
-      supportsLatest: json['supportsLatest'] as bool?,
+      id: json['id'] as String?,
       isConfigurable: json['isConfigurable'] as bool?,
       isNsfw: json['isNsfw'] as bool?,
-      displayName: json['displayName'] as String?,
+      lang: json['lang'] as String?,
+      name: json['name'] as String?,
+      supportsLatest: json['supportsLatest'] as bool?,
     );
 
 Map<String, dynamic> _$$_SourceToJson(_$_Source instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'lang': instance.lang,
+      'displayName': instance.displayName,
       'iconUrl': instance.iconUrl,
-      'supportsLatest': instance.supportsLatest,
+      'id': instance.id,
       'isConfigurable': instance.isConfigurable,
       'isNsfw': instance.isNsfw,
-      'displayName': instance.displayName,
+      'lang': instance.lang,
+      'name': instance.name,
+      'supportsLatest': instance.supportsLatest,
     };

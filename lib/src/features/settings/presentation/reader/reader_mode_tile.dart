@@ -19,24 +19,26 @@ final readerModeProvider = Provider.autoDispose(
   ),
 );
 
+final readerModeStreamProvider = StreamProvider.autoDispose(
+    (ref) => ref.watch(readerModeProvider).getStream());
+
 class ReaderModeTile extends HookConsumerWidget {
   const ReaderModeTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final readerMode =
-        useStream<ReaderMode?>(ref.watch(readerModeProvider).getStream());
+    final readerMode = ref.watch(readerModeStreamProvider);
     return ListTile(
       leading: const Icon(Icons.app_settings_alt_rounded),
       subtitle:
-          readerMode.hasData ? Text(readerMode.data.toString().tr()) : null,
+          readerMode.hasValue ? Text(readerMode.value.toString().tr()) : null,
       title: Text(LocaleKeys.readerSettingsScreen_readerMode.tr()),
       onTap: () => showDialog(
         context: context,
         useRootNavigator: false,
         builder: (context) => EnumPopup<ReaderMode>(
           enumList: ReaderMode.values.sublist(1),
-          value: readerMode.data ?? ReaderMode.webtoon,
+          value: readerMode.valueOrNull ?? ReaderMode.webtoon,
           onChange: (enumValue) => ref
               .read(readerModeProvider)
               .update(enumValue)

@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tachidesk_sorayomi/src/constants/endpoints.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/data/backup_repository.dart';
+import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
@@ -56,10 +58,15 @@ class BackupScreen extends ConsumerWidget {
             title: Text(LocaleKeys.backupSettings_create_title.tr()),
             subtitle: Text(LocaleKeys.backupSettings_create_subtitle.tr()),
             leading: const Icon(Icons.backup_rounded),
-            onTap: () => launchUrlInWeb(
-              Endpoints.baseUrl + BackupUrl.export,
-              ref.read(toastProvider(context)),
-            ),
+            onTap: () async {
+              final toast = ref.read(toastProvider(context));
+              launchUrlInWeb(
+                Endpoints.baseApi(
+                        baseUrl: await ref.read(serverUrlProvider).get()) +
+                    BackupUrl.export,
+                toast,
+              );
+            },
           ),
           ListTile(
             title: Text(LocaleKeys.backupSettings_restore_title.tr()),

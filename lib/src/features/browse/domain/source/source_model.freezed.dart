@@ -20,14 +20,14 @@ Source _$SourceFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Source {
-  String? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
+  String? get displayName => throw _privateConstructorUsedError;
   String? get iconUrl => throw _privateConstructorUsedError;
-  bool? get supportsLatest => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   bool? get isConfigurable => throw _privateConstructorUsedError;
   bool? get isNsfw => throw _privateConstructorUsedError;
-  String? get displayName => throw _privateConstructorUsedError;
+  String? get lang => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  bool? get supportsLatest => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,14 +40,14 @@ abstract class $SourceCopyWith<$Res> {
       _$SourceCopyWithImpl<$Res, Source>;
   @useResult
   $Res call(
-      {String? id,
-      String? name,
-      String? lang,
+      {String? displayName,
       String? iconUrl,
-      bool? supportsLatest,
+      String? id,
       bool? isConfigurable,
       bool? isNsfw,
-      String? displayName});
+      String? lang,
+      String? name,
+      bool? supportsLatest});
 }
 
 /// @nodoc
@@ -63,36 +63,28 @@ class _$SourceCopyWithImpl<$Res, $Val extends Source>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? lang = freezed,
+    Object? displayName = freezed,
     Object? iconUrl = freezed,
-    Object? supportsLatest = freezed,
+    Object? id = freezed,
     Object? isConfigurable = freezed,
     Object? isNsfw = freezed,
-    Object? displayName = freezed,
+    Object? lang = freezed,
+    Object? name = freezed,
+    Object? supportsLatest = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lang: freezed == lang
-          ? _value.lang
-          : lang // ignore: cast_nullable_to_non_nullable
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
       iconUrl: freezed == iconUrl
           ? _value.iconUrl
           : iconUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      supportsLatest: freezed == supportsLatest
-          ? _value.supportsLatest
-          : supportsLatest // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       isConfigurable: freezed == isConfigurable
           ? _value.isConfigurable
           : isConfigurable // ignore: cast_nullable_to_non_nullable
@@ -101,10 +93,18 @@ class _$SourceCopyWithImpl<$Res, $Val extends Source>
           ? _value.isNsfw
           : isNsfw // ignore: cast_nullable_to_non_nullable
               as bool?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      supportsLatest: freezed == supportsLatest
+          ? _value.supportsLatest
+          : supportsLatest // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -116,14 +116,14 @@ abstract class _$$_SourceCopyWith<$Res> implements $SourceCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? id,
-      String? name,
-      String? lang,
+      {String? displayName,
       String? iconUrl,
-      bool? supportsLatest,
+      String? id,
       bool? isConfigurable,
       bool? isNsfw,
-      String? displayName});
+      String? lang,
+      String? name,
+      bool? supportsLatest});
 }
 
 /// @nodoc
@@ -136,36 +136,28 @@ class __$$_SourceCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? lang = freezed,
+    Object? displayName = freezed,
     Object? iconUrl = freezed,
-    Object? supportsLatest = freezed,
+    Object? id = freezed,
     Object? isConfigurable = freezed,
     Object? isNsfw = freezed,
-    Object? displayName = freezed,
+    Object? lang = freezed,
+    Object? name = freezed,
+    Object? supportsLatest = freezed,
   }) {
     return _then(_$_Source(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lang: freezed == lang
-          ? _value.lang
-          : lang // ignore: cast_nullable_to_non_nullable
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as String?,
       iconUrl: freezed == iconUrl
           ? _value.iconUrl
           : iconUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      supportsLatest: freezed == supportsLatest
-          ? _value.supportsLatest
-          : supportsLatest // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       isConfigurable: freezed == isConfigurable
           ? _value.isConfigurable
           : isConfigurable // ignore: cast_nullable_to_non_nullable
@@ -174,10 +166,18 @@ class __$$_SourceCopyWithImpl<$Res>
           ? _value.isNsfw
           : isNsfw // ignore: cast_nullable_to_non_nullable
               as bool?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
+      lang: freezed == lang
+          ? _value.lang
+          : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      supportsLatest: freezed == supportsLatest
+          ? _value.supportsLatest
+          : supportsLatest // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -186,38 +186,38 @@ class __$$_SourceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Source implements _Source {
   _$_Source(
-      {this.id,
-      this.name,
-      this.lang,
+      {this.displayName,
       this.iconUrl,
-      this.supportsLatest,
+      this.id,
       this.isConfigurable,
       this.isNsfw,
-      this.displayName});
+      this.lang,
+      this.name,
+      this.supportsLatest});
 
   factory _$_Source.fromJson(Map<String, dynamic> json) =>
       _$$_SourceFromJson(json);
 
   @override
-  final String? id;
-  @override
-  final String? name;
-  @override
-  final String? lang;
+  final String? displayName;
   @override
   final String? iconUrl;
   @override
-  final bool? supportsLatest;
+  final String? id;
   @override
   final bool? isConfigurable;
   @override
   final bool? isNsfw;
   @override
-  final String? displayName;
+  final String? lang;
+  @override
+  final String? name;
+  @override
+  final bool? supportsLatest;
 
   @override
   String toString() {
-    return 'Source(id: $id, name: $name, lang: $lang, iconUrl: $iconUrl, supportsLatest: $supportsLatest, isConfigurable: $isConfigurable, isNsfw: $isNsfw, displayName: $displayName)';
+    return 'Source(displayName: $displayName, iconUrl: $iconUrl, id: $id, isConfigurable: $isConfigurable, isNsfw: $isNsfw, lang: $lang, name: $name, supportsLatest: $supportsLatest)';
   }
 
   @override
@@ -225,23 +225,23 @@ class _$_Source implements _Source {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Source &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
-            (identical(other.supportsLatest, supportsLatest) ||
-                other.supportsLatest == supportsLatest) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.isConfigurable, isConfigurable) ||
                 other.isConfigurable == isConfigurable) &&
             (identical(other.isNsfw, isNsfw) || other.isNsfw == isNsfw) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName));
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.supportsLatest, supportsLatest) ||
+                other.supportsLatest == supportsLatest));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, lang, iconUrl,
-      supportsLatest, isConfigurable, isNsfw, displayName);
+  int get hashCode => Object.hash(runtimeType, displayName, iconUrl, id,
+      isConfigurable, isNsfw, lang, name, supportsLatest);
 
   @JsonKey(ignore: true)
   @override
@@ -259,33 +259,33 @@ class _$_Source implements _Source {
 
 abstract class _Source implements Source {
   factory _Source(
-      {final String? id,
-      final String? name,
-      final String? lang,
+      {final String? displayName,
       final String? iconUrl,
-      final bool? supportsLatest,
+      final String? id,
       final bool? isConfigurable,
       final bool? isNsfw,
-      final String? displayName}) = _$_Source;
+      final String? lang,
+      final String? name,
+      final bool? supportsLatest}) = _$_Source;
 
   factory _Source.fromJson(Map<String, dynamic> json) = _$_Source.fromJson;
 
   @override
-  String? get id;
-  @override
-  String? get name;
-  @override
-  String? get lang;
+  String? get displayName;
   @override
   String? get iconUrl;
   @override
-  bool? get supportsLatest;
+  String? get id;
   @override
   bool? get isConfigurable;
   @override
   bool? get isNsfw;
   @override
-  String? get displayName;
+  String? get lang;
+  @override
+  String? get name;
+  @override
+  bool? get supportsLatest;
   @override
   @JsonKey(ignore: true)
   _$$_SourceCopyWith<_$_Source> get copyWith =>
