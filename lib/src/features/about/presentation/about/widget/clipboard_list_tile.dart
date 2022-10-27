@@ -11,12 +11,6 @@ import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/misc/toast.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class ClipboardListTile extends ConsumerWidget {
   const ClipboardListTile({
     super.key,

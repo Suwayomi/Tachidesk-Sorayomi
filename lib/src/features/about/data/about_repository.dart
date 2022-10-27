@@ -11,10 +11,6 @@ import '../../../global_providers/global_providers.dart';
 import '../../../utils/network/dio/dio_client.dart';
 import '../domain/about/about_model.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class AboutRepository {
   final DioClient dioClient;
   final PackageInfo packageInfo;

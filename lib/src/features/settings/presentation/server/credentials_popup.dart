@@ -19,14 +19,6 @@ import '../../../../utils/network/sembast/sembast_client.dart';
 import '../../../../widgets/pop_button.dart';
 import '../../data/local_settings_repository.dart';
 
-// 🎯 Dart imports:
-
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 final credentialsProvider = Provider(
   (ref) => LocalSettingsRepository<String>(
     ref.watch(settingsLocalProvider),

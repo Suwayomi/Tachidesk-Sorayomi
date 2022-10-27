@@ -1,8 +1,6 @@
 // 📦 Package imports:
 import 'package:intl/intl.dart';
 
-// 📦 Package imports:
-
 extension IntExtensions on int? {
   bool get isNull => this == null;
   bool get isZero => this != null ? this! == 0 : false;

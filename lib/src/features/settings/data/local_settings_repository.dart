@@ -2,8 +2,6 @@
 import '../../../constants/db_keys.dart';
 import '../../../utils/network/sembast/sembast_client.dart';
 
-// 🌎 Project imports:
-
 class LocalSettingsRepository<T> {
   LocalSettingsRepository(this.client, this.key, {this.initial, this.cast}) {
     load();

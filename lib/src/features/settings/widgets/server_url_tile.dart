@@ -14,12 +14,6 @@ import '../../../utils/network/sembast/sembast_client.dart';
 import '../../../widgets/pop_button.dart';
 import '../data/local_settings_repository.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 final serverUrlProvider = Provider.autoDispose<LocalSettingsRepository<String>>(
   (ref) => LocalSettingsRepository<String>(
     ref.watch(settingsLocalProvider),

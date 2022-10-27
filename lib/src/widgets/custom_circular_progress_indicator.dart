@@ -4,10 +4,6 @@ import 'package:flutter/material.dart';
 // 🌎 Project imports:
 import '../constants/app_sizes.dart';
 
-// 🐦 Flutter imports:
-
-// 🌎 Project imports:
-
 class CenterCircularProgressIndicator extends StatelessWidget {
   const CenterCircularProgressIndicator({super.key});
 

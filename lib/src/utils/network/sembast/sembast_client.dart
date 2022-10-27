@@ -7,10 +7,6 @@ import 'package:tekartik_app_flutter_sembast/sembast.dart';
 import '../../../constants/db_keys.dart';
 import '../../extensions/custom_extensions/string_extensions.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 final databaseProvider =
     Provider<Database>((ref) => throw UnimplementedError());
 

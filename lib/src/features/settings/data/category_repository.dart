@@ -9,10 +9,6 @@ import '../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../utils/network/dio/dio_client.dart';
 import '../domain/category/category_model.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class CategoryRepository {
   final DioClient dioClient;
 

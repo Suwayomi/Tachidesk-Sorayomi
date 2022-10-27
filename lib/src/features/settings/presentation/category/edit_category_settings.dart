@@ -20,12 +20,6 @@ import 'category_tile.dart';
 import 'controller/edit_category_controller.dart';
 import 'create_category_fab.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 final categoryListProvider = Provider((ref) {
   final categoryList = List<Category>.from(
       ref.watch(categoryControllerProvider).asData?.value ?? []);

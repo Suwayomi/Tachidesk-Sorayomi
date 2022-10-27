@@ -18,12 +18,6 @@ import '../../../settings/widgets/server_url_tile.dart';
 import '../../domain/language/language_model.dart';
 import 'controller/source_controller.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class SourceScreen extends HookConsumerWidget {
   const SourceScreen({Key? key}) : super(key: key);
 

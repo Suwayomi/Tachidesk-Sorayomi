@@ -12,10 +12,6 @@ import '../utils/network/dio/dio_client.dart';
 import '../utils/network/dio/network_module.dart';
 import '../utils/network/sembast/sembast_client.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 final packageInfoProvider =
     Provider<PackageInfo>((ref) => throw UnimplementedError());
 

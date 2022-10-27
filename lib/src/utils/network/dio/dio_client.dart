@@ -7,12 +7,6 @@ import 'package:dio/dio.dart';
 // 🌎 Project imports:
 import '../dio_error_util.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 typedef ResponseDecoderCallBack<DecoderType> = DecoderType Function(dynamic);
 
 class DioClient {

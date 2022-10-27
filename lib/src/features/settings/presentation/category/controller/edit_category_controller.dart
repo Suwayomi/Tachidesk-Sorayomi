@@ -5,10 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../data/category_repository.dart';
 import '../../../domain/category/category_model.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class CategoryControllerNotifier
     extends StateNotifier<AsyncValue<List<Category>?>> {
   CategoryControllerNotifier(this.categoryRepository)

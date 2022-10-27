@@ -12,12 +12,6 @@ import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../widgets/pop_button.dart';
 import '../../domain/category/category_model.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class EditCategoryDialog extends HookWidget {
   const EditCategoryDialog({
     super.key,

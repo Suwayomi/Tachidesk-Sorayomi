@@ -1,8 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 🐦 Flutter imports:
-
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
 enum Edge {
   a8(EdgeInsets.all(8)),

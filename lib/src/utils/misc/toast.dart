@@ -8,12 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../constants/app_sizes.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class Toast {
   Toast(this._context) {
     _fToast = FToast().init(_context);

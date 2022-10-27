@@ -10,12 +10,6 @@ import 'features/settings/widgets/theme_mode_tile.dart';
 import 'i18n/locale_keys.g.dart';
 import 'routes/router_config.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class Sorayomi extends HookConsumerWidget {
   const Sorayomi({super.key});
 

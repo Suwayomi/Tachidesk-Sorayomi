@@ -60,3 +60,7 @@ flutter:
 flutter_gen:
   # Optional
   output: lib/src/constants/gen/
+import_sorter:
+  ignored_files:
+    - /*.g.dart
+    - /*.gen.dart

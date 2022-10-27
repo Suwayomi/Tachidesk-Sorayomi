@@ -13,12 +13,6 @@ import 'src/i18n/codegen_loader.g.dart';
 import 'src/sorayomi.dart';
 import 'src/utils/network/sembast/sembast_client.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();

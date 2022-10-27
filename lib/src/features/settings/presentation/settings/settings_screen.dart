@@ -10,12 +10,6 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 

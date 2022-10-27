@@ -12,14 +12,6 @@ import '../constants/app_sizes.dart';
 import '../utils/extensions/custom_extensions/context_extensions.dart';
 import '../utils/extensions/custom_extensions/string_extensions.dart';
 
-// 🎯 Dart imports:
-
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 const errorFaces = [
   '(･o･;)',
   'Σ(ಠ_ಠ)',

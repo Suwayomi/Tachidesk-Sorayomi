@@ -4,10 +4,6 @@ import 'dart:math';
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 🎯 Dart imports:
-
-// 🐦 Flutter imports:
-
 abstract class MaterialColorGenerator {
   MaterialColorGenerator._();
   static MaterialColor generate({required Color color}) =>

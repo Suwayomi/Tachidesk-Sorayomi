@@ -4,10 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // 🌎 Project imports:
 import '../../../browse/domain/source/source_model.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 part 'manga_model.freezed.dart';
 part 'manga_model.g.dart';
 

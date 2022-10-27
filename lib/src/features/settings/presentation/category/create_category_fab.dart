@@ -13,12 +13,6 @@ import '../../../../widgets/custom_circular_progress_indicator.dart';
 import 'controller/edit_category_controller.dart';
 import 'edit_category_dialog.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class CreateCategoryFab extends HookConsumerWidget {
   const CreateCategoryFab({super.key});
 

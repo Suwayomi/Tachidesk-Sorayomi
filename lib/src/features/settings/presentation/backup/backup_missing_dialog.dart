@@ -11,12 +11,6 @@ import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart'
 import '../../../../widgets/pop_button.dart';
 import '../../domain/backup_missing/backup_missing.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class BackupMissingDialog extends StatelessWidget {
   const BackupMissingDialog({
     super.key,

@@ -8,12 +8,6 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../widgets/theme_mode_tile.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class AppearanceScreen extends StatelessWidget {
   const AppearanceScreen({super.key});
 

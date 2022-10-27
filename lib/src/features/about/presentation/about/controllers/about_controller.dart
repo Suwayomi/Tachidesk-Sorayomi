@@ -5,10 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../data/about_repository.dart';
 import '../../../domain/about/about_model.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class AboutControllerNotifier extends StateNotifier<AsyncValue<About?>> {
   AboutControllerNotifier(this.aboutRepository) : super(const AsyncData(null));
 

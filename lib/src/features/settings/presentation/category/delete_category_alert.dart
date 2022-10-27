@@ -9,12 +9,6 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/pop_button.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class DeleteCategoryAlert extends StatelessWidget {
   const DeleteCategoryAlert({super.key, required this.deleteCategory});
   final void Function() deleteCategory;

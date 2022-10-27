@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 // 🌎 Project imports:
 import 'iterable_extensions.dart';
 
-// 🐦 Flutter imports:
-
-// 🌎 Project imports:
-
-//
-
 /// Helper class for device related operations.
 ///
 extension ContextExtensions on BuildContext {

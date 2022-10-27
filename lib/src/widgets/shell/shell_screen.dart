@@ -10,12 +10,6 @@ import '../../utils/extensions/custom_extensions/context_extensions.dart';
 import 'big_screen_navigation_bar.dart';
 import 'small_screen_navigation_bar.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class ShellScreen extends ConsumerWidget {
   const ShellScreen({
     super.key,

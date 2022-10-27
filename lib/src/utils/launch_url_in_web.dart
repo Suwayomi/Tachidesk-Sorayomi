@@ -9,12 +9,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../i18n/locale_keys.g.dart';
 import 'misc/toast.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 Future<void> launchUrlInWeb(String url, [Toast? toast]) async {
   if (!await launchUrl(
     Uri.parse(url),

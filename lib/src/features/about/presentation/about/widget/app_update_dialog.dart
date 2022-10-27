@@ -13,12 +13,6 @@ import '../../../../../utils/extensions/custom_extensions/context_extensions.dar
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
     showDialog(
       context: context,

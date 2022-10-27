@@ -18,12 +18,6 @@ import '../../../../utils/misc/toast.dart';
 import '../../widgets/server_url_tile.dart';
 import '../../widgets/theme_mode_tile.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
 

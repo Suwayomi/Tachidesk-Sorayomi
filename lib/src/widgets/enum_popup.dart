@@ -9,12 +9,6 @@ import '../constants/app_sizes.dart';
 import '../i18n/locale_keys.g.dart';
 import 'pop_button.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class EnumPopup<T extends Enum> extends StatelessWidget {
   const EnumPopup({
     super.key,

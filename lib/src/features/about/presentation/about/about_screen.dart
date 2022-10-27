@@ -27,12 +27,6 @@ import 'widget/app_update_dialog.dart';
 import 'widget/clipboard_list_tile.dart';
 import 'widget/media_launch_button.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class AboutScreen extends HookConsumerWidget {
   const AboutScreen({super.key});
 

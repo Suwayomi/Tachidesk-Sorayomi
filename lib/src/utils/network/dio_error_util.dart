@@ -1,8 +1,6 @@
 // 📦 Package imports:
 import 'package:dio/dio.dart';
 
-// 📦 Package imports:
-
 class DioErrorUtil {
   // general methods:------------------------------------------------------------
   /// Handles error for Dio Class

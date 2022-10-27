@@ -10,12 +10,6 @@ import '../../domain/category/category_model.dart';
 import 'delete_category_alert.dart';
 import 'edit_category_dialog.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class CategoryTile extends HookWidget {
   const CategoryTile({
     super.key,

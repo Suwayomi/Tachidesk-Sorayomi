@@ -10,12 +10,6 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../sources/source_screen.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class BrowseScreen extends StatelessWidget {
   const BrowseScreen({super.key});
 

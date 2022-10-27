@@ -10,12 +10,6 @@ import 'reader_invert_tap_tile.dart';
 import 'reader_mode_tile.dart';
 import 'reader_navigation_layout_tile.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class ReaderSettingsScreen extends StatelessWidget {
   const ReaderSettingsScreen({super.key});
 

@@ -5,10 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../../constants/endpoints.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class DioNetworkModule {
   /// A singleton dio provider.
   ///

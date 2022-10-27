@@ -13,12 +13,6 @@ import '../../../utils/network/sembast/sembast_client.dart';
 import '../../../widgets/enum_popup.dart';
 import '../data/local_settings_repository.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 final themeModeProvider = Provider(
   (ref) => LocalEnumSettingsRepository<ThemeMode>(
     enumList: ThemeMode.values,

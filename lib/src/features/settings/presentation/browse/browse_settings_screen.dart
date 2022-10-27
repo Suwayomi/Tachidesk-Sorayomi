@@ -8,12 +8,6 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import 'show_nsfw_switch.dart';
 
-// 🐦 Flutter imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 class BrowseSettingsScreen extends StatelessWidget {
   const BrowseSettingsScreen({super.key});
 
