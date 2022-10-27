@@ -25,7 +25,10 @@ mixin _$Source {
   String? get id => throw _privateConstructorUsedError;
   bool? get isConfigurable => throw _privateConstructorUsedError;
   bool? get isNsfw => throw _privateConstructorUsedError;
-  String? get lang => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: LanguageJsonConverter.fromJson,
+      toJson: LanguageJsonConverter.toJson)
+  Language? get lang => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   bool? get supportsLatest => throw _privateConstructorUsedError;
 
@@ -45,9 +48,12 @@ abstract class $SourceCopyWith<$Res> {
       String? id,
       bool? isConfigurable,
       bool? isNsfw,
-      String? lang,
+      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
+          Language? lang,
       String? name,
       bool? supportsLatest});
+
+  $LanguageCopyWith<$Res>? get lang;
 }
 
 /// @nodoc
@@ -96,7 +102,7 @@ class _$SourceCopyWithImpl<$Res, $Val extends Source>
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Language?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -106,6 +112,18 @@ class _$SourceCopyWithImpl<$Res, $Val extends Source>
           : supportsLatest // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LanguageCopyWith<$Res>? get lang {
+    if (_value.lang == null) {
+      return null;
+    }
+
+    return $LanguageCopyWith<$Res>(_value.lang!, (value) {
+      return _then(_value.copyWith(lang: value) as $Val);
+    });
   }
 }
 
@@ -121,9 +139,13 @@ abstract class _$$_SourceCopyWith<$Res> implements $SourceCopyWith<$Res> {
       String? id,
       bool? isConfigurable,
       bool? isNsfw,
-      String? lang,
+      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
+          Language? lang,
       String? name,
       bool? supportsLatest});
+
+  @override
+  $LanguageCopyWith<$Res>? get lang;
 }
 
 /// @nodoc
@@ -169,7 +191,7 @@ class __$$_SourceCopyWithImpl<$Res>
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Language?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -191,7 +213,8 @@ class _$_Source implements _Source {
       this.id,
       this.isConfigurable,
       this.isNsfw,
-      this.lang,
+      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
+          this.lang,
       this.name,
       this.supportsLatest});
 
@@ -209,7 +232,10 @@ class _$_Source implements _Source {
   @override
   final bool? isNsfw;
   @override
-  final String? lang;
+  @JsonKey(
+      fromJson: LanguageJsonConverter.fromJson,
+      toJson: LanguageJsonConverter.toJson)
+  final Language? lang;
   @override
   final String? name;
   @override
@@ -264,7 +290,8 @@ abstract class _Source implements Source {
       final String? id,
       final bool? isConfigurable,
       final bool? isNsfw,
-      final String? lang,
+      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
+          final Language? lang,
       final String? name,
       final bool? supportsLatest}) = _$_Source;
 
@@ -281,7 +308,10 @@ abstract class _Source implements Source {
   @override
   bool? get isNsfw;
   @override
-  String? get lang;
+  @JsonKey(
+      fromJson: LanguageJsonConverter.fromJson,
+      toJson: LanguageJsonConverter.toJson)
+  Language? get lang;
   @override
   String? get name;
   @override

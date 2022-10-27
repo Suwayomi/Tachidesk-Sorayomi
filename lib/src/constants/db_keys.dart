@@ -6,7 +6,8 @@ import 'enum.dart';
 
 enum DBKeys {
   serverUrl('http://127.0.0.1:4567'),
-  sourceLanguageFilter(["en", "localsourcelang"]),
+  sourceLanguageFilter(["lastUsed", "en", "localsourcelang"]),
+  sourceLastUsed(null),
   themeMode(ThemeMode.system),
   authType(AuthType.none),
   basicCredentials(null),

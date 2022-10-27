@@ -24,7 +24,6 @@ class AuthTypeTile extends HookConsumerWidget {
       title: Text(LocaleKeys.serverSettingsScreen_baseAuthType.tr()),
       onTap: () => showDialog(
         context: context,
-        useRootNavigator: false,
         builder: (context) => EnumPopup<AuthType>(
           enumList: AuthType.values,
           value: authType ?? AuthType.none,

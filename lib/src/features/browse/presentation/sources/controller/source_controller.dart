@@ -28,12 +28,14 @@ final sourceMapProvider = Provider<Map<String, List<Source>>>((ref) {
   final sourceMap = <String, List<Source>>{};
   final sourceList =
       ref.watch(sourceControllerProvider).asData?.value ?? <Source>[];
+  final sourceLastUsed = ref.watch(sourceLastUsedProvider);
   for (var e in sourceList) {
     sourceMap.update(
-      e.lang ?? "other",
+      e.lang?.code ?? "other",
       (value) => [...value, e],
       ifAbsent: () => [e],
     );
+    if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
   return sourceMap;
 });
@@ -61,3 +63,16 @@ final sourceMapFilteredProvider = Provider<Map<String, List<Source>>>((ref) {
   // print("sourceMapFiltered ${sourceMapFiltered}");
   return sourceMapFiltered;
 });
+
+final sourceLastUsedProvider =
+    StateNotifierProvider<SharedPreferenceNotifier<String>, String?>(
+  (ref) {
+    final client = ref.watch(sharedPreferencesProvider);
+    final initial = client.getString(DBKeys.sourceLastUsed.name);
+    return SharedPreferenceNotifier<String>(
+      client: client,
+      key: DBKeys.sourceLastUsed.name,
+      initial: initial ?? DBKeys.sourceLastUsed.initial,
+    );
+  },
+);

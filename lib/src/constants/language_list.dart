@@ -1,11 +1,19 @@
+// 🌎 Project imports:
+import '../features/browse/domain/language/language_model.dart';
+
+final languageMap = {
+  for (var e in customLanguageList) e['code'] ?? "other": Language.fromJson(e)
+};
+
 const customLanguageList = [
+  ...languageList,
   {
     "code": 'localsourcelang',
     "name": 'Local source',
     "nativeName": 'Local source'
   },
   {"code": 'installed', "name": 'Installed', "nativeName": 'Installed'},
-  {"code": "lastused", "name": "Last Used", "nativeName": "Last Used"},
+  {"code": "lastUsed", "name": "Last Used", "nativeName": "Last Used"},
   {
     "code": 'update',
     "name": 'Updates pending',

@@ -16,7 +16,6 @@ import '../../../../../utils/misc/toast.dart';
 void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
     showDialog(
       context: context,
-      useRootNavigator: false,
       builder: (_) {
         return AlertDialog(
           title: Text(LocaleKeys.appUpdate_newUpdateAvailable.tr()),

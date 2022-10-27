@@ -42,7 +42,6 @@ class AppThemeTile extends HookConsumerWidget {
       title: Text(LocaleKeys.appearanceScreen_appTheme.tr()),
       onTap: () => showDialog(
         context: context,
-        useRootNavigator: false,
         builder: (context) => EnumPopup<ThemeMode>(
           enumList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,

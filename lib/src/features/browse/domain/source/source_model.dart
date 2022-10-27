@@ -1,6 +1,10 @@
 // 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+// 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/features/browse/domain/language/language_model.dart';
+import '../../../../utils/misc/language_json_converter.dart';
+
 part 'source_model.freezed.dart';
 part 'source_model.g.dart';
 
@@ -12,7 +16,11 @@ class Source with _$Source {
     String? id,
     bool? isConfigurable,
     bool? isNsfw,
-    String? lang,
+    @JsonKey(
+      fromJson: LanguageJsonConverter.fromJson,
+      toJson: LanguageJsonConverter.toJson,
+    )
+        Language? lang,
     String? name,
     bool? supportsLatest,
   }) = _Source;

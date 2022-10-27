@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/constants/language_list.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/domain/language/language_model.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/presentation/sources/controller/source_controller.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
@@ -16,8 +17,9 @@ class SourceLanguageFilter extends ConsumerWidget {
   const SourceLanguageFilter({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final languageCodes = (ref.watch(sourceMapProvider)).keys.toList();
-    final languageMap = ref.watch(languageMapWithCustomProvider);
+    final languageCodes = [...(ref.watch(sourceMapProvider)).keys]
+      ..remove("localsourcelang")
+      ..remove("lastUsed");
     final enabledLanguages = ref.watch(sourceLanguageFilterProvider);
     return AlertDialog(
       title: Text(LocaleKeys.sourceScreen_languages.tr()),

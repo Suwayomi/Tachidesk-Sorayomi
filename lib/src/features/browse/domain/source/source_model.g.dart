@@ -12,7 +12,7 @@ _$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(
       id: json['id'] as String?,
       isConfigurable: json['isConfigurable'] as bool?,
       isNsfw: json['isNsfw'] as bool?,
-      lang: json['lang'] as String?,
+      lang: LanguageJsonConverter.fromJson(json['lang'] as String?),
       name: json['name'] as String?,
       supportsLatest: json['supportsLatest'] as bool?,
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_SourceToJson(_$_Source instance) => <String, dynamic>{
       'id': instance.id,
       'isConfigurable': instance.isConfigurable,
       'isNsfw': instance.isNsfw,
-      'lang': instance.lang,
+      'lang': LanguageJsonConverter.toJson(instance.lang),
       'name': instance.name,
       'supportsLatest': instance.supportsLatest,
     };

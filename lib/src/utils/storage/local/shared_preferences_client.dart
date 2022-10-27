@@ -23,11 +23,12 @@ class SharedPreferenceNotifier<T> extends StateNotifier<T?> {
     return value is T? ? value : initial;
   }
 
-  Future<void> update(T value) async {
+  Future<void> update(T? value) async {
     if (await _set(value)) state = value;
   }
 
-  Future<bool> _set(T value) async {
+  Future<bool> _set(T? value) async {
+    if (value == null) return client.remove(key);
     if (value is bool) {
       return await client.setBool(key, value);
     } else if (value is double) {

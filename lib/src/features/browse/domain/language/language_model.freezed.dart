@@ -116,8 +116,8 @@ class __$$_LanguageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Language implements _Language {
-  _$_Language({this.code, this.name, this.nativeName});
+class _$_Language extends _Language {
+  _$_Language({this.code, this.name, this.nativeName}) : super._();
 
   factory _$_Language.fromJson(Map<String, dynamic> json) =>
       _$$_LanguageFromJson(json);
@@ -163,11 +163,12 @@ class _$_Language implements _Language {
   }
 }
 
-abstract class _Language implements Language {
+abstract class _Language extends Language {
   factory _Language(
       {final String? code,
       final String? name,
       final String? nativeName}) = _$_Language;
+  _Language._() : super._();
 
   factory _Language.fromJson(Map<String, dynamic> json) = _$_Language.fromJson;
 

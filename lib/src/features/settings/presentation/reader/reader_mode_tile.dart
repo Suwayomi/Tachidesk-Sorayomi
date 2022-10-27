@@ -41,7 +41,6 @@ class ReaderModeTile extends HookConsumerWidget {
       title: Text(LocaleKeys.readerSettingsScreen_readerMode.tr()),
       onTap: () => showDialog(
         context: context,
-        useRootNavigator: false,
         builder: (context) => EnumPopup<ReaderMode>(
           enumList: ReaderMode.values.sublist(1),
           value: readerMode ?? ReaderMode.webtoon,
