@@ -12,10 +12,10 @@ const customLanguageList = [
     "nativeName": 'Updates pending'
   },
   {"code": 'other', "name": 'other langs', "nativeName": 'Other'},
+  {"code": 'all', "name": 'All', "nativeName": 'All'},
 ];
 
 const languageList = [
-  {"code": 'all', "name": 'All', "nativeName": 'All'},
   {"code": 'en', "name": 'English', "nativeName": 'English'},
   {"code": 'ca', "name": 'Catalan; Valencian', "nativeName": 'Català'},
   {"code": 'de', "name": 'German', "nativeName": 'Deutsch'},

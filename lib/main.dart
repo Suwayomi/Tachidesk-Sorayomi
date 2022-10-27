@@ -9,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
 import 'package:tachidesk_sorayomi/src/utils/storage/local/shared_preferences_client.dart';
-import 'src/constants/gen/assets.gen.dart';
 import 'src/global_providers/global_providers.dart';
 import 'src/i18n/codegen_loader.g.dart';
 import 'src/sorayomi.dart';
@@ -30,7 +29,7 @@ Future<void> main() async {
       container: container,
       child: EasyLocalization(
         supportedLocales: const [Locale('en', 'US')],
-        path: Assets.locales.enUS,
+        path: "assets/locales/",
         fallbackLocale: const Locale('en', "US"),
         assetLoader: const CodegenLoader(),
         child: const Sorayomi(),

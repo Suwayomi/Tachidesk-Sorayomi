@@ -25,7 +25,7 @@ class SourceScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final sourceMap = ref.watch(sourceMapProvider);
+    final sourceMap = ref.watch(sourceMapFilteredProvider);
     final languageMap = ref.watch(languageMapWithCustomProvider);
     final baseUrl = ref.watch(serverUrlProvider);
     final authType = ref.watch(authTypeProvider);
@@ -40,66 +40,69 @@ class SourceScreen extends HookConsumerWidget {
       );
       return;
     }, []);
-    return CustomScrollView(
-      slivers: [
-        for (final k in sourceMap.keys) ...[
-          SliverToBoxAdapter(
-            child: ListTile(
-              title:
-                  Text(languageMap[k]?.nativeName ?? languageMap[k]?.name ?? k),
+    return RefreshIndicator(
+      onRefresh: ref.read(sourceControllerProvider.notifier).loadSources,
+      child: CustomScrollView(
+        slivers: [
+          for (final k in sourceMap.keys) ...[
+            SliverToBoxAdapter(
+              child: ListTile(
+                title: Text(
+                    languageMap[k]?.nativeName ?? languageMap[k]?.name ?? k),
+              ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final source = sourceMap[k]![index];
-                return ListTile(
-                    onTap: (() async {
-                      // await controller.localStorageService
-                      //     .setLastUsed(source.id);
-                      // Get.toNamed(
-                      //   "${Routes.sourceManga}/${source.id}/popular",
-                      // );
-                    }),
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        imageUrl: (baseUrl ?? DBKeys.serverUrl.initial) +
-                            (source.iconUrl ?? ""),
-                        height: 48,
-                        httpHeaders:
-                            authType == AuthType.basic && basicToken != null
-                                ? {"Authorization": basicToken}
-                                : null,
-                        width: 48,
-                        fit: BoxFit.cover,
-                        errorWidget: (context, error, stackTrace) =>
-                            const Icon(Icons.broken_image_rounded),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final source = sourceMap[k]![index];
+                  return ListTile(
+                      onTap: (() async {
+                        // await controller.localStorageService
+                        //     .setLastUsed(source.id);
+                        // Get.toNamed(
+                        //   "${Routes.sourceManga}/${source.id}/popular",
+                        // );
+                      }),
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: CachedNetworkImage(
+                          imageUrl: (baseUrl ?? DBKeys.serverUrl.initial) +
+                              (source.iconUrl ?? ""),
+                          height: 48,
+                          httpHeaders:
+                              authType == AuthType.basic && basicToken != null
+                                  ? {"Authorization": basicToken}
+                                  : null,
+                          width: 48,
+                          fit: BoxFit.cover,
+                          errorWidget: (context, error, stackTrace) =>
+                              const Icon(Icons.broken_image_rounded),
+                        ),
                       ),
-                    ),
-                    title: Text(source.displayName ?? source.name ?? ""),
-                    subtitle: Text(languageMap[source.lang]?.nativeName ??
-                        languageMap[source.lang]?.name ??
-                        k),
-                    trailing: (source.supportsLatest ?? false)
-                        ? TextButton(
-                            onPressed: () async {
-                              // await controller.localStorageService
-                              //     .setLastUsed(source.id);
-                              // Get.toNamed("${Routes.sourceManga}"
-                              //     "/${source.id}/latest");
-                            },
-                            child: Text(
-                              LocaleKeys.sourceScreen_latest.tr(),
-                            ),
-                          )
-                        : null);
-              },
-              childCount: sourceMap[k]?.length,
-            ),
-          )
+                      title: Text(source.displayName ?? source.name ?? ""),
+                      subtitle: Text(languageMap[source.lang]?.nativeName ??
+                          languageMap[source.lang]?.name ??
+                          k),
+                      trailing: (source.supportsLatest ?? false)
+                          ? TextButton(
+                              onPressed: () async {
+                                // await controller.localStorageService
+                                //     .setLastUsed(source.id);
+                                // Get.toNamed("${Routes.sourceManga}"
+                                //     "/${source.id}/latest");
+                              },
+                              child: Text(
+                                LocaleKeys.sourceScreen_latest.tr(),
+                              ),
+                            )
+                          : null);
+                },
+                childCount: sourceMap[k]?.length,
+              ),
+            )
+          ],
         ],
-      ],
+      ),
     );
   }
 }
