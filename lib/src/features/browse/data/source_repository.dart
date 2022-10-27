@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
-import '../../../utils/network/dio/dio_client.dart';
+import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/source/source_model.dart';
 
 class SourceRepository {

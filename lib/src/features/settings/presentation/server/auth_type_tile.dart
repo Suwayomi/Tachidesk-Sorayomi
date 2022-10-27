@@ -17,19 +17,19 @@ class AuthTypeTile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authType = ref.watch(authTypeStreamProvider);
+    final authType = ref.watch(authTypeProvider);
     return ListTile(
       leading: const Icon(Icons.security_rounded),
-      subtitle: authType.hasValue ? Text(authType.value.toString().tr()) : null,
+      subtitle: authType != null ? Text(authType.toString().tr()) : null,
       title: Text(LocaleKeys.serverSettingsScreen_baseAuthType.tr()),
       onTap: () => showDialog(
         context: context,
         useRootNavigator: false,
         builder: (context) => EnumPopup<AuthType>(
           enumList: AuthType.values,
-          value: authType.valueOrNull ?? AuthType.none,
+          value: authType ?? AuthType.none,
           onChange: (enumValue) {
-            ref.read(authTypeProvider).update(enumValue);
+            ref.read(authTypeProvider.notifier).update(enumValue);
             context.navPop();
           },
         ),

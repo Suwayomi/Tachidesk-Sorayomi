@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/credentials_popup.dart';
 import '../../../../constants/db_keys.dart';
 import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
@@ -26,9 +27,9 @@ class SourceScreen extends HookConsumerWidget {
     final toast = ref.watch(toastProvider(context));
     final sourceMap = ref.watch(sourceMapProvider);
     final languageMap = ref.watch(languageMapWithCustomProvider);
-    final baseUrl = ref.watch(serverUrlStreamProvider);
-    final authType = ref.watch(authTypeStreamProvider);
-    final basicToken = ref.watch(basicTokenStreamProvider);
+    final baseUrl = ref.watch(serverUrlProvider);
+    final authType = ref.watch(authTypeProvider);
+    final basicToken = ref.watch(credentialsProvider);
     ref.listen(
       sourceControllerProvider,
       ((_, state) => state.showToastOnError(toast)),
@@ -63,14 +64,13 @@ class SourceScreen extends HookConsumerWidget {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: CachedNetworkImage(
-                        imageUrl:
-                            (baseUrl.valueOrNull ?? DBKeys.serverUrl.initial) +
-                                (source.iconUrl ?? ""),
+                        imageUrl: (baseUrl ?? DBKeys.serverUrl.initial) +
+                            (source.iconUrl ?? ""),
                         height: 48,
-                        httpHeaders: authType.valueOrNull == AuthType.basic &&
-                                basicToken.valueOrNull != null
-                            ? {"Authorization": basicToken.value!}
-                            : null,
+                        httpHeaders:
+                            authType == AuthType.basic && basicToken != null
+                                ? {"Authorization": basicToken}
+                                : null,
                         width: 48,
                         fit: BoxFit.cover,
                         errorWidget: (context, error, stackTrace) =>

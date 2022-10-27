@@ -63,8 +63,7 @@ class BackupScreen extends ConsumerWidget {
             onTap: () async {
               final toast = ref.read(toastProvider(context));
               launchUrlInWeb(
-                Endpoints.baseApi(
-                        baseUrl: await ref.read(serverUrlProvider).get()) +
+                Endpoints.baseApi(baseUrl: ref.read(serverUrlProvider)) +
                     BackupUrl.export,
                 toast,
               );

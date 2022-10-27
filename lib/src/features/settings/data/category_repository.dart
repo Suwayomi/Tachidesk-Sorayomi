@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions/map_extensions.dart';
-import '../../../utils/network/dio/dio_client.dart';
+import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/category/category_model.dart';
 
 class CategoryRepository {

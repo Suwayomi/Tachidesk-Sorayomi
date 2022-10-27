@@ -7,36 +7,39 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../constants/db_keys.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../utils/network/sembast/sembast_client.dart';
+import '../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../widgets/pop_button.dart';
-import '../data/local_settings_repository.dart';
 
-final serverUrlProvider = Provider.autoDispose<LocalSettingsRepository<String>>(
-  (ref) => LocalSettingsRepository<String>(
-    ref.watch(settingsLocalProvider),
-    DBKeys.serverUrl,
-  ),
+final serverUrlProvider =
+    StateNotifierProvider<SharedPreferenceNotifier<String>, String?>(
+  (ref) {
+    final client = ref.watch(sharedPreferencesProvider);
+    final initial = client.getString(DBKeys.serverUrl.name);
+    return SharedPreferenceNotifier<String>(
+      client: client,
+      key: DBKeys.serverUrl.name,
+      initial: initial ?? DBKeys.serverUrl.initial,
+    );
+  },
 );
-
-final serverUrlStreamProvider = StreamProvider.autoDispose((ref) =>
-    ref.watch(serverUrlProvider).getStream().map((event) => event?.toString()));
 
 class ServerUrlTile extends HookConsumerWidget {
   const ServerUrlTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final serverUrl = ref.watch(serverUrlStreamProvider);
+    final serverUrl = ref.watch(serverUrlProvider);
     return ListTile(
       leading: const Icon(Icons.computer_rounded),
       title: Text(LocaleKeys.serverSettingsScreen_url.tr()),
-      subtitle: (serverUrl.hasValue) ? Text(serverUrl.value!) : null,
+      subtitle: serverUrl.isNotBlank ? Text(serverUrl!) : null,
       onTap: () => showDialog(
         context: context,
-        builder: (context) => ServerUrlField(initialUrl: serverUrl.valueOrNull),
+        builder: (context) => ServerUrlField(initialUrl: serverUrl),
       ),
     );
   }
@@ -49,8 +52,8 @@ class ServerUrlField extends HookConsumerWidget {
   });
   final String? initialUrl;
 
-  void _update(String url, WidgetRef ref, BuildContext context) =>
-      ref.read(serverUrlProvider).update(url).then((value) => context.navPop());
+  void _update(String url, WidgetRef ref) =>
+      ref.read(serverUrlProvider.notifier).update(url);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,7 +63,10 @@ class ServerUrlField extends HookConsumerWidget {
       content: TextField(
         autofocus: true,
         controller: controller,
-        onSubmitted: (value) => _update(controller.text, ref, context),
+        onSubmitted: (value) {
+          _update(controller.text, ref);
+          context.navPop();
+        },
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           hintText: (LocaleKeys.serverSettingsScreen_hintText.tr()),
@@ -69,7 +75,10 @@ class ServerUrlField extends HookConsumerWidget {
       actions: [
         const PopButton(),
         ElevatedButton(
-          onPressed: () => _update(controller.text, ref, context),
+          onPressed: () {
+            _update(controller.text, ref);
+            context.navPop();
+          },
           child: Text(LocaleKeys.common_save.tr()),
         ),
       ],

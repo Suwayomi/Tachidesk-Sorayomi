@@ -15,15 +15,20 @@ import '../../../../constants/db_keys.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../../utils/network/sembast/sembast_client.dart';
+import '../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../widgets/pop_button.dart';
-import '../../data/local_settings_repository.dart';
 
-final credentialsProvider = Provider(
-  (ref) => LocalSettingsRepository<String>(
-    ref.watch(settingsLocalProvider),
-    DBKeys.basicCredentials,
-  ),
+final credentialsProvider =
+    StateNotifierProvider<SharedPreferenceNotifier<String>, String?>(
+  (ref) {
+    final client = ref.watch(sharedPreferencesProvider);
+    final initial = client.getString(DBKeys.basicCredentials.name);
+    return SharedPreferenceNotifier<String>(
+      client: client,
+      key: DBKeys.basicCredentials.name,
+      initial: initial ?? DBKeys.basicCredentials.initial,
+    );
+  },
 );
 
 final formKey = GlobalKey<FormState>();
@@ -43,7 +48,6 @@ class CredentialsPopup extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final username = useTextEditingController();
     final password = useTextEditingController();
-    final credentialProvider = ref.watch(credentialsProvider);
     return AlertDialog(
       title: Text(LocaleKeys.serverSettingsScreen_credentials.tr()),
       content: Form(
@@ -79,10 +83,12 @@ class CredentialsPopup extends HookConsumerWidget {
         ElevatedButton(
           onPressed: () async {
             if (formKey.currentState?.validate() ?? false) {
-              credentialProvider.update(_basicAuth(
-                userName: username.text,
-                password: password.text,
-              ));
+              ref.read(credentialsProvider.notifier).update(
+                    _basicAuth(
+                      userName: username.text,
+                      password: password.text,
+                    ),
+                  );
             }
             context.navPop();
           },

@@ -8,7 +8,7 @@ import 'package:pub_semver/pub_semver.dart';
 import '../../../constants/endpoints.dart';
 import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
-import '../../../utils/network/dio/dio_client.dart';
+import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/about/about_model.dart';
 
 class AboutRepository {

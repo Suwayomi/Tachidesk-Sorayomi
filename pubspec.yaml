@@ -30,11 +30,7 @@ dependencies:
   permission_handler: ^10.1.0
   pub_semver: ^2.1.2
   share_plus: ^6.0.0
-  tekartik_app_flutter_sembast:
-    git:
-      url: https://github.com/tekartik/app_flutter_utils.dart
-      ref: dart2_3
-      path: app_sembast
+  shared_preferences: ^2.0.15
   url_launcher: ^6.1.6
 
 dev_dependencies:
@@ -46,9 +42,9 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.2.0
   go_router_builder: ^1.0.14
+  import_sorter: ^4.6.0
   json_serializable: ^6.5.2
   lints: ^2.0.0
-  import_sorter: ^4.6.0
 
 flutter:
   uses-material-design: true

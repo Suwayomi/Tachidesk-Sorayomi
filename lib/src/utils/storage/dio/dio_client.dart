@@ -11,8 +11,7 @@ typedef ResponseDecoderCallBack<DecoderType> = DecoderType Function(dynamic);
 
 class DioClient {
   final Dio dio;
-  final Future<Dio> Function(Dio dio) updateDio;
-  DioClient({required this.dio, required this.updateDio});
+  DioClient({required this.dio});
 
   /// Handy method to make http GET request
   ///
@@ -35,7 +34,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) =>
       _handelDecoding<ReturnType, DecoderType>(
-        sendRequest: () async => (await updateDio(dio)).get(
+        sendRequest: () => dio.get(
           url,
           queryParameters: queryParameters,
           options: options,
@@ -59,7 +58,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) =>
       _handelDecoding<ReturnType, DecoderType>(
-        sendRequest: () async => ((await updateDio(dio))).post(
+        sendRequest: () => dio.post(
           url,
           data: data,
           queryParameters: queryParameters,
@@ -85,7 +84,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) =>
       _handelDecoding<ReturnType, DecoderType>(
-        sendRequest: () async => ((await updateDio(dio))).patch(
+        sendRequest: () => dio.patch(
           url,
           data: data,
           queryParameters: queryParameters,
@@ -111,7 +110,7 @@ class DioClient {
     ProgressCallback? onReceiveProgress,
   }) =>
       _handelDecoding<ReturnType, DecoderType>(
-        sendRequest: () async => ((await updateDio(dio))).put(
+        sendRequest: () => dio.put(
           url,
           data: data,
           queryParameters: queryParameters,
@@ -135,7 +134,7 @@ class DioClient {
     CancelToken? cancelToken,
   }) =>
       _handelDecoding<ReturnType, DecoderType>(
-        sendRequest: () async => ((await updateDio(dio))).delete(
+        sendRequest: () => dio.delete(
           url,
           data: data,
           queryParameters: queryParameters,

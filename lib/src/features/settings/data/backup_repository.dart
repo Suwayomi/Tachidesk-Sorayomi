@@ -9,7 +9,7 @@ import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../utils/network/dio/dio_client.dart';
+import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/backup_missing/backup_missing.dart';
 
 class BackupRepository {
