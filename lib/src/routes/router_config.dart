@@ -1,19 +1,29 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/features/about/presentation/about/about_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/browse/presentation/browse/browse_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/backup/backup_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/browse_settings_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/category/edit_category_settings.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/library/library_settings_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/more/more_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/reader/reader_settings_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/server_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/appearance/appearance_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/settings/settings_screen.dart';
 
+// 🌎 Project imports:
+import '../features/about/presentation/about/about_screen.dart';
+import '../features/browse/presentation/browse/browse_screen.dart';
+import '../features/settings/presentation/appearance/appearance_screen.dart';
+import '../features/settings/presentation/backup/backup_screen.dart';
+import '../features/settings/presentation/browse/browse_settings_screen.dart';
+import '../features/settings/presentation/category/edit_category_settings.dart';
+import '../features/settings/presentation/library/library_settings_screen.dart';
+import '../features/settings/presentation/more/more_screen.dart';
+import '../features/settings/presentation/reader/reader_settings_screen.dart';
+import '../features/settings/presentation/server/server_screen.dart';
+import '../features/settings/presentation/settings/settings_screen.dart';
 import '../widgets/shell/shell_screen.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');

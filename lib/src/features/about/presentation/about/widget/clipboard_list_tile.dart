@@ -1,11 +1,21 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// 🌎 Project imports:
+import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/misc/toast.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class ClipboardListTile extends ConsumerWidget {
   const ClipboardListTile({

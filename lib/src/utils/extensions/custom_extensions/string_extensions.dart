@@ -1,4 +1,7 @@
+// 🎯 Dart imports:
 import 'dart:math';
+
+// 🎯 Dart imports:
 
 extension StringExtensions on String? {
   bool get isNull => this == null;
@@ -84,5 +87,4 @@ extension StringExtensions on String? {
     if (isBlank) return null;
     return this!.length > 10 ? this!.substring(this!.length - 10) : this;
   }
-
 }

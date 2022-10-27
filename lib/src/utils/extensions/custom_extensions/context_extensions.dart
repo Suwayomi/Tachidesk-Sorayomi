@@ -1,7 +1,14 @@
-//
-
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
+
+// 🌎 Project imports:
+import 'iterable_extensions.dart';
+
+// 🐦 Flutter imports:
+
+// 🌎 Project imports:
+
+//
 
 /// Helper class for device related operations.
 ///

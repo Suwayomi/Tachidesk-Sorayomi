@@ -1,9 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
+// 🌎 Project imports:
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/pop_button.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class DeleteCategoryAlert extends StatelessWidget {
   const DeleteCategoryAlert({super.key, required this.deleteCategory});

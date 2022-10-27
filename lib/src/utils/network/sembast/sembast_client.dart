@@ -1,9 +1,15 @@
+// 📦 Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
-
 import 'package:tekartik_app_flutter_sembast/sembast.dart';
+
+// 🌎 Project imports:
+import '../../../constants/db_keys.dart';
+import '../../extensions/custom_extensions/string_extensions.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 final databaseProvider =
     Provider<Database>((ref) => throw UnimplementedError());

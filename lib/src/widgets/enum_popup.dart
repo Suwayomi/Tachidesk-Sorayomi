@@ -1,8 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/constants/app_sizes.dart';
-import 'package:tachidesk_sorayomi/src/widgets/pop_button.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
+// 🌎 Project imports:
+import '../constants/app_sizes.dart';
+import '../i18n/locale_keys.g.dart';
+import 'pop_button.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class EnumPopup<T extends Enum> extends StatelessWidget {
   const EnumPopup({
@@ -10,13 +21,11 @@ class EnumPopup<T extends Enum> extends StatelessWidget {
     required this.enumList,
     required this.value,
     required this.onChange,
-    required this.onCancel,
   });
 
   final List<T> enumList;
   final T value;
   final ValueChanged<T> onChange;
-  final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {

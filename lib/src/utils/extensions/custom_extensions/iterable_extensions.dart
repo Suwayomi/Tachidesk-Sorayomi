@@ -13,5 +13,6 @@ extension IterableExtensions<T> on Iterable<T>? {
     if (iterator.moveNext()) return iterator.current;
     return null;
   }
+
   String get toPath => isNotBlank ? this!.join("/") : "/";
 }

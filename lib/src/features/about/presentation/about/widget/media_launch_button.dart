@@ -1,8 +1,14 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/launch_url_in_web.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
+// 🌎 Project imports:
+import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/launch_url_in_web.dart';
+import '../../../../../utils/misc/toast.dart';
+
+// 🐦 Flutter imports:
+
+// 🌎 Project imports:
 
 class MediaLaunchButton extends StatelessWidget {
   const MediaLaunchButton({

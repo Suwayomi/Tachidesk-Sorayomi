@@ -1,12 +1,19 @@
+// 📦 Package imports:
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pub_semver/pub_semver.dart';
-import 'package:tachidesk_sorayomi/src/constants/endpoints.dart';
-import 'package:tachidesk_sorayomi/src/constants/urls.dart';
-import 'package:tachidesk_sorayomi/src/features/about/domain/about/about_model.dart';
-import 'package:tachidesk_sorayomi/src/global_providers/package_info_provider.dart';
-import 'package:tachidesk_sorayomi/src/utils/network/dio/dio_client.dart';
+
+// 🌎 Project imports:
+import '../../../constants/endpoints.dart';
+import '../../../constants/urls.dart';
+import '../../../global_providers/global_providers.dart';
+import '../../../utils/network/dio/dio_client.dart';
+import '../domain/about/about_model.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class AboutRepository {
   final DioClient dioClient;

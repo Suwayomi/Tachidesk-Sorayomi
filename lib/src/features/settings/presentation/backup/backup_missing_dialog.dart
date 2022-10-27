@@ -1,10 +1,21 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/domain/backup_missing/backup_missing.dart';
-import 'package:tachidesk_sorayomi/src/widgets/pop_button.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
+// 🌎 Project imports:
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../widgets/pop_button.dart';
+import '../../domain/backup_missing/backup_missing.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class BackupMissingDialog extends StatelessWidget {
   const BackupMissingDialog({

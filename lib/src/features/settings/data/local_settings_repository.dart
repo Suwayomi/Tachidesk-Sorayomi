@@ -1,5 +1,8 @@
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
-import 'package:tachidesk_sorayomi/src/utils/network/sembast/sembast_client.dart';
+// 🌎 Project imports:
+import '../../../constants/db_keys.dart';
+import '../../../utils/network/sembast/sembast_client.dart';
+
+// 🌎 Project imports:
 
 class LocalSettingsRepository<T> {
   LocalSettingsRepository(this.client, this.key, {this.initial, this.cast}) {

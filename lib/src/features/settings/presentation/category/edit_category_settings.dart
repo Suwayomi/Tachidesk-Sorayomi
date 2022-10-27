@@ -1,21 +1,30 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/constants/app_sizes.dart';
-import 'package:tachidesk_sorayomi/src/constants/gen/assets.gen.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/category/create_category_fab.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
-
+// 🌎 Project imports:
+import '../../../../constants/app_sizes.dart';
+import '../../../../constants/gen/assets.gen.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/misc/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/category/category_model.dart';
 import 'category_tile.dart';
 import 'controller/edit_category_controller.dart';
+import 'create_category_fab.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 final categoryListProvider = Provider((ref) {
   final categoryList = List<Category>.from(

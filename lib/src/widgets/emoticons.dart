@@ -1,10 +1,24 @@
+// 🎯 Dart imports:
 import 'dart:math';
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:tachidesk_sorayomi/src/constants/app_sizes.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
+
+// 🌎 Project imports:
+import '../constants/app_sizes.dart';
+import '../utils/extensions/custom_extensions/context_extensions.dart';
+import '../utils/extensions/custom_extensions/string_extensions.dart';
+
+// 🎯 Dart imports:
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 const errorFaces = [
   '(･o･;)',

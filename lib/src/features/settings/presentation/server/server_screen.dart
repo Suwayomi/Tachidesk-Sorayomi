@@ -1,19 +1,19 @@
+// 🐦 Flutter imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/constants/enum.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/auth_type_tile.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/credentials_popup.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/launch_url_in_web.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
-
-import '../../../../global_providers/package_info_provider.dart';
+// 🌎 Project imports:
+import '../../../../constants/enum.dart';
+import '../../../../global_providers/global_providers.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../utils/launch_url_in_web.dart';
+import '../../../../utils/misc/toast.dart';
+import '../../widgets/server_url_tile.dart';
+import 'auth_type_tile.dart';
+import 'credentials_popup.dart';
 
 class ServerScreen extends HookConsumerWidget {
   const ServerScreen({super.key});

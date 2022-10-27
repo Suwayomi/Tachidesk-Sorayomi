@@ -1,18 +1,28 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
-import 'package:tachidesk_sorayomi/src/features/browse/domain/language/language_model.dart';
-import 'package:tachidesk_sorayomi/src/global_providers/package_info_provider.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
 
+// 🌎 Project imports:
+import '../../../../constants/db_keys.dart';
 import '../../../../constants/enum.dart';
+import '../../../../global_providers/global_providers.dart';
 import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/misc/toast.dart';
 import '../../../settings/widgets/server_url_tile.dart';
+import '../../domain/language/language_model.dart';
 import 'controller/source_controller.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class SourceScreen extends HookConsumerWidget {
   const SourceScreen({Key? key}) : super(key: key);

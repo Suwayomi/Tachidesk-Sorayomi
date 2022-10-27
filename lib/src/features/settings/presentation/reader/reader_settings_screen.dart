@@ -1,9 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/reader/reader_mode_tile.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/reader/reader_invert_tap_tile.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/reader/reader_navigation_layout_tile.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
+// 🌎 Project imports:
+import '../../../../i18n/locale_keys.g.dart';
+import 'reader_invert_tap_tile.dart';
+import 'reader_mode_tile.dart';
+import 'reader_navigation_layout_tile.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class ReaderSettingsScreen extends StatelessWidget {
   const ReaderSettingsScreen({super.key});

@@ -1,12 +1,17 @@
+// 📦 Package imports:
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/map_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/network/dio/dio_client.dart';
-
+// 🌎 Project imports:
 import '../../../constants/endpoints.dart';
-import '../../../global_providers/package_info_provider.dart';
+import '../../../global_providers/global_providers.dart';
+import '../../../utils/extensions/custom_extensions/map_extensions.dart';
+import '../../../utils/network/dio/dio_client.dart';
 import '../domain/category/category_model.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class CategoryRepository {
   final DioClient dioClient;

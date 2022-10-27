@@ -1,4 +1,7 @@
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// 📦 Package imports:
 
 part 'about_model.freezed.dart';
 part 'about_model.g.dart';

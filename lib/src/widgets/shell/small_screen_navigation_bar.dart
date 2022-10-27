@@ -1,6 +1,17 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:go_router/go_router.dart';
-import 'package:tachidesk_sorayomi/src/constants/navigation_bar_data.dart';
+
+// 🌎 Project imports:
+import '../../constants/navigation_bar_data.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class SmallScreenNavigationBar extends StatelessWidget {
   const SmallScreenNavigationBar({super.key, required this.selectedScreen});

@@ -1,10 +1,20 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/category/delete_category_alert.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/category/edit_category_dialog.dart';
-import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
 
+// 📦 Package imports:
+import 'package:flutter_hooks/flutter_hooks.dart';
+
+// 🌎 Project imports:
+import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../domain/category/category_model.dart';
+import 'delete_category_alert.dart';
+import 'edit_category_dialog.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class CategoryTile extends HookWidget {
   const CategoryTile({

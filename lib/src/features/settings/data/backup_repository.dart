@@ -1,14 +1,20 @@
+// 📦 Package imports:
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/constants/endpoints.dart';
-import 'package:tachidesk_sorayomi/src/global_providers/package_info_provider.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
+// 🌎 Project imports:
+import '../../../constants/endpoints.dart';
+import '../../../global_providers/global_providers.dart';
 import '../../../i18n/locale_keys.g.dart';
+import '../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../utils/network/dio/dio_client.dart';
 import '../domain/backup_missing/backup_missing.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class BackupRepository {
   const BackupRepository(this.dioClient);

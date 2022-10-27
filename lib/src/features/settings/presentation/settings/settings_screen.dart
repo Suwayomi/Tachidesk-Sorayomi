@@ -1,11 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
-
+// 🌎 Project imports:
+import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
+import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

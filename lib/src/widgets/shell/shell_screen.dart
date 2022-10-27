@@ -1,10 +1,20 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/widgets/shell/big_screen_navigation_bar.dart';
-import 'package:tachidesk_sorayomi/src/widgets/shell/small_screen_navigation_bar.dart';
+// 🌎 Project imports:
+import '../../utils/extensions/custom_extensions/context_extensions.dart';
+import 'big_screen_navigation_bar.dart';
+import 'small_screen_navigation_bar.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class ShellScreen extends ConsumerWidget {
   const ShellScreen({

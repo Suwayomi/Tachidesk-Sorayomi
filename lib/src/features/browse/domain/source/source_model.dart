@@ -1,5 +1,5 @@
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tachidesk_sorayomi/src/features/browse/domain/language/language_model.dart';
 
 part 'source_model.freezed.dart';
 part 'source_model.g.dart';

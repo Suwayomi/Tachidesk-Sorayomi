@@ -1,7 +1,18 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/widgets/theme_mode_tile.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+
+// 🌎 Project imports:
+import '../../../../i18n/locale_keys.g.dart';
+import '../../widgets/theme_mode_tile.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class AppearanceScreen extends StatelessWidget {
   const AppearanceScreen({super.key});

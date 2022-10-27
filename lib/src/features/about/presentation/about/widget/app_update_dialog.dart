@@ -1,14 +1,23 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:pub_semver/pub_semver.dart';
-import 'package:tachidesk_sorayomi/src/constants/urls.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/launch_url_in_web.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
+// 🌎 Project imports:
+import '../../../../../constants/urls.dart';
+import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../utils/launch_url_in_web.dart';
+import '../../../../../utils/misc/toast.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
     showDialog(

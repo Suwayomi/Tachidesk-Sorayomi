@@ -1,12 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
 import 'package:tachidesk_sorayomi/src/constants/enum.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/data/local_settings_repository.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/network/sembast/sembast_client.dart';
 import 'package:tachidesk_sorayomi/src/widgets/enum_popup.dart';
@@ -43,7 +46,6 @@ class ReaderModeTile extends HookConsumerWidget {
               .read(readerModeProvider)
               .update(enumValue)
               .then((value) => context.navPop()),
-          onCancel: context.navPop,
         ),
       ),
     );

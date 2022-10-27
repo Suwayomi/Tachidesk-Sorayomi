@@ -1,7 +1,13 @@
+// 📦 Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/features/browse/data/source_repository.dart';
 
+// 🌎 Project imports:
+import '../../../data/source_repository.dart';
 import '../../../domain/source/source_model.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class SourceControllerNotifier
     extends StateNotifier<AsyncValue<List<Source>?>> {

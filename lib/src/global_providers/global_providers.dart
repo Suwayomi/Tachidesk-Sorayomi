@@ -1,14 +1,20 @@
+// 📦 Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:tachidesk_sorayomi/src/constants/endpoints.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
 
+// 🌎 Project imports:
 import '../constants/db_keys.dart';
+import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/data/local_settings_repository.dart';
+import '../features/settings/widgets/server_url_tile.dart';
 import '../utils/network/dio/dio_client.dart';
 import '../utils/network/dio/network_module.dart';
 import '../utils/network/sembast/sembast_client.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 final packageInfoProvider =
     Provider<PackageInfo>((ref) => throw UnimplementedError());

@@ -1,7 +1,13 @@
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+// 🌎 Project imports:
 import '../../../../constants/language_list.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 part 'language_model.freezed.dart';
 part 'language_model.g.dart';

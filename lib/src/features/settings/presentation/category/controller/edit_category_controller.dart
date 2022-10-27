@@ -1,7 +1,13 @@
+// 📦 Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/data/category_repository.dart';
 
+// 🌎 Project imports:
+import '../../../data/category_repository.dart';
 import '../../../domain/category/category_model.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class CategoryControllerNotifier
     extends StateNotifier<AsyncValue<List<Category>?>> {

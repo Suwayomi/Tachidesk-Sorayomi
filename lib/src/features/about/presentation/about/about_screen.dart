@@ -1,28 +1,37 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
-import 'package:tachidesk_sorayomi/src/constants/app_sizes.dart';
-import 'package:tachidesk_sorayomi/src/constants/gen/assets.gen.dart';
-import 'package:tachidesk_sorayomi/src/constants/urls.dart';
-import 'package:tachidesk_sorayomi/src/features/about/data/about_repository.dart';
-import 'package:tachidesk_sorayomi/src/features/about/presentation/about/controllers/about_controller.dart';
-import 'package:tachidesk_sorayomi/src/features/about/presentation/about/widget/app_update_dialog.dart';
-import 'package:tachidesk_sorayomi/src/features/about/presentation/about/widget/clipboard_list_tile.dart';
-import 'package:tachidesk_sorayomi/src/features/about/presentation/about/widget/media_launch_button.dart';
-import 'package:tachidesk_sorayomi/src/global_providers/package_info_provider.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/date_time_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/int_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
-import 'package:tachidesk_sorayomi/src/utils/launch_url_in_web.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
+// 🌎 Project imports:
+import '../../../../constants/app_sizes.dart';
+import '../../../../constants/gen/assets.gen.dart';
+import '../../../../constants/urls.dart';
+import '../../../../global_providers/global_providers.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/date_time_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../utils/launch_url_in_web.dart';
+import '../../../../utils/misc/toast.dart';
+import '../../data/about_repository.dart';
+import 'controllers/about_controller.dart';
+import 'widget/app_update_dialog.dart';
+import 'widget/clipboard_list_tile.dart';
+import 'widget/media_launch_button.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 class AboutScreen extends HookConsumerWidget {
   const AboutScreen({super.key});

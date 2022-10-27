@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/data/local_settings_repository.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/network/sembast/sembast_client.dart';
+
+// 🌎 Project imports:
+import '../../../../constants/db_keys.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/network/sembast/sembast_client.dart';
+import '../../data/local_settings_repository.dart';
 
 final invertTapProvider = Provider(
   (ref) => LocalSettingsRepository<bool>(

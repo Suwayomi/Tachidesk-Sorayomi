@@ -1,9 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// 🌎 Project imports:
 import '../i18n/locale_keys.g.dart';
+import 'misc/toast.dart';
+
+// 🐦 Flutter imports:
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 Future<void> launchUrlInWeb(String url, [Toast? toast]) async {
   if (!await launchUrl(
