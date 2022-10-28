@@ -6,7 +6,8 @@
         "close": "Close",
         "delete": "Delete",
         "create": "Create",
-        "refresh": "Refresh"
+        "refresh": "Refresh",
+        "search": "Search..."
     },
     "ThemeMode": {
         "system": "System",

@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
 import 'package:tachidesk_sorayomi/src/constants/enum.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/domain/source/source_model.dart';
-import 'package:tachidesk_sorayomi/src/features/browse/presentation/sources/controller/source_controller.dart';
+import 'package:tachidesk_sorayomi/src/features/browse/presentation/source/controller/source_controller.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/credentials_popup.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
 import 'package:tachidesk_sorayomi/src/global_providers/global_providers.dart';

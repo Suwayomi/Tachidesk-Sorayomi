@@ -6,11 +6,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 // 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/features/browse/presentation/extension/extension_screen.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../sources/source_language_filter.dart';
-import '../sources/source_screen.dart';
+import '../extension/extension_language_filter.dart';
+import '../extension/install_extension_file.dart';
+import '../source/source_language_filter.dart';
+import '../source/source_screen.dart';
 
 class BrowseScreen extends HookWidget {
   const BrowseScreen({super.key});
@@ -29,16 +32,24 @@ class BrowseScreen extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.screenTitle_browse.tr()),
+        centerTitle: true,
         actions: [
-          if (index.value == 0) ...[
-            IconButton(
-              onPressed: () => showDialog(
-                context: context,
-                builder: (context) => const SourceLanguageFilter(),
-              ),
-              icon: const Icon(Icons.translate_rounded),
-            )
+          if (index.value == 1) ...[
+            // SizedBox(
+            //   width: context.widthScale(scale: .3),
+            //   child: const ExtensionSearchField(),
+            // ),
+            const InstallExtensionFile(),
           ],
+          IconButton(
+            onPressed: () => showDialog(
+              context: context,
+              builder: (context) => index.value == 0
+                  ? const SourceLanguageFilter()
+                  : const ExtensionLanguageFilter(),
+            ),
+            icon: const Icon(Icons.translate_rounded),
+          ),
         ],
         bottom: TabBar(
             padding: Edge.a8.size,
@@ -59,7 +70,7 @@ class BrowseScreen extends HookWidget {
         controller: tabController,
         children: const [
           SourceScreen(),
-          Scaffold(),
+          ExtensionScreen(),
         ],
       ),
     );

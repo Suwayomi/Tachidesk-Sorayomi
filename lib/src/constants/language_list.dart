@@ -2,7 +2,7 @@
 import '../features/browse/domain/language/language_model.dart';
 
 final languageMap = {
-  for (var e in customLanguageList) e['code'] ?? "other": Language.fromJson(e)
+  for (final e in customLanguageList) e['code'] ?? "other": Language.fromJson(e)
 };
 
 const customLanguageList = [

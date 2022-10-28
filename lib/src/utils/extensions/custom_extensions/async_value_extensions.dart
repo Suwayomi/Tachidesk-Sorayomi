@@ -6,10 +6,12 @@ import '../../misc/toast.dart';
 
 extension AsyncValueExtensions on AsyncValue {
   void showToastOnError(Toast toast) {
-    toast.close();
     if (!isRefreshing) {
       maybeWhen(
-        error: (error, stackTrace) => toast.showError(error.toString()),
+        error: (error, stackTrace) {
+          toast.close();
+          toast.showError(error.toString());
+        },
         orElse: () {},
       );
     }

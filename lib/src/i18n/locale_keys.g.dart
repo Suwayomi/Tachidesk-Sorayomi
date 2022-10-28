@@ -8,6 +8,7 @@ abstract class LocaleKeys {
   static const common_delete = 'common.delete';
   static const common_create = 'common.create';
   static const common_refresh = 'common.refresh';
+  static const common_search = 'common.search';
   static const common = 'common';
   static const ThemeMode_system = 'ThemeMode.system';
   static const ThemeMode_dark = 'ThemeMode.dark';

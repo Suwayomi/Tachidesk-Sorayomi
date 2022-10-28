@@ -11,7 +11,7 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 
 final showNSFWProvider =
-    StateNotifierProvider.autoDispose<SharedPreferenceNotifier<bool>, bool?>(
+    StateNotifierProvider<SharedPreferenceNotifier<bool>, bool?>(
   (ref) {
     final client = ref.watch(sharedPreferencesProvider);
     final initial = client.getBool(DBKeys.showNSFW.name);

@@ -43,17 +43,19 @@ class SourceScreen extends HookConsumerWidget {
             SliverToBoxAdapter(child: SourceListTile(source: lastUsed!.first))
           ],
           for (final k in sourceMap.keys) ...[
-            SliverToBoxAdapter(
-              child: ListTile(title: Text(languageMap[k]?.displayName ?? k)),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => SourceListTile(
-                  source: sourceMap[k]![index],
-                ),
-                childCount: sourceMap[k]?.length,
+            if (sourceMap[k].isNotBlank) ...[
+              SliverToBoxAdapter(
+                child: ListTile(title: Text(languageMap[k]?.displayName ?? k)),
               ),
-            )
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => SourceListTile(
+                    source: sourceMap[k]![index],
+                  ),
+                  childCount: sourceMap[k]?.length,
+                ),
+              )
+            ]
           ],
           if (localSource.isNotBlank) ...[
             SliverToBoxAdapter(

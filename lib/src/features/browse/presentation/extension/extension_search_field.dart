@@ -1,0 +1,35 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/features/browse/presentation/extension/controller/extension_controller.dart';
+import '../../../../i18n/locale_keys.g.dart';
+
+class ExtensionSearchField extends HookConsumerWidget {
+  const ExtensionSearchField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = useTextEditingController();
+
+    useEffect(() {
+      listener() =>
+          ref.read(extensionSearchProvider.notifier).state = controller.text;
+      controller.addListener(listener);
+      return () => controller.removeListener(listener);
+    }, []);
+    return TextField(
+      autofocus: true,
+      controller: controller,
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        hintText: LocaleKeys.common_search.tr(),
+      ),
+    );
+  }
+}

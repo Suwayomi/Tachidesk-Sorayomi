@@ -29,7 +29,7 @@ final sourceMapProvider = Provider<Map<String, List<Source>>>((ref) {
   final sourceList =
       ref.watch(sourceControllerProvider).asData?.value ?? <Source>[];
   final sourceLastUsed = ref.watch(sourceLastUsedProvider);
-  for (var e in sourceList) {
+  for (final e in sourceList) {
     sourceMap.update(
       e.lang?.code ?? "other",
       (value) => [...value, e],
@@ -57,10 +57,9 @@ final sourceMapFilteredProvider = Provider<Map<String, List<Source>>>((ref) {
   final sourceMapFiltered = <String, List<Source>>{};
   final sourceMap = ref.watch(sourceMapProvider);
   final enabledLangList = ref.watch(sourceLanguageFilterProvider) ?? [];
-  for (var e in enabledLangList) {
+  for (final e in enabledLangList) {
     if (sourceMap.containsKey(e)) sourceMapFiltered[e] = sourceMap[e]!;
   }
-  // print("sourceMapFiltered ${sourceMapFiltered}");
   return sourceMapFiltered;
 });
 

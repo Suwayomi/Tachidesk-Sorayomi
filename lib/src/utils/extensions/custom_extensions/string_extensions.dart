@@ -58,7 +58,7 @@ extension StringExtensions on String? {
         r'^(([^<>[\]\\.,;:\s@\"]+(\.[^<>[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   }
 
-  bool stringSearch({String? query}) {
+  bool query([String? query]) {
     if (isNull) return false;
     if (query == null) return true;
     return this!.toLowerCase().contains(query.toLowerCase());

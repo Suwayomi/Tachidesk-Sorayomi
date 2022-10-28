@@ -22,7 +22,8 @@ class CodegenLoader extends AssetLoader {
       "close": "Close",
       "delete": "Delete",
       "create": "Create",
-      "refresh": "Refresh"
+      "refresh": "Refresh",
+      "search": "Search..."
     },
     "ThemeMode": {"system": "System", "dark": "Dark", "light": "Light"},
     "AuthType": {"none": "None", "basic": "Basic Auth"},

@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import 'package:tachidesk_sorayomi/src/constants/language_list.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/domain/language/language_model.dart';
-import 'package:tachidesk_sorayomi/src/features/browse/presentation/sources/controller/source_controller.dart';
+import 'package:tachidesk_sorayomi/src/features/browse/presentation/source/controller/source_controller.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 import 'package:tachidesk_sorayomi/src/widgets/pop_button.dart';
