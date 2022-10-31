@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $routerConfigHash() => r'93e100347b2bf50115722ba788c2da5e8825fbc6';
+String $routerConfigHash() => r'a63246777c54193f6a6406e3d6c5987de38f1cf6';
 
 /// See also [routerConfig].
 final routerConfigProvider = AutoDisposeProvider<GoRouter>(

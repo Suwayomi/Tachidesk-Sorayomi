@@ -139,7 +139,8 @@ class CodegenLoader extends AssetLoader {
       "reload": "Reload!",
       "uninstall": "Uninstall",
       "update": "Update",
-      "wait": "wait!"
+      "wait": "wait!",
+      "extensionListEmpty": "Extension list is Empty"
     },
     "globalSearchScreen": {
       "globalSearch": "Global Search",
@@ -269,7 +270,8 @@ class CodegenLoader extends AssetLoader {
       "languages": "Languages",
       "latest": "Latest",
       "reload": "Reload!",
-      "search": "Search"
+      "search": "Search",
+      "sourceListEmpty": "Sources list is Empty"
     }
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {"en_US": en_US};

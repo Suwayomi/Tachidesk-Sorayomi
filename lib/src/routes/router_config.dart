@@ -11,7 +11,7 @@ import '../features/browse/presentation/browse/browse_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
-import '../features/settings/presentation/category/edit_category_settings.dart';
+import '../features/settings/presentation/category/edit_category_screen.dart';
 import '../features/settings/presentation/library/library_settings_screen.dart';
 import '../features/settings/presentation/more/more_screen.dart';
 import '../features/settings/presentation/reader/reader_settings_screen.dart';
@@ -109,7 +109,7 @@ GoRouter routerConfig(ref) {
               routes: [
                 GoRoute(
                   path: Routes.editCategories,
-                  builder: (context, state) => const EditCategorySettings(),
+                  builder: (context, state) => const EditCategoryScreen(),
                 ),
               ]),
           GoRoute(

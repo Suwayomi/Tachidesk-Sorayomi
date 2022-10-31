@@ -146,6 +146,8 @@ abstract class LocaleKeys {
   static const extensionScreen_uninstall = 'extensionScreen.uninstall';
   static const extensionScreen_update = 'extensionScreen.update';
   static const extensionScreen_wait = 'extensionScreen.wait';
+  static const extensionScreen_extensionListEmpty =
+      'extensionScreen.extensionListEmpty';
   static const extensionScreen = 'extensionScreen';
   static const globalSearchScreen_globalSearch =
       'globalSearchScreen.globalSearch';
@@ -283,5 +285,6 @@ abstract class LocaleKeys {
   static const sourceScreen_latest = 'sourceScreen.latest';
   static const sourceScreen_reload = 'sourceScreen.reload';
   static const sourceScreen_search = 'sourceScreen.search';
+  static const sourceScreen_sourceListEmpty = 'sourceScreen.sourceListEmpty';
   static const sourceScreen = 'sourceScreen';
 }

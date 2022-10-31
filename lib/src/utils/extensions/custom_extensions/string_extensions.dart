@@ -60,8 +60,8 @@ extension StringExtensions on String? {
 
   bool query([String? query]) {
     if (isNull) return false;
-    if (query == null) return true;
-    return this!.toLowerCase().contains(query.toLowerCase());
+    if (query.isBlank) return true;
+    return this!.toLowerCase().contains(query!.toLowerCase());
   }
 
   String? get toCamelCase {

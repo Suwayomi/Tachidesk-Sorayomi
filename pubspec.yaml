@@ -58,8 +58,8 @@ flutter:
     - assets/locales/
 
 flutter_gen:
-
   output: lib/src/constants/gen/
+
 import_sorter:
   ignored_files:
     - /*.g.dart

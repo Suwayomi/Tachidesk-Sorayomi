@@ -132,7 +132,9 @@
         "reload": "Reload!",
         "uninstall": "Uninstall",
         "update": "Update",
-        "wait": "wait!"
+        "wait": "wait!",
+        "extensionListEmpty": "Extension list is Empty"
+
     },
     "globalSearchScreen": {
         "globalSearch": "Global Search",
@@ -264,6 +266,7 @@
         "languages": "Languages",
         "latest": "Latest",
         "reload": "Reload!",
-        "search": "Search"
+        "search": "Search",
+        "sourceListEmpty": "Sources list is Empty"
     }
 }
