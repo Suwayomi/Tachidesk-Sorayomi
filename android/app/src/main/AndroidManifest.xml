@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.suwayomi.tachidesk_sorayomi">
+     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="tachidesk_sorayomi"
+        android:label="Tachidesk Sorayomi"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:usesCleartextTraffic="true"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

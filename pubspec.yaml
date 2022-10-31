@@ -47,6 +47,8 @@ dev_dependencies:
   json_serializable: ^6.5.2
   lints: ^2.0.0
   riverpod_generator: ^1.0.4
+  flutter_native_splash: ^2.2.13
+  flutter_launcher_icons: ^0.10.0
 
 flutter:
   uses-material-design: true
@@ -56,9 +58,38 @@ flutter:
     - assets/locales/
 
 flutter_gen:
-  # Optional
+
   output: lib/src/constants/gen/
 import_sorter:
   ignored_files:
     - /*.g.dart
     - /*.gen.dart
+
+flutter_native_splash:
+  color: "#54C5F8"
+  image: assets/icons/dark_icon.png
+  branding: assets/icons/launcher/from_suwayomi.png
+  color_dark: "#01579B"
+  image_dark: assets/icons/light_icon.png
+  android_12:
+    color: "#54C5F8"
+    color_dark: "#01579B"
+    icon_background_color: "#FFFFFF"
+    icon_background_color_dark: "#FFFFFF"
+    image: assets/icons/dark_icon.png
+    image_dark: assets/icons/light_icon.png
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/icons/launcher/sorayomi_icon.png"
+  web:
+    generate: true
+    image_path: "assets/icons/launcher/sorayomi_icon.png"
+    background_color: "#54C5F8"
+    theme_color: "#54C5F8"
+  windows:
+    generate: true
+    image_path: "assets/icons/launcher/sorayomi_icon.png"
