@@ -16,7 +16,7 @@ class Sorayomi extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final routes = ref.watch(routerConfigProvider);
-    final themeMode = ref.watch(themeModeProvider);
+    final themeMode = ref.watch(themeModeKeyProvider);
     return MaterialApp.router(
       title: LocaleKeys.appTitle.tr(),
       theme: ThemeData.light(useMaterial3: true),

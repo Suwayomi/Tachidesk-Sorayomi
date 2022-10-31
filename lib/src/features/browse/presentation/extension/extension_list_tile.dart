@@ -24,7 +24,7 @@ class ExtensionListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final baseUrl = ref.watch(serverUrlProvider);
-    final authType = ref.watch(authTypeProvider);
+    final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
     return ListTile(
       onTap: (() async {

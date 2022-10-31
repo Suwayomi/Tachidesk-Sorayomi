@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../constants/endpoints.dart';
@@ -11,6 +11,8 @@ import '../../../i18n/locale_keys.g.dart';
 import '../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/backup_missing/backup_missing.dart';
+
+part 'backup_repository.g.dart';
 
 class BackupRepository {
   const BackupRepository(this.dioClient);
@@ -42,6 +44,6 @@ class BackupRepository {
   }
 }
 
-final backupRepositoryProvider = Provider.autoDispose<BackupRepository>(
-  (ref) => BackupRepository(ref.watch(dioClientProvider)),
-);
+@riverpod
+BackupRepository backupRepository(BackupRepositoryRef ref) =>
+    BackupRepository(ref.watch(dioClientKeyProvider));

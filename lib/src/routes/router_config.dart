@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../features/about/presentation/about/about_screen.dart';
@@ -18,6 +18,7 @@ import '../features/settings/presentation/reader/reader_settings_screen.dart';
 import '../features/settings/presentation/server/server_screen.dart';
 import '../features/settings/presentation/settings/settings_screen.dart';
 import '../widgets/shell/shell_screen.dart';
+part 'router_config.g.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -47,93 +48,92 @@ abstract class Routes {
   static const globalSearch = '/global-search';
 }
 
-final routerConfigProvider = Provider<GoRouter>(
-  (ref) {
-    return GoRouter(
-      debugLogDiagnostics: true,
-      initialLocation: Routes.library,
-      navigatorKey: _rootNavigatorKey,
-      routes: [
-        ShellRoute(
-          navigatorKey: _shellNavigatorKey,
-          builder: (context, state, child) => ShellScreen(child: child),
-          routes: [
-            GoRoute(
-              path: Routes.home,
-              redirect: (context, state) => Routes.library,
+@riverpod
+GoRouter routerConfig(ref) {
+  return GoRouter(
+    debugLogDiagnostics: true,
+    initialLocation: Routes.library,
+    navigatorKey: _rootNavigatorKey,
+    routes: [
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (context, state, child) => ShellScreen(child: child),
+        routes: [
+          GoRoute(
+            path: Routes.home,
+            redirect: (context, state) => Routes.library,
+          ),
+          GoRoute(
+            path: Routes.library,
+            builder: (context, state) => const Scaffold(
+              body: Center(child: Text(Routes.library)),
+              backgroundColor: Colors.amber,
             ),
-            GoRoute(
-              path: Routes.library,
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text(Routes.library)),
-                backgroundColor: Colors.amber,
-              ),
+          ),
+          GoRoute(
+            path: Routes.updates,
+            builder: (context, state) => const Scaffold(
+              body: Center(child: Text(Routes.updates)),
+              backgroundColor: Colors.black,
             ),
-            GoRoute(
-              path: Routes.updates,
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text(Routes.updates)),
-                backgroundColor: Colors.black,
-              ),
+          ),
+          GoRoute(
+            path: Routes.browse,
+            builder: (context, state) => const BrowseScreen(),
+          ),
+          GoRoute(
+            path: Routes.downloads,
+            builder: (context, state) => const Scaffold(
+              body: Center(child: Text(Routes.downloads)),
+              backgroundColor: Colors.blue,
             ),
-            GoRoute(
-              path: Routes.browse,
-              builder: (context, state) => const BrowseScreen(),
-            ),
-            GoRoute(
-              path: Routes.downloads,
-              builder: (context, state) => const Scaffold(
-                body: Center(child: Text(Routes.downloads)),
-                backgroundColor: Colors.blue,
-              ),
-            ),
-            GoRoute(
-              path: Routes.more,
-              builder: (context, state) => const MoreScreen(),
-            ),
-          ],
-        ),
-        GoRoute(
-          path: Routes.about,
-          parentNavigatorKey: _rootNavigatorKey,
-          builder: (context, state) => const AboutScreen(),
-        ),
-        GoRoute(
-          path: Routes.settings,
-          builder: (context, state) => const SettingsScreen(),
-          routes: [
-            GoRoute(
-                path: Routes.librarySettings,
-                builder: (context, state) => const LibrarySettingsScreen(),
-                routes: [
-                  GoRoute(
-                    path: Routes.editCategories,
-                    builder: (context, state) => const EditCategorySettings(),
-                  ),
-                ]),
-            GoRoute(
-              path: Routes.serverSettings,
-              builder: (context, state) => const ServerScreen(),
-            ),
-            GoRoute(
-              path: Routes.readerSettings,
-              builder: (context, state) => const ReaderSettingsScreen(),
-            ),
-            GoRoute(
-              path: Routes.appearanceSettings,
-              builder: (context, state) => const AppearanceScreen(),
-            ),
-            GoRoute(
-              path: Routes.browseSettingsScreen,
-              builder: (context, state) => const BrowseSettingsScreen(),
-            ),
-            GoRoute(
-              path: Routes.backup,
-              builder: (context, state) => const BackupScreen(),
-            ),
-          ],
-        ),
-      ],
-    );
-  },
-);
+          ),
+          GoRoute(
+            path: Routes.more,
+            builder: (context, state) => const MoreScreen(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: Routes.about,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const AboutScreen(),
+      ),
+      GoRoute(
+        path: Routes.settings,
+        builder: (context, state) => const SettingsScreen(),
+        routes: [
+          GoRoute(
+              path: Routes.librarySettings,
+              builder: (context, state) => const LibrarySettingsScreen(),
+              routes: [
+                GoRoute(
+                  path: Routes.editCategories,
+                  builder: (context, state) => const EditCategorySettings(),
+                ),
+              ]),
+          GoRoute(
+            path: Routes.serverSettings,
+            builder: (context, state) => const ServerScreen(),
+          ),
+          GoRoute(
+            path: Routes.readerSettings,
+            builder: (context, state) => const ReaderSettingsScreen(),
+          ),
+          GoRoute(
+            path: Routes.appearanceSettings,
+            builder: (context, state) => const AppearanceScreen(),
+          ),
+          GoRoute(
+            path: Routes.browseSettingsScreen,
+            builder: (context, state) => const BrowseSettingsScreen(),
+          ),
+          GoRoute(
+            path: Routes.backup,
+            builder: (context, state) => const BackupScreen(),
+          ),
+        ],
+      ),
+    ],
+  );
+}

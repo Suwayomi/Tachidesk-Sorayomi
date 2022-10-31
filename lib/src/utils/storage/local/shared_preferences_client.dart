@@ -1,24 +1,24 @@
 // 📦 Package imports:
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError();
-});
+part 'shared_preferences_client.g.dart';
 
-class SharedPreferenceNotifier<T> extends StateNotifier<T?> {
-  SharedPreferenceNotifier({
-    required this.client,
-    required this.key,
-    required this.initial,
-  }) : super(initial);
-  final String key;
-  final SharedPreferences client;
-  final T? initial;
+@riverpod
+SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
 
-  void load() => state = _get;
+/// [SharedPreferenceClient] is a mixin to add [get] and [update] functions to
+/// the provider.
+///
+/// * Remember to initialize [key], [client] in [build] function of provider
+/// * optionally provide [initial] for giving initial value to the [key].
+mixin SharedPreferenceClient<T> {
+  late String key;
+  late SharedPreferences client;
+  T? initial;
+  set state(T? newState);
 
-  T? get _get {
+  T? get get {
     final value = client.get(key);
     return value is T? ? value : initial;
   }
@@ -44,28 +44,29 @@ class SharedPreferenceNotifier<T> extends StateNotifier<T?> {
   }
 }
 
-class SharedPreferenceEnumNotifier<T extends Enum> extends StateNotifier<T?> {
-  SharedPreferenceEnumNotifier({
-    required this.client,
-    required this.key,
-    required this.enumList,
-    required this.initial,
-  }) : super(initial);
-  final String key;
-  final List<T> enumList;
-  final SharedPreferences client;
-  final T? initial;
+/// [SharedPreferenceEnumClient] is a mixin to add [get] and [update] functions to
+/// the provider.
+///
+/// * Remember to initialize [key], [client], [enumList] in [build] function of provider
+/// * optionally provide [initial] for giving initial value to the [key].
+mixin SharedPreferenceEnumClient<T extends Enum> {
+  late String key;
+  late SharedPreferences client;
+  T? initial;
+  late List<T> enumList;
+  set state(T? newState);
 
   T? _getEnumFromIndex(int? value) =>
       value != null && value < enumList.length ? enumList[value] : initial;
 
-  void load() => state = _get;
+  T? get get => _getEnumFromIndex(client.getInt(key));
 
-  T? get _get => _getEnumFromIndex(client.getInt(key));
-
-  Future<void> update(T value) async {
-    if (await _set(value.index)) state = value;
+  Future<void> update(T? value) async {
+    if (await _set(value?.index)) state = value;
   }
 
-  Future<bool> _set(int value) => client.setInt(key, value);
+  Future<bool> _set(int? value) {
+    if (value == null) return client.remove(key);
+    return client.setInt(key, value);
+  }
 }

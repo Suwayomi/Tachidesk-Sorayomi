@@ -1,7 +1,9 @@
 // 📦 Package imports:
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:dio/dio.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/features/browse/presentation/browse/controller/browse_controller.dart';
 import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/show_nsfw_switch.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../constants/db_keys.dart';
@@ -9,25 +11,21 @@ import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
 
-class ExtensionControllerNotifier
-    extends StateNotifier<AsyncValue<List<Extension>?>> {
-  ExtensionControllerNotifier(this.extensionRepository)
-      : super(const AsyncData(null));
-  final ExtensionRepository extensionRepository;
+part 'extension_controller.g.dart';
 
-  Future<void> loadExtensions() async {
-    if (state.asData?.value == null) state = const AsyncLoading();
-    state =
-        await AsyncValue.guard(() => extensionRepository.getExtensionList());
-  }
+@riverpod
+Future<List<Extension>?> extensionController(ExtensionControllerRef ref) async {
+  final token = CancelToken();
+  final result = await ref
+      .watch(extensionRepositoryProvider)
+      .getExtensionList(cancelToken: CancelToken());
+  ref.keepAlive();
+  ref.onDispose(token.cancel);
+  return result;
 }
 
-final extensionControllerProvider = StateNotifierProvider<
-    ExtensionControllerNotifier, AsyncValue<List<Extension>?>>(
-  (ref) => ExtensionControllerNotifier(ref.watch(extensionRepositoryProvider)),
-);
-
-final extensionMapProvider = Provider<Map<String, List<Extension>>>((ref) {
+@riverpod
+Map<String, List<Extension>> extensionMap(ExtensionMapRef ref) {
   final extensionMap = <String, List<Extension>>{};
   final extensionList =
       ref.watch(extensionControllerProvider).asData?.value ?? <Extension>[];
@@ -57,23 +55,22 @@ final extensionMapProvider = Provider<Map<String, List<Extension>>>((ref) {
     }
   }
   return extensionMap;
-});
+}
 
-final extensionLanguageFilterProvider = StateNotifierProvider<
-    SharedPreferenceNotifier<List<String>>, List<String>?>(
-  (ref) {
-    final client = ref.watch(sharedPreferencesProvider);
-    final initial = client.getStringList(DBKeys.extensionLanguageFilter.name);
-    return SharedPreferenceNotifier<List<String>>(
-      client: client,
-      key: DBKeys.extensionLanguageFilter.name,
-      initial: initial ?? DBKeys.extensionLanguageFilter.initial,
-    );
-  },
-);
+@riverpod
+class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
+    with SharedPreferenceClient<List<String>> {
+  @override
+  List<String>? build() {
+    client = ref.watch(sharedPreferencesProvider);
+    initial = DBKeys.extensionLanguageFilter.initial;
+    key = DBKeys.extensionLanguageFilter.name;
+    return get;
+  }
+}
 
-final extensionMapFilteredProvider =
-    Provider<Map<String, List<Extension>>>((ref) {
+@riverpod
+Map<String, List<Extension>> extensionMapFiltered(ExtensionMapFilteredRef ref) {
   final extensionMapFiltered = <String, List<Extension>>{};
   final extensionMap = ref.watch(extensionMapProvider);
   final enabledLangList = ref.watch(extensionLanguageFilterProvider) ?? [];
@@ -81,18 +78,24 @@ final extensionMapFilteredProvider =
     if (extensionMap.containsKey(e)) extensionMapFiltered[e] = extensionMap[e]!;
   }
   return extensionMapFiltered;
-});
+}
 
-final extensionSearchProvider = StateProvider<String?>((ref) => null);
-
-final extensionMapFilteredAndQueriedProvider =
-    Provider<Map<String, List<Extension>>>((ref) {
+@riverpod
+Map<String, List<Extension>> extensionMapFilteredAndQueried(
+    ExtensionMapFilteredAndQueriedRef ref,
+    {String? query}) {
   final extensionMap = ref.watch(extensionMapFilteredProvider);
-  final query = ref.watch(extensionSearchProvider);
+  if (!ref.watch(browseScreenShowSearchProvider)) return extensionMap;
   return extensionMap.map<String, List<Extension>>(
     (key, value) => MapEntry(
       key,
       value.where((element) => element.name.query(query)).toList(),
     ),
   );
-});
+}
+
+@riverpod
+class ExtensionQuery extends _$ExtensionQuery {
+  @override
+  String? build() => null;
+}

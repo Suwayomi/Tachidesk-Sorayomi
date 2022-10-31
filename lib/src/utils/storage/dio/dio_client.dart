@@ -163,7 +163,7 @@ class DioClient {
 
       return response.copyWith<ReturnType>(data: result);
     } on DioError catch (e) {
-      // if (kDebugMode) rethrow;
+      if (kDebugMode) rethrow;
       throw DioErrorUtil.handleError(e);
     } catch (e) {
       if (kDebugMode) rethrow;

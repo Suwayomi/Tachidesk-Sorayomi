@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../../constants/app_sizes.dart';
@@ -18,18 +19,18 @@ import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../widgets/pop_button.dart';
 
-final credentialsProvider =
-    StateNotifierProvider<SharedPreferenceNotifier<String>, String?>(
-  (ref) {
-    final client = ref.watch(sharedPreferencesProvider);
-    final initial = client.getString(DBKeys.basicCredentials.name);
-    return SharedPreferenceNotifier<String>(
-      client: client,
-      key: DBKeys.basicCredentials.name,
-      initial: initial ?? DBKeys.basicCredentials.initial,
-    );
-  },
-);
+part 'credentials_popup.g.dart';
+
+@riverpod
+class Credentials extends _$Credentials with SharedPreferenceClient<String> {
+  @override
+  String? build() {
+    client = ref.watch(sharedPreferencesProvider);
+    initial = DBKeys.basicCredentials.initial;
+    key = DBKeys.basicCredentials.name;
+    return get;
+  }
+}
 
 final formKey = GlobalKey<FormState>();
 

@@ -1,5 +1,6 @@
 // 📦 Package imports:
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:dio/dio.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/db_keys.dart';
@@ -7,24 +8,21 @@ import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/source_repository.dart';
 import '../../../domain/source/source_model.dart';
 
-class SourceControllerNotifier
-    extends StateNotifier<AsyncValue<List<Source>?>> {
-  SourceControllerNotifier(this.sourceRepository)
-      : super(const AsyncData(null));
-  final SourceRepository sourceRepository;
+part 'source_controller.g.dart';
 
-  Future<void> loadSources() async {
-    if (state.asData?.value == null) state = const AsyncLoading();
-    state = await AsyncValue.guard(() => sourceRepository.getSourceList());
-  }
+@riverpod
+Future<List<Source>?> sourceController(SourceControllerRef ref) async {
+  final token = CancelToken();
+  final result = await ref
+      .watch(sourceRepositoryProvider)
+      .getSourceList(cancelToken: CancelToken());
+  ref.keepAlive();
+  ref.onDispose(token.cancel);
+  return result;
 }
 
-final sourceControllerProvider =
-    StateNotifierProvider<SourceControllerNotifier, AsyncValue<List<Source>?>>(
-  (ref) => SourceControllerNotifier(ref.watch(sourceRepositoryProvider)),
-);
-
-final sourceMapProvider = Provider<Map<String, List<Source>>>((ref) {
+@riverpod
+Map<String, List<Source>> sourceMap(SourceMapRef ref) {
   final sourceMap = <String, List<Source>>{};
   final sourceList =
       ref.watch(sourceControllerProvider).asData?.value ?? <Source>[];
@@ -38,22 +36,10 @@ final sourceMapProvider = Provider<Map<String, List<Source>>>((ref) {
     if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
   return sourceMap;
-});
+}
 
-final sourceLanguageFilterProvider = StateNotifierProvider<
-    SharedPreferenceNotifier<List<String>>, List<String>?>(
-  (ref) {
-    final client = ref.watch(sharedPreferencesProvider);
-    final initial = client.getStringList(DBKeys.sourceLanguageFilter.name);
-    return SharedPreferenceNotifier<List<String>>(
-      client: client,
-      key: DBKeys.sourceLanguageFilter.name,
-      initial: initial ?? DBKeys.sourceLanguageFilter.initial,
-    );
-  },
-);
-
-final sourceMapFilteredProvider = Provider<Map<String, List<Source>>>((ref) {
+@riverpod
+Map<String, List<Source>> sourceMapFiltered(SourceMapFilteredRef ref) {
   final sourceMapFiltered = <String, List<Source>>{};
   final sourceMap = ref.watch(sourceMapProvider);
   final enabledLangList = ref.watch(sourceLanguageFilterProvider) ?? [];
@@ -61,17 +47,28 @@ final sourceMapFilteredProvider = Provider<Map<String, List<Source>>>((ref) {
     if (sourceMap.containsKey(e)) sourceMapFiltered[e] = sourceMap[e]!;
   }
   return sourceMapFiltered;
-});
+}
 
-final sourceLastUsedProvider =
-    StateNotifierProvider<SharedPreferenceNotifier<String>, String?>(
-  (ref) {
-    final client = ref.watch(sharedPreferencesProvider);
-    final initial = client.getString(DBKeys.sourceLastUsed.name);
-    return SharedPreferenceNotifier<String>(
-      client: client,
-      key: DBKeys.sourceLastUsed.name,
-      initial: initial ?? DBKeys.sourceLastUsed.initial,
-    );
-  },
-);
+@riverpod
+class SourceLanguageFilter extends _$SourceLanguageFilter
+    with SharedPreferenceClient<List<String>> {
+  @override
+  List<String>? build() {
+    client = ref.watch(sharedPreferencesProvider);
+    initial = DBKeys.sourceLanguageFilter.initial;
+    key = DBKeys.sourceLanguageFilter.name;
+    return get;
+  }
+}
+
+@riverpod
+class SourceLastUsed extends _$SourceLastUsed
+    with SharedPreferenceClient<String> {
+  @override
+  String? build() {
+    client = ref.watch(sharedPreferencesProvider);
+    initial = DBKeys.sourceLastUsed.initial;
+    key = DBKeys.sourceLastUsed.name;
+    return get;
+  }
+}

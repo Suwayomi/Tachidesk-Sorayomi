@@ -7,10 +7,10 @@ abstract class Endpoints {
       "${baseUrl ?? DBKeys.serverUrl.initial}/api/v1";
 
   // receiveTimeout
-  static const int receiveTimeout = 5000;
+  static const int receiveTimeout = 10000;
 
   // connectTimeout
-  static const int connectionTimeout = 5000;
+  static const int connectionTimeout = 10000;
 }
 
 abstract class SettingsUrl {

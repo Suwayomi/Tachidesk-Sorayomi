@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^2.0.11
   permission_handler: ^10.1.0
   pub_semver: ^2.1.2
+  riverpod_annotation: ^1.0.4
   share_plus: ^6.0.0
   shared_preferences: ^2.0.15
   url_launcher: ^6.1.6
@@ -45,6 +46,7 @@ dev_dependencies:
   import_sorter: ^4.6.0
   json_serializable: ^6.5.2
   lints: ^2.0.0
+  riverpod_generator: ^1.0.4
 
 flutter:
   uses-material-design: true

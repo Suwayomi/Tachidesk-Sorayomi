@@ -1,8 +1,8 @@
 // 📦 Package imports:
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pub_semver/pub_semver.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../constants/endpoints.dart';
@@ -10,6 +10,8 @@ import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/about/about_model.dart';
+
+part 'about_repository.g.dart';
 
 class AboutRepository {
   final DioClient dioClient;
@@ -51,9 +53,8 @@ class AboutRepository {
   }
 }
 
-final aboutRepositoryProvider = Provider<AboutRepository>(
-  (ref) => AboutRepository(
-    dioClient: ref.watch(dioClientProvider),
-    packageInfo: ref.watch(packageInfoProvider),
-  ),
-);
+@riverpod
+AboutRepository aboutRepository(ref) => AboutRepository(
+      dioClient: ref.watch(dioClientKeyProvider),
+      packageInfo: ref.watch(packageInfoProvider),
+    );

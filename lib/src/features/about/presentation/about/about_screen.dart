@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
@@ -61,16 +60,12 @@ class AboutScreen extends HookConsumerWidget {
       aboutControllerProvider,
       ((_, state) => state.showToastOnError(toast)),
     );
-    useEffect(() {
-      Future.microtask(ref.read(aboutControllerProvider.notifier).updateAbout);
-      return;
-    }, []);
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.screenTitle_about.tr()),
       ),
       body: RefreshIndicator(
-        onRefresh: ref.read(aboutControllerProvider.notifier).updateAbout,
+        onRefresh: () => ref.refresh(aboutControllerProvider.future),
         child: ListView(
           children: [
             ImageIcon(

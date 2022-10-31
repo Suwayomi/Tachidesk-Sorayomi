@@ -4,24 +4,25 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../../constants/db_keys.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 
-final showNSFWProvider =
-    StateNotifierProvider<SharedPreferenceNotifier<bool>, bool?>(
-  (ref) {
-    final client = ref.watch(sharedPreferencesProvider);
-    final initial = client.getBool(DBKeys.showNSFW.name);
-    return SharedPreferenceNotifier<bool>(
-      client: client,
-      key: DBKeys.showNSFW.name,
-      initial: initial ?? DBKeys.showNSFW.initial,
-    );
-  },
-);
+part 'show_nsfw_switch.g.dart';
+
+@riverpod
+class ShowNSFW extends _$ShowNSFW with SharedPreferenceClient<bool> {
+  @override
+  bool? build() {
+    client = ref.watch(sharedPreferencesProvider);
+    initial = DBKeys.showNSFW.initial;
+    key = DBKeys.showNSFW.name;
+    return get;
+  }
+}
 
 class ShowNSFWTile extends HookConsumerWidget {
   const ShowNSFWTile({super.key});

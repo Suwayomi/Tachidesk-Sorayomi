@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
@@ -20,13 +19,6 @@ import 'category_tile.dart';
 import 'controller/edit_category_controller.dart';
 import 'create_category_fab.dart';
 
-final categoryListProvider = Provider((ref) {
-  final categoryList = List<Category>.from(
-      ref.watch(categoryControllerProvider).asData?.value ?? []);
-  if (categoryList.isNotEmpty) categoryList.removeAt(0);
-  return categoryList;
-});
-
 class EditCategorySettings extends HookConsumerWidget {
   const EditCategorySettings({super.key});
 
@@ -41,13 +33,6 @@ class EditCategorySettings extends HookConsumerWidget {
       ((_, state) => state.showToastOnError(toast)),
     );
 
-    useEffect(() {
-      Future.microtask(
-        ref.read(categoryControllerProvider.notifier).loadCategories,
-      );
-      return;
-    }, []);
-
     final Widget body;
 
     if (categoryController.isLoading) {
@@ -57,8 +42,7 @@ class EditCategorySettings extends HookConsumerWidget {
         body = Emoticons(
           text: categoryController.asError?.error.toString(),
           button: TextButton(
-            onPressed:
-                ref.read(categoryControllerProvider.notifier).loadCategories,
+            onPressed: () => ref.refresh(categoryControllerProvider.future),
             child: Text(LocaleKeys.common_refresh.tr()),
           ),
         );
@@ -69,8 +53,7 @@ class EditCategorySettings extends HookConsumerWidget {
           );
         } else {
           body = RefreshIndicator(
-            onRefresh:
-                ref.read(categoryControllerProvider.notifier).loadCategories,
+            onRefresh: () => ref.refresh(categoryControllerProvider.future),
             child: ReorderableListView.builder(
               buildDefaultDragHandles: false,
               itemCount: categoryList.length,

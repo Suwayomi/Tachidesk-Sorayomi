@@ -1,12 +1,14 @@
 // 📦 Package imports:
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/source/source_model.dart';
+
+part 'source_repository.g.dart';
 
 class SourceRepository {
   final DioClient dioClient;
@@ -23,6 +25,6 @@ class SourceRepository {
           .data;
 }
 
-final sourceRepositoryProvider = Provider<SourceRepository>(
-  (ref) => SourceRepository(ref.watch(dioClientProvider)),
-);
+@riverpod
+SourceRepository sourceRepository(ref) =>
+    SourceRepository(ref.watch(dioClientKeyProvider));

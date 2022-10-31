@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
@@ -11,6 +11,8 @@ import '../../../global_providers/global_providers.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/extension/extension_model.dart';
+
+part 'extension_repository.g.dart';
 
 class ExtensionRepository {
   final DioClient dioClient;
@@ -52,6 +54,8 @@ class ExtensionRepository {
           .data;
 }
 
-final extensionRepositoryProvider = Provider<ExtensionRepository>(
-  (ref) => ExtensionRepository(ref.watch(dioClientProvider)),
-);
+@riverpod
+ExtensionRepository extensionRepository(ExtensionRepositoryRef ref) =>
+    ExtensionRepository(
+      ref.watch(dioClientKeyProvider),
+    );

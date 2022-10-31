@@ -1,22 +1,20 @@
 // 📦 Package imports:
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:dio/dio.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../data/about_repository.dart';
 import '../../../domain/about/about_model.dart';
 
-class AboutControllerNotifier extends StateNotifier<AsyncValue<About?>> {
-  AboutControllerNotifier(this.aboutRepository) : super(const AsyncData(null));
+part 'about_controller.g.dart';
 
-  final AboutRepository aboutRepository;
-
-  Future<void> updateAbout() async {
-    if (state.asData?.value == null) state = const AsyncLoading();
-    state = await AsyncValue.guard(() => aboutRepository.getAbout());
-  }
+@riverpod
+Future<About?> aboutController(AboutControllerRef ref) async {
+  final token = CancelToken();
+  final result = await ref
+      .watch(aboutRepositoryProvider)
+      .getAbout(cancelToken: CancelToken());
+  ref.keepAlive();
+  ref.onDispose(token.cancel);
+  return result;
 }
-
-final aboutControllerProvider =
-    StateNotifierProvider<AboutControllerNotifier, AsyncValue<About?>>(
-  (ref) => AboutControllerNotifier(ref.watch(aboutRepositoryProvider)),
-);

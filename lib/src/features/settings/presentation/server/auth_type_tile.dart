@@ -17,7 +17,7 @@ class AuthTypeTile extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authType = ref.watch(authTypeProvider);
+    final authType = ref.watch(authTypeKeyProvider);
     return ListTile(
       leading: const Icon(Icons.security_rounded),
       subtitle: authType != null ? Text(authType.toString().tr()) : null,
@@ -28,7 +28,7 @@ class AuthTypeTile extends HookConsumerWidget {
           enumList: AuthType.values,
           value: authType ?? AuthType.none,
           onChange: (enumValue) {
-            ref.read(authTypeProvider.notifier).update(enumValue);
+            ref.read(authTypeKeyProvider.notifier).update(enumValue);
             context.navPop();
           },
         ),

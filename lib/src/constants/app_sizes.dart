@@ -6,6 +6,8 @@ enum Edge {
   a8(EdgeInsets.all(8)),
   a16(EdgeInsets.all(16)),
   h16v8(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+  h16v4(EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0)),
+  h16(EdgeInsets.symmetric(horizontal: 16.0)),
   v8(EdgeInsets.symmetric(vertical: 8));
 
   const Edge(this.size);

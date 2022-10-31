@@ -4,24 +4,25 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../../constants/db_keys.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 
-final invertTapProvider =
-    StateNotifierProvider.autoDispose<SharedPreferenceNotifier<bool>, bool?>(
-  (ref) {
-    final client = ref.watch(sharedPreferencesProvider);
-    final initial = client.getBool(DBKeys.invertTap.name);
-    return SharedPreferenceNotifier<bool>(
-      client: client,
-      key: DBKeys.invertTap.name,
-      initial: initial ?? DBKeys.invertTap.initial,
-    );
-  },
-);
+part 'reader_invert_tap_tile.g.dart';
+
+@riverpod
+class InvertTap extends _$InvertTap with SharedPreferenceClient<bool> {
+  @override
+  bool? build() {
+    client = ref.watch(sharedPreferencesProvider);
+    initial = DBKeys.invertTap.initial;
+    key = DBKeys.invertTap.name;
+    return get;
+  }
+}
 
 class ReaderInvertTapTile extends HookConsumerWidget {
   const ReaderInvertTapTile({super.key});

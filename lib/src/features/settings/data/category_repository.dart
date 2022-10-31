@@ -1,6 +1,6 @@
 // 📦 Package imports:
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../../constants/endpoints.dart';
@@ -8,6 +8,8 @@ import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/category/category_model.dart';
+
+part 'category_repository.g.dart';
 
 class CategoryRepository {
   final DioClient dioClient;
@@ -66,6 +68,6 @@ class CategoryRepository {
       );
 }
 
-final categoryRepositoryProvider = Provider<CategoryRepository>(
-  (ref) => CategoryRepository(ref.watch(dioClientProvider)),
-);
+@riverpod
+CategoryRepository categoryRepository(CategoryRepositoryRef ref) =>
+    CategoryRepository(ref.watch(dioClientKeyProvider));

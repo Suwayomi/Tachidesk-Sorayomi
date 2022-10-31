@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
@@ -26,12 +25,8 @@ class SourceScreen extends HookConsumerWidget {
       sourceControllerProvider,
       ((_, state) => state.showToastOnError(toast)),
     );
-    useEffect(() {
-      Future.microtask(ref.read(sourceControllerProvider.notifier).loadSources);
-      return;
-    }, []);
     return RefreshIndicator(
-      onRefresh: ref.read(sourceControllerProvider.notifier).loadSources,
+      onRefresh: () => ref.refresh(sourceControllerProvider.future),
       child: CustomScrollView(
         slivers: [
           if (lastUsed.isNotBlank) ...[

@@ -18,15 +18,12 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   final packageInfo = await PackageInfo.fromPlatform();
   final sharedPreferences = await SharedPreferences.getInstance();
-  final container = ProviderContainer(
-    overrides: [
-      packageInfoProvider.overrideWithValue(packageInfo),
-      sharedPreferencesProvider.overrideWithValue(sharedPreferences),
-    ],
-  );
   runApp(
-    UncontrolledProviderScope(
-      container: container,
+    ProviderScope(
+      overrides: [
+        packageInfoProvider.overrideWithValue(packageInfo),
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
       child: EasyLocalization(
         supportedLocales: const [Locale('en', 'US')],
         path: "assets/locales/",

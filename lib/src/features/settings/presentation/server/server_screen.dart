@@ -22,7 +22,7 @@ class ServerScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final authType = ref.watch(authTypeProvider);
+    final authType = ref.watch(authTypeKeyProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.settingsScreen_server.tr()),

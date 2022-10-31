@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import '../../constants/app_sizes.dart';
+
+part 'toast.g.dart';
 
 class Toast {
   Toast(this._context) {
@@ -74,5 +76,5 @@ class ToastWidget extends StatelessWidget {
   }
 }
 
-final toastProvider =
-    Provider.family<Toast, BuildContext>((ref, context) => Toast(context));
+@riverpod
+Toast toast(ToastRef ref, BuildContext context) => Toast(context);

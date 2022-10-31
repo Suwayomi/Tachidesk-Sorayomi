@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 
 // 📦 Package imports:
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
 import 'package:tachidesk_sorayomi/src/constants/enum.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../constants/endpoints.dart';
+
+part 'network_module.g.dart';
 
 class DioNetworkModule {
   /// A singleton dio provider.
@@ -54,5 +56,5 @@ class DioNetworkModule {
   }
 }
 
-final networkModuleProvider =
-    Provider<DioNetworkModule>((ref) => DioNetworkModule());
+@riverpod
+DioNetworkModule networkModule(ref) => DioNetworkModule();
