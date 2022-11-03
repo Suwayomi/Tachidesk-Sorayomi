@@ -33,9 +33,7 @@ class ClipboardListTile extends ConsumerWidget {
               );
               toast.close();
               toast.show(
-                LocaleKeys.common_copyMsg.tr(
-                  namedArgs: {"msg": msg},
-                ),
+                LocaleKeys.common_copyMsg.tr(namedArgs: {"msg": msg}),
               );
             }
           : null,
