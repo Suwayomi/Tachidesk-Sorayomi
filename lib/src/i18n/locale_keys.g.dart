@@ -47,6 +47,7 @@ abstract class LocaleKeys {
   static const aboutScreen_clientVersion = 'aboutScreen.clientVersion';
   static const aboutScreen_discord = 'aboutScreen.discord';
   static const aboutScreen_gitHub = 'aboutScreen.gitHub';
+  static const aboutScreen_reddit = 'aboutScreen.reddit';
   static const aboutScreen_noUpdatesAvailable =
       'aboutScreen.noUpdatesAvailable';
   static const aboutScreen_searchingForUpdates =
@@ -126,6 +127,7 @@ abstract class LocaleKeys {
   static const error_restoreBackup = 'error.restoreBackup';
   static const error_userName = 'error.userName';
   static const error_password = 'error.password';
+  static const error_extension = 'error.extension';
   static const error = 'error';
   static const extensionScreen_extensionInstalled_subtitle =
       'extensionScreen.extensionInstalled.subtitle';
@@ -136,6 +138,7 @@ abstract class LocaleKeys {
   static const extensionScreen_extensionsError =
       'extensionScreen.extensionsError';
   static const extensionScreen_install = 'extensionScreen.install';
+  static const extensionScreen_installing = 'extensionScreen.installing';
   static const extensionScreen_installFile_subtitle =
       'extensionScreen.installFile.subtitle';
   static const extensionScreen_installFile_title =
@@ -145,7 +148,8 @@ abstract class LocaleKeys {
   static const extensionScreen_reload = 'extensionScreen.reload';
   static const extensionScreen_uninstall = 'extensionScreen.uninstall';
   static const extensionScreen_update = 'extensionScreen.update';
-  static const extensionScreen_wait = 'extensionScreen.wait';
+  static const extensionScreen_updating = 'extensionScreen.updating';
+  static const extensionScreen_uninstalling = 'extensionScreen.uninstalling';
   static const extensionScreen_extensionListEmpty =
       'extensionScreen.extensionListEmpty';
   static const extensionScreen = 'extensionScreen';

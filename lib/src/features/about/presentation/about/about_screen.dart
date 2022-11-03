@@ -19,7 +19,7 @@ import '../../../../utils/extensions/custom_extensions/date_time_extensions.dart
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
-import '../../../../utils/misc/toast.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../data/about_repository.dart';
 import 'controllers/about_controller.dart';
 import 'widget/app_update_dialog.dart';
@@ -125,20 +125,11 @@ class AboutScreen extends HookConsumerWidget {
                 alignment: WrapAlignment.spaceEvenly,
                 children: [
                   MediaLaunchButton(
-                    title: "${LocaleKeys.aboutScreen_gitHub.tr()} "
-                        "(${LocaleKeys.aboutScreen_sorayomi.tr()})",
+                    title: "${LocaleKeys.aboutScreen_gitHub.tr()} ",
                     iconData: FontAwesomeIcons.github,
                     url: AppUrls.sorayomiGithubUrl.url,
                     toast: toast,
                   ),
-                  if ((about?.github).isNotBlank)
-                    MediaLaunchButton(
-                      title: "${LocaleKeys.aboutScreen_gitHub.tr()} "
-                          "(${LocaleKeys.aboutScreen_server.tr()})",
-                      iconData: FontAwesomeIcons.github,
-                      url: about!.github!,
-                      toast: toast,
-                    ),
                   if ((about?.discord).isNotBlank)
                     MediaLaunchButton(
                       title: LocaleKeys.aboutScreen_discord.tr(),
@@ -146,6 +137,12 @@ class AboutScreen extends HookConsumerWidget {
                       url: about!.discord!,
                       toast: toast,
                     ),
+                  MediaLaunchButton(
+                    title: LocaleKeys.aboutScreen_reddit.tr(),
+                    iconData: FontAwesomeIcons.reddit,
+                    url: AppUrls.tachideskReddit.url,
+                    toast: toast,
+                  ),
                 ],
               ),
             ),

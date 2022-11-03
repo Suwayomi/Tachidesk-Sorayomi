@@ -11,7 +11,7 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterab
 import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/misc/toast.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import 'controller/source_controller.dart';
 import 'source_list_tile.dart';

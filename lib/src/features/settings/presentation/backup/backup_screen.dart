@@ -14,7 +14,7 @@ import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/launch_url_in_web.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast.dart';
+import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
 import 'backup_missing_dialog.dart';
 
 class BackupScreen extends ConsumerWidget {

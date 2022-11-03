@@ -30,10 +30,13 @@ class AboutRepository {
         .data;
   }
 
-  Future<AsyncValue<Version?>> checkUpdate() async {
+  Future<AsyncValue<Version?>> checkUpdate({CancelToken? cancelToken}) async {
     final gitResponse = await AsyncValue.guard<Map<String, dynamic>?>(
-      () async =>
-          (await dioClient.get(AppUrls.sorayomiLatestReleaseApiUrl.url)).data,
+      () async => (await dioClient.get(
+        AppUrls.sorayomiLatestReleaseApiUrl.url,
+        cancelToken: cancelToken,
+      ))
+          .data,
     );
     return gitResponse.when<AsyncValue<Version?>>(
       data: (data) {

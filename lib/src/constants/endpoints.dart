@@ -20,9 +20,9 @@ abstract class SettingsUrl {
 
 abstract class ExtensionUrl {
   static String extensionList = "$_extension/list";
-  static String extensionInstall = "$_extension/install";
-  static String extensionInstallPkgName(String pkgName) =>
-      "$_extension/install/$pkgName";
+  static String extensionInstallFile = "$_extension/install";
+  static String extensionInstall(String pkgName) =>
+      "$extensionInstallFile/$pkgName";
   static String extensionUpdate(String pkgName) =>
       "$_extension/update/$pkgName";
   static String extensionUninstall(String pkgName) =>

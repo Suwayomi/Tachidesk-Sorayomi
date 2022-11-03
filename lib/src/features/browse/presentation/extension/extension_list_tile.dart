@@ -2,52 +2,57 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
-import 'package:tachidesk_sorayomi/src/constants/enum.dart';
+import 'package:tachidesk_sorayomi/src/features/browse/data/extension_repository.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/domain/extension/extension_model.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/credentials_popup.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
-import 'package:tachidesk_sorayomi/src/global_providers/global_providers.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../utils/misc/custom_typedef.dart';
+import '../../../../widgets/cached_image.dart';
 
-class ExtensionListTile extends ConsumerWidget {
-  const ExtensionListTile({super.key, required this.extension});
+class ExtensionListTile extends HookConsumerWidget {
+  const ExtensionListTile({
+    super.key,
+    required this.extension,
+    required this.refresh,
+  });
 
   final Extension extension;
+  final AsyncVoidCallBack refresh;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final baseUrl = ref.watch(serverUrlProvider);
-    final authType = ref.watch(authTypeKeyProvider);
-    final basicToken = ref.watch(credentialsProvider);
+    final repository = ref.watch(extensionRepositoryProvider);
+    final isLoading = useState(false);
     return ListTile(
-      onTap: (() async {
-        // await controller.localStorageService
-        //     .setLastUsed(extension.id);
-        // Get.toNamed(
-        //   "${Routes.extensionManga}/${extension.id}/popular",
-        // );
-      }),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: CachedNetworkImage(
-          imageUrl:
-              (baseUrl ?? DBKeys.serverUrl.initial) + (extension.iconUrl ?? ""),
-          height: 48,
-          httpHeaders: authType == AuthType.basic && basicToken != null
-              ? {"Authorization": basicToken}
-              : null,
-          width: 48,
-          fit: BoxFit.cover,
-          errorWidget: (context, error, stackTrace) =>
-              const Icon(Icons.broken_image_rounded),
-        ),
+        child: isLoading.value
+            ? SizedBox(
+                height: 48,
+                width: 48,
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    CachedImage(
+                      imageUrl: extension.iconUrl ?? "",
+                      size: const Size.square(24),
+                    )
+                  ],
+                ),
+              )
+            : CachedImage(
+                imageUrl: extension.iconUrl ?? "",
+                size: const Size.square(48),
+              ),
       ),
       title: Text(extension.name ?? ""),
       subtitle: Text.rich(
@@ -76,26 +81,50 @@ class ExtensionListTile extends ConsumerWidget {
       ),
       trailing: (extension.installed ?? false)
           ? TextButton(
-              onPressed: () async {
-                // await controller.localStorageService
-                //     .setLastUsed(extension.id);
-                // Get.toNamed("${Routes.extensionManga}"
-                //     "/${extension.id}/latest");
-              },
+              onPressed: isLoading.value
+                  ? null
+                  : () async {
+                      isLoading.value = true;
+                      await AsyncValue.guard(() {
+                        if (extension.pkgName.isBlank) {
+                          throw LocaleKeys.error_extension.tr();
+                        }
+                        return extension.hasUpdate ?? false
+                            ? repository.updateExtension(extension.pkgName!)
+                            : repository.uninstallExtension(extension.pkgName!);
+                      });
+                      await refresh();
+                      isLoading.value = false;
+                    },
               child: Text(
                 extension.hasUpdate ?? false
-                    ? LocaleKeys.extensionScreen_update.tr()
-                    : LocaleKeys.extensionScreen_uninstall.tr(),
+                    ? isLoading.value
+                        ? LocaleKeys.extensionScreen_updating.tr()
+                        : LocaleKeys.extensionScreen_update.tr()
+                    : isLoading.value
+                        ? LocaleKeys.extensionScreen_uninstalling.tr()
+                        : LocaleKeys.extensionScreen_uninstall.tr(),
               ),
             )
           : TextButton(
-              onPressed: () async {
-                // await controller.localStorageService
-                //     .setLastUsed(extension.id);
-                // Get.toNamed("${Routes.extensionManga}"
-                //     "/${extension.id}/latest");
-              },
-              child: Text(LocaleKeys.extensionScreen_install.tr()),
+              onPressed: isLoading.value
+                  ? null
+                  : () async {
+                      isLoading.value = true;
+                      await AsyncValue.guard(() {
+                        if (extension.pkgName.isBlank) {
+                          throw LocaleKeys.error_extension.tr();
+                        }
+                        return repository.installExtension(extension.pkgName!);
+                      });
+                      await refresh();
+                      isLoading.value = false;
+                    },
+              child: Text(
+                isLoading.value
+                    ? LocaleKeys.extensionScreen_installing.tr()
+                    : LocaleKeys.extensionScreen_install.tr(),
+              ),
             ),
     );
   }

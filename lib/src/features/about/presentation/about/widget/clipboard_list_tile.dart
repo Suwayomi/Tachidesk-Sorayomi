@@ -9,7 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../../../utils/misc/toast.dart';
+import '../../../../../utils/misc/toast/toast.dart';
 
 class ClipboardListTile extends ConsumerWidget {
   const ClipboardListTile({

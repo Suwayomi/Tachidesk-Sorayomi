@@ -32,17 +32,45 @@ class ExtensionRepository {
     }
     return (file.path).isNotBlank
         ? (await dioClient.post(
-            ExtensionUrl.extensionInstall,
+            ExtensionUrl.extensionInstallFile,
             data: FormData.fromMap({
               'file': MultipartFile.fromFileSync(
                 file.path!,
                 filename: file.name,
               )
             }),
+            cancelToken: cancelToken,
           ))
             .data
         : null;
   }
+
+  Future<void> installExtension(
+    String pkgName, {
+    CancelToken? cancelToken,
+  }) =>
+      dioClient.get(
+        ExtensionUrl.extensionInstall(pkgName),
+        cancelToken: cancelToken,
+      );
+
+  Future<void> uninstallExtension(
+    String pkgName, {
+    CancelToken? cancelToken,
+  }) =>
+      dioClient.get(
+        ExtensionUrl.extensionUninstall(pkgName),
+        cancelToken: cancelToken,
+      );
+
+  Future<void> updateExtension(
+    String pkgName, {
+    CancelToken? cancelToken,
+  }) =>
+      dioClient.get(
+        ExtensionUrl.extensionUpdate(pkgName),
+        cancelToken: cancelToken,
+      );
 
   Future<List<Extension>?> getExtensionList({CancelToken? cancelToken}) async =>
       (await dioClient.get<List<Extension>, Extension>(

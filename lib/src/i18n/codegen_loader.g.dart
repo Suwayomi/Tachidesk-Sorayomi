@@ -52,6 +52,7 @@ class CodegenLoader extends AssetLoader {
       "clientVersion": "Client version",
       "discord": "Discord",
       "gitHub": "GitHub",
+      "reddit": "Reddit",
       "noUpdatesAvailable": "You're using the latest version",
       "searchingForUpdates": "Searching for updates...",
       "server": "Server",
@@ -122,7 +123,8 @@ class CodegenLoader extends AssetLoader {
       "launchURL": "Failed to open!\nCopying \"{url}\" to clipboard",
       "restoreBackup": "Failed to Restore backup!\nPlease try again",
       "userName": "User Name can't be empty",
-      "password": "Password can't be empty"
+      "password": "Password can't be empty",
+      "extension": "Can't find the selected extension"
     },
     "extensionScreen": {
       "extensionInstalled": {
@@ -131,6 +133,7 @@ class CodegenLoader extends AssetLoader {
       },
       "extensionsError": "Extensions to Install",
       "install": "Install",
+      "installing": "Installing",
       "installFile": {
         "subtitle": "Installing Tachidesk Extension",
         "title": "Installing Extension..."
@@ -139,7 +142,8 @@ class CodegenLoader extends AssetLoader {
       "reload": "Reload!",
       "uninstall": "Uninstall",
       "update": "Update",
-      "wait": "wait!",
+      "updating": "Updating",
+      "uninstalling": "Uninstalling",
       "extensionListEmpty": "Extension list is Empty"
     },
     "globalSearchScreen": {

@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../constants/app_sizes.dart';
+import '../../../constants/app_sizes.dart';
 
 part 'toast.g.dart';
 

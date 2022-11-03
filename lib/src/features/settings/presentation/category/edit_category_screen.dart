@@ -11,7 +11,7 @@ import '../../../../constants/gen/assets.gen.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../utils/misc/toast.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/category/category_model.dart';

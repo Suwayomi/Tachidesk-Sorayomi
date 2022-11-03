@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import '../i18n/locale_keys.g.dart';
-import 'misc/toast.dart';
+import 'misc/toast/toast.dart';
 
 Future<void> launchUrlInWeb(String url, [Toast? toast]) async {
   if (!await launchUrl(

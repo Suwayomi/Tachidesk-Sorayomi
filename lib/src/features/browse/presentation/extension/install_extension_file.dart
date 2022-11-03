@@ -12,7 +12,7 @@ import 'package:tachidesk_sorayomi/src/features/browse/presentation/extension/co
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/misc/toast.dart';
+import '../../../../utils/misc/toast/toast.dart';
 
 class InstallExtensionFile extends ConsumerWidget {
   const InstallExtensionFile({Key? key}) : super(key: key);

@@ -43,6 +43,7 @@
         "clientVersion": "Client version",
         "discord": "Discord",
         "gitHub": "GitHub",
+        "reddit": "Reddit",
         "noUpdatesAvailable": "You're using the latest version",
         "searchingForUpdates": "Searching for updates...",
         "server": "Server",
@@ -115,7 +116,8 @@
         "launchURL": "Failed to open!\nCopying \"{url}\" to clipboard",
         "restoreBackup": "Failed to Restore backup!\nPlease try again",
         "userName": "User Name can't be empty",
-        "password": "Password can't be empty"
+        "password": "Password can't be empty",
+        "extension": "Can't find the selected extension"
     },
     "extensionScreen": {
         "extensionInstalled": {
@@ -124,6 +126,7 @@
         },
         "extensionsError": "Extensions to Install",
         "install": "Install",
+        "installing": "Installing",
         "installFile": {
             "subtitle": "Installing Tachidesk Extension",
             "title": "Installing Extension..."
@@ -132,7 +135,8 @@
         "reload": "Reload!",
         "uninstall": "Uninstall",
         "update": "Update",
-        "wait": "wait!",
+        "updating": "Updating",
+        "uninstalling": "Uninstalling",
         "extensionListEmpty": "Extension list is Empty"
 
     },

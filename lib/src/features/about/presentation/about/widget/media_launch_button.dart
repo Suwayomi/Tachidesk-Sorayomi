@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
+import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
-import '../../../../../utils/misc/toast.dart';
+import '../../../../../utils/misc/toast/toast.dart';
 
 class MediaLaunchButton extends StatelessWidget {
   const MediaLaunchButton({
@@ -23,11 +24,17 @@ class MediaLaunchButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return url.isNotBlank
-        ? TextButton.icon(
-            label: Text(title),
-            onPressed: () => launchUrlInWeb(url, toast),
-            icon: Icon(iconData),
-          )
+        ? context.isSmallTabletOrLess
+            ? IconButton(
+                tooltip: title,
+                onPressed: () => launchUrlInWeb(url, toast),
+                icon: Icon(iconData),
+              )
+            : TextButton.icon(
+                label: Text(title),
+                onPressed: () => launchUrlInWeb(url, toast),
+                icon: Icon(iconData),
+              )
         : const SizedBox.shrink();
   }
 }
