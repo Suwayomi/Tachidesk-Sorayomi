@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../misc/toast/toast.dart';
 
-extension AsyncValueExtensions on AsyncValue {
+extension AsyncValueExtensions<T> on AsyncValue<T> {
   void showToastOnError(Toast toast) {
     if (!isRefreshing) {
       maybeWhen(
@@ -16,4 +16,6 @@ extension AsyncValueExtensions on AsyncValue {
       );
     }
   }
+
+  T? valueOrToast(Toast toast) => (this..showToastOnError(toast)).valueOrNull;
 }

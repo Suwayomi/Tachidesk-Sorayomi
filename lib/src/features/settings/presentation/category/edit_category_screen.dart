@@ -25,13 +25,9 @@ class EditCategoryScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final categoryController = ref.watch(categoryControllerProvider);
+    final categoryController = ref.watch(categoryControllerProvider)
+      ..showToastOnError(toast);
     final categoryList = ref.watch(categoryListProvider);
-
-    ref.listen(
-      categoryControllerProvider,
-      ((_, state) => state.showToastOnError(toast)),
-    );
 
     return Scaffold(
       appBar: AppBar(

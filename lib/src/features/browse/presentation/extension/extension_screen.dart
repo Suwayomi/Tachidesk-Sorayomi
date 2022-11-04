@@ -25,6 +25,7 @@ class ExtensionScreen extends HookConsumerWidget {
   const ExtensionScreen({Key? key}) : super(key: key);
 
   List<Widget> extensionSet({
+    Key? key,
     required String title,
     required List<Extension>? extensions,
     required AsyncVoidCallBack refresh,
@@ -37,8 +38,10 @@ class ExtensionScreen extends HookConsumerWidget {
         ),
       ),
       SliverList(
+        key: key,
         delegate: SliverChildBuilderDelegate(
           (context, index) => ExtensionListTile(
+            key: ValueKey(extensions[index].pkgName),
             extension: extensions[index],
             refresh: refresh,
           ),
@@ -53,7 +56,8 @@ class ExtensionScreen extends HookConsumerWidget {
     final toast = ref.watch(toastProvider(context));
     final showSearch = ref.watch(browseScreenShowSearchProvider);
     final extensionQuery = ref.watch(extensionQueryProvider);
-    final extensionController = ref.watch(extensionControllerProvider);
+    final extensionController = ref.watch(extensionControllerProvider)
+      ..showToastOnError(toast);
     final extensionMap = {
       ...ref.watch(
         extensionMapFilteredAndQueriedProvider(query: extensionQuery),
@@ -62,10 +66,6 @@ class ExtensionScreen extends HookConsumerWidget {
     final installed = extensionMap.remove("installed");
     final update = extensionMap.remove("update");
     final all = extensionMap.remove("all");
-    ref.listen(
-      extensionControllerProvider,
-      ((_, state) => state.showToastOnError(toast)),
-    );
     refresh() => ref.refresh(extensionControllerProvider.future);
     return extensionController.when(
       loading: () => const CenterCircularProgressIndicator(),
@@ -104,24 +104,28 @@ class ExtensionScreen extends HookConsumerWidget {
                       slivers: [
                         if (installed.isNotBlank)
                           ...extensionSet(
+                            key: const ValueKey("installed"),
                             title: languageMap["installed"]?.displayName ?? "",
                             extensions: installed,
                             refresh: refresh,
                           ),
                         if (update.isNotBlank)
                           ...extensionSet(
+                            key: const ValueKey("update"),
                             title: languageMap["update"]?.displayName ?? "",
                             extensions: update,
                             refresh: refresh,
                           ),
                         if (all.isNotBlank)
                           ...extensionSet(
+                            key: const ValueKey("all"),
                             title: languageMap["all"]?.displayName ?? "",
                             extensions: all,
                             refresh: refresh,
                           ),
                         for (final k in extensionMap.keys)
                           ...extensionSet(
+                            key: ValueKey(k),
                             title: languageMap[k]?.displayName ?? k,
                             extensions: extensionMap[k],
                             refresh: refresh,

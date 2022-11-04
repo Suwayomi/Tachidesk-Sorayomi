@@ -53,13 +53,9 @@ class AboutScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final about = ref.watch(aboutControllerProvider).asData?.value;
-    final packageInfo = ref.watch(packageInfoProvider);
     final toast = ref.watch(toastProvider(context));
-    ref.listen(
-      aboutControllerProvider,
-      ((_, state) => state.showToastOnError(toast)),
-    );
+    final about = ref.watch(aboutControllerProvider).valueOrToast(toast);
+    final packageInfo = ref.watch(packageInfoProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.screenTitle_about.tr()),

@@ -48,8 +48,11 @@ class DioNetworkModule {
         ),
       )
       ..interceptors.add(LogInterceptor(
-        responseBody: true,
-        requestBody: true,
+        request: kDebugMode,
+        responseHeader: kDebugMode,
+        responseBody: kDebugMode,
+        requestHeader: kDebugMode,
+        requestBody: kDebugMode,
       ));
 
     return dio;

@@ -10,7 +10,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/data/extension_repository.dart';
 import 'package:tachidesk_sorayomi/src/features/browse/domain/extension/extension_model.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
+import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
+import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
 import '../../../../utils/misc/custom_typedef.dart';
 import '../../../../widgets/cached_image.dart';
 
@@ -27,8 +29,10 @@ class ExtensionListTile extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repository = ref.watch(extensionRepositoryProvider);
+    final toast = ref.watch(toastProvider(context));
     final isLoading = useState(false);
     return ListTile(
+      key: key,
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: isLoading.value
@@ -84,17 +88,24 @@ class ExtensionListTile extends HookConsumerWidget {
               onPressed: isLoading.value
                   ? null
                   : () async {
-                      isLoading.value = true;
-                      await AsyncValue.guard(() {
-                        if (extension.pkgName.isBlank) {
-                          throw LocaleKeys.error_extension.tr();
-                        }
-                        return extension.hasUpdate ?? false
-                            ? repository.updateExtension(extension.pkgName!)
-                            : repository.uninstallExtension(extension.pkgName!);
-                      });
-                      await refresh();
-                      isLoading.value = false;
+                      try {
+                        isLoading.value = true;
+                        (await AsyncValue.guard(() async {
+                          if (extension.pkgName.isBlank) {
+                            throw LocaleKeys.error_extension.tr();
+                          }
+                          await (extension.hasUpdate ?? false
+                              ? repository.updateExtension(extension.pkgName!)
+                              : repository
+                                  .uninstallExtension(extension.pkgName!));
+
+                          await refresh();
+                        }))
+                            .showToastOnError(toast);
+                        isLoading.value = false;
+                      } catch (e) {
+                        //
+                      }
                     },
               child: Text(
                 extension.hasUpdate ?? false
@@ -110,15 +121,20 @@ class ExtensionListTile extends HookConsumerWidget {
               onPressed: isLoading.value
                   ? null
                   : () async {
-                      isLoading.value = true;
-                      await AsyncValue.guard(() {
-                        if (extension.pkgName.isBlank) {
-                          throw LocaleKeys.error_extension.tr();
-                        }
-                        return repository.installExtension(extension.pkgName!);
-                      });
-                      await refresh();
-                      isLoading.value = false;
+                      try {
+                        isLoading.value = true;
+                        (await AsyncValue.guard(() async {
+                          if (extension.pkgName.isBlank) {
+                            throw LocaleKeys.error_extension.tr();
+                          }
+                          await repository.installExtension(extension.pkgName!);
+                          await refresh();
+                        }))
+                            .showToastOnError(toast);
+                        isLoading.value = false;
+                      } catch (e) {
+                        //
+                      }
                     },
               child: Text(
                 isLoading.value

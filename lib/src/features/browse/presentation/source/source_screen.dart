@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
@@ -22,14 +23,15 @@ class SourceScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final sourceController = ref.watch(sourceControllerProvider);
+    final sourceController = ref.watch(sourceControllerProvider)
+      ..showToastOnError(toast);
     final sourceMap = {...ref.watch(sourceMapFilteredProvider)};
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");
-    ref.listen(
-      sourceControllerProvider,
-      ((_, state) => state.showToastOnError(toast)),
-    );
+    useEffect(() {
+      ref.refresh(sourceControllerProvider.future);
+      return;
+    }, []);
     return sourceController.when(
       data: (data) {
         if ((sourceMap.isEmpty && localSource.isBlank && lastUsed.isBlank)) {
