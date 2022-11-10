@@ -17,7 +17,7 @@ import 'category_create_fab.dart';
 import 'category_tile.dart';
 import 'controller/edit_category_controller.dart';
 
-class EditCategoryScreen extends HookConsumerWidget {
+class EditCategoryScreen extends ConsumerWidget {
   const EditCategoryScreen({super.key});
 
   @override

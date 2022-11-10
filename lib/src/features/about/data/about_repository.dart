@@ -10,6 +10,7 @@ import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/about/about_model.dart';
+import '../domain/server_update/server_update_model.dart';
 
 part 'about_repository.g.dart';
 
@@ -26,6 +27,15 @@ class AboutRepository {
       SettingsUrl.about,
       decoder: (e) => e is Map<String, dynamic> ? About.fromJson(e) : null,
       cancelToken: cancelToken,
+    ))
+        .data;
+  }
+
+  Future<ServerUpdate?> checkServerUpdate() async {
+    return (await dioClient.get<ServerUpdate, ServerUpdate?>(
+      SettingsUrl.about,
+      decoder: (e) =>
+          e is Map<String, dynamic> ? ServerUpdate.fromJson(e) : null,
     ))
         .data;
   }

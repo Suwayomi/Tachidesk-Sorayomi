@@ -34,7 +34,7 @@ class Emoticons extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorNumber = useState(Random().nextInt(errorFaces.length));
+    final errorNumber = useMemoized(() => Random().nextInt(errorFaces.length));
     return Padding(
       padding: KEdgeInsets.a8.size,
       child: Column(
@@ -44,7 +44,7 @@ class Emoticons extends HookWidget {
           iconData != null
               ? Icon(iconData, size: context.height * .2)
               : Text(
-                  errorFaces[errorNumber.value],
+                  errorFaces[errorNumber],
                   textAlign: TextAlign.center,
                   style: context.textTheme.displayMedium,
                 ),

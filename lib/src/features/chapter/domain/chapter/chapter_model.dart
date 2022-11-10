@@ -7,6 +7,7 @@ part 'chapter_model.g.dart';
 @freezed
 class Chapter with _$Chapter {
   factory Chapter({
+    int? id,
     bool? bookmarked,
     int? chapterCount,
     double? chapterNumber,

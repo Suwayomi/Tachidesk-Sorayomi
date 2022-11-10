@@ -17,7 +17,7 @@ import '../../widgets/server_url_tile.dart';
 import 'auth_type_tile.dart';
 import 'credentials_popup.dart';
 
-class ServerScreen extends HookConsumerWidget {
+class ServerScreen extends ConsumerWidget {
   const ServerScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {

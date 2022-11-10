@@ -42,8 +42,8 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             title: Text(LocaleKeys.browse.tr()),
             leading: const Icon(Icons.explore_rounded),
-            onTap: () => context
-                .push([Routes.settings, Routes.browseSettingsScreen].toPath),
+            onTap: () =>
+                context.push([Routes.settings, Routes.browseSettings].toPath),
           ),
           ListTile(
             title: Text(LocaleKeys.backup.tr()),

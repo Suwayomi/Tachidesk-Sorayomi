@@ -10,7 +10,7 @@ import 'features/settings/widgets/theme_mode_tile.dart';
 import 'i18n/locale_keys.g.dart';
 import 'routes/router_config.dart';
 
-class Sorayomi extends HookConsumerWidget {
+class Sorayomi extends ConsumerWidget {
   const Sorayomi({super.key});
 
   @override

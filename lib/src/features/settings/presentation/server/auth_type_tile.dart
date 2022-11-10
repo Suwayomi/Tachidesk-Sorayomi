@@ -12,7 +12,7 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/enum_popup.dart';
 
-class AuthTypeTile extends HookConsumerWidget {
+class AuthTypeTile extends ConsumerWidget {
   const AuthTypeTile({super.key});
 
   @override

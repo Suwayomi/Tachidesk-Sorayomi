@@ -16,13 +16,13 @@ import '../../domain/downloads/downloads_model.dart';
 import 'download_progress_list_tile.dart';
 import 'downloads_fab.dart';
 
-class DownloadsScreen extends HookConsumerWidget {
+class DownloadsScreen extends ConsumerWidget {
   const DownloadsScreen({Key? key}) : super(key: key);
 
   bool showFab(AsyncValue<Downloads> downloads) =>
       (downloads.valueOrNull?.queue).isNotBlank &&
-      !downloads.valueOrNull!.queue!.every(
-        (element) => element.state == "Error" && element.tries == 3,
+      downloads.valueOrNull!.queue!.any(
+        (element) => element.state != "Error" || element.tries != 3,
       );
 
   @override
@@ -32,14 +32,14 @@ class DownloadsScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.downloads.tr()),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () => AsyncValue.guard(
-        //       ref.read(chapterRepositoryProvider).clearDownloads,
-        //     ),
-        //     icon: const Icon(Icons.delete_sweep_rounded),
-        //   ),
-        // ],
+        actions: [
+          IconButton(
+            onPressed: () => AsyncValue.guard(
+              ref.read(chapterRepositoryProvider).clearDownloads,
+            ),
+            icon: const Icon(Icons.delete_sweep_rounded),
+          ),
+        ],
       ),
       floatingActionButton: showFab(downloads)
           ? DownloadsFab(status: downloads.valueOrNull?.status ?? "")

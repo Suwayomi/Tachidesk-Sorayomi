@@ -18,7 +18,7 @@ class SmallScreenNavigationBar extends StatelessWidget {
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
       currentIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
-      onTap: (value) => context.go(NavigationBarData.navList[value].path),
+      onTap: (value) => context.go(NavigationBarData.navList[value].path.first),
       items: NavigationBarData.navList
           .map<BottomNavigationBarItem>(
             (e) => BottomNavigationBarItem(

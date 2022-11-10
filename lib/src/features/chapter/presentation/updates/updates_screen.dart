@@ -8,8 +8,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
+import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -25,29 +27,28 @@ class UpdatesScreen extends HookConsumerWidget {
     ChapterRepository repository,
     PagingController controller,
     int pageKey,
-    Toast toast,
   ) async {
-    final asyncRecentChaptersPage = await AsyncValue.guard(
-        () async => await repository.getRecentChaptersPage(pageNo: pageKey));
-    asyncRecentChaptersPage.maybeWhen(
-      data: (recentChaptersPage) {
-        if (recentChaptersPage != null) {
-          if (recentChaptersPage.hasNextPage ?? false) {
-            try {
-              controller.appendPage(recentChaptersPage.page ?? [], pageKey + 1);
-            } catch (e) {
-              controller.appendPage([], pageKey);
+    AsyncValue.guard(
+      () async => await repository.getRecentChaptersPage(pageNo: pageKey),
+    ).then(
+      (value) => value.maybeWhen(
+        data: (recentChaptersPage) {
+          if (recentChaptersPage != null) {
+            if (recentChaptersPage.hasNextPage ?? false) {
+              try {
+                controller.appendPage(
+                    recentChaptersPage.page ?? [], pageKey + 1);
+              } catch (e) {
+                controller.appendPage([], pageKey);
+              }
+            } else {
+              controller.appendLastPage(recentChaptersPage.page ?? []);
             }
-          } else {
-            controller.appendLastPage(recentChaptersPage.page ?? []);
           }
-        }
-      },
-      error: (error, stackTrace) {
-        asyncRecentChaptersPage.showToastOnError(toast);
-        controller.error = error;
-      },
-      orElse: () {},
+        },
+        error: (error, stackTrace) => controller.error = error,
+        orElse: () {},
+      ),
     );
   }
 
@@ -62,12 +63,100 @@ class UpdatesScreen extends HookConsumerWidget {
             chapterRepository,
             controller,
             pageKey,
-            toast,
           ));
       return;
     }, []);
+    final selectedChapters = useState<Map<int, ChapterMangaPair>>({});
     return Scaffold(
-      appBar: AppBar(title: Text(LocaleKeys.updates.tr())),
+      appBar: selectedChapters.value.isNotEmpty
+          ? AppBar(
+              leading: IconButton(
+                onPressed: () => selectedChapters.value = {},
+                icon: const Icon(Icons.close_rounded),
+              ),
+              title: Text(
+                LocaleKeys.numSelected.tr(
+                  namedArgs: {"num": "${selectedChapters.value.length}"},
+                ),
+              ),
+            )
+          : AppBar(title: Text(LocaleKeys.updates.tr())),
+      bottomSheet: selectedChapters.value.isNotEmpty
+          ? Padding(
+              padding: KEdgeInsets.a8.size,
+              child: BottomSheet(
+                enableDrag: false,
+                backgroundColor: context.theme.cardColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: KBorderRadius.r8.radius),
+                onClosing: () {},
+                builder: (context) {
+                  final selectedList = selectedChapters.value.values;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      if (selectedList.any(
+                          (element) => element.chapter?.bookmarked ?? false))
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.bookmark_remove_rounded),
+                        ),
+                      if (selectedList.any(
+                          (element) => !(element.chapter?.bookmarked ?? false)))
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.bookmark_add_rounded),
+                        ),
+                      if (selectedList
+                          .any((element) => !(element.chapter?.read ?? false)))
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.done_all_rounded),
+                        ),
+                      if (selectedList
+                          .any((element) => (element.chapter?.read ?? false)))
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.remove_done_outlined),
+                        ),
+                      if (selectedList.any(
+                          (element) => !(element.chapter?.downloaded ?? false)))
+                        IconButton(
+                          onPressed: () async {
+                            final downloadableList = <int>[];
+                            for (var element in selectedList) {
+                              if (!(element.chapter?.downloaded ?? true)) {
+                                downloadableList.add(element.chapter!.id!);
+                              }
+                            }
+                            AsyncValue.guard(
+                              () => chapterRepository
+                                  .addChaptersBatchToDownloadQueue(
+                                downloadableList.toList(),
+                              ),
+                            ).then(
+                              (val) => val.maybeWhen(
+                                data: (data) => selectedChapters.value = {},
+                                error: (error, _) =>
+                                    val.showToastOnError(toast),
+                                orElse: () {},
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.download_rounded),
+                        ),
+                      if (selectedList.any(
+                          (element) => (element.chapter?.downloaded ?? false)))
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.delete_rounded),
+                        ),
+                    ],
+                  );
+                },
+              ),
+            )
+          : null,
       body: RefreshIndicator(
         onRefresh: () async => controller.refresh(),
         child: PagedListView(
@@ -98,6 +187,9 @@ class UpdatesScreen extends HookConsumerWidget {
               final chapterTile = ChapterMangaListTile(
                 pair: item,
                 toast: toast,
+                isSelected:
+                    selectedChapters.value.containsKey(item.chapter!.id!),
+                canTapSelect: selectedChapters.value.isNotEmpty,
                 updatePair: () async {
                   try {
                     final chapter = (await AsyncValue.guard(() =>
@@ -114,6 +206,18 @@ class UpdatesScreen extends HookConsumerWidget {
                       ]);
                   } catch (e) {
                     //
+                  }
+                },
+                toggleSelect: (ChapterMangaPair val) {
+                  if ((val.chapter?.id).isNull) return;
+                  if (selectedChapters.value.containsKey(val.chapter!.id!)) {
+                    selectedChapters.value = {...selectedChapters.value}
+                      ..remove(val.chapter!.id!);
+                  } else {
+                    selectedChapters.value = {
+                      ...selectedChapters.value,
+                      val.chapter!.id!: val
+                    };
                   }
                 },
               );

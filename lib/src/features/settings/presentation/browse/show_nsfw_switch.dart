@@ -24,7 +24,7 @@ class ShowNSFW extends _$ShowNSFW with SharedPreferenceClient<bool> {
   }
 }
 
-class ShowNSFWTile extends HookConsumerWidget {
+class ShowNSFWTile extends ConsumerWidget {
   const ShowNSFWTile({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {

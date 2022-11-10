@@ -26,7 +26,7 @@ import 'widget/app_update_dialog.dart';
 import 'widget/clipboard_list_tile.dart';
 import 'widget/media_launch_button.dart';
 
-class AboutScreen extends HookConsumerWidget {
+class AboutScreen extends ConsumerWidget {
   const AboutScreen({super.key});
 
   Future<void> checkForUpdate(
@@ -40,12 +40,12 @@ class AboutScreen extends HookConsumerWidget {
       value.whenOrNull(
         data: (version) {
           if (version != null) {
-            appUpdateDialog(version, context, toast);
+            appUpdateDialog("v${version.canonicalizedVersion}", context, toast);
           } else {
             toast.show(LocaleKeys.noUpdatesAvailable.tr());
           }
         },
-        error: (error, stackTrace) => toast.showError(error.toString()),
+        error: (error, stackTrace) => value.showToastOnError(toast),
       );
       return;
     });
@@ -105,7 +105,7 @@ class AboutScreen extends HookConsumerWidget {
               title: LocaleKeys.serverVersion.tr(),
               subtitle: about?.buildType == "Stable"
                   ? about?.version
-                  : about?.revision,
+                  : "${about?.version}-${about?.revision}",
             ),
             ClipboardListTile(
               title: LocaleKeys.buildTime.tr(),
@@ -114,6 +114,36 @@ class AboutScreen extends HookConsumerWidget {
                   : DateTime.fromMillisecondsSinceEpoch(
                       (about?.buildTime ?? 0) * 1000,
                     ).toDateString,
+            ),
+            ListTile(
+              title: Text(LocaleKeys.checkForServerUpdates.tr()),
+              onTap: () async {
+                toast.show(LocaleKeys.searchingForUpdates.tr());
+                AsyncValue.guard(
+                  () => ref.read(aboutRepositoryProvider).checkServerUpdate(),
+                ).then(
+                  (value) {
+                    toast.close();
+                    value.maybeWhen(
+                      data: (data) {
+                        if (data != null && data.tag.isNotBlank) {
+                          appUpdateDialog(
+                            "${data.tag} (${data.channel})",
+                            context,
+                            toast,
+                            data.url,
+                          );
+                        } else {
+                          toast.show(LocaleKeys.noUpdatesAvailable.tr());
+                        }
+                      },
+                      error: (error, stackTrace) =>
+                          value.showToastOnError(toast),
+                      orElse: () {},
+                    );
+                  },
+                );
+              },
             ),
             Padding(
               padding: KEdgeInsets.a8.size,

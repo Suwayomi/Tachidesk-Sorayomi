@@ -29,24 +29,26 @@ class BackupScreen extends ConsumerWidget {
     if ((file?.files).isNotBlank) {
       toast.show(LocaleKeys.restoring.tr());
     }
-    final result = (await AsyncValue.guard(() =>
-        ref.read(backupRepositoryProvider).restoreBackup(file?.files.single)));
-    result.maybeWhen<void>(
-      error: (error, stackTrace) => result.showToastOnError(toast),
-      data: (data) {
-        final backupMissing = data?.filter;
-        if (backupMissing == null) return;
-        toast.instantShow(LocaleKeys.restored.tr());
-        if (backupMissing.isNotEmpty) {
-          showDialog(
-            context: context,
-            builder: (context) => BackupMissingDialog(
-              backupMissing: backupMissing,
-            ),
-          );
-        }
-      },
-      orElse: () {},
+    AsyncValue.guard(() => ref
+        .read(backupRepositoryProvider)
+        .restoreBackup(file?.files.single)).then(
+      (result) => result.maybeWhen<void>(
+        error: (error, stackTrace) => result.showToastOnError(toast),
+        data: (data) {
+          final backupMissing = data?.filter;
+          if (backupMissing == null) return;
+          toast.instantShow(LocaleKeys.restored.tr());
+          if (backupMissing.isNotEmpty) {
+            showDialog(
+              context: context,
+              builder: (context) => BackupMissingDialog(
+                backupMissing: backupMissing,
+              ),
+            );
+          }
+        },
+        orElse: () {},
+      ),
     );
   }
 

@@ -19,7 +19,7 @@ import 'controller/extension_controller.dart';
 import 'extension_list_tile.dart';
 import 'extension_search_field.dart';
 
-class ExtensionScreen extends HookConsumerWidget {
+class ExtensionScreen extends ConsumerWidget {
   const ExtensionScreen({Key? key}) : super(key: key);
 
   List<Widget> extensionSet({

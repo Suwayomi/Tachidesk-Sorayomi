@@ -15,6 +15,7 @@ abstract class Endpoints {
 
 abstract class SettingsUrl {
   static const String about = '$_settings/about';
+  static const String checkServerUpdate = '$_settings/check-update';
   static const String _settings = "/settings";
 }
 
@@ -70,6 +71,7 @@ abstract class DownloaderUrl {
   static String stop = "$downloads/stop";
   static String clear = "$downloads/clear";
 
+  static String batch = "/download/batch";
   static String chapter(int mangaId, int chapterIndex) =>
       "/download/$mangaId/chapter/$chapterIndex";
 

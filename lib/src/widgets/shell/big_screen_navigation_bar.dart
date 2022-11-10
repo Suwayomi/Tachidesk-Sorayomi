@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 
 // 🌎 Project imports:
@@ -13,7 +12,7 @@ import '../../i18n/locale_keys.g.dart';
 import '../../routes/router_config.dart';
 import '../../utils/extensions/custom_extensions/context_extensions.dart';
 
-class BigScreenNavigationBar extends HookWidget {
+class BigScreenNavigationBar extends StatelessWidget {
   const BigScreenNavigationBar({super.key, required this.selectedScreen});
 
   final String selectedScreen;
@@ -59,7 +58,7 @@ class BigScreenNavigationBar extends HookWidget {
           .toList(),
       selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
       onDestinationSelected: (value) =>
-          context.go(NavigationBarData.navList[value].path),
+          context.go(NavigationBarData.navList[value].path.first),
     );
   }
 }

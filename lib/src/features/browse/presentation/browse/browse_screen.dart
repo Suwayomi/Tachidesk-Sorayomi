@@ -30,10 +30,16 @@ class BrowseScreen extends HookConsumerWidget {
         title: Text(LocaleKeys.browse.tr()),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: ref.read(browseScreenShowSearchProvider.notifier).toggle,
-            icon: const Icon(Icons.search_rounded),
-          ),
+          tabController.index == 0
+              ? IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.travel_explore_rounded),
+                )
+              : IconButton(
+                  onPressed:
+                      ref.read(browseScreenShowSearchProvider.notifier).toggle,
+                  icon: const Icon(Icons.search_rounded),
+                ),
           if (tabController.index == 1) ...[
             const InstallExtensionFile(),
           ],

@@ -29,7 +29,7 @@ class ReaderNavigationLayoutKey extends _$ReaderNavigationLayoutKey
   }
 }
 
-class ReaderNavigationLayoutTile extends HookConsumerWidget {
+class ReaderNavigationLayoutTile extends ConsumerWidget {
   const ReaderNavigationLayoutTile({super.key});
 
   @override

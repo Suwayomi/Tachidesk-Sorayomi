@@ -28,7 +28,7 @@ class ServerUrl extends _$ServerUrl with SharedPreferenceClient<String> {
   }
 }
 
-class ServerUrlTile extends HookConsumerWidget {
+class ServerUrlTile extends ConsumerWidget {
   const ServerUrlTile({super.key});
 
   @override

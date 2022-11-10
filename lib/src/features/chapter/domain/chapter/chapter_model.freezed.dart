@@ -20,6 +20,7 @@ Chapter _$ChapterFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Chapter {
+  int? get id => throw _privateConstructorUsedError;
   bool? get bookmarked => throw _privateConstructorUsedError;
   int? get chapterCount => throw _privateConstructorUsedError;
   double? get chapterNumber => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $ChapterCopyWith<$Res> {
       _$ChapterCopyWithImpl<$Res, Chapter>;
   @useResult
   $Res call(
-      {bool? bookmarked,
+      {int? id,
+      bool? bookmarked,
       int? chapterCount,
       double? chapterNumber,
       bool? downloaded,
@@ -79,6 +81,7 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? bookmarked = freezed,
     Object? chapterCount = freezed,
     Object? chapterNumber = freezed,
@@ -97,6 +100,10 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
     Object? meta = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       bookmarked: freezed == bookmarked
           ? _value.bookmarked
           : bookmarked // ignore: cast_nullable_to_non_nullable
@@ -173,7 +180,8 @@ abstract class _$$_ChapterCopyWith<$Res> implements $ChapterCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool? bookmarked,
+      {int? id,
+      bool? bookmarked,
       int? chapterCount,
       double? chapterNumber,
       bool? downloaded,
@@ -201,6 +209,7 @@ class __$$_ChapterCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? bookmarked = freezed,
     Object? chapterCount = freezed,
     Object? chapterNumber = freezed,
@@ -219,6 +228,10 @@ class __$$_ChapterCopyWithImpl<$Res>
     Object? meta = freezed,
   }) {
     return _then(_$_Chapter(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
       bookmarked: freezed == bookmarked
           ? _value.bookmarked
           : bookmarked // ignore: cast_nullable_to_non_nullable
@@ -291,7 +304,8 @@ class __$$_ChapterCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Chapter implements _Chapter {
   _$_Chapter(
-      {this.bookmarked,
+      {this.id,
+      this.bookmarked,
       this.chapterCount,
       this.chapterNumber,
       this.downloaded,
@@ -312,6 +326,8 @@ class _$_Chapter implements _Chapter {
   factory _$_Chapter.fromJson(Map<String, dynamic> json) =>
       _$$_ChapterFromJson(json);
 
+  @override
+  final int? id;
   @override
   final bool? bookmarked;
   @override
@@ -353,7 +369,7 @@ class _$_Chapter implements _Chapter {
 
   @override
   String toString() {
-    return 'Chapter(bookmarked: $bookmarked, chapterCount: $chapterCount, chapterNumber: $chapterNumber, downloaded: $downloaded, fetchedAt: $fetchedAt, index: $index, lastPageRead: $lastPageRead, lastReadAt: $lastReadAt, mangaId: $mangaId, name: $name, pageCount: $pageCount, read: $read, scanlator: $scanlator, uploadDate: $uploadDate, url: $url, meta: $meta)';
+    return 'Chapter(id: $id, bookmarked: $bookmarked, chapterCount: $chapterCount, chapterNumber: $chapterNumber, downloaded: $downloaded, fetchedAt: $fetchedAt, index: $index, lastPageRead: $lastPageRead, lastReadAt: $lastReadAt, mangaId: $mangaId, name: $name, pageCount: $pageCount, read: $read, scanlator: $scanlator, uploadDate: $uploadDate, url: $url, meta: $meta)';
   }
 
   @override
@@ -361,6 +377,7 @@ class _$_Chapter implements _Chapter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Chapter &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.bookmarked, bookmarked) ||
                 other.bookmarked == bookmarked) &&
             (identical(other.chapterCount, chapterCount) ||
@@ -393,6 +410,7 @@ class _$_Chapter implements _Chapter {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       bookmarked,
       chapterCount,
       chapterNumber,
@@ -426,7 +444,8 @@ class _$_Chapter implements _Chapter {
 
 abstract class _Chapter implements Chapter {
   factory _Chapter(
-      {final bool? bookmarked,
+      {final int? id,
+      final bool? bookmarked,
       final int? chapterCount,
       final double? chapterNumber,
       final bool? downloaded,
@@ -445,6 +464,8 @@ abstract class _Chapter implements Chapter {
 
   factory _Chapter.fromJson(Map<String, dynamic> json) = _$_Chapter.fromJson;
 
+  @override
+  int? get id;
   @override
   bool? get bookmarked;
   @override

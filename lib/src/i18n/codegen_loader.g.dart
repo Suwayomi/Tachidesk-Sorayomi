@@ -65,6 +65,7 @@ class CodegenLoader extends AssetLoader {
     },
     "chapters": "Chapters",
     "checkForUpdates": "Check for updates",
+    "checkForServerUpdates": "Check for Server updates",
     "client": "Client",
     "clientVersion": "Client version",
     "close": "Close",
@@ -147,6 +148,7 @@ class CodegenLoader extends AssetLoader {
       "title": "Show NSFW extensions and sources"
     },
     "nsfw18": "18+",
+    "numSelected": "{num} Selected",
     "password": "Password",
     "pause": "Pause",
     "previousChapter": "Previous Chapter",
@@ -199,7 +201,7 @@ class CodegenLoader extends AssetLoader {
     "url": "Server URL",
     "urlHintText": "Enter server url",
     "userName": "User Name",
-    "versionAvailable": "Version v{version} available!!",
+    "versionAvailable": "Version {version} available!!",
     "webUI": "Open in WEB",
     "webView": "WebView",
     "whatsNew": "What's New?"

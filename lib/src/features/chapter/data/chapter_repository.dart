@@ -32,6 +32,11 @@ class ChapterRepository {
   Future<void> stopDownloads() => dioClient.get(DownloaderUrl.stop);
   Future<void> clearDownloads() => dioClient.get(DownloaderUrl.clear);
 
+  Future<void> addChaptersBatchToDownloadQueue(List<int> chapterIds) =>
+      dioClient.post(
+        DownloaderUrl.batch,
+        data: {"chapterIds": chapterIds},
+      );
   Future<void> addChapterToDownloadQueue(int mangaId, int chapterIndex) =>
       dioClient.get(DownloaderUrl.chapter(mangaId, chapterIndex));
 

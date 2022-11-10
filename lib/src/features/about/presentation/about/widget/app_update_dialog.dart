@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pub_semver/pub_semver.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/urls.dart';
@@ -13,7 +12,8 @@ import '../../../../../utils/extensions/custom_extensions/context_extensions.dar
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 
-void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
+void appUpdateDialog(String newRelease, BuildContext context, Toast toast,
+        [String? url]) =>
     showDialog(
       context: context,
       builder: (_) {
@@ -21,7 +21,7 @@ void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
           title: Text(LocaleKeys.newUpdateAvailable.tr()),
           content: Text(
             LocaleKeys.versionAvailable.tr(
-              namedArgs: {"version": newRelease.canonicalizedVersion},
+              namedArgs: {"version": newRelease},
             ),
           ),
           actions: [
@@ -31,7 +31,8 @@ void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
             ),
             ElevatedButton.icon(
               onPressed: () {
-                launchUrlInWeb(AppUrls.sorayomiLatestReleaseUrl.url, toast);
+                launchUrlInWeb(
+                    url ?? AppUrls.sorayomiLatestReleaseUrl.url, toast);
                 context.navPop();
               },
               icon: const Icon(FontAwesomeIcons.github),

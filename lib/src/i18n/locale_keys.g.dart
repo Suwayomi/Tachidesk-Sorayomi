@@ -61,6 +61,7 @@ abstract class LocaleKeys {
   static const chapterList = 'chapterList';
   static const chapters = 'chapters';
   static const checkForUpdates = 'checkForUpdates';
+  static const checkForServerUpdates = 'checkForServerUpdates';
   static const client = 'client';
   static const clientVersion = 'clientVersion';
   static const close = 'close';
@@ -137,6 +138,7 @@ abstract class LocaleKeys {
   static const nsfw_title = 'nsfw.title';
   static const nsfw = 'nsfw';
   static const nsfw18 = 'nsfw18';
+  static const numSelected = 'numSelected';
   static const password = 'password';
   static const pause = 'pause';
   static const previousChapter = 'previousChapter';

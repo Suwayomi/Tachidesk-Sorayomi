@@ -29,7 +29,7 @@ class ReaderModeKey extends _$ReaderModeKey
   }
 }
 
-class ReaderModeTile extends HookConsumerWidget {
+class ReaderModeTile extends ConsumerWidget {
   const ReaderModeTile({super.key});
 
   @override

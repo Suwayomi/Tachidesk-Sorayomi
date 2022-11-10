@@ -9,6 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/bool_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../utils/misc/custom_typedef.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -23,15 +24,25 @@ class ChapterMangaListTile extends StatelessWidget {
     required this.pair,
     required this.toast,
     required this.updatePair,
+    required this.toggleSelect,
+    this.canTapSelect = false,
+    this.isSelected = false,
   }) : super(key: key);
   final ChapterMangaPair pair;
   final Toast toast;
   final AsyncVoidCallBack updatePair;
+  final SingleInputCallback<ChapterMangaPair> toggleSelect;
+  final bool canTapSelect;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
     final color = (pair.chapter?.read).ifNull() ? Colors.grey : null;
     return ListTile(
+      selectedColor: context.theme.colorScheme.onSurface,
+      selectedTileColor:
+          context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+      selected: isSelected,
       title: Text(pair.manga?.title ?? "", style: TextStyle(color: color)),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
@@ -49,6 +60,8 @@ class ChapterMangaListTile extends StatelessWidget {
         toast: toast,
         updatePair: updatePair,
       ),
+      onTap: canTapSelect ? () => toggleSelect(pair) : null,
+      onLongPress: () => toggleSelect(pair),
     );
   }
 }

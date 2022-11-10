@@ -28,7 +28,7 @@ class ThemeModeKey extends _$ThemeModeKey
   }
 }
 
-class AppThemeTile extends HookConsumerWidget {
+class AppThemeTile extends ConsumerWidget {
   const AppThemeTile({super.key});
 
   @override

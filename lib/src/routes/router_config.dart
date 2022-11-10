@@ -30,18 +30,18 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
 abstract class Routes {
   static const home = '/';
   static const library = '/library';
-  static const librarySettings = 'library';
+  static const librarySettings = 's-library';
   static const updates = '/updates';
   static const browse = '/browse';
   static const downloads = '/downloads';
   static const more = '/more';
   static const about = '/about';
-  static const appearanceSettings = 'appearance';
+  static const appearanceSettings = 's-appearance';
   static const backup = 'backup';
   static const settings = '/settings';
-  static const browseSettingsScreen = 'browse';
-  static const readerSettings = 'reader';
-  static const serverSettings = 'server';
+  static const browseSettings = 's-browse';
+  static const readerSettings = 's-reader';
+  static const serverSettings = 's-server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
   static const sources = '/sources';
@@ -122,7 +122,7 @@ GoRouter routerConfig(ref) {
             builder: (context, state) => const AppearanceScreen(),
           ),
           GoRoute(
-            path: Routes.browseSettingsScreen,
+            path: Routes.browseSettings,
             builder: (context, state) => const BrowseSettingsScreen(),
           ),
           GoRoute(

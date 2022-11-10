@@ -26,16 +26,17 @@ class InstallExtensionFile extends ConsumerWidget {
     if ((file?.files).isNotBlank) {
       toast.show(LocaleKeys.installingExtension.tr());
     }
-    final result = (await AsyncValue.guard(() => ref
+    AsyncValue.guard(() => ref
         .read(extensionRepositoryProvider)
-        .installExtensionFile(file: file?.files.single)));
-    result.maybeWhen<void>(
-      error: (error, stackTrace) => result.showToastOnError(toast),
-      data: (data) {
-        ref.invalidate(extensionControllerProvider);
-        toast.instantShow(LocaleKeys.extensionInstalled.tr());
-      },
-      orElse: () {},
+        .installExtensionFile(file: file?.files.single)).then(
+      (result) => result.maybeWhen(
+        error: (error, stackTrace) => result.showToastOnError(toast),
+        data: (data) {
+          ref.invalidate(extensionControllerProvider);
+          toast.instantShow(LocaleKeys.extensionInstalled.tr());
+        },
+        orElse: () {},
+      ),
     );
   }
 

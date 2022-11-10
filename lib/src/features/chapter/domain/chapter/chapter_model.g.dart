@@ -7,6 +7,7 @@ part of 'chapter_model.dart';
 // **************************************************************************
 
 _$_Chapter _$$_ChapterFromJson(Map<String, dynamic> json) => _$_Chapter(
+      id: json['id'] as int?,
       bookmarked: json['bookmarked'] as bool?,
       chapterCount: json['chapterCount'] as int?,
       chapterNumber: (json['chapterNumber'] as num?)?.toDouble(),
@@ -29,6 +30,7 @@ _$_Chapter _$$_ChapterFromJson(Map<String, dynamic> json) => _$_Chapter(
 
 Map<String, dynamic> _$$_ChapterToJson(_$_Chapter instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'bookmarked': instance.bookmarked,
       'chapterCount': instance.chapterCount,
       'chapterNumber': instance.chapterNumber,
