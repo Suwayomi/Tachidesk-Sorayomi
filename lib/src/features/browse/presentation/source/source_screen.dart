@@ -29,7 +29,7 @@ class SourceScreen extends HookConsumerWidget {
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");
     useEffect(() {
-      ref.refresh(sourceControllerProvider.future);
+      ref.invalidate(sourceControllerProvider);
       return;
     }, []);
     return sourceController.when(

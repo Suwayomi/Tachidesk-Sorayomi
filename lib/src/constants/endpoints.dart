@@ -48,12 +48,12 @@ abstract class MangaUrl {
       "$_manga/$mangaId/category/$categoryId";
   static String getMangaLibrary(int mangaId) => "$_manga/$mangaId/library";
   static String getMangaMeta(int mangaId) => "$_manga/$mangaId/meta";
-  static String getMangaChapters(int mangaId) => "$_manga/$mangaId/chapters";
-  static String getMangaChapterIndex(int mangaId, int chapterIndex) =>
+  static String getChapters(int mangaId) => "$_manga/$mangaId/chapters";
+  static String getChapterWithIndex(int mangaId, int chapterIndex) =>
       "$_manga/$mangaId/chapter/$chapterIndex";
-  static String getMangaChapterIndexMeta(int mangaId, int chapterIndex) =>
+  static String getChapterMetaWithIndex(int mangaId, int chapterIndex) =>
       "$_manga/$mangaId/chapter/$chapterIndex/meta";
-  static String getMangaChapterIndexPage({
+  static String getChapterPageWithIndex({
     required int mangaId,
     required int chapterIndex,
     required int pageIndex,
@@ -65,14 +65,14 @@ abstract class MangaUrl {
 }
 
 abstract class DownloaderUrl {
-  static String start = "$_downloads/start";
-  static String stop = "$_downloads/stop";
-  static String clear = "$_downloads/clear";
+  static String start = "$downloads/start";
+  static String stop = "$downloads/stop";
+  static String clear = "$downloads/clear";
 
   static String chapter(int mangaId, int chapterIndex) =>
       "/download/$mangaId/chapter/$chapterIndex";
 
-  static const String _downloads = "/downloads";
+  static const String downloads = "/downloads";
 }
 
 abstract class BackupUrl {
@@ -101,7 +101,7 @@ abstract class SourceUrl {
 }
 
 abstract class UpdateUrl {
-  static String recentChapters = "$_update/recentChapters";
+  static String recentChapters(int pageNo) => "$_update/recentChapters/$pageNo";
 
   static const String _update = "/update";
 }

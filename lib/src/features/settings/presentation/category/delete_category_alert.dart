@@ -11,7 +11,7 @@ import '../../../../widgets/pop_button.dart';
 
 class DeleteCategoryAlert extends StatelessWidget {
   const DeleteCategoryAlert({super.key, required this.deleteCategory});
-  final void Function() deleteCategory;
+  final VoidCallback deleteCategory;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

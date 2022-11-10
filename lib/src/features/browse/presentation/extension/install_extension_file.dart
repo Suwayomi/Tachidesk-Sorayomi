@@ -32,7 +32,7 @@ class InstallExtensionFile extends ConsumerWidget {
       ..showToastOnError(toast);
     result.maybeWhen(
       data: (data) {
-        ref.refresh(extensionControllerProvider.future);
+        ref.invalidate(extensionControllerProvider);
         toast.instantShow(
             LocaleKeys.extensionScreen_extensionInstalled_title.tr());
       },

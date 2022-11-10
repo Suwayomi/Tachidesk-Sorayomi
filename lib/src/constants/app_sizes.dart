@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
 enum Edge {
   a8(EdgeInsets.all(8)),
+  a4(EdgeInsets.all(4)),
   a16(EdgeInsets.all(16)),
   h16v8(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
   h16v4(EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0)),
   h16(EdgeInsets.symmetric(horizontal: 16.0)),
-  v8(EdgeInsets.symmetric(vertical: 8));
+  h8(EdgeInsets.symmetric(horizontal: 8.0)),
+  v8(EdgeInsets.symmetric(vertical: 8)),
+  v4(EdgeInsets.symmetric(vertical: 4));
 
   const Edge(this.size);
 

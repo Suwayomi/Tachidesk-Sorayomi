@@ -13,8 +13,8 @@ import '../../../../widgets/custom_circular_progress_indicator.dart';
 import 'controller/edit_category_controller.dart';
 import 'edit_category_dialog.dart';
 
-class CreateCategoryFab extends HookConsumerWidget {
-  const CreateCategoryFab({super.key});
+class CategoryCreateFab extends HookConsumerWidget {
+  const CategoryCreateFab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,11 +27,15 @@ class CreateCategoryFab extends HookConsumerWidget {
                 context: context,
                 builder: (context) => EditCategoryDialog(
                   editCategory: (newCategory) async {
-                    isLoading.value = true;
-                    await ref
-                        .read(categoryControllerProvider.notifier)
-                        .editCategory(newCategory);
-                    isLoading.value = false;
+                    try {
+                      isLoading.value = true;
+                      await ref
+                          .read(categoryControllerProvider.notifier)
+                          .editCategory(newCategory);
+                      isLoading.value = false;
+                    } catch (e) {
+                      //
+                    }
                   },
                 ),
               );

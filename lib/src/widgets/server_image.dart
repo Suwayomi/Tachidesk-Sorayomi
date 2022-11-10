@@ -12,8 +12,8 @@ import '../constants/enum.dart';
 import '../features/settings/presentation/server/credentials_popup.dart';
 import '../features/settings/widgets/server_url_tile.dart';
 
-class CachedImage extends ConsumerWidget {
-  const CachedImage({super.key, required this.imageUrl, this.size});
+class ServerImage extends ConsumerWidget {
+  const ServerImage({super.key, required this.imageUrl, this.size});
 
   final String imageUrl;
   final Size? size;
@@ -34,5 +34,40 @@ class CachedImage extends ConsumerWidget {
       errorWidget: (context, error, stackTrace) =>
           const Icon(Icons.broken_image_rounded),
     );
+  }
+}
+
+class ServerImageWithCpi extends StatelessWidget {
+  const ServerImageWithCpi({
+    Key? key,
+    required this.url,
+    required this.outerSize,
+    required this.innerSize,
+    required this.isLoading,
+  }) : super(key: key);
+  final bool isLoading;
+  final Size outerSize;
+  final Size innerSize;
+  final String url;
+  @override
+  Widget build(BuildContext context) {
+    return isLoading
+        ? SizedBox.fromSize(
+            size: outerSize,
+            child: Stack(
+              alignment: AlignmentDirectional.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                ServerImage(
+                  imageUrl: url,
+                  size: innerSize,
+                )
+              ],
+            ),
+          )
+        : ServerImage(imageUrl: url, size: outerSize);
   }
 }

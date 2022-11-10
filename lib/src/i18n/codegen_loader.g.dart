@@ -100,7 +100,11 @@ class CodegenLoader extends AssetLoader {
         "title": "Show NSFW extensions and sources"
       }
     },
-    "downloadScreen": {"pause": "Pause", "resume": "Resume"},
+    "downloadScreen": {
+      "pause": "Pause",
+      "resume": "Resume",
+      "noDownloads": "No Downloads"
+    },
     "editCategoriesScreen": {
       "add": "Add",
       "addCategory": "Add Category",
@@ -115,6 +119,7 @@ class CodegenLoader extends AssetLoader {
           "You have no Categories. Tap the Plus button to create one for organizing your library"
     },
     "error": {
+      "somethingWentWrong": "Something went wrong!",
       "filePick": "File not selected!",
       "filePickUnknownExtension":
           "Please select a file with {extensionName} extension",

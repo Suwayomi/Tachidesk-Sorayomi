@@ -40,9 +40,13 @@ class CategoryTile extends HookWidget {
                     builder: (context) => EditCategoryDialog(
                       category: category,
                       editCategory: (newCategory) async {
-                        isLoading.value = true;
-                        await editCategory(newCategory);
-                        isLoading.value = false;
+                        try {
+                          isLoading.value = true;
+                          await editCategory(newCategory);
+                          isLoading.value = false;
+                        } catch (e) {
+                          //
+                        }
                       },
                     ),
                   ),
@@ -53,9 +57,13 @@ class CategoryTile extends HookWidget {
                     context: context,
                     builder: (context) => DeleteCategoryAlert(
                       deleteCategory: () async {
-                        isLoading.value = true;
-                        await deleteCategory(category);
-                        isLoading.value = false;
+                        try {
+                          isLoading.value = true;
+                          await deleteCategory(category);
+                          isLoading.value = false;
+                        } catch (e) {
+                          //
+                        }
                       },
                     ),
                   ),

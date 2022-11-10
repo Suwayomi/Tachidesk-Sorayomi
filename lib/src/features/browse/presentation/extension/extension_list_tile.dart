@@ -14,7 +14,7 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
 import '../../../../utils/misc/custom_typedef.dart';
-import '../../../../widgets/cached_image.dart';
+import '../../../../widgets/server_image.dart';
 
 class ExtensionListTile extends HookConsumerWidget {
   const ExtensionListTile({
@@ -34,29 +34,35 @@ class ExtensionListTile extends HookConsumerWidget {
     return ListTile(
       key: key,
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: isLoading.value
-            ? SizedBox(
-                height: 48,
-                width: 48,
-                child: Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                    CachedImage(
-                      imageUrl: extension.iconUrl ?? "",
-                      size: const Size.square(24),
-                    )
-                  ],
-                ),
-              )
-            : CachedImage(
-                imageUrl: extension.iconUrl ?? "",
-                size: const Size.square(48),
-              ),
+        borderRadius: BorderRadius.circular(8),
+        child: ServerImageWithCpi(
+          url: extension.iconUrl ?? "",
+          outerSize: const Size.square(48),
+          innerSize: const Size.square(24),
+          isLoading: isLoading.value,
+        ),
+        // isLoading.value
+        //     ? SizedBox(
+        //         height: 48,
+        //         width: 48,
+        //         child: Stack(
+        //           alignment: AlignmentDirectional.center,
+        //           children: [
+        //             const Padding(
+        //               padding: EdgeInsets.all(4.0),
+        //               child: CircularProgressIndicator(strokeWidth: 2),
+        //             ),
+        //             ServerImage(
+        //               imageUrl: extension.iconUrl ?? "",
+        //               size: const Size.square(24),
+        //             )
+        //           ],
+        //         ),
+        //       )
+        //     : ServerImage(
+        //         imageUrl: extension.iconUrl ?? "",
+        //         size: const Size.square(48),
+        //       ),
       ),
       title: Text(extension.name ?? ""),
       subtitle: Text.rich(

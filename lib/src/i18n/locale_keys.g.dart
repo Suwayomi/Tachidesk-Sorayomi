@@ -100,6 +100,7 @@ abstract class LocaleKeys {
   static const browserSettingsScreen = 'browserSettingsScreen';
   static const downloadScreen_pause = 'downloadScreen.pause';
   static const downloadScreen_resume = 'downloadScreen.resume';
+  static const downloadScreen_noDownloads = 'downloadScreen.noDownloads';
   static const downloadScreen = 'downloadScreen';
   static const editCategoriesScreen_add = 'editCategoriesScreen.add';
   static const editCategoriesScreen_addCategory =
@@ -118,6 +119,7 @@ abstract class LocaleKeys {
   static const editCategoriesScreen_emptyCategory =
       'editCategoriesScreen.emptyCategory';
   static const editCategoriesScreen = 'editCategoriesScreen';
+  static const error_somethingWentWrong = 'error.somethingWentWrong';
   static const error_filePick = 'error.filePick';
   static const error_filePickUnknownExtension =
       'error.filePickUnknownExtension';

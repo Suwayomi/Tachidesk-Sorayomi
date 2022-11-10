@@ -13,17 +13,18 @@ class CenterCircularProgressIndicator extends StatelessWidget {
 }
 
 class MiniCircularProgressIndicator extends StatelessWidget {
-  const MiniCircularProgressIndicator({super.key, this.color});
+  const MiniCircularProgressIndicator({super.key, this.color, this.value});
   final Color? color;
+  final double? value;
   @override
   Widget build(BuildContext context) => Padding(
         padding: Edge.a8.size,
-        child: SizedBox(
-          width: 16,
-          height: 16,
+        child: SizedBox.square(
+          dimension: 16,
           child: CircularProgressIndicator(
             strokeWidth: 3,
             color: color,
+            value: value,
           ),
         ),
       );

@@ -94,7 +94,8 @@
     },
     "downloadScreen": {
         "pause": "Pause",
-        "resume": "Resume"
+        "resume": "Resume",
+        "noDownloads": "No Downloads"
     },
     "editCategoriesScreen": {
         "add": "Add",
@@ -109,6 +110,7 @@
         "emptyCategory": "You have no Categories. Tap the Plus button to create one for organizing your library"
     },
     "error": {
+        "somethingWentWrong" : "Something went wrong!",
         "filePick": "File not selected!",
         "filePickUnknownExtension": "Please select a file with {extensionName} extension",
         "installedExtensionFile": "Failed to Install! Please try again",

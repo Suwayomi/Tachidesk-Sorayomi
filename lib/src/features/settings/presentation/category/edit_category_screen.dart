@@ -15,9 +15,9 @@ import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/category/category_model.dart';
+import 'category_create_fab.dart';
 import 'category_tile.dart';
 import 'controller/edit_category_controller.dart';
-import 'create_category_fab.dart';
 
 class EditCategoryScreen extends HookConsumerWidget {
   const EditCategoryScreen({super.key});
@@ -35,7 +35,7 @@ class EditCategoryScreen extends HookConsumerWidget {
       ),
       floatingActionButton: categoryController.asError?.error != null
           ? null
-          : const CreateCategoryFab(),
+          : const CategoryCreateFab(),
       body: categoryController.when(
         data: (data) {
           if (categoryList.isEmpty) {

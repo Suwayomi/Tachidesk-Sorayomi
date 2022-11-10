@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:tachidesk_sorayomi/src/features/chapter/presentation/updates/updates_screen.dart';
 
 // 🌎 Project imports:
 import '../features/about/presentation/about/about_screen.dart';
 import '../features/browse/presentation/browse/browse_screen.dart';
+import '../features/chapter/presentation/downloads/downloads_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
@@ -72,10 +74,7 @@ GoRouter routerConfig(ref) {
           ),
           GoRoute(
             path: Routes.updates,
-            builder: (context, state) => const Scaffold(
-              body: Center(child: Text(Routes.updates)),
-              backgroundColor: Colors.black,
-            ),
+            builder: (context, state) => const UpdatesScreen(),
           ),
           GoRoute(
             path: Routes.browse,
@@ -83,10 +82,7 @@ GoRouter routerConfig(ref) {
           ),
           GoRoute(
             path: Routes.downloads,
-            builder: (context, state) => const Scaffold(
-              body: Center(child: Text(Routes.downloads)),
-              backgroundColor: Colors.blue,
-            ),
+            builder: (context, state) => const DownloadsScreen(),
           ),
           GoRoute(
             path: Routes.more,
@@ -104,14 +100,15 @@ GoRouter routerConfig(ref) {
         builder: (context, state) => const SettingsScreen(),
         routes: [
           GoRoute(
-              path: Routes.librarySettings,
-              builder: (context, state) => const LibrarySettingsScreen(),
-              routes: [
-                GoRoute(
-                  path: Routes.editCategories,
-                  builder: (context, state) => const EditCategoryScreen(),
-                ),
-              ]),
+            path: Routes.librarySettings,
+            builder: (context, state) => const LibrarySettingsScreen(),
+            routes: [
+              GoRoute(
+                path: Routes.editCategories,
+                builder: (context, state) => const EditCategoryScreen(),
+              ),
+            ],
+          ),
           GoRoute(
             path: Routes.serverSettings,
             builder: (context, state) => const ServerScreen(),
