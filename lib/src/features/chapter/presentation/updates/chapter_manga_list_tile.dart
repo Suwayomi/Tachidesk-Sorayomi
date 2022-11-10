@@ -1,19 +1,19 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/constants/app_sizes.dart';
-import 'package:tachidesk_sorayomi/src/features/chapter/data/chapter_repository.dart';
-import 'package:tachidesk_sorayomi/src/features/chapter/domain/chapter_page/chapter_page_model.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/bool_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/int_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/custom_typedef.dart';
-import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
+// Project imports:
+import '../../../../constants/app_sizes.dart';
+import '../../data/chapter_repository.dart';
+import '../../domain/chapter_page/chapter_page_model.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/bool_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../../utils/misc/custom_typedef.dart';
+import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/server_image.dart';
 

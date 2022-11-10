@@ -1,12 +1,12 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../../constants/gen/assets.gen.dart';
 import '../../constants/navigation_bar_data.dart';
 import '../../i18n/locale_keys.g.dart';

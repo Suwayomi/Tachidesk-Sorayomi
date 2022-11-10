@@ -1,14 +1,14 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/utils/storage/local/shared_preferences_client.dart';
+// Project imports:
+import 'src/utils/storage/local/shared_preferences_client.dart';
 import 'src/global_providers/global_providers.dart';
 import 'src/i18n/codegen_loader.g.dart';
 import 'src/sorayomi.dart';

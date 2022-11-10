@@ -1,20 +1,20 @@
-// 🎯 Dart imports:
+// Dart imports:
 import 'dart:convert';
 
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/features/chapter/domain/chapter/chapter_model.dart';
-import 'package:tachidesk_sorayomi/src/features/chapter/domain/downloads/downloads_model.dart';
-import 'package:tachidesk_sorayomi/src/utils/classes/pair/pair_model.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/custom_typedef.dart';
+// Project imports:
+import '../domain/chapter/chapter_model.dart';
+import '../domain/downloads/downloads_model.dart';
+import '../../../utils/classes/pair/pair_model.dart';
+import '../../../utils/misc/custom_typedef.dart';
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/storage/dio/dio_client.dart';

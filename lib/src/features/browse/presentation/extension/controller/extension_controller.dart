@@ -1,11 +1,11 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/features/browse/presentation/browse/controller/browse_controller.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/show_nsfw_switch.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
+// Project imports:
+import '../../browse/controller/browse_controller.dart';
+import '../../../../settings/presentation/browse/show_nsfw_switch.dart';
+import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/extension_repository.dart';

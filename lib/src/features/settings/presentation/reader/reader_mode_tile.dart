@@ -1,17 +1,17 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/constants/db_keys.dart';
-import 'package:tachidesk_sorayomi/src/constants/enum.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
-import 'package:tachidesk_sorayomi/src/widgets/enum_popup.dart';
+// Project imports:
+import '../../../../constants/db_keys.dart';
+import '../../../../constants/enum.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../widgets/enum_popup.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 
 part 'reader_mode_tile.g.dart';

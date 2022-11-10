@@ -1,8 +1,8 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions/map_extensions.dart';

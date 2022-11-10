@@ -1,20 +1,20 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/constants/endpoints.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/data/backup_repository.dart';
-import 'package:tachidesk_sorayomi/src/features/settings/widgets/server_url_tile.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/launch_url_in_web.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
+// Project imports:
+import '../../../../constants/endpoints.dart';
+import '../../data/backup_repository.dart';
+import '../../widgets/server_url_tile.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../utils/launch_url_in_web.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import 'backup_missing_dialog.dart';
 
 class BackupScreen extends ConsumerWidget {

@@ -1,8 +1,8 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/features/browse/domain/language/language_model.dart';
+// Project imports:
+import '../language/language_model.dart';
 import '../../../../utils/misc/language_json_converter.dart';
 
 part 'source_model.freezed.dart';

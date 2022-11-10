@@ -1,8 +1,8 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
+// Project imports:
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';

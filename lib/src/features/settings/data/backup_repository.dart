@@ -1,10 +1,10 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../i18n/locale_keys.g.dart';

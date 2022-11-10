@@ -1,7 +1,7 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../../misc/toast/toast.dart';
 
 extension AsyncValueExtensions<T> on AsyncValue<T> {

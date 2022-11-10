@@ -1,4 +1,4 @@
-// 🌎 Project imports:
+// Project imports:
 import '../features/browse/domain/language/language_model.dart';
 
 final languageMap = {

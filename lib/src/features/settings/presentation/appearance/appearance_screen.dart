@@ -1,10 +1,10 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../../../../i18n/locale_keys.g.dart';
 import '../../widgets/theme_mode_tile.dart';
 

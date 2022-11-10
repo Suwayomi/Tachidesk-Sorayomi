@@ -1,11 +1,11 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/services.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../i18n/locale_keys.g.dart';
 import 'misc/toast/toast.dart';
 

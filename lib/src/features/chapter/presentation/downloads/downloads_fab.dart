@@ -1,15 +1,15 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/features/chapter/data/chapter_repository.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
+// Project imports:
+import '../../data/chapter_repository.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../i18n/locale_keys.g.dart';
 
 class DownloadsFab extends ConsumerWidget {

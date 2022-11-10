@@ -1,8 +1,8 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:intl/intl.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/date_time_extensions.dart';
+// Project imports:
+import 'date_time_extensions.dart';
 
 extension IntExtensions on int? {
   bool get isNull => this == null;

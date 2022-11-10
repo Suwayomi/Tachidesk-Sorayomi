@@ -1,18 +1,18 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/features/chapter/data/chapter_repository.dart';
-import 'package:tachidesk_sorayomi/src/features/chapter/presentation/downloads/downloads_fab.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
-import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
-import 'package:tachidesk_sorayomi/src/widgets/emoticons.dart';
+// Project imports:
+import '../../data/chapter_repository.dart';
+import 'downloads_fab.dart';
+import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../utils/misc/toast/toast.dart';
+import '../../../../widgets/custom_circular_progress_indicator.dart';
+import '../../../../widgets/emoticons.dart';
 import '../../domain/downloads/downloads_model.dart';
 import 'download_progress_list_tile.dart';
 

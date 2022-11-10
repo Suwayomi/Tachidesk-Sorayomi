@@ -1,4 +1,4 @@
-// 🌎 Project imports:
+// Project imports:
 import 'db_keys.dart';
 
 abstract class Endpoints {

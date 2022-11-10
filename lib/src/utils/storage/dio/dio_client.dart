@@ -1,10 +1,10 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:dio/dio.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../dio_error_util.dart';
 
 typedef ResponseDecoderCallBack<DecoderType> = DecoderType Function(dynamic);

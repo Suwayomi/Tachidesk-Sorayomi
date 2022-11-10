@@ -469,6 +469,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.2"
+  import_path_converter:
+    dependency: "direct dev"
+    description:
+      name: import_path_converter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   import_sorter:
     dependency: "direct dev"
     description:

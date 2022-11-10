@@ -1,8 +1,8 @@
-// 📦 Package imports:
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// 🌎 Project imports:
-import 'package:tachidesk_sorayomi/src/features/chapter/domain/downloads_queue/downloads_queue_model.dart';
+// Project imports:
+import '../downloads_queue/downloads_queue_model.dart';
 
 part 'downloads_model.freezed.dart';
 part 'downloads_model.g.dart';

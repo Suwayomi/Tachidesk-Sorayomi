@@ -1,12 +1,12 @@
-// 🐦 Flutter imports:
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
+// Project imports:
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
