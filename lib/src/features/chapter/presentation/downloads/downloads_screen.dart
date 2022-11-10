@@ -13,10 +13,17 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterab
 import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
 import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
 import 'package:tachidesk_sorayomi/src/widgets/emoticons.dart';
+import '../../domain/downloads/downloads_model.dart';
 import 'download_progress_list_tile.dart';
 
 class DownloadsScreen extends HookConsumerWidget {
   const DownloadsScreen({Key? key}) : super(key: key);
+
+  bool showFab(AsyncValue<Downloads> downloads) =>
+      (downloads.valueOrNull?.queue).isNotBlank &&
+      !downloads.valueOrNull!.queue!.every(
+        (element) => element.state == "Error" && element.tries == 3,
+      );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +31,7 @@ class DownloadsScreen extends HookConsumerWidget {
     final toast = ref.watch(toastProvider(context));
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.screenTitle_downloads.tr()),
+        title: Text(LocaleKeys.downloads.tr()),
         // actions: [
         //   IconButton(
         //     onPressed: () => AsyncValue.guard(
@@ -34,7 +41,7 @@ class DownloadsScreen extends HookConsumerWidget {
         //   ),
         // ],
       ),
-      floatingActionButton: (downloads.valueOrNull?.queue).isNotBlank
+      floatingActionButton: showFab(downloads)
           ? DownloadsFab(status: downloads.valueOrNull?.status ?? "")
           : null,
       body: downloads.when(
@@ -43,7 +50,7 @@ class DownloadsScreen extends HookConsumerWidget {
             return Emoticons(text: LocaleKeys.error_somethingWentWrong.tr());
           } else if (data.queue!.isEmpty) {
             return Emoticons(
-              text: LocaleKeys.downloadScreen_noDownloads.tr(),
+              text: LocaleKeys.noDownloads.tr(),
             );
           } else {
             return ListView.builder(

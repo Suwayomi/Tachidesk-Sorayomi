@@ -114,7 +114,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
     }
     if (isLoading.value) {
       return Padding(
-        padding: Edge.h8.size,
+        padding: KEdgeInsets.h8.size,
         child: const MiniCircularProgressIndicator(),
       );
     } else {

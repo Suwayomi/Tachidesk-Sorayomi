@@ -34,7 +34,7 @@ class AboutScreen extends HookConsumerWidget {
     Future<AsyncValue<Version?>> Function() updateCallback,
     Toast toast,
   ) async {
-    toast.show(LocaleKeys.aboutScreen_searchingForUpdates.tr());
+    toast.show(LocaleKeys.searchingForUpdates.tr());
     updateCallback().then((value) {
       toast.close();
       value.whenOrNull(
@@ -42,7 +42,7 @@ class AboutScreen extends HookConsumerWidget {
           if (version != null) {
             appUpdateDialog(version, context, toast);
           } else {
-            toast.show(LocaleKeys.aboutScreen_noUpdatesAvailable.tr());
+            toast.show(LocaleKeys.noUpdatesAvailable.tr());
           }
         },
         error: (error, stackTrace) => toast.showError(error.toString()),
@@ -58,7 +58,7 @@ class AboutScreen extends HookConsumerWidget {
     final packageInfo = ref.watch(packageInfoProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.screenTitle_about.tr()),
+        title: Text(LocaleKeys.about.tr()),
       ),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(aboutControllerProvider.future),
@@ -70,22 +70,22 @@ class AboutScreen extends HookConsumerWidget {
             ),
             const Divider(),
             ClipboardListTile(
-              title: LocaleKeys.aboutScreen_client.tr(),
+              title: LocaleKeys.client.tr(),
               subtitle: packageInfo.appName,
             ),
             ClipboardListTile(
-              title: LocaleKeys.aboutScreen_clientVersion.tr(),
+              title: LocaleKeys.clientVersion.tr(),
               subtitle: "v${packageInfo.version}",
             ),
             ListTile(
-              title: Text(LocaleKeys.aboutScreen_whatsNew.tr()),
+              title: Text(LocaleKeys.whatsNew.tr()),
               onTap: () async {
                 final url = AppUrls.sorayomiWhatsNew.url + packageInfo.version;
                 await launchUrlInWeb(url, toast);
               },
             ),
             ListTile(
-              title: Text(LocaleKeys.aboutScreen_checkForUpdates.tr()),
+              title: Text(LocaleKeys.checkForUpdates.tr()),
               onTap: () => checkForUpdate(
                 context,
                 ref.read(aboutRepositoryProvider).checkUpdate,
@@ -94,21 +94,21 @@ class AboutScreen extends HookConsumerWidget {
             ),
             const Divider(),
             ClipboardListTile(
-              title: LocaleKeys.aboutScreen_server.tr(),
+              title: LocaleKeys.server.tr(),
               subtitle: about?.name,
             ),
             ClipboardListTile(
-              title: LocaleKeys.aboutScreen_channel.tr(),
+              title: LocaleKeys.channel.tr(),
               subtitle: about?.buildType,
             ),
             ClipboardListTile(
-              title: LocaleKeys.aboutScreen_serverVersion.tr(),
+              title: LocaleKeys.serverVersion.tr(),
               subtitle: about?.buildType == "Stable"
                   ? about?.version
                   : about?.revision,
             ),
             ClipboardListTile(
-              title: LocaleKeys.aboutScreen_buildTime.tr(),
+              title: LocaleKeys.buildTime.tr(),
               subtitle: (about?.buildTime).isNull
                   ? null
                   : DateTime.fromMillisecondsSinceEpoch(
@@ -116,25 +116,25 @@ class AboutScreen extends HookConsumerWidget {
                     ).toDateString,
             ),
             Padding(
-              padding: Edge.a8.size,
+              padding: KEdgeInsets.a8.size,
               child: Wrap(
                 alignment: WrapAlignment.spaceEvenly,
                 children: [
                   MediaLaunchButton(
-                    title: "${LocaleKeys.aboutScreen_gitHub.tr()} ",
+                    title: "${LocaleKeys.gitHub.tr()} ",
                     iconData: FontAwesomeIcons.github,
                     url: AppUrls.sorayomiGithubUrl.url,
                     toast: toast,
                   ),
                   if ((about?.discord).isNotBlank)
                     MediaLaunchButton(
-                      title: LocaleKeys.aboutScreen_discord.tr(),
+                      title: LocaleKeys.discord.tr(),
                       iconData: FontAwesomeIcons.discord,
                       url: about!.discord!,
                       toast: toast,
                     ),
                   MediaLaunchButton(
-                    title: LocaleKeys.aboutScreen_reddit.tr(),
+                    title: LocaleKeys.reddit.tr(),
                     iconData: FontAwesomeIcons.reddit,
                     url: AppUrls.tachideskReddit.url,
                     toast: toast,

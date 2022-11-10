@@ -11,8 +11,6 @@ import 'package:tachidesk_sorayomi/src/constants/language_list.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterable_extensions.dart';
 import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import 'controller/source_controller.dart';
 import 'source_list_tile.dart';
@@ -22,9 +20,7 @@ class SourceScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
-    final sourceController = ref.watch(sourceControllerProvider)
-      ..showToastOnError(toast);
+    final sourceController = ref.watch(sourceControllerProvider);
     final sourceMap = {...ref.watch(sourceMapFilteredProvider)};
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");
@@ -36,10 +32,10 @@ class SourceScreen extends HookConsumerWidget {
       data: (data) {
         if ((sourceMap.isEmpty && localSource.isBlank && lastUsed.isBlank)) {
           return Emoticons(
-            text: LocaleKeys.sourceScreen_sourceListEmpty.tr(),
+            text: LocaleKeys.noSourcesFound.tr(),
             button: TextButton(
               onPressed: () => ref.refresh(sourceControllerProvider.future),
-              child: Text(LocaleKeys.common_refresh.tr()),
+              child: Text(LocaleKeys.refresh.tr()),
             ),
           );
         }
@@ -92,7 +88,7 @@ class SourceScreen extends HookConsumerWidget {
         text: error.toString(),
         button: TextButton(
           onPressed: () => ref.refresh(sourceControllerProvider.future),
-          child: Text(LocaleKeys.common_refresh.tr()),
+          child: Text(LocaleKeys.refresh.tr()),
         ),
       ),
     );

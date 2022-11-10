@@ -12,8 +12,6 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/iterab
 import 'package:tachidesk_sorayomi/src/utils/misc/custom_typedef.dart';
 import 'package:tachidesk_sorayomi/src/widgets/custom_circular_progress_indicator.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/extension/extension_model.dart';
 import '../browse/controller/browse_controller.dart';
@@ -53,11 +51,9 @@ class ExtensionScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     final showSearch = ref.watch(browseScreenShowSearchProvider);
     final extensionQuery = ref.watch(extensionQueryProvider);
-    final extensionController = ref.watch(extensionControllerProvider)
-      ..showToastOnError(toast);
+    final extensionController = ref.watch(extensionControllerProvider);
     final extensionMap = {
       ...ref.watch(
         extensionMapFilteredAndQueriedProvider(query: extensionQuery),
@@ -73,7 +69,7 @@ class ExtensionScreen extends HookConsumerWidget {
         text: error.toString(),
         button: TextButton(
           onPressed: refresh,
-          child: Text(LocaleKeys.common_refresh.tr()),
+          child: Text(LocaleKeys.refresh.tr()),
         ),
       ),
       data: (data) => Column(
@@ -91,10 +87,10 @@ class ExtensionScreen extends HookConsumerWidget {
                     update.isBlank &&
                     all.isBlank)
                 ? Emoticons(
-                    text: LocaleKeys.extensionScreen_extensionListEmpty.tr(),
+                    text: LocaleKeys.extensionListEmpty.tr(),
                     button: TextButton(
                       onPressed: refresh,
-                      child: Text(LocaleKeys.common_refresh.tr()),
+                      child: Text(LocaleKeys.refresh.tr()),
                     ),
                   )
                 : RefreshIndicator(

@@ -48,7 +48,7 @@ class SourceListTile extends ConsumerWidget {
                 // Get.toNamed("${Routes.sourceManga}"
                 //     "/${source.id}/latest");
               },
-              child: Text(LocaleKeys.sourceScreen_latest.tr()),
+              child: Text(LocaleKeys.latest.tr()),
             )
           : null,
     );

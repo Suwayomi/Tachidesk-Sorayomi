@@ -77,15 +77,14 @@ class ExtensionListTile extends HookConsumerWidget {
                 text: "${extension.versionName ?? ""} ",
                 style: const TextStyle(fontWeight: FontWeight.normal),
               ),
-            TextSpan(
-              text: extension.isNsfw ?? false
-                  ? LocaleKeys.extensionScreen_nsfw.tr()
-                  : "",
-              style: const TextStyle(
-                fontWeight: FontWeight.w400,
-                color: Colors.redAccent,
+            if (extension.isNsfw ?? false)
+              TextSpan(
+                text: LocaleKeys.nsfw18.tr(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.redAccent,
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -116,11 +115,11 @@ class ExtensionListTile extends HookConsumerWidget {
               child: Text(
                 extension.hasUpdate ?? false
                     ? isLoading.value
-                        ? LocaleKeys.extensionScreen_updating.tr()
-                        : LocaleKeys.extensionScreen_update.tr()
+                        ? LocaleKeys.updating.tr()
+                        : LocaleKeys.update.tr()
                     : isLoading.value
-                        ? LocaleKeys.extensionScreen_uninstalling.tr()
-                        : LocaleKeys.extensionScreen_uninstall.tr(),
+                        ? LocaleKeys.uninstalling.tr()
+                        : LocaleKeys.uninstall.tr(),
               ),
             )
           : TextButton(
@@ -144,8 +143,8 @@ class ExtensionListTile extends HookConsumerWidget {
                     },
               child: Text(
                 isLoading.value
-                    ? LocaleKeys.extensionScreen_installing.tr()
-                    : LocaleKeys.extensionScreen_install.tr(),
+                    ? LocaleKeys.installing.tr()
+                    : LocaleKeys.install.tr(),
               ),
             ),
     );

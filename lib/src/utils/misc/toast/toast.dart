@@ -58,7 +58,7 @@ class ToastWidget extends StatelessWidget {
       textAlign: TextAlign.center,
     );
     return Container(
-      padding: Edge.h16v8.size,
+      padding: KEdgeInsets.h16v8.size,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
         color: backgroundColor ?? Colors.black54,
@@ -67,7 +67,7 @@ class ToastWidget extends StatelessWidget {
           ? Row(
               children: [
                 icon!,
-                Box.w16.size,
+                KSizedBox.w16.size,
                 textWidget,
               ],
             )

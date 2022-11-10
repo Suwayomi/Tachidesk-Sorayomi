@@ -27,18 +27,18 @@ class BackupScreen extends ConsumerWidget {
       allowedExtensions: ['gz'],
     );
     if ((file?.files).isNotBlank) {
-      toast.show(LocaleKeys.backupSettings_restoring_title.tr());
+      toast.show(LocaleKeys.restoring.tr());
     }
     final result = (await AsyncValue.guard(() =>
-        ref.read(backupRepositoryProvider).restoreBackup(file?.files.single)))
-      ..showToastOnError(toast);
-    result.maybeWhen(
+        ref.read(backupRepositoryProvider).restoreBackup(file?.files.single)));
+    result.maybeWhen<void>(
+      error: (error, stackTrace) => result.showToastOnError(toast),
       data: (data) {
         final backupMissing = data?.filter;
-        if (backupMissing == null) return null;
-        toast.instantShow(LocaleKeys.backupSettings_restored_title.tr());
+        if (backupMissing == null) return;
+        toast.instantShow(LocaleKeys.restored.tr());
         if (backupMissing.isNotEmpty) {
-          return showDialog(
+          showDialog(
             context: context,
             builder: (context) => BackupMissingDialog(
               backupMissing: backupMissing,
@@ -53,12 +53,12 @@ class BackupScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text(LocaleKeys.settingsScreen_browse.tr())),
+      appBar: AppBar(title: Text(LocaleKeys.browse.tr())),
       body: ListView(
         children: [
           ListTile(
-            title: Text(LocaleKeys.backupSettings_create_title.tr()),
-            subtitle: Text(LocaleKeys.backupSettings_create_subtitle.tr()),
+            title: Text(LocaleKeys.createBackup_title.tr()),
+            subtitle: Text(LocaleKeys.createBackup_subtitle.tr()),
             leading: const Icon(Icons.backup_rounded),
             onTap: () async {
               final toast = ref.read(toastProvider(context));
@@ -70,8 +70,8 @@ class BackupScreen extends ConsumerWidget {
             },
           ),
           ListTile(
-            title: Text(LocaleKeys.backupSettings_restore_title.tr()),
-            subtitle: Text(LocaleKeys.backupSettings_restore_subtitle.tr()),
+            title: Text(LocaleKeys.restore_title.tr()),
+            subtitle: Text(LocaleKeys.restore_subtitle.tr()),
             leading: const Icon(Icons.restore_rounded),
             onTap: () => backupFilePicker(ref, context),
           ),

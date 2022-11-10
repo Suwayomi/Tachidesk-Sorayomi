@@ -36,8 +36,8 @@ class EditCategoryDialog extends HookWidget {
     return AlertDialog(
       title: Text(
         category == null
-            ? LocaleKeys.editCategoriesScreen_addCategory.tr()
-            : LocaleKeys.editCategoriesScreen_editCategory.tr(),
+            ? LocaleKeys.addCategory.tr()
+            : LocaleKeys.editCategory.tr(),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -46,7 +46,7 @@ class EditCategoryDialog extends HookWidget {
             controller: categoryName,
             autofocus: true,
             decoration: InputDecoration(
-              hintText: LocaleKeys.editCategoriesScreen_name.tr(),
+              hintText: LocaleKeys.editCategory.tr(),
               border: const OutlineInputBorder(),
             ),
             onSubmitted: (categoryName.text).isNotBlank
@@ -66,7 +66,7 @@ class EditCategoryDialog extends HookWidget {
             onChanged: (value) {
               if (value != null) defaultCategory.value = value;
             },
-            title: Text(LocaleKeys.editCategoriesScreen_defaultCategory.tr()),
+            title: Text(LocaleKeys.defaultCategory.tr()),
           )
         ],
       ),
@@ -79,7 +79,7 @@ class EditCategoryDialog extends HookWidget {
                   context.navPop();
                 }
               : null,
-          child: Text(LocaleKeys.common_save.tr()),
+          child: Text(LocaleKeys.save.tr()),
         ),
       ],
     );

@@ -25,7 +25,7 @@ class ServerScreen extends HookConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.settingsScreen_server.tr()),
+        title: Text(LocaleKeys.server.tr()),
       ),
       body: ListView(
         children: [
@@ -34,7 +34,7 @@ class ServerScreen extends HookConsumerWidget {
           if (authType != null && authType != AuthType.none)
             ListTile(
               leading: const Icon(Icons.password_rounded),
-              title: Text(LocaleKeys.serverSettingsScreen_credentials.tr()),
+              title: Text(LocaleKeys.credentials.tr()),
               onTap: () {
                 showDialog(
                   context: context,
@@ -45,7 +45,7 @@ class ServerScreen extends HookConsumerWidget {
           if (!kIsWeb)
             ListTile(
               leading: const Icon(Icons.web_rounded),
-              title: Text(LocaleKeys.serverSettingsScreen_webUI.tr()),
+              title: Text(LocaleKeys.webUI.tr()),
               onTap: () {
                 final url = ref.read(serverUrlProvider);
                 if (url.isNotBlank) launchUrlInWeb(url!, toast);

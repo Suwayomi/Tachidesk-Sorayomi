@@ -36,7 +36,7 @@ class ServerUrlTile extends HookConsumerWidget {
     final serverUrl = ref.watch(serverUrlProvider);
     return ListTile(
       leading: const Icon(Icons.computer_rounded),
-      title: Text(LocaleKeys.serverSettingsScreen_url.tr()),
+      title: Text(LocaleKeys.url.tr()),
       subtitle: serverUrl.isNotBlank ? Text(serverUrl!) : null,
       onTap: () => showDialog(
         context: context,
@@ -60,7 +60,7 @@ class ServerUrlField extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController(text: initialUrl);
     return AlertDialog(
-      title: Text(LocaleKeys.serverSettingsScreen_url.tr()),
+      title: Text(LocaleKeys.url.tr()),
       content: TextField(
         autofocus: true,
         controller: controller,
@@ -70,7 +70,7 @@ class ServerUrlField extends HookConsumerWidget {
         },
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          hintText: (LocaleKeys.serverSettingsScreen_hintText.tr()),
+          hintText: (LocaleKeys.urlHintText.tr()),
         ),
       ),
       actions: [
@@ -80,7 +80,7 @@ class ServerUrlField extends HookConsumerWidget {
             _update(controller.text, ref);
             context.navPop();
           },
-          child: Text(LocaleKeys.common_save.tr()),
+          child: Text(LocaleKeys.save.tr()),
         ),
       ],
     );

@@ -15,7 +15,7 @@ class PopButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () => context.navPop(),
-      child: Text(popText ?? LocaleKeys.common_cancel.tr()),
+      child: Text(popText ?? LocaleKeys.cancel.tr()),
     );
   }
 }

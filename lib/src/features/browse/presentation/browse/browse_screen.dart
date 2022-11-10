@@ -27,7 +27,7 @@ class BrowseScreen extends HookConsumerWidget {
     final key = useMemoized(() => GlobalKey());
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.screenTitle_browse.tr()),
+        title: Text(LocaleKeys.browse.tr()),
         centerTitle: true,
         actions: [
           IconButton(
@@ -48,7 +48,7 @@ class BrowseScreen extends HookConsumerWidget {
           ),
         ],
         bottom: TabBar(
-            padding: Edge.a8.size,
+            padding: KEdgeInsets.a8.size,
             isScrollable: context.isTablet,
             labelColor: context.theme.indicatorColor,
             indicator: BoxDecoration(
@@ -57,8 +57,8 @@ class BrowseScreen extends HookConsumerWidget {
             ),
             controller: tabController,
             tabs: [
-              Tab(text: LocaleKeys.screenTitle_sources.tr()),
-              Tab(text: LocaleKeys.screenTitle_extensions.tr()),
+              Tab(text: LocaleKeys.sources.tr()),
+              Tab(text: LocaleKeys.extensions.tr()),
             ]),
       ),
       body: TabBarView(

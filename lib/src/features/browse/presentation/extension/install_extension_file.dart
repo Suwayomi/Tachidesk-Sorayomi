@@ -24,17 +24,16 @@ class InstallExtensionFile extends ConsumerWidget {
       allowedExtensions: ['apk'],
     );
     if ((file?.files).isNotBlank) {
-      toast.show(LocaleKeys.extensionScreen_installFile_title.tr());
+      toast.show(LocaleKeys.installingExtension.tr());
     }
     final result = (await AsyncValue.guard(() => ref
         .read(extensionRepositoryProvider)
-        .installExtensionFile(file: file?.files.single)))
-      ..showToastOnError(toast);
-    result.maybeWhen(
+        .installExtensionFile(file: file?.files.single)));
+    result.maybeWhen<void>(
+      error: (error, stackTrace) => result.showToastOnError(toast),
       data: (data) {
         ref.invalidate(extensionControllerProvider);
-        toast.instantShow(
-            LocaleKeys.extensionScreen_extensionInstalled_title.tr());
+        toast.instantShow(LocaleKeys.extensionInstalled.tr());
       },
       orElse: () {},
     );

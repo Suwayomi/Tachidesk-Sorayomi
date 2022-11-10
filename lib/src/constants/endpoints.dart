@@ -49,8 +49,9 @@ abstract class MangaUrl {
   static String getMangaLibrary(int mangaId) => "$_manga/$mangaId/library";
   static String getMangaMeta(int mangaId) => "$_manga/$mangaId/meta";
   static String getChapters(int mangaId) => "$_manga/$mangaId/chapters";
-  static String getChapterWithIndex(int mangaId, int chapterIndex) =>
-      "$_manga/$mangaId/chapter/$chapterIndex";
+  static String getChapterWithIndex(int mangaId, int chapterIndex,
+          {bool useCache = true}) =>
+      "$_manga/$mangaId/chapter/$chapterIndex?useCache=$useCache";
   static String getChapterMetaWithIndex(int mangaId, int chapterIndex) =>
       "$_manga/$mangaId/chapter/$chapterIndex/meta";
   static String getChapterPageWithIndex({

@@ -26,7 +26,7 @@ class MoreScreen extends ConsumerWidget {
     final toast = ref.watch(toastProvider(context));
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.screenTitle_more.tr()),
+        title: Text(LocaleKeys.more.tr()),
       ),
       body: ListView(
         children: [
@@ -37,7 +37,7 @@ class MoreScreen extends ConsumerWidget {
           const Divider(),
           const ServerUrlTile(),
           ListTile(
-            title: Text(LocaleKeys.screenTitle_categories.tr()),
+            title: Text(LocaleKeys.categories.tr()),
             leading: const Icon(Icons.category_rounded),
             onTap: () => context.push([
               Routes.settings,
@@ -47,23 +47,23 @@ class MoreScreen extends ConsumerWidget {
           ),
           const AppThemeTile(),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_backup.tr()),
+            title: Text(LocaleKeys.backup.tr()),
             leading: const Icon(Icons.settings_backup_restore_rounded),
             onTap: () => context.push([Routes.settings, Routes.backup].toPath),
           ),
           const Divider(),
           ListTile(
-            title: Text(LocaleKeys.screenTitle_settings.tr()),
+            title: Text(LocaleKeys.settings.tr()),
             leading: const Icon(Icons.settings_rounded),
             onTap: () => context.push(Routes.settings),
           ),
           ListTile(
-            title: Text(LocaleKeys.screenTitle_about.tr()),
+            title: Text(LocaleKeys.about.tr()),
             leading: const Icon(Icons.info_rounded),
             onTap: () => context.push(Routes.about),
           ),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_help.tr()),
+            title: Text(LocaleKeys.help.tr()),
             leading: const Icon(Icons.help_rounded),
             onTap: () => launchUrlInWeb(AppUrls.tachideskHelp.url, toast),
           ),

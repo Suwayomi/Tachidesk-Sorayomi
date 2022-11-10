@@ -40,7 +40,7 @@ class ReaderNavigationLayoutTile extends HookConsumerWidget {
       subtitle: readerNavigationLayout != null
           ? Text(readerNavigationLayout.toString().tr())
           : null,
-      title: Text(LocaleKeys.readerSettingsScreen_readerNavigationLayout.tr()),
+      title: Text(LocaleKeys.readerNavigationLayout.tr()),
       onTap: () => showDialog(
         context: context,
         builder: (context) => EnumPopup<ReaderNavigationLayout>(

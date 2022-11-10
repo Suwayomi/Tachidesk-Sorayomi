@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
 import 'package:tachidesk_sorayomi/src/constants/app_sizes.dart';
 import 'package:tachidesk_sorayomi/src/features/chapter/domain/downloads_queue/downloads_queue_model.dart';
+import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/int_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
@@ -70,7 +72,7 @@ class DownloadProgressListTile extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: Edge.v4.size,
+            padding: KEdgeInsets.v4.size,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -91,17 +93,26 @@ class DownloadProgressListTile extends HookConsumerWidget {
       ),
       trailing: isLoading.value
           ? const MiniCircularProgressIndicator()
-          : download.state == "Error"
-              ? IconButton(
-                  onPressed: () =>
-                      toggleChapterToQueue(isLoading, toast, ref, true),
-                  icon: const Icon(Icons.replay_rounded),
-                )
-              : IconButton(
-                  icon: const Icon(Icons.delete_rounded),
-                  onPressed: () =>
+          : PopupMenuButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: KBorderRadius.r8.radius,
+              ),
+              padding: EdgeInsets.zero,
+              child: const Icon(Icons.more_vert_rounded),
+              itemBuilder: (context) => [
+                if (download.state == "Error")
+                  PopupMenuItem(
+                    child: Text(LocaleKeys.retry.tr()),
+                    onTap: () =>
+                        toggleChapterToQueue(isLoading, toast, ref, true),
+                  ),
+                PopupMenuItem(
+                  child: Text(LocaleKeys.delete.tr()),
+                  onTap: () =>
                       toggleChapterToQueue(isLoading, toast, ref, false),
                 ),
+              ],
+            ),
     );
   }
 }

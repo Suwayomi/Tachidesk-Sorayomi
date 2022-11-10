@@ -2,9 +2,12 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 // 🌎 Project imports:
+import '../../../../constants/app_sizes.dart';
+import '../../../../i18n/locale_keys.g.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../domain/category/category_model.dart';
 import 'delete_category_alert.dart';
@@ -29,13 +32,18 @@ class CategoryTile extends HookWidget {
     return ListTile(
       title: Text(category.name ?? ""),
       leading: leading,
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: isLoading.value
-            ? const [MiniCircularProgressIndicator()]
-            : [
-                IconButton(
-                  onPressed: () => showDialog(
+      trailing: isLoading.value
+          ? const MiniCircularProgressIndicator()
+          : PopupMenuButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: KBorderRadius.r8.radius,
+              ),
+              padding: EdgeInsets.zero,
+              child: const Icon(Icons.more_vert_rounded),
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text(LocaleKeys.edit.tr()),
+                  onTap: () => showDialog(
                     context: context,
                     builder: (context) => EditCategoryDialog(
                       category: category,
@@ -50,10 +58,10 @@ class CategoryTile extends HookWidget {
                       },
                     ),
                   ),
-                  icon: const Icon(Icons.edit_rounded),
                 ),
-                IconButton(
-                  onPressed: () => showDialog(
+                PopupMenuItem(
+                  child: Text(LocaleKeys.delete.tr()),
+                  onTap: () => showDialog(
                     context: context,
                     builder: (context) => DeleteCategoryAlert(
                       deleteCategory: () async {
@@ -67,10 +75,9 @@ class CategoryTile extends HookWidget {
                       },
                     ),
                   ),
-                  icon: const Icon(Icons.delete_rounded),
                 ),
               ],
-      ),
+            ),
     );
   }
 }

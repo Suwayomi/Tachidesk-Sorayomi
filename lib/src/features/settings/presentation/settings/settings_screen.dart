@@ -17,41 +17,41 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.screenTitle_settings.tr()),
+        title: Text(LocaleKeys.settings.tr()),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_appearance.tr()),
+            title: Text(LocaleKeys.appearance.tr()),
             leading: const Icon(Icons.color_lens_rounded),
             onTap: () => context
                 .push([Routes.settings, Routes.appearanceSettings].toPath),
           ),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_library.tr()),
+            title: Text(LocaleKeys.library.tr()),
             leading: const Icon(Icons.collections_bookmark_rounded),
             onTap: () =>
                 context.push([Routes.settings, Routes.librarySettings].toPath),
           ),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_reader.tr()),
+            title: Text(LocaleKeys.reader.tr()),
             leading: const Icon(Icons.chrome_reader_mode_rounded),
             onTap: () =>
                 context.push([Routes.settings, Routes.readerSettings].toPath),
           ),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_browse.tr()),
+            title: Text(LocaleKeys.browse.tr()),
             leading: const Icon(Icons.explore_rounded),
             onTap: () => context
                 .push([Routes.settings, Routes.browseSettingsScreen].toPath),
           ),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_backup.tr()),
+            title: Text(LocaleKeys.backup.tr()),
             leading: const Icon(Icons.settings_backup_restore_rounded),
             onTap: () => context.push([Routes.settings, Routes.backup].toPath),
           ),
           ListTile(
-            title: Text(LocaleKeys.settingsScreen_server.tr()),
+            title: Text(LocaleKeys.server.tr()),
             leading: const Icon(Icons.computer_rounded),
             onTap: () =>
                 context.push([Routes.settings, Routes.serverSettings].toPath),

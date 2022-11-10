@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
-enum Edge {
+enum KEdgeInsets {
   a8(EdgeInsets.all(8)),
   a4(EdgeInsets.all(4)),
   a16(EdgeInsets.all(16)),
@@ -13,12 +13,12 @@ enum Edge {
   v8(EdgeInsets.symmetric(vertical: 8)),
   v4(EdgeInsets.symmetric(vertical: 4));
 
-  const Edge(this.size);
+  const KEdgeInsets(this.size);
 
   final EdgeInsetsGeometry size;
 }
 
-enum Box {
+enum KSizedBox {
   h4(SizedBox(height: 4)),
   w4(SizedBox(width: 4)),
   h16(SizedBox(height: 16)),
@@ -31,7 +31,14 @@ enum Box {
   w96(SizedBox(width: 96)),
   ;
 
-  const Box(this.size);
+  const KSizedBox(this.size);
 
   final SizedBox size;
+}
+
+enum KBorderRadius {
+  r8(BorderRadius.all(Radius.circular(8)));
+
+  const KBorderRadius(this.radius);
+  final BorderRadius radius;
 }

@@ -18,7 +18,7 @@ class MiniCircularProgressIndicator extends StatelessWidget {
   final double? value;
   @override
   Widget build(BuildContext context) => Padding(
-        padding: Edge.a8.size,
+        padding: KEdgeInsets.a8.size,
         child: SizedBox.square(
           dimension: 16,
           child: CircularProgressIndicator(

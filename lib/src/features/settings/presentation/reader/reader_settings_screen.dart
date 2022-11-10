@@ -17,7 +17,7 @@ class ReaderSettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.settingsScreen_reader.tr()),
+        title: Text(LocaleKeys.reader.tr()),
       ),
       body: ListView(
         children: const [

@@ -25,7 +25,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(chapterRepositoryProvider).startDownloads))
               .showToastOnError(toast);
         },
-        label: Text(LocaleKeys.downloadScreen_resume.tr()),
+        label: Text(LocaleKeys.resume.tr()),
         isExtended: context.isTablet,
         icon: const Icon(Icons.play_arrow),
       );
@@ -36,7 +36,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(chapterRepositoryProvider).stopDownloads))
               .showToastOnError(toast);
         },
-        label: Text(LocaleKeys.downloadScreen_pause.tr()),
+        label: Text(LocaleKeys.pause.tr()),
         isExtended: context.isTablet,
         icon: const Icon(Icons.pause_rounded),
       );

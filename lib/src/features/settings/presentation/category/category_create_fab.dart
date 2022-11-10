@@ -41,7 +41,7 @@ class CategoryCreateFab extends HookConsumerWidget {
               );
             },
       isExtended: context.isTablet && !isLoading.value,
-      label: Text(LocaleKeys.editCategoriesScreen_add.tr()),
+      label: Text(LocaleKeys.addCategory.tr()),
       icon: isLoading.value
           ? MiniCircularProgressIndicator(color: context.theme.iconTheme.color)
           : const Icon(Icons.add_rounded),

@@ -24,8 +24,8 @@ class EnumPopup<T extends Enum> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: Edge.v8.size,
-      title: Text(LocaleKeys.appearanceScreen_appTheme.tr()),
+      contentPadding: KEdgeInsets.v8.size,
+      title: Text(LocaleKeys.appTheme.tr()),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: enumList

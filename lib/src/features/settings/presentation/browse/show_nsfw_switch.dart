@@ -32,9 +32,9 @@ class ShowNSFWTile extends HookConsumerWidget {
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.eighteen_up_rating_rounded),
       title: Text(
-        LocaleKeys.browserSettingsScreen_nsfw_title.tr(),
+        LocaleKeys.nsfw_title.tr(),
       ),
-      subtitle: Text(LocaleKeys.browserSettingsScreen_nsfw_subtitle.tr()),
+      subtitle: Text(LocaleKeys.nsfw_subtitle.tr()),
       onChanged: ref.read(showNSFWProvider.notifier).update,
       value: ref.watch(showNSFWProvider) ?? false,
     );

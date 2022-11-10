@@ -25,7 +25,7 @@ class BackupMissingDialog extends StatelessWidget {
         children: [
           if (backupMissing.missingSources.isNotBlank)
             Text(
-              LocaleKeys.backupSettings_missingExtension.tr(),
+              LocaleKeys.missingExtension.tr(),
               style: context.textTheme.titleMedium,
             ),
           ...?backupMissing.missingSources?.map(
@@ -36,7 +36,7 @@ class BackupMissingDialog extends StatelessWidget {
           ),
           if (backupMissing.missingTrackers.isNotBlank)
             Text(
-              LocaleKeys.backupSettings_missingTrackers.tr(),
+              LocaleKeys.missingTrackers.tr(),
               style: context.textTheme.titleMedium,
             ),
           ...?backupMissing.missingTrackers?.map(
@@ -47,7 +47,7 @@ class BackupMissingDialog extends StatelessWidget {
           ),
         ],
       ),
-      actions: [PopButton(popText: LocaleKeys.common_close.tr())],
+      actions: [PopButton(popText: LocaleKeys.close.tr())],
     );
   }
 }

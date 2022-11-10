@@ -15,9 +15,8 @@ class DeleteCategoryAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(LocaleKeys.editCategoriesScreen_deleteCategory_title.tr()),
-      content:
-          Text(LocaleKeys.editCategoriesScreen_deleteCategory_content.tr()),
+      title: Text(LocaleKeys.deleteCategory_title.tr()),
+      content: Text(LocaleKeys.deleteCategory_content.tr()),
       actions: [
         const PopButton(),
         ElevatedButton(
@@ -25,7 +24,7 @@ class DeleteCategoryAlert extends StatelessWidget {
             deleteCategory();
             context.navPop();
           },
-          child: Text(LocaleKeys.common_delete.tr()),
+          child: Text(LocaleKeys.delete.tr()),
         ),
       ],
     );

@@ -50,7 +50,7 @@ class CredentialsPopup extends HookConsumerWidget {
     final username = useTextEditingController();
     final password = useTextEditingController();
     return AlertDialog(
-      title: Text(LocaleKeys.serverSettingsScreen_credentials.tr()),
+      title: Text(LocaleKeys.credentials.tr()),
       content: Form(
         key: formKey,
         child: Column(
@@ -61,18 +61,18 @@ class CredentialsPopup extends HookConsumerWidget {
               validator: (value) =>
                   value.isBlank ? LocaleKeys.error_userName.tr() : null,
               decoration: InputDecoration(
-                hintText: LocaleKeys.serverSettingsScreen_userName.tr(),
+                hintText: LocaleKeys.userName.tr(),
                 border: const OutlineInputBorder(),
               ),
             ),
-            Box.h4.size,
+            KSizedBox.h4.size,
             TextFormField(
               controller: password,
               validator: (value) =>
                   value.isBlank ? LocaleKeys.error_password.tr() : null,
               obscureText: true,
               decoration: InputDecoration(
-                hintText: LocaleKeys.serverSettingsScreen_password.tr(),
+                hintText: LocaleKeys.password.tr(),
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -93,7 +93,7 @@ class CredentialsPopup extends HookConsumerWidget {
             }
             context.navPop();
           },
-          child: Text(LocaleKeys.common_save.tr()),
+          child: Text(LocaleKeys.save.tr()),
         ),
       ],
     );

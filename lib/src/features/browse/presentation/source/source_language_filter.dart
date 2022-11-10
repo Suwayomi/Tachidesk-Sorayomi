@@ -22,7 +22,7 @@ class SourceLanguageFilter extends ConsumerWidget {
       ..remove("lastUsed");
     final enabledLanguages = ref.watch(sourceLanguageFilterProvider);
     return AlertDialog(
-      title: Text(LocaleKeys.sourceScreen_languages.tr()),
+      title: Text(LocaleKeys.languages.tr()),
       content: SizedBox(
         height: context.heightScale(scale: .5),
         width: context.widthScale(scale: context.isSmallTablet ? .5 : .8),

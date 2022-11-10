@@ -25,14 +25,14 @@ class ExtensionSearchField extends HookConsumerWidget {
       return () => controller.removeListener(listener);
     }, []);
     return Padding(
-      padding: Edge.h16v8.size,
+      padding: KEdgeInsets.h16v8.size,
       child: TextField(
         autofocus: true,
         controller: controller,
         decoration: InputDecoration(
           isDense: true,
           border: const OutlineInputBorder(),
-          hintText: LocaleKeys.common_search.tr(),
+          hintText: LocaleKeys.search.tr(),
           suffixIcon: IconButton(
             onPressed: ref.read(browseScreenShowSearchProvider.notifier).toggle,
             icon: const Icon(Icons.close_rounded),

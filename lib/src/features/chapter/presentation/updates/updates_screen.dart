@@ -16,6 +16,7 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/int_extensions.dart';
 import 'package:tachidesk_sorayomi/src/utils/hooks/paging_controller_hook.dart';
 import 'package:tachidesk_sorayomi/src/utils/misc/toast/toast.dart';
+import 'package:tachidesk_sorayomi/src/widgets/emoticons.dart';
 
 class UpdatesScreen extends HookConsumerWidget {
   const UpdatesScreen({Key? key}) : super(key: key);
@@ -24,20 +25,30 @@ class UpdatesScreen extends HookConsumerWidget {
     ChapterRepository repository,
     PagingController controller,
     int pageKey,
+    Toast toast,
   ) async {
-    ChapterPage? recentChaptersPage =
-        await repository.getRecentChaptersPage(pageNo: pageKey);
-    if (recentChaptersPage != null) {
-      if (recentChaptersPage.hasNextPage ?? false) {
-        try {
-          controller.appendPage(recentChaptersPage.page ?? [], pageKey + 1);
-        } catch (e) {
-          controller.appendPage([], pageKey);
+    final asyncRecentChaptersPage = await AsyncValue.guard(
+        () async => await repository.getRecentChaptersPage(pageNo: pageKey));
+    asyncRecentChaptersPage.maybeWhen(
+      data: (recentChaptersPage) {
+        if (recentChaptersPage != null) {
+          if (recentChaptersPage.hasNextPage ?? false) {
+            try {
+              controller.appendPage(recentChaptersPage.page ?? [], pageKey + 1);
+            } catch (e) {
+              controller.appendPage([], pageKey);
+            }
+          } else {
+            controller.appendLastPage(recentChaptersPage.page ?? []);
+          }
         }
-      } else {
-        controller.appendLastPage(recentChaptersPage.page ?? []);
-      }
-    }
+      },
+      error: (error, stackTrace) {
+        asyncRecentChaptersPage.showToastOnError(toast);
+        controller.error = error;
+      },
+      orElse: () {},
+    );
   }
 
   @override
@@ -51,16 +62,31 @@ class UpdatesScreen extends HookConsumerWidget {
             chapterRepository,
             controller,
             pageKey,
+            toast,
           ));
       return;
     }, []);
     return Scaffold(
-      appBar: AppBar(title: Text(LocaleKeys.screenTitle_updates.tr())),
+      appBar: AppBar(title: Text(LocaleKeys.updates.tr())),
       body: RefreshIndicator(
         onRefresh: () async => controller.refresh(),
         child: PagedListView(
           pagingController: controller,
           builderDelegate: PagedChildBuilderDelegate<ChapterMangaPair>(
+            firstPageErrorIndicatorBuilder: (context) => Emoticons(
+              text: controller.error.toString(),
+              button: TextButton(
+                onPressed: () => controller.refresh(),
+                child: Text(LocaleKeys.retry.tr()),
+              ),
+            ),
+            noItemsFoundIndicatorBuilder: (context) => Emoticons(
+              text: LocaleKeys.noUpdatesFound.tr(),
+              button: TextButton(
+                onPressed: () => controller.refresh(),
+                child: Text(LocaleKeys.refresh.tr()),
+              ),
+            ),
             itemBuilder: (context, item, index) {
               int? previousDate;
               try {
@@ -74,16 +100,16 @@ class UpdatesScreen extends HookConsumerWidget {
                 toast: toast,
                 updatePair: () async {
                   try {
-                    final chapter = (await AsyncValue.guard(
-                        () => ref.read(chapterRepositoryProvider).getChapter(
-                              mangaId: item.manga!.id!,
-                              chapterIndex: item.chapter!.index!,
-                            )))
-                      ..showToastOnError(toast);
+                    final chapter = (await AsyncValue.guard(() =>
+                            ref.read(chapterRepositoryProvider).getChapter(
+                                  mangaId: item.manga!.id!,
+                                  chapterIndex: item.chapter!.index!,
+                                )))
+                        .valueOrToast(toast);
                     controller.itemList = [...?controller.itemList]
                       ..replaceRange(index, index + 1, [
                         item.copyWith(
-                          chapter: chapter.valueOrNull ?? item.chapter,
+                          chapter: chapter ?? item.chapter,
                         )
                       ]);
                   } catch (e) {

@@ -36,7 +36,7 @@ class Emoticons extends HookWidget {
   Widget build(BuildContext context) {
     final errorNumber = useState(Random().nextInt(errorFaces.length));
     return Padding(
-      padding: Edge.a8.size,
+      padding: KEdgeInsets.a8.size,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -48,7 +48,7 @@ class Emoticons extends HookWidget {
                   textAlign: TextAlign.center,
                   style: context.textTheme.displayMedium,
                 ),
-          Box.h16.size,
+          KSizedBox.h16.size,
           if (text.isNotBlank)
             Text(
               text!,

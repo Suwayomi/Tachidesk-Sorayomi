@@ -9,9 +9,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/category/category_model.dart';
@@ -24,14 +22,12 @@ class EditCategoryScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
-    final categoryController = ref.watch(categoryControllerProvider)
-      ..showToastOnError(toast);
+    final categoryController = ref.watch(categoryControllerProvider);
     final categoryList = ref.watch(categoryListProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.editCategoriesScreen_editCategory.tr()),
+        title: Text(LocaleKeys.editCategory.tr()),
       ),
       floatingActionButton: categoryController.asError?.error != null
           ? null
@@ -40,10 +36,10 @@ class EditCategoryScreen extends HookConsumerWidget {
         data: (data) {
           if (categoryList.isEmpty) {
             return Emoticons(
-              text: LocaleKeys.editCategoriesScreen_emptyCategory.tr(),
+              text: LocaleKeys.noCategoriesFound.tr(),
               button: TextButton(
                 onPressed: () => ref.refresh(categoryControllerProvider.future),
-                child: Text(LocaleKeys.common_refresh.tr()),
+                child: Text(LocaleKeys.refresh.tr()),
               ),
             );
           } else {
@@ -62,7 +58,7 @@ class EditCategoryScreen extends HookConsumerWidget {
                     const Divider(),
                   ],
                 ),
-                footer: Box.h96.size,
+                footer: KSizedBox.h96.size,
                 onReorder: (int oldIndex, int newIndex) async {
                   if (oldIndex < newIndex) newIndex -= 1;
                   await ref
@@ -94,7 +90,7 @@ class EditCategoryScreen extends HookConsumerWidget {
           text: error.toString(),
           button: TextButton(
             onPressed: () => ref.refresh(categoryControllerProvider.future),
-            child: Text(LocaleKeys.common_refresh.tr()),
+            child: Text(LocaleKeys.refresh.tr()),
           ),
         ),
         loading: () => const CenterCircularProgressIndicator(),

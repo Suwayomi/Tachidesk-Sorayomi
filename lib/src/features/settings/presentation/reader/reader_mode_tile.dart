@@ -38,7 +38,7 @@ class ReaderModeTile extends HookConsumerWidget {
     return ListTile(
       leading: const Icon(Icons.app_settings_alt_rounded),
       subtitle: readerMode != null ? Text(readerMode.toString().tr()) : null,
-      title: Text(LocaleKeys.readerSettingsScreen_readerMode.tr()),
+      title: Text(LocaleKeys.readerMode.tr()),
       onTap: () => showDialog(
         context: context,
         builder: (context) => EnumPopup<ReaderMode>(

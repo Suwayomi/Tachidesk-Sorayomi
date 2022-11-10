@@ -23,31 +23,31 @@ class NavigationBarData {
     NavigationBarData(
       icon: Icons.collections_bookmark_outlined,
       activeIcon: Icons.collections_bookmark_rounded,
-      label: LocaleKeys.screenTitle_library.tr(),
+      label: LocaleKeys.library.tr(),
       path: Routes.library,
     ),
     NavigationBarData(
       icon: Icons.new_releases_outlined,
       activeIcon: Icons.new_releases_rounded,
-      label: LocaleKeys.screenTitle_updates.tr(),
+      label: LocaleKeys.updates.tr(),
       path: Routes.updates,
     ),
     NavigationBarData(
       icon: Icons.explore_outlined,
       activeIcon: Icons.explore_rounded,
-      label: LocaleKeys.screenTitle_browse.tr(),
+      label: LocaleKeys.browse.tr(),
       path: Routes.browse,
     ),
     NavigationBarData(
       icon: Icons.download_outlined,
       activeIcon: Icons.download_rounded,
-      label: LocaleKeys.screenTitle_downloads.tr(),
+      label: LocaleKeys.downloads.tr(),
       path: Routes.downloads,
     ),
     NavigationBarData(
       icon: Icons.more_horiz_outlined,
       activeIcon: Icons.more_horiz_rounded,
-      label: LocaleKeys.screenTitle_more.tr(),
+      label: LocaleKeys.more.tr(),
       path: Routes.more,
     ),
   ];

@@ -32,7 +32,7 @@ class ReaderInvertTapTile extends HookConsumerWidget {
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.switch_left_rounded),
       title: Text(
-        LocaleKeys.readerSettingsScreen_readerNavigationLayoutInvert.tr(),
+        LocaleKeys.readerNavigationLayoutInvert.tr(),
       ),
       onChanged: ref.read(invertTapProvider.notifier).update,
       value: ref.watch(invertTapProvider) ?? false,

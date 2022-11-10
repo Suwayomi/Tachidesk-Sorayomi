@@ -17,12 +17,12 @@ class LibrarySettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.settingsScreen_library.tr()),
+        title: Text(LocaleKeys.library.tr()),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text(LocaleKeys.screenTitle_categories.tr()),
+            title: Text(LocaleKeys.categories.tr()),
             leading: const Icon(Icons.category_rounded),
             onTap: () => context.push([
               Routes.settings,

@@ -18,16 +18,16 @@ void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
       context: context,
       builder: (_) {
         return AlertDialog(
-          title: Text(LocaleKeys.appUpdate_newUpdateAvailable.tr()),
+          title: Text(LocaleKeys.newUpdateAvailable.tr()),
           content: Text(
-            LocaleKeys.appUpdate_versionAvailable.tr(
+            LocaleKeys.versionAvailable.tr(
               namedArgs: {"version": newRelease.canonicalizedVersion},
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => context.navPop(),
-              child: Text(LocaleKeys.appUpdate_close.tr()),
+              child: Text(LocaleKeys.close.tr()),
             ),
             ElevatedButton.icon(
               onPressed: () {
@@ -35,7 +35,7 @@ void appUpdateDialog(Version newRelease, BuildContext context, Toast toast) =>
                 context.navPop();
               },
               icon: const Icon(FontAwesomeIcons.github),
-              label: Text(LocaleKeys.appUpdate_gitHub.tr()),
+              label: Text(LocaleKeys.gitHub.tr()),
             ),
           ],
         );

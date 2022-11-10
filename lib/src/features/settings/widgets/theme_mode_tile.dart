@@ -39,7 +39,7 @@ class AppThemeTile extends HookConsumerWidget {
         context.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
       ),
       subtitle: themeMode != null ? Text(themeMode.toString().tr()) : null,
-      title: Text(LocaleKeys.appearanceScreen_appTheme.tr()),
+      title: Text(LocaleKeys.appTheme.tr()),
       onTap: () => showDialog(
         context: context,
         builder: (context) => EnumPopup<ThemeMode>(
