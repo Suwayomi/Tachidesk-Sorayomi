@@ -1,7 +1,7 @@
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../../../browse/domain/source/source_model.dart';
 
 part 'manga_model.freezed.dart';

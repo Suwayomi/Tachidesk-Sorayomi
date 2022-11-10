@@ -1,8 +1,8 @@
-// Package imports:
+// 📦 Package imports:
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../constants/db_keys.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/credentials_popup.dart';

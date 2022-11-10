@@ -1,16 +1,16 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// Project imports:
-import '../global_providers/global_providers.dart';
+// 🌎 Project imports:
 import '../constants/db_keys.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/credentials_popup.dart';
 import '../features/settings/widgets/server_url_tile.dart';
+import '../global_providers/global_providers.dart';
 
 class ServerImage extends ConsumerWidget {
   const ServerImage({super.key, required this.imageUrl, this.size});

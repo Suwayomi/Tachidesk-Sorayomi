@@ -61,6 +61,7 @@ flutter_gen:
   output: lib/src/constants/gen/
 
 import_sorter:
+  emojis: true
   ignored_files:
     - /*.g.dart
     - /*.gen.dart

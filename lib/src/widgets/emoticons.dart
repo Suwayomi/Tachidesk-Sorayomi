@@ -1,13 +1,13 @@
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:math';
 
-// Flutter imports:
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../constants/app_sizes.dart';
 import '../utils/extensions/custom_extensions/context_extensions.dart';
 import '../utils/extensions/custom_extensions/string_extensions.dart';

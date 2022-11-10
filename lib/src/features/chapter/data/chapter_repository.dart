@@ -1,24 +1,24 @@
-// Dart imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
+// 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-// Project imports:
-import '../domain/chapter/chapter_model.dart';
-import '../domain/downloads/downloads_model.dart';
-import '../../../utils/classes/pair/pair_model.dart';
-import '../../../utils/misc/custom_typedef.dart';
+// 🌎 Project imports:
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
+import '../../../utils/classes/pair/pair_model.dart';
+import '../../../utils/misc/custom_typedef.dart';
 import '../../../utils/storage/dio/dio_client.dart';
+import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_page/chapter_page_model.dart';
+import '../domain/downloads/downloads_model.dart';
 import '../domain/downloads_queue/downloads_queue_model.dart';
 
 part 'chapter_repository.g.dart';

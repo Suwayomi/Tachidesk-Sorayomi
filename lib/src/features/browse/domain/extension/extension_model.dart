@@ -1,7 +1,7 @@
-// Package imports:
+// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../../../../utils/misc/language_json_converter.dart';
 import '../language/language_model.dart';
 

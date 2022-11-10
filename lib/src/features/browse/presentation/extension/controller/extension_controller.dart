@@ -1,15 +1,15 @@
-// Package imports:
+// 📦 Package imports:
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// Project imports:
-import '../../browse/controller/browse_controller.dart';
-import '../../../../settings/presentation/browse/show_nsfw_switch.dart';
-import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+// 🌎 Project imports:
 import '../../../../../constants/db_keys.dart';
+import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../settings/presentation/browse/show_nsfw_switch.dart';
 import '../../../data/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
+import '../../browse/controller/browse_controller.dart';
 
 part 'extension_controller.g.dart';
 

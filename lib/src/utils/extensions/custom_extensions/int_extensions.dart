@@ -1,7 +1,7 @@
-// Package imports:
+// 📦 Package imports:
 import 'package:intl/intl.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'date_time_extensions.dart';
 
 extension IntExtensions on int? {

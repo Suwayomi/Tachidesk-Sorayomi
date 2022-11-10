@@ -1,11 +1,11 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../../utils/extensions/custom_extensions/context_extensions.dart';
 import 'big_screen_navigation_bar.dart';
 import 'small_screen_navigation_bar.dart';

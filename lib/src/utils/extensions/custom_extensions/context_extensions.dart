@@ -1,7 +1,7 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import 'iterable_extensions.dart';
 
 /// Helper class for device related operations.

@@ -1,10 +1,10 @@
-// Flutter imports:
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
+// 📦 Package imports:
 import 'package:go_router/go_router.dart';
 
-// Project imports:
+// 🌎 Project imports:
 import '../../constants/navigation_bar_data.dart';
 
 class SmallScreenNavigationBar extends StatelessWidget {

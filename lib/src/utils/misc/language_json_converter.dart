@@ -1,4 +1,4 @@
-// Project imports:
+// 🌎 Project imports:
 import '../../constants/language_list.dart';
 import '../../features/browse/domain/language/language_model.dart';
 
