@@ -37,7 +37,10 @@ enum KSizedBox {
 }
 
 enum KBorderRadius {
-  r8(BorderRadius.all(Radius.circular(8)));
+  r8(BorderRadius.all(Radius.circular(8))),
+  r12(BorderRadius.all(Radius.circular(12))),
+  r16(BorderRadius.all(Radius.circular(16))),
+  ;
 
   const KBorderRadius(this.radius);
   final BorderRadius radius;

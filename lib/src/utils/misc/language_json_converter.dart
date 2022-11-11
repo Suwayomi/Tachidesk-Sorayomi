@@ -1,6 +1,6 @@
 // 🌎 Project imports:
 import '../../constants/language_list.dart';
-import '../../features/browse/domain/language/language_model.dart';
+import '../../features/browse_center/domain/language/language_model.dart';
 
 class LanguageJsonConverter {
   static Language? fromJson(String? langCode) => langCode != null

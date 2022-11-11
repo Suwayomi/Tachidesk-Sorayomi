@@ -14,17 +14,16 @@ class SmallScreenNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      showUnselectedLabels: true,
-      type: BottomNavigationBarType.fixed,
-      currentIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
-      onTap: (value) => context.go(NavigationBarData.navList[value].path.first),
-      items: NavigationBarData.navList
-          .map<BottomNavigationBarItem>(
-            (e) => BottomNavigationBarItem(
+    return NavigationBar(
+      selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
+      onDestinationSelected: (value) =>
+          context.go(NavigationBarData.navList[value].path.first),
+      destinations: NavigationBarData.navList
+          .map<NavigationDestination>(
+            (e) => NavigationDestination(
               icon: Icon(e.icon),
               label: e.label,
-              activeIcon: Icon(e.activeIcon),
+              selectedIcon: Icon(e.activeIcon),
               tooltip: e.label,
             ),
           )

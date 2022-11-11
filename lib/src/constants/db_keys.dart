@@ -16,6 +16,9 @@ enum DBKeys {
   readerNavigationLayout(ReaderNavigationLayout.disabled),
   invertTap(false),
   showNSFW(true),
+  downloadedBadge(true),
+  unreadBadge(true),
+  languageBadge(false),
   ;
 
   const DBKeys(this.initial);

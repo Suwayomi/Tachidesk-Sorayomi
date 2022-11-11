@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:tachidesk_sorayomi/src/features/chapter/presentation/updates/updates_screen.dart';
+import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
+import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/updates/updates_screen.dart';
 
 // 🌎 Project imports:
 import '../features/about/presentation/about/about_screen.dart';
-import '../features/browse/presentation/browse/browse_screen.dart';
-import '../features/chapter/presentation/downloads/downloads_screen.dart';
+import '../features/browse_center/presentation/browse/browse_screen.dart';
+import '../features/manga_book/presentation/downloads/downloads_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
-import '../features/settings/presentation/category/edit_category_screen.dart';
+import '../features/library/presentation/category/edit_category_screen.dart';
 import '../features/settings/presentation/library/library_settings_screen.dart';
 import '../features/settings/presentation/more/more_screen.dart';
 import '../features/settings/presentation/reader/reader_settings_screen.dart';
@@ -66,12 +67,8 @@ GoRouter routerConfig(ref) {
             redirect: (context, state) => Routes.library,
           ),
           GoRoute(
-            path: Routes.library,
-            builder: (context, state) => const Scaffold(
-              body: Center(child: Text(Routes.library)),
-              backgroundColor: Colors.amber,
-            ),
-          ),
+              path: Routes.library,
+              builder: (context, state) => const LibraryScreen()),
           GoRoute(
             path: Routes.updates,
             builder: (context, state) => const UpdatesScreen(),

@@ -1,5 +1,5 @@
 // 🌎 Project imports:
-import '../features/browse/domain/language/language_model.dart';
+import '../features/browse_center/domain/language/language_model.dart';
 
 final languageMap = {
   for (final e in customLanguageList) e['code'] ?? "other": Language.fromJson(e)

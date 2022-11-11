@@ -1,0 +1,100 @@
+// 📦 Package imports:
+import 'package:dio/dio.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+// 🌎 Project imports:
+import '../../../../utils/extensions/custom_extensions/map_extensions.dart';
+import '../../../../constants/endpoints.dart';
+import '../../../../global_providers/global_providers.dart';
+import '../../../../utils/storage/dio/dio_client.dart';
+import '../../../manga_book/domain/manga/manga_model.dart';
+import '../../domain/category/category_model.dart';
+
+// 🌎 Project imports:
+
+part 'category_repository.g.dart';
+
+class CategoryRepository {
+  final DioClient dioClient;
+
+  CategoryRepository(this.dioClient);
+
+  Future<List<Category>?> getCategoryList({CancelToken? cancelToken}) async =>
+      (await dioClient.get<List<Category>, Category>(
+        CategoryUrl.category,
+        decoder: (e) =>
+            e is Map<String, dynamic> ? Category.fromJson(e) : Category(),
+        cancelToken: cancelToken,
+      ))
+          .data;
+
+  Future<void> createCategory({
+    required Category category,
+    CancelToken? cancelToken,
+  }) =>
+      dioClient.post(
+        CategoryUrl.category,
+        data: FormData.fromMap(category.toJson().filterOutNulls),
+        cancelToken: cancelToken,
+      );
+
+  Future<void> editCategory({
+    required Category category,
+    CancelToken? cancelToken,
+  }) async =>
+      category.id != null
+          ? await dioClient.patch(
+              CategoryUrl.withId(category.id!),
+              data: FormData.fromMap(category.toJson().filterOutNulls),
+              cancelToken: cancelToken,
+            )
+          : null;
+
+  Future<void> deleteCategory({
+    required Category category,
+    CancelToken? cancelToken,
+  }) async =>
+      (category.id != null)
+          ? dioClient.delete(
+              CategoryUrl.withId(category.id!),
+              cancelToken: cancelToken,
+            )
+          : null;
+
+  Future<void> reorderCategory({
+    required int from,
+    required int to,
+  }) =>
+      dioClient.patch(
+        CategoryUrl.reorder,
+        data: FormData.fromMap({"from": from, "to": to}),
+      );
+
+  //  Manga
+  Future<List<Manga>?> getMangasFromCategory({
+    required int categoryId,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.get<List<Manga>, Manga>(
+        CategoryUrl.withId(categoryId),
+        decoder: (e) => e is Map<String, dynamic> ? Manga.fromJson(e) : Manga(),
+      ))
+          .data;
+}
+
+@riverpod
+CategoryRepository categoryRepository(CategoryRepositoryRef ref) =>
+    CategoryRepository(ref.watch(dioClientKeyProvider));
+
+@riverpod
+Future<List<Manga>?> categoryMangaList(CategoryMangaListRef ref,
+    {required int categoryId}) async {
+  final token = CancelToken();
+  final result = await ref
+      .watch(categoryRepositoryProvider)
+      .getMangasFromCategory(
+          categoryId: categoryId, cancelToken: CancelToken());
+  ref.keepAlive();
+  ref.onDispose(token.cancel);
+  return result;
+}

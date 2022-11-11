@@ -40,3 +40,13 @@ final aboutControllerProvider = AutoDisposeFutureProvider<About?>(
       : $aboutControllerHash,
 );
 typedef AboutControllerRef = AutoDisposeFutureProviderRef<About?>;
+String $packageInfoHash() => r'a5025c8498b8f2eacf55450228619ff1477adc05';
+
+/// See also [packageInfo].
+final packageInfoProvider = AutoDisposeProvider<PackageInfo>(
+  packageInfo,
+  name: r'packageInfoProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : $packageInfoHash,
+);
+typedef PackageInfoRef = AutoDisposeProviderRef<PackageInfo>;

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,10 +9,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 // 🌎 Project imports:
+import '../../domain/about/about_model.dart';
+import '../../domain/server_update/server_update_model.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../constants/urls.dart';
-import '../../../../global_providers/global_providers.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
@@ -29,18 +31,71 @@ import 'widget/media_launch_button.dart';
 class AboutScreen extends ConsumerWidget {
   const AboutScreen({super.key});
 
-  Future<void> checkForUpdate(
-    BuildContext context,
-    Future<AsyncValue<Version?>> Function() updateCallback,
-    Toast toast,
-  ) async {
+  void checkForServerUpdate({
+    required BuildContext context,
+    required String serverVer,
+    required About about,
+    required Future<List<ServerUpdate>?> Function() updateCallback,
+    required Toast toast,
+  }) {
+    toast.show(LocaleKeys.searchingForUpdates.tr());
+    AsyncValue.guard(updateCallback).then(
+      (value) {
+        toast.close();
+        try {
+          value.whenOrNull(
+            data: (data) {
+              if (data == null) return;
+              final newUpdate = data.firstWhere(
+                (e) => e.channel == about.buildType,
+                orElse: () => ServerUpdate(),
+              );
+              final currentVer = Version.parse(serverVer.substring(1));
+              final newVer = Version.parse(newUpdate.tag?.substring(1) ?? "");
+              if ((newVer.compareTo(currentVer)).isGreaterThan(-1)) {
+                appUpdateDialog(
+                  title: about.name ?? LocaleKeys.server.tr(),
+                  newRelease: "${newVer.canonicalizedVersion}"
+                      " (${newUpdate.channel})",
+                  context: context,
+                  toast: toast,
+                  url: newUpdate.url,
+                );
+              } else {
+                toast.show(LocaleKeys.noUpdatesAvailable.tr());
+              }
+            },
+            error: (error, stackTrace) => value.showToastOnError(toast),
+          );
+        } catch (e) {
+          toast.showError(
+            kDebugMode
+                ? e.toString()
+                : LocaleKeys.error_somethingWentWrong.tr(),
+          );
+        }
+      },
+    );
+  }
+
+  Future<void> checkForUpdate({
+    required String? title,
+    required BuildContext context,
+    required Future<AsyncValue<Version?>> Function() updateCallback,
+    required Toast toast,
+  }) async {
     toast.show(LocaleKeys.searchingForUpdates.tr());
     updateCallback().then((value) {
       toast.close();
       value.whenOrNull(
         data: (version) {
           if (version != null) {
-            appUpdateDialog("v${version.canonicalizedVersion}", context, toast);
+            appUpdateDialog(
+              title: title ?? LocaleKeys.appTitle.tr(),
+              newRelease: "v${version.canonicalizedVersion}",
+              context: context,
+              toast: toast,
+            );
           } else {
             toast.show(LocaleKeys.noUpdatesAvailable.tr());
           }
@@ -54,7 +109,12 @@ class AboutScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final about = ref.watch(aboutControllerProvider).valueOrToast(toast);
+    final about = ref
+        .watch(aboutControllerProvider)
+        .valueOrToast(toast, withMicrotask: true);
+    final serverVer = about?.buildType == "Stable"
+        ? about?.version
+        : "${about?.version}-${about?.revision}";
     final packageInfo = ref.watch(packageInfoProvider);
     return Scaffold(
       appBar: AppBar(
@@ -87,64 +147,48 @@ class AboutScreen extends ConsumerWidget {
             ListTile(
               title: Text(LocaleKeys.checkForUpdates.tr()),
               onTap: () => checkForUpdate(
-                context,
-                ref.read(aboutRepositoryProvider).checkUpdate,
-                toast,
+                title: packageInfo.appName,
+                context: context,
+                updateCallback: ref.read(aboutRepositoryProvider).checkUpdate,
+                toast: toast,
               ),
             ),
-            const Divider(),
-            ClipboardListTile(
-              title: LocaleKeys.server.tr(),
-              subtitle: about?.name,
-            ),
-            ClipboardListTile(
-              title: LocaleKeys.channel.tr(),
-              subtitle: about?.buildType,
-            ),
-            ClipboardListTile(
-              title: LocaleKeys.serverVersion.tr(),
-              subtitle: about?.buildType == "Stable"
-                  ? about?.version
-                  : "${about?.version}-${about?.revision}",
-            ),
-            ClipboardListTile(
-              title: LocaleKeys.buildTime.tr(),
-              subtitle: (about?.buildTime).isNull
-                  ? null
-                  : DateTime.fromMillisecondsSinceEpoch(
-                      (about?.buildTime ?? 0) * 1000,
-                    ).toDateString,
-            ),
-            ListTile(
-              title: Text(LocaleKeys.checkForServerUpdates.tr()),
-              onTap: () async {
-                toast.show(LocaleKeys.searchingForUpdates.tr());
-                AsyncValue.guard(
-                  () => ref.read(aboutRepositoryProvider).checkServerUpdate(),
-                ).then(
-                  (value) {
-                    toast.close();
-                    value.maybeWhen(
-                      data: (data) {
-                        if (data != null && data.tag.isNotBlank) {
-                          appUpdateDialog(
-                            "${data.tag} (${data.channel})",
-                            context,
-                            toast,
-                            data.url,
-                          );
-                        } else {
-                          toast.show(LocaleKeys.noUpdatesAvailable.tr());
-                        }
-                      },
-                      error: (error, stackTrace) =>
-                          value.showToastOnError(toast),
-                      orElse: () {},
-                    );
-                  },
-                );
-              },
-            ),
+            if (about != null) ...[
+              const Divider(),
+              ClipboardListTile(
+                title: LocaleKeys.server.tr(),
+                subtitle: about.name,
+              ),
+              ClipboardListTile(
+                title: LocaleKeys.channel.tr(),
+                subtitle: about.buildType,
+              ),
+              if (serverVer.isNotBlank)
+                ClipboardListTile(
+                  title: LocaleKeys.serverVersion.tr(),
+                  subtitle: serverVer,
+                ),
+              ClipboardListTile(
+                title: LocaleKeys.buildTime.tr(),
+                subtitle: (about.buildTime).isNull
+                    ? null
+                    : DateTime.fromMillisecondsSinceEpoch(
+                        (about.buildTime ?? 0) * 1000,
+                      ).toDateString,
+              ),
+              if (serverVer.isNotBlank)
+                ListTile(
+                  title: Text(LocaleKeys.checkForServerUpdates.tr()),
+                  onTap: () => checkForServerUpdate(
+                    context: context,
+                    serverVer: serverVer ?? "",
+                    about: about,
+                    updateCallback:
+                        ref.read(aboutRepositoryProvider).checkServerUpdate,
+                    toast: toast,
+                  ),
+                ),
+            ],
             Padding(
               padding: KEdgeInsets.a8.size,
               child: Wrap(

@@ -12,8 +12,13 @@ import '../../../../../utils/extensions/custom_extensions/context_extensions.dar
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 
-void appUpdateDialog(String newRelease, BuildContext context, Toast toast,
-        [String? url]) =>
+void appUpdateDialog({
+  required String title,
+  required String newRelease,
+  required BuildContext context,
+  required Toast toast,
+  String? url,
+}) =>
     showDialog(
       context: context,
       builder: (_) {
@@ -21,7 +26,7 @@ void appUpdateDialog(String newRelease, BuildContext context, Toast toast,
           title: Text(LocaleKeys.newUpdateAvailable.tr()),
           content: Text(
             LocaleKeys.versionAvailable.tr(
-              namedArgs: {"version": newRelease},
+              namedArgs: {"app": title, "version": newRelease},
             ),
           ),
           actions: [

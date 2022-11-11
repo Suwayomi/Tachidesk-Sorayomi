@@ -100,15 +100,15 @@ class __$$_ServerUpdateCopyWithImpl<$Res>
     Object? url = freezed,
   }) {
     return _then(_$_ServerUpdate(
-      freezed == channel
+      channel: freezed == channel
           ? _value.channel
           : channel // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == tag
+      tag: freezed == tag
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == url
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -119,7 +119,7 @@ class __$$_ServerUpdateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ServerUpdate implements _ServerUpdate {
-  _$_ServerUpdate(this.channel, this.tag, this.url);
+  _$_ServerUpdate({this.channel, this.tag, this.url});
 
   factory _$_ServerUpdate.fromJson(Map<String, dynamic> json) =>
       _$$_ServerUpdateFromJson(json);
@@ -166,8 +166,9 @@ class _$_ServerUpdate implements _ServerUpdate {
 
 abstract class _ServerUpdate implements ServerUpdate {
   factory _ServerUpdate(
-          final String? channel, final String? tag, final String? url) =
-      _$_ServerUpdate;
+      {final String? channel,
+      final String? tag,
+      final String? url}) = _$_ServerUpdate;
 
   factory _ServerUpdate.fromJson(Map<String, dynamic> json) =
       _$_ServerUpdate.fromJson;

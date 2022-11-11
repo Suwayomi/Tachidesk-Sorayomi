@@ -5,12 +5,14 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../constants/endpoints.dart';
 import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/about/about_model.dart';
 import '../domain/server_update/server_update_model.dart';
+import '../presentation/about/controllers/about_controller.dart';
 
 part 'about_repository.g.dart';
 
@@ -31,11 +33,11 @@ class AboutRepository {
         .data;
   }
 
-  Future<ServerUpdate?> checkServerUpdate() async {
-    return (await dioClient.get<ServerUpdate, ServerUpdate?>(
-      SettingsUrl.about,
+  Future<List<ServerUpdate>?> checkServerUpdate() async {
+    return (await dioClient.get<List<ServerUpdate>, ServerUpdate>(
+      SettingsUrl.checkServerUpdate,
       decoder: (e) =>
-          e is Map<String, dynamic> ? ServerUpdate.fromJson(e) : null,
+          e is Map<String, dynamic> ? ServerUpdate.fromJson(e) : ServerUpdate(),
     ))
         .data;
   }
@@ -55,7 +57,9 @@ class AboutRepository {
             tag != null ? Version.parse(tag) : null;
         Version? packageBuildNumber = Version.parse(packageInfo.version);
         if (latestReleaseBuildNumber != null &&
-            packageBuildNumber.compareTo(latestReleaseBuildNumber) < 0) {
+            latestReleaseBuildNumber
+                .compareTo(packageBuildNumber)
+                .isGreaterThan(0)) {
           return AsyncData(latestReleaseBuildNumber);
         }
         return const AsyncData(null);

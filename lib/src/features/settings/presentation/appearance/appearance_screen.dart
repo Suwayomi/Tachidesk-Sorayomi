@@ -6,7 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 // 🌎 Project imports:
 import '../../../../i18n/locale_keys.g.dart';
-import '../../widgets/theme_mode_tile.dart';
+import '../../widgets/theme_mode_tile/theme_mode_tile.dart';
 
 class AppearanceScreen extends StatelessWidget {
   const AppearanceScreen({super.key});

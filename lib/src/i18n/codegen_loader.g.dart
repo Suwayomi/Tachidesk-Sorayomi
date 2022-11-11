@@ -80,12 +80,13 @@ class CodegenLoader extends AssetLoader {
     "delete": "Delete",
     "deleteCategory": {
       "title": "Are you sure?",
-      "content": "This will delete all Mangas in this Category!"
+      "content": "This will merge all Mangas in this Category!"
     },
     "discord": "Discord",
     "downloads": "Downloads",
     "edit": "Edit",
     "editCategory": "Edit Category",
+    "emptyCategory": "Category name can't be Empty",
     "error": {
       "somethingWentWrong": "Something went wrong!",
       "filePick": "File not selected!",
@@ -133,9 +134,10 @@ class CodegenLoader extends AssetLoader {
     "nextChapter": "Next Chapter",
     "no": "No",
     "noCategoriesFound":
-        "You don't have any Categories. Tap the Plus button to create one for organizing your library",
+        "You don't have any Categories. \nTap the Plus button to create one for organizing your library",
     "noChaptersFound": "No Chapters found",
     "noDownloads": "No Downloads",
+    "noCategoryMangaFound": "No manga found in this Category",
     "noMangaFound": "No Mangas Found",
     "noNewChapter": "No new chapter",
     "noSourcesFound": "No Sources Found",
@@ -201,7 +203,7 @@ class CodegenLoader extends AssetLoader {
     "url": "Server URL",
     "urlHintText": "Enter server url",
     "userName": "User Name",
-    "versionAvailable": "Version {version} available!!",
+    "versionAvailable": "Version {version} available for {app}!!",
     "webUI": "Open in WEB",
     "webView": "WebView",
     "whatsNew": "What's New?"

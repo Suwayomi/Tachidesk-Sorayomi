@@ -8,9 +8,9 @@ part of 'server_update_model.dart';
 
 _$_ServerUpdate _$$_ServerUpdateFromJson(Map<String, dynamic> json) =>
     _$_ServerUpdate(
-      json['channel'] as String?,
-      json['tag'] as String?,
-      json['url'] as String?,
+      channel: json['channel'] as String?,
+      tag: json['tag'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$_ServerUpdateToJson(_$_ServerUpdate instance) =>

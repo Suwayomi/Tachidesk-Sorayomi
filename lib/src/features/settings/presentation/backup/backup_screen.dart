@@ -13,9 +13,9 @@ import '../../../../utils/extensions/custom_extensions/async_value_extensions.da
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../data/backup_repository.dart';
-import '../../widgets/server_url_tile.dart';
-import 'backup_missing_dialog.dart';
+import '../../data/backup/backup_repository.dart';
+import '../../widgets/server_url_tile/server_url_tile.dart';
+import 'widgets/backup_missing_dialog.dart';
 
 class BackupScreen extends ConsumerWidget {
   const BackupScreen({super.key});
@@ -32,7 +32,7 @@ class BackupScreen extends ConsumerWidget {
     AsyncValue.guard(() => ref
         .read(backupRepositoryProvider)
         .restoreBackup(file?.files.single)).then(
-      (result) => result.maybeWhen<void>(
+      (result) => result.whenOrNull<void>(
         error: (error, stackTrace) => result.showToastOnError(toast),
         data: (data) {
           final backupMissing = data?.filter;
@@ -47,7 +47,6 @@ class BackupScreen extends ConsumerWidget {
             );
           }
         },
-        orElse: () {},
       ),
     );
   }

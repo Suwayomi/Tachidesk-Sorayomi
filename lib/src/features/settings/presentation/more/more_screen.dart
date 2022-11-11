@@ -15,8 +15,8 @@ import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../widgets/server_url_tile.dart';
-import '../../widgets/theme_mode_tile.dart';
+import '../../widgets/server_url_tile/server_url_tile.dart';
+import '../../widgets/theme_mode_tile/theme_mode_tile.dart';
 
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});

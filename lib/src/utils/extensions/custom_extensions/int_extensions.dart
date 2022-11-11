@@ -9,6 +9,8 @@ extension IntExtensions on int? {
   bool get isZero => this != null ? this! == 0 : false;
   bool liesBetween({int lower = 0, int upper = 1}) =>
       this != null ? this! >= lower && this! <= upper : false;
+  bool isGreaterThan(int i) => isNull ? false : this! > i;
+  bool isLessThan(int i) => isNull ? false : this! < i;
 
   String get toDateString {
     if (isNull) return "";

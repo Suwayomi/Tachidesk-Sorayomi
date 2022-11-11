@@ -13,9 +13,9 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../widgets/server_url_tile.dart';
-import 'auth_type_tile.dart';
-import 'credentials_popup.dart';
+import '../../widgets/server_url_tile/server_url_tile.dart';
+import 'widget/auth_type_tile.dart';
+import 'widget/credential_popup/credentials_popup.dart';
 
 class ServerScreen extends ConsumerWidget {
   const ServerScreen({super.key});

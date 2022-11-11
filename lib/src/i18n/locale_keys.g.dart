@@ -80,6 +80,7 @@ abstract class LocaleKeys {
   static const downloads = 'downloads';
   static const edit = 'edit';
   static const editCategory = 'editCategory';
+  static const emptyCategory = 'emptyCategory';
   static const error_somethingWentWrong = 'error.somethingWentWrong';
   static const error_filePick = 'error.filePick';
   static const error_filePickUnknownExtension =
@@ -128,6 +129,7 @@ abstract class LocaleKeys {
   static const noCategoriesFound = 'noCategoriesFound';
   static const noChaptersFound = 'noChaptersFound';
   static const noDownloads = 'noDownloads';
+  static const noCategoryMangaFound = 'noCategoryMangaFound';
   static const noMangaFound = 'noMangaFound';
   static const noNewChapter = 'noNewChapter';
   static const noSourcesFound = 'noSourcesFound';
