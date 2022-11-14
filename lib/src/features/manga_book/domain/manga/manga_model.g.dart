@@ -11,6 +11,8 @@ _$_Manga _$$_MangaFromJson(Map<String, dynamic> json) => _$_Manga(
       author: json['author'] as String?,
       description: json['description'] as String?,
       downloadCount: json['downloadCount'] as int?,
+      chapterCount: json['chapterCount'] as int?,
+      lastChapterRead: json['lastChapterRead'] as int?,
       freshData: json['freshData'] as bool?,
       genre:
           (json['genre'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -27,6 +29,8 @@ _$_Manga _$$_MangaFromJson(Map<String, dynamic> json) => _$_Manga(
       thumbnailUrl: json['thumbnailUrl'] as String?,
       title: json['title'] as String?,
       unreadCount: json['unreadCount'] as int?,
+      lastFetchedAt: json['lastFetchedAt'] as int?,
+      chaptersLastFetchedAt: json['chaptersLastFetchedAt'] as int?,
       url: json['url'] as String?,
       meta: json['meta'] as Map<String, dynamic>?,
     );
@@ -36,6 +40,8 @@ Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
       'author': instance.author,
       'description': instance.description,
       'downloadCount': instance.downloadCount,
+      'chapterCount': instance.chapterCount,
+      'lastChapterRead': instance.lastChapterRead,
       'freshData': instance.freshData,
       'genre': instance.genre,
       'inLibrary': instance.inLibrary,
@@ -49,6 +55,8 @@ Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
       'thumbnailUrl': instance.thumbnailUrl,
       'title': instance.title,
       'unreadCount': instance.unreadCount,
+      'lastFetchedAt': instance.lastFetchedAt,
+      'chaptersLastFetchedAt': instance.chaptersLastFetchedAt,
       'url': instance.url,
       'meta': instance.meta,
     };

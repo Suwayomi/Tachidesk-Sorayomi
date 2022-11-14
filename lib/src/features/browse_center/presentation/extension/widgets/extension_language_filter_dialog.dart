@@ -13,8 +13,8 @@ import '../../../../../widgets/pop_button.dart';
 import '../../../domain/language/language_model.dart';
 import '../controller/extension_controller.dart';
 
-class ExtensionLanguageFilter extends ConsumerWidget {
-  const ExtensionLanguageFilter({super.key});
+class ExtensionLanguageFilterDialog extends ConsumerWidget {
+  const ExtensionLanguageFilterDialog({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final languageCodes = [...(ref.watch(extensionMapProvider)).keys]

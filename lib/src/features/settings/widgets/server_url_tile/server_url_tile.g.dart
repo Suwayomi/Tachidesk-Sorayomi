@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ServerUrlHash() => r'ddec63af1300c9d1fe30287652b3cf0eabea8bdd';
+String $ServerUrlHash() => r'19f1b2f72b8584048db21defb2c409d21e03705a';
 
 /// See also [ServerUrl].
 final serverUrlProvider = AutoDisposeNotifierProvider<ServerUrl, String?>(

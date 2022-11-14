@@ -7,7 +7,7 @@ import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../settings/presentation/browse/widgets/show_nsfw_switch/show_nsfw_switch.dart';
-import '../../../data/extension_repository.dart';
+import '../../../data/extension_repository/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
 import '../../browse/controller/browse_controller.dart';
 
@@ -61,12 +61,11 @@ Map<String, List<Extension>> extensionMap(ExtensionMapRef ref) {
 class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
     with SharedPreferenceClient<List<String>> {
   @override
-  List<String>? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.extensionLanguageFilter.initial;
-    key = DBKeys.extensionLanguageFilter.name;
-    return get;
-  }
+  List<String>? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.extensionLanguageFilter.name,
+        initial: DBKeys.extensionLanguageFilter.initial,
+      );
 }
 
 @riverpod
@@ -82,10 +81,11 @@ Map<String, List<Extension>> extensionMapFiltered(ExtensionMapFilteredRef ref) {
 
 @riverpod
 Map<String, List<Extension>> extensionMapFilteredAndQueried(
-    ExtensionMapFilteredAndQueriedRef ref,
-    {String? query}) {
+  ExtensionMapFilteredAndQueriedRef ref,
+) {
   final extensionMap = ref.watch(extensionMapFilteredProvider);
   if (!ref.watch(browseScreenShowSearchProvider)) return extensionMap;
+  final query = ref.watch(extensionQueryProvider);
   return extensionMap.map<String, List<Extension>>(
     (key, value) => MapEntry(
       key,

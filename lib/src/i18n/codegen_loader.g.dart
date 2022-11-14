@@ -15,6 +15,12 @@ class CodegenLoader extends AssetLoader {
   }
 
   static const Map<String, dynamic> en_US = {
+    "pending": "Pending",
+    "running": "Running",
+    "completed": "Completed",
+    "failed": "Failed",
+    "displayMode": "Display Mode",
+    "DisplayMode": {"grid": "Grid", "list": "List"},
     "AuthType": {"none": "None", "basic": "Basic Auth"},
     "ReaderMode": {
       "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
@@ -45,6 +51,7 @@ class CodegenLoader extends AssetLoader {
     "artist": "Artist",
     "author": "Author",
     "backup": "Backup & Restore",
+    "badges": "Badges",
     "baseAuthType": "Authentication Type",
     "browse": "Browse",
     "browseManga": "Browse manga",
@@ -52,6 +59,7 @@ class CodegenLoader extends AssetLoader {
     "cancel": "Cancel",
     "categories": "Categories",
     "category": "Category",
+    "categoryUpdate": "Category Update",
     "channel": "Channel",
     "chapter": "Chapter",
     "chapterError": "Chapter to Load",
@@ -80,9 +88,10 @@ class CodegenLoader extends AssetLoader {
     "delete": "Delete",
     "deleteCategory": {
       "title": "Are you sure?",
-      "content": "This will merge all Mangas in this Category!"
+      "content": "This will merge all Mangas in this Category to Default!"
     },
     "discord": "Discord",
+    "display": "Display",
     "downloads": "Downloads",
     "edit": "Edit",
     "editCategory": "Edit Category",
@@ -105,13 +114,13 @@ class CodegenLoader extends AssetLoader {
     "extensions": "Extensions",
     "extensionsError": "Extensions to Install",
     "filter": "Filter",
-    "filterBookmarked": "Bookmarked",
-    "filterCompleted": "Completed",
-    "filterDownloaded": "Downloaded",
-    "filterUnread": "Unread",
+    "bookmarked": "Bookmarked",
+    "downloaded": "Downloaded",
+    "unread": "Unread",
     "general": "General",
     "gitHub": "GitHub",
     "globalSearch": "Global Search",
+    "globalUpdate": "Global Update",
     "help": "Help",
     "image": "Image",
     "inLibrary": "In library",
@@ -126,6 +135,11 @@ class CodegenLoader extends AssetLoader {
     "loading": "Loading!",
     "manga": "Manga",
     "mangaSearch": "Search manga..",
+    "MangaSort": {
+      "alphabetical": "Alphabetical",
+      "dateAdded": "Date Added",
+      "unread": "Unread"
+    },
     "missingExtension": "Missing Extensions",
     "missingTrackers": "Missing Trackers",
     "more": "More",
@@ -194,6 +208,7 @@ class CodegenLoader extends AssetLoader {
     "source": "Source",
     "sources": "Sources",
     "status": "Status",
+    "updatesSummary": "Updates Summary",
     "uninstall": "Uninstall",
     "uninstalling": "Uninstalling",
     "unknown": "Unknown",

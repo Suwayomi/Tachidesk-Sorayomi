@@ -10,17 +10,29 @@ SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
 /// [SharedPreferenceClient] is a mixin to add [get] and [update] functions to
 /// the provider.
 ///
-/// * Remember to initialize [key], [client] in [build] function of provider
-/// * optionally provide [initial] for giving initial value to the [key].
+/// * Remember to use [ initialize ] function to assign [_key], [_client]
+///   in [build] function of provider
+/// * optionally provide [_initial] for giving initial value to the [_key].
 mixin SharedPreferenceClient<T> {
-  late String key;
-  late SharedPreferences client;
-  T? initial;
+  late final String _key;
+  late final SharedPreferences _client;
+  late final T? _initial;
   set state(T? newState);
 
+  T? initialize({
+    required SharedPreferences client,
+    required key,
+    T? initial,
+  }) {
+    this._client = client;
+    this._key = key;
+    this._initial = initial;
+    return get;
+  }
+
   T? get get {
-    final value = client.get(key);
-    return value is T? ? value : initial;
+    final value = _client.get(_key);
+    return value is T? ? value : _initial;
   }
 
   Future<void> update(T? value) async {
@@ -28,17 +40,17 @@ mixin SharedPreferenceClient<T> {
   }
 
   Future<bool> _set(T? value) async {
-    if (value == null) return client.remove(key);
+    if (value == null) return _client.remove(_key);
     if (value is bool) {
-      return await client.setBool(key, value);
+      return await _client.setBool(_key, value);
     } else if (value is double) {
-      return await client.setDouble(key, value);
+      return await _client.setDouble(_key, value);
     } else if (value is int) {
-      return await client.setInt(key, value);
+      return await _client.setInt(_key, value);
     } else if (value is String) {
-      return await client.setString(key, value);
+      return await _client.setString(_key, value);
     } else if (value is List<String>) {
-      return await client.setStringList(key, value);
+      return await _client.setStringList(_key, value);
     }
     return false;
   }
@@ -55,6 +67,19 @@ mixin SharedPreferenceEnumClient<T extends Enum> {
   T? initial;
   late List<T> enumList;
   set state(T? newState);
+
+  T? initialize({
+    required SharedPreferences client,
+    required key,
+    required List<T> enumList,
+    T? initial,
+  }) {
+    this.client = client;
+    this.key = key;
+    this.initial = initial;
+    this.enumList = enumList;
+    return get;
+  }
 
   T? _getEnumFromIndex(int? value) =>
       value != null && value < enumList.length ? enumList[value] : initial;

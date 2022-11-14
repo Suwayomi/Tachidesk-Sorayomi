@@ -11,7 +11,7 @@ import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart'
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../data/chapter_repository.dart';
+import '../../data/manga_book_repository.dart';
 import '../../domain/downloads/downloads_model.dart';
 import 'widgets/download_progress_list_tile.dart';
 import 'widgets/downloads_fab.dart';
@@ -35,7 +35,7 @@ class DownloadsScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () => AsyncValue.guard(
-              ref.read(chapterRepositoryProvider).clearDownloads,
+              ref.read(mangaBookRepositoryProvider).clearDownloads,
             ),
             icon: const Icon(Icons.delete_sweep_rounded),
           ),

@@ -15,7 +15,7 @@ import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/server_image.dart';
-import '../../../data/chapter_repository.dart';
+import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter_page/chapter_page_model.dart';
 
 class ChapterMangaListTile extends StatelessWidget {
@@ -31,7 +31,7 @@ class ChapterMangaListTile extends StatelessWidget {
   final ChapterMangaPair pair;
   final Toast toast;
   final AsyncVoidCallBack updatePair;
-  final SingleInputCallback<ChapterMangaPair> toggleSelect;
+  final ValueChanged<ChapterMangaPair> toggleSelect;
   final bool canTapSelect;
   final bool isSelected;
 
@@ -96,7 +96,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
     try {
       if (!(pair.chapter?.index).isNull && !(pair.manga?.id).isNull) {
         (await AsyncValue.guard(() async {
-          final repo = ref.read(chapterRepositoryProvider);
+          final repo = ref.read(mangaBookRepositoryProvider);
           if (isRemove || isError) {
             await repo.removeChapterFromDownloadQueue(
               pair.manga!.id!,
@@ -151,7 +151,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
             icon: const Icon(Icons.check_circle_rounded),
             onPressed: () async {
               (await AsyncValue.guard(() async {
-                await ref.read(chapterRepositoryProvider).deleteChapter(
+                await ref.read(mangaBookRepositoryProvider).deleteChapter(
                     chapterIndex: pair.chapter!.index!,
                     mangaId: pair.manga!.id!);
               }))

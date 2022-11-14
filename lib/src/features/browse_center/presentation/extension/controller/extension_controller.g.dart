@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $ExtensionLanguageFilterHash() =>
-    r'58e7216368bb08dc69db784441a6efafbc02cc24';
+    r'697f4467d0009bf6a257ef38da21e4dd4595d95a';
 
 /// See also [ExtensionLanguageFilter].
 final extensionLanguageFilterProvider =
@@ -105,77 +105,16 @@ final extensionMapFilteredProvider =
 typedef ExtensionMapFilteredRef
     = AutoDisposeProviderRef<Map<String, List<Extension>>>;
 String $extensionMapFilteredAndQueriedHash() =>
-    r'c9708f7b646d731efb749d44f0e4f20793ef8a44';
-
-/// See also [extensionMapFilteredAndQueried].
-class ExtensionMapFilteredAndQueriedProvider
-    extends AutoDisposeProvider<Map<String, List<Extension>>> {
-  ExtensionMapFilteredAndQueriedProvider({
-    this.query,
-  }) : super(
-          (ref) => extensionMapFilteredAndQueried(
-            ref,
-            query: query,
-          ),
-          from: extensionMapFilteredAndQueriedProvider,
-          name: r'extensionMapFilteredAndQueriedProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : $extensionMapFilteredAndQueriedHash,
-        );
-
-  final String? query;
-
-  @override
-  bool operator ==(Object other) {
-    return other is ExtensionMapFilteredAndQueriedProvider &&
-        other.query == query;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, query.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-typedef ExtensionMapFilteredAndQueriedRef
-    = AutoDisposeProviderRef<Map<String, List<Extension>>>;
+    r'5f9fd9b62badb7e86a29a590507864eb93448bcc';
 
 /// See also [extensionMapFilteredAndQueried].
 final extensionMapFilteredAndQueriedProvider =
-    ExtensionMapFilteredAndQueriedFamily();
-
-class ExtensionMapFilteredAndQueriedFamily
-    extends Family<Map<String, List<Extension>>> {
-  ExtensionMapFilteredAndQueriedFamily();
-
-  ExtensionMapFilteredAndQueriedProvider call({
-    String? query,
-  }) {
-    return ExtensionMapFilteredAndQueriedProvider(
-      query: query,
-    );
-  }
-
-  @override
-  AutoDisposeProvider<Map<String, List<Extension>>> getProviderOverride(
-    covariant ExtensionMapFilteredAndQueriedProvider provider,
-  ) {
-    return call(
-      query: provider.query,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'extensionMapFilteredAndQueriedProvider';
-}
+    AutoDisposeProvider<Map<String, List<Extension>>>(
+  extensionMapFilteredAndQueried,
+  name: r'extensionMapFilteredAndQueriedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $extensionMapFilteredAndQueriedHash,
+);
+typedef ExtensionMapFilteredAndQueriedRef
+    = AutoDisposeProviderRef<Map<String, List<Extension>>>;

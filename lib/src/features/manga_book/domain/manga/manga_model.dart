@@ -14,6 +14,8 @@ class Manga with _$Manga {
     String? author,
     String? description,
     int? downloadCount,
+    int? chapterCount,
+    int? lastChapterRead,
     bool? freshData,
     List<String>? genre,
     bool? inLibrary,
@@ -27,6 +29,8 @@ class Manga with _$Manga {
     String? thumbnailUrl,
     String? title,
     int? unreadCount,
+    int? lastFetchedAt,
+    int? chaptersLastFetchedAt,
     String? url,
     Map<String, dynamic>? meta,
   }) = _Manga;

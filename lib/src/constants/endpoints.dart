@@ -98,7 +98,10 @@ abstract class SourceUrl {
 }
 
 abstract class UpdateUrl {
-  static String recentChapters(int pageNo) => "$_update/recentChapters/$pageNo";
+  static String recentChapters(int pageNo) => "$update/recentChapters/$pageNo";
 
-  static const String _update = "/update";
+  static const String update = "/update";
+  static const String fetch = "/update/fetch";
+  static const String reset = "/update/reset";
+  static const String summary = "/update/summary";
 }

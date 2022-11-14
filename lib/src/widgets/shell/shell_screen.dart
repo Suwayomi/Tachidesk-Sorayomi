@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../features/manga_book/widgets/update_status_fab.dart';
 import '../../utils/extensions/custom_extensions/context_extensions.dart';
 import 'big_screen_navigation_bar.dart';
 import 'small_screen_navigation_bar.dart';
@@ -31,6 +32,9 @@ class ShellScreen extends ConsumerWidget {
           )
         : Scaffold(
             body: child,
+            floatingActionButton: const UpdateStatusFab(),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
             bottomNavigationBar: SmallScreenNavigationBar(
               selectedScreen: GoRouter.of(context).location,
             ),

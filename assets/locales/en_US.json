@@ -1,4 +1,13 @@
 {
+	"pending": "Pending",
+	"running": "Running",
+	"completed": "Completed",
+	"failed": "Failed",
+	"displayMode": "Display Mode",
+	"DisplayMode": {
+		"grid": "Grid",
+		"list": "List"
+	},
 	"AuthType": {
 		"none": "None",
 		"basic": "Basic Auth"
@@ -36,6 +45,7 @@
 	"artist": "Artist",
 	"author": "Author",
 	"backup": "Backup & Restore",
+	"badges": "Badges",
 	"baseAuthType": "Authentication Type",
 	"browse": "Browse",
 	"browseManga": "Browse manga",
@@ -43,6 +53,7 @@
 	"cancel": "Cancel",
 	"categories": "Categories",
 	"category": "Category",
+	"categoryUpdate": "Category Update",
 	"channel": "Channel",
 	"chapter": "Chapter",
 	"chapterError": "Chapter to Load",
@@ -71,9 +82,10 @@
 	"delete": "Delete",
 	"deleteCategory": {
 		"title": "Are you sure?",
-		"content": "This will merge all Mangas in this Category!"
+		"content": "This will merge all Mangas in this Category to Default!"
 	},
 	"discord": "Discord",
+	"display": "Display",
 	"downloads": "Downloads",
 	"edit": "Edit",
 	"editCategory": "Edit Category",
@@ -95,13 +107,13 @@
 	"extensions": "Extensions",
 	"extensionsError": "Extensions to Install",
 	"filter": "Filter",
-	"filterBookmarked": "Bookmarked",
-	"filterCompleted": "Completed",
-	"filterDownloaded": "Downloaded",
-	"filterUnread": "Unread",
+	"bookmarked": "Bookmarked",
+	"downloaded": "Downloaded",
+	"unread": "Unread",
 	"general": "General",
 	"gitHub": "GitHub",
 	"globalSearch": "Global Search",
+	"globalUpdate": "Global Update",
 	"help": "Help",
 	"image": "Image",
 	"inLibrary": "In library",
@@ -116,6 +128,11 @@
 	"loading": "Loading!",
 	"manga": "Manga",
 	"mangaSearch": "Search manga..",
+	"MangaSort": {
+		"alphabetical": "Alphabetical",
+		"dateAdded": "Date Added",
+		"unread": "Unread"
+	},
 	"missingExtension": "Missing Extensions",
 	"missingTrackers": "Missing Trackers",
 	"more": "More",
@@ -182,6 +199,7 @@
 	"source": "Source",
 	"sources": "Sources",
 	"status": "Status",
+	"updatesSummary": "Updates Summary",
 	"uninstall": "Uninstall",
 	"uninstalling": "Uninstalling",
 	"unknown": "Unknown",

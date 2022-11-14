@@ -20,14 +20,15 @@ import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_page/chapter_page_model.dart';
 import '../domain/downloads/downloads_model.dart';
 import '../domain/downloads_queue/downloads_queue_model.dart';
+import '../domain/update_status/update_status_model.dart';
 
-part 'chapter_repository.g.dart';
+part 'manga_book_repository.g.dart';
 
-class ChapterRepository {
-  const ChapterRepository(this.dioClient);
+class MangaBookRepository {
+  const MangaBookRepository(this.dioClient);
 
   final DioClient dioClient;
-
+  // Downloads
   Future<void> startDownloads() => dioClient.get(DownloaderUrl.start);
   Future<void> stopDownloads() => dioClient.get(DownloaderUrl.stop);
   Future<void> clearDownloads() => dioClient.get(DownloaderUrl.clear);
@@ -46,8 +47,8 @@ class ChapterRepository {
   Pair<Stream<Downloads>, AsyncVoidCallBack> socketDownloads() {
     final url = (dioClient.dio.options.baseUrl
         .replaceFirst(RegExp('http', caseSensitive: false), 'ws'));
-    final channel = WebSocketChannel.connect(Uri.parse(
-        url + DownloaderUrl.downloads.substring(url.endsWith('/') ? 1 : 0)));
+    final channel =
+        WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads));
 
     return Pair<Stream<Downloads>, AsyncVoidCallBack>(
       first: channel.stream.asyncMap<Downloads>((event) =>
@@ -56,6 +57,7 @@ class ChapterRepository {
       second: channel.sink.close,
     );
   }
+  // Chapters
 
   Future<Chapter?> getChapter({
     required int mangaId,
@@ -79,6 +81,7 @@ class ChapterRepository {
         cancelToken: cancelToken,
       ));
 
+  // Updates
   Future<ChapterPage?> getRecentChaptersPage({
     int pageNo = 0,
     CancelToken? cancelToken,
@@ -90,15 +93,74 @@ class ChapterRepository {
         cancelToken: cancelToken,
       ))
           .data;
+
+  Future<void> fetchUpdates({
+    int? categoryId,
+    CancelToken? cancelToken,
+  }) =>
+      dioClient.post(
+        UpdateUrl.fetch,
+        cancelToken: cancelToken,
+        data: FormData.fromMap({
+          if (categoryId != null && categoryId != 0) "categoryId": categoryId,
+        }),
+      );
+
+  Future<void> resetUpdates({
+    CancelToken? cancelToken,
+  }) =>
+      dioClient.post(UpdateUrl.reset, cancelToken: cancelToken);
+
+  Future<UpdateStatus?> summaryUpdates({
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.get<UpdateStatus, UpdateStatus?>(
+        UpdateUrl.summary,
+        cancelToken: cancelToken,
+        decoder: (e) => e is Map<String, dynamic>
+            ? UpdateStatus.fromJson(e["statusMap"])
+            : null,
+      ))
+          .data;
+
+  Pair<Stream<UpdateStatus>, AsyncVoidCallBack> socketUpdates() {
+    final url = (dioClient.dio.options.baseUrl
+        .replaceFirst(RegExp('http', caseSensitive: false), 'ws'));
+    final channel = WebSocketChannel.connect(Uri.parse(url + UpdateUrl.update));
+    return Pair<Stream<UpdateStatus>, AsyncVoidCallBack>(
+      first: channel.stream.asyncMap<UpdateStatus>((event) =>
+          compute<String, UpdateStatus>(
+              (s) => UpdateStatus.fromJson(json.decode(s)["statusMap"] ?? {}),
+              event)),
+      second: channel.sink.close,
+    );
+  }
 }
 
 @riverpod
-ChapterRepository chapterRepository(ChapterRepositoryRef ref) =>
-    ChapterRepository(ref.watch(dioClientKeyProvider));
+MangaBookRepository mangaBookRepository(MangaBookRepositoryRef ref) =>
+    MangaBookRepository(ref.watch(dioClientKeyProvider));
+
+@riverpod
+Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
+  final cancelToken = CancelToken();
+  ref.onDispose(cancelToken.cancel);
+  final result = await ref
+      .watch(mangaBookRepositoryProvider)
+      .summaryUpdates(cancelToken: cancelToken);
+  return result;
+}
 
 //TODO SUPPORT FOR RIVERPOD STREAM GENERATOR https://github.com/rrousselGit/riverpod/issues/1663
 final downloadsSocketProvider = StreamProvider.autoDispose<Downloads>((ref) {
-  final pair = ref.watch(chapterRepositoryProvider).socketDownloads();
+  final pair = ref.watch(mangaBookRepositoryProvider).socketDownloads();
+  ref.onDispose(pair.second);
+  return pair.first;
+});
+
+//TODO SUPPORT FOR RIVERPOD STREAM GENERATOR https://github.com/rrousselGit/riverpod/issues/1663
+final updatesSocketProvider = StreamProvider.autoDispose<UpdateStatus>((ref) {
+  final pair = ref.watch(mangaBookRepositoryProvider).socketUpdates();
   ref.onDispose(pair.second);
   return pair.first;
 });

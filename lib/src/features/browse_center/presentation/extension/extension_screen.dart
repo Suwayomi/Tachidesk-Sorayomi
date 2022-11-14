@@ -6,20 +6,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../constants/language_list.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/misc/custom_typedef.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
+import '../../../../widgets/search_field.dart';
 import '../../domain/extension/extension_model.dart';
 import '../browse/controller/browse_controller.dart';
 import 'controller/extension_controller.dart';
 import 'widgets/extension_list_tile.dart';
-import 'widgets/extension_search_field.dart';
 
 class ExtensionScreen extends ConsumerWidget {
   const ExtensionScreen({Key? key}) : super(key: key);
@@ -55,14 +54,9 @@ class ExtensionScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final showSearch = ref.watch(browseScreenShowSearchProvider);
     final toast = ref.watch(toastProvider(context));
-    final extensionQuery = ref.watch(extensionQueryProvider);
     final extensionController = ref.watch(extensionControllerProvider)
       ..showToastOnError(toast, withMicrotask: true);
-    final extensionMap = {
-      ...ref.watch(
-        extensionMapFilteredAndQueriedProvider(query: extensionQuery),
-      )
-    };
+    final extensionMap = {...ref.watch(extensionMapFilteredAndQueriedProvider)};
     final installed = extensionMap.remove("installed");
     final update = extensionMap.remove("update");
     final all = extensionMap.remove("all");
@@ -81,10 +75,10 @@ class ExtensionScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (showSearch)
-            SizedBox(
-              width:
-                  context.isLargeTablet ? context.widthScale(scale: .3) : null,
-              child: const ExtensionSearchField(),
+            SearchField(
+              onChanged: (text) =>
+                  ref.read(extensionQueryProvider.notifier).state = text,
+              onClose: ref.read(browseScreenShowSearchProvider.notifier).toggle,
             ),
           Expanded(
             child: (extensionMap.isEmpty &&

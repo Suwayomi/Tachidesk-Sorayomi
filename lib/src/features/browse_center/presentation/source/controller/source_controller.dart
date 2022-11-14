@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 // 🌎 Project imports:
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
-import '../../../data/source_repository.dart';
+import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/source/source_model.dart';
 
 part 'source_controller.g.dart';
@@ -53,22 +53,20 @@ Map<String, List<Source>> sourceMapFiltered(SourceMapFilteredRef ref) {
 class SourceLanguageFilter extends _$SourceLanguageFilter
     with SharedPreferenceClient<List<String>> {
   @override
-  List<String>? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.sourceLanguageFilter.initial;
-    key = DBKeys.sourceLanguageFilter.name;
-    return get;
-  }
+  List<String>? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.sourceLanguageFilter.name,
+        initial: DBKeys.sourceLanguageFilter.initial,
+      );
 }
 
 @riverpod
 class SourceLastUsed extends _$SourceLastUsed
     with SharedPreferenceClient<String> {
   @override
-  String? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.sourceLastUsed.initial;
-    key = DBKeys.sourceLastUsed.name;
-    return get;
-  }
+  String? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.sourceLastUsed.name,
+        initial: DBKeys.sourceLastUsed.initial,
+      );
 }

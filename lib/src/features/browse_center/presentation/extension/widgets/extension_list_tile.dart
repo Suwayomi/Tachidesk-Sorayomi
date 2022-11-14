@@ -13,7 +13,7 @@ import '../../../../../utils/extensions/custom_extensions/string_extensions.dart
 import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
-import '../../../data/extension_repository.dart';
+import '../../../data/extension_repository/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
 
 class ExtensionListTile extends HookConsumerWidget {

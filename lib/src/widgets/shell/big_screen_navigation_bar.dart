@@ -2,14 +2,11 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
 
 // 🌎 Project imports:
-import '../../constants/gen/assets.gen.dart';
 import '../../constants/navigation_bar_data.dart';
-import '../../i18n/locale_keys.g.dart';
-import '../../routes/router_config.dart';
+import '../../features/manga_book/widgets/update_status_nav_rail_leading.dart';
 import '../../utils/extensions/custom_extensions/context_extensions.dart';
 
 class BigScreenNavigationBar extends StatelessWidget {
@@ -26,27 +23,7 @@ class BigScreenNavigationBar extends StatelessWidget {
       labelType: context.isDesktop
           ? NavigationRailLabelType.none
           : NavigationRailLabelType.all,
-      leading: context.isDesktop
-          ? TextButton.icon(
-              onPressed: () => context.push(Routes.about),
-              icon: ImageIcon(
-                AssetImage(Assets.icons.darkIcon.path),
-                size: 48,
-              ),
-              label: context.isDesktop
-                  ? Text(LocaleKeys.appTitle.tr())
-                  : const SizedBox.shrink(),
-              style: TextButton.styleFrom(
-                foregroundColor: context.textTheme.bodyLarge?.color,
-              ),
-            )
-          : IconButton(
-              onPressed: () => context.push(Routes.about),
-              icon: ImageIcon(
-                AssetImage(Assets.icons.darkIcon.path),
-                size: 48,
-              ),
-            ),
+      leading: const UpdateStatusNavRailLeading(),
       destinations: NavigationBarData.navList
           .map<NavigationRailDestination>(
             (e) => NavigationRailDestination(

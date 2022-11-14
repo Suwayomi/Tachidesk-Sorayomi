@@ -36,7 +36,7 @@ class CategoryTile extends HookWidget {
           ? const MiniCircularProgressIndicator()
           : PopupMenuButton(
               shape: RoundedRectangleBorder(
-                borderRadius: KBorderRadius.r8.radius,
+                borderRadius: KBorderRadius.r16.radius,
               ),
               padding: EdgeInsets.zero,
               child: const Icon(Icons.more_vert_rounded),

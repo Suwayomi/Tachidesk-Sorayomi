@@ -10,7 +10,7 @@ import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../data/chapter_repository.dart';
+import '../../../data/manga_book_repository.dart';
 
 class DownloadsFab extends ConsumerWidget {
   const DownloadsFab({Key? key, required this.status}) : super(key: key);
@@ -22,7 +22,7 @@ class DownloadsFab extends ConsumerWidget {
       return FloatingActionButton.extended(
         onPressed: () async {
           (await AsyncValue.guard(
-                  ref.read(chapterRepositoryProvider).startDownloads))
+                  ref.read(mangaBookRepositoryProvider).startDownloads))
               .showToastOnError(toast);
         },
         label: Text(LocaleKeys.resume.tr()),
@@ -33,7 +33,7 @@ class DownloadsFab extends ConsumerWidget {
       return FloatingActionButton.extended(
         onPressed: () async {
           (await AsyncValue.guard(
-                  ref.read(chapterRepositoryProvider).stopDownloads))
+                  ref.read(mangaBookRepositoryProvider).stopDownloads))
               .showToastOnError(toast);
         },
         label: Text(LocaleKeys.pause.tr()),

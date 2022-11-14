@@ -16,15 +16,16 @@ import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../data/chapter_repository.dart';
+import '../../data/manga_book_repository.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
+import '../../widgets/update_status_popup_menu.dart';
 import 'widgets/chapter_manga_list_tile.dart';
 
 class UpdatesScreen extends HookConsumerWidget {
   const UpdatesScreen({Key? key}) : super(key: key);
 
   Future<void> _fetchPage(
-    ChapterRepository repository,
+    MangaBookRepository repository,
     PagingController controller,
     int pageKey,
   ) async {
@@ -55,7 +56,7 @@ class UpdatesScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller =
         usePagingController<int, ChapterMangaPair>(firstPageKey: 0);
-    final chapterRepository = ref.watch(chapterRepositoryProvider);
+    final chapterRepository = ref.watch(mangaBookRepositoryProvider);
     final toast = ref.watch(toastProvider(context));
     useEffect(() {
       controller.addPageRequestListener((pageKey) => _fetchPage(
@@ -79,7 +80,10 @@ class UpdatesScreen extends HookConsumerWidget {
                 ),
               ),
             )
-          : AppBar(title: Text(LocaleKeys.updates.tr())),
+          : AppBar(
+              title: Text(LocaleKeys.updates.tr()),
+              actions: const [UpdateStatusPopupMenu()],
+            ),
       bottomSheet: selectedChapters.value.isNotEmpty
           ? Padding(
               padding: KEdgeInsets.a8.size,
@@ -87,7 +91,7 @@ class UpdatesScreen extends HookConsumerWidget {
                 enableDrag: false,
                 backgroundColor: context.theme.cardColor,
                 shape: RoundedRectangleBorder(
-                    borderRadius: KBorderRadius.r8.radius),
+                    borderRadius: KBorderRadius.r16.radius),
                 onClosing: () {},
                 builder: (context) {
                   final selectedList = selectedChapters.value.values;
@@ -191,7 +195,7 @@ class UpdatesScreen extends HookConsumerWidget {
                 updatePair: () async {
                   try {
                     final chapter = (await AsyncValue.guard(() =>
-                            ref.read(chapterRepositoryProvider).getChapter(
+                            ref.read(mangaBookRepositoryProvider).getChapter(
                                   mangaId: item.manga!.id!,
                                   chapterIndex: item.chapter!.index!,
                                 )))

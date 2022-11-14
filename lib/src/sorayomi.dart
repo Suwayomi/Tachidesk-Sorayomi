@@ -19,6 +19,7 @@ class Sorayomi extends ConsumerWidget {
     final themeMode = ref.watch(themeModeKeyProvider);
     return MaterialApp.router(
       title: LocaleKeys.appTitle.tr(),
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.light(useMaterial3: true),
       darkTheme: ThemeData.dark(useMaterial3: true),
       themeMode: themeMode ?? ThemeMode.system,

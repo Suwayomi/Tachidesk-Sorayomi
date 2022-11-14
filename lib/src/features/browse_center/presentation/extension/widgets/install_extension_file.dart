@@ -11,7 +11,7 @@ import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../data/extension_repository.dart';
+import '../../../data/extension_repository/extension_repository.dart';
 import '../controller/extension_controller.dart';
 
 class InstallExtensionFile extends ConsumerWidget {

@@ -11,7 +11,7 @@ import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../extension/extension_screen.dart';
-import '../extension/widgets/extension_language_filter.dart';
+import '../extension/widgets/extension_language_filter_dialog.dart';
 import '../extension/widgets/install_extension_file.dart';
 import '../source/category/source_language_filter.dart';
 import '../source/source_screen.dart';
@@ -48,7 +48,7 @@ class BrowseScreen extends HookConsumerWidget {
               context: context,
               builder: (context) => tabController.index == 0
                   ? const SourceLanguageFilter()
-                  : const ExtensionLanguageFilter(),
+                  : const ExtensionLanguageFilterDialog(),
             ),
             icon: const Icon(Icons.translate_rounded),
           ),

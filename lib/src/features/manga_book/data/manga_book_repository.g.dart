@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'chapter_repository.dart';
+part of 'manga_book_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,17 +29,28 @@ class _SystemHash {
   }
 }
 
-String $chapterRepositoryHash() => r'8af24aaf784f47a368aa09e96ed45368b1e02443';
+String $mangaBookRepositoryHash() =>
+    r'fbc0619db23d43e750686649e9c371b48bb46f66';
 
-/// See also [chapterRepository].
-final chapterRepositoryProvider = AutoDisposeProvider<ChapterRepository>(
-  chapterRepository,
-  name: r'chapterRepositoryProvider',
+/// See also [mangaBookRepository].
+final mangaBookRepositoryProvider = AutoDisposeProvider<MangaBookRepository>(
+  mangaBookRepository,
+  name: r'mangaBookRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $chapterRepositoryHash,
+      : $mangaBookRepositoryHash,
 );
-typedef ChapterRepositoryRef = AutoDisposeProviderRef<ChapterRepository>;
+typedef MangaBookRepositoryRef = AutoDisposeProviderRef<MangaBookRepository>;
+String $updateSummaryHash() => r'27829d599996eca55c2d3287676cca6028061e78';
+
+/// See also [updateSummary].
+final updateSummaryProvider = AutoDisposeFutureProvider<UpdateStatus?>(
+  updateSummary,
+  name: r'updateSummaryProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : $updateSummaryHash,
+);
+typedef UpdateSummaryRef = AutoDisposeFutureProviderRef<UpdateStatus?>;
 String $downloadsMapHash() => r'98144ddd19156954a2f7e7ef927a49f12997ee6c';
 
 /// See also [downloadsMap].

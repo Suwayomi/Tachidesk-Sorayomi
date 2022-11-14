@@ -24,12 +24,11 @@ part 'credentials_popup.g.dart';
 @riverpod
 class Credentials extends _$Credentials with SharedPreferenceClient<String> {
   @override
-  String? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.basicCredentials.initial;
-    key = DBKeys.basicCredentials.name;
-    return get;
-  }
+  String? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.basicCredentials.name,
+        initial: DBKeys.basicCredentials.initial,
+      );
 }
 
 final formKey = GlobalKey<FormState>();

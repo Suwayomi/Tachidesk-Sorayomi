@@ -9,8 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 // 🌎 Project imports:
-import '../../domain/about/about_model.dart';
-import '../../domain/server_update/server_update_model.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../constants/urls.dart';
@@ -23,6 +21,8 @@ import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../data/about_repository.dart';
+import '../../domain/about/about_model.dart';
+import '../../domain/server_update/server_update_model.dart';
 import 'controllers/about_controller.dart';
 import 'widget/app_update_dialog.dart';
 import 'widget/clipboard_list_tile.dart';

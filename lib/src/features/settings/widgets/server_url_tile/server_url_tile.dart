@@ -20,12 +20,11 @@ part 'server_url_tile.g.dart';
 @riverpod
 class ServerUrl extends _$ServerUrl with SharedPreferenceClient<String> {
   @override
-  String? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.serverUrl.initial;
-    key = DBKeys.serverUrl.name;
-    return get;
-  }
+  String? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.serverUrl.name,
+        initial: DBKeys.serverUrl.initial,
+      );
 }
 
 class ServerUrlTile extends ConsumerWidget {

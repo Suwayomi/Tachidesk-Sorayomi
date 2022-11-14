@@ -16,12 +16,11 @@ part 'show_nsfw_switch.g.dart';
 @riverpod
 class ShowNSFW extends _$ShowNSFW with SharedPreferenceClient<bool> {
   @override
-  bool? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.showNSFW.initial;
-    key = DBKeys.showNSFW.name;
-    return get;
-  }
+  bool? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.showNSFW.name,
+        initial: DBKeys.showNSFW.initial,
+      );
 }
 
 class ShowNSFWTile extends ConsumerWidget {

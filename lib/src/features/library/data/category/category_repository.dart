@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
+import '../../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../domain/category/category_model.dart';
@@ -85,16 +85,3 @@ class CategoryRepository {
 @riverpod
 CategoryRepository categoryRepository(CategoryRepositoryRef ref) =>
     CategoryRepository(ref.watch(dioClientKeyProvider));
-
-@riverpod
-Future<List<Manga>?> categoryMangaList(CategoryMangaListRef ref,
-    {required int categoryId}) async {
-  final token = CancelToken();
-  final result = await ref
-      .watch(categoryRepositoryProvider)
-      .getMangasFromCategory(
-          categoryId: categoryId, cancelToken: CancelToken());
-  ref.keepAlive();
-  ref.onDispose(token.cancel);
-  return result;
-}

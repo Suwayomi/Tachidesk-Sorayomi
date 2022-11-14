@@ -19,3 +19,7 @@ enum ReaderNavigationLayout {
   kindlish,
   disabled,
 }
+
+enum MangaSort { alphabetical, dateAdded, unread }
+
+enum DisplayMode { grid, list }

@@ -3,10 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../constants/endpoints.dart';
-import '../../../global_providers/global_providers.dart';
-import '../../../utils/storage/dio/dio_client.dart';
-import '../domain/source/source_model.dart';
+import '../../../../constants/endpoints.dart';
+import '../../../../global_providers/global_providers.dart';
+import '../../../../utils/storage/dio/dio_client.dart';
+import '../../domain/source/source_model.dart';
 
 part 'source_repository.g.dart';
 

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'manga_cover_grid.dart';
+part of 'badge.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $DownloadedBadgeHash() => r'e1886bd3fce6be555414ffd6350063c7f71fe45b';
+String $DownloadedBadgeHash() => r'90c3591232373dd343de693f4673de70a1d746f7';
 
 /// See also [DownloadedBadge].
 final downloadedBadgeProvider =
@@ -47,7 +47,7 @@ abstract class _$DownloadedBadge extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $UnreadBadgeHash() => r'2151921100d62a45b125ad333d4882e8d3aa5d51';
+String $UnreadBadgeHash() => r'4f7a03f9337a779c37250f37abb75624ca17805c';
 
 /// See also [UnreadBadge].
 final unreadBadgeProvider = AutoDisposeNotifierProvider<UnreadBadge, bool?>(

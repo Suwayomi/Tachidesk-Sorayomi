@@ -24,6 +24,8 @@ mixin _$Manga {
   String? get author => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get downloadCount => throw _privateConstructorUsedError;
+  int? get chapterCount => throw _privateConstructorUsedError;
+  int? get lastChapterRead => throw _privateConstructorUsedError;
   bool? get freshData => throw _privateConstructorUsedError;
   List<String>? get genre => throw _privateConstructorUsedError;
   bool? get inLibrary => throw _privateConstructorUsedError;
@@ -37,6 +39,8 @@ mixin _$Manga {
   String? get thumbnailUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   int? get unreadCount => throw _privateConstructorUsedError;
+  int? get lastFetchedAt => throw _privateConstructorUsedError;
+  int? get chaptersLastFetchedAt => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   Map<String, dynamic>? get meta => throw _privateConstructorUsedError;
 
@@ -55,6 +59,8 @@ abstract class $MangaCopyWith<$Res> {
       String? author,
       String? description,
       int? downloadCount,
+      int? chapterCount,
+      int? lastChapterRead,
       bool? freshData,
       List<String>? genre,
       bool? inLibrary,
@@ -68,6 +74,8 @@ abstract class $MangaCopyWith<$Res> {
       String? thumbnailUrl,
       String? title,
       int? unreadCount,
+      int? lastFetchedAt,
+      int? chaptersLastFetchedAt,
       String? url,
       Map<String, dynamic>? meta});
 
@@ -91,6 +99,8 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
     Object? author = freezed,
     Object? description = freezed,
     Object? downloadCount = freezed,
+    Object? chapterCount = freezed,
+    Object? lastChapterRead = freezed,
     Object? freshData = freezed,
     Object? genre = freezed,
     Object? inLibrary = freezed,
@@ -104,6 +114,8 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
     Object? thumbnailUrl = freezed,
     Object? title = freezed,
     Object? unreadCount = freezed,
+    Object? lastFetchedAt = freezed,
+    Object? chaptersLastFetchedAt = freezed,
     Object? url = freezed,
     Object? meta = freezed,
   }) {
@@ -123,6 +135,14 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
       downloadCount: freezed == downloadCount
           ? _value.downloadCount
           : downloadCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chapterCount: freezed == chapterCount
+          ? _value.chapterCount
+          : chapterCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastChapterRead: freezed == lastChapterRead
+          ? _value.lastChapterRead
+          : lastChapterRead // ignore: cast_nullable_to_non_nullable
               as int?,
       freshData: freezed == freshData
           ? _value.freshData
@@ -176,6 +196,14 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
           ? _value.unreadCount
           : unreadCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastFetchedAt: freezed == lastFetchedAt
+          ? _value.lastFetchedAt
+          : lastFetchedAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chaptersLastFetchedAt: freezed == chaptersLastFetchedAt
+          ? _value.chaptersLastFetchedAt
+          : chaptersLastFetchedAt // ignore: cast_nullable_to_non_nullable
+              as int?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -211,6 +239,8 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       String? author,
       String? description,
       int? downloadCount,
+      int? chapterCount,
+      int? lastChapterRead,
       bool? freshData,
       List<String>? genre,
       bool? inLibrary,
@@ -224,6 +254,8 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       String? thumbnailUrl,
       String? title,
       int? unreadCount,
+      int? lastFetchedAt,
+      int? chaptersLastFetchedAt,
       String? url,
       Map<String, dynamic>? meta});
 
@@ -244,6 +276,8 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
     Object? author = freezed,
     Object? description = freezed,
     Object? downloadCount = freezed,
+    Object? chapterCount = freezed,
+    Object? lastChapterRead = freezed,
     Object? freshData = freezed,
     Object? genre = freezed,
     Object? inLibrary = freezed,
@@ -257,6 +291,8 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
     Object? thumbnailUrl = freezed,
     Object? title = freezed,
     Object? unreadCount = freezed,
+    Object? lastFetchedAt = freezed,
+    Object? chaptersLastFetchedAt = freezed,
     Object? url = freezed,
     Object? meta = freezed,
   }) {
@@ -276,6 +312,14 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
       downloadCount: freezed == downloadCount
           ? _value.downloadCount
           : downloadCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chapterCount: freezed == chapterCount
+          ? _value.chapterCount
+          : chapterCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastChapterRead: freezed == lastChapterRead
+          ? _value.lastChapterRead
+          : lastChapterRead // ignore: cast_nullable_to_non_nullable
               as int?,
       freshData: freezed == freshData
           ? _value.freshData
@@ -329,6 +373,14 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
           ? _value.unreadCount
           : unreadCount // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastFetchedAt: freezed == lastFetchedAt
+          ? _value.lastFetchedAt
+          : lastFetchedAt // ignore: cast_nullable_to_non_nullable
+              as int?,
+      chaptersLastFetchedAt: freezed == chaptersLastFetchedAt
+          ? _value.chaptersLastFetchedAt
+          : chaptersLastFetchedAt // ignore: cast_nullable_to_non_nullable
+              as int?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -349,6 +401,8 @@ class _$_Manga implements _Manga {
       this.author,
       this.description,
       this.downloadCount,
+      this.chapterCount,
+      this.lastChapterRead,
       this.freshData,
       final List<String>? genre,
       this.inLibrary,
@@ -362,6 +416,8 @@ class _$_Manga implements _Manga {
       this.thumbnailUrl,
       this.title,
       this.unreadCount,
+      this.lastFetchedAt,
+      this.chaptersLastFetchedAt,
       this.url,
       final Map<String, dynamic>? meta})
       : _genre = genre,
@@ -378,6 +434,10 @@ class _$_Manga implements _Manga {
   final String? description;
   @override
   final int? downloadCount;
+  @override
+  final int? chapterCount;
+  @override
+  final int? lastChapterRead;
   @override
   final bool? freshData;
   final List<String>? _genre;
@@ -412,6 +472,10 @@ class _$_Manga implements _Manga {
   @override
   final int? unreadCount;
   @override
+  final int? lastFetchedAt;
+  @override
+  final int? chaptersLastFetchedAt;
+  @override
   final String? url;
   final Map<String, dynamic>? _meta;
   @override
@@ -424,7 +488,7 @@ class _$_Manga implements _Manga {
 
   @override
   String toString() {
-    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, freshData: $freshData, genre: $genre, inLibrary: $inLibrary, id: $id, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, title: $title, unreadCount: $unreadCount, url: $url, meta: $meta)';
+    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, chapterCount: $chapterCount, lastChapterRead: $lastChapterRead, freshData: $freshData, genre: $genre, inLibrary: $inLibrary, id: $id, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, title: $title, unreadCount: $unreadCount, lastFetchedAt: $lastFetchedAt, chaptersLastFetchedAt: $chaptersLastFetchedAt, url: $url, meta: $meta)';
   }
 
   @override
@@ -438,6 +502,10 @@ class _$_Manga implements _Manga {
                 other.description == description) &&
             (identical(other.downloadCount, downloadCount) ||
                 other.downloadCount == downloadCount) &&
+            (identical(other.chapterCount, chapterCount) ||
+                other.chapterCount == chapterCount) &&
+            (identical(other.lastChapterRead, lastChapterRead) ||
+                other.lastChapterRead == lastChapterRead) &&
             (identical(other.freshData, freshData) ||
                 other.freshData == freshData) &&
             const DeepCollectionEquality().equals(other._genre, _genre) &&
@@ -458,6 +526,10 @@ class _$_Manga implements _Manga {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.unreadCount, unreadCount) ||
                 other.unreadCount == unreadCount) &&
+            (identical(other.lastFetchedAt, lastFetchedAt) ||
+                other.lastFetchedAt == lastFetchedAt) &&
+            (identical(other.chaptersLastFetchedAt, chaptersLastFetchedAt) ||
+                other.chaptersLastFetchedAt == chaptersLastFetchedAt) &&
             (identical(other.url, url) || other.url == url) &&
             const DeepCollectionEquality().equals(other._meta, _meta));
   }
@@ -470,6 +542,8 @@ class _$_Manga implements _Manga {
         author,
         description,
         downloadCount,
+        chapterCount,
+        lastChapterRead,
         freshData,
         const DeepCollectionEquality().hash(_genre),
         inLibrary,
@@ -483,6 +557,8 @@ class _$_Manga implements _Manga {
         thumbnailUrl,
         title,
         unreadCount,
+        lastFetchedAt,
+        chaptersLastFetchedAt,
         url,
         const DeepCollectionEquality().hash(_meta)
       ]);
@@ -507,6 +583,8 @@ abstract class _Manga implements Manga {
       final String? author,
       final String? description,
       final int? downloadCount,
+      final int? chapterCount,
+      final int? lastChapterRead,
       final bool? freshData,
       final List<String>? genre,
       final bool? inLibrary,
@@ -520,6 +598,8 @@ abstract class _Manga implements Manga {
       final String? thumbnailUrl,
       final String? title,
       final int? unreadCount,
+      final int? lastFetchedAt,
+      final int? chaptersLastFetchedAt,
       final String? url,
       final Map<String, dynamic>? meta}) = _$_Manga;
 
@@ -533,6 +613,10 @@ abstract class _Manga implements Manga {
   String? get description;
   @override
   int? get downloadCount;
+  @override
+  int? get chapterCount;
+  @override
+  int? get lastChapterRead;
   @override
   bool? get freshData;
   @override
@@ -559,6 +643,10 @@ abstract class _Manga implements Manga {
   String? get title;
   @override
   int? get unreadCount;
+  @override
+  int? get lastFetchedAt;
+  @override
+  int? get chaptersLastFetchedAt;
   @override
   String? get url;
   @override

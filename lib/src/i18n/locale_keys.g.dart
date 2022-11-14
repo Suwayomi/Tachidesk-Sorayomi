@@ -1,6 +1,14 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class LocaleKeys {
+  static const pending = 'pending';
+  static const running = 'running';
+  static const completed = 'completed';
+  static const failed = 'failed';
+  static const displayMode = 'displayMode';
+  static const DisplayMode_grid = 'DisplayMode.grid';
+  static const DisplayMode_list = 'DisplayMode.list';
+  static const DisplayMode = 'DisplayMode';
   static const AuthType_none = 'AuthType.none';
   static const AuthType_basic = 'AuthType.basic';
   static const AuthType = 'AuthType';
@@ -42,6 +50,7 @@ abstract class LocaleKeys {
   static const artist = 'artist';
   static const author = 'author';
   static const backup = 'backup';
+  static const badges = 'badges';
   static const baseAuthType = 'baseAuthType';
   static const browse = 'browse';
   static const browseManga = 'browseManga';
@@ -49,6 +58,7 @@ abstract class LocaleKeys {
   static const cancel = 'cancel';
   static const categories = 'categories';
   static const category = 'category';
+  static const categoryUpdate = 'categoryUpdate';
   static const channel = 'channel';
   static const chapter = 'chapter';
   static const chapterError = 'chapterError';
@@ -77,6 +87,7 @@ abstract class LocaleKeys {
   static const deleteCategory_content = 'deleteCategory.content';
   static const deleteCategory = 'deleteCategory';
   static const discord = 'discord';
+  static const display = 'display';
   static const downloads = 'downloads';
   static const edit = 'edit';
   static const editCategory = 'editCategory';
@@ -98,13 +109,13 @@ abstract class LocaleKeys {
   static const extensions = 'extensions';
   static const extensionsError = 'extensionsError';
   static const filter = 'filter';
-  static const filterBookmarked = 'filterBookmarked';
-  static const filterCompleted = 'filterCompleted';
-  static const filterDownloaded = 'filterDownloaded';
-  static const filterUnread = 'filterUnread';
+  static const bookmarked = 'bookmarked';
+  static const downloaded = 'downloaded';
+  static const unread = 'unread';
   static const general = 'general';
   static const gitHub = 'gitHub';
   static const globalSearch = 'globalSearch';
+  static const globalUpdate = 'globalUpdate';
   static const help = 'help';
   static const image = 'image';
   static const inLibrary = 'inLibrary';
@@ -119,6 +130,10 @@ abstract class LocaleKeys {
   static const loading = 'loading';
   static const manga = 'manga';
   static const mangaSearch = 'mangaSearch';
+  static const MangaSort_alphabetical = 'MangaSort.alphabetical';
+  static const MangaSort_dateAdded = 'MangaSort.dateAdded';
+  static const MangaSort_unread = 'MangaSort.unread';
+  static const MangaSort = 'MangaSort';
   static const missingExtension = 'missingExtension';
   static const missingTrackers = 'missingTrackers';
   static const more = 'more';
@@ -183,6 +198,7 @@ abstract class LocaleKeys {
   static const source = 'source';
   static const sources = 'sources';
   static const status = 'status';
+  static const updatesSummary = 'updatesSummary';
   static const uninstall = 'uninstall';
   static const uninstalling = 'uninstalling';
   static const unknown = 'unknown';

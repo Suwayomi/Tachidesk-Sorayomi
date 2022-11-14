@@ -40,8 +40,17 @@ enum KBorderRadius {
   r8(BorderRadius.all(Radius.circular(8))),
   r12(BorderRadius.all(Radius.circular(12))),
   r16(BorderRadius.all(Radius.circular(16))),
+  rT16(BorderRadius.vertical(top: Radius.circular(16))),
+  r32(BorderRadius.all(Radius.circular(32))),
   ;
 
   const KBorderRadius(this.radius);
   final BorderRadius radius;
 }
+
+const gridSize = SliverGridDelegateWithMaxCrossAxisExtent(
+  maxCrossAxisExtent: 192,
+  crossAxisSpacing: 2.0,
+  mainAxisSpacing: 2.0,
+  childAspectRatio: 0.75,
+);

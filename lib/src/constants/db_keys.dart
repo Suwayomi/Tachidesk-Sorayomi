@@ -19,6 +19,12 @@ enum DBKeys {
   downloadedBadge(true),
   unreadBadge(true),
   languageBadge(false),
+  filterDownloaded(null),
+  filterUnread(null),
+  filterCompleted(null),
+  mangaSort(MangaSort.alphabetical),
+  mangaSortDirection(true), // asc=true, dsc=false
+  displayMode(DisplayMode.grid),
   ;
 
   const DBKeys(this.initial);

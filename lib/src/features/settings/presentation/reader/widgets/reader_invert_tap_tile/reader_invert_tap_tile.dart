@@ -16,12 +16,11 @@ part 'reader_invert_tap_tile.g.dart';
 @riverpod
 class InvertTap extends _$InvertTap with SharedPreferenceClient<bool> {
   @override
-  bool? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.invertTap.initial;
-    key = DBKeys.invertTap.name;
-    return get;
-  }
+  bool? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.invertTap.name,
+        initial: DBKeys.invertTap.initial,
+      );
 }
 
 class ReaderInvertTapTile extends HookConsumerWidget {
