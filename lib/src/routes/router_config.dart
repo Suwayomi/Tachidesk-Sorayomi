@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
+import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details.dart';
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/updates/updates_screen.dart';
 
 // 🌎 Project imports:
@@ -52,7 +53,8 @@ abstract class Routes {
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
   static const sources = '/sources';
-  static const manga = '/manga';
+  static const manga = '/manga/:mangaId';
+  static getManga(mangaId) => '/manga/$mangaId';
   static const sourceManga = '/source';
   static const globalSearch = '/global-search';
 }
@@ -92,6 +94,13 @@ GoRouter routerConfig(ref) {
             builder: (context, state) => const MoreScreen(),
           ),
         ],
+      ),
+      GoRoute(
+        path: Routes.manga,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => MangaDetails(
+          mangaId: state.params['mangaId'] ?? "",
+        ),
       ),
       GoRoute(
         path: Routes.about,

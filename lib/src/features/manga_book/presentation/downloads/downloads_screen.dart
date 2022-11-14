@@ -23,7 +23,7 @@ import 'widgets/download_progress_list_tile.dart';
 import 'widgets/downloads_fab.dart';
 
 class DownloadsScreen extends ConsumerWidget {
-  const DownloadsScreen({Key? key}) : super(key: key);
+  const DownloadsScreen({super.key});
 
   bool showFab(AsyncValue<Downloads> downloads) =>
       (downloads.valueOrNull?.queue).isNotBlank &&

@@ -15,7 +15,7 @@ import '../../../../constants/enum.dart';
 import 'widgets/library_sort_tile.dart';
 
 class LibrarySort extends ConsumerWidget {
-  const LibrarySort({Key? key}) : super(key: key);
+  const LibrarySort({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -17,7 +17,7 @@ import '../../../../widgets/custom_checkbox_list_tile.dart';
 import 'controller/library_controller.dart';
 
 class LibraryFilter extends ConsumerWidget {
-  const LibraryFilter({Key? key}) : super(key: key);
+  const LibraryFilter({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

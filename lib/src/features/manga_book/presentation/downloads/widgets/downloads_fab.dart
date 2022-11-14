@@ -19,7 +19,7 @@ import '../../../../../utils/misc/toast/toast.dart';
 import '../../../data/manga_book_repository.dart';
 
 class DownloadsFab extends ConsumerWidget {
-  const DownloadsFab({Key? key, required this.status}) : super(key: key);
+  const DownloadsFab({super.key, required this.status});
   final String status;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -20,9 +20,9 @@ import 'library_sort.dart';
 
 class LibraryOrganizer extends StatelessWidget {
   const LibraryOrganizer({
-    Key? key,
+    super.key,
     /* required this.controller */
-  }) : super(key: key);
+  });
   // final ScrollController controller;
   @override
   Widget build(BuildContext context) {

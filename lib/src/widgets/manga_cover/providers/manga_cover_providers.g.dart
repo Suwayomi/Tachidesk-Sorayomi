@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'badge.dart';
+part of 'manga_cover_providers.dart';
 
 // **************************************************************************
 // RiverpodGenerator

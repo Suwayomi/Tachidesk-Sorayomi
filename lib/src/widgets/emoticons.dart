@@ -29,11 +29,11 @@ const errorFaces = [
 
 class Emoticons extends HookWidget {
   const Emoticons({
-    Key? key,
+    super.key,
     this.text,
     this.button,
     this.iconData,
-  }) : super(key: key);
+  });
   final String? text;
   final IconData? iconData;
   final Widget? button;

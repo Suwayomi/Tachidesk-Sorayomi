@@ -17,7 +17,7 @@ import '../data/manga_book_repository.dart';
 import 'update_status_summary_sheet.dart';
 
 class UpdateStatusNavRailLeading extends ConsumerWidget {
-  const UpdateStatusNavRailLeading({Key? key}) : super(key: key);
+  const UpdateStatusNavRailLeading({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

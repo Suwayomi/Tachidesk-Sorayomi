@@ -5,3 +5,4 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 typedef AsyncVoidCallBack = Future<void> Function();
+typedef AsyncValueChanged<T> = Future<void> Function(T);

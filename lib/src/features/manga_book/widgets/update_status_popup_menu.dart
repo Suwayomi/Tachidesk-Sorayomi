@@ -19,10 +19,10 @@ import 'update_status_summary_sheet.dart';
 
 class UpdateStatusPopupMenu extends ConsumerWidget {
   const UpdateStatusPopupMenu({
-    Key? key,
+    super.key,
     this.getCategoryId,
     this.showSummaryButton = true,
-  }) : super(key: key);
+  });
   final int? Function()? getCategoryId;
   final bool showSummaryButton;
   @override

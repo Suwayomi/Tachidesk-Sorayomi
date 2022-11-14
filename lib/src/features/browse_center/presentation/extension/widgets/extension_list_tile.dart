@@ -47,28 +47,6 @@ class ExtensionListTile extends HookConsumerWidget {
           innerSize: const Size.square(24),
           isLoading: isLoading.value,
         ),
-        // isLoading.value
-        //     ? SizedBox(
-        //         height: 48,
-        //         width: 48,
-        //         child: Stack(
-        //           alignment: AlignmentDirectional.center,
-        //           children: [
-        //             const Padding(
-        //               padding: EdgeInsets.all(4.0),
-        //               child: CircularProgressIndicator(strokeWidth: 2),
-        //             ),
-        //             ServerImage(
-        //               imageUrl: extension.iconUrl ?? "",
-        //               size: const Size.square(24),
-        //             )
-        //           ],
-        //         ),
-        //       )
-        //     : ServerImage(
-        //         imageUrl: extension.iconUrl ?? "",
-        //         size: const Size.square(48),
-        //       ),
       ),
       title: Text(extension.name ?? ""),
       subtitle: Text.rich(

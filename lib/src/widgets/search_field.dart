@@ -17,11 +17,11 @@ import '../utils/extensions/custom_extensions/context_extensions.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.onClose,
     this.hintText,
-  }) : super(key: key);
+  });
   final String? hintText;
   final ValueChanged<String> onChanged;
   final VoidCallback onClose;

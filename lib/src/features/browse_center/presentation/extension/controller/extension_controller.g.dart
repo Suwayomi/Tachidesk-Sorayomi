@@ -69,7 +69,7 @@ abstract class _$ExtensionQuery extends AutoDisposeNotifier<String?> {
 }
 
 String $extensionControllerHash() =>
-    r'6bc48644be184c5dd42d8c16324ff5467b3e81e8';
+    r'1fdf7c2648504e5c62b7fcaba3a0c820943f2d13';
 
 /// See also [extensionController].
 final extensionControllerProvider = AutoDisposeFutureProvider<List<Extension>?>(

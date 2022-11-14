@@ -35,6 +35,11 @@ extension IntExtensions on int? {
     return DateTime.fromMillisecondsSinceEpoch(this! * 1000).convertToDaysAgo;
   }
 
+  String get toDaysAgo {
+    if (isNull) return "";
+    return DateTime.fromMillisecondsSinceEpoch(this!).convertToDaysAgo;
+  }
+
   bool isSameDayAs(int? anotherDate) {
     if (isNull || anotherDate.isNull) return false;
     return DateTime.fromMillisecondsSinceEpoch(this! * 1000)

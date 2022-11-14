@@ -30,7 +30,8 @@ class ServerImage extends ConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
     return CachedNetworkImage(
-      imageUrl: (baseUrl ?? DBKeys.serverUrl.initial) + imageUrl,
+      imageUrl:
+          "${(baseUrl ?? DBKeys.serverUrl.initial)}$imageUrl/?useCache=true",
       height: size?.height,
       httpHeaders: authType == AuthType.basic && basicToken != null
           ? {"Authorization": basicToken}
@@ -47,12 +48,12 @@ class ServerImage extends ConsumerWidget {
 
 class ServerImageWithCpi extends StatelessWidget {
   const ServerImageWithCpi({
-    Key? key,
+    super.key,
     required this.url,
     required this.outerSize,
     required this.innerSize,
     required this.isLoading,
-  }) : super(key: key);
+  });
   final bool isLoading;
   final Size outerSize;
   final Size innerSize;

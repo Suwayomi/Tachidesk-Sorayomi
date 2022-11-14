@@ -44,13 +44,16 @@ abstract class CategoryUrl {
 
 abstract class MangaUrl {
   static String withId(int mangaId) => "$_manga/$mangaId";
+  static String fullWithId(String mangaId, {bool useCache = true}) =>
+      "$_manga/$mangaId/full?useCache=$useCache";
   static String thumbnail(int mangaId) => "$_manga/$mangaId/thumbnail";
   static String category(int mangaId) => "$_manga/$mangaId/category";
   static String categoryId(int mangaId, int categoryId) =>
       "$_manga/$mangaId/category/$categoryId";
-  static String library(int mangaId) => "$_manga/$mangaId/library";
+  static String library(String mangaId) => "$_manga/$mangaId/library";
   static String meta(int mangaId) => "$_manga/$mangaId/meta";
-  static String chapters(int mangaId) => "$_manga/$mangaId/chapters";
+  static String chapters(String mangaId, {bool useCache = true}) =>
+      "$_manga/$mangaId/chapters?useCache=$useCache";
   static String chapterWithIndex(int mangaId, int chapterIndex,
           {bool useCache = true}) =>
       "$_manga/$mangaId/chapter/$chapterIndex?useCache=$useCache";

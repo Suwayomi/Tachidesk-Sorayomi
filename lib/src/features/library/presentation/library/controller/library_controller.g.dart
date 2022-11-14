@@ -49,7 +49,7 @@ abstract class _$LibraryScreenShowSearch extends AutoDisposeNotifier<bool> {
 }
 
 String $CategoryMangaListWithQueryAndFilterHash() =>
-    r'f68914cbd18e05f3f94e26c7315a1db818ef840a';
+    r'201336e07f7b465827b7da586672e43e4ebf58ff';
 
 /// See also [CategoryMangaListWithQueryAndFilter].
 class CategoryMangaListWithQueryAndFilterProvider
@@ -264,7 +264,7 @@ abstract class _$LibraryDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   DisplayMode? build();
 }
 
-String $categoryMangaListHash() => r'8226b6fd808d5d15887df7482e18a5f754f5357c';
+String $categoryMangaListHash() => r'31b4cf624d30686ca70de60949028a933d46aa29';
 
 /// See also [categoryMangaList].
 class CategoryMangaListProvider

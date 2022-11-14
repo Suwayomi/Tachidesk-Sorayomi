@@ -11,19 +11,19 @@ import 'package:flutter/material.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
 import '../../server_image.dart';
-import '../widgets/badge/badge.dart';
+import '../widgets/manga_badges.dart';
 
 class MangaCoverListTile extends StatelessWidget {
   const MangaCoverListTile({
-    Key? key,
+    super.key,
     required this.manga,
-    this.onTap,
+    this.onPressed,
     this.onLongPress,
     this.needCountBadges = false,
-  }) : super(key: key);
+  });
 
   final Manga manga;
-  final void Function()? onTap;
+  final void Function()? onPressed;
   final void Function()? onLongPress;
   final bool needCountBadges;
   @override
@@ -37,7 +37,7 @@ class MangaCoverListTile extends StatelessWidget {
           size: const Size.square(48),
         ),
       ),
-      trailing: BadgesRow(manga: manga, needCountBadges: needCountBadges),
+      trailing: MangaBadgesRow(manga: manga, showCountBadges: needCountBadges),
       dense: true,
       title: Text(
         (manga.title ?? manga.author ?? ""),

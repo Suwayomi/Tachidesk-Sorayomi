@@ -10,50 +10,25 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../../constants/app_sizes.dart';
-import '../../../../constants/db_keys.dart';
-import '../../../../features/manga_book/domain/manga/manga_model.dart';
-import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
-import '../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../constants/app_sizes.dart';
+import '../../../features/manga_book/domain/manga/manga_model.dart';
+import '../../../i18n/locale_keys.g.dart';
+import '../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../providers/manga_cover_providers.dart';
 
-part 'badge.g.dart';
-
-@riverpod
-class DownloadedBadge extends _$DownloadedBadge
-    with SharedPreferenceClient<bool> {
-  @override
-  bool? build() => initialize(
-        client: ref.watch(sharedPreferencesProvider),
-        key: DBKeys.downloadedBadge.name,
-        initial: DBKeys.downloadedBadge.initial,
-      );
-}
-
-@riverpod
-class UnreadBadge extends _$UnreadBadge with SharedPreferenceClient<bool> {
-  @override
-  bool? build() => initialize(
-        client: ref.watch(sharedPreferencesProvider),
-        key: DBKeys.unreadBadge.name,
-        initial: DBKeys.unreadBadge.initial,
-      );
-}
-
-class BadgesRow extends ConsumerWidget {
-  const BadgesRow({
+class MangaBadgesRow extends ConsumerWidget {
+  const MangaBadgesRow({
     super.key,
     required this.manga,
     this.needSpacer = false,
-    this.needCountBadges = false,
+    this.showCountBadges = false,
   });
   final Manga manga;
   final bool needSpacer;
-  final bool needCountBadges;
+  final bool showCountBadges;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final downloadedBadge = ref.watch(downloadedBadgeProvider) ?? true;
@@ -64,29 +39,29 @@ class BadgesRow extends ConsumerWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (!needCountBadges && (manga.inLibrary ?? false))
+          if (!showCountBadges && (manga.inLibrary ?? false))
             ClipRRect(
-              borderRadius: KBorderRadius.r16.radius,
-              child: Badge(
+              borderRadius: KBorderRadius.r8.radius,
+              child: MangaBadge(
                 text: LocaleKeys.inLibrary.tr(),
                 color: context.theme.colorScheme.primary,
                 textColor: context.theme.colorScheme.onPrimary,
               ),
             ),
-          if (needCountBadges) ...[
+          if (showCountBadges) ...[
             ClipRRect(
-              borderRadius: KBorderRadius.r16.radius,
+              borderRadius: KBorderRadius.r8.radius,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (manga.unreadCount.isGreaterThan(0) && unreadBadge)
-                    Badge(
+                    MangaBadge(
                       text: "${manga.unreadCount ?? 0}",
                       color: context.theme.colorScheme.primary,
                       textColor: context.theme.colorScheme.onPrimary,
                     ),
                   if (manga.downloadCount.isGreaterThan(0) && downloadedBadge)
-                    Badge(
+                    MangaBadge(
                       text: "${manga.downloadCount ?? 0}",
                       color: context.theme.colorScheme.secondary,
                       textColor: context.theme.colorScheme.onSecondary,
@@ -111,8 +86,8 @@ class BadgesRow extends ConsumerWidget {
   }
 }
 
-class Badge extends StatelessWidget {
-  const Badge({
+class MangaBadge extends StatelessWidget {
+  const MangaBadge({
     super.key,
     required this.text,
     required this.color,

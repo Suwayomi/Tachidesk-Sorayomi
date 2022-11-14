@@ -26,6 +26,7 @@ import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_page/chapter_page_model.dart';
 import '../domain/downloads/downloads_model.dart';
 import '../domain/downloads_queue/downloads_queue_model.dart';
+import '../domain/manga/manga_model.dart';
 import '../domain/update_status/update_status_model.dart';
 
 part 'manga_book_repository.g.dart';
@@ -38,6 +39,10 @@ class MangaBookRepository {
   Future<void> startDownloads() => dioClient.get(DownloaderUrl.start);
   Future<void> stopDownloads() => dioClient.get(DownloaderUrl.stop);
   Future<void> clearDownloads() => dioClient.get(DownloaderUrl.clear);
+  Future<void> addMangaToLibrary(String mangaId) =>
+      dioClient.get(MangaUrl.library(mangaId));
+  Future<void> removeMangaFromLibrary(String mangaId) =>
+      dioClient.delete(MangaUrl.library(mangaId));
 
   Future<void> addChaptersBatchToDownloadQueue(List<int> chapterIds) =>
       dioClient.post(
@@ -63,16 +68,44 @@ class MangaBookRepository {
       second: channel.sink.close,
     );
   }
+
+  // Mangas
+  Future<Manga?> getManga({
+    required String mangaId,
+    bool useCache = true,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.get<Manga, Manga?>(
+        MangaUrl.fullWithId(mangaId, useCache: useCache),
+        decoder: (e) => e is Map<String, dynamic> ? Manga.fromJson(e) : null,
+        cancelToken: cancelToken,
+      ))
+          .data;
+
   // Chapters
 
   Future<Chapter?> getChapter({
     required int mangaId,
     required int chapterIndex,
+    bool useCache = true,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.get<Chapter, Chapter?>(
-        MangaUrl.chapterWithIndex(mangaId, chapterIndex),
+        MangaUrl.chapterWithIndex(mangaId, chapterIndex, useCache: useCache),
         decoder: (e) => e is Map<String, dynamic> ? Chapter.fromJson(e) : null,
+        cancelToken: cancelToken,
+      ))
+          .data;
+
+  Future<List<Chapter>?> getChapterList({
+    required String mangaId,
+    bool useCache = true,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.get<List<Chapter>, Chapter>(
+        MangaUrl.chapters(mangaId, useCache: useCache),
+        decoder: (e) =>
+            e is Map<String, dynamic> ? Chapter.fromJson(e) : Chapter(),
         cancelToken: cancelToken,
       ))
           .data;

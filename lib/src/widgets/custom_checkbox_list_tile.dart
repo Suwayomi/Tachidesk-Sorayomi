@@ -16,12 +16,12 @@ import '../utils/extensions/custom_extensions/context_extensions.dart';
 class CustomCheckboxListTile<NotifierT extends AutoDisposeNotifier<bool?>>
     extends ConsumerWidget {
   const CustomCheckboxListTile({
-    Key? key,
+    super.key,
     required this.title,
     required this.provider,
     required this.onChanged,
     this.tristate = true,
-  }) : super(key: key);
+  });
   final String title;
   final AutoDisposeNotifierProvider<NotifierT, bool?> provider;
   final ValueChanged<bool?> onChanged;

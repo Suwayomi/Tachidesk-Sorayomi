@@ -27,7 +27,7 @@ import 'controller/extension_controller.dart';
 import 'widgets/extension_list_tile.dart';
 
 class ExtensionScreen extends ConsumerWidget {
-  const ExtensionScreen({Key? key}) : super(key: key);
+  const ExtensionScreen({super.key});
 
   List<Widget> extensionSet({
     Key? key,

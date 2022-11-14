@@ -8,7 +8,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../constants/enum.dart';
 import '../../../browse_center/domain/source/source_model.dart';
+import '../chapter/chapter_model.dart';
 
 part 'manga_model.freezed.dart';
 part 'manga_model.g.dart';
@@ -21,7 +23,7 @@ class Manga with _$Manga {
     String? description,
     int? downloadCount,
     int? chapterCount,
-    int? lastChapterRead,
+    Chapter? lastChapterRead,
     bool? freshData,
     List<String>? genre,
     bool? inLibrary,
@@ -31,7 +33,8 @@ class Manga with _$Manga {
     String? realUrl,
     Source? source,
     String? sourceId,
-    String? status,
+    @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+        MangaStatus? status,
     String? thumbnailUrl,
     String? title,
     int? unreadCount,

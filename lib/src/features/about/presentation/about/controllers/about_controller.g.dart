@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $aboutControllerHash() => r'db933f351c4cd3eff2bcf398ee85d7a0b3d9798a';
+String $aboutControllerHash() => r'9eb4bde0cc03049204e29586b506d3ecb3af8cd5';
 
 /// See also [aboutController].
 final aboutControllerProvider = AutoDisposeFutureProvider<About?>(

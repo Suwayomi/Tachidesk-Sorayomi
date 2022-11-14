@@ -21,7 +21,7 @@ import '../../../data/extension_repository/extension_repository.dart';
 import '../controller/extension_controller.dart';
 
 class InstallExtensionFile extends ConsumerWidget {
-  const InstallExtensionFile({Key? key}) : super(key: key);
+  const InstallExtensionFile({super.key});
 
   void extensionFilePicker(WidgetRef ref, BuildContext context) async {
     final toast = ref.read(toastProvider(context));

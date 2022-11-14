@@ -18,11 +18,11 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/custom_checkbox_list_tile.dart';
 import '../../../../widgets/enum_popup.dart';
-import '../../../../widgets/manga_cover/widgets/badge/badge.dart';
+import '../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
 import 'controller/library_controller.dart';
 
 class LibraryDisplay extends ConsumerWidget {
-  const LibraryDisplay({Key? key}) : super(key: key);
+  const LibraryDisplay({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -15,7 +15,7 @@ import '../data/manga_book_repository.dart';
 import 'update_status_summary_sheet.dart';
 
 class UpdateStatusFab extends ConsumerWidget {
-  const UpdateStatusFab({Key? key}) : super(key: key);
+  const UpdateStatusFab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

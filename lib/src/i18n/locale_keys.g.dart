@@ -8,6 +8,7 @@ abstract class LocaleKeys {
   static const displayMode = 'displayMode';
   static const DisplayMode_grid = 'DisplayMode.grid';
   static const DisplayMode_list = 'DisplayMode.list';
+  static const DisplayMode_listDescription = 'DisplayMode.listDescription';
   static const DisplayMode = 'DisplayMode';
   static const AuthType_none = 'AuthType.none';
   static const AuthType_basic = 'AuthType.basic';
@@ -48,7 +49,6 @@ abstract class LocaleKeys {
   static const appTitle = 'appTitle';
   static const appearance = 'appearance';
   static const artist = 'artist';
-  static const author = 'author';
   static const backup = 'backup';
   static const badges = 'badges';
   static const baseAuthType = 'baseAuthType';
@@ -69,6 +69,7 @@ abstract class LocaleKeys {
   static const chapterList_markPrevAsUnread = 'chapterList.markPrevAsUnread';
   static const chapterList_removeBookmark = 'chapterList.removeBookmark';
   static const chapterList = 'chapterList';
+  static const chapterNumber = 'chapterNumber';
   static const chapters = 'chapters';
   static const checkForUpdates = 'checkForUpdates';
   static const checkForServerUpdates = 'checkForServerUpdates';
@@ -134,6 +135,15 @@ abstract class LocaleKeys {
   static const MangaSort_dateAdded = 'MangaSort.dateAdded';
   static const MangaSort_unread = 'MangaSort.unread';
   static const MangaSort = 'MangaSort';
+  static const MangaStatus_unknown = 'MangaStatus.unknown';
+  static const MangaStatus_ongoing = 'MangaStatus.ongoing';
+  static const MangaStatus_completed = 'MangaStatus.completed';
+  static const MangaStatus_licensed = 'MangaStatus.licensed';
+  static const MangaStatus_publishingFinished =
+      'MangaStatus.publishingFinished';
+  static const MangaStatus_cancelled = 'MangaStatus.cancelled';
+  static const MangaStatus_onHiatus = 'MangaStatus.onHiatus';
+  static const MangaStatus = 'MangaStatus';
   static const missingExtension = 'missingExtension';
   static const missingTrackers = 'missingTrackers';
   static const more = 'more';
@@ -147,6 +157,7 @@ abstract class LocaleKeys {
   static const noCategoryMangaFound = 'noCategoryMangaFound';
   static const noMangaFound = 'noMangaFound';
   static const noNewChapter = 'noNewChapter';
+  static const noOfChapters = 'noOfChapters';
   static const noSourcesFound = 'noSourcesFound';
   static const noUpdatesAvailable = 'noUpdatesAvailable';
   static const noUpdatesFound = 'noUpdatesFound';
@@ -186,6 +197,8 @@ abstract class LocaleKeys {
   static const serverVersion = 'serverVersion';
   static const setAsDefault = 'setAsDefault';
   static const settings = 'settings';
+  static const showMore = 'showMore';
+  static const showLess = 'showLess';
   static const sorayomi = 'sorayomi';
   static const sort = 'sort';
   static const sortFetchedAt = 'sortFetchedAt';
@@ -202,6 +215,9 @@ abstract class LocaleKeys {
   static const uninstall = 'uninstall';
   static const uninstalling = 'uninstalling';
   static const unknown = 'unknown';
+  static const unknownManga = 'unknownManga';
+  static const unknownAuthor = 'unknownAuthor';
+  static const unknownSource = 'unknownSource';
   static const update = 'update';
   static const updates = 'updates';
   static const updating = 'updating';

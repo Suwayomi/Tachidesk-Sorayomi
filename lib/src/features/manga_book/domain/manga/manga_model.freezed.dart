@@ -25,7 +25,7 @@ mixin _$Manga {
   String? get description => throw _privateConstructorUsedError;
   int? get downloadCount => throw _privateConstructorUsedError;
   int? get chapterCount => throw _privateConstructorUsedError;
-  int? get lastChapterRead => throw _privateConstructorUsedError;
+  Chapter? get lastChapterRead => throw _privateConstructorUsedError;
   bool? get freshData => throw _privateConstructorUsedError;
   List<String>? get genre => throw _privateConstructorUsedError;
   bool? get inLibrary => throw _privateConstructorUsedError;
@@ -35,7 +35,8 @@ mixin _$Manga {
   String? get realUrl => throw _privateConstructorUsedError;
   Source? get source => throw _privateConstructorUsedError;
   String? get sourceId => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+  MangaStatus? get status => throw _privateConstructorUsedError;
   String? get thumbnailUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   int? get unreadCount => throw _privateConstructorUsedError;
@@ -60,7 +61,7 @@ abstract class $MangaCopyWith<$Res> {
       String? description,
       int? downloadCount,
       int? chapterCount,
-      int? lastChapterRead,
+      Chapter? lastChapterRead,
       bool? freshData,
       List<String>? genre,
       bool? inLibrary,
@@ -70,7 +71,8 @@ abstract class $MangaCopyWith<$Res> {
       String? realUrl,
       Source? source,
       String? sourceId,
-      String? status,
+      @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+          MangaStatus? status,
       String? thumbnailUrl,
       String? title,
       int? unreadCount,
@@ -79,6 +81,7 @@ abstract class $MangaCopyWith<$Res> {
       String? url,
       Map<String, dynamic>? meta});
 
+  $ChapterCopyWith<$Res>? get lastChapterRead;
   $SourceCopyWith<$Res>? get source;
 }
 
@@ -143,7 +146,7 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
       lastChapterRead: freezed == lastChapterRead
           ? _value.lastChapterRead
           : lastChapterRead // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as Chapter?,
       freshData: freezed == freshData
           ? _value.freshData
           : freshData // ignore: cast_nullable_to_non_nullable
@@ -183,7 +186,7 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as MangaStatus?,
       thumbnailUrl: freezed == thumbnailUrl
           ? _value.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
@@ -217,6 +220,18 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
 
   @override
   @pragma('vm:prefer-inline')
+  $ChapterCopyWith<$Res>? get lastChapterRead {
+    if (_value.lastChapterRead == null) {
+      return null;
+    }
+
+    return $ChapterCopyWith<$Res>(_value.lastChapterRead!, (value) {
+      return _then(_value.copyWith(lastChapterRead: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $SourceCopyWith<$Res>? get source {
     if (_value.source == null) {
       return null;
@@ -240,7 +255,7 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       String? description,
       int? downloadCount,
       int? chapterCount,
-      int? lastChapterRead,
+      Chapter? lastChapterRead,
       bool? freshData,
       List<String>? genre,
       bool? inLibrary,
@@ -250,7 +265,8 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       String? realUrl,
       Source? source,
       String? sourceId,
-      String? status,
+      @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+          MangaStatus? status,
       String? thumbnailUrl,
       String? title,
       int? unreadCount,
@@ -259,6 +275,8 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       String? url,
       Map<String, dynamic>? meta});
 
+  @override
+  $ChapterCopyWith<$Res>? get lastChapterRead;
   @override
   $SourceCopyWith<$Res>? get source;
 }
@@ -320,7 +338,7 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
       lastChapterRead: freezed == lastChapterRead
           ? _value.lastChapterRead
           : lastChapterRead // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as Chapter?,
       freshData: freezed == freshData
           ? _value.freshData
           : freshData // ignore: cast_nullable_to_non_nullable
@@ -360,7 +378,7 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as MangaStatus?,
       thumbnailUrl: freezed == thumbnailUrl
           ? _value.thumbnailUrl
           : thumbnailUrl // ignore: cast_nullable_to_non_nullable
@@ -412,7 +430,8 @@ class _$_Manga implements _Manga {
       this.realUrl,
       this.source,
       this.sourceId,
-      this.status,
+      @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+          this.status,
       this.thumbnailUrl,
       this.title,
       this.unreadCount,
@@ -437,7 +456,7 @@ class _$_Manga implements _Manga {
   @override
   final int? chapterCount;
   @override
-  final int? lastChapterRead;
+  final Chapter? lastChapterRead;
   @override
   final bool? freshData;
   final List<String>? _genre;
@@ -464,7 +483,8 @@ class _$_Manga implements _Manga {
   @override
   final String? sourceId;
   @override
-  final String? status;
+  @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+  final MangaStatus? status;
   @override
   final String? thumbnailUrl;
   @override
@@ -584,7 +604,7 @@ abstract class _Manga implements Manga {
       final String? description,
       final int? downloadCount,
       final int? chapterCount,
-      final int? lastChapterRead,
+      final Chapter? lastChapterRead,
       final bool? freshData,
       final List<String>? genre,
       final bool? inLibrary,
@@ -594,7 +614,8 @@ abstract class _Manga implements Manga {
       final String? realUrl,
       final Source? source,
       final String? sourceId,
-      final String? status,
+      @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+          final MangaStatus? status,
       final String? thumbnailUrl,
       final String? title,
       final int? unreadCount,
@@ -616,7 +637,7 @@ abstract class _Manga implements Manga {
   @override
   int? get chapterCount;
   @override
-  int? get lastChapterRead;
+  Chapter? get lastChapterRead;
   @override
   bool? get freshData;
   @override
@@ -636,7 +657,8 @@ abstract class _Manga implements Manga {
   @override
   String? get sourceId;
   @override
-  String? get status;
+  @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
+  MangaStatus? get status;
   @override
   String? get thumbnailUrl;
   @override

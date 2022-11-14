@@ -21,7 +21,7 @@ Future<List<Source>?> sourceController(SourceControllerRef ref) async {
   final token = CancelToken();
   final result = await ref
       .watch(sourceRepositoryProvider)
-      .getSourceList(cancelToken: CancelToken());
+      .getSourceList(cancelToken: token);
   ref.keepAlive();
   ref.onDispose(token.cancel);
   return result;

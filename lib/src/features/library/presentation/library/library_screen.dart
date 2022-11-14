@@ -28,7 +28,7 @@ import 'controller/library_controller.dart';
 import 'library_organizer.dart';
 
 class LibraryScreen extends HookConsumerWidget {
-  const LibraryScreen({Key? key}) : super(key: key);
+  const LibraryScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));

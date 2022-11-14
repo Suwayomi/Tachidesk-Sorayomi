@@ -24,7 +24,7 @@ import 'category/source_list_tile.dart';
 import 'controller/source_controller.dart';
 
 class SourceScreen extends HookConsumerWidget {
-  const SourceScreen({Key? key}) : super(key: key);
+  const SourceScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

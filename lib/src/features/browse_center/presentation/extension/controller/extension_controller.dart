@@ -24,7 +24,7 @@ Future<List<Extension>?> extensionController(ExtensionControllerRef ref) async {
   final token = CancelToken();
   final result = await ref
       .watch(extensionRepositoryProvider)
-      .getExtensionList(cancelToken: CancelToken());
+      .getExtensionList(cancelToken: token);
   ref.keepAlive();
   ref.onDispose(token.cancel);
   return result;

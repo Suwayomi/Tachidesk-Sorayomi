@@ -17,7 +17,10 @@ enum KEdgeInsets {
   h16(EdgeInsets.symmetric(horizontal: 16.0)),
   h8(EdgeInsets.symmetric(horizontal: 8.0)),
   v8(EdgeInsets.symmetric(vertical: 8)),
-  v4(EdgeInsets.symmetric(vertical: 4));
+  v4(EdgeInsets.symmetric(vertical: 4)),
+  h4(EdgeInsets.symmetric(horizontal: 4)),
+  ol4(EdgeInsets.only(left: 4)),
+  ;
 
   const KEdgeInsets(this.size);
 

@@ -34,8 +34,7 @@ Future<List<Manga>?> categoryMangaList(
   final token = CancelToken();
   final result = await ref
       .watch(categoryRepositoryProvider)
-      .getMangasFromCategory(
-          categoryId: categoryId, cancelToken: CancelToken());
+      .getMangasFromCategory(categoryId: categoryId, cancelToken: token);
   ref.keepAlive();
   ref.onDispose(token.cancel);
   return result;
@@ -68,7 +67,7 @@ class CategoryMangaListWithQueryAndFilter
       }
 
       if (filterCompleted != null &&
-          (filterCompleted ^ (manga.status == "COMPLETED"))) {
+          (filterCompleted ^ (manga.status?.title == "COMPLETED"))) {
         return false;
       }
       if (searchFilter && !manga.title.query(query)) {

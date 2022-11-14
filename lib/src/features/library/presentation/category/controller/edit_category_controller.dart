@@ -25,7 +25,7 @@ class CategoryController extends _$CategoryController {
     final token = CancelToken();
     final result = await ref
         .watch(categoryRepositoryProvider)
-        .getCategoryList(cancelToken: CancelToken());
+        .getCategoryList(cancelToken: token);
     ref.keepAlive();
     ref.onDispose(token.cancel);
     return result;

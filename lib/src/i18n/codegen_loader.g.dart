@@ -20,7 +20,11 @@ class CodegenLoader extends AssetLoader {
     "completed": "Completed",
     "failed": "Failed",
     "displayMode": "Display Mode",
-    "DisplayMode": {"grid": "Grid", "list": "List"},
+    "DisplayMode": {
+      "grid": "Grid",
+      "list": "List",
+      "listDescription": "Descriptive List"
+    },
     "AuthType": {"none": "None", "basic": "Basic Auth"},
     "ReaderMode": {
       "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
@@ -49,7 +53,6 @@ class CodegenLoader extends AssetLoader {
     "appTitle": "Tachidesk Sorayomi",
     "appearance": "Appearance",
     "artist": "Artist",
-    "author": "Author",
     "backup": "Backup & Restore",
     "badges": "Badges",
     "baseAuthType": "Authentication Type",
@@ -71,6 +74,7 @@ class CodegenLoader extends AssetLoader {
       "markPrevAsUnread": "Mark previous as unread",
       "removeBookmark": "Remove bookmark"
     },
+    "chapterNumber": "Chapter {number}",
     "chapters": "Chapters",
     "checkForUpdates": "Check for updates",
     "checkForServerUpdates": "Check for Server updates",
@@ -140,6 +144,15 @@ class CodegenLoader extends AssetLoader {
       "dateAdded": "Date Added",
       "unread": "Unread"
     },
+    "MangaStatus": {
+      "unknown": "Unknown",
+      "ongoing": "Ongoing",
+      "completed": "Completed",
+      "licensed": "Licensed",
+      "publishingFinished": "Publishing Finished",
+      "cancelled": "Cancelled",
+      "onHiatus": "On Hiatus"
+    },
     "missingExtension": "Missing Extensions",
     "missingTrackers": "Missing Trackers",
     "more": "More",
@@ -154,6 +167,7 @@ class CodegenLoader extends AssetLoader {
     "noCategoryMangaFound": "No manga found in this Category",
     "noMangaFound": "No Mangas Found",
     "noNewChapter": "No new chapter",
+    "noOfChapters": "{count} Chapters",
     "noSourcesFound": "No Sources Found",
     "noUpdatesAvailable": "You're using the latest version",
     "noUpdatesFound": "No Updates Found",
@@ -196,6 +210,8 @@ class CodegenLoader extends AssetLoader {
     "serverVersion": "Server version",
     "setAsDefault": "Set as default",
     "settings": "Settings",
+    "showMore": "Show More",
+    "showLess": "    Show Less",
     "sorayomi": "Sorayomi",
     "sort": "Sort",
     "sortFetchedAt": "Fetched date",
@@ -212,6 +228,9 @@ class CodegenLoader extends AssetLoader {
     "uninstall": "Uninstall",
     "uninstalling": "Uninstalling",
     "unknown": "Unknown",
+    "unknownManga": "Unknown Manga",
+    "unknownAuthor": "Unknown Manga",
+    "unknownSource": "Unknown Source",
     "update": "Update",
     "updates": "Updates",
     "updating": "Updating",

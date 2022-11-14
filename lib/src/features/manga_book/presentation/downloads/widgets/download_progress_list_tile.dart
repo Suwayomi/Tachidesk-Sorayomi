@@ -25,10 +25,10 @@ import '../../../domain/downloads_queue/downloads_queue_model.dart';
 
 class DownloadProgressListTile extends HookConsumerWidget {
   const DownloadProgressListTile({
-    Key? key,
+    super.key,
     required this.download,
     required this.toast,
-  }) : super(key: key);
+  });
   final DownloadsQueue download;
   final Toast toast;
 

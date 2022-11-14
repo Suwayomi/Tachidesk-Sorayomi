@@ -23,12 +23,13 @@ import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/manga_book_repository.dart';
+import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../widgets/update_status_popup_menu.dart';
 import 'widgets/chapter_manga_list_tile.dart';
 
 class UpdatesScreen extends HookConsumerWidget {
-  const UpdatesScreen({Key? key}) : super(key: key);
+  const UpdatesScreen({super.key});
 
   Future<void> _fetchPage(
     MangaBookRepository repository,
@@ -194,18 +195,11 @@ class UpdatesScreen extends HookConsumerWidget {
               }
               final chapterTile = ChapterMangaListTile(
                 pair: item,
-                toast: toast,
                 isSelected:
                     selectedChapters.value.containsKey(item.chapter!.id!),
                 canTapSelect: selectedChapters.value.isNotEmpty,
-                updatePair: () async {
+                updatePair: (Chapter? chapter) async {
                   try {
-                    final chapter = (await AsyncValue.guard(() =>
-                            ref.read(mangaBookRepositoryProvider).getChapter(
-                                  mangaId: item.manga!.id!,
-                                  chapterIndex: item.chapter!.index!,
-                                )))
-                        .valueOrToast(toast);
                     controller.itemList = [...?controller.itemList]
                       ..replaceRange(index, index + 1, [
                         item.copyWith(

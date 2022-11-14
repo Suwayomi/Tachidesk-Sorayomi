@@ -25,7 +25,7 @@ import '../domain/update_status/update_status_model.dart';
 import 'update_status_popup_menu.dart';
 
 class UpdateStatusSummaryDialog extends ConsumerWidget {
-  const UpdateStatusSummaryDialog({Key? key}) : super(key: key);
+  const UpdateStatusSummaryDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
