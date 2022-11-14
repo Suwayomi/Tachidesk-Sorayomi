@@ -32,6 +32,8 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
   final VoidCallback? onLongPress;
   @override
   Widget build(BuildContext context) {
+    final sourceName =
+        " • ${manga.source?.displayName ?? LocaleKeys.unknownSource.tr()}";
     return InkWell(
       onTap: onPressed,
       onLongPress: onLongPress,
@@ -65,6 +67,7 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                         (manga.title ?? LocaleKeys.unknownManga.tr()),
                         style: context.textTheme.titleLarge,
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                         semanticsLabel: manga.title,
                       ),
                     ),
@@ -89,13 +92,12 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                             color: context.textTheme.bodySmall?.color,
                           ),
                           Text(
-                            " ${manga.status!.toString().tr()} • ",
+                            " ${manga.status!.toString().tr()}",
                             style: context.textTheme.bodySmall,
                           ),
                         ],
                         Text(
-                          manga.source?.displayName ??
-                              LocaleKeys.unknownSource.tr(),
+                          sourceName,
                           style: context.textTheme.bodySmall,
                         ),
                       ],

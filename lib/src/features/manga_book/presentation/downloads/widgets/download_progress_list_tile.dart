@@ -82,12 +82,19 @@ class DownloadProgressListTile extends HookConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  download.chapter?.name ??
-                      download.chapter?.chapterNumber.toString() ??
-                      "",
+                Expanded(
+                  child: Text(
+                    download.chapter?.name ??
+                        download.chapter?.chapterNumber.toString() ??
+                        "",
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                if (!status.isNull) Text(status!),
+                if (!status.isNull)
+                  Text(
+                    status!,
+                    overflow: TextOverflow.ellipsis,
+                  ),
               ],
             ),
           ),
