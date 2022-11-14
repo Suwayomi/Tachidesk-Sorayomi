@@ -1,3 +1,9 @@
+// Copyright (c) 2022 Contributors to the Suwayomi project
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 // 📦 Package imports:
 
 // 📦 Package imports:
@@ -5,10 +11,10 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../data/category/category_repository.dart';
