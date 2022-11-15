@@ -14,18 +14,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../controller/library_controller.dart';
+import '../controller/manga_details_controller.dart';
 
-class LibrarySortTile extends ConsumerWidget {
-  const LibrarySortTile({
+class MangaChapterSortTile extends ConsumerWidget {
+  const MangaChapterSortTile({
     super.key,
     required this.sortType,
   });
-  final MangaSort sortType;
+  final ChapterSort sortType;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sortedBy = ref.watch(libraryMangaSortProvider);
-    final sortedDirection = ref.watch(libraryMangaSortDirectionProvider);
+    final sortedBy = ref.watch(mangaChapterSortProvider);
+    final sortedDirection = ref.watch(mangaChapterSortDirectionProvider);
     return ListTile(
       leading: sortType == sortedBy
           ? Icon(
@@ -39,10 +39,10 @@ class LibrarySortTile extends ConsumerWidget {
       onTap: () {
         if (sortedBy == sortType) {
           ref
-              .read(libraryMangaSortDirectionProvider.notifier)
+              .read(mangaChapterSortDirectionProvider.notifier)
               .update(!(sortedDirection ?? false));
         } else {
-          ref.read(libraryMangaSortProvider.notifier).update(sortType);
+          ref.read(mangaChapterSortProvider.notifier).update(sortType);
         }
       },
     );

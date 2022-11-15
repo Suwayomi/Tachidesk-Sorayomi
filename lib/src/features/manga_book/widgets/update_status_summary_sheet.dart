@@ -19,7 +19,7 @@ import '../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../widgets/emoticons.dart';
 import '../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
-import '../data/manga_book_repository.dart';
+import '../data/updates/updates_repository.dart';
 import '../domain/manga/manga_model.dart';
 import '../domain/update_status/update_status_model.dart';
 import 'update_status_popup_menu.dart';

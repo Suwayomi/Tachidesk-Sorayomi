@@ -14,12 +14,12 @@ import 'package:easy_localization/easy_localization.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import 'library_display.dart';
-import 'library_filter.dart';
-import 'library_sort.dart';
+import 'library_manga_display.dart';
+import 'library_manga_filter.dart';
+import 'library_manga_sort.dart';
 
-class LibraryOrganizer extends StatelessWidget {
-  const LibraryOrganizer({
+class LibraryMangaOrganizer extends StatelessWidget {
+  const LibraryMangaOrganizer({
     super.key,
     /* required this.controller */
   });
@@ -44,9 +44,9 @@ class LibraryOrganizer extends StatelessWidget {
             ]),
         body: const TabBarView(
           children: [
-            LibraryFilter(),
-            LibrarySort(),
-            LibraryDisplay(),
+            LibraryMangaFilter(),
+            LibraryMangaSort(),
+            LibraryMangaDisplay(),
           ],
         ),
       ),

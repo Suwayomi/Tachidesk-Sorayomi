@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../data/manga_book_repository.dart';
+import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 
 class UpdateStatusFab extends ConsumerWidget {
@@ -22,9 +22,7 @@ class UpdateStatusFab extends ConsumerWidget {
     final updateStatus = ref.watch(updatesSocketProvider);
     return (updateStatus.valueOrNull?.showUpdateStatus ?? false)
         ? FloatingActionButton(
-            onPressed: () {
-              showUpdateStatusSummaryBottomSheet(context);
-            },
+            onPressed: () => showUpdateStatusSummaryBottomSheet(context),
             child: Text("${updateStatus.valueOrNull?.updateChecked}"
                 "/${updateStatus.valueOrNull?.total}"),
           )

@@ -48,26 +48,27 @@ class CategoryMangaListWithQueryAndFilter
     final mangaList = ref.watch(categoryMangaListProvider(categoryId));
     final searchFilter = ref.watch(libraryScreenShowSearchProvider);
     final query = ref.watch(libraryQueryProvider);
-    final filterUnread = ref.watch(filterUnreadProvider);
-    final filterDownloaded = ref.watch(filterDownloadedProvider);
-    final filterCompleted = ref.watch(filterCompletedProvider);
+    final mangaFilterUnread = ref.watch(libraryMangaFilterUnreadProvider);
+    final mangaFilterDownloaded =
+        ref.watch(libraryMangaFilterDownloadedProvider);
+    final mangaFilterCompleted = ref.watch(libraryMangaFilterCompletedProvider);
     final sortedBy = ref.watch(libraryMangaSortProvider);
     final sortedDirection =
         ref.watch(libraryMangaSortDirectionProvider) ?? true;
 
     bool applyMangaFilter(Manga manga) {
-      if (filterUnread != null &&
-          (filterUnread ^ manga.unreadCount.isGreaterThan(0))) {
+      if (mangaFilterUnread != null &&
+          (mangaFilterUnread ^ manga.unreadCount.isGreaterThan(0))) {
         return false;
       }
 
-      if (filterDownloaded != null &&
-          (filterDownloaded ^ manga.downloadCount.isGreaterThan(0))) {
+      if (mangaFilterDownloaded != null &&
+          (mangaFilterDownloaded ^ manga.downloadCount.isGreaterThan(0))) {
         return false;
       }
 
-      if (filterCompleted != null &&
-          (filterCompleted ^ (manga.status?.title == "COMPLETED"))) {
+      if (mangaFilterCompleted != null &&
+          (mangaFilterCompleted ^ (manga.status?.title == "COMPLETED"))) {
         return false;
       }
       if (searchFilter && !manga.title.query(query)) {
@@ -111,34 +112,35 @@ class LibraryQuery extends _$LibraryQuery {
 }
 
 @riverpod
-class FilterDownloaded extends _$FilterDownloaded
+class LibraryMangaFilterDownloaded extends _$LibraryMangaFilterDownloaded
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
         client: ref.watch(sharedPreferencesProvider),
-        key: DBKeys.filterDownloaded.name,
-        initial: DBKeys.filterDownloaded.initial,
+        key: DBKeys.mangaFilterDownloaded.name,
+        initial: DBKeys.mangaFilterDownloaded.initial,
       );
 }
 
 @riverpod
-class FilterUnread extends _$FilterUnread with SharedPreferenceClient<bool> {
-  @override
-  bool? build() => initialize(
-        client: ref.watch(sharedPreferencesProvider),
-        key: DBKeys.filterUnread.name,
-        initial: DBKeys.filterUnread.initial,
-      );
-}
-
-@riverpod
-class FilterCompleted extends _$FilterCompleted
+class LibraryMangaFilterUnread extends _$LibraryMangaFilterUnread
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
         client: ref.watch(sharedPreferencesProvider),
-        key: DBKeys.filterCompleted.name,
-        initial: DBKeys.filterCompleted.initial,
+        key: DBKeys.mangaFilterUnread.name,
+        initial: DBKeys.mangaFilterUnread.initial,
+      );
+}
+
+@riverpod
+class LibraryMangaFilterCompleted extends _$LibraryMangaFilterCompleted
+    with SharedPreferenceClient<bool> {
+  @override
+  bool? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.mangaFilterCompleted.name,
+        initial: DBKeys.mangaFilterCompleted.initial,
       );
 }
 

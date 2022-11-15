@@ -59,6 +59,7 @@ abstract class MangaUrl {
       "$_manga/$mangaId/chapter/$chapterIndex?useCache=$useCache";
   static String chapterMetaWithIndex(int mangaId, int chapterIndex) =>
       "$_manga/$mangaId/chapter/$chapterIndex/meta";
+  static String chapterBatch = "/chapter/batch";
   static String chapterPageWithIndex({
     required int mangaId,
     required int chapterIndex,

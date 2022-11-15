@@ -49,7 +49,7 @@ abstract class _$LibraryScreenShowSearch extends AutoDisposeNotifier<bool> {
 }
 
 String $CategoryMangaListWithQueryAndFilterHash() =>
-    r'201336e07f7b465827b7da586672e43e4ebf58ff';
+    r'16b700778e835fa62a6f3db42139955f9638f5af';
 
 /// See also [CategoryMangaListWithQueryAndFilter].
 class CategoryMangaListWithQueryAndFilterProvider
@@ -157,54 +157,61 @@ abstract class _$LibraryQuery extends AutoDisposeNotifier<String?> {
   String? build();
 }
 
-String $FilterDownloadedHash() => r'6746dc38450d61520fd6ba6d1a48392ea80d5a41';
+String $LibraryMangaFilterDownloadedHash() =>
+    r'cce0a471a0fb501d95e45d96504029e2d780c814';
 
-/// See also [FilterDownloaded].
-final filterDownloadedProvider =
-    AutoDisposeNotifierProvider<FilterDownloaded, bool?>(
-  FilterDownloaded.new,
-  name: r'filterDownloadedProvider',
+/// See also [LibraryMangaFilterDownloaded].
+final libraryMangaFilterDownloadedProvider =
+    AutoDisposeNotifierProvider<LibraryMangaFilterDownloaded, bool?>(
+  LibraryMangaFilterDownloaded.new,
+  name: r'libraryMangaFilterDownloadedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $FilterDownloadedHash,
+      : $LibraryMangaFilterDownloadedHash,
 );
-typedef FilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
+typedef LibraryMangaFilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$FilterDownloaded extends AutoDisposeNotifier<bool?> {
+abstract class _$LibraryMangaFilterDownloaded
+    extends AutoDisposeNotifier<bool?> {
   @override
   bool? build();
 }
 
-String $FilterUnreadHash() => r'fd37d4540467c289eba2a1656bf2907dd6d97178';
+String $LibraryMangaFilterUnreadHash() =>
+    r'f09bd1892817cd25a402ab6eba8138d5126fa78a';
 
-/// See also [FilterUnread].
-final filterUnreadProvider = AutoDisposeNotifierProvider<FilterUnread, bool?>(
-  FilterUnread.new,
-  name: r'filterUnreadProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $FilterUnreadHash,
+/// See also [LibraryMangaFilterUnread].
+final libraryMangaFilterUnreadProvider =
+    AutoDisposeNotifierProvider<LibraryMangaFilterUnread, bool?>(
+  LibraryMangaFilterUnread.new,
+  name: r'libraryMangaFilterUnreadProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $LibraryMangaFilterUnreadHash,
 );
-typedef FilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
+typedef LibraryMangaFilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$FilterUnread extends AutoDisposeNotifier<bool?> {
+abstract class _$LibraryMangaFilterUnread extends AutoDisposeNotifier<bool?> {
   @override
   bool? build();
 }
 
-String $FilterCompletedHash() => r'a75cb48401eb02e32a8c9a2b08708ba371ad6e5b';
+String $LibraryMangaFilterCompletedHash() =>
+    r'db7a3dfbb7f8a8c5ccd3c2d95a601f015129e5f2';
 
-/// See also [FilterCompleted].
-final filterCompletedProvider =
-    AutoDisposeNotifierProvider<FilterCompleted, bool?>(
-  FilterCompleted.new,
-  name: r'filterCompletedProvider',
+/// See also [LibraryMangaFilterCompleted].
+final libraryMangaFilterCompletedProvider =
+    AutoDisposeNotifierProvider<LibraryMangaFilterCompleted, bool?>(
+  LibraryMangaFilterCompleted.new,
+  name: r'libraryMangaFilterCompletedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $FilterCompletedHash,
+      : $LibraryMangaFilterCompletedHash,
 );
-typedef FilterCompletedRef = AutoDisposeNotifierProviderRef<bool?>;
+typedef LibraryMangaFilterCompletedRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$FilterCompleted extends AutoDisposeNotifier<bool?> {
+abstract class _$LibraryMangaFilterCompleted
+    extends AutoDisposeNotifier<bool?> {
   @override
   bool? build();
 }

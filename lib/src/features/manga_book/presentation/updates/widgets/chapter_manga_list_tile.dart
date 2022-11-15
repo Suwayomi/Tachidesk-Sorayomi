@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
+import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions/bool_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
@@ -37,11 +38,21 @@ class ChapterMangaListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = (pair.chapter?.read).ifNull() ? Colors.grey : null;
     return ListTile(
-      selectedColor: context.theme.colorScheme.onSurface,
-      selectedTileColor:
-          context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
-      selected: isSelected,
-      title: Text(pair.manga?.title ?? "", style: TextStyle(color: color)),
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (pair.chapter?.bookmarked ?? false) ...[
+            const Icon(Icons.bookmark, size: 20),
+            KSizedBox.w4.size,
+          ],
+          Expanded(
+            child: Text(
+              pair.manga?.title ?? "",
+              style: TextStyle(color: color),
+            ),
+          ),
+        ],
+      ),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: ServerImage(
@@ -57,10 +68,14 @@ class ChapterMangaListTile extends StatelessWidget {
           ? DownloadStatusIcon(
               isDownloaded: pair.chapter?.downloaded ?? false,
               mangaId: pair.manga!.id!,
-              chapterIndex: pair.chapter!.index!,
+              chapter: pair.chapter!,
               updateData: updatePair,
             )
           : null,
+      selectedColor: context.theme.colorScheme.onSurface,
+      selectedTileColor:
+          context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+      selected: isSelected,
       onTap: canTapSelect ? () => toggleSelect(pair) : null,
       onLongPress: () => toggleSelect(pair),
     );

@@ -12,13 +12,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../domain/chapter/chapter_model.dart';
+import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
+import '../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import '../controller/manga_details_controller.dart';
 import 'chapter_list_tile.dart';
@@ -27,24 +29,24 @@ import 'manga_description.dart';
 class SmallScreenMangaDetails extends ConsumerWidget {
   const SmallScreenMangaDetails({
     super.key,
+    required this.chapterList,
     required this.manga,
+    required this.selectedChapters,
     required this.mangaId,
     required this.onRefresh,
   });
   final String mangaId;
   final Manga manga;
   final AsyncValueChanged<bool> onRefresh;
+  final ValueNotifier<Map<int, ChapterMangaPair>> selectedChapters;
+  final AsyncValue<List<Chapter>?> chapterList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = mangaChapterListProvider(mangaId: mangaId);
-    final chapterList = ref.watch(provider);
-    refresh() async {
-      await onRefresh(false);
-      ref.read(provider.notifier).refresh();
-    }
+    final filteredChapterList =
+        ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
 
     return RefreshIndicator(
-      onRefresh: refresh,
+      onRefresh: () => onRefresh(false),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -71,28 +73,39 @@ class SmallScreenMangaDetails extends ConsumerWidget {
             ),
           ),
           chapterList.when(
-            data: (data) => data.isNotBlank
+            data: (data) => filteredChapterList?.isNotEmpty ?? false
                 ? SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (context, index) => ChapterListTile(
-                        key: ValueKey("$mangaId-${data[index].id}"),
+                        key: ValueKey("${filteredChapterList[index].id}"),
                         manga: manga,
-                        chapter: data[index],
-                        updateData: (value) {
-                          if (value == null) return;
-                          ref
-                              .read(provider.notifier)
-                              .updateChapter(index, value);
+                        chapter: filteredChapterList[index],
+                        updateData: () => onRefresh(true),
+                        isSelected: selectedChapters.value
+                            .containsKey(filteredChapterList[index].id),
+                        canTapSelect: selectedChapters.value.isNotEmpty,
+                        toggleSelect: (ChapterMangaPair val) {
+                          if ((val.chapter?.id).isNull) return;
+                          if (selectedChapters.value
+                              .containsKey(val.chapter!.id!)) {
+                            selectedChapters.value = {...selectedChapters.value}
+                              ..remove(val.chapter!.id!);
+                          } else {
+                            selectedChapters.value = {
+                              ...selectedChapters.value,
+                              val.chapter!.id!: val
+                            };
+                          }
                         },
                       ),
-                      childCount: data!.length,
+                      childCount: filteredChapterList!.length,
                     ),
                   )
                 : SliverToBoxAdapter(
                     child: Emoticons(
                       text: LocaleKeys.noChaptersFound.tr(),
                       button: TextButton(
-                        onPressed: () => ref.invalidate(provider),
+                        onPressed: () => onRefresh(true),
                         child: Text(LocaleKeys.refresh.tr()),
                       ),
                     ),
@@ -101,7 +114,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
               child: Emoticons(
                 text: error.toString(),
                 button: TextButton(
-                  onPressed: () => ref.invalidate(provider),
+                  onPressed: () => onRefresh(true),
                   child: Text(LocaleKeys.refresh.tr()),
                 ),
               ),
@@ -113,6 +126,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
               ),
             ),
           ),
+          const SliverToBoxAdapter(child: ListTile()),
         ],
       ),
     );

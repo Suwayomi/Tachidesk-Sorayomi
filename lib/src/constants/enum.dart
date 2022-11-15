@@ -31,6 +31,8 @@ enum ReaderNavigationLayout {
 
 enum MangaSort { alphabetical, dateAdded, unread }
 
+enum ChapterSort { source, fetchedDate }
+
 enum DisplayMode { grid, list, listDescription }
 
 enum MangaStatus {

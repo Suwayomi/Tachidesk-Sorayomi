@@ -20,6 +20,7 @@ class CodegenLoader extends AssetLoader {
     "completed": "Completed",
     "failed": "Failed",
     "displayMode": "Display Mode",
+    "ChapterSort": {"fetchedDate": "By Fetched Data", "source": "By Source"},
     "DisplayMode": {
       "grid": "Grid",
       "list": "List",

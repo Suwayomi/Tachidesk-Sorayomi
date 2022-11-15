@@ -17,7 +17,7 @@ import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart'
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../data/manga_book_repository.dart';
+import '../../data/downloads/downloads_repository.dart';
 import '../../domain/downloads/downloads_model.dart';
 import 'widgets/download_progress_list_tile.dart';
 import 'widgets/downloads_fab.dart';
@@ -39,12 +39,13 @@ class DownloadsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(LocaleKeys.downloads.tr()),
         actions: [
-          IconButton(
-            onPressed: () => AsyncValue.guard(
-              ref.read(mangaBookRepositoryProvider).clearDownloads,
+          if ((downloads.valueOrNull?.queue).isNotBlank)
+            IconButton(
+              onPressed: () => AsyncValue.guard(
+                ref.read(downloadsRepositoryProvider).clearDownloads,
+              ),
+              icon: const Icon(Icons.delete_sweep_rounded),
             ),
-            icon: const Icon(Icons.delete_sweep_rounded),
-          ),
         ],
       ),
       floatingActionButton: showFab(downloads)

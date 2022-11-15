@@ -25,7 +25,7 @@ import '../../../manga_book/widgets/update_status_popup_menu.dart';
 import '../category/controller/edit_category_controller.dart';
 import 'category_manga_list.dart';
 import 'controller/library_controller.dart';
-import 'library_organizer.dart';
+import 'library_manga_organizer.dart';
 
 class LibraryScreen extends HookConsumerWidget {
   const LibraryScreen({super.key});
@@ -78,7 +78,7 @@ class LibraryScreen extends HookConsumerWidget {
                         borderRadius: KBorderRadius.rT16.radius,
                       ),
                       clipBehavior: Clip.hardEdge,
-                      builder: (_) => const LibraryOrganizer(),
+                      builder: (_) => const LibraryMangaOrganizer(),
                     );
                   }
                 },
@@ -99,7 +99,7 @@ class LibraryScreen extends HookConsumerWidget {
           ],
         ),
         endDrawerEnableOpenDragGesture: false,
-        endDrawer: const Drawer(child: LibraryOrganizer()),
+        endDrawer: const Drawer(child: LibraryMangaOrganizer()),
         body: categoryList.isEmpty
             ? const CenterCircularProgressIndicator()
             : Column(

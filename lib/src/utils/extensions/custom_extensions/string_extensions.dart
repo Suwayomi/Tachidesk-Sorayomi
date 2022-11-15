@@ -93,4 +93,9 @@ extension StringExtensions on String? {
     if (isBlank) return null;
     return this!.length > 10 ? this!.substring(this!.length - 10) : this;
   }
+
+  String? get toWebSocket {
+    if (isBlank) return null;
+    return this!.replaceFirst(RegExp('http', caseSensitive: false), 'ws');
+  }
 }

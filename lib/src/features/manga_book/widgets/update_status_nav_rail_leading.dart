@@ -13,7 +13,7 @@ import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/contex
 import '../../../constants/gen/assets.gen.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../routes/router_config.dart';
-import '../data/manga_book_repository.dart';
+import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 
 class UpdateStatusNavRailLeading extends ConsumerWidget {

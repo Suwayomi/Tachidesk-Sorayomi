@@ -16,8 +16,8 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../widgets/custom_checkbox_list_tile.dart';
 import 'controller/library_controller.dart';
 
-class LibraryFilter extends ConsumerWidget {
-  const LibraryFilter({super.key});
+class LibraryMangaFilter extends ConsumerWidget {
+  const LibraryMangaFilter({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,18 +26,20 @@ class LibraryFilter extends ConsumerWidget {
         const Divider(height: .5),
         CustomCheckboxListTile(
           title: LocaleKeys.unread.tr(),
-          provider: filterUnreadProvider,
-          onChanged: ref.read(filterUnreadProvider.notifier).update,
+          provider: libraryMangaFilterUnreadProvider,
+          onChanged: ref.read(libraryMangaFilterUnreadProvider.notifier).update,
         ),
         CustomCheckboxListTile(
           title: LocaleKeys.completed.tr(),
-          provider: filterCompletedProvider,
-          onChanged: ref.read(filterCompletedProvider.notifier).update,
+          provider: libraryMangaFilterCompletedProvider,
+          onChanged:
+              ref.read(libraryMangaFilterCompletedProvider.notifier).update,
         ),
         CustomCheckboxListTile(
           title: LocaleKeys.downloaded.tr(),
-          provider: filterDownloadedProvider,
-          onChanged: ref.read(filterDownloadedProvider.notifier).update,
+          provider: libraryMangaFilterDownloadedProvider,
+          onChanged:
+              ref.read(libraryMangaFilterDownloadedProvider.notifier).update,
         ),
       ],
     );

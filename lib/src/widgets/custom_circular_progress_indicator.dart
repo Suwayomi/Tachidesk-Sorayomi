@@ -19,12 +19,14 @@ class CenterCircularProgressIndicator extends StatelessWidget {
 }
 
 class MiniCircularProgressIndicator extends StatelessWidget {
-  const MiniCircularProgressIndicator({super.key, this.color, this.value});
+  const MiniCircularProgressIndicator(
+      {super.key, this.color, this.value, this.padding});
   final Color? color;
   final double? value;
+  final EdgeInsetsGeometry? padding;
   @override
   Widget build(BuildContext context) => Padding(
-        padding: KEdgeInsets.a8.size,
+        padding: padding ?? KEdgeInsets.a8.size,
         child: SizedBox.square(
           dimension: 16,
           child: CircularProgressIndicator(

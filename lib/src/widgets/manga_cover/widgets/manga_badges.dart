@@ -25,17 +25,19 @@ class MangaBadgesRow extends ConsumerWidget {
     required this.manga,
     this.needSpacer = false,
     this.showCountBadges = false,
+    this.padding,
   });
   final Manga manga;
   final bool needSpacer;
   final bool showCountBadges;
+  final EdgeInsetsGeometry? padding;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final downloadedBadge = ref.watch(downloadedBadgeProvider) ?? true;
     final unreadBadge = ref.watch(unreadBadgeProvider) ?? true;
     // final languageBadge = ref.watch(languageBadgeProvider) ?? false;
     return Padding(
-      padding: KEdgeInsets.a8.size,
+      padding: padding ?? KEdgeInsets.a8.size,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

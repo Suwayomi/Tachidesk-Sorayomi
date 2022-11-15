@@ -20,7 +20,7 @@ import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/downloads/downloads_repository.dart';
 import '../../../domain/downloads_queue/downloads_queue_model.dart';
 
 class DownloadProgressListTile extends HookConsumerWidget {
@@ -42,7 +42,7 @@ class DownloadProgressListTile extends HookConsumerWidget {
       isLoading.value = true;
       if (!download.chapterIndex.isNull && !download.mangaId.isNull) {
         (await AsyncValue.guard(() async {
-          final repo = ref.read(mangaBookRepositoryProvider);
+          final repo = ref.read(downloadsRepositoryProvider);
           await repo.removeChapterFromDownloadQueue(
             download.mangaId!,
             download.chapterIndex!,

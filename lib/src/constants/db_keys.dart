@@ -25,11 +25,16 @@ enum DBKeys {
   downloadedBadge(true),
   unreadBadge(true),
   languageBadge(false),
-  filterDownloaded(null),
-  filterUnread(null),
-  filterCompleted(null),
+  mangaFilterDownloaded(null),
+  mangaFilterUnread(null),
+  mangaFilterCompleted(null),
+  chapterFilterDownloaded(null),
+  chapterFilterUnread(null),
+  chapterFilterBookmarked(null),
   mangaSort(MangaSort.alphabetical),
   mangaSortDirection(true), // asc=true, dsc=false
+  chapterSort(ChapterSort.source),
+  chapterSortDirection(false), // asc=true, dsc=false
   displayMode(DisplayMode.grid),
   ;
 

@@ -21,8 +21,8 @@ import '../../../../widgets/enum_popup.dart';
 import '../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
 import 'controller/library_controller.dart';
 
-class LibraryDisplay extends ConsumerWidget {
-  const LibraryDisplay({super.key});
+class LibraryMangaDisplay extends ConsumerWidget {
+  const LibraryMangaDisplay({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

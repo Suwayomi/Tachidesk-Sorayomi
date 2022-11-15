@@ -14,15 +14,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
-import '../../../../constants/app_sizes.dart';
+import '../../data/updates/updates_repository.dart';
+import '../../widgets/multi_select_bottom_options.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
-import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../data/manga_book_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../widgets/update_status_popup_menu.dart';
@@ -32,7 +29,7 @@ class UpdatesScreen extends HookConsumerWidget {
   const UpdatesScreen({super.key});
 
   Future<void> _fetchPage(
-    MangaBookRepository repository,
+    UpdatesRepository repository,
     PagingController controller,
     int pageKey,
   ) async {
@@ -63,11 +60,10 @@ class UpdatesScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller =
         usePagingController<int, ChapterMangaPair>(firstPageKey: 0);
-    final chapterRepository = ref.watch(mangaBookRepositoryProvider);
-    final toast = ref.watch(toastProvider(context));
+    final updatesRepository = ref.watch(updatesRepositoryProvider);
     useEffect(() {
       controller.addPageRequestListener((pageKey) => _fetchPage(
-            chapterRepository,
+            updatesRepository,
             controller,
             pageKey,
           ));
@@ -92,82 +88,16 @@ class UpdatesScreen extends HookConsumerWidget {
               actions: const [UpdateStatusPopupMenu()],
             ),
       bottomSheet: selectedChapters.value.isNotEmpty
-          ? Padding(
-              padding: KEdgeInsets.a8.size,
-              child: BottomSheet(
-                enableDrag: false,
-                backgroundColor: context.theme.cardColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: KBorderRadius.r16.radius),
-                onClosing: () {},
-                builder: (context) {
-                  final selectedList = selectedChapters.value.values;
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      if (selectedList.any(
-                          (element) => element.chapter?.bookmarked ?? false))
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.bookmark_remove_rounded),
-                        ),
-                      if (selectedList.any(
-                          (element) => !(element.chapter?.bookmarked ?? false)))
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.bookmark_add_rounded),
-                        ),
-                      if (selectedList
-                          .any((element) => !(element.chapter?.read ?? false)))
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.done_all_rounded),
-                        ),
-                      if (selectedList
-                          .any((element) => (element.chapter?.read ?? false)))
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.remove_done_outlined),
-                        ),
-                      if (selectedList.any(
-                          (element) => !(element.chapter?.downloaded ?? false)))
-                        IconButton(
-                          onPressed: () {
-                            final downloadableList = <int>[];
-                            for (var element in selectedList) {
-                              if (!(element.chapter?.downloaded ?? true)) {
-                                downloadableList.add(element.chapter!.id!);
-                              }
-                            }
-                            AsyncValue.guard(
-                              () => chapterRepository
-                                  .addChaptersBatchToDownloadQueue(
-                                downloadableList.toList(),
-                              ),
-                            ).then(
-                              (val) => val.whenOrNull(
-                                data: (data) => selectedChapters.value = {},
-                                error: (error, _) =>
-                                    val.showToastOnError(toast),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.download_rounded),
-                        ),
-                      if (selectedList.any(
-                          (element) => (element.chapter?.downloaded ?? false)))
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.delete_rounded),
-                        ),
-                    ],
-                  );
-                },
-              ),
+          ? MultiSelectBottomOptions(
+              selectedChapters: selectedChapters,
+              afterOptionSelected: () async => controller.refresh(),
             )
           : null,
       body: RefreshIndicator(
-        onRefresh: () async => controller.refresh(),
+        onRefresh: () async {
+          selectedChapters.value = {};
+          controller.refresh();
+        },
         child: PagedListView(
           pagingController: controller,
           builderDelegate: PagedChildBuilderDelegate<ChapterMangaPair>(
@@ -195,9 +125,6 @@ class UpdatesScreen extends HookConsumerWidget {
               }
               final chapterTile = ChapterMangaListTile(
                 pair: item,
-                isSelected:
-                    selectedChapters.value.containsKey(item.chapter!.id!),
-                canTapSelect: selectedChapters.value.isNotEmpty,
                 updatePair: (Chapter? chapter) async {
                   try {
                     controller.itemList = [...?controller.itemList]
@@ -210,6 +137,9 @@ class UpdatesScreen extends HookConsumerWidget {
                     //
                   }
                 },
+                isSelected:
+                    selectedChapters.value.containsKey(item.chapter!.id!),
+                canTapSelect: selectedChapters.value.isNotEmpty,
                 toggleSelect: (ChapterMangaPair val) {
                   if ((val.chapter?.id).isNull) return;
                   if (selectedChapters.value.containsKey(val.chapter!.id!)) {

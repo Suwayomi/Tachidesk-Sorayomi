@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // 🌎 Project imports:
+import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
@@ -96,10 +97,11 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                             style: context.textTheme.bodySmall,
                           ),
                         ],
-                        Text(
-                          sourceName,
-                          style: context.textTheme.bodySmall,
-                        ),
+                        if (manga.source?.displayName != null)
+                          Text(
+                            sourceName,
+                            style: context.textTheme.bodySmall,
+                          ),
                       ],
                     ),
                     if (showCountBadges)
@@ -109,6 +111,7 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                               showCountBadges: true,
                             )
                           : MangaBadgesRow(
+                              padding: KEdgeInsets.v8.size,
                               manga: manga,
                               showCountBadges: true,
                             ),

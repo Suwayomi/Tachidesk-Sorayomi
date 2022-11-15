@@ -114,7 +114,7 @@ abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
   });
 }
 
-String $MangaChapterListHash() => r'ed8032ad7accdea6ba387f9b3b4d45063c350526';
+String $MangaChapterListHash() => r'98a6a3afb33394a6b2a81bc7ce3d14b51076e91b';
 
 /// See also [MangaChapterList].
 class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
@@ -200,4 +200,173 @@ abstract class _$MangaChapterList
   FutureOr<List<Chapter>?> build({
     required String mangaId,
   });
+}
+
+String $MangaChapterSortHash() => r'9b194b005f7b3c9c41cd56b7e9c902dc6d177ecb';
+
+/// See also [MangaChapterSort].
+final mangaChapterSortProvider =
+    AutoDisposeNotifierProvider<MangaChapterSort, ChapterSort?>(
+  MangaChapterSort.new,
+  name: r'mangaChapterSortProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $MangaChapterSortHash,
+);
+typedef MangaChapterSortRef = AutoDisposeNotifierProviderRef<ChapterSort?>;
+
+abstract class _$MangaChapterSort extends AutoDisposeNotifier<ChapterSort?> {
+  @override
+  ChapterSort? build();
+}
+
+String $MangaChapterSortDirectionHash() =>
+    r'000a0c863bf83c2c751ee2fb1fb0cc62dcd77680';
+
+/// See also [MangaChapterSortDirection].
+final mangaChapterSortDirectionProvider =
+    AutoDisposeNotifierProvider<MangaChapterSortDirection, bool?>(
+  MangaChapterSortDirection.new,
+  name: r'mangaChapterSortDirectionProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $MangaChapterSortDirectionHash,
+);
+typedef MangaChapterSortDirectionRef = AutoDisposeNotifierProviderRef<bool?>;
+
+abstract class _$MangaChapterSortDirection extends AutoDisposeNotifier<bool?> {
+  @override
+  bool? build();
+}
+
+String $MangaChapterFilterDownloadedHash() =>
+    r'9f3ae2d1cda9b201ddf079822b8d6f7722ef2548';
+
+/// See also [MangaChapterFilterDownloaded].
+final mangaChapterFilterDownloadedProvider =
+    AutoDisposeNotifierProvider<MangaChapterFilterDownloaded, bool?>(
+  MangaChapterFilterDownloaded.new,
+  name: r'mangaChapterFilterDownloadedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $MangaChapterFilterDownloadedHash,
+);
+typedef MangaChapterFilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
+
+abstract class _$MangaChapterFilterDownloaded
+    extends AutoDisposeNotifier<bool?> {
+  @override
+  bool? build();
+}
+
+String $MangaChapterFilterUnreadHash() =>
+    r'a5dbcb2249ffe9de721e6c04efb299a823ff9e34';
+
+/// See also [MangaChapterFilterUnread].
+final mangaChapterFilterUnreadProvider =
+    AutoDisposeNotifierProvider<MangaChapterFilterUnread, bool?>(
+  MangaChapterFilterUnread.new,
+  name: r'mangaChapterFilterUnreadProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $MangaChapterFilterUnreadHash,
+);
+typedef MangaChapterFilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
+
+abstract class _$MangaChapterFilterUnread extends AutoDisposeNotifier<bool?> {
+  @override
+  bool? build();
+}
+
+String $MangaChapterFilterBookmarkedHash() =>
+    r'92e64218ce62b7c3010ec6d5dca7ffa0a6702eeb';
+
+/// See also [MangaChapterFilterBookmarked].
+final mangaChapterFilterBookmarkedProvider =
+    AutoDisposeNotifierProvider<MangaChapterFilterBookmarked, bool?>(
+  MangaChapterFilterBookmarked.new,
+  name: r'mangaChapterFilterBookmarkedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $MangaChapterFilterBookmarkedHash,
+);
+typedef MangaChapterFilterBookmarkedRef = AutoDisposeNotifierProviderRef<bool?>;
+
+abstract class _$MangaChapterFilterBookmarked
+    extends AutoDisposeNotifier<bool?> {
+  @override
+  bool? build();
+}
+
+String $mangaChapterListWithFilterHash() =>
+    r'60995f367091cb899dfedab8812f58878418d2fc';
+
+/// See also [mangaChapterListWithFilter].
+class MangaChapterListWithFilterProvider
+    extends AutoDisposeProvider<List<Chapter>?> {
+  MangaChapterListWithFilterProvider({
+    required this.mangaId,
+  }) : super(
+          (ref) => mangaChapterListWithFilter(
+            ref,
+            mangaId: mangaId,
+          ),
+          from: mangaChapterListWithFilterProvider,
+          name: r'mangaChapterListWithFilterProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $mangaChapterListWithFilterHash,
+        );
+
+  final String mangaId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is MangaChapterListWithFilterProvider &&
+        other.mangaId == mangaId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mangaId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef MangaChapterListWithFilterRef = AutoDisposeProviderRef<List<Chapter>?>;
+
+/// See also [mangaChapterListWithFilter].
+final mangaChapterListWithFilterProvider = MangaChapterListWithFilterFamily();
+
+class MangaChapterListWithFilterFamily extends Family<List<Chapter>?> {
+  MangaChapterListWithFilterFamily();
+
+  MangaChapterListWithFilterProvider call({
+    required String mangaId,
+  }) {
+    return MangaChapterListWithFilterProvider(
+      mangaId: mangaId,
+    );
+  }
+
+  @override
+  AutoDisposeProvider<List<Chapter>?> getProviderOverride(
+    covariant MangaChapterListWithFilterProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'mangaChapterListWithFilterProvider';
 }

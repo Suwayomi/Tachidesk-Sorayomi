@@ -6,6 +6,9 @@ abstract class LocaleKeys {
   static const completed = 'completed';
   static const failed = 'failed';
   static const displayMode = 'displayMode';
+  static const ChapterSort_fetchedDate = 'ChapterSort.fetchedDate';
+  static const ChapterSort_source = 'ChapterSort.source';
+  static const ChapterSort = 'ChapterSort';
   static const DisplayMode_grid = 'DisplayMode.grid';
   static const DisplayMode_list = 'DisplayMode.list';
   static const DisplayMode_listDescription = 'DisplayMode.listDescription';
