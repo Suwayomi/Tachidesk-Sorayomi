@@ -11,11 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // 🌎 Project imports:
-import 'manga_chapter_filter.dart';
-import 'manga_chapter_sort.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import 'manga_chapter_filter.dart';
+import 'manga_chapter_sort.dart';
 
 // 🌎 Project imports:
 

@@ -12,15 +12,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../domain/chapter/chapter_model.dart';
-import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
-import '../../../domain/chapter_page/chapter_page_model.dart';
+import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import '../controller/manga_details_controller.dart';
 import 'chapter_list_tile.dart';
@@ -38,7 +39,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
   final String mangaId;
   final Manga manga;
   final AsyncValueChanged<bool> onRefresh;
-  final ValueNotifier<Map<int, ChapterMangaPair>> selectedChapters;
+  final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncValue<List<Chapter>?> chapterList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -67,49 +68,45 @@ class SmallScreenMangaDetails extends ConsumerWidget {
             child: ListTile(
               title: Text(
                 LocaleKeys.noOfChapters.tr(
-                  namedArgs: {"count": "${manga.chapterCount ?? 0}"},
+                  namedArgs: {"count": "${filteredChapterList?.length ?? 0}"},
                 ),
               ),
             ),
           ),
           chapterList.when(
-            data: (data) => filteredChapterList?.isNotEmpty ?? false
-                ? SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => ChapterListTile(
-                        key: ValueKey("${filteredChapterList[index].id}"),
-                        manga: manga,
-                        chapter: filteredChapterList[index],
-                        updateData: () => onRefresh(true),
-                        isSelected: selectedChapters.value
-                            .containsKey(filteredChapterList[index].id),
-                        canTapSelect: selectedChapters.value.isNotEmpty,
-                        toggleSelect: (ChapterMangaPair val) {
-                          if ((val.chapter?.id).isNull) return;
-                          if (selectedChapters.value
-                              .containsKey(val.chapter!.id!)) {
-                            selectedChapters.value = {...selectedChapters.value}
-                              ..remove(val.chapter!.id!);
-                          } else {
-                            selectedChapters.value = {
-                              ...selectedChapters.value,
-                              val.chapter!.id!: val
-                            };
-                          }
-                        },
-                      ),
-                      childCount: filteredChapterList!.length,
+            data: (data) {
+              if (data.isNotBlank) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => ChapterListTile(
+                      key: ValueKey("${filteredChapterList[index].id}"),
+                      manga: manga,
+                      chapter: filteredChapterList[index],
+                      updateData: () => onRefresh(true),
+                      isSelected: selectedChapters.value
+                          .containsKey(filteredChapterList[index].id),
+                      canTapSelect: selectedChapters.value.isNotEmpty,
+                      toggleSelect: (Chapter val) {
+                        if ((val.id).isNull) return;
+                        selectedChapters.value =
+                            selectedChapters.value.toggleKey(val.id!, val);
+                      },
                     ),
-                  )
-                : SliverToBoxAdapter(
-                    child: Emoticons(
-                      text: LocaleKeys.noChaptersFound.tr(),
-                      button: TextButton(
-                        onPressed: () => onRefresh(true),
-                        child: Text(LocaleKeys.refresh.tr()),
-                      ),
+                    childCount: filteredChapterList!.length,
+                  ),
+                );
+              } else {
+                return SliverToBoxAdapter(
+                  child: Emoticons(
+                    text: LocaleKeys.noChaptersFound.tr(),
+                    button: TextButton(
+                      onPressed: () => onRefresh(false),
+                      child: Text(LocaleKeys.refresh.tr()),
                     ),
                   ),
+                );
+              }
+            },
             error: (error, stackTrace) => SliverToBoxAdapter(
               child: Emoticons(
                 text: error.toString(),

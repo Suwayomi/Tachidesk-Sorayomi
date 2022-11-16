@@ -16,10 +16,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/classes/pair/pair_model.dart';
+import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../utils/misc/custom_typedef.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/downloads/downloads_model.dart';

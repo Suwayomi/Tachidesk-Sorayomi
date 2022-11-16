@@ -14,14 +14,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
-import '../../data/updates/updates_repository.dart';
-import '../../widgets/multi_select_bottom_options.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/map_extensions.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../widgets/emoticons.dart';
+import '../../data/manga_book_repository.dart';
+import '../../data/updates/updates_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
+import '../../widgets/multi_select_bottom_options.dart';
 import '../../widgets/update_status_popup_menu.dart';
 import 'widgets/chapter_manga_list_tile.dart';
 
@@ -61,6 +65,7 @@ class UpdatesScreen extends HookConsumerWidget {
     final controller =
         usePagingController<int, ChapterMangaPair>(firstPageKey: 0);
     final updatesRepository = ref.watch(updatesRepositoryProvider);
+    final toast = ref.watch(toastProvider(context));
     useEffect(() {
       controller.addPageRequestListener((pageKey) => _fetchPage(
             updatesRepository,
@@ -69,7 +74,7 @@ class UpdatesScreen extends HookConsumerWidget {
           ));
       return;
     }, []);
-    final selectedChapters = useState<Map<int, ChapterMangaPair>>({});
+    final selectedChapters = useState<Map<int, Chapter>>({});
     return Scaffold(
       appBar: selectedChapters.value.isNotEmpty
           ? AppBar(
@@ -125,32 +130,36 @@ class UpdatesScreen extends HookConsumerWidget {
               }
               final chapterTile = ChapterMangaListTile(
                 pair: item,
-                updatePair: (Chapter? chapter) async {
-                  try {
-                    controller.itemList = [...?controller.itemList]
-                      ..replaceRange(index, index + 1, [
-                        item.copyWith(
-                          chapter: chapter ?? item.chapter,
-                        )
-                      ]);
-                  } catch (e) {
-                    //
+                updatePair: () async {
+                  if (item.manga?.id == null || item.chapter?.index == null) {
+                    return;
+                  } else {
+                    final chapter = (await AsyncValue.guard(
+                      () => ref.read(mangaBookRepositoryProvider).getChapter(
+                            mangaId: item.manga!.id!,
+                            chapterIndex: item.chapter!.index!,
+                          ),
+                    ))
+                        .valueOrToast(toast);
+                    try {
+                      controller.itemList = [...?controller.itemList]
+                        ..replaceRange(index, index + 1, [
+                          item.copyWith(
+                            chapter: chapter ?? item.chapter,
+                          )
+                        ]);
+                    } catch (e) {
+                      //
+                    }
                   }
                 },
                 isSelected:
                     selectedChapters.value.containsKey(item.chapter!.id!),
                 canTapSelect: selectedChapters.value.isNotEmpty,
-                toggleSelect: (ChapterMangaPair val) {
-                  if ((val.chapter?.id).isNull) return;
-                  if (selectedChapters.value.containsKey(val.chapter!.id!)) {
-                    selectedChapters.value = {...selectedChapters.value}
-                      ..remove(val.chapter!.id!);
-                  } else {
-                    selectedChapters.value = {
-                      ...selectedChapters.value,
-                      val.chapter!.id!: val
-                    };
-                  }
+                toggleSelect: (Chapter val) {
+                  if ((val.id).isNull) return;
+                  selectedChapters.value =
+                      selectedChapters.value.toggleKey(val.id!, val);
                 },
               );
               if ((item.chapter?.fetchedAt).isSameDayAs(previousDate)) {

@@ -114,7 +114,7 @@ abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
   });
 }
 
-String $MangaChapterListHash() => r'98a6a3afb33394a6b2a81bc7ce3d14b51076e91b';
+String $MangaChapterListHash() => r'5d24131efa872963e560a28164eb7d167f29e43d';
 
 /// See also [MangaChapterList].
 class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<

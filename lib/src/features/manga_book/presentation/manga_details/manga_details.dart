@@ -13,12 +13,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../domain/chapter/chapter_model.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../widgets/multi_select_bottom_options.dart';
 import 'controller/manga_details_controller.dart';
 import 'widgets/big_screen_manga_details.dart';
@@ -35,7 +35,7 @@ class MangaDetails extends HookConsumerWidget {
     final chapterProvider = mangaChapterListProvider(mangaId: mangaId);
     final manga = ref.watch(provider);
     final chapterList = ref.watch(chapterProvider);
-    final selectedChapters = useState<Map<int, ChapterMangaPair>>({});
+    final selectedChapters = useState<Map<int, Chapter>>({});
     refresh([useCache = true]) async {
       await ref.read(provider.notifier).refresh(useCache);
       await ref.read(chapterProvider.notifier).refresh(useCache);
@@ -54,7 +54,34 @@ class MangaDetails extends HookConsumerWidget {
                     namedArgs: {"num": "${selectedChapters.value.length}"},
                   ),
                 ),
-                actions: const [SizedBox.shrink()],
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      selectedChapters.value = {
+                        for (Chapter i in ref.read(
+                                mangaChapterListWithFilterProvider(
+                                    mangaId: mangaId)) ??
+                            [])
+                          i.id ?? -1: i
+                      };
+                    },
+                    icon: const Icon(Icons.select_all_rounded),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      final newMap = {
+                        for (Chapter i in ref.read(
+                                mangaChapterListWithFilterProvider(
+                                    mangaId: mangaId)) ??
+                            [])
+                          i.id ?? -1: i
+                      }..removeWhere((key, value) =>
+                          selectedChapters.value.containsKey(key));
+                      selectedChapters.value = newMap;
+                    },
+                    icon: const Icon(Icons.flip_to_back_rounded),
+                  ),
+                ],
               )
             : AppBar(
                 title: Text(data?.title ?? LocaleKeys.manga.tr()),

@@ -12,9 +12,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../data/updates/updates_repository.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../i18n/locale_keys.g.dart';
+import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 
 class UpdateStatusPopupMenu extends ConsumerWidget {

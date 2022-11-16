@@ -44,37 +44,38 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
         ],
       ),
       body: finalStatus.when(
-        data: (data) => ListView(
-          children: [
-            if ((data?.running).isNotBlank)
-              UpdateStatusExpansionTile(
-                mangas: data!.running!,
-                title: LocaleKeys.running.tr(),
-              ),
-            if ((data?.pending).isNotBlank)
-              UpdateStatusExpansionTile(
-                mangas: data!.pending!,
-                title: LocaleKeys.pending.tr(),
-              ),
-            if ((data?.completed).isNotBlank)
-              UpdateStatusExpansionTile(
-                mangas: data!.completed!,
-                title: LocaleKeys.completed.tr(),
-              ),
-            if ((data?.failed).isNotBlank)
-              UpdateStatusExpansionTile(
-                mangas: data!.failed!,
-                title: LocaleKeys.failed.tr(),
-              ),
-          ],
+        data: (data) => RefreshIndicator(
+          onRefresh: () => ref.refresh(updateSummaryProvider.future),
+          child: ListView(
+            children: [
+              if ((data?.running).isNotBlank)
+                UpdateStatusExpansionTile(
+                  mangas: data!.running!,
+                  title: LocaleKeys.running.tr(),
+                ),
+              if ((data?.pending).isNotBlank)
+                UpdateStatusExpansionTile(
+                  mangas: data!.pending!,
+                  title: LocaleKeys.pending.tr(),
+                ),
+              if ((data?.completed).isNotBlank)
+                UpdateStatusExpansionTile(
+                  mangas: data!.completed!,
+                  title: LocaleKeys.completed.tr(),
+                ),
+              if ((data?.failed).isNotBlank)
+                UpdateStatusExpansionTile(
+                  mangas: data!.failed!,
+                  title: LocaleKeys.failed.tr(),
+                ),
+            ],
+          ),
         ),
         error: (error, stackTrace) => Emoticons(
           text: error.toString(),
           button: TextButton(
             child: Text(LocaleKeys.refresh.tr()),
-            onPressed: () {
-              ref.invalidate(updateSummaryProvider);
-            },
+            onPressed: () => ref.invalidate(updateSummaryProvider),
           ),
         ),
         loading: () => const CenterCircularProgressIndicator(),

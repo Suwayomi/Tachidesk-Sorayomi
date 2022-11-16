@@ -12,15 +12,16 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../domain/chapter_batch/chapter_batch_model.dart';
-import '../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../utils/misc/custom_typedef.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../utils/misc/toast/toast.dart';
 import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../data/downloads/downloads_repository.dart';
 import '../data/manga_book_repository.dart';
 import '../domain/chapter/chapter_model.dart';
+import '../domain/chapter_batch/chapter_batch_model.dart';
 
 class DownloadStatusIcon extends HookConsumerWidget {
   const DownloadStatusIcon({
@@ -29,29 +30,17 @@ class DownloadStatusIcon extends HookConsumerWidget {
     required this.chapter,
     required this.mangaId,
     required this.isDownloaded,
-    this.needUpdatedChapter = false,
   });
-  final ValueChanged<Chapter?> updateData;
+  final AsyncVoidCallBack updateData;
   final Chapter chapter;
   final int mangaId;
   final bool isDownloaded;
-  final bool needUpdatedChapter;
 
   Future<void> newUpdatePair(
-      WidgetRef ref, ValueNotifier<bool> isLoading, Toast toast) async {
+      WidgetRef ref, ValueNotifier<bool> isLoading) async {
     try {
       isLoading.value = true;
-      if (chapter.index == null) return;
-      final newChapter = needUpdatedChapter
-          ? (await AsyncValue.guard(
-              () => ref.read(mangaBookRepositoryProvider).getChapter(
-                    mangaId: mangaId,
-                    chapterIndex: chapter.index!,
-                  ),
-            ))
-              .valueOrToast(toast)
-          : null;
-      updateData(newChapter);
+      await updateData();
       isLoading.value = false;
     } catch (e) {
       //
@@ -90,7 +79,9 @@ class DownloadStatusIcon extends HookConsumerWidget {
 
     final toast = ref.watch(toastProvider(context));
     final download = ref.watch(downloadsFromIdProvider(chapter.id!));
-    if (download?.state == "Finished") newUpdatePair(ref, isLoading, toast);
+    if (download?.state == "Finished") {
+      Future.microtask(() => newUpdatePair(ref, isLoading));
+    }
     if (isLoading.value) {
       return Padding(
         padding: KEdgeInsets.h8.size,
@@ -126,7 +117,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
                     ),
               ))
                   .showToastOnError(toast);
-              await newUpdatePair(ref, isLoading, toast);
+              await newUpdatePair(ref, isLoading);
             },
           );
         } else {

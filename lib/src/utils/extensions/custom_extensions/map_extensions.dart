@@ -12,4 +12,12 @@ extension MapExtensions<K, V> on Map<K, V> {
     });
     return filtered;
   }
+
+  Map<K, V> toggleKey(K key, V value) {
+    if (containsKey(key)) {
+      return {...this}..remove(key);
+    } else {
+      return {...this, key: value};
+    }
+  }
 }

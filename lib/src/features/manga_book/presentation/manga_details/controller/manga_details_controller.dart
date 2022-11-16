@@ -58,7 +58,7 @@ class MangaChapterList extends _$MangaChapterList {
   Future<void> refresh([bool useCache = false]) async {
     final token = CancelToken();
     final result = await AsyncValue.guard(
-      () => ref.watch(mangaBookRepositoryProvider).getChapterList(
+      () => ref.read(mangaBookRepositoryProvider).getChapterList(
             mangaId: mangaId,
             cancelToken: token,
             useCache: useCache,

@@ -44,7 +44,7 @@ class MoreScreen extends ConsumerWidget {
           const ServerUrlTile(),
           ListTile(
             title: Text(LocaleKeys.categories.tr()),
-            leading: const Icon(Icons.category_rounded),
+            leading: const Icon(Icons.label_rounded),
             onTap: () => context.push([
               Routes.settings,
               Routes.librarySettings,

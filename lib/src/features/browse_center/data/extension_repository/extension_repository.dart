@@ -90,6 +90,4 @@ class ExtensionRepository {
 
 @riverpod
 ExtensionRepository extensionRepository(ExtensionRepositoryRef ref) =>
-    ExtensionRepository(
-      ref.watch(dioClientKeyProvider),
-    );
+    ExtensionRepository(ref.watch(dioClientKeyProvider));

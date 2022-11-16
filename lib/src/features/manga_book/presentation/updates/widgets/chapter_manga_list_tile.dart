@@ -29,8 +29,8 @@ class ChapterMangaListTile extends StatelessWidget {
     this.isSelected = false,
   });
   final ChapterMangaPair pair;
-  final AsyncValueChanged<Chapter?> updatePair;
-  final ValueChanged<ChapterMangaPair> toggleSelect;
+  final AsyncVoidCallBack updatePair;
+  final ValueChanged<Chapter> toggleSelect;
   final bool canTapSelect;
   final bool isSelected;
 
@@ -76,8 +76,11 @@ class ChapterMangaListTile extends StatelessWidget {
       selectedTileColor:
           context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
       selected: isSelected,
-      onTap: canTapSelect ? () => toggleSelect(pair) : null,
-      onLongPress: () => toggleSelect(pair),
+      onTap: canTapSelect && pair.chapter != null
+          ? () => toggleSelect(pair.chapter!)
+          : null,
+      onLongPress:
+          pair.chapter != null ? () => toggleSelect(pair.chapter!) : null,
     );
   }
 }

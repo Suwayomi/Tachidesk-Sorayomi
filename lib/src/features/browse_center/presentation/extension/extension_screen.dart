@@ -103,18 +103,18 @@ class ExtensionScreen extends ConsumerWidget {
                         ref.refresh(extensionControllerProvider.future),
                     child: CustomScrollView(
                       slivers: [
-                        if (installed.isNotBlank)
-                          ...extensionSet(
-                            key: const ValueKey("installed"),
-                            title: languageMap["installed"]?.displayName ?? "",
-                            extensions: installed,
-                            refresh: refresh,
-                          ),
                         if (update.isNotBlank)
                           ...extensionSet(
                             key: const ValueKey("update"),
                             title: languageMap["update"]?.displayName ?? "",
                             extensions: update,
+                            refresh: refresh,
+                          ),
+                        if (installed.isNotBlank)
+                          ...extensionSet(
+                            key: const ValueKey("installed"),
+                            title: languageMap["installed"]?.displayName ?? "",
+                            extensions: installed,
                             refresh: refresh,
                           ),
                         if (all.isNotBlank)
