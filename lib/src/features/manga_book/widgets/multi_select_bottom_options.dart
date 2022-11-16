@@ -12,7 +12,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../domain/chapter/chapter_model.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
@@ -21,6 +20,7 @@ import '../../../utils/misc/toast/toast.dart';
 import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../data/downloads/downloads_repository.dart';
 import '../data/manga_book_repository.dart';
+import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_batch/chapter_batch_model.dart';
 
 class MultiSelectBottomOptions extends HookConsumerWidget {
@@ -37,8 +37,8 @@ class MultiSelectBottomOptions extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    refresh() async {
-      await afterOptionSelected();
+    refresh([bool triggerAfterOption = true]) async {
+      if (triggerAfterOption) await afterOptionSelected();
       selectedChapters.value = {};
     }
 
@@ -116,7 +116,7 @@ class MultiSelectIcon extends HookConsumerWidget {
   });
   final List<int> chapterList;
   final ChapterChange? change;
-  final AsyncVoidCallBack refresh;
+  final AsyncValueChanged<bool> refresh;
   final IconData icon;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -141,7 +141,7 @@ class MultiSelectIcon extends HookConsumerWidget {
               ))
                   .showToastOnError(toast);
 
-              await refresh();
+              await refresh(change != null);
               isLoading.value = false;
             },
       icon: isLoading.value

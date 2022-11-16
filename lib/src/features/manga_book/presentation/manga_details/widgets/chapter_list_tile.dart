@@ -11,11 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // 🌎 Project imports:
-import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import '../../../widgets/download_status_icon.dart';

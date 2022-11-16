@@ -12,10 +12,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../utils/misc/custom_typedef.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../utils/misc/custom_typedef.dart';
 import '../../../utils/misc/toast/toast.dart';
 import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../data/downloads/downloads_repository.dart';
