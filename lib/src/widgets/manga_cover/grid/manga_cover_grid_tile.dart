@@ -20,21 +20,22 @@ class MangaCoverGridTile extends StatelessWidget {
   const MangaCoverGridTile({
     super.key,
     required this.manga,
-    this.needCountBadges = false,
     this.onPressed,
     this.onLongPress,
     this.showTitle = true,
     this.showBadges = true,
+    this.showCountBadges = false,
+    this.showDarkOverlay = true,
   });
   final Manga manga;
   final void Function()? onPressed;
   final void Function()? onLongPress;
-  final bool needCountBadges;
+  final bool showCountBadges;
   final bool showTitle;
   final bool showBadges;
+  final bool showDarkOverlay;
   @override
   Widget build(BuildContext context) {
-    final showShadow = showBadges || showTitle;
     return InkResponse(
       onTap: onPressed,
       onLongPress: onLongPress,
@@ -43,7 +44,7 @@ class MangaCoverGridTile extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: KBorderRadius.r12.radius),
         child: GridTile(
           header: showBadges
-              ? MangaBadgesRow(manga: manga, showCountBadges: needCountBadges)
+              ? MangaBadgesRow(manga: manga, showCountBadges: showCountBadges)
               : null,
           footer: showTitle
               ? ListTile(
@@ -62,14 +63,14 @@ class MangaCoverGridTile extends StatelessWidget {
                       width: 0,
                       color: context.theme.canvasColor,
                     ),
-                    boxShadow: showShadow
+                    boxShadow: showDarkOverlay
                         ? [
                             BoxShadow(
                                 color:
                                     context.theme.canvasColor.withOpacity(.5))
                           ]
                         : null,
-                    gradient: showShadow
+                    gradient: showTitle
                         ? LinearGradient(
                             begin: Alignment.center,
                             end: Alignment.bottomCenter,

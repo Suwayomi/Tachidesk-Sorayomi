@@ -45,8 +45,7 @@ class UpdatesScreen extends HookConsumerWidget {
           if (recentChaptersPage != null) {
             if (recentChaptersPage.hasNextPage ?? false) {
               try {
-                controller.appendPage(
-                    recentChaptersPage.page ?? [], pageKey + 1);
+                controller.appendPage(recentChaptersPage.page!, pageKey + 1);
               } catch (e) {
                 controller.appendPage([], pageKey);
               }

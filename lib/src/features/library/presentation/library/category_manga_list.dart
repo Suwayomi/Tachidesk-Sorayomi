@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,7 +26,7 @@ import '../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_with_description_tile.dart';
 import 'controller/library_controller.dart';
 
-class CategoryMangaList extends ConsumerWidget {
+class CategoryMangaList extends HookConsumerWidget {
   const CategoryMangaList({super.key, required this.categoryId});
   final int categoryId;
   @override
@@ -35,6 +36,10 @@ class CategoryMangaList extends ConsumerWidget {
     final mangaList = ref.watch(provider);
     final displayMode = ref.watch(libraryDisplayModeProvider);
     refresh() => ref.read(provider.notifier).invalidate();
+    useEffect(() {
+      ref.invalidate(categoryMangaListProvider(categoryId));
+      return;
+    }, []);
     return mangaList.when(
       data: (data) {
         if (data.isBlank) {
@@ -57,7 +62,8 @@ class CategoryMangaList extends ConsumerWidget {
                 onPressed: () {
                   context.push(Routes.getManga(data[index].id));
                 },
-                needCountBadges: true,
+                showCountBadges: true,
+                showDarkOverlay: false,
               ),
             );
             break;

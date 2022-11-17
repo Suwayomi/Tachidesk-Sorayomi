@@ -37,9 +37,14 @@ class MangaDetails extends HookConsumerWidget {
     final chapterList = ref.watch(chapterProvider);
     final selectedChapters = useState<Map<int, Chapter>>({});
     refresh([useCache = true]) async {
-      await ref.read(provider.notifier).refresh(useCache);
       await ref.read(chapterProvider.notifier).refresh(useCache);
+      await ref.read(provider.notifier).refresh(useCache);
     }
+
+    useEffect(() {
+      refresh();
+      return;
+    }, []);
 
     return manga.when(
       data: (data) => Scaffold(

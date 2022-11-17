@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
@@ -26,7 +27,7 @@ import '../browse/controller/browse_controller.dart';
 import 'controller/extension_controller.dart';
 import 'widgets/extension_list_tile.dart';
 
-class ExtensionScreen extends ConsumerWidget {
+class ExtensionScreen extends HookConsumerWidget {
   const ExtensionScreen({super.key});
 
   List<Widget> extensionSet({
@@ -67,6 +68,10 @@ class ExtensionScreen extends ConsumerWidget {
     final update = extensionMap.remove("update");
     final all = extensionMap.remove("all");
     refresh() => ref.refresh(extensionControllerProvider.future);
+    useEffect(() {
+      refresh();
+      return;
+    }, []);
     return extensionController.when(
       skipError: true,
       loading: () => const CenterCircularProgressIndicator(),

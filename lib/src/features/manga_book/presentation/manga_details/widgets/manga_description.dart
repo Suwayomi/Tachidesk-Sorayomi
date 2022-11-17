@@ -22,7 +22,7 @@ import '../../../../../utils/extensions/custom_extensions/context_extensions.dar
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../../../widgets/custom_circular_progress_indicator.dart';
+import '../../../../../widgets/loading_text_icon_button.dart';
 import '../../../../../widgets/manga_cover/list/manga_cover_with_description_tile.dart';
 import '../../../domain/manga/manga_model.dart';
 
@@ -43,7 +43,6 @@ class MangaDescription extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isExpanded = useState(context.isTablet);
-    final isFavLoading = useState(false);
     final toast = ref.watch(toastProvider(context));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,29 +56,23 @@ class MangaDescription extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton.icon(
-                onPressed: isFavLoading.value
-                    ? null
-                    : () async {
-                        isFavLoading.value = true;
-                        final val = await AsyncValue.guard(() async {
-                          if (manga.inLibrary ?? false) {
-                            await removeMangaFromLibrary();
-                          } else {
-                            await addMangaToLibrary();
-                          }
-                          await refresh();
-                        });
-                        val.showToastOnError(toast);
-                        isFavLoading.value = false;
-                      },
-                icon: isFavLoading.value
-                    ? const MiniCircularProgressIndicator()
-                    : Icon(
-                        manga.inLibrary ?? false
-                            ? Icons.favorite_rounded
-                            : Icons.favorite_border_outlined,
-                      ),
+              LoadingTextIconButton(
+                onPressed: () async {
+                  final val = await AsyncValue.guard(() async {
+                    if (manga.inLibrary ?? false) {
+                      await removeMangaFromLibrary();
+                    } else {
+                      await addMangaToLibrary();
+                    }
+                    await refresh();
+                  });
+                  val.showToastOnError(toast);
+                },
+                icon: Icon(
+                  manga.inLibrary ?? false
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_outlined,
+                ),
                 style: TextButton.styleFrom(
                   foregroundColor:
                       manga.inLibrary ?? false ? null : Colors.grey,
@@ -172,7 +165,9 @@ class MangaDescription extends HookConsumerWidget {
               runSpacing: 8,
               children: [
                 ...?manga.genre
-                    ?.map<Widget>((e) => MangaGenreChip(text: e))
+                    ?.map<Widget>(
+                      (e) => Chip(label: Text(e)),
+                    )
                     .toList()
               ],
             ),
@@ -188,7 +183,7 @@ class MangaDescription extends HookConsumerWidget {
                       ?.map<Widget>(
                         (e) => Padding(
                           padding: KEdgeInsets.h4.size,
-                          child: MangaGenreChip(text: e),
+                          child: Chip(label: Text(e)),
                         ),
                       )
                       .toList()
@@ -198,14 +193,5 @@ class MangaDescription extends HookConsumerWidget {
           ),
       ],
     );
-  }
-}
-
-class MangaGenreChip extends StatelessWidget {
-  const MangaGenreChip({super.key, required this.text});
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Chip(label: Text(text));
   }
 }

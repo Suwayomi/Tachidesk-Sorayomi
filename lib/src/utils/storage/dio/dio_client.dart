@@ -182,13 +182,10 @@ class DioClient {
     required ResponseDecoderCallBack<DecoderType> decoder,
   }) async {
     if (responseData is List) {
-      final result = await compute<dynamic, List<DecoderType>>((message) {
-        final result = <DecoderType>[];
-        for (dynamic e in message) {
-          result.add((decoder(e)));
-        }
-        return result;
-      }, responseData);
+      final result = await compute<dynamic, List<DecoderType>>(
+        (message) => <DecoderType>[for (dynamic e in message) decoder(e)],
+        responseData,
+      );
       return result as ReturnType?;
     } else {
       return await compute<Map<String, dynamic>, DecoderType>(

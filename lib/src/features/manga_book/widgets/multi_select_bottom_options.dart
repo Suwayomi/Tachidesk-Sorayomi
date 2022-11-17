@@ -8,16 +8,15 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../widgets/loading_icon_button.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../utils/misc/custom_typedef.dart';
 import '../../../utils/misc/toast/toast.dart';
-import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../data/downloads/downloads_repository.dart';
 import '../data/manga_book_repository.dart';
 import '../domain/chapter/chapter_model.dart';
@@ -106,7 +105,7 @@ class MultiSelectBottomOptions extends HookConsumerWidget {
   }
 }
 
-class MultiSelectIcon extends HookConsumerWidget {
+class MultiSelectIcon extends ConsumerWidget {
   const MultiSelectIcon({
     required this.icon,
     required this.chapterList,
@@ -120,33 +119,26 @@ class MultiSelectIcon extends HookConsumerWidget {
   final IconData icon;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = useState(false);
     final toast = ref.watch(toastProvider(context));
-    return IconButton(
-      onPressed: isLoading.value
-          ? null
-          : () async {
-              isLoading.value = true;
-              (await AsyncValue.guard(
-                () => change == null
-                    ? ref
-                        .read(downloadsRepositoryProvider)
-                        .addChaptersBatchToDownloadQueue(chapterList)
-                    : ref.read(mangaBookRepositoryProvider).modifyBulkChapters(
-                          batch: ChapterBatch(
-                            chapterIds: chapterList,
-                            change: change,
-                          ),
-                        ),
-              ))
-                  .showToastOnError(toast);
+    return LoadingIconButton(
+      icon: Icon(icon),
+      onPressed: () async {
+        (await AsyncValue.guard(
+          () => change == null
+              ? ref
+                  .read(downloadsRepositoryProvider)
+                  .addChaptersBatchToDownloadQueue(chapterList)
+              : ref.read(mangaBookRepositoryProvider).modifyBulkChapters(
+                    batch: ChapterBatch(
+                      chapterIds: chapterList,
+                      change: change,
+                    ),
+                  ),
+        ))
+            .showToastOnError(toast);
 
-              await refresh(change != null);
-              isLoading.value = false;
-            },
-      icon: isLoading.value
-          ? const MiniCircularProgressIndicator(padding: EdgeInsets.zero)
-          : Icon(icon),
+        await refresh(change != null);
+      },
     );
   }
 }

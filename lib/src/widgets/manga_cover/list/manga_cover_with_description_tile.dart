@@ -50,6 +50,7 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                 manga: manga,
                 showBadges: false,
                 showTitle: false,
+                showDarkOverlay: false,
               ),
             ),
             Expanded(

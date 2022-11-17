@@ -4,6 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+// 🎯 Dart imports:
+import 'dart:convert';
+
 // 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
 
@@ -18,17 +21,19 @@ import '../../extensions/custom_extensions/string_extensions.dart';
 
 part 'network_module.g.dart';
 
+// Must be top-level function
+_parseAndDecode(String response) => jsonDecode(response);
+
+parseJson(String text) => compute(_parseAndDecode, text);
+
 class DioNetworkModule {
-  /// A singleton dio provider.
-  ///
-  /// Calling it multiple times will return the same instance.
   Dio provideDio({
     required String baseUrl,
     required AuthType authType,
     String? credentials,
   }) {
     final dio = Dio();
-
+    (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
     dio
       ..options.baseUrl = Endpoints.baseApi(baseUrl: baseUrl)
       ..options.connectTimeout = Endpoints.connectionTimeout
