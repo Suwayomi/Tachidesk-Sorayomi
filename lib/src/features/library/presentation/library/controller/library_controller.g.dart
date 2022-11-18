@@ -271,7 +271,7 @@ abstract class _$LibraryDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   DisplayMode? build();
 }
 
-String $categoryMangaListHash() => r'31b4cf624d30686ca70de60949028a933d46aa29';
+String $categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
 
 /// See also [categoryMangaList].
 class CategoryMangaListProvider

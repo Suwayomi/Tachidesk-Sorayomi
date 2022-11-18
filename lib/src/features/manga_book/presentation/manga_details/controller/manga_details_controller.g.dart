@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $MangaWithIdHash() => r'c7fc45e600a9d4dba026ee3ed717c501d426c5d5';
+String $MangaWithIdHash() => r'7e5bfef14dc5b0bafba380a008f3fd4ca68c958b';
 
 /// See also [MangaWithId].
 class MangaWithIdProvider
@@ -114,7 +114,7 @@ abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
   });
 }
 
-String $MangaChapterListHash() => r'5d24131efa872963e560a28164eb7d167f29e43d';
+String $MangaChapterListHash() => r'8ed43b761da658c69465a7c3653900b67f1e972c';
 
 /// See also [MangaChapterList].
 class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<

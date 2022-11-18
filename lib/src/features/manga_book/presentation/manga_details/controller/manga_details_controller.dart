@@ -23,21 +23,21 @@ class MangaWithId extends _$MangaWithId {
   @override
   Future<Manga?> build({required String mangaId}) async {
     final token = CancelToken();
+    ref.onDispose(token.cancel);
     final result = await ref
         .watch(mangaBookRepositoryProvider)
         .getManga(mangaId: mangaId, cancelToken: token);
     ref.keepAlive();
-    ref.onDispose(token.cancel);
     return result;
   }
 
   Future<void> refresh([bool useCache = false]) async {
     final token = CancelToken();
+    ref.onDispose(token.cancel);
     final result = await AsyncValue.guard(() => ref
         .watch(mangaBookRepositoryProvider)
         .getManga(mangaId: mangaId, cancelToken: token, useCache: useCache));
     ref.keepAlive();
-    ref.onDispose(token.cancel);
     state = result;
   }
 }
@@ -47,16 +47,17 @@ class MangaChapterList extends _$MangaChapterList {
   @override
   Future<List<Chapter>?> build({required String mangaId}) async {
     final token = CancelToken();
+    ref.onDispose(token.cancel);
     final result = await ref
         .watch(mangaBookRepositoryProvider)
         .getChapterList(mangaId: mangaId, cancelToken: token, useCache: false);
     ref.keepAlive();
-    ref.onDispose(token.cancel);
     return result;
   }
 
   Future<void> refresh([bool useCache = false]) async {
     final token = CancelToken();
+    ref.onDispose(token.cancel);
     final result = await AsyncValue.guard(
       () => ref.read(mangaBookRepositoryProvider).getChapterList(
             mangaId: mangaId,
@@ -65,7 +66,6 @@ class MangaChapterList extends _$MangaChapterList {
           ),
     );
     ref.keepAlive();
-    ref.onDispose(token.cancel);
     state = result;
   }
 

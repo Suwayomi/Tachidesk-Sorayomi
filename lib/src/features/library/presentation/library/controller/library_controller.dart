@@ -32,11 +32,11 @@ class LibraryScreenShowSearch extends _$LibraryScreenShowSearch {
 Future<List<Manga>?> categoryMangaList(
     CategoryMangaListRef ref, int categoryId) async {
   final token = CancelToken();
+  ref.onDispose(token.cancel);
   final result = await ref
       .watch(categoryRepositoryProvider)
       .getMangasFromCategory(categoryId: categoryId, cancelToken: token);
   ref.keepAlive();
-  ref.onDispose(token.cancel);
   return result;
 }
 

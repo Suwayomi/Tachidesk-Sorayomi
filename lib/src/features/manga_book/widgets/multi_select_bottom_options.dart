@@ -11,12 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../widgets/loading_icon_button.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../utils/misc/custom_typedef.dart';
 import '../../../utils/misc/toast/toast.dart';
+import '../../../widgets/loading_icon_button.dart';
 import '../data/downloads/downloads_repository.dart';
 import '../data/manga_book_repository.dart';
 import '../domain/chapter/chapter_model.dart';

@@ -95,11 +95,11 @@ UpdatesRepository updatesRepository(UpdatesRepositoryRef ref) =>
 
 @riverpod
 Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
-  final cancelToken = CancelToken();
-  ref.onDispose(cancelToken.cancel);
+  final token = CancelToken();
+  ref.onDispose(token.cancel);
   final result = await ref
       .watch(updatesRepositoryProvider)
-      .summaryUpdates(cancelToken: cancelToken);
+      .summaryUpdates(cancelToken: token);
   return result;
 }
 

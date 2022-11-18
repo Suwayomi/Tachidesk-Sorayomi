@@ -57,14 +57,14 @@ class DioNetworkModule {
             return handler.next(options);
           },
         ),
-      )
-      ..interceptors.add(LogInterceptor(
-        request: kDebugMode,
-        responseHeader: kDebugMode,
-        responseBody: kDebugMode,
-        requestHeader: kDebugMode,
-        requestBody: kDebugMode,
+      );
+    if (kDebugMode) {
+      dio.interceptors.add(LogInterceptor(
+        responseBody: true,
+        requestBody: true,
+        logPrint: (e) => debugPrint(e.toString()),
       ));
+    }
 
     return dio;
   }

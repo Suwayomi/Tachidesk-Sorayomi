@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $CategoryControllerHash() => r'426547f28a180b241dbc6f34fe8596109ea22c23';
+String $CategoryControllerHash() => r'6406140409d017813fe772b27a40af62049f7dc6';
 
 /// See also [CategoryController].
 final categoryControllerProvider =

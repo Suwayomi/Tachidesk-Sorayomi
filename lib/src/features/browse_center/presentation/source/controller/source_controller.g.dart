@@ -67,7 +67,7 @@ abstract class _$SourceLastUsed extends AutoDisposeNotifier<String?> {
   String? build();
 }
 
-String $sourceControllerHash() => r'a630f834c9166f8cb61cb6d3a29ff481b13a9c72';
+String $sourceControllerHash() => r'65e262acc56645048b3e6b532cf25b25c75393ed';
 
 /// See also [sourceController].
 final sourceControllerProvider = AutoDisposeFutureProvider<List<Source>?>(

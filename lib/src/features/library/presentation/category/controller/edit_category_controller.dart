@@ -23,11 +23,11 @@ class CategoryController extends _$CategoryController {
     AutoDisposeAsyncNotifierProviderRef<List<Category>?> ref,
   ) async {
     final token = CancelToken();
+    ref.onDispose(token.cancel);
     final result = await ref
         .watch(categoryRepositoryProvider)
         .getCategoryList(cancelToken: token);
     ref.keepAlive();
-    ref.onDispose(token.cancel);
     return result;
   }
 

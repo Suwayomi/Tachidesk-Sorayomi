@@ -22,11 +22,11 @@ part 'extension_controller.g.dart';
 @riverpod
 Future<List<Extension>?> extensionController(ExtensionControllerRef ref) async {
   final token = CancelToken();
+  ref.onDispose(token.cancel);
   final result = await ref
       .watch(extensionRepositoryProvider)
       .getExtensionList(cancelToken: token);
   ref.keepAlive();
-  ref.onDispose(token.cancel);
   return result;
 }
 

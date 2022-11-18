@@ -18,10 +18,10 @@ part 'about_controller.g.dart';
 @riverpod
 Future<About?> aboutController(AboutControllerRef ref) async {
   final token = CancelToken();
+  ref.onDispose(token.cancel);
   final result =
       await ref.watch(aboutRepositoryProvider).getAbout(cancelToken: token);
   ref.keepAlive();
-  ref.onDispose(token.cancel);
   return result;
 }
 

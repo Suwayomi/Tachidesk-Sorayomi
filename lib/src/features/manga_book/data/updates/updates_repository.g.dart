@@ -40,7 +40,7 @@ final updatesRepositoryProvider = AutoDisposeProvider<UpdatesRepository>(
       : $updatesRepositoryHash,
 );
 typedef UpdatesRepositoryRef = AutoDisposeProviderRef<UpdatesRepository>;
-String $updateSummaryHash() => r'33231ae49c74968462146e96aefc3ae87fe8f58e';
+String $updateSummaryHash() => r'cd04991640fe6971183b65daf9e45e9445205800';
 
 /// See also [updateSummary].
 final updateSummaryProvider = AutoDisposeFutureProvider<UpdateStatus?>(
