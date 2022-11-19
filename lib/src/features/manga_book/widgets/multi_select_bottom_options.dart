@@ -38,7 +38,7 @@ class MultiSelectBottomOptions extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     refresh([bool triggerAfterOption = true]) async {
       if (triggerAfterOption) await afterOptionSelected();
-      selectedChapters.value = {};
+      selectedChapters.value = <int, Chapter>{};
     }
 
     return Padding(

@@ -41,7 +41,7 @@ final downloadsRepositoryProvider = AutoDisposeProvider<DownloadsRepository>(
       : $downloadsRepositoryHash,
 );
 typedef DownloadsRepositoryRef = AutoDisposeProviderRef<DownloadsRepository>;
-String $downloadsMapHash() => r'3e020f4f7bb5647d18338d46708464292234b7f6';
+String $downloadsMapHash() => r'069e7137bb59b01aea1cc49d4605e4b8c8a9d7fd';
 
 /// See also [downloadsMap].
 final downloadsMapProvider = AutoDisposeProvider<Map<int, DownloadsQueue>>(

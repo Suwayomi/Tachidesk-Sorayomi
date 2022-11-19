@@ -12,10 +12,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/downloads/downloads_repository.dart';
 import '../../domain/downloads/downloads_model.dart';
@@ -51,7 +51,7 @@ class DownloadsScreen extends ConsumerWidget {
       floatingActionButton: showFab(downloads)
           ? DownloadsFab(status: downloads.valueOrNull?.status ?? "")
           : null,
-      body: downloads.when(
+      body: downloads.showUiWhenData(
         data: (data) {
           if (data.queue == null) {
             return Emoticons(text: LocaleKeys.error_somethingWentWrong.tr());
@@ -75,9 +75,7 @@ class DownloadsScreen extends ConsumerWidget {
             );
           }
         },
-        error: (error, stackTrace) =>
-            Emoticons(text: LocaleKeys.error_somethingWentWrong.tr()),
-        loading: () => const CenterCircularProgressIndicator(),
+        showGenericError: true,
       ),
     );
   }

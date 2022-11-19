@@ -68,34 +68,34 @@ abstract class _$ExtensionQuery extends AutoDisposeNotifier<String?> {
   String? build();
 }
 
-String $extensionControllerHash() =>
-    r'eebafdf1b7d7b9a4bf863a1c67ee20ff7d58735c';
+String $extensionHash() => r'7f4a60c97e38a62db718b504d572bd031b5b845d';
 
-/// See also [extensionController].
-final extensionControllerProvider = AutoDisposeFutureProvider<List<Extension>?>(
-  extensionController,
-  name: r'extensionControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $extensionControllerHash,
+/// See also [extension].
+final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>(
+  extension,
+  name: r'extensionProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : $extensionHash,
 );
-typedef ExtensionControllerRef = AutoDisposeFutureProviderRef<List<Extension>?>;
-String $extensionMapHash() => r'6fbdb022b32bf23b311927f419581dca0a4a081d';
+typedef ExtensionRef = AutoDisposeFutureProviderRef<List<Extension>?>;
+String $extensionMapHash() => r'0a012417eeb39b5366182099e88cf9a614c5002c';
 
 /// See also [extensionMap].
-final extensionMapProvider = AutoDisposeProvider<Map<String, List<Extension>>>(
+final extensionMapProvider =
+    AutoDisposeProvider<AsyncValue<Map<String, List<Extension>>>>(
   extensionMap,
   name: r'extensionMapProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : $extensionMapHash,
 );
-typedef ExtensionMapRef = AutoDisposeProviderRef<Map<String, List<Extension>>>;
+typedef ExtensionMapRef
+    = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String $extensionMapFilteredHash() =>
-    r'b1e7d1337be752221c174b718844827b6969acd2';
+    r'bcfe4ed3d11f2987273f35b672a3a27d9156fe77';
 
 /// See also [extensionMapFiltered].
 final extensionMapFilteredProvider =
-    AutoDisposeProvider<Map<String, List<Extension>>>(
+    AutoDisposeProvider<AsyncValue<Map<String, List<Extension>>>>(
   extensionMapFiltered,
   name: r'extensionMapFilteredProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -103,13 +103,13 @@ final extensionMapFilteredProvider =
       : $extensionMapFilteredHash,
 );
 typedef ExtensionMapFilteredRef
-    = AutoDisposeProviderRef<Map<String, List<Extension>>>;
+    = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String $extensionMapFilteredAndQueriedHash() =>
-    r'5f9fd9b62badb7e86a29a590507864eb93448bcc';
+    r'519133c6e13609a1a6c6060c316a93408d3379d3';
 
 /// See also [extensionMapFilteredAndQueried].
 final extensionMapFilteredAndQueriedProvider =
-    AutoDisposeProvider<Map<String, List<Extension>>>(
+    AutoDisposeProvider<AsyncValue<Map<String, List<Extension>>>>(
   extensionMapFilteredAndQueried,
   name: r'extensionMapFilteredAndQueriedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -117,4 +117,4 @@ final extensionMapFilteredAndQueriedProvider =
       : $extensionMapFilteredAndQueriedHash,
 );
 typedef ExtensionMapFilteredAndQueriedRef
-    = AutoDisposeProviderRef<Map<String, List<Extension>>>;
+    = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;

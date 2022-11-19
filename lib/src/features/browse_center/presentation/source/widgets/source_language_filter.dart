@@ -23,7 +23,7 @@ class SourceLanguageFilter extends ConsumerWidget {
   const SourceLanguageFilter({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final languageCodes = [...(ref.watch(sourceMapProvider)).keys]
+    final languageCodes = [...?(ref.watch(sourceMapProvider).valueOrNull)?.keys]
       ..remove("localsourcelang")
       ..remove("lastUsed");
     final enabledLanguages = ref.watch(sourceLanguageFilterProvider);

@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $CategoryControllerHash() => r'6406140409d017813fe772b27a40af62049f7dc6';
+String $CategoryControllerHash() => r'2231c7c5b8ea2d7ebf9726d6f8cc63ecf7498fbb';
 
 /// See also [CategoryController].
 final categoryControllerProvider =
@@ -49,10 +49,11 @@ abstract class _$CategoryController
   FutureOr<List<Category>?> build();
 }
 
-String $categoryListHash() => r'0faadf4a144a14c5d06555a18aa2bb0c1f6feb76';
+String $categoryListHash() => r'a9fe2bf78f4f13364b058366160d9cbc63e8d891';
 
 /// See also [categoryList].
-class CategoryListProvider extends AutoDisposeProvider<List<Category>> {
+class CategoryListProvider
+    extends AutoDisposeProvider<AsyncValue<List<Category>>> {
   CategoryListProvider({
     this.getDefault = false,
   }) : super(
@@ -84,12 +85,12 @@ class CategoryListProvider extends AutoDisposeProvider<List<Category>> {
   }
 }
 
-typedef CategoryListRef = AutoDisposeProviderRef<List<Category>>;
+typedef CategoryListRef = AutoDisposeProviderRef<AsyncValue<List<Category>>>;
 
 /// See also [categoryList].
 final categoryListProvider = CategoryListFamily();
 
-class CategoryListFamily extends Family<List<Category>> {
+class CategoryListFamily extends Family<AsyncValue<List<Category>>> {
   CategoryListFamily();
 
   CategoryListProvider call({
@@ -101,7 +102,7 @@ class CategoryListFamily extends Family<List<Category>> {
   }
 
   @override
-  AutoDisposeProvider<List<Category>> getProviderOverride(
+  AutoDisposeProvider<AsyncValue<List<Category>>> getProviderOverride(
     covariant CategoryListProvider provider,
   ) {
     return call(

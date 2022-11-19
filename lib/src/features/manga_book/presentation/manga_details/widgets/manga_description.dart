@@ -6,13 +6,11 @@
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/app_sizes.dart';
@@ -20,6 +18,7 @@ import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/loading_text_icon_button.dart';
@@ -85,27 +84,10 @@ class MangaDescription extends HookConsumerWidget {
               ),
               TextButton.icon(
                 onPressed: () async {
-                  if (!await launchUrl(
-                    Uri.tryParse(manga.realUrl ?? "") ?? Uri(),
-                    mode: LaunchMode.externalApplication,
-                  )) {
-                    Clipboard.setData(
-                      ClipboardData(
-                        text: manga.realUrl ?? "",
-                      ),
-                    );
-                    // Get.rawSnackbar(
-                    //   title: LocaleKeys.error_launchURL_title.trParams({
-                    //     "website":
-                    //         manga.title ?? LocaleKeys.mangaScreen_manga.tr,
-                    //   }),
-                    //   message: LocaleKeys.error_launchURL_message.trParams(
-                    //     {
-                    //       "url": manga.realUrl ?? "",
-                    //     },
-                    //   ),
-                    // );
-                  }
+                  launchUrlInWeb(
+                    (manga.realUrl ?? ""),
+                    toast,
+                  );
                 },
                 icon: const Icon(Icons.public),
                 style: TextButton.styleFrom(foregroundColor: Colors.grey),

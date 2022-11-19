@@ -14,12 +14,12 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
-import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
@@ -35,12 +35,12 @@ class CategoryMangaList extends HookConsumerWidget {
         categoryMangaListWithQueryAndFilterProvider(categoryId: categoryId);
     final mangaList = ref.watch(provider);
     final displayMode = ref.watch(libraryDisplayModeProvider);
-    refresh() => ref.read(provider.notifier).invalidate();
+    refresh() => ref.invalidate(categoryMangaListProvider(categoryId));
     useEffect(() {
-      ref.invalidate(categoryMangaListProvider(categoryId));
+      if (!mangaList.isLoading) refresh();
       return;
     }, []);
-    return mangaList.when(
+    return mangaList.showUiWhenData(
       data: (data) {
         if (data.isBlank) {
           return Emoticons(
@@ -60,7 +60,9 @@ class CategoryMangaList extends HookConsumerWidget {
               itemBuilder: (context, index) => MangaCoverGridTile(
                 manga: data![index],
                 onPressed: () {
-                  context.push(Routes.getManga(data[index].id));
+                  if (data[index].id != null) {
+                    context.push(Routes.getManga(data[index].id!));
+                  }
                 },
                 showCountBadges: true,
                 showDarkOverlay: false,
@@ -73,7 +75,9 @@ class CategoryMangaList extends HookConsumerWidget {
               itemBuilder: (context, index) => MangaCoverListTile(
                 manga: data![index],
                 onPressed: () {
-                  context.push(Routes.getManga(data[index].id));
+                  if (data[index].id != null) {
+                    context.push(Routes.getManga(data[index].id!));
+                  }
                 },
                 needCountBadges: true,
               ),
@@ -85,7 +89,9 @@ class CategoryMangaList extends HookConsumerWidget {
               itemBuilder: (context, index) => MangaCoverWithDescriptionTile(
                 manga: data![index],
                 onPressed: () {
-                  context.push(Routes.getManga(data[index].id));
+                  if (data[index].id != null) {
+                    context.push(Routes.getManga(data[index].id!));
+                  }
                 },
                 showCountBadges: true,
               ),
@@ -98,14 +104,7 @@ class CategoryMangaList extends HookConsumerWidget {
           child: mangaList,
         );
       },
-      error: (e, s) => Emoticons(
-        text: e.toString(),
-        button: TextButton(
-          onPressed: refresh,
-          child: Text(LocaleKeys.refresh.tr()),
-        ),
-      ),
-      loading: () => const CenterCircularProgressIndicator(),
+      refresh: refresh,
     );
   }
 }

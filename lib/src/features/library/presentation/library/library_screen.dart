@@ -32,101 +32,101 @@ class LibraryScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final categoryProvider = ref.watch(categoryControllerProvider);
-    categoryProvider.whenOrNull(
-      loading: () => const CenterCircularProgressIndicator(),
-      error: (e, s) =>
-          categoryProvider.showToastOnError(toast, withMicrotask: true),
-    );
-
-    final categoryList = ref.watch(categoryListProvider(getDefault: true));
+    final categoryList = ref.watch(categoryListProvider(getDefault: true))
+      ..showToastOnError(toast, withMicrotask: true);
     final showSearch = ref.watch(libraryScreenShowSearchProvider);
-    return DefaultTabController(
-      length: categoryList.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(LocaleKeys.library.tr()),
-          bottom: categoryList.length.isGreaterThan(1)
-              ? TabBar(
-                  padding: KEdgeInsets.a8.size,
-                  isScrollable: true,
-                  labelColor: context.theme.indicatorColor,
-                  unselectedLabelColor: context.textTheme.bodyLarge!.color,
-                  indicator: BoxDecoration(
-                    borderRadius: KBorderRadius.r16.radius,
-                    color: context.theme.indicatorColor.withOpacity(.3),
-                  ),
-                  tabs:
-                      categoryList.map((e) => Tab(text: e.name ?? "")).toList(),
-                )
-              : null,
-          actions: [
-            IconButton(
-              onPressed:
-                  ref.read(libraryScreenShowSearchProvider.notifier).toggle,
-              icon: const Icon(Icons.search_rounded),
-            ),
-            Builder(
-              builder: (context) => IconButton(
-                onPressed: () {
-                  if (context.isTablet) {
-                    Scaffold.of(context).openEndDrawer();
-                  } else {
-                    showModalBottomSheet(
-                      context: context,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: KBorderRadius.rT16.radius,
-                      ),
-                      clipBehavior: Clip.hardEdge,
-                      builder: (_) => const LibraryMangaOrganizer(),
-                    );
-                  }
-                },
-                icon: const Icon(Icons.filter_list_rounded),
-              ),
-            ),
-            Builder(
-              builder: (context) {
-                return UpdateStatusPopupMenu(
-                  getCategoryId: () => categoryList.isNotBlank
-                      ? categoryList[
-                              DefaultTabController.of(context)?.index ?? 0]
-                          .id
-                      : null,
-                );
-              },
-            ),
-          ],
-        ),
-        endDrawerEnableOpenDragGesture: false,
-        endDrawer: const Drawer(child: LibraryMangaOrganizer()),
-        body: categoryList.isEmpty
-            ? const CenterCircularProgressIndicator()
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  if (showSearch)
-                    SearchField(
-                      onChanged: (text) =>
-                          ref.read(libraryQueryProvider.notifier).state = text,
-                      onClose: ref
-                          .read(libraryScreenShowSearchProvider.notifier)
-                          .toggle,
-                    ),
-                  Expanded(
-                    child: Padding(
-                      padding: KEdgeInsets.a8.size,
-                      child: TabBarView(
-                        children: categoryList
-                            .map(
-                                (e) => CategoryMangaList(categoryId: e.id ?? 0))
-                            .toList(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+    return categoryList.showUiWhenData(
+      wrapper: (body) => Scaffold(
+        appBar: AppBar(title: Text(LocaleKeys.library.tr())),
+        body: body,
       ),
+      data: (data) => DefaultTabController(
+        length: data.length,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(LocaleKeys.library.tr()),
+            centerTitle: true,
+            bottom: data.length.isGreaterThan(1)
+                ? TabBar(
+                    padding: KEdgeInsets.a8.size,
+                    isScrollable: true,
+                    labelColor: context.theme.indicatorColor,
+                    unselectedLabelColor: context.textTheme.bodyLarge!.color,
+                    indicator: BoxDecoration(
+                      borderRadius: KBorderRadius.r16.radius,
+                      color: context.theme.indicatorColor.withOpacity(.3),
+                    ),
+                    tabs: data.map((e) => Tab(text: e.name ?? "")).toList(),
+                  )
+                : null,
+            actions: [
+              IconButton(
+                onPressed:
+                    ref.read(libraryScreenShowSearchProvider.notifier).toggle,
+                icon: const Icon(Icons.search_rounded),
+              ),
+              Builder(
+                builder: (context) => IconButton(
+                  onPressed: () {
+                    if (context.isTablet) {
+                      Scaffold.of(context).openEndDrawer();
+                    } else {
+                      showModalBottomSheet(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: KBorderRadius.rT16.radius,
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        builder: (_) => const LibraryMangaOrganizer(),
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.filter_list_rounded),
+                ),
+              ),
+              Builder(
+                builder: (context) {
+                  return UpdateStatusPopupMenu(
+                    getCategoryId: () => data.isNotBlank
+                        ? data[DefaultTabController.of(context).index].id
+                        : null,
+                  );
+                },
+              ),
+            ],
+          ),
+          endDrawerEnableOpenDragGesture: false,
+          endDrawer: const Drawer(child: LibraryMangaOrganizer()),
+          body: data.isEmpty
+              ? const CenterCircularProgressIndicator()
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    if (showSearch)
+                      SearchField(
+                        onChanged: (text) => ref
+                            .read(libraryQueryProvider.notifier)
+                            .state = text,
+                        onClose: ref
+                            .read(libraryScreenShowSearchProvider.notifier)
+                            .toggle,
+                      ),
+                    Expanded(
+                      child: Padding(
+                        padding: KEdgeInsets.a8.size,
+                        child: TabBarView(
+                          children: data
+                              .map((e) =>
+                                  CategoryMangaList(categoryId: e.id ?? 0))
+                              .toList(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+        ),
+      ),
+      refresh: () => ref.refresh(categoryControllerProvider),
     );
   }
 }

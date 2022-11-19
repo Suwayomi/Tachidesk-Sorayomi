@@ -9,6 +9,8 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../constants/enum.dart';
+import '../../domain/manga_page/manga_page.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
@@ -24,6 +26,30 @@ class SourceRepository {
   Future<List<Source>?> getSourceList({CancelToken? cancelToken}) async =>
       (await dioClient.get<List<Source>, Source>(
         SourceUrl.sourceList,
+        decoder: (e) =>
+            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
+        cancelToken: cancelToken,
+      ))
+          .data;
+
+  Future<MangaPage?> getMangaList({
+    required String sourceId,
+    required SourceType sourceType,
+    required int pageNum,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.get<MangaPage, MangaPage?>(
+        SourceUrl.getMangaList(sourceId, sourceType, pageNum),
+        decoder: (e) =>
+            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
+        cancelToken: cancelToken,
+      ))
+          .data;
+
+  Future<Source?> getSource(
+          {required String sourceId, CancelToken? cancelToken}) async =>
+      (await dioClient.get<Source, Source>(
+        SourceUrl.withId(sourceId),
         decoder: (e) =>
             e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
         cancelToken: cancelToken,

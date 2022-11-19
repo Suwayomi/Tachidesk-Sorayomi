@@ -10,9 +10,12 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:tachidesk_sorayomi/src/constants/enum.dart';
+import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/source_manga_list/source_manga_list.dart';
 import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details.dart';
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/updates/updates_screen.dart';
+import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
 // 🌎 Project imports:
 import '../features/about/presentation/about/about_screen.dart';
@@ -52,10 +55,11 @@ abstract class Routes {
   static const serverSettings = 's-server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
-  static const sources = '/sources';
   static const manga = '/manga/:mangaId';
-  static getManga(mangaId) => '/manga/$mangaId';
-  static const sourceManga = '/source';
+  static getManga(int mangaId) => '/manga/$mangaId';
+  static const sourceManga = '/source/:sourceId/:sourceType';
+  static getSourceManga(String sourceId, SourceType sourceType) =>
+      '/source/$sourceId/${sourceType.name}';
   static const globalSearch = '/global-search';
 }
 
@@ -100,6 +104,17 @@ GoRouter routerConfig(ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => MangaDetails(
           mangaId: state.params['mangaId'] ?? "",
+        ),
+      ),
+      GoRoute(
+        path: Routes.sourceManga,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => SourceMangaList(
+          sourceId: state.params['sourceId'] ?? "0",
+          sourceType: SourceType.values.firstWhere(
+            (element) => element.name.query(state.params['sourceType']),
+            orElse: () => SourceType.popular,
+          ),
         ),
       ),
       GoRoute(

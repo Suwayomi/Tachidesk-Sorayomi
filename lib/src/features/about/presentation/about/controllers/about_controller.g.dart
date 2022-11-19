@@ -29,17 +29,16 @@ class _SystemHash {
   }
 }
 
-String $aboutControllerHash() => r'25e3489435c201c84c3d197ada6d351626bb76ed';
+String $aboutHash() => r'71e0d6115e3d5baeb6cd30cea233be2cba2142bb';
 
-/// See also [aboutController].
-final aboutControllerProvider = AutoDisposeFutureProvider<About?>(
-  aboutController,
-  name: r'aboutControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $aboutControllerHash,
+/// See also [about].
+final aboutProvider = AutoDisposeFutureProvider<About?>(
+  about,
+  name: r'aboutProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : $aboutHash,
 );
-typedef AboutControllerRef = AutoDisposeFutureProviderRef<About?>;
+typedef AboutRef = AutoDisposeFutureProviderRef<About?>;
 String $packageInfoHash() => r'a5025c8498b8f2eacf55450228619ff1477adc05';
 
 /// See also [packageInfo].

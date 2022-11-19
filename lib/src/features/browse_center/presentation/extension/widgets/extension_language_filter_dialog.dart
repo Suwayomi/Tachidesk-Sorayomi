@@ -23,7 +23,9 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
   const ExtensionLanguageFilterDialog({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final languageCodes = [...(ref.watch(extensionMapProvider)).keys]
+    final languageCodes = [
+      ...?(ref.watch(extensionMapProvider).valueOrNull)?.keys
+    ]
       ..remove("installed")
       ..remove("update");
     final enabledLanguages = ref.watch(extensionLanguageFilterProvider);

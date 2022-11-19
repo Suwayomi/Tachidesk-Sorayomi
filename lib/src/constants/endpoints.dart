@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 // 🌎 Project imports:
+import 'enum.dart';
 import 'db_keys.dart';
 
 abstract class Endpoints {
@@ -95,10 +96,9 @@ abstract class SourceUrl {
   static String sourceList = "$_source/list";
 
   static String withId(String sourceId) => "$_source/$sourceId";
-  static String popular(String sourceId, int pageNum) =>
-      "$_source/$sourceId/popular/$pageNum";
-  static String latest(String sourceId, int pageNum) =>
-      "$_source/$sourceId/latest/$pageNum";
+  static String getMangaList(
+          String sourceId, SourceType sourceType, int pageNum) =>
+      "$_source/$sourceId/${sourceType.name}/$pageNum";
   static String preferences(String sourceId) =>
       "$_source/$sourceId/preferences";
   static String filters(String sourceId) => "$_source/$sourceId/filters";

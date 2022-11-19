@@ -12,13 +12,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
-import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -73,7 +73,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
               ),
             ),
           ),
-          chapterList.when(
+          chapterList.showUiWhenData(
             data: (data) {
               if (data.isNotBlank) {
                 return SliverList(
@@ -107,19 +107,11 @@ class SmallScreenMangaDetails extends ConsumerWidget {
                 );
               }
             },
-            error: (error, stackTrace) => SliverToBoxAdapter(
-              child: Emoticons(
-                text: error.toString(),
-                button: TextButton(
-                  onPressed: () => onRefresh(true),
-                  child: Text(LocaleKeys.refresh.tr()),
-                ),
-              ),
-            ),
-            loading: () => SliverToBoxAdapter(
+            refresh: () => onRefresh(true),
+            wrapper: (child) => SliverToBoxAdapter(
               child: SizedBox(
                 height: context.height * .5,
-                child: const CenterCircularProgressIndicator(),
+                child: child,
               ),
             ),
           ),

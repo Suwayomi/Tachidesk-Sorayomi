@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../data/category/category_repository.dart';
 import '../../../domain/category/category_model.dart';
 
@@ -54,7 +55,7 @@ class CategoryController extends _$CategoryController {
 
   Future<void> reorderCategory(int from, int to) async {
     final categoryRepository = ref.read(categoryRepositoryProvider);
-    final categoryList = List<Category>.from(state.asData?.value ?? []);
+    final categoryList = [...?state.valueOrNull];
     categoryList.insert(to, categoryList.removeAt(from));
     state = AsyncData(categoryList);
     state = await AsyncValue.guard(() async {
@@ -65,10 +66,10 @@ class CategoryController extends _$CategoryController {
 }
 
 @riverpod
-List<Category> categoryList(CategoryListRef ref, {bool getDefault = false}) {
-  final categoryList = List<Category>.from(
-    ref.watch(categoryControllerProvider).asData?.value ?? [],
-  );
+AsyncValue<List<Category>> categoryList(CategoryListRef ref,
+    {bool getDefault = false}) {
+  final categoryListData = ref.watch(categoryControllerProvider);
+  final categoryList = [...?categoryListData.valueOrNull];
   if (categoryList.isNotEmpty && !getDefault) categoryList.removeAt(0);
-  return categoryList;
+  return categoryListData.copyWithData((data) => categoryList);
 }

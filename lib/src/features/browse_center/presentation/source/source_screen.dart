@@ -18,10 +18,9 @@ import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
-import 'category/source_list_tile.dart';
 import 'controller/source_controller.dart';
+import 'widgets/source_list_tile.dart';
 
 class SourceScreen extends HookConsumerWidget {
   const SourceScreen({super.key});
@@ -29,29 +28,29 @@ class SourceScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final sourceController = ref.watch(sourceControllerProvider)
+    final sourceMapData = ref.watch(sourceMapFilteredProvider)
       ..showToastOnError(toast, withMicrotask: true);
-    final sourceMap = {...ref.watch(sourceMapFilteredProvider)};
+    final sourceMap = {...?sourceMapData.valueOrNull};
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");
+    refresh() => ref.refresh(sourceListProvider.future);
     useEffect(() {
-      ref.invalidate(sourceControllerProvider);
+      if (!sourceMapData.isLoading) refresh();
       return;
     }, []);
-    return sourceController.when(
-      skipError: true,
+    return sourceMapData.showUiWhenData(
       data: (data) {
         if ((sourceMap.isEmpty && localSource.isBlank && lastUsed.isBlank)) {
           return Emoticons(
             text: LocaleKeys.noSourcesFound.tr(),
             button: TextButton(
-              onPressed: () => ref.refresh(sourceControllerProvider.future),
+              onPressed: refresh,
               child: Text(LocaleKeys.refresh.tr()),
             ),
           );
         }
         return RefreshIndicator(
-          onRefresh: () => ref.refresh(sourceControllerProvider.future),
+          onRefresh: refresh,
           child: CustomScrollView(
             slivers: [
               if (lastUsed.isNotBlank) ...[
@@ -94,14 +93,7 @@ class SourceScreen extends HookConsumerWidget {
           ),
         );
       },
-      loading: () => const CenterCircularProgressIndicator(),
-      error: (error, trace) => Emoticons(
-        text: error.toString(),
-        button: TextButton(
-          onPressed: () => ref.refresh(sourceControllerProvider.future),
-          child: Text(LocaleKeys.refresh.tr()),
-        ),
-      ),
+      refresh: refresh,
     );
   }
 }

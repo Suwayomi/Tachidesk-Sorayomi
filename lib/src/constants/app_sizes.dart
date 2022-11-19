@@ -57,6 +57,18 @@ enum KBorderRadius {
   final BorderRadius radius;
 }
 
+enum KRadius {
+  r8(Radius.circular(8)),
+  r12(Radius.circular(12)),
+  r16(Radius.circular(16)),
+  rT16(Radius.circular(16)),
+  r32(Radius.circular(32)),
+  ;
+
+  const KRadius(this.radius);
+  final Radius radius;
+}
+
 const gridSize = SliverGridDelegateWithMaxCrossAxisExtent(
   maxCrossAxisExtent: 192,
   crossAxisSpacing: 2.0,

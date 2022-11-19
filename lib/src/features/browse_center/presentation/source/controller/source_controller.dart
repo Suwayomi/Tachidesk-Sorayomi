@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/source_repository/source_repository.dart';
@@ -17,7 +18,7 @@ import '../../../domain/source/source_model.dart';
 part 'source_controller.g.dart';
 
 @riverpod
-Future<List<Source>?> sourceController(SourceControllerRef ref) async {
+Future<List<Source>?> sourceList(SourceListRef ref) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
   final result = await ref
@@ -28,12 +29,11 @@ Future<List<Source>?> sourceController(SourceControllerRef ref) async {
 }
 
 @riverpod
-Map<String, List<Source>> sourceMap(SourceMapRef ref) {
+AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
   final sourceMap = <String, List<Source>>{};
-  final sourceList =
-      ref.watch(sourceControllerProvider).asData?.value ?? <Source>[];
+  final sourceListData = ref.watch(sourceListProvider);
   final sourceLastUsed = ref.watch(sourceLastUsedProvider);
-  for (final e in sourceList) {
+  for (final e in [...?sourceListData.valueOrNull]) {
     sourceMap.update(
       e.lang?.code ?? "other",
       (value) => [...value, e],
@@ -41,18 +41,20 @@ Map<String, List<Source>> sourceMap(SourceMapRef ref) {
     );
     if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
-  return sourceMap;
+  return sourceListData.copyWithData((e) => sourceMap);
 }
 
 @riverpod
-Map<String, List<Source>> sourceMapFiltered(SourceMapFilteredRef ref) {
+AsyncValue<Map<String, List<Source>>?> sourceMapFiltered(
+    SourceMapFilteredRef ref) {
   final sourceMapFiltered = <String, List<Source>>{};
-  final sourceMap = ref.watch(sourceMapProvider);
-  final enabledLangList = ref.watch(sourceLanguageFilterProvider) ?? [];
+  final sourceMapData = ref.watch(sourceMapProvider);
+  final sourceMap = {...?sourceMapData.valueOrNull};
+  final enabledLangList = [...?ref.watch(sourceLanguageFilterProvider)];
   for (final e in enabledLangList) {
     if (sourceMap.containsKey(e)) sourceMapFiltered[e] = sourceMap[e]!;
   }
-  return sourceMapFiltered;
+  return sourceMapData.copyWithData((e) => sourceMapFiltered);
 }
 
 @riverpod

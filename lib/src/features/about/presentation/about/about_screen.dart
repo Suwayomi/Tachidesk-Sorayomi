@@ -115,9 +115,8 @@ class AboutScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final about = ref
-        .watch(aboutControllerProvider)
-        .valueOrToast(toast, withMicrotask: true);
+    final about =
+        ref.watch(aboutProvider).valueOrToast(toast, withMicrotask: true);
     final serverVer = about?.buildType == "Stable"
         ? about?.version
         : "${about?.version}-${about?.revision}";
@@ -127,7 +126,7 @@ class AboutScreen extends ConsumerWidget {
         title: Text(LocaleKeys.about.tr()),
       ),
       body: RefreshIndicator(
-        onRefresh: () => ref.refresh(aboutControllerProvider.future),
+        onRefresh: () => ref.refresh(aboutProvider.future),
         child: ListView(
           children: [
             ImageIcon(

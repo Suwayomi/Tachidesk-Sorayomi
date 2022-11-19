@@ -12,12 +12,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
-import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -66,66 +66,61 @@ class BigScreenMangaDetails extends ConsumerWidget {
           ),
           const VerticalDivider(width: 0),
           Expanded(
-              child: chapterList.when(
-            data: (data) {
-              if (data.isNotBlank) {
-                return Column(
-                  children: [
-                    ListTile(
-                      title: Text(
-                        LocaleKeys.noOfChapters.tr(namedArgs: {
-                          "count": (filteredChapterList?.length ?? 0).toString()
-                        }),
+            child: chapterList.showUiWhenData(
+              data: (data) {
+                if (data.isNotBlank) {
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text(
+                          LocaleKeys.noOfChapters.tr(namedArgs: {
+                            "count":
+                                (filteredChapterList?.length ?? 0).toString()
+                          }),
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          if (filteredChapterList.length == index) {
-                            return const ListTile();
-                          }
-                          final key =
-                              ValueKey("${filteredChapterList[index].id}");
-                          final chapter = filteredChapterList[index];
-                          return ChapterListTile(
-                            key: key,
-                            manga: manga,
-                            chapter: chapter,
-                            updateData: () => onRefresh(true),
-                            isSelected:
-                                selectedChapters.value.containsKey(chapter.id),
-                            canTapSelect: selectedChapters.value.isNotEmpty,
-                            toggleSelect: (Chapter val) {
-                              if ((val.id).isNull) return;
-                              selectedChapters.value = selectedChapters.value
-                                  .toggleKey(val.id!, val);
-                            },
-                          );
-                        },
-                        itemCount: filteredChapterList!.length + 1,
+                      Expanded(
+                        child: ListView.builder(
+                          itemBuilder: (context, index) {
+                            if (filteredChapterList.length == index) {
+                              return const ListTile();
+                            }
+                            final key =
+                                ValueKey("${filteredChapterList[index].id}");
+                            final chapter = filteredChapterList[index];
+                            return ChapterListTile(
+                              key: key,
+                              manga: manga,
+                              chapter: chapter,
+                              updateData: () => onRefresh(true),
+                              isSelected: selectedChapters.value
+                                  .containsKey(chapter.id),
+                              canTapSelect: selectedChapters.value.isNotEmpty,
+                              toggleSelect: (Chapter val) {
+                                if ((val.id).isNull) return;
+                                selectedChapters.value = selectedChapters.value
+                                    .toggleKey(val.id!, val);
+                              },
+                            );
+                          },
+                          itemCount: filteredChapterList!.length + 1,
+                        ),
                       ),
+                    ],
+                  );
+                } else {
+                  return Emoticons(
+                    text: LocaleKeys.noChaptersFound.tr(),
+                    button: TextButton(
+                      onPressed: () => onRefresh(false),
+                      child: Text(LocaleKeys.refresh.tr()),
                     ),
-                  ],
-                );
-              } else {
-                return Emoticons(
-                  text: LocaleKeys.noChaptersFound.tr(),
-                  button: TextButton(
-                    onPressed: () => onRefresh(false),
-                    child: Text(LocaleKeys.refresh.tr()),
-                  ),
-                );
-              }
-            },
-            error: (error, stackTrace) => Emoticons(
-              text: error.toString(),
-              button: TextButton(
-                onPressed: () => onRefresh(true),
-                child: Text(LocaleKeys.refresh.tr()),
-              ),
+                  );
+                }
+              },
+              refresh: () => onRefresh(true),
             ),
-            loading: () => const CenterCircularProgressIndicator(),
-          )),
+          ),
         ],
       ),
     );

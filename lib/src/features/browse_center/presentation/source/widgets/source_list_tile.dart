@@ -9,9 +9,12 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../../../constants/enum.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../widgets/server_image.dart';
@@ -27,12 +30,12 @@ class SourceListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: (() async {
+        if (source.id == null) return;
         ref.read(sourceLastUsedProvider.notifier).update(source.id);
-        // await controller.localStorageService
-        //     .setLastUsed(source.id);
-        // Get.toNamed(
-        //   "${Routes.sourceManga}/${source.id}/popular",
-        // );
+        context.push(Routes.getSourceManga(
+          source.id!,
+          SourceType.popular,
+        ));
       }),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
@@ -49,10 +52,10 @@ class SourceListTile extends ConsumerWidget {
           ? TextButton(
               onPressed: () async {
                 ref.read(sourceLastUsedProvider.notifier).update(source.id);
-                // await controller.localStorageService
-                //     .setLastUsed(source.id);
-                // Get.toNamed("${Routes.sourceManga}"
-                //     "/${source.id}/latest");
+                context.push(Routes.getSourceManga(
+                  source.id!,
+                  SourceType.latest,
+                ));
               },
               child: Text(LocaleKeys.latest.tr()),
             )

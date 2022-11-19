@@ -13,10 +13,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/multi_select_bottom_options.dart';
@@ -42,16 +42,16 @@ class MangaDetails extends HookConsumerWidget {
     }
 
     useEffect(() {
-      refresh();
+      if (!chapterList.isLoading && !manga.isLoading) refresh();
       return;
     }, []);
 
-    return manga.when(
+    return manga.showUiWhenData(
       data: (data) => Scaffold(
         appBar: selectedChapters.value.isNotEmpty
             ? AppBar(
                 leading: IconButton(
-                  onPressed: () => selectedChapters.value = {},
+                  onPressed: () => selectedChapters.value = <int, Chapter>{},
                   icon: const Icon(Icons.close_rounded),
                 ),
                 title: Text(
@@ -63,10 +63,10 @@ class MangaDetails extends HookConsumerWidget {
                   IconButton(
                     onPressed: () {
                       selectedChapters.value = {
-                        for (Chapter i in ref.read(
-                                mangaChapterListWithFilterProvider(
-                                    mangaId: mangaId)) ??
-                            [])
+                        for (Chapter i in [
+                          ...?ref.read(mangaChapterListWithFilterProvider(
+                              mangaId: mangaId))
+                        ])
                           i.id ?? -1: i
                       };
                     },
@@ -75,10 +75,10 @@ class MangaDetails extends HookConsumerWidget {
                   IconButton(
                     onPressed: () {
                       final newMap = {
-                        for (Chapter i in ref.read(
-                                mangaChapterListWithFilterProvider(
-                                    mangaId: mangaId)) ??
-                            [])
+                        for (Chapter i in [
+                          ...?ref.read(mangaChapterListWithFilterProvider(
+                              mangaId: mangaId))
+                        ])
                           i.id ?? -1: i
                       }..removeWhere((key, value) =>
                           selectedChapters.value.containsKey(key));
@@ -144,19 +144,10 @@ class MangaDetails extends HookConsumerWidget {
                 ),
               ),
       ),
-      error: (error, stackTrace) => Scaffold(
+      refresh: refresh,
+      wrapper: (body) => Scaffold(
         appBar: AppBar(title: Text(LocaleKeys.manga.tr())),
-        body: Emoticons(
-          text: error.toString(),
-          button: TextButton(
-            onPressed: refresh,
-            child: Text(LocaleKeys.refresh.tr()),
-          ),
-        ),
-      ),
-      loading: () => Scaffold(
-        appBar: AppBar(title: Text(LocaleKeys.manga.tr())),
-        body: const CenterCircularProgressIndicator(),
+        body: body,
       ),
     );
   }

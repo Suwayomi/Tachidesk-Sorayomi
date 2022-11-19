@@ -11,6 +11,7 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../constants/endpoints.dart';
 import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
@@ -56,8 +57,8 @@ class AboutRepository {
       ))
           .data,
     );
-    return gitResponse.when<AsyncValue<Version?>>(
-      data: (data) {
+    return gitResponse.copyWithData<Version?>(
+      (data) {
         String? tag = data?["tag_name"];
         Version? latestReleaseBuildNumber =
             tag != null ? Version.parse(tag) : null;
@@ -66,12 +67,10 @@ class AboutRepository {
             latestReleaseBuildNumber
                 .compareTo(packageBuildNumber)
                 .isGreaterThan(0)) {
-          return AsyncData(latestReleaseBuildNumber);
+          return latestReleaseBuildNumber;
         }
-        return const AsyncData(null);
+        return null;
       },
-      error: AsyncValue.error,
-      loading: AsyncValue.loading,
     );
   }
 }

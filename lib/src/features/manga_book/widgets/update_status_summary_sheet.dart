@@ -12,12 +12,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../utils/extensions/custom_extensions/iterable_extensions.dart';
-import '../../../widgets/custom_circular_progress_indicator.dart';
-import '../../../widgets/emoticons.dart';
 import '../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
 import '../data/updates/updates_repository.dart';
 import '../domain/manga/manga_model.dart';
@@ -35,7 +34,6 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
         statusUpdateStream.valueOrNull?.total.isGreaterThan(0) ?? false
             ? statusUpdateStream
             : statusUpdate;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.updatesSummary.tr()),
@@ -43,7 +41,8 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
           UpdateStatusPopupMenu(showSummaryButton: false),
         ],
       ),
-      body: finalStatus.when(
+      body: finalStatus.showUiWhenData(
+        refresh: () => ref.invalidate(updateSummaryProvider),
         data: (data) => RefreshIndicator(
           onRefresh: () => ref.refresh(updateSummaryProvider.future),
           child: ListView(
@@ -71,14 +70,6 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
             ],
           ),
         ),
-        error: (error, stackTrace) => Emoticons(
-          text: error.toString(),
-          button: TextButton(
-            child: Text(LocaleKeys.refresh.tr()),
-            onPressed: () => ref.invalidate(updateSummaryProvider),
-          ),
-        ),
-        loading: () => const CenterCircularProgressIndicator(),
       ),
     );
   }

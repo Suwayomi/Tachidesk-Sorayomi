@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
@@ -20,7 +21,7 @@ import '../../browse/controller/browse_controller.dart';
 part 'extension_controller.g.dart';
 
 @riverpod
-Future<List<Extension>?> extensionController(ExtensionControllerRef ref) async {
+Future<List<Extension>?> extension(ExtensionRef ref) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
   final result = await ref
@@ -31,10 +32,10 @@ Future<List<Extension>?> extensionController(ExtensionControllerRef ref) async {
 }
 
 @riverpod
-Map<String, List<Extension>> extensionMap(ExtensionMapRef ref) {
+AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
   final extensionMap = <String, List<Extension>>{};
-  final extensionList =
-      ref.watch(extensionControllerProvider).asData?.value ?? <Extension>[];
+  final extensionListData = ref.watch(extensionProvider);
+  final extensionList = [...?extensionListData.valueOrNull];
   final showNsfw = ref.watch(showNSFWProvider) ?? true;
   for (final e in extensionList) {
     if (!showNsfw && (e.isNsfw ?? false)) continue;
@@ -60,7 +61,7 @@ Map<String, List<Extension>> extensionMap(ExtensionMapRef ref) {
       );
     }
   }
-  return extensionMap;
+  return extensionListData.copyWithData((p0) => extensionMap);
 }
 
 @riverpod
@@ -75,27 +76,32 @@ class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
 }
 
 @riverpod
-Map<String, List<Extension>> extensionMapFiltered(ExtensionMapFilteredRef ref) {
+AsyncValue<Map<String, List<Extension>>> extensionMapFiltered(
+    ExtensionMapFilteredRef ref) {
   final extensionMapFiltered = <String, List<Extension>>{};
-  final extensionMap = ref.watch(extensionMapProvider);
-  final enabledLangList = ref.watch(extensionLanguageFilterProvider) ?? [];
+  final extensionMapData = ref.watch(extensionMapProvider);
+  final extensionMap = {...?extensionMapData.valueOrNull};
+  final enabledLangList = [...?ref.watch(extensionLanguageFilterProvider)];
   for (final e in enabledLangList) {
     if (extensionMap.containsKey(e)) extensionMapFiltered[e] = extensionMap[e]!;
   }
-  return extensionMapFiltered;
+  return extensionMapData.copyWithData((p0) => extensionMapFiltered);
 }
 
 @riverpod
-Map<String, List<Extension>> extensionMapFilteredAndQueried(
+AsyncValue<Map<String, List<Extension>>> extensionMapFilteredAndQueried(
   ExtensionMapFilteredAndQueriedRef ref,
 ) {
-  final extensionMap = ref.watch(extensionMapFilteredProvider);
-  if (!ref.watch(browseScreenShowSearchProvider)) return extensionMap;
+  final extensionMapData = ref.watch(extensionMapFilteredProvider);
+  final extensionMap = {...?extensionMapData.valueOrNull};
+  if (!ref.watch(browseScreenShowSearchProvider)) return extensionMapData;
   final query = ref.watch(extensionQueryProvider);
-  return extensionMap.map<String, List<Extension>>(
-    (key, value) => MapEntry(
-      key,
-      value.where((element) => element.name.query(query)).toList(),
+  return extensionMapData.copyWithData(
+    (e) => extensionMap.map<String, List<Extension>>(
+      (key, value) => MapEntry(
+        key,
+        value.where((element) => element.name.query(query)).toList(),
+      ),
     ),
   );
 }

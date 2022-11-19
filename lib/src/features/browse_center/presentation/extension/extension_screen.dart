@@ -19,7 +19,6 @@ import '../../../../utils/extensions/custom_extensions/async_value_extensions.da
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/misc/custom_typedef.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
 import '../../domain/extension/extension_model.dart';
@@ -36,7 +35,7 @@ class ExtensionScreen extends HookConsumerWidget {
     required List<Extension>? extensions,
     required AsyncVoidCallBack refresh,
   }) {
-    if (extensions.isBlank) return [];
+    if (extensions.isBlank) return <Widget>[];
     return [
       SliverToBoxAdapter(
         child: ListTile(
@@ -61,27 +60,19 @@ class ExtensionScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final showSearch = ref.watch(browseScreenShowSearchProvider);
     final toast = ref.watch(toastProvider(context));
-    final extensionController = ref.watch(extensionControllerProvider)
+    final extensionMapData = ref.watch(extensionMapFilteredAndQueriedProvider)
       ..showToastOnError(toast, withMicrotask: true);
-    final extensionMap = {...ref.watch(extensionMapFilteredAndQueriedProvider)};
+    final extensionMap = {...?extensionMapData.valueOrNull};
     final installed = extensionMap.remove("installed");
     final update = extensionMap.remove("update");
     final all = extensionMap.remove("all");
-    refresh() => ref.refresh(extensionControllerProvider.future);
+    refresh() => ref.refresh(extensionProvider.future);
     useEffect(() {
-      refresh();
+      if (!extensionMapData.isLoading) refresh();
       return;
     }, []);
-    return extensionController.when(
-      skipError: true,
-      loading: () => const CenterCircularProgressIndicator(),
-      error: (error, trace) => Emoticons(
-        text: error.toString(),
-        button: TextButton(
-          onPressed: refresh,
-          child: Text(LocaleKeys.refresh.tr()),
-        ),
-      ),
+    return extensionMapData.showUiWhenData(
+      refresh: refresh,
       data: (data) => Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -104,8 +95,7 @@ class ExtensionScreen extends HookConsumerWidget {
                     ),
                   )
                 : RefreshIndicator(
-                    onRefresh: () =>
-                        ref.refresh(extensionControllerProvider.future),
+                    onRefresh: () => ref.refresh(extensionProvider.future),
                     child: CustomScrollView(
                       slivers: [
                         if (update.isNotBlank)

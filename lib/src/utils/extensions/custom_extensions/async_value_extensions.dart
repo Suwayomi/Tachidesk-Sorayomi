@@ -4,10 +4,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
 // 📦 Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import '../../../widgets/custom_circular_progress_indicator.dart';
+import '../../../i18n/locale_keys.g.dart';
+import '../../../widgets/emoticons.dart';
 import '../../misc/toast/toast.dart';
 
 extension AsyncValueExtensions<T> on AsyncValue<T> {
@@ -32,4 +39,45 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
 
   T? valueOrToast(Toast toast, {bool withMicrotask = false}) =>
       (this..showToastOnError(toast, withMicrotask: withMicrotask)).valueOrNull;
+
+  Widget showUiWhenData({
+    required Widget Function(T data) data,
+    void Function()? refresh,
+    Widget Function(Widget)? wrapper,
+    bool showGenericError = false,
+  }) {
+    return when(
+      data: data,
+      error: (error, trace) => wrapper == null
+          ? Emoticons(
+              text: showGenericError
+                  ? LocaleKeys.error_somethingWentWrong.tr()
+                  : error.toString(),
+              button: TextButton(
+                onPressed: refresh,
+                child: Text(LocaleKeys.refresh.tr()),
+              ),
+            )
+          : wrapper(
+              Emoticons(
+                text: showGenericError
+                    ? LocaleKeys.error_somethingWentWrong.tr()
+                    : error.toString(),
+                button: TextButton(
+                  onPressed: refresh,
+                  child: Text(LocaleKeys.refresh.tr()),
+                ),
+              ),
+            ),
+      loading: () => wrapper == null
+          ? const CenterCircularProgressIndicator()
+          : wrapper(const CenterCircularProgressIndicator()),
+    );
+  }
+
+  AsyncValue<U> copyWithData<U>(U Function(T) data) => when(
+        data: (prev) => AsyncData(data(prev)),
+        error: (error, stackTrace) => AsyncError<U>(error, stackTrace),
+        loading: () => AsyncLoading<U>(),
+      );
 }

@@ -78,7 +78,7 @@ final downloadsSocketProvider = StreamProvider.autoDispose<Downloads>((ref) {
 Map<int, DownloadsQueue> downloadsMap(DownloadsMapRef ref) {
   final downloads = ref.watch(downloadsSocketProvider);
   return {
-    for (DownloadsQueue element in downloads.valueOrNull?.queue ?? [])
+    for (DownloadsQueue element in [...?downloads.valueOrNull?.queue])
       element.chapter?.id ?? -1: element
   };
 }

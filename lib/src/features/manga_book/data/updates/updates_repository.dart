@@ -82,7 +82,7 @@ class UpdatesRepository {
     return Pair<Stream<UpdateStatus>, AsyncVoidCallBack>(
       first: channel.stream.asyncMap<UpdateStatus>((event) =>
           compute<String, UpdateStatus>(
-              (s) => UpdateStatus.fromJson(json.decode(s)["statusMap"] ?? {}),
+              (s) => UpdateStatus.fromJson({...?json.decode(s)["statusMap"]}),
               event)),
       second: channel.sink.close,
     );

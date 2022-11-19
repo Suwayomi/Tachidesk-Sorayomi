@@ -6,24 +6,21 @@
 
 // 📦 Package imports:
 import 'package:dio/dio.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../data/about_repository.dart';
-import '../../../domain/about/about_model.dart';
+import '../../../data/source_repository/source_repository.dart';
+import '../../../domain/source/source_model.dart';
 
-part 'about_controller.g.dart';
+part 'source_manga_controller.g.dart';
 
 @riverpod
-Future<About?> about(AboutRef ref) async {
+Future<Source?> source(SourceRef ref, String sourceId) {
   final token = CancelToken();
   ref.onDispose(token.cancel);
-  final result =
-      await ref.watch(aboutRepositoryProvider).getAbout(cancelToken: token);
+  final result = ref
+      .watch(sourceRepositoryProvider)
+      .getSource(sourceId: sourceId, cancelToken: token);
   ref.keepAlive();
   return result;
 }
-
-@riverpod
-PackageInfo packageInfo(ref) => throw UnimplementedError();

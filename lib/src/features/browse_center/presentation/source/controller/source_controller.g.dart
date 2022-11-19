@@ -67,32 +67,33 @@ abstract class _$SourceLastUsed extends AutoDisposeNotifier<String?> {
   String? build();
 }
 
-String $sourceControllerHash() => r'65e262acc56645048b3e6b532cf25b25c75393ed';
+String $sourceListHash() => r'80d37bd602ce3e229ac64c39743cee84d94fd1f9';
 
-/// See also [sourceController].
-final sourceControllerProvider = AutoDisposeFutureProvider<List<Source>?>(
-  sourceController,
-  name: r'sourceControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $sourceControllerHash,
+/// See also [sourceList].
+final sourceListProvider = AutoDisposeFutureProvider<List<Source>?>(
+  sourceList,
+  name: r'sourceListProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : $sourceListHash,
 );
-typedef SourceControllerRef = AutoDisposeFutureProviderRef<List<Source>?>;
-String $sourceMapHash() => r'fdde6e97fc37a7473905f604c7c686610ab02357';
+typedef SourceListRef = AutoDisposeFutureProviderRef<List<Source>?>;
+String $sourceMapHash() => r'13682cd8c100d4d7ef007793b2c5ab9f97bad438';
 
 /// See also [sourceMap].
-final sourceMapProvider = AutoDisposeProvider<Map<String, List<Source>>>(
+final sourceMapProvider =
+    AutoDisposeProvider<AsyncValue<Map<String, List<Source>>>>(
   sourceMap,
   name: r'sourceMapProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : $sourceMapHash,
 );
-typedef SourceMapRef = AutoDisposeProviderRef<Map<String, List<Source>>>;
-String $sourceMapFilteredHash() => r'1351e1af28161f70953bb3dc6ed753b4e2fbd9d9';
+typedef SourceMapRef
+    = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>>>;
+String $sourceMapFilteredHash() => r'61d31082533cfd32f73664fd5f16c5eba09c54b8';
 
 /// See also [sourceMapFiltered].
 final sourceMapFilteredProvider =
-    AutoDisposeProvider<Map<String, List<Source>>>(
+    AutoDisposeProvider<AsyncValue<Map<String, List<Source>>?>>(
   sourceMapFiltered,
   name: r'sourceMapFilteredProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -100,4 +101,4 @@ final sourceMapFilteredProvider =
       : $sourceMapFilteredHash,
 );
 typedef SourceMapFilteredRef
-    = AutoDisposeProviderRef<Map<String, List<Source>>>;
+    = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>?>>;

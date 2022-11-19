@@ -165,7 +165,8 @@ class CodegenLoader extends AssetLoader {
         "You don't have any Categories. \nTap the Plus button to create one for organizing your library",
     "noChaptersFound": "No Chapters found",
     "noDownloads": "No Downloads",
-    "noCategoryMangaFound": "No manga found in this Category",
+    "noCategoryMangaFound":
+        "No manga found in this Category. \n(Tip: Check your filters!)",
     "noMangaFound": "No Mangas Found",
     "noNewChapter": "No new chapter",
     "noOfChapters": "{count} Chapters",

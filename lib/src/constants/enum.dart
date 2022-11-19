@@ -58,3 +58,5 @@ enum MangaStatus {
   static String toJson(MangaStatus? status) =>
       status?.title ?? MangaStatus.unknown.title;
 }
+
+enum SourceType { latest, popular }

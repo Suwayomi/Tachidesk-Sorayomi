@@ -14,6 +14,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
+import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
@@ -34,7 +35,7 @@ class UpdatesScreen extends HookConsumerWidget {
 
   Future<void> _fetchPage(
     UpdatesRepository repository,
-    PagingController controller,
+    PagingController<int, ChapterMangaPair> controller,
     int pageKey,
   ) async {
     AsyncValue.guard(
@@ -42,15 +43,12 @@ class UpdatesScreen extends HookConsumerWidget {
     ).then(
       (value) => value.whenOrNull(
         data: (recentChaptersPage) {
-          if (recentChaptersPage != null) {
+          if (recentChaptersPage != null &&
+              recentChaptersPage.page.isNotBlank) {
             if (recentChaptersPage.hasNextPage ?? false) {
-              try {
-                controller.appendPage(recentChaptersPage.page!, pageKey + 1);
-              } catch (e) {
-                controller.appendPage([], pageKey);
-              }
+              controller.appendPage([...?recentChaptersPage.page], pageKey + 1);
             } else {
-              controller.appendLastPage(recentChaptersPage.page ?? []);
+              controller.appendLastPage([...?recentChaptersPage.page]);
             }
           }
         },
@@ -78,7 +76,7 @@ class UpdatesScreen extends HookConsumerWidget {
       appBar: selectedChapters.value.isNotEmpty
           ? AppBar(
               leading: IconButton(
-                onPressed: () => selectedChapters.value = {},
+                onPressed: () => selectedChapters.value = <int, Chapter>{},
                 icon: const Icon(Icons.close_rounded),
               ),
               title: Text(
@@ -99,7 +97,7 @@ class UpdatesScreen extends HookConsumerWidget {
           : null,
       body: RefreshIndicator(
         onRefresh: () async {
-          selectedChapters.value = {};
+          selectedChapters.value = <int, Chapter>{};
           controller.refresh();
         },
         child: PagedListView(

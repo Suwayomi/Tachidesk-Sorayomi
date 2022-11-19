@@ -19,8 +19,8 @@ import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../extension/extension_screen.dart';
 import '../extension/widgets/extension_language_filter_dialog.dart';
 import '../extension/widgets/install_extension_file.dart';
-import '../source/category/source_language_filter.dart';
 import '../source/source_screen.dart';
+import '../source/widgets/source_language_filter.dart';
 import 'controller/browse_controller.dart';
 
 class BrowseScreen extends HookConsumerWidget {
