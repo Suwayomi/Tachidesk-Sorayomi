@@ -90,6 +90,18 @@ final extensionMapProvider =
 );
 typedef ExtensionMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
+String $extensionFilterLangListHash() =>
+    r'86c8b07116486c19f0ac21976ce798304bb7f2ee';
+
+/// See also [extensionFilterLangList].
+final extensionFilterLangListProvider = AutoDisposeProvider<List<String>>(
+  extensionFilterLangList,
+  name: r'extensionFilterLangListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $extensionFilterLangListHash,
+);
+typedef ExtensionFilterLangListRef = AutoDisposeProviderRef<List<String>>;
 String $extensionMapFilteredHash() =>
     r'bcfe4ed3d11f2987273f35b672a3a27d9156fe77';
 

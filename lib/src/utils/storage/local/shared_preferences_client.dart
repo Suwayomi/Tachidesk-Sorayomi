@@ -8,6 +8,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// 🌎 Project imports:
+import '../../extensions/custom_extensions/int_extensions.dart';
+
 part 'shared_preferences_client.g.dart';
 
 @riverpod
@@ -17,9 +20,12 @@ SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
 /// the provider.
 ///
 /// * Remember to use [ initialize ] function to assign [_key], [_client]
-///   in [build] function of provider
+///   in [build] function of provider.
+///
 /// * optionally provide [_initial] for giving initial value to the [_key].
-mixin SharedPreferenceClient<T> {
+///
+/// * [T] should not be a Nullable Type.
+mixin SharedPreferenceClient<T extends Object> {
   late final String _key;
   late final SharedPreferences _client;
   late final T? _initial;
@@ -88,12 +94,16 @@ mixin SharedPreferenceEnumClient<T extends Enum> {
   }
 
   T? _getEnumFromIndex(int? value) =>
-      value != null && value < enumList.length ? enumList[value] : initial;
+      value != null && value.liesBetween(upper: enumList.length - 1)
+          ? enumList[value]
+          : initial;
 
   T? get get => _getEnumFromIndex(client.getInt(key));
 
   Future<void> update(T? value) async {
-    if (await _set(value?.index)) state = value;
+    if (await _set(value == null ? null : enumList.indexOf(value))) {
+      state = value;
+    }
   }
 
   Future<bool> _set(int? value) {

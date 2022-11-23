@@ -12,7 +12,7 @@ import 'enum.dart';
 
 enum DBKeys {
   serverUrl('http://127.0.0.1:4567'),
-  sourceLanguageFilter(["lastUsed", "en", "localsourcelang"]),
+  sourceLanguageFilter(["all", "lastUsed", "en", "localsourcelang"]),
   extensionLanguageFilter(["installed", "update", "en", "all"]),
   sourceLastUsed(null),
   themeMode(ThemeMode.system),
@@ -35,7 +35,8 @@ enum DBKeys {
   mangaSortDirection(true), // asc=true, dsc=false
   chapterSort(ChapterSort.source),
   chapterSortDirection(false), // asc=true, dsc=false
-  displayMode(DisplayMode.grid),
+  libraryDisplayMode(DisplayMode.grid),
+  sourceDisplayMode(DisplayMode.grid),
   ;
 
   const DBKeys(this.initial);

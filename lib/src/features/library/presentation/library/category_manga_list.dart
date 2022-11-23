@@ -14,16 +14,16 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
+import '../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
-import '../../../../widgets/manga_cover/list/manga_cover_with_description_tile.dart';
 import 'controller/library_controller.dart';
 
 class CategoryMangaList extends HookConsumerWidget {
@@ -55,7 +55,7 @@ class CategoryMangaList extends HookConsumerWidget {
         switch (displayMode) {
           case DisplayMode.grid:
             mangaList = GridView.builder(
-              gridDelegate: gridSize,
+              gridDelegate: mangaCoverGridDelegate,
               itemCount: data?.length ?? 0,
               itemBuilder: (context, index) => MangaCoverGridTile(
                 manga: data![index],
@@ -79,21 +79,21 @@ class CategoryMangaList extends HookConsumerWidget {
                     context.push(Routes.getManga(data[index].id!));
                   }
                 },
-                needCountBadges: true,
+                showCountBadges: true,
               ),
             );
             break;
-          case DisplayMode.listDescription:
+          case DisplayMode.descriptiveList:
             mangaList = ListView.builder(
               itemCount: data?.length ?? 0,
-              itemBuilder: (context, index) => MangaCoverWithDescriptionTile(
+              itemBuilder: (context, index) => MangaCoverDescriptiveListTile(
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
                     context.push(Routes.getManga(data[index].id!));
                   }
                 },
-                showCountBadges: true,
+                showBadges: true,
               ),
             );
             break;

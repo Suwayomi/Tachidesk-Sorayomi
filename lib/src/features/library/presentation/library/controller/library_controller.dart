@@ -173,8 +173,8 @@ class LibraryDisplayMode extends _$LibraryDisplayMode
   @override
   DisplayMode? build() => initialize(
         client: ref.watch(sharedPreferencesProvider),
-        key: DBKeys.displayMode.name,
-        initial: DBKeys.displayMode.initial,
+        key: DBKeys.libraryDisplayMode.name,
+        initial: DBKeys.libraryDisplayMode.initial,
         enumList: DisplayMode.values,
       );
 }

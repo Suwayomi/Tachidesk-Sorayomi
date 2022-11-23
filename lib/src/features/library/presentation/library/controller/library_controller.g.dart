@@ -253,7 +253,7 @@ abstract class _$LibraryMangaSortDirection extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $LibraryDisplayModeHash() => r'dc04228b204eb3fff000b7d78c88f4e96cfa305e';
+String $LibraryDisplayModeHash() => r'9ad9ee299d2632567829a1e2e3852b2cd20faca9';
 
 /// See also [LibraryDisplayMode].
 final libraryDisplayModeProvider =

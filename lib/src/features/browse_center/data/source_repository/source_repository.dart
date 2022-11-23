@@ -9,11 +9,11 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../../constants/enum.dart';
-import '../../domain/manga_page/manga_page.dart';
 import '../../../../constants/endpoints.dart';
+import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
+import '../../domain/manga_page/manga_page.dart';
 import '../../domain/source/source_model.dart';
 
 part 'source_repository.g.dart';

@@ -9,6 +9,9 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../../constants/db_keys.dart';
+import '../../../../../constants/enum.dart';
+import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/source/source_model.dart';
 
@@ -23,4 +26,16 @@ Future<Source?> source(SourceRef ref, String sourceId) {
       .getSource(sourceId: sourceId, cancelToken: token);
   ref.keepAlive();
   return result;
+}
+
+@riverpod
+class SourceDisplayMode extends _$SourceDisplayMode
+    with SharedPreferenceEnumClient<DisplayMode> {
+  @override
+  DisplayMode? build() => initialize(
+        client: ref.watch(sharedPreferencesProvider),
+        key: DBKeys.sourceDisplayMode.name,
+        initial: DBKeys.sourceDisplayMode.initial,
+        enumList: DisplayMode.sourceDisplayList,
+      );
 }

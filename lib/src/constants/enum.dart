@@ -33,7 +33,20 @@ enum MangaSort { alphabetical, dateAdded, unread }
 
 enum ChapterSort { source, fetchedDate }
 
-enum DisplayMode { grid, list, listDescription }
+enum DisplayMode {
+  grid(Icons.grid_view_rounded),
+  list(Icons.view_list_rounded),
+  descriptiveList(Icons.view_list_rounded),
+  ;
+
+  static const List<DisplayMode> sourceDisplayList = [
+    DisplayMode.grid,
+    DisplayMode.list
+  ];
+
+  final IconData icon;
+  const DisplayMode(this.icon);
+}
 
 enum MangaStatus {
   unknown("UNKNOWN", Icons.block_outlined),
@@ -59,4 +72,13 @@ enum MangaStatus {
       status?.title ?? MangaStatus.unknown.title;
 }
 
-enum SourceType { latest, popular }
+enum SourceType {
+  latest(Icons.new_releases_outlined, Icons.new_releases_rounded),
+  popular(Icons.favorite_border_rounded, Icons.favorite_rounded),
+  filter(Icons.filter_list_outlined, Icons.filter_list_rounded);
+
+  const SourceType(this.icon, this.selectedIcon);
+
+  final IconData icon;
+  final IconData selectedIcon;
+}

@@ -14,10 +14,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/map_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -43,13 +43,18 @@ class UpdatesScreen extends HookConsumerWidget {
     ).then(
       (value) => value.whenOrNull(
         data: (recentChaptersPage) {
-          if (recentChaptersPage != null &&
-              recentChaptersPage.page.isNotBlank) {
-            if (recentChaptersPage.hasNextPage ?? false) {
-              controller.appendPage([...?recentChaptersPage.page], pageKey + 1);
-            } else {
-              controller.appendLastPage([...?recentChaptersPage.page]);
+          try {
+            if (recentChaptersPage != null &&
+                recentChaptersPage.page.isNotBlank) {
+              if (recentChaptersPage.hasNextPage ?? false) {
+                controller
+                    .appendPage([...?recentChaptersPage.page], pageKey + 1);
+              } else {
+                controller.appendLastPage([...?recentChaptersPage.page]);
+              }
             }
+          } catch (e) {
+            //
           }
         },
         error: (error, stackTrace) => controller.error = error,

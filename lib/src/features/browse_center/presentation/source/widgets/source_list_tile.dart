@@ -14,8 +14,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/enum.dart';
-import '../../../../../routes/router_config.dart';
 import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../domain/source/source_model.dart';

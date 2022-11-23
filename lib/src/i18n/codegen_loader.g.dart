@@ -24,7 +24,7 @@ class CodegenLoader extends AssetLoader {
     "DisplayMode": {
       "grid": "Grid",
       "list": "List",
-      "listDescription": "Descriptive List"
+      "descriptiveList": "Descriptive List"
     },
     "AuthType": {"none": "None", "basic": "Basic Auth"},
     "ReaderMode": {
@@ -183,6 +183,7 @@ class CodegenLoader extends AssetLoader {
     "numSelected": "{num} Selected",
     "password": "Password",
     "pause": "Pause",
+    "popular": "Popular",
     "previousChapter": "Previous Chapter",
     "reader": "Reader",
     "readerMode": "Reading Mode",
@@ -225,13 +226,18 @@ class CodegenLoader extends AssetLoader {
     "sortUnread": "Unread",
     "source": "Source",
     "sources": "Sources",
+    "SourceType": {
+      "latest": "Latest",
+      "popular": "Popular",
+      "filter": "Filter"
+    },
     "status": "Status",
     "updatesSummary": "Updates Summary",
     "uninstall": "Uninstall",
     "uninstalling": "Uninstalling",
     "unknown": "Unknown",
     "unknownManga": "Unknown Manga",
-    "unknownAuthor": "Unknown Manga",
+    "unknownAuthor": "Unknown Author",
     "unknownSource": "Unknown Source",
     "update": "Update",
     "updates": "Updates",

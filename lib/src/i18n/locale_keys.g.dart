@@ -11,7 +11,7 @@ abstract class LocaleKeys {
   static const ChapterSort = 'ChapterSort';
   static const DisplayMode_grid = 'DisplayMode.grid';
   static const DisplayMode_list = 'DisplayMode.list';
-  static const DisplayMode_listDescription = 'DisplayMode.listDescription';
+  static const DisplayMode_descriptiveList = 'DisplayMode.descriptiveList';
   static const DisplayMode = 'DisplayMode';
   static const AuthType_none = 'AuthType.none';
   static const AuthType_basic = 'AuthType.basic';
@@ -172,6 +172,7 @@ abstract class LocaleKeys {
   static const numSelected = 'numSelected';
   static const password = 'password';
   static const pause = 'pause';
+  static const popular = 'popular';
   static const previousChapter = 'previousChapter';
   static const reader = 'reader';
   static const readerMode = 'readerMode';
@@ -213,6 +214,10 @@ abstract class LocaleKeys {
   static const sortUnread = 'sortUnread';
   static const source = 'source';
   static const sources = 'sources';
+  static const SourceType_latest = 'SourceType.latest';
+  static const SourceType_popular = 'SourceType.popular';
+  static const SourceType_filter = 'SourceType.filter';
+  static const SourceType = 'SourceType';
   static const status = 'status';
   static const updatesSummary = 'updatesSummary';
   static const uninstall = 'uninstall';

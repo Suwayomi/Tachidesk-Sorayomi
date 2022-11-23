@@ -7,12 +7,15 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+const kTabSize = Size.fromHeight(48.0);
+
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
 enum KEdgeInsets {
   a8(EdgeInsets.all(8)),
   a4(EdgeInsets.all(4)),
   a16(EdgeInsets.all(16)),
   h16v8(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
+  h4v8(EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0)),
   h16v4(EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0)),
   h16(EdgeInsets.symmetric(horizontal: 16.0)),
   h8(EdgeInsets.symmetric(horizontal: 8.0)),
@@ -69,7 +72,7 @@ enum KRadius {
   final Radius radius;
 }
 
-const gridSize = SliverGridDelegateWithMaxCrossAxisExtent(
+const mangaCoverGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
   maxCrossAxisExtent: 192,
   crossAxisSpacing: 2.0,
   mainAxisSpacing: 2.0,

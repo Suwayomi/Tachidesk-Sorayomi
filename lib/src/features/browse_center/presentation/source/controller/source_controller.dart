@@ -9,8 +9,8 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../constants/db_keys.dart';
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/source/source_model.dart';
@@ -42,6 +42,16 @@ AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
     if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
   return sourceListData.copyWithData((e) => sourceMap);
+}
+
+@riverpod
+List<String> sourceFilterLangList(SourceFilterLangListRef ref) {
+  return [
+    ...?(ref.watch(sourceMapProvider).valueOrNull
+          ?..remove("localsourcelang")
+          ..remove("lastUsed"))
+        ?.keys
+  ]..sort();
 }
 
 @riverpod

@@ -39,7 +39,7 @@ class LibraryMangaDisplay extends ConsumerWidget {
         ),
         EnumRadio<DisplayMode>(
           enumList: DisplayMode.values,
-          value: displayMode ?? DBKeys.displayMode.initial,
+          value: displayMode ?? DBKeys.libraryDisplayMode.initial,
           onChange: (value) =>
               ref.read(libraryDisplayModeProvider.notifier).update(value),
         ),

@@ -29,6 +29,24 @@ class _SystemHash {
   }
 }
 
+String $SourceDisplayModeHash() => r'71babad5dcc543acdba775ff479c545c58569ff1';
+
+/// See also [SourceDisplayMode].
+final sourceDisplayModeProvider =
+    AutoDisposeNotifierProvider<SourceDisplayMode, DisplayMode?>(
+  SourceDisplayMode.new,
+  name: r'sourceDisplayModeProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $SourceDisplayModeHash,
+);
+typedef SourceDisplayModeRef = AutoDisposeNotifierProviderRef<DisplayMode?>;
+
+abstract class _$SourceDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
+  @override
+  DisplayMode? build();
+}
+
 String $sourceHash() => r'4b9780685f4d7657fd9d31eb5b535275b9896577';
 
 /// See also [source].

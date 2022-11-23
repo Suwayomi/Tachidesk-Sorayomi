@@ -11,10 +11,10 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../constants/endpoints.dart';
 import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
+import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../domain/about/about_model.dart';

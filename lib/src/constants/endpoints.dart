@@ -5,8 +5,8 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 // 🌎 Project imports:
-import 'enum.dart';
 import 'db_keys.dart';
+import 'enum.dart';
 
 abstract class Endpoints {
   // base url

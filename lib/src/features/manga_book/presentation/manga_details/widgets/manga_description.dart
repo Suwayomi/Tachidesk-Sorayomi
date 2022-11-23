@@ -22,7 +22,7 @@ import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/custom_typedef.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/loading_text_icon_button.dart';
-import '../../../../../widgets/manga_cover/list/manga_cover_with_description_tile.dart';
+import '../../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../domain/manga/manga_model.dart';
 
 class MangaDescription extends HookConsumerWidget {
@@ -46,9 +46,9 @@ class MangaDescription extends HookConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MangaCoverWithDescriptionTile(
+        MangaCoverDescriptiveListTile(
           manga: manga,
-          showCountBadges: false,
+          showBadges: false,
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

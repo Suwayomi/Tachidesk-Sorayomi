@@ -12,8 +12,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/map_extensions.dart';

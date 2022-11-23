@@ -19,15 +19,17 @@ import '../grid/manga_cover_grid_tile.dart';
 import '../widgets/manga_badges.dart';
 import '../widgets/manga_chips.dart';
 
-class MangaCoverWithDescriptionTile extends StatelessWidget {
-  const MangaCoverWithDescriptionTile({
+class MangaCoverDescriptiveListTile extends StatelessWidget {
+  const MangaCoverDescriptiveListTile({
     super.key,
     required this.manga,
     this.onPressed,
     this.onLongPress,
+    this.showBadges = true,
     this.showCountBadges = true,
   });
   final Manga manga;
+  final bool showBadges;
   final bool showCountBadges;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
@@ -76,7 +78,7 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(
-                        "${manga.author ?? LocaleKeys.unknownAuthor.tr}",
+                        manga.author ?? LocaleKeys.unknownAuthor.tr(),
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
@@ -105,16 +107,16 @@ class MangaCoverWithDescriptionTile extends StatelessWidget {
                           ),
                       ],
                     ),
-                    if (showCountBadges)
+                    if (showBadges)
                       context.isTablet
                           ? MangaChipsRow(
                               manga: manga,
-                              showCountBadges: true,
+                              showCountBadges: showCountBadges,
                             )
                           : MangaBadgesRow(
                               padding: KEdgeInsets.v8.size,
                               manga: manga,
-                              showCountBadges: true,
+                              showCountBadges: showCountBadges,
                             ),
                   ],
                 ),

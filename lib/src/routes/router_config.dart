@@ -111,6 +111,7 @@ GoRouter routerConfig(ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => SourceMangaList(
           sourceId: state.params['sourceId'] ?? "0",
+          query: state.queryParams['query'],
           sourceType: SourceType.values.firstWhere(
             (element) => element.name.query(state.params['sourceType']),
             orElse: () => SourceType.popular,

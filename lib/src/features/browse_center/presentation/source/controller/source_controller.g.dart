@@ -89,6 +89,18 @@ final sourceMapProvider =
 );
 typedef SourceMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>>>;
+String $sourceFilterLangListHash() =>
+    r'939f87fc2d97aa5e148ebee43b6efe8b21bd8d39';
+
+/// See also [sourceFilterLangList].
+final sourceFilterLangListProvider = AutoDisposeProvider<List<String>>(
+  sourceFilterLangList,
+  name: r'sourceFilterLangListProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $sourceFilterLangListHash,
+);
+typedef SourceFilterLangListRef = AutoDisposeProviderRef<List<String>>;
 String $sourceMapFilteredHash() => r'61d31082533cfd32f73664fd5f16c5eba09c54b8';
 
 /// See also [sourceMapFiltered].

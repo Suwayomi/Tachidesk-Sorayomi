@@ -19,17 +19,21 @@ class MangaCoverListTile extends StatelessWidget {
     required this.manga,
     this.onPressed,
     this.onLongPress,
-    this.needCountBadges = false,
+    this.showBadges = true,
+    this.showCountBadges = false,
   });
 
   final Manga manga;
   final void Function()? onPressed;
   final void Function()? onLongPress;
-  final bool needCountBadges;
+  final bool showCountBadges;
+  final bool showBadges;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: KEdgeInsets.a8.size,
+      onTap: onPressed,
+      onLongPress: onLongPress,
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: ServerImage(
@@ -37,7 +41,9 @@ class MangaCoverListTile extends StatelessWidget {
           size: const Size.square(48),
         ),
       ),
-      trailing: MangaBadgesRow(manga: manga, showCountBadges: needCountBadges),
+      trailing: showBadges
+          ? MangaBadgesRow(manga: manga, showCountBadges: showCountBadges)
+          : null,
       dense: true,
       title: Text(
         (manga.title ?? manga.author ?? ""),

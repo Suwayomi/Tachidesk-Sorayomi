@@ -13,9 +13,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
+import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/chapter/chapter_model.dart';

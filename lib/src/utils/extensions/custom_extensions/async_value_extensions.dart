@@ -12,8 +12,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../i18n/locale_keys.g.dart';
+import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../widgets/emoticons.dart';
 import '../../misc/toast/toast.dart';
 
