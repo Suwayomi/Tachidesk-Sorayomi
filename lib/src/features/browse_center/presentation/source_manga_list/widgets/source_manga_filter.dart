@@ -13,8 +13,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/app_sizes.dart';
-import '../../../domain/filter/filter_model.dart';
 import '../../../../../i18n/locale_keys.g.dart';
+import '../../../domain/filter/filter_model.dart';
 import 'filter_to_widget.dart';
 
 class SourceMangaFilter extends HookWidget {

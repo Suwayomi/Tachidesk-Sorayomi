@@ -172,9 +172,10 @@ class CodegenLoader extends AssetLoader {
     "noMangaFound": "No Mangas Found",
     "noNewChapter": "No new chapter",
     "noOfChapters": "{count} Chapters",
-    "noSourcesFound": "No Sources Found",
+    "noResultFound": "No results found",
+    "noSourcesFound": "No sources found",
     "noUpdatesAvailable": "You're using the latest version",
-    "noUpdatesFound": "No Updates Found",
+    "noUpdatesFound": "No updates found",
     "nsfw": {
       "info":
           "This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing NSFW(18+) content within app",

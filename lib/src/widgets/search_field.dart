@@ -12,10 +12,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 // 🌎 Project imports:
-import '../utils/extensions/custom_extensions/string_extensions.dart';
 import '../constants/app_sizes.dart';
 import '../i18n/locale_keys.g.dart';
 import '../utils/extensions/custom_extensions/context_extensions.dart';
+import '../utils/extensions/custom_extensions/string_extensions.dart';
 
 class SearchField extends HookWidget {
   const SearchField({

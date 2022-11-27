@@ -162,6 +162,7 @@ abstract class LocaleKeys {
   static const noMangaFound = 'noMangaFound';
   static const noNewChapter = 'noNewChapter';
   static const noOfChapters = 'noOfChapters';
+  static const noResultFound = 'noResultFound';
   static const noSourcesFound = 'noSourcesFound';
   static const noUpdatesAvailable = 'noUpdatesAvailable';
   static const noUpdatesFound = 'noUpdatesFound';

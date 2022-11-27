@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../constants/enum.dart';
-import 'widgets/library_manga_sort_tile.dart';
+import '../../../../../constants/enum.dart';
+import 'library_manga_sort_tile.dart';
 
 class LibraryMangaSort extends ConsumerWidget {
   const LibraryMangaSort({super.key});

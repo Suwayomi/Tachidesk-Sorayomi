@@ -42,8 +42,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
         ],
       ),
       body: finalStatus.showUiWhenData(
-        refresh: () => ref.invalidate(updateSummaryProvider),
-        data: (data) => RefreshIndicator(
+        (data) => RefreshIndicator(
           onRefresh: () => ref.refresh(updateSummaryProvider.future),
           child: ListView(
             children: [
@@ -70,6 +69,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
             ],
           ),
         ),
+        refresh: () => ref.invalidate(updateSummaryProvider),
       ),
     );
   }

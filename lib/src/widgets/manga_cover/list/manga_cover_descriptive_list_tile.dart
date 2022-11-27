@@ -25,6 +25,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
     required this.manga,
     this.onPressed,
     this.onLongPress,
+    this.onTitleClicked,
     this.showBadges = true,
     this.showCountBadges = true,
   });
@@ -33,6 +34,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
   final bool showCountBadges;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
+  final ValueChanged<String?>? onTitleClicked;
   @override
   Widget build(BuildContext context) {
     final sourceName =
@@ -64,9 +66,9 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InkWell(
-                      // onTap: () => context.push(
-                      //   "${Routes.globalSearch}?query=${manga.title}",
-                      // ),
+                      onTap: onTitleClicked != null
+                          ? () => onTitleClicked!(manga.title)
+                          : null,
                       child: Text(
                         (manga.title ?? LocaleKeys.unknownManga.tr()),
                         style: context.textTheme.titleLarge,

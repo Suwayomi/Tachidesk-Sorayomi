@@ -10,11 +10,13 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
@@ -49,6 +51,8 @@ class MangaDescription extends HookConsumerWidget {
         MangaCoverDescriptiveListTile(
           manga: manga,
           showBadges: false,
+          onTitleClicked: (query) =>
+              context.push(Routes.getGlobalSearch(query)),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

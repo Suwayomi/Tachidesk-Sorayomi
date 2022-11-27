@@ -9,11 +9,11 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../domain/filter/filter_model.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
+import '../../domain/filter/filter_model.dart';
 import '../../domain/manga_page/manga_page.dart';
 import '../../domain/source/source_model.dart';
 
@@ -57,7 +57,7 @@ class SourceRepository {
         },
         data: {
           "searchTerm": query ?? "",
-          if (filter != null) "filter": filter,
+          "filter": [...?filter],
         },
         decoder: (e) =>
             e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,

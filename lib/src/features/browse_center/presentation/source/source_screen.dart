@@ -39,7 +39,7 @@ class SourceScreen extends HookConsumerWidget {
       return;
     }, []);
     return sourceMapData.showUiWhenData(
-      data: (data) {
+      (data) {
         if ((sourceMap.isEmpty && localSource.isBlank && lastUsed.isBlank)) {
           return Emoticons(
             text: LocaleKeys.noSourcesFound.tr(),

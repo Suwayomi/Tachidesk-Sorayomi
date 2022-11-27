@@ -69,8 +69,7 @@ class ExtensionScreen extends HookConsumerWidget {
       return;
     }, []);
     return extensionMapData.showUiWhenData(
-      refresh: refresh,
-      data: (data) => (extensionMap.isEmpty &&
+      (data) => (extensionMap.isEmpty &&
               installed.isBlank &&
               update.isBlank &&
               all.isBlank)
@@ -116,6 +115,7 @@ class ExtensionScreen extends HookConsumerWidget {
                 ],
               ),
             ),
+      refresh: refresh,
     );
   }
 }

@@ -10,10 +10,12 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../source_manga_list/controller/source_manga_controller.dart';
+import '../../../../routes/router_config.dart';
+import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
@@ -84,10 +86,11 @@ class BrowseScreen extends HookConsumerWidget {
                   child: tabController.index == 0
                       ? SearchField(
                           key: const ValueKey(0),
-                          initialText: ref.read(globalSearchQueryProvider),
-                          onChanged: (val) => ref
-                              .read(globalSearchQueryProvider.notifier)
-                              .state = val,
+                          onSubmitted: (value) {
+                            if (value.isNotBlank) {
+                              context.push(Routes.getGlobalSearch(value));
+                            }
+                          },
                           onClose: () => showSearch.value = false,
                         )
                       : SearchField(

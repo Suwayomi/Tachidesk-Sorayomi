@@ -149,24 +149,6 @@ abstract class _$SourceDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   DisplayMode? build();
 }
 
-String $GlobalSearchQueryHash() => r'98b1853c61cb618ef9c4c1ca3576fb4417532847';
-
-/// See also [GlobalSearchQuery].
-final globalSearchQueryProvider =
-    AutoDisposeNotifierProvider<GlobalSearchQuery, String?>(
-  GlobalSearchQuery.new,
-  name: r'globalSearchQueryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $GlobalSearchQueryHash,
-);
-typedef GlobalSearchQueryRef = AutoDisposeNotifierProviderRef<String?>;
-
-abstract class _$GlobalSearchQuery extends AutoDisposeNotifier<String?> {
-  @override
-  String? build();
-}
-
 String $sourceHash() => r'4b9780685f4d7657fd9d31eb5b535275b9896577';
 
 /// See also [source].

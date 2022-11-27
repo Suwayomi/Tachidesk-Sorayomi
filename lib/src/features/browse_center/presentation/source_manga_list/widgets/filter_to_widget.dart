@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/app_sizes.dart';
-import '../../../domain/filter/filter_model.dart';
-import '../../../domain/filter_state/filter_state_model.dart';
 import '../../../../../utils/extensions/custom_extensions/bool_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../../../widgets/sort_list_tile.dart';
 import '../../../../../widgets/search_field.dart';
+import '../../../../../widgets/sort_list_tile.dart';
+import '../../../domain/filter/filter_model.dart';
+import '../../../domain/filter_state/filter_state_model.dart';
 
 class FilterToWidget extends StatelessWidget {
   const FilterToWidget({

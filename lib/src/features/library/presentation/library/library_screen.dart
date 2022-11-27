@@ -26,7 +26,7 @@ import '../../../manga_book/widgets/update_status_popup_menu.dart';
 import '../category/controller/edit_category_controller.dart';
 import 'category_manga_list.dart';
 import 'controller/library_controller.dart';
-import 'library_manga_organizer.dart';
+import 'widgets/library_manga_organizer.dart';
 
 class LibraryScreen extends HookConsumerWidget {
   const LibraryScreen({super.key});
@@ -38,11 +38,7 @@ class LibraryScreen extends HookConsumerWidget {
       ..showToastOnError(toast, withMicrotask: true);
     final showSearch = useState(false);
     return categoryList.showUiWhenData(
-      wrapper: (body) => Scaffold(
-        appBar: AppBar(title: Text(LocaleKeys.library.tr())),
-        body: body,
-      ),
-      data: (data) => DefaultTabController(
+      (data) => DefaultTabController(
         length: data.length,
         child: Scaffold(
           appBar: AppBar(
@@ -132,6 +128,13 @@ class LibraryScreen extends HookConsumerWidget {
         ),
       ),
       refresh: () => ref.refresh(categoryControllerProvider),
+      wrapper: (body) => Scaffold(
+        appBar: AppBar(
+          title: Text(LocaleKeys.library.tr()),
+          centerTitle: true,
+        ),
+        body: body,
+      ),
     );
   }
 }

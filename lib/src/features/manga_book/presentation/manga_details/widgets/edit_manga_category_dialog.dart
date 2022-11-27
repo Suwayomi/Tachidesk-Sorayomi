@@ -30,11 +30,11 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
     return AlertDialog(
       title: Text(LocaleKeys.editCategory.tr()),
       content: categoryList.showUiWhenData(
-        data: (data) => data.isEmpty
+        (data) => data.isEmpty
             ? Text(LocaleKeys.noCategoriesFoundAlt.tr())
             : SingleChildScrollView(
                 child: mangaCategoryList.showUiWhenData(
-                  data: (selectedCategoryList) => Column(
+                  (selectedCategoryList) => Column(
                     children: [
                       for (int index = 0; index < data.length; index++)
                         LoadingCheckboxListTile(

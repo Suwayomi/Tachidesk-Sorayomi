@@ -41,7 +41,7 @@ class CategoryMangaList extends HookConsumerWidget {
       return;
     }, []);
     return mangaList.showUiWhenData(
-      data: (data) {
+      (data) {
         if (data.isBlank) {
           return Emoticons(
             text: LocaleKeys.noCategoryMangaFound.tr(),

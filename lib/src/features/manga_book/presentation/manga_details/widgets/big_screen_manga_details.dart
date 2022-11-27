@@ -67,7 +67,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
           const VerticalDivider(width: 0),
           Expanded(
             child: chapterList.showUiWhenData(
-              data: (data) {
+              (data) {
                 if (data.isNotBlank) {
                   return Column(
                     children: [

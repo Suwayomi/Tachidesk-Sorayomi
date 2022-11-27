@@ -40,8 +40,8 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
   T? valueOrToast(Toast toast, {bool withMicrotask = false}) =>
       (this..showToastOnError(toast, withMicrotask: withMicrotask)).valueOrNull;
 
-  Widget showUiWhenData({
-    required Widget Function(T data) data,
+  Widget showUiWhenData(
+    Widget Function(T data) data, {
     void Function()? refresh,
     Widget Function(Widget)? wrapper,
     bool showGenericError = false,
@@ -53,20 +53,24 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
               text: showGenericError
                   ? LocaleKeys.error_somethingWentWrong.tr()
                   : error.toString(),
-              button: TextButton(
-                onPressed: refresh,
-                child: Text(LocaleKeys.refresh.tr()),
-              ),
+              button: refresh != null
+                  ? TextButton(
+                      onPressed: refresh,
+                      child: Text(LocaleKeys.refresh.tr()),
+                    )
+                  : null,
             )
           : wrapper(
               Emoticons(
                 text: showGenericError
                     ? LocaleKeys.error_somethingWentWrong.tr()
                     : error.toString(),
-                button: TextButton(
-                  onPressed: refresh,
-                  child: Text(LocaleKeys.refresh.tr()),
-                ),
+                button: refresh != null
+                    ? TextButton(
+                        onPressed: refresh,
+                        child: Text(LocaleKeys.refresh.tr()),
+                      )
+                    : null,
               ),
             ),
       loading: () => wrapper == null

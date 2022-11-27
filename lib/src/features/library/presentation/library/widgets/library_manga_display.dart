@@ -12,14 +12,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../constants/db_keys.dart';
-import '../../../../constants/enum.dart';
-import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../widgets/custom_checkbox_list_tile.dart';
-import '../../../../widgets/enum_popup.dart';
-import '../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
-import 'controller/library_controller.dart';
+import '../../../../../constants/db_keys.dart';
+import '../../../../../constants/enum.dart';
+import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../widgets/custom_checkbox_list_tile.dart';
+import '../../../../../widgets/enum_popup.dart';
+import '../../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
+import '../controller/library_controller.dart';
 
 class LibraryMangaDisplay extends ConsumerWidget {
   const LibraryMangaDisplay({super.key});

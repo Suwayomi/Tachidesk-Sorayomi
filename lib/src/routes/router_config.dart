@@ -12,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tachidesk_sorayomi/src/constants/enum.dart';
 import 'package:tachidesk_sorayomi/src/features/browse_center/domain/filter/filter_model.dart';
+import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/global_search/global_search.dart';
 import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/source_manga_list/source_manga_list.dart';
 import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details.dart';
@@ -60,9 +61,11 @@ abstract class Routes {
   static getManga(int mangaId) => '/manga/$mangaId';
   static const sourceManga = '/source/:sourceId/:sourceType';
   static getSourceManga(String sourceId, SourceType sourceType,
-          [String? query]) =>
+          {String? query}) =>
       '/source/$sourceId/${sourceType.name}${query.isNotBlank ? "?query=$query" : ''}';
   static const globalSearch = '/global-search';
+  static getGlobalSearch([String? query]) =>
+      '/global-search${query.isNotBlank ? "?query=$query" : ''}';
 }
 
 @riverpod
@@ -105,13 +108,23 @@ GoRouter routerConfig(ref) {
         path: Routes.manga,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => MangaDetails(
+          key: ValueKey(state.params['mangaId'] ?? "2"),
           mangaId: state.params['mangaId'] ?? "",
+        ),
+      ),
+      GoRoute(
+        path: Routes.globalSearch,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => GlobalSearch(
+          key: ValueKey(state.queryParams['query'] ?? "1"),
+          initialQuery: state.queryParams['query'],
         ),
       ),
       GoRoute(
         path: Routes.sourceManga,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => SourceMangaList(
+          key: ValueKey(state.params['sourceId'] ?? "0"),
           sourceId: state.params['sourceId'] ?? "0",
           initialQuery: state.queryParams['query'],
           initialFilter: (state.extra is List<Filter>?)

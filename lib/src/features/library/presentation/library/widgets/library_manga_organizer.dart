@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // 🌎 Project imports:
-import '../../../../constants/app_sizes.dart';
-import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../constants/app_sizes.dart';
+import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import 'library_manga_display.dart';
 import 'library_manga_filter.dart';
 import 'library_manga_sort.dart';

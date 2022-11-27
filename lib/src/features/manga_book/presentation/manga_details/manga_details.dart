@@ -48,7 +48,7 @@ class MangaDetails extends HookConsumerWidget {
     }, []);
 
     return manga.showUiWhenData(
-      data: (data) => Scaffold(
+      (data) => Scaffold(
         appBar: selectedChapters.value.isNotEmpty
             ? AppBar(
                 leading: IconButton(
@@ -170,7 +170,10 @@ class MangaDetails extends HookConsumerWidget {
       ),
       refresh: refresh,
       wrapper: (body) => Scaffold(
-        appBar: AppBar(title: Text(LocaleKeys.manga.tr())),
+        appBar: AppBar(
+          title: Text(LocaleKeys.manga.tr()),
+          centerTitle: true,
+        ),
         body: body,
       ),
     );

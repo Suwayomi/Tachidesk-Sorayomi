@@ -40,7 +40,7 @@ class EditCategoryScreen extends ConsumerWidget {
           ? null
           : const CategoryCreateFab(),
       body: categoryList.showUiWhenData(
-        data: (data) {
+        (data) {
           if (data.isEmpty) {
             return Emoticons(
               text: LocaleKeys.noCategoriesFound.tr(),

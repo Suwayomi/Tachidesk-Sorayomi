@@ -74,7 +74,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
             ),
           ),
           chapterList.showUiWhenData(
-            data: (data) {
+            (data) {
               if (data.isNotBlank) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(

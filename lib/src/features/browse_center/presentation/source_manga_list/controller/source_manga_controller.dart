@@ -10,12 +10,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../domain/filter/filter_model.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/source_repository/source_repository.dart';
+import '../../../domain/filter/filter_model.dart';
 import '../../../domain/source/source_model.dart';
 
 part 'source_manga_controller.g.dart';
@@ -84,10 +84,4 @@ class SourceDisplayMode extends _$SourceDisplayMode
         initial: DBKeys.sourceDisplayMode.initial,
         enumList: DisplayMode.sourceDisplayList,
       );
-}
-
-@riverpod
-class GlobalSearchQuery extends _$GlobalSearchQuery {
-  @override
-  String? build() => null;
 }

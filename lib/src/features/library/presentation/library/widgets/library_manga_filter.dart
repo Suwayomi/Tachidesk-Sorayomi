@@ -12,9 +12,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../i18n/locale_keys.g.dart';
-import '../../../../widgets/custom_checkbox_list_tile.dart';
-import 'controller/library_controller.dart';
+import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../widgets/custom_checkbox_list_tile.dart';
+import '../controller/library_controller.dart';
 
 class LibraryMangaFilter extends ConsumerWidget {
   const LibraryMangaFilter({super.key});

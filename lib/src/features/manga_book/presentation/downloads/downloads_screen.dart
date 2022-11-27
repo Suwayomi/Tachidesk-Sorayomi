@@ -52,7 +52,7 @@ class DownloadsScreen extends ConsumerWidget {
           ? DownloadsFab(status: downloads.valueOrNull?.status ?? "")
           : null,
       body: downloads.showUiWhenData(
-        data: (data) {
+        (data) {
           if (data.queue == null) {
             return Emoticons(text: LocaleKeys.error_somethingWentWrong.tr());
           } else if (data.queue!.isEmpty) {

@@ -15,18 +15,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
-import '../../domain/filter/filter_model.dart';
-import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../data/source_repository/source_repository.dart';
+import '../../domain/filter/filter_model.dart';
 import 'controller/source_manga_controller.dart';
 import 'widgets/source_manga_display_icon_popup.dart';
 import 'widgets/source_manga_display_view.dart';
@@ -138,7 +138,7 @@ class SourceMangaList extends HookConsumerWidget {
     }, []);
 
     return source.showUiWhenData(
-      data: (data) => Scaffold(
+      (data) => Scaffold(
         appBar: AppBar(
           title: Text(data?.displayName ?? LocaleKeys.source.tr()),
           actions: [
@@ -214,7 +214,7 @@ class SourceMangaList extends HookConsumerWidget {
                             Routes.getSourceManga(
                               sourceId,
                               SourceType.filter,
-                              val,
+                              query: val,
                             ),
                           );
                         }
@@ -246,6 +246,7 @@ class SourceMangaList extends HookConsumerWidget {
       wrapper: (body) => Scaffold(
         appBar: AppBar(
           title: Text(LocaleKeys.source.tr()),
+          centerTitle: false,
         ),
         body: body,
       ),
