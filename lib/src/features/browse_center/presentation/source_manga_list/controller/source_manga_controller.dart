@@ -6,9 +6,12 @@
 
 // 📦 Package imports:
 import 'package:dio/dio.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../domain/filter/filter_model.dart';
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
@@ -29,6 +32,49 @@ Future<Source?> source(SourceRef ref, String sourceId) {
 }
 
 @riverpod
+Future<List<Filter>?> baseSourceMangaFilterList(
+  BaseSourceMangaFilterListRef ref,
+  String sourceId,
+) {
+  final token = CancelToken();
+  ref.onDispose(token.cancel);
+  final result =
+      ref.watch(sourceRepositoryProvider).getFilterList(sourceId: sourceId);
+  ref.keepAlive();
+  return result;
+}
+
+@riverpod
+class SourceMangaFilterList extends _$SourceMangaFilterList {
+  @override
+  AsyncValue<List<Filter>?> build(String sourceId, {List<Filter>? filter}) {
+    return filter != null
+        ? AsyncData(filter)
+        : ref.watch(baseSourceMangaFilterListProvider(sourceId));
+  }
+
+  void updateFilter(List<Filter>? filter) =>
+      state = state.copyWithData((p0) => filter);
+
+  Future<void> reset() async =>
+      state = ref.read(baseSourceMangaFilterListProvider(sourceId));
+
+  List<Map<String, dynamic>> get getAppliedFilter {
+    final baseFilters = Filter.filtersToJson(
+      ref.read(baseSourceMangaFilterListProvider(sourceId)).valueOrNull ?? [],
+    );
+    final currentFilters = Filter.filtersToJson(state.valueOrNull ?? []);
+    if (baseFilters.length != currentFilters.length) return currentFilters;
+    const equality = DeepCollectionEquality();
+    return [
+      for (int i = 0; i < baseFilters.length; i++)
+        if (!equality.equals(currentFilters[i], baseFilters[i]))
+          currentFilters[i],
+    ];
+  }
+}
+
+@riverpod
 class SourceDisplayMode extends _$SourceDisplayMode
     with SharedPreferenceEnumClient<DisplayMode> {
   @override
@@ -38,4 +84,10 @@ class SourceDisplayMode extends _$SourceDisplayMode
         initial: DBKeys.sourceDisplayMode.initial,
         enumList: DisplayMode.sourceDisplayList,
       );
+}
+
+@riverpod
+class GlobalSearchQuery extends _$GlobalSearchQuery {
+  @override
+  String? build() => null;
 }

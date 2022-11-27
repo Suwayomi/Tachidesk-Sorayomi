@@ -46,7 +46,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              width: 128,
+              width: 120,
               height: 160,
               child: MangaCoverGridTile(
                 manga: manga,
@@ -80,10 +80,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                       child: Text(
                         manga.author ?? LocaleKeys.unknownAuthor.tr(),
                         overflow: TextOverflow.ellipsis,
-                        style: context.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.textTheme.bodySmall?.color,
-                        ),
+                        style: context.textTheme.bodySmall,
                       ),
                     ),
                     Wrap(

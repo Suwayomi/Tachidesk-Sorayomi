@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // 🌎 Project imports:
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/enum.dart';
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 
 class SourceTypeSelectableChip extends StatelessWidget {
   const SourceTypeSelectableChip({

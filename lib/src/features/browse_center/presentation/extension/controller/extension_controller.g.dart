@@ -117,7 +117,7 @@ final extensionMapFilteredProvider =
 typedef ExtensionMapFilteredRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String $extensionMapFilteredAndQueriedHash() =>
-    r'519133c6e13609a1a6c6060c316a93408d3379d3';
+    r'211f3d7c994d5a1c7d9f4b1aba3437162cc69521';
 
 /// See also [extensionMapFilteredAndQueried].
 final extensionMapFilteredAndQueriedProvider =

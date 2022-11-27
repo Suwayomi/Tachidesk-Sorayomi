@@ -9,6 +9,8 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../../../library/domain/category/category_model.dart';
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
@@ -181,4 +183,26 @@ class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
         key: DBKeys.chapterFilterBookmarked.name,
         initial: DBKeys.chapterFilterBookmarked.initial,
       );
+}
+
+@riverpod
+class MangaCategoryList extends _$MangaCategoryList {
+  @override
+  FutureOr<Map<String, Category>?> build(String mangaId) async {
+    final result = await ref
+        .watch(mangaBookRepositoryProvider)
+        .getMangaCategoryList(mangaId: mangaId);
+    return {
+      for (Category i in (result ?? <Category>[])) "${i.id ?? ''}": i,
+    };
+  }
+
+  Future<void> refresh() async {
+    final result = await AsyncValue.guard(() => ref
+        .watch(mangaBookRepositoryProvider)
+        .getMangaCategoryList(mangaId: mangaId));
+    state = result.copyWithData((data) => {
+          for (Category i in (data ?? <Category>[])) "${i.id ?? ''}": i,
+        });
+  }
 }

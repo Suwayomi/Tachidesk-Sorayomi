@@ -29,6 +29,108 @@ class _SystemHash {
   }
 }
 
+String $SourceMangaFilterListHash() =>
+    r'531b3942c3a4430a0439d920a49f5d9a1b0cf8fe';
+
+/// See also [SourceMangaFilterList].
+class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
+    SourceMangaFilterList, AsyncValue<List<Filter>?>> {
+  SourceMangaFilterListProvider(
+    this.sourceId, {
+    this.filter,
+  }) : super(
+          () => SourceMangaFilterList()
+            ..sourceId = sourceId
+            ..filter = filter,
+          from: sourceMangaFilterListProvider,
+          name: r'sourceMangaFilterListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $SourceMangaFilterListHash,
+        );
+
+  final String sourceId;
+  final List<Filter>? filter;
+
+  @override
+  bool operator ==(Object other) {
+    return other is SourceMangaFilterListProvider &&
+        other.sourceId == sourceId &&
+        other.filter == filter;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, sourceId.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+
+  @override
+  AsyncValue<List<Filter>?> runNotifierBuild(
+    covariant _$SourceMangaFilterList notifier,
+  ) {
+    return notifier.build(
+      sourceId,
+      filter: filter,
+    );
+  }
+}
+
+typedef SourceMangaFilterListRef
+    = AutoDisposeNotifierProviderRef<AsyncValue<List<Filter>?>>;
+
+/// See also [SourceMangaFilterList].
+final sourceMangaFilterListProvider = SourceMangaFilterListFamily();
+
+class SourceMangaFilterListFamily extends Family<AsyncValue<List<Filter>?>> {
+  SourceMangaFilterListFamily();
+
+  SourceMangaFilterListProvider call(
+    String sourceId, {
+    List<Filter>? filter,
+  }) {
+    return SourceMangaFilterListProvider(
+      sourceId,
+      filter: filter,
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderImpl<SourceMangaFilterList,
+      AsyncValue<List<Filter>?>> getProviderOverride(
+    covariant SourceMangaFilterListProvider provider,
+  ) {
+    return call(
+      provider.sourceId,
+      filter: provider.filter,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'sourceMangaFilterListProvider';
+}
+
+abstract class _$SourceMangaFilterList
+    extends BuildlessAutoDisposeNotifier<AsyncValue<List<Filter>?>> {
+  late final String sourceId;
+  late final List<Filter>? filter;
+
+  AsyncValue<List<Filter>?> build(
+    String sourceId, {
+    List<Filter>? filter,
+  });
+}
+
 String $SourceDisplayModeHash() => r'71babad5dcc543acdba775ff479c545c58569ff1';
 
 /// See also [SourceDisplayMode].
@@ -45,6 +147,24 @@ typedef SourceDisplayModeRef = AutoDisposeNotifierProviderRef<DisplayMode?>;
 abstract class _$SourceDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   @override
   DisplayMode? build();
+}
+
+String $GlobalSearchQueryHash() => r'98b1853c61cb618ef9c4c1ca3576fb4417532847';
+
+/// See also [GlobalSearchQuery].
+final globalSearchQueryProvider =
+    AutoDisposeNotifierProvider<GlobalSearchQuery, String?>(
+  GlobalSearchQuery.new,
+  name: r'globalSearchQueryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : $GlobalSearchQueryHash,
+);
+typedef GlobalSearchQueryRef = AutoDisposeNotifierProviderRef<String?>;
+
+abstract class _$GlobalSearchQuery extends AutoDisposeNotifier<String?> {
+  @override
+  String? build();
 }
 
 String $sourceHash() => r'4b9780685f4d7657fd9d31eb5b535275b9896577';
@@ -115,4 +235,79 @@ class SourceFamily extends Family<AsyncValue<Source?>> {
 
   @override
   String? get name => r'sourceProvider';
+}
+
+String $baseSourceMangaFilterListHash() =>
+    r'a576d9d103923d24ee4fd66836dfe07e0b896a5a';
+
+/// See also [baseSourceMangaFilterList].
+class BaseSourceMangaFilterListProvider
+    extends AutoDisposeFutureProvider<List<Filter>?> {
+  BaseSourceMangaFilterListProvider(
+    this.sourceId,
+  ) : super(
+          (ref) => baseSourceMangaFilterList(
+            ref,
+            sourceId,
+          ),
+          from: baseSourceMangaFilterListProvider,
+          name: r'baseSourceMangaFilterListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $baseSourceMangaFilterListHash,
+        );
+
+  final String sourceId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is BaseSourceMangaFilterListProvider &&
+        other.sourceId == sourceId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, sourceId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef BaseSourceMangaFilterListRef
+    = AutoDisposeFutureProviderRef<List<Filter>?>;
+
+/// See also [baseSourceMangaFilterList].
+final baseSourceMangaFilterListProvider = BaseSourceMangaFilterListFamily();
+
+class BaseSourceMangaFilterListFamily
+    extends Family<AsyncValue<List<Filter>?>> {
+  BaseSourceMangaFilterListFamily();
+
+  BaseSourceMangaFilterListProvider call(
+    String sourceId,
+  ) {
+    return BaseSourceMangaFilterListProvider(
+      sourceId,
+    );
+  }
+
+  @override
+  AutoDisposeFutureProvider<List<Filter>?> getProviderOverride(
+    covariant BaseSourceMangaFilterListProvider provider,
+  ) {
+    return call(
+      provider.sourceId,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'baseSourceMangaFilterListProvider';
 }

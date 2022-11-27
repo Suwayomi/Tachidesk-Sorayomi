@@ -9,40 +9,61 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 // 🌎 Project imports:
+import '../utils/extensions/custom_extensions/string_extensions.dart';
 import '../constants/app_sizes.dart';
 import '../i18n/locale_keys.g.dart';
 import '../utils/extensions/custom_extensions/context_extensions.dart';
 
-class SearchField extends StatelessWidget {
+class SearchField extends HookWidget {
   const SearchField({
     super.key,
-    required this.onChanged,
-    required this.onClose,
+    this.onChanged,
+    this.onClose,
+    this.initialText,
+    this.onSubmitted,
     this.hintText,
+    this.autofocus = true,
   });
   final String? hintText;
-  final ValueChanged<String> onChanged;
-  final VoidCallback onClose;
+  final String? initialText;
+  final ValueChanged<String?>? onChanged;
+  final ValueChanged<String?>? onSubmitted;
+  final VoidCallback? onClose;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController(text: initialText);
+    useEffect(() {
+      if (initialText.isBlank) controller.text = initialText ?? "";
+      return;
+    }, [initialText]);
     return SizedBox(
       width: context.isLargeTablet ? context.widthScale(scale: .3) : null,
       child: Padding(
         padding: KEdgeInsets.h16v8.size,
         child: TextField(
-          autofocus: true,
           onChanged: onChanged,
+          autofocus: autofocus,
+          controller: controller,
+          onSubmitted: onSubmitted,
           decoration: InputDecoration(
             isDense: true,
             border: const OutlineInputBorder(),
-            hintText: LocaleKeys.search.tr(),
-            suffixIcon: IconButton(
-              onPressed: onClose,
-              icon: const Icon(Icons.close_rounded),
-            ),
+            labelText: hintText ?? LocaleKeys.search.tr(),
+            suffixIcon: onClose != null
+                ? IconButton(
+                    onPressed: () {
+                      onClose!();
+                      if (onChanged != null) onChanged!(null);
+                      if (onSubmitted != null) onSubmitted!(null);
+                    },
+                    icon: const Icon(Icons.close_rounded),
+                  )
+                : null,
           ),
         ),
       ),

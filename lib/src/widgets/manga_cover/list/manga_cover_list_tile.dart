@@ -30,25 +30,56 @@ class MangaCoverListTile extends StatelessWidget {
   final bool showBadges;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: KEdgeInsets.a8.size,
+    return InkWell(
       onTap: onPressed,
       onLongPress: onLongPress,
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: ServerImage(
-          imageUrl: manga.thumbnailUrl ?? "",
-          size: const Size.square(48),
-        ),
-      ),
-      trailing: showBadges
-          ? MangaBadgesRow(manga: manga, showCountBadges: showCountBadges)
-          : null,
-      dense: true,
-      title: Text(
-        (manga.title ?? manga.author ?? ""),
-        overflow: TextOverflow.ellipsis,
+      child: Row(
+        children: [
+          Padding(
+            padding: KEdgeInsets.a8.size,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: ServerImage(
+                imageUrl: manga.thumbnailUrl ?? "",
+                size: const Size(60, 80),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: KEdgeInsets.h8.size,
+              child: Text(
+                (manga.title ?? manga.author ?? ""),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
+            ),
+          ),
+          if (showBadges)
+            MangaBadgesRow(manga: manga, showCountBadges: showCountBadges),
+        ],
       ),
     );
+
+    // return ListTile(
+    //   contentPadding: KEdgeInsets.a8.size,
+    //   onTap: onPressed,
+    //   onLongPress: onLongPress,
+    //   leading: ClipRRect(
+    //     borderRadius: BorderRadius.circular(8),
+    //     child: ServerImage(
+    //       imageUrl: manga.thumbnailUrl ?? "",
+    //       size: const Size.square(48),
+    //     ),
+    //   ),
+    //   trailing: showBadges
+    //       ? MangaBadgesRow(manga: manga, showCountBadges: showCountBadges)
+    //       : null,
+    //   dense: true,
+    //   title: Text(
+    //     (manga.title ?? manga.author ?? ""),
+    //     overflow: TextOverflow.ellipsis,
+    //   ),
+    // );
   }
 }

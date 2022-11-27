@@ -14,11 +14,11 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 // 🌎 Project imports:
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
+import '../../../../manga_book/domain/manga/manga_model.dart';
+import '../../../domain/source/source_model.dart';
 import '../controller/source_manga_controller.dart';
 import 'source_manga_grid_view.dart';
 import 'source_manga_list_view.dart';
-import '../../../../manga_book/domain/manga/manga_model.dart';
-import '../../../domain/source/source_model.dart';
 
 class SourceMangaDisplayView extends ConsumerWidget {
   const SourceMangaDisplayView({

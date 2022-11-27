@@ -6,7 +6,6 @@
 
 // 🌎 Project imports:
 import 'db_keys.dart';
-import 'enum.dart';
 
 abstract class Endpoints {
   // base url
@@ -14,10 +13,10 @@ abstract class Endpoints {
       "${baseUrl ?? DBKeys.serverUrl.initial}/api/v1";
 
   // receiveTimeout
-  static const int receiveTimeout = 10000;
+  static const int receiveTimeout = 20000;
 
   // connectTimeout
-  static const int connectionTimeout = 10000;
+  static const int connectionTimeout = 20000;
 }
 
 abstract class SettingsUrl {
@@ -48,8 +47,8 @@ abstract class MangaUrl {
   static String fullWithId(String mangaId, {bool useCache = true}) =>
       "$_manga/$mangaId/full?useCache=$useCache";
   static String thumbnail(int mangaId) => "$_manga/$mangaId/thumbnail";
-  static String category(int mangaId) => "$_manga/$mangaId/category";
-  static String categoryId(int mangaId, int categoryId) =>
+  static String category(String mangaId) => "$_manga/$mangaId/category";
+  static String categoryId(String mangaId, String categoryId) =>
       "$_manga/$mangaId/category/$categoryId";
   static String library(String mangaId) => "$_manga/$mangaId/library";
   static String meta(int mangaId) => "$_manga/$mangaId/meta";
@@ -96,13 +95,14 @@ abstract class SourceUrl {
   static String sourceList = "$_source/list";
 
   static String withId(String sourceId) => "$_source/$sourceId";
-  static String getMangaList(
-          String sourceId, SourceType sourceType, int pageNum) =>
-      "$_source/$sourceId/${sourceType.name}/$pageNum";
+  static String getMangaList(String sourceId, String sourceType, int pageNum) =>
+      "$_source/$sourceId/$sourceType/$pageNum";
   static String preferences(String sourceId) =>
       "$_source/$sourceId/preferences";
   static String filters(String sourceId) => "$_source/$sourceId/filters";
   static String search(String sourceId) => "$_source/$sourceId/search";
+  static String quickSearch(String sourceId) =>
+      "$_source/$sourceId/quick-search";
 
   static const String _source = "/source";
 }

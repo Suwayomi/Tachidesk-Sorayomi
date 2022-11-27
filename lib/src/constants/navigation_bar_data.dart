@@ -16,13 +16,14 @@ import '../routes/router_config.dart';
 
 class NavigationBarData {
   final String label;
-  final List<String> path;
+  final String path;
   final IconData icon;
   final IconData activeIcon;
+  final List<String> activeOn;
 
   static int indexWherePathOrZero(path) {
     final index = navList
-        .indexWhere((e) => e.path.any((element) => path.contains(element)));
+        .indexWhere((e) => e.activeOn.any((element) => path.contains(element)));
     return index > 0 ? index : 0;
   }
 
@@ -31,31 +32,36 @@ class NavigationBarData {
       icon: Icons.collections_bookmark_outlined,
       activeIcon: Icons.collections_bookmark_rounded,
       label: LocaleKeys.library.tr(),
-      path: [Routes.library],
+      path: Routes.library,
+      activeOn: [Routes.library],
     ),
     NavigationBarData(
       icon: Icons.new_releases_outlined,
       activeIcon: Icons.new_releases_rounded,
       label: LocaleKeys.updates.tr(),
-      path: [Routes.updates],
+      path: Routes.updates,
+      activeOn: [Routes.updates],
     ),
     NavigationBarData(
       icon: Icons.explore_outlined,
       activeIcon: Icons.explore_rounded,
       label: LocaleKeys.browse.tr(),
-      path: [Routes.browse],
+      path: Routes.browse,
+      activeOn: [Routes.browse],
     ),
     NavigationBarData(
       icon: Icons.download_outlined,
       activeIcon: Icons.download_rounded,
       label: LocaleKeys.downloads.tr(),
-      path: [Routes.downloads],
+      path: Routes.downloads,
+      activeOn: [Routes.downloads],
     ),
     NavigationBarData(
       icon: Icons.more_horiz_outlined,
       activeIcon: Icons.more_horiz_rounded,
       label: LocaleKeys.more.tr(),
-      path: [Routes.more, Routes.settings],
+      path: Routes.more,
+      activeOn: [Routes.more, Routes.settings],
     ),
   ];
 
@@ -64,5 +70,6 @@ class NavigationBarData {
     required this.path,
     required this.icon,
     required this.activeIcon,
+    required this.activeOn,
   });
 }

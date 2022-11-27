@@ -23,7 +23,7 @@ class SmallScreenNavigationBar extends StatelessWidget {
     return NavigationBar(
       selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
       onDestinationSelected: (value) =>
-          context.go(NavigationBarData.navList[value].path.first),
+          context.go(NavigationBarData.navList[value].path),
       destinations: NavigationBarData.navList
           .map<NavigationDestination>(
             (e) => NavigationDestination(

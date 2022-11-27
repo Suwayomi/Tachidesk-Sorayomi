@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // 🌎 Project imports:
+import '../../domain/filter/filter_model.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
@@ -36,13 +37,43 @@ class SourceRepository {
     required String sourceId,
     required SourceType sourceType,
     required int pageNum,
+    String? query,
+    List<Map<String, dynamic>>? filter,
     CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<MangaPage, MangaPage?>(
-        SourceUrl.getMangaList(sourceId, sourceType, pageNum),
+  }) async {
+    if (sourceType != SourceType.filter) {
+      return (await dioClient.get<MangaPage, MangaPage?>(
+        SourceUrl.getMangaList(sourceId, sourceType.name, pageNum),
         decoder: (e) =>
             e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
         cancelToken: cancelToken,
+      ))
+          .data;
+    } else {
+      return (await dioClient.post<MangaPage, MangaPage?>(
+        SourceUrl.quickSearch(sourceId),
+        queryParameters: {
+          "pageNum": pageNum,
+        },
+        data: {
+          "searchTerm": query ?? "",
+          if (filter != null) "filter": filter,
+        },
+        decoder: (e) =>
+            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
+        cancelToken: cancelToken,
+      ))
+          .data;
+    }
+  }
+
+  Future<List<Filter>?> getFilterList({
+    required String sourceId,
+  }) async =>
+      (await dioClient.get<List<Filter>, Filter>(
+        SourceUrl.filters(sourceId),
+        decoder: (e) =>
+            e is Map<String, dynamic> ? Filter.fromJson(e) : Filter(),
       ))
           .data;
 

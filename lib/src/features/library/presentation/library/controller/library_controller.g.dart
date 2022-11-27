@@ -29,27 +29,8 @@ class _SystemHash {
   }
 }
 
-String $LibraryScreenShowSearchHash() =>
-    r'a3a432fd00a062d9e9a7ffb40cf57942ffee69b6';
-
-/// See also [LibraryScreenShowSearch].
-final libraryScreenShowSearchProvider =
-    AutoDisposeNotifierProvider<LibraryScreenShowSearch, bool>(
-  LibraryScreenShowSearch.new,
-  name: r'libraryScreenShowSearchProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : $LibraryScreenShowSearchHash,
-);
-typedef LibraryScreenShowSearchRef = AutoDisposeNotifierProviderRef<bool>;
-
-abstract class _$LibraryScreenShowSearch extends AutoDisposeNotifier<bool> {
-  @override
-  bool build();
-}
-
 String $CategoryMangaListWithQueryAndFilterHash() =>
-    r'16b700778e835fa62a6f3db42139955f9638f5af';
+    r'c2edbd4a27b545f55985a625ed5df2dabbaf6919';
 
 /// See also [CategoryMangaListWithQueryAndFilter].
 class CategoryMangaListWithQueryAndFilterProvider

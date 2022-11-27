@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: archive
-      sha256: "76d919e063a09d19d61f99463a20dba1c1e8d0bc3a5eba91bac2853fac095373"
+      sha256: ed7cc591a948744994714375caf9a2ce89e1d82e8243997c8a2994d57181c212
       url: "https://pub.dev"
     source: hosted
-    version: "3.3.4"
+    version: "3.3.5"
   args:
     dependency: transitive
     description:
@@ -391,10 +391,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_native_splash
-      sha256: "13e50afa9e94912f319ec0944182c55843ce32ebce9bb857a2ee4f8b9f19bb26"
+      sha256: c21c5b236463268533a61b3e95506e3742f833abd9b20943f315c04e77d72014
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.14"
+    version: "2.2.15"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -473,10 +473,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: cc97ff57aec06c9f5cccc4bf07b6577c11d16633075f481ec1aabc9182b703f2
+      sha256: b96c2527b7f488b54d076e662bdb65192890571aba32e1f740faff474bddd70c
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.10"
+    version: "5.2.0"
   graphs:
     dependency: transitive
     description:
@@ -697,10 +697,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: "1dab723dd8feeb80afb39c7be894f09df1457243d930010f6f328fb8c660c5e1"
+      sha256: a776c088d671b27f6e3aa8881d64b87b3e80201c64e8869b811325de7a76c15e
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.21"
+    version: "2.0.22"
   path_provider_ios:
     dependency: transitive
     description:
@@ -1150,18 +1150,18 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: "568176fc8ab5ac1d88ff0db8ff28659d103851670dda55e83b485664c2309299"
+      sha256: "3c92b0efb5e9dcb8f846aefabf9f0f739f91682ed486b991ceda51c288e60896"
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.6"
+    version: "6.1.7"
   url_launcher_android:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "2514dc16ac169adf55159268d7bf70317d9f2fc9ef5bb02020bb7ad710c0aeb4"
+      sha256: "6f91d30ce9060c204b2dbe728adb300750fa4b228e8f7ed1b961aa1ceb728799"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.21"
+    version: "6.0.22"
   url_launcher_ios:
     dependency: transitive
     description:

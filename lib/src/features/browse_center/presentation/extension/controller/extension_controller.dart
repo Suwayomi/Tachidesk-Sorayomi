@@ -16,7 +16,6 @@ import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../settings/presentation/browse/widgets/show_nsfw_switch/show_nsfw_switch.dart';
 import '../../../data/extension_repository/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
-import '../../browse/controller/browse_controller.dart';
 
 part 'extension_controller.g.dart';
 
@@ -104,8 +103,8 @@ AsyncValue<Map<String, List<Extension>>> extensionMapFilteredAndQueried(
 ) {
   final extensionMapData = ref.watch(extensionMapFilteredProvider);
   final extensionMap = {...?extensionMapData.valueOrNull};
-  if (!ref.watch(browseScreenShowSearchProvider)) return extensionMapData;
   final query = ref.watch(extensionQueryProvider);
+  if (query.isBlank) return extensionMapData;
   return extensionMapData.copyWithData(
     (e) => extensionMap.map<String, List<Extension>>(
       (key, value) => MapEntry(

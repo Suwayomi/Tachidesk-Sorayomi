@@ -16,7 +16,7 @@ import '../../../utils/extensions/custom_extensions/async_value_extensions.dart'
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../utils/misc/custom_typedef.dart';
 import '../../../utils/misc/toast/toast.dart';
-import '../../../widgets/loading_icon_button.dart';
+import '../../../widgets/loading_widgets/loading_icon_button.dart';
 import '../data/downloads/downloads_repository.dart';
 import '../data/manga_book_repository.dart';
 import '../domain/chapter/chapter_model.dart';

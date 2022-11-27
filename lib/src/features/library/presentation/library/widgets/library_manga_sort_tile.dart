@@ -13,7 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
 import '../../../../../constants/enum.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../widgets/sort_list_tile.dart';
 import '../controller/library_controller.dart';
 
 class LibraryMangaSortTile extends ConsumerWidget {
@@ -26,25 +26,15 @@ class LibraryMangaSortTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sortedBy = ref.watch(libraryMangaSortProvider);
     final sortedDirection = ref.watch(libraryMangaSortDirectionProvider);
-    return ListTile(
-      leading: sortType == sortedBy
-          ? Icon(
-              sortedDirection ?? true
-                  ? Icons.arrow_downward_rounded
-                  : Icons.arrow_upward_rounded,
-              color: context.theme.indicatorColor,
-            )
-          : SizedBox(width: context.theme.iconTheme.size),
+    return SortListTile(
+      selected: sortType == sortedBy,
       title: Text(sortType.toString().tr()),
-      onTap: () {
-        if (sortedBy == sortType) {
-          ref
-              .read(libraryMangaSortDirectionProvider.notifier)
-              .update(!(sortedDirection ?? false));
-        } else {
-          ref.read(libraryMangaSortProvider.notifier).update(sortType);
-        }
-      },
+      ascending: sortedDirection ?? true,
+      onChanged: (bool? value) => ref
+          .read(libraryMangaSortDirectionProvider.notifier)
+          .update(!(sortedDirection ?? false)),
+      onSelected: () =>
+          ref.read(libraryMangaSortProvider.notifier).update(sortType),
     );
   }
 }

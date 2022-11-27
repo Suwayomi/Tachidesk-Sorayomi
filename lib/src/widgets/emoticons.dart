@@ -43,28 +43,30 @@ class Emoticons extends HookWidget {
     final errorNumber = useMemoized(() => Random().nextInt(errorFaces.length));
     return Padding(
       padding: KEdgeInsets.a8.size,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          iconData != null
-              ? Icon(iconData, size: context.height * .2)
-              : Text(
-                  errorFaces[errorNumber],
-                  textAlign: TextAlign.center,
-                  style: context.textTheme.displayMedium,
-                ),
-          KSizedBox.h16.size,
-          if (text.isNotBlank)
-            Text(
-              text!,
-              textAlign: TextAlign.center,
-              style: context.textTheme.titleMedium,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 3,
-            ),
-          if (button != null) button!,
-        ],
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            iconData != null
+                ? Icon(iconData, size: context.height * .2)
+                : Text(
+                    errorFaces[errorNumber],
+                    textAlign: TextAlign.center,
+                    style: context.textTheme.displayMedium,
+                  ),
+            KSizedBox.h16.size,
+            if (text.isNotBlank)
+              Text(
+                text!,
+                textAlign: TextAlign.center,
+                style: context.textTheme.titleMedium,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
+            if (button != null) button!,
+          ],
+        ),
       ),
     );
   }

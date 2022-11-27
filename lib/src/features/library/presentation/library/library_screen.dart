@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
@@ -29,12 +30,13 @@ import 'library_manga_organizer.dart';
 
 class LibraryScreen extends HookConsumerWidget {
   const LibraryScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
     final categoryList = ref.watch(categoryListProvider(getDefault: true))
       ..showToastOnError(toast, withMicrotask: true);
-    final showSearch = ref.watch(libraryScreenShowSearchProvider);
+    final showSearch = useState(false);
     return categoryList.showUiWhenData(
       wrapper: (body) => Scaffold(
         appBar: AppBar(title: Text(LocaleKeys.library.tr())),
@@ -46,23 +48,40 @@ class LibraryScreen extends HookConsumerWidget {
           appBar: AppBar(
             title: Text(LocaleKeys.library.tr()),
             centerTitle: true,
-            bottom: data.length.isGreaterThan(1)
-                ? TabBar(
-                    padding: KEdgeInsets.a8.size,
-                    isScrollable: true,
-                    labelColor: context.theme.indicatorColor,
-                    unselectedLabelColor: context.textTheme.bodyLarge!.color,
-                    indicator: BoxDecoration(
-                      borderRadius: KBorderRadius.r16.radius,
-                      color: context.theme.indicatorColor.withOpacity(.3),
+            bottom: PreferredSize(
+              preferredSize: kCalculateAppBarBottomSize(
+                [data.length.isGreaterThan(1), showSearch.value],
+              ),
+              child: Column(
+                children: [
+                  if (data.length.isGreaterThan(1))
+                    TabBar(
+                      padding: KEdgeInsets.a8.size,
+                      isScrollable: true,
+                      labelColor: context.theme.indicatorColor,
+                      unselectedLabelColor: context.textTheme.bodyLarge!.color,
+                      indicator: BoxDecoration(
+                        borderRadius: KBorderRadius.r16.radius,
+                        color: context.theme.indicatorColor.withOpacity(.3),
+                      ),
+                      tabs: data.map((e) => Tab(text: e.name ?? "")).toList(),
                     ),
-                    tabs: data.map((e) => Tab(text: e.name ?? "")).toList(),
-                  )
-                : null,
+                  if (showSearch.value)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: SearchField(
+                        initialText: ref.read(libraryQueryProvider),
+                        onChanged: (val) =>
+                            ref.read(libraryQueryProvider.notifier).state = val,
+                        onClose: () => showSearch.value = false,
+                      ),
+                    ),
+                ],
+              ),
+            ),
             actions: [
               IconButton(
-                onPressed:
-                    ref.read(libraryScreenShowSearchProvider.notifier).toggle,
+                onPressed: () => showSearch.value = true,
                 icon: const Icon(Icons.search_rounded),
               ),
               Builder(
@@ -96,33 +115,19 @@ class LibraryScreen extends HookConsumerWidget {
             ],
           ),
           endDrawerEnableOpenDragGesture: false,
-          endDrawer: const Drawer(child: LibraryMangaOrganizer()),
+          endDrawer: const Drawer(
+            width: kDrawerWidth,
+            child: LibraryMangaOrganizer(),
+          ),
           body: data.isEmpty
               ? const CenterCircularProgressIndicator()
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    if (showSearch)
-                      SearchField(
-                        onChanged: (text) => ref
-                            .read(libraryQueryProvider.notifier)
-                            .state = text,
-                        onClose: ref
-                            .read(libraryScreenShowSearchProvider.notifier)
-                            .toggle,
-                      ),
-                    Expanded(
-                      child: Padding(
-                        padding: KEdgeInsets.a8.size,
-                        child: TabBarView(
-                          children: data
-                              .map((e) =>
-                                  CategoryMangaList(categoryId: e.id ?? 0))
-                              .toList(),
-                        ),
-                      ),
-                    ),
-                  ],
+              : Padding(
+                  padding: KEdgeInsets.h8.size,
+                  child: TabBarView(
+                    children: data
+                        .map((e) => CategoryMangaList(categoryId: e.id ?? 0))
+                        .toList(),
+                  ),
                 ),
         ),
       ),

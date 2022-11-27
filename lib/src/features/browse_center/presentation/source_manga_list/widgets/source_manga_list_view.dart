@@ -38,7 +38,7 @@ class SourceMangaListView extends StatelessWidget {
           ),
         ),
         noItemsFoundIndicatorBuilder: (context) => Emoticons(
-          text: LocaleKeys.noUpdatesFound.tr(),
+          text: LocaleKeys.noMangaFound.tr(),
           button: TextButton(
             onPressed: () => controller.refresh(),
             child: Text(LocaleKeys.refresh.tr()),

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tachidesk_sorayomi/src/constants/enum.dart';
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/filter/filter_model.dart';
 import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/source_manga_list/source_manga_list.dart';
 import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details.dart';
@@ -58,8 +59,9 @@ abstract class Routes {
   static const manga = '/manga/:mangaId';
   static getManga(int mangaId) => '/manga/$mangaId';
   static const sourceManga = '/source/:sourceId/:sourceType';
-  static getSourceManga(String sourceId, SourceType sourceType) =>
-      '/source/$sourceId/${sourceType.name}';
+  static getSourceManga(String sourceId, SourceType sourceType,
+          [String? query]) =>
+      '/source/$sourceId/${sourceType.name}${query.isNotBlank ? "?query=$query" : ''}';
   static const globalSearch = '/global-search';
 }
 
@@ -111,7 +113,10 @@ GoRouter routerConfig(ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => SourceMangaList(
           sourceId: state.params['sourceId'] ?? "0",
-          query: state.queryParams['query'],
+          initialQuery: state.queryParams['query'],
+          initialFilter: (state.extra is List<Filter>?)
+              ? (state.extra as List<Filter>?)
+              : null,
           sourceType: SourceType.values.firstWhere(
             (element) => element.name.query(state.params['sourceType']),
             orElse: () => SourceType.popular,

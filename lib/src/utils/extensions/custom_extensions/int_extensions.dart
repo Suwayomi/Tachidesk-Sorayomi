@@ -18,6 +18,8 @@ extension IntExtensions on int? {
   bool isGreaterThan(int i) => isNull ? false : this! > i;
   bool isLessThan(int i) => isNull ? false : this! < i;
 
+  bool? get toBool => (this == null || this == 0) ? null : this == 1;
+
   String get toDateString {
     if (isNull) return "";
     return DateFormat.yMMMd().format(

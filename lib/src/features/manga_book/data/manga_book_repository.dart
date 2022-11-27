@@ -16,6 +16,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/storage/dio/dio_client.dart';
+import '../../library/domain/category/category_model.dart';
 import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_batch/chapter_batch_model.dart';
 import '../domain/manga/manga_model.dart';
@@ -74,6 +75,22 @@ class MangaBookRepository {
         cancelToken: cancelToken,
       ))
           .data;
+
+  Future<List<Category>?> getMangaCategoryList({
+    required String mangaId,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.get<List<Category>, Category>(
+        MangaUrl.category(mangaId),
+        decoder: (e) =>
+            e is Map<String, dynamic> ? Category.fromJson(e) : Category(),
+        cancelToken: cancelToken,
+      ))
+          .data;
+  Future<void> addMangaToCategory(String mangaId, String categoryId) =>
+      dioClient.get(MangaUrl.categoryId(mangaId, categoryId));
+  Future<void> removeMangaFromCategory(String mangaId, String categoryId) =>
+      dioClient.delete(MangaUrl.categoryId(mangaId, categoryId));
 }
 
 @riverpod

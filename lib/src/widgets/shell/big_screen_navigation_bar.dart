@@ -41,7 +41,7 @@ class BigScreenNavigationBar extends StatelessWidget {
           .toList(),
       selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
       onDestinationSelected: (value) =>
-          context.go(NavigationBarData.navList[value].path.first),
+          context.go(NavigationBarData.navList[value].path),
     );
   }
 }

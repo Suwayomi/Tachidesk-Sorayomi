@@ -13,11 +13,11 @@ import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // 🌎 Project imports:
-import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../widgets/emoticons.dart';
+import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../domain/source/source_model.dart';
 
@@ -39,7 +39,7 @@ class SourceMangaGridView extends StatelessWidget {
           ),
         ),
         noItemsFoundIndicatorBuilder: (context) => Emoticons(
-          text: LocaleKeys.noUpdatesFound.tr(),
+          text: LocaleKeys.noMangaFound.tr(),
           button: TextButton(
             onPressed: () => controller.refresh(),
             child: Text(LocaleKeys.refresh.tr()),

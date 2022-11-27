@@ -22,13 +22,6 @@ import '../../../data/category/category_repository.dart';
 part 'library_controller.g.dart';
 
 @riverpod
-class LibraryScreenShowSearch extends _$LibraryScreenShowSearch {
-  @override
-  bool build() => false;
-  void toggle() => state = !state;
-}
-
-@riverpod
 Future<List<Manga>?> categoryMangaList(
     CategoryMangaListRef ref, int categoryId) async {
   final token = CancelToken();
@@ -46,7 +39,6 @@ class CategoryMangaListWithQueryAndFilter
   @override
   AsyncValue<List<Manga>?> build({required int categoryId}) {
     final mangaList = ref.watch(categoryMangaListProvider(categoryId));
-    final searchFilter = ref.watch(libraryScreenShowSearchProvider);
     final query = ref.watch(libraryQueryProvider);
     final mangaFilterUnread = ref.watch(libraryMangaFilterUnreadProvider);
     final mangaFilterDownloaded =
@@ -71,7 +63,7 @@ class CategoryMangaListWithQueryAndFilter
           (mangaFilterCompleted ^ (manga.status?.title == "COMPLETED"))) {
         return false;
       }
-      if (searchFilter && !manga.title.query(query)) {
+      if (!manga.title.query(query)) {
         return false;
       }
 

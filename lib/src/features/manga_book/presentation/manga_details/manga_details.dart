@@ -22,6 +22,7 @@ import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/multi_select_bottom_options.dart';
 import 'controller/manga_details_controller.dart';
 import 'widgets/big_screen_manga_details.dart';
+import 'widgets/edit_manga_category_dialog.dart';
 import 'widgets/manga_chapter_organizer.dart';
 import 'widgets/small_screen_manga_details.dart';
 
@@ -110,9 +111,32 @@ class MangaDetails extends HookConsumerWidget {
                       icon: const Icon(Icons.filter_list_rounded),
                     ),
                   ),
+                  PopupMenuButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: KBorderRadius.r16.radius,
+                    ),
+                    icon: const Icon(Icons.more_vert_rounded),
+                    itemBuilder: (context) => [
+                      PopupMenuItem(
+                        child: Text(LocaleKeys.editCategory.tr()),
+                        onTap: () => Future.microtask(
+                          () => showDialog(
+                            context: context,
+                            builder: (context) => SizedBox(
+                              height: context.height * .3,
+                              child: EditMangaCategoryDialog(mangaId: mangaId),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
-        endDrawer: const Drawer(child: MangaChapterOrganizer()),
+        endDrawer: const Drawer(
+          width: kDrawerWidth,
+          child: MangaChapterOrganizer(),
+        ),
         bottomSheet: selectedChapters.value.isNotEmpty
             ? MultiSelectBottomOptions(
                 afterOptionSelected: () async =>

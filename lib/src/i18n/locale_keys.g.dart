@@ -155,6 +155,7 @@ abstract class LocaleKeys {
   static const nextChapter = 'nextChapter';
   static const no = 'no';
   static const noCategoriesFound = 'noCategoriesFound';
+  static const noCategoriesFoundAlt = 'noCategoriesFoundAlt';
   static const noChaptersFound = 'noChaptersFound';
   static const noDownloads = 'noDownloads';
   static const noCategoryMangaFound = 'noCategoryMangaFound';

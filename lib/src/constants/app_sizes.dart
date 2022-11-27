@@ -7,13 +7,22 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-const kTabSize = Size.fromHeight(48.0);
+const kTabSize = Size.fromHeight(kAppBarBottomHeight);
+const kAppBarBottomHeight = 64.0;
+const kDrawerWidth = 384.0;
+
+Size kCalculateAppBarBottomSize(List<bool> checks) {
+  final multiplier =
+      checks.map((e) => e ? 1 : 0).toList().fold(0, (v1, v2) => v1 + v2);
+  return Size.fromHeight(kAppBarBottomHeight * multiplier);
+}
 
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
 enum KEdgeInsets {
   a8(EdgeInsets.all(8)),
   a4(EdgeInsets.all(4)),
   a16(EdgeInsets.all(16)),
+  h8v4(EdgeInsets.symmetric(horizontal: 8, vertical: 4)),
   h16v8(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
   h4v8(EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0)),
   h16v4(EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0)),

@@ -298,6 +298,95 @@ abstract class _$MangaChapterFilterBookmarked
   bool? build();
 }
 
+String $MangaCategoryListHash() => r'b8c64815b0fcdb2ee1f21818161e654b477affb0';
+
+/// See also [MangaCategoryList].
+class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
+    MangaCategoryList, Map<String, Category>?> {
+  MangaCategoryListProvider(
+    this.mangaId,
+  ) : super(
+          () => MangaCategoryList()..mangaId = mangaId,
+          from: mangaCategoryListProvider,
+          name: r'mangaCategoryListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $MangaCategoryListHash,
+        );
+
+  final String mangaId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is MangaCategoryListProvider && other.mangaId == mangaId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mangaId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+
+  @override
+  FutureOr<Map<String, Category>?> runNotifierBuild(
+    covariant _$MangaCategoryList notifier,
+  ) {
+    return notifier.build(
+      mangaId,
+    );
+  }
+}
+
+typedef MangaCategoryListRef
+    = AutoDisposeAsyncNotifierProviderRef<Map<String, Category>?>;
+
+/// See also [MangaCategoryList].
+final mangaCategoryListProvider = MangaCategoryListFamily();
+
+class MangaCategoryListFamily
+    extends Family<AsyncValue<Map<String, Category>?>> {
+  MangaCategoryListFamily();
+
+  MangaCategoryListProvider call(
+    String mangaId,
+  ) {
+    return MangaCategoryListProvider(
+      mangaId,
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderImpl<MangaCategoryList,
+      Map<String, Category>?> getProviderOverride(
+    covariant MangaCategoryListProvider provider,
+  ) {
+    return call(
+      provider.mangaId,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'mangaCategoryListProvider';
+}
+
+abstract class _$MangaCategoryList
+    extends BuildlessAutoDisposeAsyncNotifier<Map<String, Category>?> {
+  late final String mangaId;
+
+  FutureOr<Map<String, Category>?> build(
+    String mangaId,
+  );
+}
+
 String $mangaChapterListWithFilterHash() =>
     r'60995f367091cb899dfedab8812f58878418d2fc';
 

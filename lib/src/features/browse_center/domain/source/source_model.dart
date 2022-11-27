@@ -8,7 +8,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 🌎 Project imports:
-import '../../../../utils/misc/language_json_converter.dart';
+import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
 
 part 'source_model.freezed.dart';

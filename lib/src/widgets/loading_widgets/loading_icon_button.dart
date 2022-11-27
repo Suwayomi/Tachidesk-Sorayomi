@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 // 🌎 Project imports:
-import '../utils/misc/custom_typedef.dart';
-import 'custom_circular_progress_indicator.dart';
+import '../../utils/misc/custom_typedef.dart';
+import '../custom_circular_progress_indicator.dart';
 
 class LoadingIconButton extends HookWidget {
   const LoadingIconButton({
