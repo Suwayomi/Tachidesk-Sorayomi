@@ -49,7 +49,7 @@ abstract class _$CategoryController
   FutureOr<List<Category>?> build();
 }
 
-String $categoryListHash() => r'a9fe2bf78f4f13364b058366160d9cbc63e8d891';
+String $categoryListHash() => r'ec95a714a5556e167c3746d05151c0fe2a55a711';
 
 /// See also [categoryList].
 class CategoryListProvider

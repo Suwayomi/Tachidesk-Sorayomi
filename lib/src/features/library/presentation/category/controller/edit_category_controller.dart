@@ -70,6 +70,8 @@ AsyncValue<List<Category>> categoryList(CategoryListRef ref,
     {bool getDefault = false}) {
   final categoryListData = ref.watch(categoryControllerProvider);
   final categoryList = [...?categoryListData.valueOrNull];
-  if (categoryList.isNotEmpty && !getDefault) categoryList.removeAt(0);
+  if (categoryList.isNotEmpty && !getDefault) {
+    categoryList.removeWhere((category) => category.id == 0);
+  }
   return categoryListData.copyWithData((data) => categoryList);
 }

@@ -13,18 +13,18 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../domain/source/source_model.dart';
-import 'widgets/source_quick_search.dart';
-import '../source/controller/source_controller.dart';
+import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
 import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../../../constants/app_sizes.dart';
 import '../../../../widgets/search_field.dart';
+import '../../domain/source/source_model.dart';
+import '../source/controller/source_controller.dart';
+import 'widgets/source_quick_search.dart';
 
-class GlobalSearch extends HookConsumerWidget {
-  const GlobalSearch({Key? key, this.initialQuery}) : super(key: key);
+class GlobalSearchScreen extends HookConsumerWidget {
+  const GlobalSearchScreen({Key? key, this.initialQuery}) : super(key: key);
   final String? initialQuery;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

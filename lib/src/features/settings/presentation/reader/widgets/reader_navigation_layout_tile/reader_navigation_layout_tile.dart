@@ -52,10 +52,12 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
         builder: (context) => EnumPopup<ReaderNavigationLayout>(
           enumList: ReaderNavigationLayout.values.sublist(1),
           value: readerNavigationLayout ?? ReaderNavigationLayout.disabled,
-          onChange: (enumValue) => ref
-              .read(readerNavigationLayoutKeyProvider.notifier)
-              .update(enumValue)
-              .then((value) => context.navPop()),
+          onChange: (enumValue) async {
+            await ref
+                .read(readerNavigationLayoutKeyProvider.notifier)
+                .update(enumValue);
+            if (context.mounted) context.navPop();
+          },
         ),
       ),
     );

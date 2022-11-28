@@ -26,8 +26,8 @@ import 'widgets/edit_manga_category_dialog.dart';
 import 'widgets/manga_chapter_organizer.dart';
 import 'widgets/small_screen_manga_details.dart';
 
-class MangaDetails extends HookConsumerWidget {
-  const MangaDetails({super.key, required this.mangaId});
+class MangaDetailsScreen extends HookConsumerWidget {
+  const MangaDetailsScreen({super.key, required this.mangaId});
   final String mangaId;
 
   @override
@@ -122,10 +122,8 @@ class MangaDetails extends HookConsumerWidget {
                         onTap: () => Future.microtask(
                           () => showDialog(
                             context: context,
-                            builder: (context) => SizedBox(
-                              height: context.height * .3,
-                              child: EditMangaCategoryDialog(mangaId: mangaId),
-                            ),
+                            builder: (context) =>
+                                EditMangaCategoryDialog(mangaId: mangaId),
                           ),
                         ),
                       ),

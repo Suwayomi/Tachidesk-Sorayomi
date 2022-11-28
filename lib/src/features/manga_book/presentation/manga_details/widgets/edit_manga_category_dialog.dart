@@ -11,9 +11,10 @@ import 'package:tachidesk_sorayomi/src/features/library/presentation/category/co
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/controller/manga_details_controller.dart';
 import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
+import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
 import 'package:tachidesk_sorayomi/src/widgets/loading_widgets/loading_checkbox_list_tile.dart';
 
-import '../../../../../widgets/pop_button.dart';
+import '../../../../../constants/app_sizes.dart';
 import '../../../data/manga_book_repository.dart';
 
 class EditMangaCategoryDialog extends HookConsumerWidget {
@@ -29,49 +30,48 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
     final mangaCategoryList = ref.watch(provider);
     return AlertDialog(
       title: Text(LocaleKeys.editCategory.tr()),
+      contentPadding: KEdgeInsets.h8v16.size,
       content: categoryList.showUiWhenData(
-        (data) => data.isEmpty
-            ? Text(LocaleKeys.noCategoriesFoundAlt.tr())
-            : SingleChildScrollView(
-                child: mangaCategoryList.showUiWhenData(
-                  (selectedCategoryList) => Column(
-                    children: [
-                      for (int index = 0; index < data.length; index++)
-                        LoadingCheckboxListTile(
-                          onChanged: (value) async {
-                            await AsyncValue.guard(
-                              () => value
-                                  ? ref
-                                      .read(mangaBookRepositoryProvider)
-                                      .addMangaToCategory(
-                                        mangaId,
-                                        "${data[index].id!}",
-                                      )
-                                  : ref
-                                      .read(mangaBookRepositoryProvider)
-                                      .removeMangaFromCategory(
-                                        mangaId,
-                                        "${data[index].id!}",
-                                      ),
-                            );
-                            await ref.read(provider.notifier).refresh();
-                          },
-                          value: selectedCategoryList?.containsKey(
-                                "${data[index].id}",
-                              ) ??
-                              false,
-                          title: data[index].name ?? LocaleKeys.category.tr(),
-                        ),
-                    ],
+        (data) => ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: context.height * .4),
+          child: data.isEmpty
+              ? Text(LocaleKeys.noCategoriesFoundAlt.tr())
+              : SingleChildScrollView(
+                  child: mangaCategoryList.showUiWhenData(
+                    (selectedCategoryList) => Column(
+                      children: [
+                        for (int index = 0; index < data.length; index++)
+                          LoadingCheckboxListTile(
+                            onChanged: (value) async {
+                              await AsyncValue.guard(
+                                () => value
+                                    ? ref
+                                        .read(mangaBookRepositoryProvider)
+                                        .addMangaToCategory(
+                                          mangaId,
+                                          "${data[index].id!}",
+                                        )
+                                    : ref
+                                        .read(mangaBookRepositoryProvider)
+                                        .removeMangaFromCategory(
+                                          mangaId,
+                                          "${data[index].id!}",
+                                        ),
+                              );
+                              await ref.read(provider.notifier).refresh();
+                            },
+                            value: selectedCategoryList?.containsKey(
+                                  "${data[index].id}",
+                                ) ??
+                                false,
+                            title: data[index].name ?? LocaleKeys.category.tr(),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-      ),
-      actions: [
-        PopButton(
-          popText: LocaleKeys.close.tr(),
         ),
-      ],
+      ),
     );
   }
 }

@@ -51,10 +51,10 @@ class AppThemeTile extends ConsumerWidget {
         builder: (context) => EnumPopup<ThemeMode>(
           enumList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,
-          onChange: (enumValue) => ref
-              .read(themeModeKeyProvider.notifier)
-              .update(enumValue)
-              .then((value) => context.navPop()),
+          onChange: (enumValue) async {
+            await ref.read(themeModeKeyProvider.notifier).update(enumValue);
+            if (context.mounted) context.navPop();
+          },
         ),
       ),
     );

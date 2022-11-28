@@ -334,14 +334,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
-  flutter_flavorizr:
-    dependency: "direct dev"
-    description:
-      name: flutter_flavorizr
-      sha256: "771bcbda3e25fefb6fa91f4f08017799a3aef8daf2d73697c110cc5bb890d51a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.5"
   flutter_gen_core:
     dependency: transitive
     description:
@@ -1018,14 +1010,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  sprintf:
-    dependency: transitive
-    description:
-      name: sprintf
-      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.0"
   sqflite:
     dependency: transitive
     description:
@@ -1275,5 +1259,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.2 <4.0.0"
+  dart: ">=2.18.1 <4.0.0"
   flutter: ">=3.3.0"

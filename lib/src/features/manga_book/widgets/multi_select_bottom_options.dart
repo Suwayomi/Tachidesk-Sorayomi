@@ -13,7 +13,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../utils/misc/custom_typedef.dart';
 import '../../../utils/misc/toast/toast.dart';
 import '../../../widgets/loading_widgets/loading_icon_button.dart';
@@ -41,16 +40,15 @@ class MultiSelectBottomOptions extends HookConsumerWidget {
       selectedChapters.value = <int, Chapter>{};
     }
 
-    return Padding(
-      padding: KEdgeInsets.a8.size,
-      child: BottomSheet(
-        enableDrag: false,
-        backgroundColor: context.theme.cardColor,
-        shape: RoundedRectangleBorder(borderRadius: KBorderRadius.r16.radius),
-        onClosing: () {},
-        builder: (context) {
-          final selectedList = selectedChapters.value.values;
-          return Row(
+    return BottomSheet(
+      enableDrag: false,
+      shape: RoundedRectangleBorder(borderRadius: KBorderRadius.rT16.radius),
+      onClosing: () {},
+      builder: (context) {
+        final selectedList = selectedChapters.value.values;
+        return Padding(
+          padding: KEdgeInsets.a8.size,
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               if (selectedList.any((e) => e.bookmarked ?? false))
@@ -98,9 +96,9 @@ class MultiSelectBottomOptions extends HookConsumerWidget {
                   refresh: refresh,
                 ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

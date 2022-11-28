@@ -33,8 +33,8 @@ import 'widgets/source_manga_display_view.dart';
 import 'widgets/source_manga_filter.dart';
 import 'widgets/source_type_selectable_chip.dart';
 
-class SourceMangaList extends HookConsumerWidget {
-  const SourceMangaList({
+class SourceMangaListScreen extends HookConsumerWidget {
+  const SourceMangaListScreen({
     Key? key,
     required this.sourceId,
     required this.sourceType,

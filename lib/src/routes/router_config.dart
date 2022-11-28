@@ -12,10 +12,10 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tachidesk_sorayomi/src/constants/enum.dart';
 import 'package:tachidesk_sorayomi/src/features/browse_center/domain/filter/filter_model.dart';
-import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/global_search/global_search.dart';
-import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/source_manga_list/source_manga_list.dart';
+import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/global_search/global_search_screen.dart';
+import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/source_manga_list/source_manga_list_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details.dart';
+import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details_screen.dart';
 import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/updates/updates_screen.dart';
 import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
@@ -84,8 +84,9 @@ GoRouter routerConfig(ref) {
             redirect: (context, state) => Routes.library,
           ),
           GoRoute(
-              path: Routes.library,
-              builder: (context, state) => const LibraryScreen()),
+            path: Routes.library,
+            builder: (context, state) => const LibraryScreen(),
+          ),
           GoRoute(
             path: Routes.updates,
             builder: (context, state) => const UpdatesScreen(),
@@ -107,7 +108,7 @@ GoRouter routerConfig(ref) {
       GoRoute(
         path: Routes.manga,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => MangaDetails(
+        builder: (context, state) => MangaDetailsScreen(
           key: ValueKey(state.params['mangaId'] ?? "2"),
           mangaId: state.params['mangaId'] ?? "",
         ),
@@ -115,7 +116,7 @@ GoRouter routerConfig(ref) {
       GoRoute(
         path: Routes.globalSearch,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => GlobalSearch(
+        builder: (context, state) => GlobalSearchScreen(
           key: ValueKey(state.queryParams['query'] ?? "1"),
           initialQuery: state.queryParams['query'],
         ),
@@ -123,7 +124,7 @@ GoRouter routerConfig(ref) {
       GoRoute(
         path: Routes.sourceManga,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => SourceMangaList(
+        builder: (context, state) => SourceMangaListScreen(
           key: ValueKey(state.params['sourceId'] ?? "0"),
           sourceId: state.params['sourceId'] ?? "0",
           initialQuery: state.queryParams['query'],

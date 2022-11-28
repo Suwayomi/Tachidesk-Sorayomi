@@ -37,9 +37,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.updatesSummary.tr()),
-        actions: const [
-          UpdateStatusPopupMenu(showSummaryButton: false),
-        ],
+        actions: const [UpdateStatusPopupMenu(showSummaryButton: false)],
       ),
       body: finalStatus.showUiWhenData(
         (data) => RefreshIndicator(

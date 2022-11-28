@@ -14,16 +14,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 // 🌎 Project imports:
 import '../../../constants/app_sizes.dart';
 import '../../../i18n/locale_keys.g.dart';
+import '../../library/domain/category/category_model.dart';
 import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 
 class UpdateStatusPopupMenu extends ConsumerWidget {
   const UpdateStatusPopupMenu({
     super.key,
-    this.getCategoryId,
+    this.getCategory,
     this.showSummaryButton = true,
   });
-  final int? Function()? getCategoryId;
+  final Category? Function()? getCategory;
   final bool showSummaryButton;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,14 +32,14 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
       icon: const Icon(Icons.more_vert_rounded),
       shape: RoundedRectangleBorder(borderRadius: KBorderRadius.r16.radius),
       itemBuilder: (context) {
-        final categoryId = getCategoryId != null ? getCategoryId!() : null;
+        final category = getCategory != null ? getCategory!() : null;
         return [
-          if (categoryId != null && categoryId != 0)
+          if (category != null && category.id != null && category.id != 0)
             PopupMenuItem(
               child: Text(LocaleKeys.categoryUpdate.tr()),
               onTap: () => ref
                   .read(updatesRepositoryProvider)
-                  .fetchUpdates(categoryId: categoryId),
+                  .fetchUpdates(categoryId: category.id),
             ),
           PopupMenuItem(
             onTap: ref.read(updatesRepositoryProvider).fetchUpdates,

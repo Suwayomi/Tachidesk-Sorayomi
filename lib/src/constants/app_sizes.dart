@@ -23,6 +23,7 @@ enum KEdgeInsets {
   a4(EdgeInsets.all(4)),
   a16(EdgeInsets.all(16)),
   h8v4(EdgeInsets.symmetric(horizontal: 8, vertical: 4)),
+  h8v16(EdgeInsets.symmetric(horizontal: 8, vertical: 16)),
   h16v8(EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0)),
   h4v8(EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0)),
   h16v4(EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0)),

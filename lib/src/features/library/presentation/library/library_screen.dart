@@ -102,8 +102,8 @@ class LibraryScreen extends HookConsumerWidget {
               Builder(
                 builder: (context) {
                   return UpdateStatusPopupMenu(
-                    getCategoryId: () => data.isNotBlank
-                        ? data[DefaultTabController.of(context).index].id
+                    getCategory: () => data.isNotBlank
+                        ? data[DefaultTabController.of(context).index]
                         : null,
                   );
                 },

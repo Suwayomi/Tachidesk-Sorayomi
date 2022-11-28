@@ -14,11 +14,11 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import '../../../../routes/router_config.dart';
-import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
+import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
 import '../../../../widgets/search_field.dart';
 import '../extension/controller/extension_controller.dart';
 import '../extension/extension_screen.dart';

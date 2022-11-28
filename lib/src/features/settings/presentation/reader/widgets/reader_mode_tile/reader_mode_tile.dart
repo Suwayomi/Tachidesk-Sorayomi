@@ -50,10 +50,10 @@ class ReaderModeTile extends ConsumerWidget {
         builder: (context) => EnumPopup<ReaderMode>(
           enumList: ReaderMode.values.sublist(1),
           value: readerMode ?? ReaderMode.webtoon,
-          onChange: (enumValue) => ref
-              .read(readerModeKeyProvider.notifier)
-              .update(enumValue)
-              .then((value) => context.navPop()),
+          onChange: (enumValue) async {
+            await ref.read(readerModeKeyProvider.notifier).update(enumValue);
+            if (context.mounted) context.navPop();
+          },
         ),
       ),
     );
