@@ -4,17 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 🌎 Project imports:
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
 import '../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../server_image.dart';
 import '../widgets/manga_badges.dart';
-
-// 📦 Package imports:
 
 class MangaCoverGridTile extends StatelessWidget {
   const MangaCoverGridTile({

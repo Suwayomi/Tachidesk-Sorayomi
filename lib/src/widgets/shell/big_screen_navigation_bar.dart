@@ -4,13 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
 import 'package:go_router/go_router.dart';
 
-// 🌎 Project imports:
 import '../../constants/navigation_bar_data.dart';
 import '../../features/manga_book/widgets/update_status_nav_rail_leading.dart';
 import '../../utils/extensions/custom_extensions/context_extensions.dart';

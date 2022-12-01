@@ -4,13 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-// 📦 Package imports:
-import 'package:dio/dio.dart';
-
-// 🌎 Project imports:
 import '../dio_error_util.dart';
 
 typedef ResponseDecoderCallBack<DecoderType> = DecoderType Function(dynamic);

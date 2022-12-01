@@ -44,8 +44,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.2.1
-  import_path_converter: ^1.0.1
-  import_sorter: ^4.6.0
   json_serializable: ^6.5.4
   lints: ^2.0.1
   riverpod_generator: ^1.0.6
@@ -59,18 +57,6 @@ flutter:
 
 flutter_gen:
   output: lib/src/constants/gen/
-
-import_sorter:
-  emojis: true
-  ignored_files:
-    - /*.g.dart
-    - /*.gen.dart
-
-import_path_converter:
-  relative: true
-  ignored_files:
-    - /*.g.dart
-    - /*.gen.dart
 
 flutter_native_splash:
   color: "#54C5F8"

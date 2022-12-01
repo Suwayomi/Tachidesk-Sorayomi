@@ -4,35 +4,32 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-
-// 📦 Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:tachidesk_sorayomi/src/constants/enum.dart';
-import 'package:tachidesk_sorayomi/src/features/browse_center/domain/filter/filter_model.dart';
-import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/global_search/global_search_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/browse_center/presentation/source_manga_list/source_manga_list_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/library/presentation/library/library_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/manga_details_screen.dart';
-import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/updates/updates_screen.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/string_extensions.dart';
 
-// 🌎 Project imports:
+import '../constants/enum.dart';
 import '../features/about/presentation/about/about_screen.dart';
+import '../features/browse_center/domain/filter/filter_model.dart';
 import '../features/browse_center/presentation/browse/browse_screen.dart';
+import '../features/browse_center/presentation/global_search/global_search_screen.dart';
+import '../features/browse_center/presentation/source_manga_list/source_manga_list_screen.dart';
+import '../features/library/presentation/category/edit_category_screen.dart';
+import '../features/library/presentation/library/library_screen.dart';
 import '../features/manga_book/presentation/downloads/downloads_screen.dart';
+import '../features/manga_book/presentation/manga_details/manga_details_screen.dart';
+import '../features/manga_book/presentation/updates/updates_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
-import '../features/library/presentation/category/edit_category_screen.dart';
 import '../features/settings/presentation/library/library_settings_screen.dart';
 import '../features/settings/presentation/more/more_screen.dart';
 import '../features/settings/presentation/reader/reader_settings_screen.dart';
 import '../features/settings/presentation/server/server_screen.dart';
 import '../features/settings/presentation/settings/settings_screen.dart';
+import '../utils/extensions/custom_extensions/string_extensions.dart';
 import '../widgets/shell/shell_screen.dart';
+
 part 'router_config.g.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =

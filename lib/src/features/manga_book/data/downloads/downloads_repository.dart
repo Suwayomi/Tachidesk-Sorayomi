@@ -4,18 +4,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🎯 Dart imports:
 import 'dart:convert';
 
-// 🐦 Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// 📦 Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-// 🌎 Project imports:
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/classes/pair/pair_model.dart';

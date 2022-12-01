@@ -4,10 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 🌎 Project imports:
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions/bool_extensions.dart';
 import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
@@ -16,8 +14,6 @@ import '../../../../../widgets/server_image.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../widgets/download_status_icon.dart';
-
-// 📦 Package imports:
 
 class ChapterMangaListTile extends StatelessWidget {
   const ChapterMangaListTile({

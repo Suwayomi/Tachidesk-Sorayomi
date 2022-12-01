@@ -53,35 +53,6 @@ printf "\e[33;1m%s\e[0m\n" 'Finished Running Build Runner'
 printf '%s\n' "${avar}"
 
 #
-# Flutter import sorter
-#
-printf "\e[33;1m%s\e[0m\n" '=== Running Flutter Import Sorter ==='
-flutter pub run import_sorter:main
-
-hasNewFilesFormatted=$(git diff)
-if [ -n "$hasNewFilesFormatted" ]; then
-    git add .
-    printf "\e[33;1m%s\e[0m\n" 'Sorted files added to git stage'
-fi
-printf "\e[33;1m%s\e[0m\n" 'Finished running Flutter Import Sorter '
-printf '%s\n' "${avar}"
-
-#
-# Flutter Import Converter
-#
-printf "\e[33;1m%s\e[0m\n" '=== Running Flutter Import Converter (Relative) ==='
-flutter pub run import_path_converter:main
-
-hasNewFilesFormatted=$(git diff)
-if [ -n "$hasNewFilesFormatted" ]; then
-    git add .
-    printf "\e[33;1m%s\e[0m\n" 'Sorted files added to git stage'
-fi
-printf "\e[33;1m%s\e[0m\n" 'Finished running Flutter Import Converter (Relative) '
-printf '%s\n' "${avar}"
-
-
-#
 # Flutter formatter
 #
 printf "\e[33;1m%s\e[0m\n" '=== Running Flutter Formatter ==='

@@ -4,13 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
 import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 

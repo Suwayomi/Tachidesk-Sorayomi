@@ -7,15 +7,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tachidesk_sorayomi/src/features/library/presentation/category/controller/edit_category_controller.dart';
-import 'package:tachidesk_sorayomi/src/features/manga_book/presentation/manga_details/controller/manga_details_controller.dart';
-import 'package:tachidesk_sorayomi/src/i18n/locale_keys.g.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/async_value_extensions.dart';
-import 'package:tachidesk_sorayomi/src/utils/extensions/custom_extensions/context_extensions.dart';
-import 'package:tachidesk_sorayomi/src/widgets/loading_widgets/loading_checkbox_list_tile.dart';
 
 import '../../../../../constants/app_sizes.dart';
+import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../widgets/loading_widgets/loading_checkbox_list_tile.dart';
+import '../../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../data/manga_book_repository.dart';
+import '../controller/manga_details_controller.dart';
 
 class EditMangaCategoryDialog extends HookConsumerWidget {
   const EditMangaCategoryDialog({

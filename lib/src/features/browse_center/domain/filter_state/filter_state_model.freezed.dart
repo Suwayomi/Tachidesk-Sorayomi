@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'filter_state_model.dart';
 
@@ -38,6 +38,7 @@ FilterState _$FilterStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FilterState {
+  Object? get state => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -355,6 +356,7 @@ abstract class _Header implements FilterState, _FilterStateGeneric<int> {
 
   factory _Header.fromJson(Map<String, dynamic> json) = _$_Header.fromJson;
 
+  @override
   int? get state;
   @override
   String? get name;
@@ -564,6 +566,7 @@ abstract class _Separator implements FilterState, _FilterStateGeneric<int> {
   factory _Separator.fromJson(Map<String, dynamic> json) =
       _$_Separator.fromJson;
 
+  @override
   int? get state;
   @override
   String? get name;
@@ -767,6 +770,7 @@ abstract class _Text implements FilterState, _FilterStateGeneric<String> {
 
   factory _Text.fromJson(Map<String, dynamic> json) = _$_Text.fromJson;
 
+  @override
   String? get state;
   @override
   String? get name;
@@ -974,6 +978,7 @@ abstract class _CheckBox implements FilterState, _FilterStateGeneric<bool> {
 
   factory _CheckBox.fromJson(Map<String, dynamic> json) = _$_CheckBox.fromJson;
 
+  @override
   bool? get state;
   @override
   String? get name;
@@ -1181,6 +1186,7 @@ abstract class _TriState implements FilterState, _FilterStateGeneric<int> {
 
   factory _TriState.fromJson(Map<String, dynamic> json) = _$_TriState.fromJson;
 
+  @override
   int? get state;
   @override
   String? get name;
@@ -1263,6 +1269,7 @@ class _$_Sort implements _Sort {
   List<String>? get values {
     final value = _values;
     if (value == null) return null;
+    if (_values is EqualUnmodifiableListView) return _values;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1418,6 +1425,7 @@ abstract class _Sort implements FilterState, _FilterStateGeneric<SortState> {
 
   factory _Sort.fromJson(Map<String, dynamic> json) = _$_Sort.fromJson;
 
+  @override
   SortState? get state;
   @override
   String? get name;
@@ -1490,6 +1498,7 @@ class _$_Select implements _Select {
   List<String>? get displayValues {
     final value = _displayValues;
     if (value == null) return null;
+    if (_displayValues is EqualUnmodifiableListView) return _displayValues;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1646,6 +1655,7 @@ abstract class _Select implements FilterState, _FilterStateGeneric<int> {
 
   factory _Select.fromJson(Map<String, dynamic> json) = _$_Select.fromJson;
 
+  @override
   int? get state;
   @override
   String? get name;
@@ -1706,6 +1716,7 @@ class _$_Group implements _Group {
   List<Filter>? get state {
     final value = _state;
     if (value == null) return null;
+    if (_state is EqualUnmodifiableListView) return _state;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -1862,6 +1873,7 @@ abstract class _Group
 
   factory _Group.fromJson(Map<String, dynamic> json) = _$_Group.fromJson;
 
+  @override
   List<Filter>? get state;
   @override
   String? get name;

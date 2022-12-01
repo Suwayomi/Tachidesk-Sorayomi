@@ -4,13 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
-import 'package:easy_localization/easy_localization.dart';
-
-// 🌎 Project imports:
 import '../../../../i18n/locale_keys.g.dart';
 import 'widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import 'widgets/reader_mode_tile/reader_mode_tile.dart';

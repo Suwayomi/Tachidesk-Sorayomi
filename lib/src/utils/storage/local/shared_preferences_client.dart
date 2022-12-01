@@ -4,11 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 📦 Package imports:
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// 🌎 Project imports:
 import '../../extensions/custom_extensions/int_extensions.dart';
 
 part 'shared_preferences_client.g.dart';

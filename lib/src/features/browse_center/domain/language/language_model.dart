@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'language_model.freezed.dart';

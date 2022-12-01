@@ -4,19 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🐦 Flutter imports:
-import 'package:flutter/material.dart';
-
-// 📦 Package imports:
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// 🌎 Project imports:
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../widgets/custom_checkbox_list_tile.dart';
 import '../controller/manga_details_controller.dart';
-
-// 🌎 Project imports:
 
 class MangaChapterFilter extends ConsumerWidget {
   const MangaChapterFilter({super.key});

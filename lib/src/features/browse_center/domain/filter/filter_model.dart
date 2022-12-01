@@ -4,13 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-// 🎯 Dart imports:
 import 'dart:convert';
 
-// 📦 Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// 🌎 Project imports:
 import '../filter_state/filter_state_model.dart';
 
 part 'filter_model.freezed.dart';

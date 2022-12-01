@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'update_status_model.dart';
 
@@ -162,6 +162,7 @@ class _$_UpdateStatus extends _UpdateStatus {
   List<Manga>? get pending {
     final value = _pending;
     if (value == null) return null;
+    if (_pending is EqualUnmodifiableListView) return _pending;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -172,6 +173,7 @@ class _$_UpdateStatus extends _UpdateStatus {
   List<Manga>? get running {
     final value = _running;
     if (value == null) return null;
+    if (_running is EqualUnmodifiableListView) return _running;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -182,6 +184,7 @@ class _$_UpdateStatus extends _UpdateStatus {
   List<Manga>? get completed {
     final value = _completed;
     if (value == null) return null;
+    if (_completed is EqualUnmodifiableListView) return _completed;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -192,6 +195,7 @@ class _$_UpdateStatus extends _UpdateStatus {
   List<Manga>? get failed {
     final value = _failed;
     if (value == null) return null;
+    if (_failed is EqualUnmodifiableListView) return _failed;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
