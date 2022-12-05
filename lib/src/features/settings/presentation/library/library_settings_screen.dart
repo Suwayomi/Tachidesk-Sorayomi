@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
-import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 
 class LibrarySettingsScreen extends StatelessWidget {
   const LibrarySettingsScreen({super.key});

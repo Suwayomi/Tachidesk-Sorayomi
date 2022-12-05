@@ -12,7 +12,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/endpoints.dart';
 import '../../../constants/enum.dart';
-import '../../extensions/custom_extensions/string_extensions.dart';
+import '../../extensions/custom_extensions.dart';
 
 part 'network_module.g.dart';
 

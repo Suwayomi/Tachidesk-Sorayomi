@@ -8,32 +8,45 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../constants/db_keys.dart';
+import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
 import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../global_providers/global_providers.dart';
 
 class ServerImage extends ConsumerWidget {
-  const ServerImage({super.key, required this.imageUrl, this.size});
+  const ServerImage({
+    super.key,
+    required this.imageUrl,
+    this.size,
+    this.fit,
+    this.appendApiToUrl = false,
+    this.progressIndicatorBuilder,
+  });
 
   final String imageUrl;
   final Size? size;
-
+  final BoxFit? fit;
+  final bool appendApiToUrl;
+  final Widget Function(BuildContext, String, DownloadProgress)?
+      progressIndicatorBuilder;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final baseUrl = ref.watch(serverUrlProvider);
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
+    final baseApi =
+        "${Endpoints.baseApi(baseUrl: baseUrl, appendApiToUrl: appendApiToUrl)}"
+        "$imageUrl/?useCache=true";
     return CachedNetworkImage(
-      imageUrl:
-          "${(baseUrl ?? DBKeys.serverUrl.initial)}$imageUrl/?useCache=true",
+      imageUrl: baseApi,
       height: size?.height,
       httpHeaders: authType == AuthType.basic && basicToken != null
           ? {"Authorization": basicToken}
           : null,
       width: size?.width,
-      fit: BoxFit.cover,
+      fit: fit ?? BoxFit.cover,
+      progressIndicatorBuilder: progressIndicatorBuilder,
       errorWidget: (context, error, stackTrace) => const Icon(
         Icons.broken_image_rounded,
         color: Colors.grey,

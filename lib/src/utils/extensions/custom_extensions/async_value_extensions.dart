@@ -4,14 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../../i18n/locale_keys.g.dart';
-import '../../../widgets/custom_circular_progress_indicator.dart';
-import '../../../widgets/emoticons.dart';
-import '../../misc/toast/toast.dart';
+part of '../custom_extensions.dart';
 
 extension AsyncValueExtensions<T> on AsyncValue<T> {
   void _showToastOnError(Toast toast) {
@@ -38,10 +31,14 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
 
   Widget showUiWhenData(
     Widget Function(T data) data, {
-    void Function()? refresh,
+    VoidCallback? refresh,
     Widget Function(Widget)? wrapper,
     bool showGenericError = false,
+    bool addScaffoldWrapper = false,
   }) {
+    if (addScaffoldWrapper) {
+      wrapper = (body) => Scaffold(appBar: AppBar(), body: body);
+    }
     return when(
       data: data,
       error: (error, trace) => wrapper == null

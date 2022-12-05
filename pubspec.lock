@@ -425,10 +425,10 @@ packages:
     dependency: "direct main"
     description:
       name: font_awesome_flutter
-      sha256: "8f0ce0204bd0cafa8631536a6f3b7d05d9c16cdc6e8bd807843f917027c5cefd"
+      sha256: "875dbb9ec1ad30d68102019ceb682760d06c72747c1c5b7885781b95f88569cc"
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.1"
+    version: "10.3.0"
   freezed:
     dependency: "direct dev"
     description:
@@ -465,10 +465,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: b96c2527b7f488b54d076e662bdb65192890571aba32e1f740faff474bddd70c
+      sha256: "22c72f83933121f2981ac9025055e0c033206fda84016c1a677345dfffbeb672"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.0"
+    version: "5.2.1"
   graphs:
     dependency: transitive
     description:
@@ -861,6 +861,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  scrollable_positioned_list:
+    dependency: "direct main"
+    description:
+      name: scrollable_positioned_list
+      sha256: ca7fcaa743db712d4f7b1580526f494d0093c77a721a65705ee51fbeac7a2bd3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.5"
   share_plus:
     dependency: "direct main"
     description:
@@ -998,10 +1006,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite
-      sha256: d21c022832f139b89922738e200c07387a49c549bf36c35654418e19ff76d161
+      sha256: "2b1697c7b78576fdc722c358f16f62171bd56e92dc13422d9e44be3fc446c276"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.2"
   sqflite_common:
     dependency: transitive
     description:

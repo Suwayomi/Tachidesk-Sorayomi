@@ -13,7 +13,7 @@ import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../routes/router_config.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../source_manga_list/controller/source_manga_controller.dart';
 import '../controller/source_quick_search_controller.dart';

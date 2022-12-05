@@ -10,8 +10,6 @@ enum AuthType { none, basic }
 
 enum ReaderMode {
   defaultReader,
-  continuousHorizontalLTR,
-  continuousHorizontalRTL,
   continuousVertical,
   singleHorizontalLTR,
   singleHorizontalRTL,
@@ -80,4 +78,13 @@ enum SourceType {
 
   final IconData icon;
   final IconData selectedIcon;
+}
+
+enum ChapterMeta {
+  invertTap("flutter_readerNavigationLayoutInvert"),
+  readerNavigationLayout("flutter_readerNavigationLayoutInvert"),
+  readerMode("flutter_readerMode");
+
+  const ChapterMeta(this.key);
+  final String key;
 }

@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/downloads/downloads_repository.dart';

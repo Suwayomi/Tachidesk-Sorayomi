@@ -5,13 +5,14 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
-import '../../../../../utils/misc/custom_typedef.dart';
+import '../../../../../routes/router_config.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import '../../../widgets/download_status_icon.dart';
@@ -28,7 +29,7 @@ class ChapterListTile extends StatelessWidget {
   }) : super(key: key);
   final Manga manga;
   final Chapter chapter;
-  final AsyncVoidCallBack updateData;
+  final AsyncCallback updateData;
   final ValueChanged<Chapter> toggleSelect;
   final bool canTapSelect;
   final bool isSelected;
@@ -81,7 +82,11 @@ class ChapterListTile extends StatelessWidget {
       selectedTileColor:
           context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
       selected: isSelected,
-      onTap: canTapSelect ? () => toggleSelect(chapter) : null,
+      onTap: canTapSelect
+          ? () => toggleSelect(chapter)
+          : () => context.push(
+                Routes.getReader("${manga.id}", "${chapter.index}"),
+              ),
       onLongPress: () => toggleSelect(chapter),
     );
   }

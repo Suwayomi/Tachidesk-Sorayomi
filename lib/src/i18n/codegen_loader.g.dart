@@ -15,18 +15,27 @@ class CodegenLoader extends AssetLoader {
   }
 
   static const Map<String, dynamic> en_US = {
-    "pending": "Pending",
-    "running": "Running",
-    "completed": "Completed",
-    "failed": "Failed",
-    "displayMode": "Display Mode",
+    "AuthType": {"basic": "Basic Auth", "none": "None"},
     "ChapterSort": {"fetchedDate": "By Fetched Data", "source": "By Source"},
     "DisplayMode": {
+      "descriptiveList": "Descriptive List",
       "grid": "Grid",
-      "list": "List",
-      "descriptiveList": "Descriptive List"
+      "list": "List"
     },
-    "AuthType": {"none": "None", "basic": "Basic Auth"},
+    "MangaSort": {
+      "alphabetical": "Alphabetical",
+      "dateAdded": "Date Added",
+      "unread": "Unread"
+    },
+    "MangaStatus": {
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "licensed": "Licensed",
+      "onHiatus": "On Hiatus",
+      "ongoing": "Ongoing",
+      "publishingFinished": "Publishing Finished",
+      "unknown": "Unknown"
+    },
     "ReaderMode": {
       "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
       "continuousHorizontalRTL": "Continuous Horizontal (RTL)",
@@ -44,7 +53,12 @@ class CodegenLoader extends AssetLoader {
       "lShaped": "L Shaped",
       "rightAndLeft": "Right and Left"
     },
-    "ThemeMode": {"system": "System", "dark": "Dark", "light": "Light"},
+    "SourceType": {
+      "filter": "Filter",
+      "latest": "Latest",
+      "popular": "Popular"
+    },
+    "ThemeMode": {"dark": "Dark", "light": "Light", "system": "System"},
     "about": "About",
     "add": "Add",
     "addCategory": "Add Category",
@@ -57,6 +71,7 @@ class CodegenLoader extends AssetLoader {
     "backup": "Backup & Restore",
     "badges": "Badges",
     "baseAuthType": "Authentication Type",
+    "bookmarked": "Bookmarked",
     "browse": "Browse",
     "browseManga": "Browse manga",
     "buildTime": "Build time",
@@ -77,11 +92,12 @@ class CodegenLoader extends AssetLoader {
     },
     "chapterNumber": "Chapter {number}",
     "chapters": "Chapters",
-    "checkForUpdates": "Check for updates",
     "checkForServerUpdates": "Check for Server updates",
+    "checkForUpdates": "Check for updates",
     "client": "Client",
     "clientVersion": "Client version",
     "close": "Close",
+    "completed": "Completed",
     "copyMsg": "\"{msg}\" Copied!",
     "create": "Create",
     "createBackup": {
@@ -89,39 +105,41 @@ class CodegenLoader extends AssetLoader {
       "title": "Create Backup"
     },
     "credentials": "Credentials",
+    "current": "Current",
     "defaultCategory": "Default category when adding new manga to library",
     "delete": "Delete",
     "deleteCategory": {
-      "title": "Are you sure?",
-      "content": "This will merge all Mangas in this Category to Default!"
+      "content": "This will merge all Mangas in this Category to Default!",
+      "title": "Are you sure?"
     },
     "discord": "Discord",
     "display": "Display",
+    "displayMode": "Display Mode",
+    "downloaded": "Downloaded",
     "downloads": "Downloads",
     "edit": "Edit",
     "editCategory": "Edit Category",
     "emptyCategory": "Category name can't be Empty",
     "error": {
-      "somethingWentWrong": "Something went wrong!",
+      "extension": "Can't find the selected extension",
       "filePick": "File not selected!",
       "filePickUnknownExtension":
           "Please select a file with {extensionName} extension",
       "installedExtensionFile": "Failed to Install! Please try again",
       "invalidURL": "Invalid URL",
       "launchURL": "Failed to open!\nCopying \"{url}\" to clipboard",
-      "restoreBackup": "Failed to Restore backup!\nPlease try again",
-      "userName": "User Name can't be empty",
       "password": "Password can't be empty",
-      "extension": "Can't find the selected extension"
+      "restoreBackup": "Failed to Restore backup!\nPlease try again",
+      "somethingWentWrong": "Something went wrong!",
+      "userName": "User Name can't be empty"
     },
     "extensionInstalled": "Extension Installed!",
     "extensionListEmpty": "Extension list is Empty",
     "extensions": "Extensions",
     "extensionsError": "Extensions to Install",
+    "failed": "Failed",
     "filter": "Filter",
-    "bookmarked": "Bookmarked",
-    "downloaded": "Downloaded",
-    "unread": "Unread",
+    "finished": "Finished",
     "general": "General",
     "gitHub": "GitHub",
     "globalSearch": "Global Search",
@@ -140,20 +158,6 @@ class CodegenLoader extends AssetLoader {
     "loading": "Loading!",
     "manga": "Manga",
     "mangaSearch": "Search manga..",
-    "MangaSort": {
-      "alphabetical": "Alphabetical",
-      "dateAdded": "Date Added",
-      "unread": "Unread"
-    },
-    "MangaStatus": {
-      "unknown": "Unknown",
-      "ongoing": "Ongoing",
-      "completed": "Completed",
-      "licensed": "Licensed",
-      "publishingFinished": "Publishing Finished",
-      "cancelled": "Cancelled",
-      "onHiatus": "On Hiatus"
-    },
     "missingExtension": "Missing Extensions",
     "missingTrackers": "Missing Trackers",
     "more": "More",
@@ -165,10 +169,10 @@ class CodegenLoader extends AssetLoader {
         "You don't have any Categories. \nTap the Plus button to create one for organizing your library",
     "noCategoriesFoundAlt":
         "You don't have any Categories. \nCreate one in settings for organizing your library",
-    "noChaptersFound": "No Chapters found",
-    "noDownloads": "No Downloads",
     "noCategoryMangaFound":
         "No manga found in this Category. \n(Tip: Check your search & filters!)",
+    "noChaptersFound": "No Chapters found",
+    "noDownloads": "No Downloads",
     "noMangaFound": "No Mangas Found",
     "noNewChapter": "No new chapter",
     "noOfChapters": "{count} Chapters",
@@ -186,6 +190,7 @@ class CodegenLoader extends AssetLoader {
     "numSelected": "{num} Selected",
     "password": "Password",
     "pause": "Pause",
+    "pending": "Pending",
     "popular": "Popular",
     "previousChapter": "Previous Chapter",
     "reader": "Reader",
@@ -206,6 +211,7 @@ class CodegenLoader extends AssetLoader {
     "restoring": "Restoring backup...",
     "resume": "Resume",
     "retry": "Retry",
+    "running": "Running",
     "save": "Save",
     "savedImagePathTitle": "Image path saved to Clipboard",
     "search": "Search...",
@@ -216,8 +222,8 @@ class CodegenLoader extends AssetLoader {
     "serverVersion": "Server version",
     "setAsDefault": "Set as default",
     "settings": "Settings",
-    "showMore": "Show More",
     "showLess": "    Show Less",
+    "showMore": "Show More",
     "sorayomi": "Sorayomi",
     "sort": "Sort",
     "sortFetchedAt": "Fetched date",
@@ -229,21 +235,17 @@ class CodegenLoader extends AssetLoader {
     "sortUnread": "Unread",
     "source": "Source",
     "sources": "Sources",
-    "SourceType": {
-      "latest": "Latest",
-      "popular": "Popular",
-      "filter": "Filter"
-    },
     "status": "Status",
-    "updatesSummary": "Updates Summary",
     "uninstall": "Uninstall",
     "uninstalling": "Uninstalling",
     "unknown": "Unknown",
-    "unknownManga": "Unknown Manga",
     "unknownAuthor": "Unknown Author",
+    "unknownManga": "Unknown Manga",
     "unknownSource": "Unknown Source",
+    "unread": "Unread",
     "update": "Update",
     "updates": "Updates",
+    "updatesSummary": "Updates Summary",
     "updating": "Updating",
     "url": "Server URL",
     "urlHintText": "Enter server url",

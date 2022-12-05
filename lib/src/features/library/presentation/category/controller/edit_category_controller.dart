@@ -7,7 +7,7 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../data/category/category_repository.dart';
 import '../../../domain/category/category_model.dart';
 

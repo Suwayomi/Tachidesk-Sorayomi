@@ -7,14 +7,14 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../extensions/custom_extensions/int_extensions.dart';
+import '../../extensions/custom_extensions.dart';
 
 part 'shared_preferences_client.g.dart';
 
 @riverpod
 SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
 
-/// [SharedPreferenceClient] is a mixin to add [get] and [update] functions to
+/// [SharedPreferenceClient] is a mixin to add [_get] and [update] functions to
 /// the provider.
 ///
 /// * Remember to use [ initialize ] function to assign [_key], [_client]
@@ -34,19 +34,19 @@ mixin SharedPreferenceClient<T extends Object> {
     required key,
     T? initial,
   }) {
-    this._client = client;
-    this._key = key;
-    this._initial = initial;
-    return get;
+    _client = client;
+    _key = key;
+    _initial = initial;
+    return _get;
   }
 
-  T? get get {
+  T? get _get {
     final value = _client.get(_key);
     return value is T? ? value : _initial;
   }
 
   Future<void> update(T? value) async {
-    if (await _set(value)) state = value;
+    if (await _set(value)) state = _get;
   }
 
   Future<bool> _set(T? value) async {

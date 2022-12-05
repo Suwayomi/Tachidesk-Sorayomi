@@ -15,7 +15,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/classes/pair/pair_model.dart';
-import '../../../../utils/misc/custom_typedef.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../domain/update_status/update_status_model.dart';
@@ -70,11 +69,11 @@ class UpdatesRepository {
       ))
           .data;
 
-  Pair<Stream<UpdateStatus>, AsyncVoidCallBack> socketUpdates() {
+  Pair<Stream<UpdateStatus>, AsyncCallback> socketUpdates() {
     final url = (dioClient.dio.options.baseUrl
         .replaceFirst(RegExp('http', caseSensitive: false), 'ws'));
     final channel = WebSocketChannel.connect(Uri.parse(url + UpdateUrl.update));
-    return Pair<Stream<UpdateStatus>, AsyncVoidCallBack>(
+    return Pair<Stream<UpdateStatus>, AsyncCallback>(
       first: channel.stream.asyncMap<UpdateStatus>((event) =>
           compute<String, UpdateStatus>(
               (s) => UpdateStatus.fromJson({...?json.decode(s)["statusMap"]}),

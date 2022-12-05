@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
-import '../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../utils/extensions/custom_extensions.dart';
 import '../../server_image.dart';
 import '../widgets/manga_badges.dart';
 
@@ -24,8 +24,8 @@ class MangaCoverGridTile extends StatelessWidget {
     this.showDarkOverlay = true,
   });
   final Manga manga;
-  final void Function()? onPressed;
-  final void Function()? onLongPress;
+  final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
   final bool showCountBadges;
   final bool showTitle;
   final bool showBadges;

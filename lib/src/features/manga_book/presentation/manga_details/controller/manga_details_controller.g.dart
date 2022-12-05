@@ -459,3 +459,86 @@ class MangaChapterListWithFilterFamily extends Family<List<Chapter>?> {
   @override
   String? get name => r'mangaChapterListWithFilterProvider';
 }
+
+String $getPreviousAndNextChaptersHash() =>
+    r'8db14cff31abbea310152b38f25bcfe581efd7ab';
+
+/// See also [getPreviousAndNextChapters].
+class GetPreviousAndNextChaptersProvider
+    extends AutoDisposeProvider<Pair<Chapter?, Chapter?>?> {
+  GetPreviousAndNextChaptersProvider({
+    required this.mangaId,
+    required this.chapterIndex,
+  }) : super(
+          (ref) => getPreviousAndNextChapters(
+            ref,
+            mangaId: mangaId,
+            chapterIndex: chapterIndex,
+          ),
+          from: getPreviousAndNextChaptersProvider,
+          name: r'getPreviousAndNextChaptersProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : $getPreviousAndNextChaptersHash,
+        );
+
+  final String mangaId;
+  final String chapterIndex;
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetPreviousAndNextChaptersProvider &&
+        other.mangaId == mangaId &&
+        other.chapterIndex == chapterIndex;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mangaId.hashCode);
+    hash = _SystemHash.combine(hash, chapterIndex.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+typedef GetPreviousAndNextChaptersRef
+    = AutoDisposeProviderRef<Pair<Chapter?, Chapter?>?>;
+
+/// See also [getPreviousAndNextChapters].
+final getPreviousAndNextChaptersProvider = GetPreviousAndNextChaptersFamily();
+
+class GetPreviousAndNextChaptersFamily
+    extends Family<Pair<Chapter?, Chapter?>?> {
+  GetPreviousAndNextChaptersFamily();
+
+  GetPreviousAndNextChaptersProvider call({
+    required String mangaId,
+    required String chapterIndex,
+  }) {
+    return GetPreviousAndNextChaptersProvider(
+      mangaId: mangaId,
+      chapterIndex: chapterIndex,
+    );
+  }
+
+  @override
+  AutoDisposeProvider<Pair<Chapter?, Chapter?>?> getProviderOverride(
+    covariant GetPreviousAndNextChaptersProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+      chapterIndex: provider.chapterIndex,
+    );
+  }
+
+  @override
+  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+
+  @override
+  List<ProviderOrFamily>? get dependencies => null;
+
+  @override
+  String? get name => r'getPreviousAndNextChaptersProvider';
+}

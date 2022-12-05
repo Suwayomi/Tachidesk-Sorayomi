@@ -11,19 +11,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/map_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
-import '../../data/manga_book_repository.dart';
 import '../../data/updates/updates_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
-import '../../widgets/multi_select_bottom_options.dart';
+import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
 import '../../widgets/update_status_popup_menu.dart';
+import '../reader/controller/reader_controller.dart';
 import 'widgets/chapter_manga_list_tile.dart';
 
 class UpdatesScreen extends HookConsumerWidget {
@@ -91,7 +88,7 @@ class UpdatesScreen extends HookConsumerWidget {
               actions: const [UpdateStatusPopupMenu()],
             ),
       bottomSheet: selectedChapters.value.isNotEmpty
-          ? MultiSelectBottomOptions(
+          ? MultiChaptersActionsBottomAppBar(
               selectedChapters: selectedChapters,
               afterOptionSelected: () async => controller.refresh(),
             )
@@ -132,12 +129,11 @@ class UpdatesScreen extends HookConsumerWidget {
                   if (item.manga?.id == null || item.chapter?.index == null) {
                     return;
                   } else {
-                    final chapter = (await AsyncValue.guard(
-                      () => ref.read(mangaBookRepositoryProvider).getChapter(
-                            mangaId: item.manga!.id!,
-                            chapterIndex: item.chapter!.index!,
-                          ),
-                    ))
+                    final chapter = ref
+                        .refresh(chapterProvider(
+                          mangaId: "${item.manga!.id!}",
+                          chapterIndex: "${item.chapter!.index!}",
+                        ))
                         .valueOrToast(toast);
                     try {
                       controller.itemList = [...?controller.itemList]

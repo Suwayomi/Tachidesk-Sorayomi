@@ -6,7 +6,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../manga/manga_model.dart';
 
 part 'update_status_model.freezed.dart';

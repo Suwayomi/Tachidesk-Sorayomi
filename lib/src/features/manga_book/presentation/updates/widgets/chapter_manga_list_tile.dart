@@ -4,12 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../utils/extensions/custom_extensions/bool_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/misc/custom_typedef.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/chapter_page/chapter_page_model.dart';
@@ -25,7 +24,7 @@ class ChapterMangaListTile extends StatelessWidget {
     this.isSelected = false,
   });
   final ChapterMangaPair pair;
-  final AsyncVoidCallBack updatePair;
+  final AsyncCallback updatePair;
   final ValueChanged<Chapter> toggleSelect;
   final bool canTapSelect;
   final bool isSelected;

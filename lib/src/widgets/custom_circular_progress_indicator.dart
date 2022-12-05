@@ -9,11 +9,13 @@ import 'package:flutter/material.dart';
 import '../constants/app_sizes.dart';
 
 class CenterCircularProgressIndicator extends StatelessWidget {
-  const CenterCircularProgressIndicator({super.key});
+  const CenterCircularProgressIndicator({super.key, this.value});
 
+  final double? value;
   @override
-  Widget build(BuildContext context) =>
-      const Center(child: CircularProgressIndicator());
+  Widget build(BuildContext context) => Center(
+        child: CircularProgressIndicator(value: value),
+      );
 }
 
 class MiniCircularProgressIndicator extends StatelessWidget {

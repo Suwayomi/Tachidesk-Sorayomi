@@ -15,9 +15,7 @@ import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
@@ -95,7 +93,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
             onReset: () => ref.read(provider.notifier).reset(),
             onSubmitted: (value) {
               if (sourceType == SourceType.filter) {
-                context.navPop();
+                context.pop();
                 ref.read(provider.notifier).updateFilter(value);
                 controller.refresh();
               } else {

@@ -11,8 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
 import '../../../i18n/locale_keys.g.dart';
-import '../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../utils/extensions/custom_extensions/int_extensions.dart';
+import '../../../utils/extensions/custom_extensions.dart';
 import '../providers/manga_cover_providers.dart';
 
 class MangaBadgesRow extends ConsumerWidget {

@@ -10,7 +10,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/filter/filter_model.dart';

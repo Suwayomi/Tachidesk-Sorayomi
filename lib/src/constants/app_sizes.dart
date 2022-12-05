@@ -6,6 +6,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../utils/extensions/custom_extensions.dart';
+
 const kTabSize = Size.fromHeight(kAppBarBottomHeight);
 const kAppBarBottomHeight = 64.0;
 const kDrawerWidth = 384.0;
@@ -29,6 +31,7 @@ enum KEdgeInsets {
   h16(EdgeInsets.symmetric(horizontal: 16.0)),
   h8(EdgeInsets.symmetric(horizontal: 8.0)),
   v8(EdgeInsets.symmetric(vertical: 8)),
+  v16(EdgeInsets.symmetric(vertical: 16)),
   v4(EdgeInsets.symmetric(vertical: 4)),
   h4(EdgeInsets.symmetric(horizontal: 4)),
   ol4(EdgeInsets.only(left: 4)),
@@ -36,11 +39,12 @@ enum KEdgeInsets {
 
   const KEdgeInsets(this.size);
 
-  final EdgeInsetsGeometry size;
+  final EdgeInsets size;
 }
 
 enum KSizedBox {
   h4(SizedBox(height: 4)),
+  h8(SizedBox(height: 8)),
   w4(SizedBox(width: 4)),
   h16(SizedBox(height: 16)),
   w16(SizedBox(width: 16)),
@@ -51,6 +55,19 @@ enum KSizedBox {
   h96(SizedBox(height: 96)),
   w96(SizedBox(width: 96)),
   ;
+
+  static SizedBox scale(
+    BuildContext context, {
+    double? height,
+    double? width,
+    Widget? child,
+  }) {
+    return SizedBox(
+      height: height != null ? context.height * height : null,
+      width: width != null ? context.width * width : null,
+      child: child,
+    );
+  }
 
   const KSizedBox(this.size);
 

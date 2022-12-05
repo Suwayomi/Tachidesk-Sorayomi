@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/language_list.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/language/language_model.dart';
 import '../controller/extension_controller.dart';

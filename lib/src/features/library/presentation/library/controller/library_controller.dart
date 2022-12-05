@@ -9,8 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../data/category/category_repository.dart';

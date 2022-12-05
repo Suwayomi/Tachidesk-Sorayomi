@@ -28,10 +28,6 @@ class SourceMangaFilter extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final filters = useState(initialFilters);
-    useEffect(() {
-      filters.value = initialFilters;
-      return;
-    }, [initialFilters]);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kAppBarBottomHeight),

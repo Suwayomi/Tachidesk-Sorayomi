@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../utils/extensions/custom_extensions/context_extensions.dart';
+import '../utils/extensions/custom_extensions.dart';
 
 class SortListTile extends StatelessWidget {
   const SortListTile({

@@ -7,11 +7,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
@@ -59,7 +59,7 @@ class EditCategoryDialog extends HookConsumerWidget {
                       categoryName.text,
                       defaultCategory.value,
                     );
-                    context.navPop();
+                    context.pop();
                   }
                 : null,
           ),
@@ -85,7 +85,7 @@ class EditCategoryDialog extends HookConsumerWidget {
               return;
             }
             submitEditCategory(categoryName.text, defaultCategory.value);
-            context.navPop();
+            context.pop();
           },
           child: Text(LocaleKeys.save.tr()),
         ),

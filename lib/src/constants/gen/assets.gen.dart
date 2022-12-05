@@ -22,8 +22,12 @@ class $AssetsIconsGen {
   AssetGenImage get lightIcon =>
       const AssetGenImage('assets/icons/light_icon.png');
 
+  /// File path: assets/icons/previous_done.png
+  AssetGenImage get previousDone =>
+      const AssetGenImage('assets/icons/previous_done.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [darkIcon, lightIcon];
+  List<AssetGenImage> get values => [darkIcon, lightIcon, previousDone];
 }
 
 class $AssetsLocalesGen {

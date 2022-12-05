@@ -7,10 +7,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/urls.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 
@@ -33,14 +33,14 @@ void appUpdateDialog({
           ),
           actions: [
             TextButton(
-              onPressed: () => context.navPop(),
+              onPressed: () => context.pop(),
               child: Text(LocaleKeys.close.tr()),
             ),
             ElevatedButton.icon(
               onPressed: () {
                 launchUrlInWeb(
                     url ?? AppUrls.sorayomiLatestReleaseUrl.url, toast);
-                context.navPop();
+                context.pop();
               },
               icon: const Icon(FontAwesomeIcons.github),
               label: Text(LocaleKeys.gitHub.tr()),

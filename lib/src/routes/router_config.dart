@@ -18,6 +18,7 @@ import '../features/library/presentation/category/edit_category_screen.dart';
 import '../features/library/presentation/library/library_screen.dart';
 import '../features/manga_book/presentation/downloads/downloads_screen.dart';
 import '../features/manga_book/presentation/manga_details/manga_details_screen.dart';
+import '../features/manga_book/presentation/reader/reader_screen.dart';
 import '../features/manga_book/presentation/updates/updates_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
@@ -27,7 +28,7 @@ import '../features/settings/presentation/more/more_screen.dart';
 import '../features/settings/presentation/reader/reader_settings_screen.dart';
 import '../features/settings/presentation/server/server_screen.dart';
 import '../features/settings/presentation/settings/settings_screen.dart';
-import '../utils/extensions/custom_extensions/string_extensions.dart';
+import '../utils/extensions/custom_extensions.dart';
 import '../widgets/shell/shell_screen.dart';
 
 part 'router_config.g.dart';
@@ -49,9 +50,12 @@ abstract class Routes {
   static const appearanceSettings = 's-appearance';
   static const backup = 'backup';
   static const settings = '/settings';
-  static const browseSettings = 's-browse';
-  static const readerSettings = 's-reader';
-  static const serverSettings = 's-server';
+  static const browseSettings = 'browse';
+  static const readerSettings = 'reader';
+  static const reader = '/reader/:mangaId/:chapterIndex';
+  static getReader(String mangaId, String chapterIndex) =>
+      '/reader/$mangaId/$chapterIndex';
+  static const serverSettings = 'server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
   static const manga = '/manga/:mangaId';
@@ -138,6 +142,14 @@ GoRouter routerConfig(ref) {
         path: Routes.about,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const AboutScreen(),
+      ),
+      GoRoute(
+        path: Routes.reader,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => ReaderScreen(
+          mangaId: state.params['mangaId'] ?? '',
+          chapterIndex: state.params['chapterIndex'] ?? '',
+        ),
       ),
       GoRoute(
         path: Routes.settings,

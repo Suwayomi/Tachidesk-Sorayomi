@@ -8,8 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/backup_missing/backup_missing.dart';
 

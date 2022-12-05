@@ -12,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../widgets/server_url_tile/server_url_tile.dart';

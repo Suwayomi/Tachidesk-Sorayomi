@@ -22,8 +22,8 @@ class MangaCoverListTile extends StatelessWidget {
   });
 
   final Manga manga;
-  final void Function()? onPressed;
-  final void Function()? onLongPress;
+  final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
   final bool showCountBadges;
   final bool showBadges;
   @override

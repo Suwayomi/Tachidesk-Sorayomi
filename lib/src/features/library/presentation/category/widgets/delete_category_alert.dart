@@ -6,9 +6,9 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 
 class DeleteCategoryAlert extends StatelessWidget {
@@ -24,7 +24,7 @@ class DeleteCategoryAlert extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             deleteCategory();
-            context.navPop();
+            context.pop();
           },
           child: Text(LocaleKeys.delete.tr()),
         ),

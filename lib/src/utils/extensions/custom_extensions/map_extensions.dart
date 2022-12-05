@@ -3,6 +3,7 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+part of '../custom_extensions.dart';
 
 extension MapExtensions<K, V> on Map<K, V> {
   Map<K, V> get filterOutNulls {
@@ -20,4 +21,12 @@ extension MapExtensions<K, V> on Map<K, V> {
       return {...this, key: value};
     }
   }
+}
+
+extension NullableMapExtensions<K, V> on Map<K, V>? {
+  bool get isNull => this == null;
+
+  bool get isBlank => isNull || this!.isEmpty;
+
+  bool get isNotBlank => !isBlank;
 }

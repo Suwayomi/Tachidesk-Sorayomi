@@ -6,9 +6,9 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../i18n/locale_keys.g.dart';
-import '../utils/extensions/custom_extensions/context_extensions.dart';
 
 class PopButton extends StatelessWidget {
   const PopButton({super.key, this.popText});
@@ -16,7 +16,7 @@ class PopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => context.navPop(),
+      onPressed: () => context.pop(),
       child: Text(popText ?? LocaleKeys.cancel.tr()),
     );
   }

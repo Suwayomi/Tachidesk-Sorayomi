@@ -9,7 +9,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
+import '../../../../../utils/classes/pair/pair_model.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../library/domain/category/category_model.dart';
 import '../../../data/manga_book_repository.dart';
@@ -125,6 +126,26 @@ List<Chapter>? mangaChapterListWithFilter(
 
   return chapterList.valueOrNull?.where(applyChapterFilter).toList()
     ?..sort(applyChapterSort);
+}
+
+@riverpod
+Pair<Chapter?, Chapter?>? getPreviousAndNextChapters(
+  GetPreviousAndNextChaptersRef ref, {
+  required String mangaId,
+  required String chapterIndex,
+}) {
+  final filteredList =
+      ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
+  if (filteredList == null) return null;
+  final currentChapterIndex =
+      filteredList.indexWhere((element) => "${element.index}" == chapterIndex);
+  return Pair(
+    first:
+        currentChapterIndex > 0 ? filteredList[currentChapterIndex - 1] : null,
+    second: currentChapterIndex < (filteredList.length - 1)
+        ? filteredList[currentChapterIndex + 1]
+        : null,
+  );
 }
 
 @riverpod

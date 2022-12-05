@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../constants/navigation_bar_data.dart';
 import '../../features/manga_book/widgets/update_status_nav_rail_leading.dart';
-import '../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../utils/extensions/custom_extensions.dart';
 
 class BigScreenNavigationBar extends StatelessWidget {
   const BigScreenNavigationBar({super.key, required this.selectedScreen});

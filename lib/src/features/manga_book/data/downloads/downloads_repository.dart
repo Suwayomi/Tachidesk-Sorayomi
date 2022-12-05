@@ -15,8 +15,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/classes/pair/pair_model.dart';
-import '../../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../../utils/misc/custom_typedef.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/downloads/downloads_model.dart';
 import '../../domain/downloads_queue/downloads_queue_model.dart';
@@ -42,12 +41,12 @@ class DownloadsRepository {
   Future<void> removeChapterFromDownloadQueue(int mangaId, int chapterIndex) =>
       dioClient.delete(DownloaderUrl.chapter(mangaId, chapterIndex));
 
-  Pair<Stream<Downloads>, AsyncVoidCallBack> socketDownloads() {
+  Pair<Stream<Downloads>, AsyncCallback> socketDownloads() {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
     final channel =
         WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads));
 
-    return Pair<Stream<Downloads>, AsyncVoidCallBack>(
+    return Pair<Stream<Downloads>, AsyncCallback>(
       first: channel.stream.asyncMap<Downloads>(
         (event) => compute<String, Downloads>(
           (s) => Downloads.fromJson(json.decode(s)),

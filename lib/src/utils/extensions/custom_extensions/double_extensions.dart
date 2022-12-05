@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+part of '../custom_extensions.dart';
+
 extension DoubleExtensions on double? {
   bool liesBetween({double lower = 0, double upper = 1}) =>
       this != null ? this! >= lower && this! <= upper : false;

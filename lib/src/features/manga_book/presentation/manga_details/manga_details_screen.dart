@@ -11,11 +11,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/chapter/chapter_model.dart';
-import '../../widgets/multi_select_bottom_options.dart';
+import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
 import 'controller/manga_details_controller.dart';
 import 'widgets/big_screen_manga_details.dart';
 import 'widgets/edit_manga_category_dialog.dart';
@@ -29,12 +28,12 @@ class MangaDetailsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = mangaWithIdProvider(mangaId: mangaId);
-    final chapterProvider = mangaChapterListProvider(mangaId: mangaId);
+    final chapterListProvider = mangaChapterListProvider(mangaId: mangaId);
     final manga = ref.watch(provider);
-    final chapterList = ref.watch(chapterProvider);
+    final chapterList = ref.watch(chapterListProvider);
     final selectedChapters = useState<Map<int, Chapter>>({});
     refresh([useCache = true]) async {
-      await ref.read(chapterProvider.notifier).refresh(useCache);
+      await ref.read(chapterListProvider.notifier).refresh(useCache);
       await ref.read(provider.notifier).refresh(useCache);
     }
 
@@ -132,9 +131,9 @@ class MangaDetailsScreen extends HookConsumerWidget {
           child: MangaChapterOrganizer(),
         ),
         bottomSheet: selectedChapters.value.isNotEmpty
-            ? MultiSelectBottomOptions(
+            ? MultiChaptersActionsBottomAppBar(
                 afterOptionSelected: () async =>
-                    ref.read(chapterProvider.notifier).refresh(true),
+                    ref.read(chapterListProvider.notifier).refresh(true),
                 selectedChapters: selectedChapters,
               )
             : null,

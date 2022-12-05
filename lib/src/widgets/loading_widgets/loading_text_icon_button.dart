@@ -4,11 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../utils/misc/custom_typedef.dart';
 import '../custom_circular_progress_indicator.dart';
 
 class LoadingTextIconButton extends HookWidget {
@@ -19,7 +19,7 @@ class LoadingTextIconButton extends HookWidget {
     required this.icon,
     this.style,
   }) : super(key: key);
-  final AsyncVoidCallBack onPressed;
+  final AsyncCallback onPressed;
   final Icon icon;
   final ButtonStyle? style;
   final Widget label;

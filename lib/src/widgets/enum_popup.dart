@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/app_sizes.dart';
 import '../i18n/locale_keys.g.dart';
-import '../utils/extensions/custom_extensions/context_extensions.dart';
+import '../utils/extensions/custom_extensions.dart';
 import 'pop_button.dart';
 
 class EnumPopup<T extends Enum> extends StatelessWidget {

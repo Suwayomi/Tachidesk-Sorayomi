@@ -6,12 +6,12 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/enum.dart';
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../widgets/enum_popup.dart';
 
 class AuthTypeTile extends ConsumerWidget {
@@ -31,7 +31,7 @@ class AuthTypeTile extends ConsumerWidget {
           value: authType ?? AuthType.none,
           onChange: (enumValue) {
             ref.read(authTypeKeyProvider.notifier).update(enumValue);
-            context.navPop();
+            context.pop();
           },
         ),
       ),

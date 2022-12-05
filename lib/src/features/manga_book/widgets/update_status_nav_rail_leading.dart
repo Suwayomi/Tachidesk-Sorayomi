@@ -12,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../constants/gen/assets.gen.dart';
 import '../../../i18n/locale_keys.g.dart';
 import '../../../routes/router_config.dart';
-import '../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../utils/extensions/custom_extensions.dart';
 import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 

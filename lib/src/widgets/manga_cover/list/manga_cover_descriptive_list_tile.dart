@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
 import '../../../i18n/locale_keys.g.dart';
-import '../../../utils/extensions/custom_extensions/context_extensions.dart';
+import '../../../utils/extensions/custom_extensions.dart';
 import '../grid/manga_cover_grid_tile.dart';
 import '../widgets/manga_badges.dart';
 import '../widgets/manga_chips.dart';

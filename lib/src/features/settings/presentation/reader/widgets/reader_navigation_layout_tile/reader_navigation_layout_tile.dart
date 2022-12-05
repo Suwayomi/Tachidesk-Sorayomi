@@ -6,13 +6,13 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
 import '../../../../../../i18n/locale_keys.g.dart';
-import '../../../../../../utils/extensions/custom_extensions/context_extensions.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../../../widgets/enum_popup.dart';
 
@@ -52,7 +52,7 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
             await ref
                 .read(readerNavigationLayoutKeyProvider.notifier)
                 .update(enumValue);
-            if (context.mounted) context.navPop();
+            if (context.mounted) context.pop();
           },
         ),
       ),

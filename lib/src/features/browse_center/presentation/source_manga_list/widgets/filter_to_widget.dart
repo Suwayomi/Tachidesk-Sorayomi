@@ -7,10 +7,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../utils/extensions/custom_extensions/bool_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/search_field.dart';
 import '../../../../../widgets/sort_list_tile.dart';
 import '../../../domain/filter/filter_model.dart';

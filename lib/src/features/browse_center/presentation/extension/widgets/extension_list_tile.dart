@@ -5,14 +5,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
-import '../../../../../utils/misc/custom_typedef.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../data/extension_repository/extension_repository.dart';
@@ -26,7 +25,7 @@ class ExtensionListTile extends HookConsumerWidget {
   });
 
   final Extension extension;
-  final AsyncVoidCallBack refresh;
+  final AsyncCallback refresh;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

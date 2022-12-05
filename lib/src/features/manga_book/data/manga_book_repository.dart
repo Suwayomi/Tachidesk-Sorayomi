@@ -13,6 +13,7 @@ import '../../../utils/storage/dio/dio_client.dart';
 import '../../library/domain/category/category_model.dart';
 import '../domain/chapter/chapter_model.dart';
 import '../domain/chapter_batch/chapter_batch_model.dart';
+import '../domain/chapter_patch/chapter_put_model.dart';
 import '../domain/manga/manga_model.dart';
 
 part 'manga_book_repository.g.dart';
@@ -45,8 +46,8 @@ class MangaBookRepository {
   // Chapters
 
   Future<Chapter?> getChapter({
-    required int mangaId,
-    required int chapterIndex,
+    required String mangaId,
+    required String chapterIndex,
     bool useCache = true,
     CancelToken? cancelToken,
   }) async =>
@@ -56,6 +57,30 @@ class MangaBookRepository {
         cancelToken: cancelToken,
       ))
           .data;
+
+  Future<void> putChapter({
+    required String mangaId,
+    required String chapterIndex,
+    required ChapterPut patch,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.put<Chapter, Chapter?>(
+        MangaUrl.chapterWithIndex(mangaId, chapterIndex),
+        data: FormData.fromMap(patch.toJson()),
+        cancelToken: cancelToken,
+      ));
+
+  Future<void> patchMangaMeta({
+    required String mangaId,
+    required String key,
+    required String value,
+    CancelToken? cancelToken,
+  }) async =>
+      (await dioClient.patch<Chapter, Chapter?>(
+        MangaUrl.meta(mangaId),
+        data: FormData.fromMap({"key": key, "value": value}),
+        cancelToken: cancelToken,
+      ));
 
   Future<List<Chapter>?> getChapterList({
     required String mangaId,

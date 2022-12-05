@@ -4,18 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/material.dart';
-
-import 'iterable_extensions.dart';
+part of '../custom_extensions.dart';
 
 /// Helper class for device related operations.
 ///
 extension ContextExtensions on BuildContext {
-  ///
-  /// Pop the page with Navigator.pop(context)
-  ///
-  void navPop<T>([T? result]) => Navigator.pop<T>(this, result);
-
   ///
   /// hides the keyboard if its already open
   ///

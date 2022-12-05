@@ -8,8 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/string_extensions.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../settings/presentation/browse/widgets/show_nsfw_switch/show_nsfw_switch.dart';
 import '../../../data/extension_repository/extension_repository.dart';

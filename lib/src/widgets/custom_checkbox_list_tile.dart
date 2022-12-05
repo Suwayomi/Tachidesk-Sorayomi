@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../utils/extensions/custom_extensions/context_extensions.dart';
+import '../utils/extensions/custom_extensions.dart';
 
 class CustomCheckboxListTile<NotifierT extends AutoDisposeNotifier<bool?>>
     extends ConsumerWidget {

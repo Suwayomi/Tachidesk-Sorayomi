@@ -11,8 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../constants/app_sizes.dart';
-import '../utils/extensions/custom_extensions/context_extensions.dart';
-import '../utils/extensions/custom_extensions/string_extensions.dart';
+import '../utils/extensions/custom_extensions.dart';
 
 const errorFaces = [
   '(･o･;)',

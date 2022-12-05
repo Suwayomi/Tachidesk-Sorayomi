@@ -5,16 +5,12 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions/async_value_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/context_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/int_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/iterable_extensions.dart';
-import '../../../../../utils/extensions/custom_extensions/map_extensions.dart';
-import '../../../../../utils/misc/custom_typedef.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -34,7 +30,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
   });
   final String mangaId;
   final Manga manga;
-  final AsyncValueChanged<bool> onRefresh;
+  final AsyncValueSetter<bool> onRefresh;
   final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncValue<List<Chapter>?> chapterList;
   @override

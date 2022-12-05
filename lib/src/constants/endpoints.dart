@@ -8,8 +8,9 @@ import 'db_keys.dart';
 
 abstract class Endpoints {
   // base url
-  static String baseApi({String? baseUrl}) =>
-      "${baseUrl ?? DBKeys.serverUrl.initial}/api/v1";
+  static String baseApi({String? baseUrl, bool appendApiToUrl = true}) =>
+      "${baseUrl ?? DBKeys.serverUrl.initial}"
+      "${appendApiToUrl ? '/api/v1' : ''}";
 
   // receiveTimeout
   static const int receiveTimeout = 20000;
@@ -50,22 +51,21 @@ abstract class MangaUrl {
   static String categoryId(String mangaId, String categoryId) =>
       "$_manga/$mangaId/category/$categoryId";
   static String library(String mangaId) => "$_manga/$mangaId/library";
-  static String meta(int mangaId) => "$_manga/$mangaId/meta";
+  static String meta(String mangaId) => "$_manga/$mangaId/meta";
   static String chapters(String mangaId, {bool useCache = true}) =>
       "$_manga/$mangaId/chapters?useCache=$useCache";
-  static String chapterWithIndex(int mangaId, int chapterIndex,
+  static String chapterWithIndex(String mangaId, String chapterIndex,
           {bool useCache = true}) =>
       "$_manga/$mangaId/chapter/$chapterIndex?useCache=$useCache";
   static String chapterMetaWithIndex(int mangaId, int chapterIndex) =>
       "$_manga/$mangaId/chapter/$chapterIndex/meta";
   static String chapterBatch = "/chapter/batch";
   static String chapterPageWithIndex({
-    required int mangaId,
-    required int chapterIndex,
-    required int pageIndex,
-    required bool useCache,
+    required String mangaId,
+    required String chapterIndex,
+    required String pageIndex,
   }) =>
-      "$_manga/$mangaId/chapter/$chapterIndex/page/$pageIndex?useCache=$useCache";
+      "$_manga/$mangaId/chapter/$chapterIndex/page/$pageIndex";
 
   static const String _manga = "/manga";
 }
