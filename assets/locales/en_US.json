@@ -1,265 +1,247 @@
 {
-    "aboutScreen": {
-        "buildTime": "Build time",
-        "channel": "Channel",
-        "checkForUpdates": "Check for updates",
-        "client": "Client",
-        "clientVersion": "Client version",
-        "discord": "Discord",
-        "gitHub": "GitHub",
-        "launchError": {
-            "title": "@website URL failed to launch"
-        },
-        "noUpdatesAvailable": "No update available",
-        "searchingForUpdates": "Searching for updates...",
-        "server": "Server",
-        "serverVersion": "Server version",
-        "sorayomi": "Soroyomi"
+    "AuthType": {
+        "basic": "Basic Auth",
+        "none": "None"
     },
-    "appTitle": "Tachidesk Sorayomi",
-    "appUpdate": {
-        "close": "Close",
-        "gitHub": "GitHub",
-        "newUpdateAvilable": "New update avilable",
-        "versionAvilable": "Version v@version avilable!!"
+    "ChapterSort": {
+        "fetchedDate": "By Fetched Data",
+        "source": "By Source"
     },
-    "appearanceScreen": {
-        "darkTheme": {
-            "subtitle": "Turn on DarkMode",
-            "title": "Dark Theme"
-        }
+    "DisplayMode": {
+        "descriptiveList": "Descriptive List",
+        "grid": "Grid",
+        "list": "List"
     },
-    "backupSettings": {
-        "create": {
-            "subtitle": "Backup library as a Tachdesk backup",
-            "title": "Create Backup"
-        },
-        "restore": {
-            "subtitle": "Restore Tachdesk from backup",
-            "title": "Restore Backup"
-        },
-        "restored": {
-            "subtitle": "Restored Tachdesk from backup",
-            "title": "Backup restored"
-        },
-        "restoring": {
-            "subtitle": "Restoring Tachdesk from backup",
-            "title": "Restoring backup..."
-        }
+    "MangaSort": {
+        "alphabetical": "Alphabetical",
+        "dateAdded": "Date Added",
+        "unread": "Unread"
     },
-    "browserScreen": {
-        "SourceSearch": "Search..",
-        "mangaSearch": "Global search.."
+    "MangaStatus": {
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "licensed": "Licensed",
+        "onHiatus": "On Hiatus",
+        "ongoing": "Ongoing",
+        "publishingFinished": "Publishing Finished",
+        "unknown": "Unknown"
     },
-    "browserSettingsScreen": {
-        "nsfw": {
-            "info": "This does not prevent unofficial or potentially incorrectly flaged extensions from surfacing NSFW(18+) content within app",
-            "subtitle": "Requires app Restart or Reload",
-            "title": "Show NSFW extensions and sources"
-        }
+    "ReaderMode": {
+        "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
+        "continuousHorizontalRTL": "Continuous Horizontal (RTL)",
+        "continuousVertical": "Continuous Vertical",
+        "defaultReader": "Default",
+        "singleHorizontalLTR": "Single Horizontal (LTR)",
+        "singleHorizontalRTL": "Single Horizontal (RTL)",
+        "singleVertical": "Single Vertical",
+        "webtoon": "Webtoon"
     },
-    "downloadScreen": {
-        "pause": "Pause",
-        "resume": "Resume"
+    "ReaderNavigationLayout": {
+        "disabled": "Disabled",
+        "edge": "Edge",
+        "kindlish": "Kindle-ish",
+        "lShaped": "L Shaped",
+        "rightAndLeft": "Right and Left",
+        "defaultNavigation": "Default"
     },
-    "editCategoriesScreen": {
-        "add": "Add",
-        "addCategory": "Add Category",
-        "defaultCategory": "Default category when adding new manga to library",
-        "editCategory": "Edit Category",
-        "emptyCategory": {
-            "message": "Category name can't be empty",
-            "title": "Empty name!"
-        },
-        "name": "Category Name"
-    },
-    "error": {
-        "filePick": {
-            "message": "Please select a file to @process ",
-            "title": "File not selected"
-        },
-        "filePickUnknownExtension": {
-            "message": "Please select a file with @extensionName extension",
-            "title": "Unknown file extension"
-        },
-        "installeExtensionFile": {
-            "message": "Please try again",
-            "title": "Failed to Install"
-        },
-        "invalidURL": {
-            "message": "Invalid URL",
-            "title": "Enter a valid URL"
-        },
-        "launchURL": {
-            "message": "Failed to launch @website",
-            "title": "Copying @url to clipboard"
-        },
-        "restoreBackup": {
-            "message": "Please try again",
-            "title": "Failed to Restore backup"
-        }
-    },
-    "extensionScreen": {
-        "extensionInstalled": {
-            "subtitle": "Extension Installed successfully",
-            "title": "Extension Installed!"
-        },
-        "extensionsError": "Extensions to Install",
-        "install": "Install",
-        "installFile": {
-            "subtitle": "Installing Tachdesk Extension",
-            "title": "Installing Extension..."
-        },
-        "nsfw": "18+",
-        "reload": "Reload!",
-        "uninstall": "Uninstall",
-        "update": "Update",
-        "wait": "wait!"
-    },
-    "globalSearchScreen": {
-        "globalSearch": "Global Search",
-        "searchGlobally": "Search Globally"
-    },
-    "libraryScreen": {
+    "SourceType": {
         "filter": "Filter",
-        "filterCompleted": "Completed",
-        "filterDownloaded": "Downloaded",
-        "filterUnread": "Unread",
-        "manga": "Manga",
-        "mangaSearch": "Search manga..",
-        "refresh": "Refresh",
-        "sort": "Sort",
-        "sortId": "Id",
-        "sortInLibraryAt": "In Library",
-        "sortTitle": "Title",
-        "sortUnread": "Unread"
-    },
-    "loading": "Loading",
-    "mangaGridDesign": {
-        "inLibrary": "In library"
-    },
-    "mangaScreen": {
-        "addCategoryHint": "Add new categories in settings",
-        "addToLibrary": "Add to Library",
-        "artist": "Artist",
-        "author": "Author",
-        "category": "Category",
-        "chapterList": {
-            "bookmark": "Bookmark",
-            "markAsRead": "Mark as read",
-            "markAsUnread": "Mark as unread",
-            "markPrevAsRead": "Mark previous as read",
-            "markPrevAsUnread": "Mark previous as unread",
-            "removeBookmark": "Remove bookmark"
-        },
-        "chapters": "Chapters",
-        "filter": "Filter",
-        "filterBookmarked": "Bookmarked",
-        "filterDownloaded": "Downloaded",
-        "filterUnread": "Unread",
-        "inLibrary": "In library",
-        "manga": "Manga",
-        "noChapter": "chapter found",
-        "noNewChapter": "No new chapter",
-        "reload": "Reload",
-        "setAsDefault": "Set as default",
-        "sort": "Sort",
-        "sortFetchedAt": "Fetched date",
-        "sortScanlator": "Scanlator",
-        "sortSource": "Source",
-        "source": "Source",
-        "status": "Status",
-        "unknown": "Unknown",
-        "webView": "WebView"
-    },
-    "no": "No",
-    "readerScreen": {
-        "chapter": "Chapter",
-        "chapterError": "Chapter to Load",
-        "image": "Image",
-        "manga": "Manga",
-        "nextChapter": "Next Chapter",
-        "previousChapter": "Previous Chapter",
-        "readerMode": {
-            "continuousHorizontalLTR": "(LTR) Continuous Horizontal",
-            "continuousHorizontalRTL": "(RTL) Continuous Horizontal",
-            "continuousVertical": "Continuous Vertical",
-            "defaultReader": "Default",
-            "singleHorizontalLTR": "(LTR) Single Horizontal",
-            "singleHorizontalRTL": "(RTL) Single Horizontal ",
-            "singleVertical": "Single Vertical",
-            "webtoon": "Webtoon"
-        },
-        "readerMode_": "Reading Mode",
-        "readerNavigationLayout": {
-            "disabled": "Disabled",
-            "edge": "Edge",
-            "kindlish": "Kindle-ish",
-            "lShaped": "L Shaped",
-            "rightAndLeft": "Right and Left"
-        },
-        "readerNavigationLayoutInvert": "Invert tapping",
-        "readerNavigationLayout_": "Navigation layout",
-        "reload": "Reload!",
-        "savedImagePathTitle": "Image path saved to Clipboard"
-    },
-    "readerSettingsScreen": {
-        "category": "Category",
-        "readerMode": "Default Reading Mode",
-        "readerNavigationLayout": "Default Navigation layout",
-        "readerNavigationLayoutInvert": "Default Invert tapping"
-    },
-    "screenTitle": {
-        "about": "About",
-        "browse": "Browse",
-        "categories": "Categories",
-        "downloads": "Downloads",
-        "extensions": "Extensions",
-        "library": "Library",
-        "more": "More",
-        "readerSettingsView": "Reader Settings",
-        "settings": "Settings",
-        "sources": "Sources",
-        "updates": "Updates"
-    },
-    "searchManga": {
-        "noMangaFound": "No Manga Found",
-        "search": "Search",
-        "searchManga": "Search manga.."
-    },
-    "serverSettingsScreen": {
-        "baseAuthType": "Authentication Type",
-        "password": "Password",
-        "save": "Save",
-        "url": "Server URL",
-        "userName": "User Name",
-        "webUI": "Open in WEB"
-    },
-    "settingsScreen": {
-        "appearance": "Appearance",
-        "backup": "Backup & Restore",
-        "browse": "Browse Settings",
-        "general": "General Settings",
-        "library": "Library Settings",
-        "reader": "Reader Settings",
-        "server": "Server Settings"
-    },
-    "sourceMangaScreen": {
-        "browse": "Browse manga",
-        "filter": "Filter",
-        "latest": "Latest manga",
-        "loading": "Loading!",
-        "manga": "Manga",
-        "reload": "Reload!",
-        "reset": "Reset"
-    },
-    "sourceScreen": {
-        "browse": "Browse",
-        "close": "Close",
-        "extensions": "Installed Extensions",
-        "languages": "Languages",
         "latest": "Latest",
-        "reload": "Reload!",
-        "search": "Search"
-    }
+        "popular": "Popular"
+    },
+    "ThemeMode": {
+        "dark": "Dark",
+        "light": "Light",
+        "system": "System"
+    },
+    "about": "About",
+    "add": "Add",
+    "addCategory": "Add Category",
+    "addCategoryHint": "Add new categories in settings",
+    "addToLibrary": "Add to Library",
+    "appTheme": "App Theme",
+    "appTitle": "Tachidesk Sorayomi",
+    "appearance": "Appearance",
+    "artist": "Artist",
+    "backup": "Backup & Restore",
+    "badges": "Badges",
+    "baseAuthType": "Authentication Type",
+    "bookmarked": "Bookmarked",
+    "browse": "Browse",
+    "browseManga": "Browse manga",
+    "buildTime": "Build time",
+    "cancel": "Cancel",
+    "categories": "Categories",
+    "category": "Category",
+    "categoryUpdate": "Category Update",
+    "channel": "Channel",
+    "chapter": "Chapter",
+    "chapterError": "Chapter to Load",
+    "chapterList": {
+        "bookmark": "Bookmark",
+        "markAsRead": "Mark as read",
+        "markAsUnread": "Mark as unread",
+        "markPrevAsRead": "Mark previous as read",
+        "markPrevAsUnread": "Mark previous as unread",
+        "removeBookmark": "Remove bookmark"
+    },
+    "chapterNumber": "Chapter {number}",
+    "chapters": "Chapters",
+    "checkForServerUpdates": "Check for Server updates",
+    "checkForUpdates": "Check for updates",
+    "client": "Client",
+    "clientVersion": "Client version",
+    "close": "Close",
+    "completed": "Completed",
+    "copyMsg": "\"{msg}\" Copied!",
+    "create": "Create",
+    "createBackup": {
+        "subtitle": "Backup library as a Tachidesk backup",
+        "title": "Create Backup"
+    },
+    "credentials": "Credentials",
+    "current": "Current",
+    "defaultCategory": "Default category when adding new manga to library",
+    "delete": "Delete",
+    "deleteCategory": {
+        "content": "This will merge all Mangas in this Category to Default!",
+        "title": "Are you sure?"
+    },
+    "discord": "Discord",
+    "display": "Display",
+    "displayMode": "Display Mode",
+    "downloaded": "Downloaded",
+    "downloads": "Downloads",
+    "edit": "Edit",
+    "editCategory": "Edit Category",
+    "emptyCategory": "Category name can't be Empty",
+    "error": {
+        "extension": "Can't find the selected extension",
+        "filePick": "File not selected!",
+        "filePickUnknownExtension": "Please select a file with {extensionName} extension",
+        "installedExtensionFile": "Failed to Install! Please try again",
+        "invalidURL": "Invalid URL",
+        "launchURL": "Failed to open!\nCopying \"{url}\" to clipboard",
+        "password": "Password can't be empty",
+        "restoreBackup": "Failed to Restore backup!\nPlease try again",
+        "somethingWentWrong": "Something went wrong!",
+        "userName": "User Name can't be empty"
+    },
+    "extensionInstalled": "Extension Installed!",
+    "extensionListEmpty": "Extension list is Empty",
+    "extensions": "Extensions",
+    "extensionsError": "Extensions to Install",
+    "failed": "Failed",
+    "filter": "Filter",
+    "finished": "Finished",
+    "general": "General",
+    "gitHub": "GitHub",
+    "globalSearch": "Global Search",
+    "globalUpdate": "Global Update",
+    "help": "Help",
+    "image": "Image",
+    "inLibrary": "In library",
+    "install": "Install",
+    "installedExtensions": "Installed Extensions",
+    "installing": "Installing",
+    "installingExtension": "Installing Extension...",
+    "languages": "Languages",
+    "latest": "Latest",
+    "latestManga": "Latest manga",
+    "library": "Library",
+    "loading": "Loading!",
+    "manga": "Manga",
+    "mangaSearch": "Search manga..",
+    "missingExtension": "Missing Extensions",
+    "missingTrackers": "Missing Trackers",
+    "more": "More",
+    "name": "Category Name",
+    "newUpdateAvailable": "New update available",
+    "nextChapter": "Next Chapter",
+    "no": "No",
+    "noCategoriesFound": "You don't have any Categories. \nTap the Plus button to create one for organizing your library",
+    "noCategoriesFoundAlt": "You don't have any Categories. \nCreate one in settings for organizing your library",
+    "noCategoryMangaFound": "No manga found in this Category. \n(Tip: Check your search & filters!)",
+    "noChaptersFound": "No Chapters found",
+    "noDownloads": "No Downloads",
+    "noMangaFound": "No Mangas Found",
+    "noNewChapter": "No new chapter",
+    "noOfChapters": "{count} Chapters",
+    "noResultFound": "No results found",
+    "noSourcesFound": "No sources found",
+    "noUpdatesAvailable": "You're using the latest version",
+    "noUpdatesFound": "No updates found",
+    "nsfw": {
+        "info": "This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing NSFW(18+) content within app",
+        "subtitle": "Requires app Restart or Reload",
+        "title": "Show NSFW extensions and sources"
+    },
+    "nsfw18": "18+",
+    "numSelected": "{num} Selected",
+    "password": "Password",
+    "pause": "Pause",
+    "pending": "Pending",
+    "popular": "Popular",
+    "previousChapter": "Previous Chapter",
+    "reader": "Reader",
+    "readerMode": "Reading Mode",
+    "readerNavigationLayout": "Navigation layout",
+    "readerNavigationLayoutInvert": "Invert tapping",
+    "readerNavigationLayout_": "Navigation layout",
+    "readerSettingsView": "Reader Settings",
+    "reddit": "Reddit",
+    "refresh": "Refresh",
+    "reload": "Reload!",
+    "reset": "Reset",
+    "restore": {
+        "subtitle": "Restore Tachidesk from backup",
+        "title": "Restore Backup"
+    },
+    "restored": "Backup restored!",
+    "restoring": "Restoring backup...",
+    "resume": "Resume",
+    "retry": "Retry",
+    "running": "Running",
+    "save": "Save",
+    "savedImagePathTitle": "Image path saved to Clipboard",
+    "search": "Search...",
+    "searchGlobally": "Search Globally",
+    "searchManga": "Search manga..",
+    "searchingForUpdates": "Searching for updates...",
+    "server": "Server",
+    "serverVersion": "Server version",
+    "setAsDefault": "Set as default",
+    "settings": "Settings",
+    "showLess": "    Show Less",
+    "showMore": "Show More",
+    "sorayomi": "Sorayomi",
+    "sort": "Sort",
+    "sortFetchedAt": "Fetched date",
+    "sortId": "Id",
+    "sortInLibraryAt": "In Library",
+    "sortScanlator": "Scanlator",
+    "sortSource": "Source",
+    "sortTitle": "Title",
+    "sortUnread": "Unread",
+    "source": "Source",
+    "sources": "Sources",
+    "status": "Status",
+    "uninstall": "Uninstall",
+    "uninstalling": "Uninstalling",
+    "unknown": "Unknown",
+    "unknownAuthor": "Unknown Author",
+    "unknownManga": "Unknown Manga",
+    "unknownSource": "Unknown Source",
+    "unread": "Unread",
+    "update": "Update",
+    "updates": "Updates",
+    "updatesSummary": "Updates Summary",
+    "updating": "Updating",
+    "url": "Server URL",
+    "urlHintText": "Enter server url",
+    "userName": "User Name",
+    "versionAvailable": "Version {version} available for {app}!!",
+    "webUI": "Open in WEB",
+    "webView": "WebView",
+    "whatsNew": "What's New?"
 }

@@ -1,40 +1,41 @@
+// Copyright (c) 2022 Contributors to the Suwayomi project
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'src/features/about/presentation/about/controllers/about_controller.dart';
+import 'src/i18n/codegen_loader.g.dart';
+import 'src/sorayomi.dart';
+import 'src/utils/logger/provider_state_logger.dart';
+import 'src/utils/storage/local/shared_preferences_client.dart';
 
-import 'app/data/services/local_storage_service.dart';
-import 'app/routes/app_pages.dart';
-import 'generated/locales.g.dart';
-
-void main() async {
-  await GetStorage.init('Tachidesk-Sorayomi');
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final controller = Get.put(LocalStorageService(), permanent: true);
+  await EasyLocalization.ensureInitialized();
+  final packageInfo = await PackageInfo.fromPlatform();
+  final sharedPreferences = await SharedPreferences.getInstance();
   runApp(
-    GetMaterialApp(
-      title: "Tachidesk Sorayomi",
-      translationsKeys: AppTranslation.translations,
-      locale: Get.deviceLocale,
-      fallbackLocale: Locale('en', 'US'),
-      initialRoute: AppPages.initial,
-      getPages: AppPages.routes,
-      theme: ThemeData(
-        colorScheme: ColorScheme.light(),
-        iconTheme: IconThemeData(
-          color: ColorScheme.light().primary,
-        ),
-        useMaterial3: true,
+    ProviderScope(
+      observers: const [if (kDebugMode) ProviderStateLogger()],
+      overrides: [
+        packageInfoProvider.overrideWithValue(packageInfo),
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
+      ],
+      child: EasyLocalization(
+        supportedLocales: const [Locale('en', 'US')],
+        path: "assets/locales/",
+        fallbackLocale: const Locale('en', "US"),
+        assetLoader: const CodegenLoader(),
+        child: const Sorayomi(),
       ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.dark(),
-        iconTheme: IconThemeData(
-          color: ColorScheme.dark().primary,
-        ),
-        useMaterial3: true,
-      ),
-      themeMode: controller.theme,
-      debugShowCheckedModeBanner: false,
     ),
   );
 }

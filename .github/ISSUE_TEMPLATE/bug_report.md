@@ -49,8 +49,8 @@ If applicable, add screenshots to help explain your problem.
 - Client version: (Example: 0.1.1)
 - Client Type: (Example: Web, Android, Linux, Windows.)
 - Client Operating System: (Example: Ubuntu 20.04)
-- Client Specifications: (Example: Pixel 4a) 
-- (If the Client type is web) Client Web Browser: (Example: Google Chrome 89.0.4389.82) 
+- Client Specifications: (Example: Pixel 4a)
+- (If the Client type is web) Client Web Browser: (Example: Google Chrome 89.0.4389.82)
 
 
 **Additional context**
