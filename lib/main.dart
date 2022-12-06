@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -23,7 +24,7 @@ Future<void> main() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(
     ProviderScope(
-      observers: const [ProviderStateLogger()],
+      observers: const [if (kDebugMode) ProviderStateLogger()],
       overrides: [
         packageInfoProvider.overrideWithValue(packageInfo),
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
