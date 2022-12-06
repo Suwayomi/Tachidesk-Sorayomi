@@ -1,8 +1,11 @@
+html {
+  height: 100%
+}
+
 body {
-  margin:0;
-  height:100%;
-  background: #54C5F8;
-  
+  margin: 0;
+  min-height: 100%;
+  background-color: #54C5F8;
   background-size: 100% 100%;
 }
 
@@ -54,10 +57,6 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    margin:0;
-    height:100%;
-    background: #01579B;
-    
-    background-size: 100% 100%;
+    background-color: #01579B;
   }
 }
