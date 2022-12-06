@@ -42,7 +42,7 @@ printf '%s\n' "${avar}"
 # Build Runner
 #
 printf "\e[33;1m%s\e[0m\n" '=== Running Build Runner ==='
-flutter pub run build_runner build
+flutter pub run build_runner build --delete-conflicting-outputs
 
 hasNewFilesFormatted=$(git diff)
 if [ -n "$hasNewFilesFormatted" ]; then
