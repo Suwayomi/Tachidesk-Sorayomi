@@ -83,7 +83,8 @@ class SinglePageReaderMode extends HookWidget {
             ),
           );
 
-          if (index == 0 && onPageChanged != null) {
+          if (index == ((chapter.pageCount ?? 0) - 1) &&
+              onPageChanged != null) {
             onPageChanged!(-1);
           }
           return InteractiveViewer(

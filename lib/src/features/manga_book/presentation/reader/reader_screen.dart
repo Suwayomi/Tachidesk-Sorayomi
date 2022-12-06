@@ -48,6 +48,9 @@ class ReaderScreen extends HookConsumerWidget {
               ),
             ),
       );
+      if (currentPage == -1) {
+        ref.invalidate(mangaChapterListProvider(mangaId: mangaId));
+      }
       return;
     }, []);
 
