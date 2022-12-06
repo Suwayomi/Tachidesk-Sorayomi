@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ThemeModeKeyHash() => r'ab2e0ecf6f258fe5ad1a2becc40d6ed910eb455f';
+String $ThemeModeKeyHash() => r'0367ae63a2e99635914f696d1d05cbf23d31f706';
 
 /// See also [ThemeModeKey].
 final themeModeKeyProvider =

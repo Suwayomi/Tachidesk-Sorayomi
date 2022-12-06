@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $ReaderNavigationLayoutKeyHash() =>
-    r'4a86df02877ec2f253d03981fda29aba62e66994';
+    r'293d91878b43a89c13e0cf3a2dfb5e3a04f5f6de';
 
 /// See also [ReaderNavigationLayoutKey].
 final readerNavigationLayoutKeyProvider = AutoDisposeNotifierProvider<

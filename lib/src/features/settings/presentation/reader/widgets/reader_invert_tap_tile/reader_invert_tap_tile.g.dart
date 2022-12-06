@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $InvertTapHash() => r'bbc30d20b67b8b1f660c0bbb17a457f5aedc2e1d';
+String $InvertTapHash() => r'3addc0c9f557ba81d0cb47b76d25685e3ce9d137';
 
 /// See also [InvertTap].
 final invertTapProvider = AutoDisposeNotifierProvider<InvertTap, bool?>(

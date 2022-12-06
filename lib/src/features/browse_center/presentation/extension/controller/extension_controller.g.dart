@@ -30,7 +30,7 @@ class _SystemHash {
 }
 
 String $ExtensionLanguageFilterHash() =>
-    r'697f4467d0009bf6a257ef38da21e4dd4595d95a';
+    r'a7719bb989b3042dd4b7a0b22ddc2042f5e34bc6';
 
 /// See also [ExtensionLanguageFilter].
 final extensionLanguageFilterProvider =

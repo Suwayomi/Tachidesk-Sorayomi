@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ReaderModeKeyHash() => r'04d55349a06b97521498f1e1bdbc36b6645e3388';
+String $ReaderModeKeyHash() => r'57e08513ac83934efd991637dacb24ac8df1ebd5';
 
 /// See also [ReaderModeKey].
 final readerModeKeyProvider =
