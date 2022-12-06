@@ -74,9 +74,9 @@ class SourceQuickSearch extends ConsumerWidget {
                 )),
         ],
       ),
-      wrapper: (child) => Padding(
-        padding: KEdgeInsets.v8.size,
-        child: child,
+      wrapper: (child) => ListTile(
+        title: Text(LocaleKeys.source.tr()),
+        subtitle: child,
       ),
     );
   }

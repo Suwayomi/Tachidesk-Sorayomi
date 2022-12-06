@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'constants/app_themes/color_schemas/default_theme.dart';
 import 'features/settings/widgets/theme_mode_tile/theme_mode_tile.dart';
 import 'i18n/locale_keys.g.dart';
 import 'routes/router_config.dart';
@@ -22,8 +23,8 @@ class Sorayomi extends ConsumerWidget {
     return MaterialApp.router(
       title: LocaleKeys.appTitle.tr(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(useMaterial3: true),
-      darkTheme: ThemeData.dark(useMaterial3: true),
+      theme: defaultTheme.light,
+      darkTheme: defaultTheme.dark,
       themeMode: themeMode ?? ThemeMode.system,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

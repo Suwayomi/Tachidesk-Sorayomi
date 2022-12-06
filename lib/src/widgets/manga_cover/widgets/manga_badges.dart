@@ -60,8 +60,8 @@ class MangaBadgesRow extends ConsumerWidget {
                   if (manga.downloadCount.isGreaterThan(0) && downloadedBadge)
                     MangaBadge(
                       text: "${manga.downloadCount ?? 0}",
-                      color: context.theme.colorScheme.secondary,
-                      textColor: context.theme.colorScheme.onSecondary,
+                      color: context.theme.colorScheme.tertiary,
+                      textColor: context.theme.colorScheme.onTertiary,
                     ),
                 ],
               ),

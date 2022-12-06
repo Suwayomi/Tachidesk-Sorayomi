@@ -62,13 +62,7 @@ class BrowseScreen extends HookConsumerWidget {
           child: Column(
             children: [
               TabBar(
-                padding: KEdgeInsets.a8.size,
                 isScrollable: context.isTablet,
-                labelColor: context.theme.indicatorColor,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: context.theme.indicatorColor.withOpacity(.3),
-                ),
                 controller: tabController,
                 tabs: [
                   Tab(text: LocaleKeys.sources.tr()),

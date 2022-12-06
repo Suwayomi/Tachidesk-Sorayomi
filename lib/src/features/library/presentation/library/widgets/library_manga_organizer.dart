@@ -7,9 +7,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../utils/extensions/custom_extensions.dart';
 import 'library_manga_display.dart';
 import 'library_manga_filter.dart';
 import 'library_manga_sort.dart';
@@ -26,18 +24,12 @@ class LibraryMangaOrganizer extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: TabBar(
-            padding: KEdgeInsets.a8.size,
-            labelColor: context.theme.indicatorColor,
-            unselectedLabelColor: context.textTheme.bodyLarge!.color,
-            indicator: BoxDecoration(
-              borderRadius: KBorderRadius.r16.radius,
-              color: context.theme.indicatorColor.withOpacity(.3),
-            ),
-            tabs: [
-              Tab(text: LocaleKeys.filter.tr()),
-              Tab(text: LocaleKeys.sort.tr()),
-              Tab(text: LocaleKeys.display.tr()),
-            ]),
+          tabs: [
+            Tab(text: LocaleKeys.filter.tr()),
+            Tab(text: LocaleKeys.sort.tr()),
+            Tab(text: LocaleKeys.display.tr()),
+          ],
+        ),
         body: const TabBarView(
           children: [
             LibraryMangaFilter(),

@@ -37,12 +37,12 @@ mixin SharedPreferenceClient<T extends Object> {
     _client = client;
     _key = key;
     _initial = initial;
-    return _get;
+    return _get ?? _initial;
   }
 
   T? get _get {
     final value = _client.get(_key);
-    return value is T? ? value : _initial;
+    return value is T ? value : null;
   }
 
   Future<void> update(T? value) async {

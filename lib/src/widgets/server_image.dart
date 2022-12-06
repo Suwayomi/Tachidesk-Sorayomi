@@ -22,6 +22,7 @@ class ServerImage extends ConsumerWidget {
     this.fit,
     this.appendApiToUrl = false,
     this.progressIndicatorBuilder,
+    this.wrapper,
   });
 
   final String imageUrl;
@@ -30,6 +31,7 @@ class ServerImage extends ConsumerWidget {
   final bool appendApiToUrl;
   final Widget Function(BuildContext, String, DownloadProgress)?
       progressIndicatorBuilder;
+  final Widget Function(Widget child)? wrapper;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final baseUrl = ref.watch(serverUrlProvider);
@@ -46,11 +48,22 @@ class ServerImage extends ConsumerWidget {
           : null,
       width: size?.width,
       fit: fit ?? BoxFit.cover,
-      progressIndicatorBuilder: progressIndicatorBuilder,
-      errorWidget: (context, error, stackTrace) => const Icon(
-        Icons.broken_image_rounded,
-        color: Colors.grey,
-      ),
+      progressIndicatorBuilder: progressIndicatorBuilder == null
+          ? null
+          : (context, url, progress) => wrapper != null
+              ? wrapper!(progressIndicatorBuilder!(context, url, progress))
+              : progressIndicatorBuilder!(context, url, progress),
+      errorWidget: (context, error, stackTrace) => wrapper != null
+          ? wrapper!(
+              const Icon(
+                Icons.broken_image_rounded,
+                color: Colors.grey,
+              ),
+            )
+          : const Icon(
+              Icons.broken_image_rounded,
+              color: Colors.grey,
+            ),
     );
   }
 }

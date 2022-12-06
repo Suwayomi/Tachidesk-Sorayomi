@@ -90,6 +90,39 @@ class ReaderWrapper extends HookConsumerWidget {
             ),
         []);
 
+    final defaultReaderNavigationLayout = manga.meta.isNotBlank
+        ? ReaderNavigationLayout.values.firstWhere(
+            (element) =>
+                element.name ==
+                manga.meta![ChapterMeta.readerNavigationLayout.key],
+            orElse: () => ReaderNavigationLayout.defaultNavigation,
+          )
+        : ReaderNavigationLayout.defaultNavigation;
+
+    final showReaderNavigationLayoutPopup = useCallback(
+        () => showDialog(
+              context: context,
+              builder: (context) => EnumPopup<ReaderNavigationLayout>(
+                enumList: ReaderNavigationLayout.values,
+                value: defaultReaderNavigationLayout,
+                onChange: (enumValue) async {
+                  if (context.mounted) context.pop();
+
+                  await AsyncValue.guard(
+                    () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
+                          mangaId: "${manga.id}",
+                          key: ChapterMeta.readerNavigationLayout.key,
+                          value: enumValue.name,
+                        ),
+                  );
+                  ref.invalidate(
+                    mangaWithIdProvider(mangaId: "${manga.id}"),
+                  );
+                },
+              ),
+            ),
+        []);
+
     return Theme(
       data: context.theme.copyWith(
         bottomSheetTheme: const BottomSheetThemeData(
@@ -218,17 +251,28 @@ class ReaderWrapper extends HookConsumerWidget {
                                           subtitle: Text(
                                             defaultReaderMode.toString().tr(),
                                           ),
+                                          onTap: () {
+                                            context.pop();
+                                            showReaderModePopup();
+                                          },
                                         ),
                                         ListTile(
                                           leading: const Icon(
-                                            Icons.app_settings_alt_outlined,
+                                            Icons.touch_app_rounded,
                                           ),
                                           title: Text(
-                                            LocaleKeys.readerMode.tr(),
+                                            LocaleKeys.readerNavigationLayout
+                                                .tr(),
                                           ),
                                           subtitle: Text(
-                                            defaultReaderMode.toString().tr(),
+                                            defaultReaderNavigationLayout
+                                                .toString()
+                                                .tr(),
                                           ),
+                                          onTap: () {
+                                            context.pop();
+                                            showReaderNavigationLayoutPopup();
+                                          },
                                         ),
                                       ],
                                     ),
@@ -282,6 +326,7 @@ class ReaderWrapper extends HookConsumerWidget {
                     ReaderNavigationLayoutWidget(
                       onNext: onNext,
                       onPrevious: onPrevious,
+                      navigationLayout: defaultReaderNavigationLayout,
                     ),
                   ],
                 ),

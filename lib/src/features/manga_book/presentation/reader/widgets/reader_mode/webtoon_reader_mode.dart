@@ -106,13 +106,14 @@ class WebtoonReaderMode extends HookWidget {
                 pageIndex: index.toString(),
               ),
               progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  SizedBox(
-                height: context.height * .7,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    value: downloadProgress.progress,
-                  ),
+                  Center(
+                child: CircularProgressIndicator(
+                  value: downloadProgress.progress,
                 ),
+              ),
+              wrapper: (child) => SizedBox(
+                height: context.height * .7,
+                child: child,
               ),
             );
             if (index == 0) {

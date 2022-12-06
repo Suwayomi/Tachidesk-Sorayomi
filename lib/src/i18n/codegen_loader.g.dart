@@ -51,7 +51,8 @@ class CodegenLoader extends AssetLoader {
       "edge": "Edge",
       "kindlish": "Kindle-ish",
       "lShaped": "L Shaped",
-      "rightAndLeft": "Right and Left"
+      "rightAndLeft": "Right and Left",
+      "defaultNavigation": "Default"
     },
     "SourceType": {
       "filter": "Filter",

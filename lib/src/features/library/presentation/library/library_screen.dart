@@ -45,14 +45,7 @@ class LibraryScreen extends HookConsumerWidget {
                 children: [
                   if (data.length.isGreaterThan(1))
                     TabBar(
-                      padding: KEdgeInsets.a8.size,
                       isScrollable: true,
-                      labelColor: context.theme.indicatorColor,
-                      unselectedLabelColor: context.textTheme.bodyLarge!.color,
-                      indicator: BoxDecoration(
-                        borderRadius: KBorderRadius.r16.radius,
-                        color: context.theme.indicatorColor.withOpacity(.3),
-                      ),
                       tabs: data.map((e) => Tab(text: e.name ?? "")).toList(),
                     ),
                   if (showSearch.value)

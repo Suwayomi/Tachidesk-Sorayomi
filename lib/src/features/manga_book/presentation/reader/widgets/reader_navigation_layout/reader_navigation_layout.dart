@@ -20,11 +20,11 @@ import 'layouts/right_and_left_layout.dart';
 class ReaderNavigationLayoutWidget extends HookConsumerWidget {
   const ReaderNavigationLayoutWidget({
     Key? key,
-    this.mangaLayout,
+    this.navigationLayout,
     required this.onPrevious,
     required this.onNext,
   }) : super(key: key);
-  final ReaderNavigationLayout? mangaLayout;
+  final ReaderNavigationLayout? navigationLayout;
   final VoidCallback? onPrevious;
   final VoidCallback? onNext;
   @override
@@ -41,10 +41,10 @@ class ReaderNavigationLayoutWidget extends HookConsumerWidget {
       return;
     }, []);
 
-    final layout = mangaLayout == null ||
-            mangaLayout == ReaderNavigationLayout.defaultNavigation
+    final layout = navigationLayout == null ||
+            navigationLayout == ReaderNavigationLayout.defaultNavigation
         ? ref.watch(readerNavigationLayoutKeyProvider)
-        : null;
+        : navigationLayout;
     final invertTap = ref.watch(invertTapProvider) ?? false;
     final VoidCallback? onLeftTap;
     final VoidCallback? onRightTap;

@@ -41,6 +41,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
                 UpdateStatusExpansionTile(
                   mangas: data!.running!,
                   title: LocaleKeys.running.tr(),
+                  initiallyExpanded: true,
                 ),
               if ((data?.pending).isNotBlank)
                 UpdateStatusExpansionTile(
@@ -56,6 +57,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
                 UpdateStatusExpansionTile(
                   mangas: data!.failed!,
                   title: LocaleKeys.failed.tr(),
+                  initiallyExpanded: true,
                 ),
             ],
           ),
@@ -70,6 +72,7 @@ void showUpdateStatusSummaryBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
+    useSafeArea: true,
     builder: (context) => const UpdateStatusSummaryDialog(),
   );
 }
@@ -79,16 +82,19 @@ class UpdateStatusExpansionTile extends StatelessWidget {
     super.key,
     required this.mangas,
     required this.title,
+    this.initiallyExpanded = false,
   });
   final List<Manga> mangas;
   final String title;
+  final bool initiallyExpanded;
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text(title),
-      initiallyExpanded: true,
+      initiallyExpanded: initiallyExpanded,
       textColor: context.theme.indicatorColor,
       iconColor: context.theme.indicatorColor,
+      shape: const RoundedRectangleBorder(),
       children: mangas
           .map((e) => MangaCoverListTile(
                 manga: e,

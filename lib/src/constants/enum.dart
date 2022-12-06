@@ -82,7 +82,7 @@ enum SourceType {
 
 enum ChapterMeta {
   invertTap("flutter_readerNavigationLayoutInvert"),
-  readerNavigationLayout("flutter_readerNavigationLayoutInvert"),
+  readerNavigationLayout("flutter_readerNavigationLayout"),
   readerMode("flutter_readerMode");
 
   const ChapterMeta(this.key);

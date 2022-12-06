@@ -46,6 +46,8 @@ abstract class LocaleKeys {
       'ReaderNavigationLayout.lShaped';
   static const ReaderNavigationLayout_rightAndLeft =
       'ReaderNavigationLayout.rightAndLeft';
+  static const ReaderNavigationLayout_defaultNavigation =
+      'ReaderNavigationLayout.defaultNavigation';
   static const ReaderNavigationLayout = 'ReaderNavigationLayout';
   static const SourceType_filter = 'SourceType.filter';
   static const SourceType_latest = 'SourceType.latest';
