@@ -22,13 +22,13 @@ part 'reader_mode_tile.g.dart';
 class ReaderModeKey extends _$ReaderModeKey
     with SharedPreferenceEnumClient<ReaderMode> {
   @override
-  ReaderMode? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.readerMode.initial;
-    key = DBKeys.readerMode.name;
-    enumList = ReaderMode.values;
-    return get;
-  }
+  ReaderMode? build() => initialize(
+        ref,
+        client: ref.watch(sharedPreferencesProvider),
+        initial: DBKeys.readerMode.initial,
+        key: DBKeys.readerMode.name,
+        enumList: ReaderMode.values,
+      );
 }
 
 class ReaderModeTile extends ConsumerWidget {
@@ -47,7 +47,7 @@ class ReaderModeTile extends ConsumerWidget {
           enumList: ReaderMode.values.sublist(1),
           value: readerMode ?? ReaderMode.webtoon,
           onChange: (enumValue) async {
-            await ref.read(readerModeKeyProvider.notifier).update(enumValue);
+            ref.read(readerModeKeyProvider.notifier).update(enumValue);
             if (context.mounted) context.pop();
           },
         ),

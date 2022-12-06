@@ -29,9 +29,7 @@ class SourceMangaDisplayIconPopup extends ConsumerWidget {
           enumList: DisplayMode.sourceDisplayList,
           value: displayMode,
           onChange: (enumValue) async {
-            await ref
-                .read(sourceDisplayModeProvider.notifier)
-                .update(enumValue);
+            ref.read(sourceDisplayModeProvider.notifier).update(enumValue);
             if (context.mounted) context.pop();
           },
         ),

@@ -103,6 +103,7 @@ class LibraryMangaFilterDownloaded extends _$LibraryMangaFilterDownloaded
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.mangaFilterDownloaded.name,
         initial: DBKeys.mangaFilterDownloaded.initial,
@@ -114,6 +115,7 @@ class LibraryMangaFilterUnread extends _$LibraryMangaFilterUnread
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.mangaFilterUnread.name,
         initial: DBKeys.mangaFilterUnread.initial,
@@ -125,6 +127,7 @@ class LibraryMangaFilterCompleted extends _$LibraryMangaFilterCompleted
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.mangaFilterCompleted.name,
         initial: DBKeys.mangaFilterCompleted.initial,
@@ -136,6 +139,7 @@ class LibraryMangaSort extends _$LibraryMangaSort
     with SharedPreferenceEnumClient<MangaSort> {
   @override
   MangaSort? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.mangaSort.name,
         initial: DBKeys.mangaSort.initial,
@@ -148,6 +152,7 @@ class LibraryMangaSortDirection extends _$LibraryMangaSortDirection
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.mangaSortDirection.name,
         initial: DBKeys.mangaSortDirection.initial,
@@ -159,6 +164,7 @@ class LibraryDisplayMode extends _$LibraryDisplayMode
     with SharedPreferenceEnumClient<DisplayMode> {
   @override
   DisplayMode? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.libraryDisplayMode.name,
         initial: DBKeys.libraryDisplayMode.initial,

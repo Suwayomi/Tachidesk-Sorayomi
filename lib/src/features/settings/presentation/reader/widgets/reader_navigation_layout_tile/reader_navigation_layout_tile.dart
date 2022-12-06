@@ -22,13 +22,13 @@ part 'reader_navigation_layout_tile.g.dart';
 class ReaderNavigationLayoutKey extends _$ReaderNavigationLayoutKey
     with SharedPreferenceEnumClient<ReaderNavigationLayout> {
   @override
-  ReaderNavigationLayout? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.readerNavigationLayout.initial;
-    key = DBKeys.readerNavigationLayout.name;
-    enumList = ReaderNavigationLayout.values;
-    return get;
-  }
+  ReaderNavigationLayout? build() => initialize(
+        ref,
+        client: ref.watch(sharedPreferencesProvider),
+        initial: DBKeys.readerNavigationLayout.initial,
+        key: DBKeys.readerNavigationLayout.name,
+        enumList: ReaderNavigationLayout.values,
+      );
 }
 
 class ReaderNavigationLayoutTile extends ConsumerWidget {
@@ -49,7 +49,7 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
           enumList: ReaderNavigationLayout.values.sublist(1),
           value: readerNavigationLayout ?? ReaderNavigationLayout.disabled,
           onChange: (enumValue) async {
-            await ref
+            ref
                 .read(readerNavigationLayoutKeyProvider.notifier)
                 .update(enumValue);
             if (context.mounted) context.pop();

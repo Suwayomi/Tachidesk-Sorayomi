@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'src/features/about/presentation/about/controllers/about_controller.dart';
 import 'src/i18n/codegen_loader.g.dart';
 import 'src/sorayomi.dart';
+import 'src/utils/logger/provider_state_logger.dart';
 import 'src/utils/storage/local/shared_preferences_client.dart';
 
 Future<void> main() async {
@@ -22,6 +23,7 @@ Future<void> main() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(
     ProviderScope(
+      observers: const [ProviderStateLogger()],
       overrides: [
         packageInfoProvider.overrideWithValue(packageInfo),
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),

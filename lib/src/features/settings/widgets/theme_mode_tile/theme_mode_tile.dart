@@ -23,11 +23,13 @@ class ThemeModeKey extends _$ThemeModeKey
     with SharedPreferenceEnumClient<ThemeMode> {
   @override
   ThemeMode? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.themeMode.initial;
-    key = DBKeys.themeMode.name;
-    enumList = ThemeMode.values;
-    return get;
+    return initialize(
+      ref,
+      client: ref.watch(sharedPreferencesProvider),
+      initial: DBKeys.themeMode.initial,
+      key: DBKeys.themeMode.name,
+      enumList: ThemeMode.values,
+    );
   }
 }
 
@@ -49,7 +51,7 @@ class AppThemeTile extends ConsumerWidget {
           enumList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,
           onChange: (enumValue) async {
-            await ref.read(themeModeKeyProvider.notifier).update(enumValue);
+            ref.read(themeModeKeyProvider.notifier).update(enumValue);
             if (context.mounted) context.pop();
           },
         ),

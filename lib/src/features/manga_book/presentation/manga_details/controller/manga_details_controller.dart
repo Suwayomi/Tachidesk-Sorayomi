@@ -153,6 +153,7 @@ class MangaChapterSort extends _$MangaChapterSort
     with SharedPreferenceEnumClient<ChapterSort> {
   @override
   ChapterSort? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterSort.name,
         initial: DBKeys.chapterSort.initial,
@@ -165,6 +166,7 @@ class MangaChapterSortDirection extends _$MangaChapterSortDirection
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterSortDirection.name,
         initial: DBKeys.chapterSortDirection.initial,
@@ -176,6 +178,7 @@ class MangaChapterFilterDownloaded extends _$MangaChapterFilterDownloaded
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterFilterDownloaded.name,
         initial: DBKeys.chapterFilterDownloaded.initial,
@@ -187,6 +190,7 @@ class MangaChapterFilterUnread extends _$MangaChapterFilterUnread
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterFilterUnread.name,
         initial: DBKeys.chapterFilterUnread.initial,
@@ -198,6 +202,7 @@ class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
     with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
+        ref,
         client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterFilterBookmarked.name,
         initial: DBKeys.chapterFilterBookmarked.initial,

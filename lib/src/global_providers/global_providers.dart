@@ -29,11 +29,11 @@ DioClient dioClientKey(ref) => DioClient(
 class AuthTypeKey extends _$AuthTypeKey
     with SharedPreferenceEnumClient<AuthType> {
   @override
-  AuthType? build() {
-    client = ref.watch(sharedPreferencesProvider);
-    initial = DBKeys.authType.initial;
-    key = DBKeys.authType.name;
-    enumList = AuthType.values;
-    return get;
-  }
+  AuthType? build() => initialize(
+        ref,
+        client: ref.watch(sharedPreferencesProvider),
+        initial: DBKeys.authType.initial,
+        key: DBKeys.authType.name,
+        enumList: AuthType.values,
+      );
 }
