@@ -47,8 +47,11 @@ class $AssetsIconsLauncherGen {
   AssetGenImage get fromSuwayomi =>
       const AssetGenImage('assets/icons/launcher/from_suwayomi.png');
 
+  /// File path: assets/icons/launcher/sorayomi_icon.ico
+  String get sorayomiIconIco => 'assets/icons/launcher/sorayomi_icon.ico';
+
   /// File path: assets/icons/launcher/sorayomi_icon.png
-  AssetGenImage get sorayomiIcon =>
+  AssetGenImage get sorayomiIconPng =>
       const AssetGenImage('assets/icons/launcher/sorayomi_icon.png');
 
   /// File path: assets/icons/launcher/sorayomi_preview_icon.png
@@ -56,8 +59,8 @@ class $AssetsIconsLauncherGen {
       const AssetGenImage('assets/icons/launcher/sorayomi_preview_icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [fromSuwayomi, sorayomiIcon, sorayomiPreviewIcon];
+  List<dynamic> get values =>
+      [fromSuwayomi, sorayomiIconIco, sorayomiIconPng, sorayomiPreviewIcon];
 }
 
 class Assets {
