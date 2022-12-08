@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $CredentialsHash() => r'77689bbb22a41a1a5c8f81eefe39fdd9341e185a';
+String $CredentialsHash() => r'd36ec9987003881324c04805a28b1c6d2bfaba83';
 
 /// See also [Credentials].
 final credentialsProvider = AutoDisposeNotifierProvider<Credentials, String?>(

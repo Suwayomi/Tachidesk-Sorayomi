@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $DownloadedBadgeHash() => r'5ecc9b6c21dd534da7ec96ca39560c15b0766631';
+String $DownloadedBadgeHash() => r'87a75683efec7ac3af30542b8db7905ef201698b';
 
 /// See also [DownloadedBadge].
 final downloadedBadgeProvider =
@@ -47,7 +47,7 @@ abstract class _$DownloadedBadge extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $UnreadBadgeHash() => r'2f9d995c4303eb3e873c03dfef8d454d5b4dcbe5';
+String $UnreadBadgeHash() => r'28d64c3752401f1afb1c0075bd227f64fc090126';
 
 /// See also [UnreadBadge].
 final unreadBadgeProvider = AutoDisposeNotifierProvider<UnreadBadge, bool?>(

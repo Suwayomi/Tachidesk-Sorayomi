@@ -33,7 +33,7 @@ class PreviousScrollIntent extends Intent {}
 
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
-    Key? key,
+    super.key,
     required this.child,
     required this.manga,
     required this.chapter,
@@ -41,7 +41,7 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.currentIndex,
     required this.onNext,
     required this.onPrevious,
-  }) : super(key: key);
+  });
   final Widget child;
   final Manga manga;
   final Chapter chapter;
@@ -236,46 +236,45 @@ class ReaderWrapper extends HookConsumerWidget {
                             onPressed: () {
                               showModalBottomSheet(
                                 context: context,
+                                clipBehavior: Clip.hardEdge,
                                 builder: (context) {
-                                  return Card(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        ListTile(
-                                          leading: const Icon(
-                                            Icons.app_settings_alt_outlined,
-                                          ),
-                                          title: Text(
-                                            LocaleKeys.readerMode.tr(),
-                                          ),
-                                          subtitle: Text(
-                                            defaultReaderMode.toString().tr(),
-                                          ),
-                                          onTap: () {
-                                            context.pop();
-                                            showReaderModePopup();
-                                          },
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      ListTile(
+                                        leading: const Icon(
+                                          Icons.app_settings_alt_outlined,
                                         ),
-                                        ListTile(
-                                          leading: const Icon(
-                                            Icons.touch_app_rounded,
-                                          ),
-                                          title: Text(
-                                            LocaleKeys.readerNavigationLayout
-                                                .tr(),
-                                          ),
-                                          subtitle: Text(
-                                            defaultReaderNavigationLayout
-                                                .toString()
-                                                .tr(),
-                                          ),
-                                          onTap: () {
-                                            context.pop();
-                                            showReaderNavigationLayoutPopup();
-                                          },
+                                        title: Text(
+                                          LocaleKeys.readerMode.tr(),
                                         ),
-                                      ],
-                                    ),
+                                        subtitle: Text(
+                                          defaultReaderMode.toString().tr(),
+                                        ),
+                                        onTap: () {
+                                          context.pop();
+                                          showReaderModePopup();
+                                        },
+                                      ),
+                                      ListTile(
+                                        leading: const Icon(
+                                          Icons.touch_app_rounded,
+                                        ),
+                                        title: Text(
+                                          LocaleKeys.readerNavigationLayout
+                                              .tr(),
+                                        ),
+                                        subtitle: Text(
+                                          defaultReaderNavigationLayout
+                                              .toString()
+                                              .tr(),
+                                        ),
+                                        onTap: () {
+                                          context.pop();
+                                          showReaderNavigationLayoutPopup();
+                                        },
+                                      ),
+                                    ],
                                   );
                                 },
                               );

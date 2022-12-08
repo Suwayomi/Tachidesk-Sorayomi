@@ -76,7 +76,6 @@ class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
   @override
   List<String>? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.extensionLanguageFilter.name,
         initial: DBKeys.extensionLanguageFilter.initial,
       );

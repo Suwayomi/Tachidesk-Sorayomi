@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 
 class RightAndLeftLayout extends StatelessWidget {
   const RightAndLeftLayout({
-    Key? key,
+    super.key,
     this.onLeftTap,
     this.onRightTap,
     this.leftColor,
     this.rightColor,
-  }) : super(key: key);
+  });
   final VoidCallback? onLeftTap;
   final VoidCallback? onRightTap;
   final Color? leftColor;

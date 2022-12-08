@@ -58,26 +58,5 @@ class MangaCoverListTile extends StatelessWidget {
         ],
       ),
     );
-
-    // return ListTile(
-    //   contentPadding: KEdgeInsets.a8.size,
-    //   onTap: onPressed,
-    //   onLongPress: onLongPress,
-    //   leading: ClipRRect(
-    //     borderRadius: BorderRadius.circular(8),
-    //     child: ServerImage(
-    //       imageUrl: manga.thumbnailUrl ?? "",
-    //       size: const Size.square(48),
-    //     ),
-    //   ),
-    //   trailing: showBadges
-    //       ? MangaBadgesRow(manga: manga, showCountBadges: showCountBadges)
-    //       : null,
-    //   dense: true,
-    //   title: Text(
-    //     (manga.title ?? manga.author ?? ""),
-    //     overflow: TextOverflow.ellipsis,
-    //   ),
-    // );
   }
 }

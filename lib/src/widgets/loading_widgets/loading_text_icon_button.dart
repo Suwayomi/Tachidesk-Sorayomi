@@ -13,12 +13,12 @@ import '../custom_circular_progress_indicator.dart';
 
 class LoadingTextIconButton extends HookWidget {
   const LoadingTextIconButton({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     required this.icon,
     this.style,
-  }) : super(key: key);
+  });
   final AsyncCallback onPressed;
   final Icon icon;
   final ButtonStyle? style;

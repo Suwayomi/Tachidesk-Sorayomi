@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 
 class LShapedLayout extends StatelessWidget {
   const LShapedLayout({
-    Key? key,
+    super.key,
     this.onLeftTap,
     this.onRightTap,
     this.leftColor,
     this.rightColor,
-  }) : super(key: key);
+  });
 
   final VoidCallback? onLeftTap;
   final VoidCallback? onRightTap;

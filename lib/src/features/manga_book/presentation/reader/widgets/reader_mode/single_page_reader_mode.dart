@@ -22,13 +22,13 @@ import '../reader_wrapper.dart';
 
 class SinglePageReaderMode extends HookWidget {
   const SinglePageReaderMode({
-    Key? key,
+    super.key,
     required this.manga,
     required this.chapter,
     this.onPageChanged,
     this.reverse = false,
     this.scrollDirection = Axis.horizontal,
-  }) : super(key: key);
+  });
 
   final Manga manga;
   final Chapter chapter;
@@ -83,7 +83,8 @@ class SinglePageReaderMode extends HookWidget {
             ),
           );
 
-          if (index == 0 && onPageChanged != null) {
+          if (index == ((chapter.pageCount ?? 0) - 1) &&
+              onPageChanged != null) {
             onPageChanged!(-1);
           }
           return InteractiveViewer(

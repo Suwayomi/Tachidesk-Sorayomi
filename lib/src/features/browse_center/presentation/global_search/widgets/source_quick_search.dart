@@ -20,10 +20,10 @@ import '../controller/source_quick_search_controller.dart';
 
 class SourceQuickSearch extends ConsumerWidget {
   const SourceQuickSearch({
-    Key? key,
+    super.key,
     required this.sourceId,
     this.query,
-  }) : super(key: key);
+  });
   final String sourceId;
   final String? query;
 

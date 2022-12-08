@@ -29,12 +29,12 @@ import 'widgets/source_type_selectable_chip.dart';
 
 class SourceMangaListScreen extends HookConsumerWidget {
   const SourceMangaListScreen({
-    Key? key,
+    super.key,
     required this.sourceId,
     required this.sourceType,
     this.initialQuery,
     this.initialFilter,
-  }) : super(key: key);
+  });
   final String sourceId;
   final SourceType sourceType;
   final String? initialQuery;

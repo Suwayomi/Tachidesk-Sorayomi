@@ -19,7 +19,7 @@ import '../source/controller/source_controller.dart';
 import 'widgets/source_quick_search.dart';
 
 class GlobalSearchScreen extends HookConsumerWidget {
-  const GlobalSearchScreen({Key? key, this.initialQuery}) : super(key: key);
+  const GlobalSearchScreen({super.key, this.initialQuery});
   final String? initialQuery;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

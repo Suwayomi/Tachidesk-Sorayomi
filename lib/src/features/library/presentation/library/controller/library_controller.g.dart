@@ -139,7 +139,7 @@ abstract class _$LibraryQuery extends AutoDisposeNotifier<String?> {
 }
 
 String $LibraryMangaFilterDownloadedHash() =>
-    r'9434b5180757eb9fc2d7fa7e06e99bba44322511';
+    r'173f948640462772ba13cd4efb03b750a4b50f50';
 
 /// See also [LibraryMangaFilterDownloaded].
 final libraryMangaFilterDownloadedProvider =
@@ -159,7 +159,7 @@ abstract class _$LibraryMangaFilterDownloaded
 }
 
 String $LibraryMangaFilterUnreadHash() =>
-    r'a8d295082d2c44d2cf4e1134eb118d0aa32251ec';
+    r'6c168a40a9e5599d8f2cb02915ff1546b5f3c531';
 
 /// See also [LibraryMangaFilterUnread].
 final libraryMangaFilterUnreadProvider =
@@ -178,7 +178,7 @@ abstract class _$LibraryMangaFilterUnread extends AutoDisposeNotifier<bool?> {
 }
 
 String $LibraryMangaFilterCompletedHash() =>
-    r'afb42c154948dcb2470572736aca977a758d3e6c';
+    r'1d959032909f57d964b60cf6f86efd4e2b4960e9';
 
 /// See also [LibraryMangaFilterCompleted].
 final libraryMangaFilterCompletedProvider =
@@ -197,7 +197,7 @@ abstract class _$LibraryMangaFilterCompleted
   bool? build();
 }
 
-String $LibraryMangaSortHash() => r'338b71fe5d5633805cd18f8e407d7aef7058dfac';
+String $LibraryMangaSortHash() => r'88a025259f3957cb221cd1237c6e118d546eec64';
 
 /// See also [LibraryMangaSort].
 final libraryMangaSortProvider =
@@ -216,7 +216,7 @@ abstract class _$LibraryMangaSort extends AutoDisposeNotifier<MangaSort?> {
 }
 
 String $LibraryMangaSortDirectionHash() =>
-    r'bca0a42a66cb3284ef0d79f0748c63f6d57baa8f';
+    r'e75ba9131a09c697f6bc6488347051de72249cb2';
 
 /// See also [LibraryMangaSortDirection].
 final libraryMangaSortDirectionProvider =
@@ -234,7 +234,7 @@ abstract class _$LibraryMangaSortDirection extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $LibraryDisplayModeHash() => r'cd51333d8366181bd239a9512e0fb3fc80807402';
+String $LibraryDisplayModeHash() => r'c7adbf4cb2db2c67b7d10e75bb14404e05551ab4';
 
 /// See also [LibraryDisplayMode].
 final libraryDisplayModeProvider =

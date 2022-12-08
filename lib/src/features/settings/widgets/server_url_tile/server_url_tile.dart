@@ -24,7 +24,6 @@ class ServerUrl extends _$ServerUrl with SharedPreferenceClient<String> {
   @override
   String? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.serverUrl.name,
         initial: DBKeys.serverUrl.initial,
       );

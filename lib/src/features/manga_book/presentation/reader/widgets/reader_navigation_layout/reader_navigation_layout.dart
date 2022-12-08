@@ -19,11 +19,11 @@ import 'layouts/right_and_left_layout.dart';
 
 class ReaderNavigationLayoutWidget extends HookConsumerWidget {
   const ReaderNavigationLayoutWidget({
-    Key? key,
+    super.key,
     this.navigationLayout,
     required this.onPrevious,
     required this.onNext,
-  }) : super(key: key);
+  });
   final ReaderNavigationLayout? navigationLayout;
   final VoidCallback? onPrevious;
   final VoidCallback? onNext;

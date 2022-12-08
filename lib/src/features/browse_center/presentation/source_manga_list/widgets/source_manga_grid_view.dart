@@ -18,8 +18,7 @@ import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../domain/source/source_model.dart';
 
 class SourceMangaGridView extends StatelessWidget {
-  const SourceMangaGridView({Key? key, required this.controller, this.source})
-      : super(key: key);
+  const SourceMangaGridView({super.key, required this.controller, this.source});
   final PagingController<int, Manga> controller;
   final Source? source;
   @override

@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $AuthTypeKeyHash() => r'7c27c2d5b2df4b7b2dc0fe74cdd2c1ea6ac66ae2';
+String $AuthTypeKeyHash() => r'4ec3957b64a93c74d7034a0b4a05567fa59a212d';
 
 /// See also [AuthTypeKey].
 final authTypeKeyProvider = AutoDisposeNotifierProvider<AuthTypeKey, AuthType?>(

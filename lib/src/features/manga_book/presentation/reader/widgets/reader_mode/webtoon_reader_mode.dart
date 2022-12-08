@@ -23,12 +23,12 @@ import '../reader_wrapper.dart';
 
 class WebtoonReaderMode extends HookWidget {
   const WebtoonReaderMode({
-    Key? key,
+    super.key,
     required this.manga,
     required this.chapter,
     this.showSeparator = false,
     this.onPageChanged,
-  }) : super(key: key);
+  });
   final Manga manga;
   final Chapter chapter;
   final bool showSeparator;
@@ -117,9 +117,6 @@ class WebtoonReaderMode extends HookWidget {
               ),
             );
             if (index == 0) {
-              if (onPageChanged != null) {
-                onPageChanged!(-1);
-              }
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -135,6 +132,9 @@ class WebtoonReaderMode extends HookWidget {
                 ],
               );
             } else if (index == (chapter.pageCount ?? 0) - 1) {
+              if (onPageChanged != null) {
+                onPageChanged!(-1);
+              }
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,

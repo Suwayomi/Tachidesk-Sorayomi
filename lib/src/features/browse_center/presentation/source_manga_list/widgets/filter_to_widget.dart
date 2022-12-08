@@ -15,10 +15,10 @@ import '../../../domain/filter_state/filter_state_model.dart';
 
 class FilterToWidget extends StatelessWidget {
   const FilterToWidget({
-    Key? key,
+    super.key,
     required this.filter,
     required this.onChanged,
-  }) : super(key: key);
+  });
   final Filter filter;
   final ValueChanged<Filter> onChanged;
 

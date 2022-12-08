@@ -13,11 +13,11 @@ import '../custom_circular_progress_indicator.dart';
 
 class LoadingCheckboxListTile extends HookWidget {
   const LoadingCheckboxListTile({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.value,
     required this.title,
-  }) : super(key: key);
+  });
 
   final AsyncValueSetter<bool> onChanged;
   final bool value;
@@ -25,11 +25,11 @@ class LoadingCheckboxListTile extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isLoading = useState(false);
-    asyncOnChanged(value) async {
+    final asyncOnChanged = useCallback((value) async {
       isLoading.value = true;
       await onChanged(value ?? false);
       isLoading.value = false;
-    }
+    }, []);
 
     return ListTile(
       leading: isLoading.value

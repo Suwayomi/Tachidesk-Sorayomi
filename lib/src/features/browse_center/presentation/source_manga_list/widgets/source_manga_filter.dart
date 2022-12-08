@@ -15,12 +15,12 @@ import 'filter_to_widget.dart';
 
 class SourceMangaFilter extends HookWidget {
   const SourceMangaFilter({
-    Key? key,
+    super.key,
     required this.initialFilters,
     required this.sourceId,
     required this.onSubmitted,
     required this.onReset,
-  }) : super(key: key);
+  });
   final List<Filter> initialFilters;
   final String sourceId;
   final ValueChanged<List<Filter>?> onSubmitted;

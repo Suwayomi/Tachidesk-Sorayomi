@@ -10,11 +10,11 @@ import 'package:flutter/material.dart';
 
 class PageNumberSlider extends StatelessWidget {
   const PageNumberSlider({
-    Key? key,
+    super.key,
     required this.currentValue,
     required this.maxValue,
     required this.onChanged,
-  }) : super(key: key);
+  });
   final int currentValue;
   final int maxValue;
   final ValueChanged<int> onChanged;

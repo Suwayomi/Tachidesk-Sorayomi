@@ -20,7 +20,6 @@ class InvertTap extends _$InvertTap with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.invertTap.name,
         initial: DBKeys.invertTap.initial,
       );

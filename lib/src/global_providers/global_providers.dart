@@ -31,7 +31,6 @@ class AuthTypeKey extends _$AuthTypeKey
   @override
   AuthType? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         initial: DBKeys.authType.initial,
         key: DBKeys.authType.name,
         enumList: AuthType.values,
