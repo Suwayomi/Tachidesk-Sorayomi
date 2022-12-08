@@ -6,8 +6,10 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/app_sizes.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -71,8 +73,17 @@ class ChapterMangaListTile extends StatelessWidget {
       selectedTileColor:
           context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
       selected: isSelected,
-      onTap: canTapSelect && pair.chapter != null
-          ? () => toggleSelect(pair.chapter!)
+      onTap: pair.chapter != null && pair.manga != null
+          ? () {
+              if (canTapSelect) {
+                toggleSelect(pair.chapter!);
+              } else {
+                context.push(
+                  Routes.getReader(
+                      "${pair.manga!.id}", "${pair.chapter!.index}"),
+                );
+              }
+            }
           : null,
       onLongPress:
           pair.chapter != null ? () => toggleSelect(pair.chapter!) : null,

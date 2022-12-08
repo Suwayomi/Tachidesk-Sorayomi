@@ -159,7 +159,7 @@ jobs:
           Copy-Item "${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs" .
           Copy-Item "${env:GITHUB_WORKSPACE}\assets\icons\launcher\sorayomi_icon.ico" .
           heat dir data -cg data -dr data -sreg -sfrag -gg -o data.wxs
-          candle -arch x64 -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" "${{ env.pkg_name }}-x64.wxs" data.wxs 
+          candle -arch x64 -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="sorayomi_icon.ico" "${{ env.pkg_name }}-x64.wxs" data.wxs 
           light -b data "${{ env.pkg_name }}-x64.wixobj" data.wixobj -o "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi"
           Move-Item "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi" "${env:GITHUB_WORKSPACE}"
 
