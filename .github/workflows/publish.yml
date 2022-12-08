@@ -122,7 +122,7 @@ jobs:
         working-directory: ${{ matrix.build_path }}
         run: |
           cp "$GITHUB_WORKSPACE/scripts/${{ env.pkg_name }}.desktop" .
-          cp "$GITHUB_WORKSPACE/assets/images/icon.png" "./${{ env.pkg_name }}.png"
+          cp "$GITHUB_WORKSPACE/assets/icons/launcher/sorayomi_icon.png" "./${{ env.pkg_name }}.png"
           GZIP=-9 tar czf "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz" *
 
       - name: Build deb package
@@ -157,7 +157,7 @@ jobs:
           $env:Path += ";C:\Program Files (x86)\WiX Toolset v3.11\bin"
           $upgradeCode = [guid]::NewGuid().Guid
           Copy-Item "${env:GITHUB_WORKSPACE}\scripts\${{ env.pkg_name }}-x64.wxs" .
-          Copy-Item "${env:GITHUB_WORKSPACE}\assets\images\icon.ico" .
+          Copy-Item "${env:GITHUB_WORKSPACE}\assets\icons\launcher\sorayomi_icon.ico" .
           heat dir data -cg data -dr data -sreg -sfrag -gg -o data.wxs
           candle -arch x64 -dVersion="${{ github.ref_name }}" -dUpgradeCode="$upgradeCode" -dIcon="icon.ico" "${{ env.pkg_name }}-x64.wxs" data.wxs 
           light -b data "${{ env.pkg_name }}-x64.wixobj" data.wixobj -o "${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.msi"
