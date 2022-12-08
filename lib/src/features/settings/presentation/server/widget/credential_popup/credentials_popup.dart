@@ -27,7 +27,6 @@ class Credentials extends _$Credentials with SharedPreferenceClient<String> {
   @override
   String? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.basicCredentials.name,
         initial: DBKeys.basicCredentials.initial,
       );

@@ -25,7 +25,6 @@ class ThemeModeKey extends _$ThemeModeKey
   ThemeMode? build() {
     return initialize(
       ref,
-      client: ref.watch(sharedPreferencesProvider),
       initial: DBKeys.themeMode.initial,
       key: DBKeys.themeMode.name,
       enumList: ThemeMode.values,

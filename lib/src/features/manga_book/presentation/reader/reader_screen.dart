@@ -20,10 +20,10 @@ import 'widgets/reader_mode/webtoon_reader_mode.dart';
 
 class ReaderScreen extends HookConsumerWidget {
   const ReaderScreen({
-    Key? key,
+    super.key,
     required this.mangaId,
     required this.chapterIndex,
-  }) : super(key: key);
+  });
   final String mangaId;
   final String chapterIndex;
   @override

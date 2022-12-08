@@ -31,11 +31,10 @@ mixin SharedPreferenceClient<T extends Object> {
 
   T? initialize(
     AutoDisposeNotifierProviderRef<T?> ref, {
-    required SharedPreferences client,
     required key,
     T? initial,
   }) {
-    _client = client;
+    _client = ref.watch(sharedPreferencesProvider);
     _key = key;
     _initial = initial;
     _persistenceRefreshLogic(ref);
@@ -72,26 +71,25 @@ mixin SharedPreferenceClient<T extends Object> {
 /// [SharedPreferenceEnumClient] is a mixin to add [get] and [update] functions to
 /// the provider.
 ///
-/// * Remember to initialize [key], [client], [enumList] in [build] function of provider
-/// * optionally provide [initial] for giving initial value to the [key].
+/// * Remember to initialize [_key], [_client], [_enumList] in [build] function of provider
+/// * optionally provide [_initial] for giving initial value to the [_key].
 mixin SharedPreferenceEnumClient<T extends Enum> {
-  late String key;
-  late SharedPreferences client;
-  T? initial;
-  late List<T> enumList;
+  late String _key;
+  late SharedPreferences _client;
+  T? _initial;
+  late List<T> _enumList;
   set state(T? newState);
 
   T? initialize(
     AutoDisposeNotifierProviderRef<T?> ref, {
-    required SharedPreferences client,
     required key,
     required List<T> enumList,
     T? initial,
   }) {
-    this.client = client;
-    this.key = key;
-    this.initial = initial;
-    this.enumList = enumList;
+    _client = ref.watch(sharedPreferencesProvider);
+    _key = key;
+    _initial = initial;
+    _enumList = enumList;
     _persistenceRefreshLogic(ref);
     return _get;
   }
@@ -99,21 +97,21 @@ mixin SharedPreferenceEnumClient<T extends Enum> {
   void update(T? value) => state = value;
 
   T? _getEnumFromIndex(int? value) =>
-      value.liesBetween(upper: enumList.length - 1)
-          ? enumList[value!]
-          : initial;
+      value.liesBetween(upper: _enumList.length - 1)
+          ? _enumList[value!]
+          : _initial;
 
-  T? get _get => _getEnumFromIndex(client.getInt(key));
+  T? get _get => _getEnumFromIndex(_client.getInt(_key));
 
   Future<bool> _set(int? value) {
-    if (value == null) return client.remove(key);
-    return client.setInt(key, value);
+    if (value == null) return _client.remove(_key);
+    return _client.setInt(_key, value);
   }
 
   void _persistenceRefreshLogic(AutoDisposeNotifierProviderRef<T?> ref) =>
       ref.listenSelf(
         (_, next) => _set(
-          next == null ? null : enumList.indexOf(next),
+          next == null ? null : _enumList.indexOf(next),
         ),
       );
 }

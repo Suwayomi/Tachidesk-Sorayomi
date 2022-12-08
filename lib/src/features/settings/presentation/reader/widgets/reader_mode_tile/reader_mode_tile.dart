@@ -24,7 +24,6 @@ class ReaderModeKey extends _$ReaderModeKey
   @override
   ReaderMode? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         initial: DBKeys.readerMode.initial,
         key: DBKeys.readerMode.name,
         enumList: ReaderMode.values,

@@ -19,8 +19,12 @@ class CenterCircularProgressIndicator extends StatelessWidget {
 }
 
 class MiniCircularProgressIndicator extends StatelessWidget {
-  const MiniCircularProgressIndicator(
-      {super.key, this.color, this.value, this.padding});
+  const MiniCircularProgressIndicator({
+    super.key,
+    this.color,
+    this.value,
+    this.padding,
+  });
   final Color? color;
   final double? value;
   final EdgeInsetsGeometry? padding;

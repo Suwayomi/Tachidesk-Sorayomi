@@ -78,7 +78,6 @@ class SourceDisplayMode extends _$SourceDisplayMode
   @override
   DisplayMode? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.sourceDisplayMode.name,
         initial: DBKeys.sourceDisplayMode.initial,
         enumList: DisplayMode.sourceDisplayList,

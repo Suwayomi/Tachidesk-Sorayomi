@@ -71,7 +71,6 @@ class SourceLanguageFilter extends _$SourceLanguageFilter
   @override
   List<String>? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.sourceLanguageFilter.name,
         initial: DBKeys.sourceLanguageFilter.initial,
       );
@@ -83,7 +82,6 @@ class SourceLastUsed extends _$SourceLastUsed
   @override
   String? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.sourceLastUsed.name,
         initial: DBKeys.sourceLastUsed.initial,
       );

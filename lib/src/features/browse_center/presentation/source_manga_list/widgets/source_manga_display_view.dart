@@ -19,10 +19,10 @@ import 'source_manga_list_view.dart';
 
 class SourceMangaDisplayView extends ConsumerWidget {
   const SourceMangaDisplayView({
-    Key? key,
+    super.key,
     required this.controller,
     this.source,
-  }) : super(key: key);
+  });
 
   final PagingController<int, Manga> controller;
   final Source? source;

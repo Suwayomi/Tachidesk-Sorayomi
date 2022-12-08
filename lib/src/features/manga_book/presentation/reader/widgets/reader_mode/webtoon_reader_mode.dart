@@ -23,12 +23,12 @@ import '../reader_wrapper.dart';
 
 class WebtoonReaderMode extends HookWidget {
   const WebtoonReaderMode({
-    Key? key,
+    super.key,
     required this.manga,
     required this.chapter,
     this.showSeparator = false,
     this.onPageChanged,
-  }) : super(key: key);
+  });
   final Manga manga;
   final Chapter chapter;
   final bool showSeparator;

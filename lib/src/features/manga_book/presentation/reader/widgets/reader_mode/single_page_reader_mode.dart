@@ -22,13 +22,13 @@ import '../reader_wrapper.dart';
 
 class SinglePageReaderMode extends HookWidget {
   const SinglePageReaderMode({
-    Key? key,
+    super.key,
     required this.manga,
     required this.chapter,
     this.onPageChanged,
     this.reverse = false,
     this.scrollDirection = Axis.horizontal,
-  }) : super(key: key);
+  });
 
   final Manga manga;
   final Chapter chapter;

@@ -19,14 +19,14 @@ import '../../../widgets/download_status_icon.dart';
 
 class ChapterListTile extends StatelessWidget {
   const ChapterListTile({
-    Key? key,
+    super.key,
     required this.manga,
     required this.chapter,
     required this.updateData,
     required this.toggleSelect,
     this.canTapSelect = false,
     this.isSelected = false,
-  }) : super(key: key);
+  });
   final Manga manga;
   final Chapter chapter;
   final AsyncCallback updateData;

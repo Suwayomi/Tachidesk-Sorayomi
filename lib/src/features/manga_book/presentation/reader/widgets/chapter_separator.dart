@@ -10,8 +10,7 @@ import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 
 class ChapterSeparator extends StatelessWidget {
-  const ChapterSeparator({Key? key, required this.title, required this.name})
-      : super(key: key);
+  const ChapterSeparator({super.key, required this.title, required this.name});
   final String title;
   final String name;
   @override

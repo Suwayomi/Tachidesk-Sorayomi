@@ -24,7 +24,6 @@ class ReaderNavigationLayoutKey extends _$ReaderNavigationLayoutKey
   @override
   ReaderNavigationLayout? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         initial: DBKeys.readerNavigationLayout.initial,
         key: DBKeys.readerNavigationLayout.name,
         enumList: ReaderNavigationLayout.values,

@@ -33,7 +33,7 @@ class PreviousScrollIntent extends Intent {}
 
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
-    Key? key,
+    super.key,
     required this.child,
     required this.manga,
     required this.chapter,
@@ -41,7 +41,7 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.currentIndex,
     required this.onNext,
     required this.onPrevious,
-  }) : super(key: key);
+  });
   final Widget child;
   final Manga manga;
   final Chapter chapter;

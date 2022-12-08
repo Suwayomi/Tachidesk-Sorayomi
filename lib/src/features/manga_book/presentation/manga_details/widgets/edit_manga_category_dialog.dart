@@ -18,9 +18,9 @@ import '../controller/manga_details_controller.dart';
 
 class EditMangaCategoryDialog extends HookConsumerWidget {
   const EditMangaCategoryDialog({
-    Key? key,
+    super.key,
     required this.mangaId,
-  }) : super(key: key);
+  });
   final String mangaId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

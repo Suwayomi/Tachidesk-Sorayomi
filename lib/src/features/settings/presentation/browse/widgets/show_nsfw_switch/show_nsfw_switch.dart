@@ -20,7 +20,6 @@ class ShowNSFW extends _$ShowNSFW with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.showNSFW.name,
         initial: DBKeys.showNSFW.initial,
       );

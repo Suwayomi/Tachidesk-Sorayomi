@@ -15,7 +15,7 @@ import '../../../../../widgets/enum_popup.dart';
 import '../controller/source_manga_controller.dart';
 
 class SourceMangaDisplayIconPopup extends ConsumerWidget {
-  const SourceMangaDisplayIconPopup({Key? key}) : super(key: key);
+  const SourceMangaDisplayIconPopup({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ShowNSFWHash() => r'e35b38108ef9b07e7f5f6d7ab9a5ca4825650401';
+String $ShowNSFWHash() => r'ca96408e191b4ad20487c9191759aef73ca939ba';
 
 /// See also [ShowNSFW].
 final showNSFWProvider = AutoDisposeNotifierProvider<ShowNSFW, bool?>(

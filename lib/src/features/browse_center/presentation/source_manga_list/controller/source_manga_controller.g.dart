@@ -131,7 +131,7 @@ abstract class _$SourceMangaFilterList
   });
 }
 
-String $SourceDisplayModeHash() => r'2fd571685c74da5b556f0f817e041bb0512fd6c1';
+String $SourceDisplayModeHash() => r'6c61e478095507fe31213a1d671f0f6e20229131';
 
 /// See also [SourceDisplayMode].
 final sourceDisplayModeProvider =

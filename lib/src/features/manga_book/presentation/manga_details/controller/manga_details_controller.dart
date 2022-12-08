@@ -154,7 +154,6 @@ class MangaChapterSort extends _$MangaChapterSort
   @override
   ChapterSort? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterSort.name,
         initial: DBKeys.chapterSort.initial,
         enumList: ChapterSort.values,
@@ -167,7 +166,6 @@ class MangaChapterSortDirection extends _$MangaChapterSortDirection
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterSortDirection.name,
         initial: DBKeys.chapterSortDirection.initial,
       );
@@ -179,7 +177,6 @@ class MangaChapterFilterDownloaded extends _$MangaChapterFilterDownloaded
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterFilterDownloaded.name,
         initial: DBKeys.chapterFilterDownloaded.initial,
       );
@@ -191,7 +188,6 @@ class MangaChapterFilterUnread extends _$MangaChapterFilterUnread
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterFilterUnread.name,
         initial: DBKeys.chapterFilterUnread.initial,
       );
@@ -203,7 +199,6 @@ class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.chapterFilterBookmarked.name,
         initial: DBKeys.chapterFilterBookmarked.initial,
       );

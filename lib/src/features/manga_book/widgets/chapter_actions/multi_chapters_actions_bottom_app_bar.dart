@@ -20,10 +20,10 @@ import 'single_chapter_action_icon.dart';
 
 class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
   const MultiChaptersActionsBottomAppBar({
-    Key? key,
+    super.key,
     required this.selectedChapters,
     required this.afterOptionSelected,
-  }) : super(key: key);
+  });
 
   final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncCallback afterOptionSelected;

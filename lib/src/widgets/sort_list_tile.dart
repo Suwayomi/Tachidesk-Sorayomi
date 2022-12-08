@@ -10,14 +10,14 @@ import '../utils/extensions/custom_extensions.dart';
 
 class SortListTile extends StatelessWidget {
   const SortListTile({
-    Key? key,
+    super.key,
     required this.ascending,
     required this.selected,
     required this.onChanged,
     required this.onSelected,
     this.title,
     this.subtitle,
-  }) : super(key: key);
+  });
   final bool ascending;
   final bool selected;
   final ValueChanged<bool?> onChanged;

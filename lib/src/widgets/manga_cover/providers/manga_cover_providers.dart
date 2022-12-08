@@ -17,7 +17,6 @@ class DownloadedBadge extends _$DownloadedBadge
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.downloadedBadge.name,
         initial: DBKeys.downloadedBadge.initial,
       );
@@ -28,7 +27,6 @@ class UnreadBadge extends _$UnreadBadge with SharedPreferenceClient<bool> {
   @override
   bool? build() => initialize(
         ref,
-        client: ref.watch(sharedPreferencesProvider),
         key: DBKeys.unreadBadge.name,
         initial: DBKeys.unreadBadge.initial,
       );
@@ -39,7 +37,7 @@ class UnreadBadge extends _$UnreadBadge with SharedPreferenceClient<bool> {
 //     with SharedPreferenceClient<bool> {
 //   @override
 //   bool? build() => initialize(
-//   client: ref.watch(sharedPreferencesProvider),
+//
 //   key: DBKeys.languageBadge.name,
 //   initial: DBKeys.languageBadge.initial,
 // );

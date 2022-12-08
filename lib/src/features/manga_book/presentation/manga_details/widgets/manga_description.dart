@@ -23,14 +23,12 @@ import '../../../domain/manga/manga_model.dart';
 
 class MangaDescription extends HookConsumerWidget {
   const MangaDescription({
-    Key? key,
+    super.key,
     required this.manga,
     required this.removeMangaFromLibrary,
     required this.addMangaToLibrary,
     required this.refresh,
-  }) : super(
-          key: key,
-        );
+  });
   final Manga manga;
   final AsyncCallback refresh;
   final AsyncCallback removeMangaFromLibrary;
