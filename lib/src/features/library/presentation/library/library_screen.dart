@@ -47,6 +47,7 @@ class LibraryScreen extends HookConsumerWidget {
                     TabBar(
                       isScrollable: true,
                       tabs: data.map((e) => Tab(text: e.name ?? "")).toList(),
+                      dividerColor: Colors.transparent,
                     ),
                   if (showSearch.value)
                     Align(
