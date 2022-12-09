@@ -19,7 +19,6 @@ class LibraryMangaFilter extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
       children: [
-        const Divider(height: .5),
         CustomCheckboxListTile(
           title: LocaleKeys.unread.tr(),
           provider: libraryMangaFilterUnreadProvider,

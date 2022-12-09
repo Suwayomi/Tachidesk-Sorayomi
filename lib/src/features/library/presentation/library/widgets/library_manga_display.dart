@@ -25,7 +25,6 @@ class LibraryMangaDisplay extends ConsumerWidget {
     final displayMode = ref.watch(libraryDisplayModeProvider);
     return ListView(
       children: [
-        const Divider(height: .5),
         ListTile(
           title: Text(
             LocaleKeys.displayMode.tr(),
