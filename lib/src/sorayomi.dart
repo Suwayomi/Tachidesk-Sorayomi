@@ -21,7 +21,7 @@ class Sorayomi extends ConsumerWidget {
     final routes = ref.watch(routerConfigProvider);
     final themeMode = ref.watch(themeModeKeyProvider);
     return MaterialApp.router(
-      title: LocaleKeys.appTitle.tr(),
+      title: "Tachidesk Sorayomi",
       debugShowCheckedModeBanner: false,
       theme: defaultTheme.light,
       darkTheme: defaultTheme.dark,
