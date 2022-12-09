@@ -10,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'constants/app_themes/color_schemas/default_theme.dart';
 import 'features/settings/widgets/theme_mode_tile/theme_mode_tile.dart';
-import 'i18n/locale_keys.g.dart';
 import 'routes/router_config.dart';
 
 class Sorayomi extends ConsumerWidget {
