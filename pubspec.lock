@@ -5,18 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "3444216bfd127af50bbe4862d8843ed44db946dd933554f0d7285e89f10e28ac"
+      sha256: "8c7478991c7bbde2c1e18034ac697723176a5d3e7e0ca06c7f9aed69b6f388d7"
       url: "https://pub.dev"
     source: hosted
-    version: "50.0.0"
+    version: "51.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "68796c31f510c8455a06fed75fc97d8e5ad04d324a830322ab3efc9feb6201c1"
+      sha256: "120fe7ce25377ba616bb210e7584983b163861f45d6ec446744d507e3943881b"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.0"
+    version: "5.3.1"
   archive:
     dependency: transitive
     description:
@@ -433,10 +433,10 @@ packages:
     dependency: "direct dev"
     description:
       name: freezed
-      sha256: "267055676c5111e1b17c48c285dcd89fa0d2cea807c22c1e90278ca4f76163e5"
+      sha256: e819441678f1679b719008ff2ff0ef045d66eed9f9ec81166ca0d9b02a187454
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.2"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -465,10 +465,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "22c72f83933121f2981ac9025055e0c033206fda84016c1a677345dfffbeb672"
+      sha256: "6d1607d76bb3a6ef52947ddae870948b9fd5bc7a5d1ef992ec4bed2fc2006fc3"
       url: "https://pub.dev"
     source: hosted
-    version: "5.2.1"
+    version: "5.2.4"
   graphs:
     dependency: transitive
     description:
