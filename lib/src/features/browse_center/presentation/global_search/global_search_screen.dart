@@ -67,7 +67,7 @@ class GlobalSearchScreen extends HookConsumerWidget {
                     );
                   }
                 },
-                itemCount: data!.length,
+                itemCount: sourceList.length,
               ),
       ),
     );
