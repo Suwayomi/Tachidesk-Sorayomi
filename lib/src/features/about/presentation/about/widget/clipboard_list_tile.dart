@@ -23,7 +23,6 @@ class ClipboardListTile extends ConsumerWidget {
   final String? subtitle;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Toast toast = ref.watch(toastProvider(context));
     return ListTile(
       title: Text(title),
       subtitle: subtitle.isNotBlank ? Text(subtitle!) : null,
@@ -33,10 +32,9 @@ class ClipboardListTile extends ConsumerWidget {
               Clipboard.setData(
                 ClipboardData(text: msg),
               );
-              toast.close();
-              toast.show(
-                LocaleKeys.copyMsg.tr(namedArgs: {"msg": msg}),
-              );
+              ref.read(toastProvider(context)).instantShow(
+                    LocaleKeys.copyMsg.tr(namedArgs: {"msg": msg}),
+                  );
             }
           : null,
     );

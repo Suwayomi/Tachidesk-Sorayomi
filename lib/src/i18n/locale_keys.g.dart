@@ -235,6 +235,7 @@ abstract class LocaleKeys {
   static const updates = 'updates';
   static const updatesSummary = 'updatesSummary';
   static const updating = 'updating';
+  static const updateCompleted = 'updateCompleted';
   static const url = 'url';
   static const urlHintText = 'urlHintText';
   static const userName = 'userName';

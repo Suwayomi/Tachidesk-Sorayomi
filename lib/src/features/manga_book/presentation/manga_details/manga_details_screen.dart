@@ -12,6 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
@@ -33,8 +34,14 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final chapterList = ref.watch(chapterListProvider);
     final selectedChapters = useState<Map<int, Chapter>>({});
     refresh([useCache = true]) async {
+      if (context.mounted) {
+        ref.read(toastProvider(context)).show(LocaleKeys.updating.tr());
+      }
       await ref.read(chapterListProvider.notifier).refresh(useCache);
       await ref.read(provider.notifier).refresh(useCache);
+      if (context.mounted) {
+        ref.read(toastProvider(context)).show(LocaleKeys.updateCompleted.tr());
+      }
     }
 
     useEffect(() {

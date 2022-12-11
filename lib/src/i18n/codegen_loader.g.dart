@@ -248,6 +248,7 @@ class CodegenLoader extends AssetLoader {
     "updates": "Updates",
     "updatesSummary": "Updates Summary",
     "updating": "Updating",
+    "updateCompleted": "Update Completed",
     "url": "Server URL",
     "urlHintText": "Enter server url",
     "userName": "User Name",
