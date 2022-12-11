@@ -7,10 +7,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
+import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
@@ -160,6 +162,21 @@ class MangaDetailsScreen extends HookConsumerWidget {
                 selectedChapters: selectedChapters,
               )
             : null,
+        floatingActionButton: FloatingActionButton.extended(
+          isExtended: context.isTablet,
+          label: Text(
+            data?.lastChapterRead?.index != null
+                ? LocaleKeys.resume.tr()
+                : LocaleKeys.start.tr(),
+          ),
+          icon: const Icon(Icons.play_arrow_rounded),
+          onPressed: () {
+            context.push(
+              Routes.getReader(
+                  "${data?.id}", "${data?.lastChapterRead?.index ?? 1}"),
+            );
+          },
+        ),
         body: data != null
             ? context.isTablet
                 ? BigScreenMangaDetails(

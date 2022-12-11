@@ -15,60 +15,16 @@ class CodegenLoader extends AssetLoader {
   }
 
   static const Map<String, dynamic> en_US = {
-    "AuthType": {"basic": "Basic Auth", "none": "None"},
-    "ChapterSort": {"fetchedDate": "By Fetched Data", "source": "By Source"},
-    "DisplayMode": {
-      "descriptiveList": "Descriptive List",
-      "grid": "Grid",
-      "list": "List"
-    },
-    "MangaSort": {
-      "alphabetical": "Alphabetical",
-      "dateAdded": "Date Added",
-      "unread": "Unread"
-    },
-    "MangaStatus": {
-      "cancelled": "Cancelled",
-      "completed": "Completed",
-      "licensed": "Licensed",
-      "onHiatus": "On Hiatus",
-      "ongoing": "Ongoing",
-      "publishingFinished": "Publishing Finished",
-      "unknown": "Unknown"
-    },
-    "ReaderMode": {
-      "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
-      "continuousHorizontalRTL": "Continuous Horizontal (RTL)",
-      "continuousVertical": "Continuous Vertical",
-      "defaultReader": "Default",
-      "singleHorizontalLTR": "Single Horizontal (LTR)",
-      "singleHorizontalRTL": "Single Horizontal (RTL)",
-      "singleVertical": "Single Vertical",
-      "webtoon": "Webtoon"
-    },
-    "ReaderNavigationLayout": {
-      "disabled": "Disabled",
-      "edge": "Edge",
-      "kindlish": "Kindle-ish",
-      "lShaped": "L Shaped",
-      "rightAndLeft": "Right and Left",
-      "defaultNavigation": "Default"
-    },
-    "SourceType": {
-      "filter": "Filter",
-      "latest": "Latest",
-      "popular": "Popular"
-    },
-    "ThemeMode": {"dark": "Dark", "light": "Light", "system": "System"},
     "about": "About",
     "add": "Add",
     "addCategory": "Add Category",
     "addCategoryHint": "Add new categories in settings",
     "addToLibrary": "Add to Library",
+    "appearance": "Appearance",
     "appTheme": "App Theme",
     "appTitle": "Tachidesk Sorayomi",
-    "appearance": "Appearance",
     "artist": "Artist",
+    "AuthType": {"basic": "Basic Auth", "none": "None"},
     "backup": "Backup & Restore",
     "badges": "Badges",
     "baseAuthType": "Authentication Type",
@@ -93,6 +49,7 @@ class CodegenLoader extends AssetLoader {
     },
     "chapterNumber": "Chapter {number}",
     "chapters": "Chapters",
+    "ChapterSort": {"fetchedDate": "By Fetched Data", "source": "By Source"},
     "checkForServerUpdates": "Check for Server updates",
     "checkForUpdates": "Check for updates",
     "client": "Client",
@@ -116,6 +73,11 @@ class CodegenLoader extends AssetLoader {
     "discord": "Discord",
     "display": "Display",
     "displayMode": "Display Mode",
+    "DisplayMode": {
+      "descriptiveList": "Descriptive List",
+      "grid": "Grid",
+      "list": "List"
+    },
     "downloaded": "Downloaded",
     "downloads": "Downloads",
     "edit": "Edit",
@@ -159,6 +121,20 @@ class CodegenLoader extends AssetLoader {
     "loading": "Loading!",
     "manga": "Manga",
     "mangaSearch": "Search manga..",
+    "MangaSort": {
+      "alphabetical": "Alphabetical",
+      "dateAdded": "Date Added",
+      "unread": "Unread"
+    },
+    "MangaStatus": {
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "licensed": "Licensed",
+      "ongoing": "Ongoing",
+      "onHiatus": "On Hiatus",
+      "publishingFinished": "Publishing Finished",
+      "unknown": "Unknown"
+    },
     "missingExtension": "Missing Extensions",
     "missingTrackers": "Missing Trackers",
     "more": "More",
@@ -196,9 +172,27 @@ class CodegenLoader extends AssetLoader {
     "previousChapter": "Previous Chapter",
     "reader": "Reader",
     "readerMode": "Reading Mode",
+    "ReaderMode": {
+      "continuousHorizontalLTR": "Continuous Horizontal (LTR)",
+      "continuousHorizontalRTL": "Continuous Horizontal (RTL)",
+      "continuousVertical": "Continuous Vertical",
+      "defaultReader": "Default",
+      "singleHorizontalLTR": "Single Horizontal (LTR)",
+      "singleHorizontalRTL": "Single Horizontal (RTL)",
+      "singleVertical": "Single Vertical",
+      "webtoon": "Webtoon"
+    },
     "readerNavigationLayout": "Navigation layout",
-    "readerNavigationLayoutInvert": "Invert tapping",
+    "ReaderNavigationLayout": {
+      "defaultNavigation": "Default",
+      "disabled": "Disabled",
+      "edge": "Edge",
+      "kindlish": "Kindle-ish",
+      "lShaped": "L Shaped",
+      "rightAndLeft": "Right and Left"
+    },
     "readerNavigationLayout_": "Navigation layout",
+    "readerNavigationLayoutInvert": "Invert tapping",
     "readerSettingsView": "Reader Settings",
     "reddit": "Reddit",
     "refresh": "Refresh",
@@ -217,8 +211,8 @@ class CodegenLoader extends AssetLoader {
     "savedImagePathTitle": "Image path saved to Clipboard",
     "search": "Search...",
     "searchGlobally": "Search Globally",
-    "searchManga": "Search manga..",
     "searchingForUpdates": "Searching for updates...",
+    "searchManga": "Search manga..",
     "server": "Server",
     "serverVersion": "Server version",
     "setAsDefault": "Set as default",
@@ -236,7 +230,14 @@ class CodegenLoader extends AssetLoader {
     "sortUnread": "Unread",
     "source": "Source",
     "sources": "Sources",
+    "SourceType": {
+      "filter": "Filter",
+      "latest": "Latest",
+      "popular": "Popular"
+    },
+    "start": "Start",
     "status": "Status",
+    "ThemeMode": {"dark": "Dark", "light": "Light", "system": "System"},
     "uninstall": "Uninstall",
     "uninstalling": "Uninstalling",
     "unknown": "Unknown",
@@ -245,10 +246,10 @@ class CodegenLoader extends AssetLoader {
     "unknownSource": "Unknown Source",
     "unread": "Unread",
     "update": "Update",
+    "updateCompleted": "Update Completed",
     "updates": "Updates",
     "updatesSummary": "Updates Summary",
     "updating": "Updating",
-    "updateCompleted": "Update Completed",
     "url": "Server URL",
     "urlHintText": "Enter server url",
     "userName": "User Name",
