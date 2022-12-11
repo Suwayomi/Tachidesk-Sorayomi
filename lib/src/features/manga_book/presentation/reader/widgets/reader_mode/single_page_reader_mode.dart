@@ -69,7 +69,7 @@ class SinglePageReaderMode extends HookWidget {
         controller: scrollController,
         itemBuilder: (BuildContext context, int index) {
           final image = ServerImage(
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.contain,
             size: Size.fromHeight(context.height),
             appendApiToUrl: true,
             imageUrl: MangaUrl.chapterPageWithIndex(

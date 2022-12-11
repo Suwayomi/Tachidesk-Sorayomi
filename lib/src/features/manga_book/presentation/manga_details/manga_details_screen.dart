@@ -87,6 +87,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
             : AppBar(
                 title: Text(data?.title ?? LocaleKeys.manga.tr()),
                 actions: [
+                  if (context.isTablet)
+                    IconButton(
+                      onPressed: () => refresh(false),
+                      icon: const Icon(Icons.refresh_rounded),
+                    ),
                   Builder(
                     builder: (context) => IconButton(
                       onPressed: () {
@@ -113,7 +118,6 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     icon: const Icon(Icons.more_vert_rounded),
                     itemBuilder: (context) => [
                       PopupMenuItem(
-                        child: Text(LocaleKeys.editCategory.tr()),
                         onTap: () => Future.microtask(
                           () => showDialog(
                             context: context,
@@ -121,7 +125,13 @@ class MangaDetailsScreen extends HookConsumerWidget {
                                 EditMangaCategoryDialog(mangaId: mangaId),
                           ),
                         ),
+                        child: Text(LocaleKeys.editCategory.tr()),
                       ),
+                      if (!context.isTablet)
+                        PopupMenuItem(
+                          onTap: () => refresh(false),
+                          child: Text(LocaleKeys.refresh.tr()),
+                        ),
                     ],
                   )
                 ],
