@@ -24,9 +24,8 @@ class EditCategoryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     final categoryList = ref.watch(categoryListProvider())
-      ..showToastOnError(toast, withMicrotask: true);
+      ..showToastOnError(ref.read(toastProvider(context)), withMicrotask: true);
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.editCategory.tr()),

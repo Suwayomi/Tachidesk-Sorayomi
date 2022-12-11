@@ -23,7 +23,6 @@ class ServerScreen extends ConsumerWidget {
   const ServerScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     final authType = ref.watch(authTypeKeyProvider);
     return Scaffold(
       appBar: AppBar(
@@ -50,7 +49,9 @@ class ServerScreen extends ConsumerWidget {
               title: Text(LocaleKeys.webUI.tr()),
               onTap: () {
                 final url = ref.read(serverUrlProvider);
-                if (url.isNotBlank) launchUrlInWeb(url!, toast);
+                if (url.isNotBlank) {
+                  launchUrlInWeb(url!, ref.read(toastProvider(context)));
+                }
               },
             )
         ],

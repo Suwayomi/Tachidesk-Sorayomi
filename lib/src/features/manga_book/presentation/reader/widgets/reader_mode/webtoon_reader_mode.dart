@@ -93,6 +93,7 @@ class WebtoonReaderMode extends HookWidget {
         );
       },
       child: InteractiveViewer(
+        maxScale: 8,
         child: ScrollablePositionedList.separated(
           itemScrollController: scrollController,
           itemPositionsListener: positionsListener,

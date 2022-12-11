@@ -24,7 +24,6 @@ class MoreScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     return Scaffold(
       appBar: AppBar(
         title: Text(LocaleKeys.more.tr()),
@@ -66,7 +65,8 @@ class MoreScreen extends ConsumerWidget {
           ListTile(
             title: Text(LocaleKeys.help.tr()),
             leading: const Icon(Icons.help_rounded),
-            onTap: () => launchUrlInWeb(AppUrls.tachideskHelp.url, toast),
+            onTap: () => launchUrlInWeb(
+                AppUrls.tachideskHelp.url, ref.read(toastProvider(context))),
           ),
         ],
       ),

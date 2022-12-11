@@ -36,7 +36,6 @@ class MangaDescription extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isExpanded = useState(context.isTablet);
-    final toast = ref.watch(toastProvider(context));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -61,7 +60,9 @@ class MangaDescription extends HookConsumerWidget {
                     }
                     await refresh();
                   });
-                  val.showToastOnError(toast);
+                  if (context.mounted) {
+                    val.showToastOnError(ref.read(toastProvider(context)));
+                  }
                 },
                 icon: Icon(
                   manga.inLibrary ?? false
@@ -82,7 +83,7 @@ class MangaDescription extends HookConsumerWidget {
                 onPressed: () async {
                   launchUrlInWeb(
                     (manga.realUrl ?? ""),
-                    toast,
+                    ref.read(toastProvider(context)),
                   );
                 },
                 icon: const Icon(Icons.public),
