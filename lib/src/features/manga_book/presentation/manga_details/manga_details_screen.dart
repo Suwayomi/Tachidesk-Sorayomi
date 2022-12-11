@@ -34,13 +34,19 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final chapterList = ref.watch(chapterListProvider);
     final selectedChapters = useState<Map<int, Chapter>>({});
     refresh([useCache = true]) async {
-      if (context.mounted) {
-        ref.read(toastProvider(context)).show(LocaleKeys.updating.tr());
+      if (context.mounted && !useCache) {
+        ref.read(toastProvider(context)).show(
+              LocaleKeys.updating.tr(),
+              withMicrotask: true,
+            );
       }
       await ref.read(chapterListProvider.notifier).refresh(useCache);
       await ref.read(provider.notifier).refresh(useCache);
-      if (context.mounted) {
-        ref.read(toastProvider(context)).show(LocaleKeys.updateCompleted.tr());
+      if (context.mounted && !useCache) {
+        ref.read(toastProvider(context)).show(
+              LocaleKeys.updateCompleted.tr(),
+              withMicrotask: true,
+            );
       }
     }
 

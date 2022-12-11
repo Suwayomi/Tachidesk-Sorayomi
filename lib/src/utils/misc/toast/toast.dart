@@ -25,10 +25,21 @@ class Toast {
     show(msg);
   }
 
-  void show(String msg) => _fToast.showToast(
-        child: ToastWidget(text: msg),
-        gravity: ToastGravity.BOTTOM,
-      );
+  void show(String msg, {bool withMicrotask = false}) {
+    {
+      if (withMicrotask) {
+        Future.microtask(() => _fToast.showToast(
+              child: ToastWidget(text: msg),
+              gravity: ToastGravity.BOTTOM,
+            ));
+      } else {
+        _fToast.showToast(
+          child: ToastWidget(text: msg),
+          gravity: ToastGravity.BOTTOM,
+        );
+      }
+    }
+  }
 
   void showError(String error) => _fToast.showToast(
         child: ToastWidget(

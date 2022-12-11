@@ -50,7 +50,10 @@ class ServerScreen extends ConsumerWidget {
               onTap: () {
                 final url = ref.read(serverUrlProvider);
                 if (url.isNotBlank) {
-                  launchUrlInWeb(url!, ref.read(toastProvider(context)));
+                  launchUrlInWeb(
+                    url!,
+                    ref.read(toastProvider(context)),
+                  );
                 }
               },
             )

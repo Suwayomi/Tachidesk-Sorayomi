@@ -44,7 +44,8 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
           if (showSummaryButton)
             PopupMenuItem(
               onTap: () => Future.microtask(
-                  () => showUpdateStatusSummaryBottomSheet(context)),
+                () => showUpdateStatusSummaryBottomSheet(context),
+              ),
               child: Text(
                 LocaleKeys.updatesSummary.tr(),
               ),

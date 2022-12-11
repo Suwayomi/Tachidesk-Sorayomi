@@ -66,7 +66,9 @@ class MoreScreen extends ConsumerWidget {
             title: Text(LocaleKeys.help.tr()),
             leading: const Icon(Icons.help_rounded),
             onTap: () => launchUrlInWeb(
-                AppUrls.tachideskHelp.url, ref.read(toastProvider(context))),
+              AppUrls.tachideskHelp.url,
+              ref.read(toastProvider(context)),
+            ),
           ),
         ],
       ),

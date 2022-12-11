@@ -79,17 +79,18 @@ class MangaDescription extends HookConsumerWidget {
                       : LocaleKeys.addToLibrary.tr(),
                 ),
               ),
-              TextButton.icon(
-                onPressed: () async {
-                  launchUrlInWeb(
-                    (manga.realUrl ?? ""),
-                    ref.read(toastProvider(context)),
-                  );
-                },
-                icon: const Icon(Icons.public),
-                style: TextButton.styleFrom(foregroundColor: Colors.grey),
-                label: Text(LocaleKeys.webView.tr()),
-              ),
+              if (manga.realUrl.isNotBlank)
+                TextButton.icon(
+                  onPressed: () async {
+                    launchUrlInWeb(
+                      (manga.realUrl ?? ""),
+                      ref.read(toastProvider(context)),
+                    );
+                  },
+                  icon: const Icon(Icons.public),
+                  style: TextButton.styleFrom(foregroundColor: Colors.grey),
+                  label: Text(LocaleKeys.webView.tr()),
+                ),
             ],
           ),
         ),
