@@ -41,6 +41,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
     return RefreshIndicator(
       onRefresh: () => onRefresh(false),
       child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: SingleChildScrollView(

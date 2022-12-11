@@ -74,6 +74,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                       ),
                       Expanded(
                         child: ListView.builder(
+                          physics: const AlwaysScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
                             if (filteredChapterList.length == index) {
                               return const ListTile();

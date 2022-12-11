@@ -1,5 +1,5 @@
 <p align="center">
- <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Tachidesk Sorayomi logo"></a>
+ <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Tachidesk Sorayomi logo"/>
 </p>
 
 <h1 align="center"> Tachidesk Sorayomi </h1>
