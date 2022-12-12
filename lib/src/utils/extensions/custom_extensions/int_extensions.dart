@@ -12,6 +12,9 @@ extension IntExtensions on int? {
       this != null ? this! >= lower && this! <= upper : false;
   bool isGreaterThan(int i) => isNull ? false : this! > i;
   bool isLessThan(int i) => isNull ? false : this! < i;
+  int ifNullOrNegative([int i = 0]) => isNull || this!.isNegative ? i : this!;
+  bool isNotEquals(List<int> lst) =>
+      isNull || lst.isBlank ? true : lst.every((e) => e != this);
 
   bool? get toBool => (this == null || this == 0) ? null : this == 1;
 

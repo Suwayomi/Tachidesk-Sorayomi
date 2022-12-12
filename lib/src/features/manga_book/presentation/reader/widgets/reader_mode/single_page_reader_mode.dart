@@ -37,8 +37,20 @@ class SinglePageReaderMode extends HookWidget {
   final Axis scrollDirection;
   @override
   Widget build(BuildContext context) {
-    final scrollController = usePageController();
-    final currentIndex = useState(0);
+    final scrollController =
+        usePageController(initialPage: chapter.lastPageRead.ifNullOrNegative());
+    final currentIndex = useState(scrollController.initialPage);
+    useEffect(() {
+      final index = currentIndex.value;
+      if (onPageChanged != null) {
+        if (index == ((chapter.pageCount ?? 0) - 1)) {
+          onPageChanged!(-1);
+        } else {
+          onPageChanged!(index);
+        }
+      }
+      return;
+    }, [currentIndex.value]);
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
@@ -82,11 +94,6 @@ class SinglePageReaderMode extends HookWidget {
               value: downloadProgress.progress,
             ),
           );
-
-          if (index == ((chapter.pageCount ?? 0) - 1) &&
-              onPageChanged != null) {
-            onPageChanged!(-1);
-          }
           return InteractiveViewer(
             maxScale: 8,
             child: SingleChildScrollView(

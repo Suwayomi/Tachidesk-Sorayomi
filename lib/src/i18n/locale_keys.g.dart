@@ -144,6 +144,7 @@ abstract class LocaleKeys {
   static const nsfw = 'nsfw';
   static const nsfw18 = 'nsfw18';
   static const numSelected = 'numSelected';
+  static const page = 'page';
   static const password = 'password';
   static const pause = 'pause';
   static const pending = 'pending';

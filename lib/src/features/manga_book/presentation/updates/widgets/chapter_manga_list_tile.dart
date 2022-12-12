@@ -80,7 +80,9 @@ class ChapterMangaListTile extends StatelessWidget {
               } else {
                 context.push(
                   Routes.getReader(
-                      "${pair.manga!.id}", "${pair.chapter!.index}"),
+                    "${pair.manga!.id}",
+                    "${pair.chapter!.index}",
+                  ),
                 );
               }
             }

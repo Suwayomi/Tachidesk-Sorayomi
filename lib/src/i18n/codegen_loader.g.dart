@@ -165,6 +165,7 @@ class CodegenLoader extends AssetLoader {
     },
     "nsfw18": "18+",
     "numSelected": "{num} Selected",
+    "page": "Page: {number}",
     "password": "Password",
     "pause": "Pause",
     "pending": "Pending",
