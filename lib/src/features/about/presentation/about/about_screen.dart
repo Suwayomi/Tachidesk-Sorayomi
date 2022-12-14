@@ -50,7 +50,7 @@ class AboutScreen extends ConsumerWidget {
               );
               final currentVer = Version.parse(serverVer.substring(1));
               final newVer = Version.parse(newUpdate.tag?.substring(1) ?? "");
-              if ((newVer.compareTo(currentVer)).isGreaterThan(-1)) {
+              if ((newVer.compareTo(currentVer)).isGreaterThan(0)) {
                 appUpdateDialog(
                   title: about.name ?? LocaleKeys.server.tr(),
                   newRelease: "${newVer.canonicalizedVersion}"
