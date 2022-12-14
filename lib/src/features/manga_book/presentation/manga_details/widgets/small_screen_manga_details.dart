@@ -39,7 +39,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
         ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
 
     return RefreshIndicator(
-      onRefresh: () => onRefresh(false),
+      onRefresh: () => onRefresh(true),
       child: CustomScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         slivers: [
@@ -47,7 +47,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
             child: SingleChildScrollView(
               child: MangaDescription(
                 manga: manga,
-                refresh: () => onRefresh(true),
+                refresh: () => onRefresh(false),
                 removeMangaFromLibrary: () => ref
                     .read(mangaBookRepositoryProvider)
                     .removeMangaFromLibrary(mangaId),
@@ -75,7 +75,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
                       key: ValueKey("${filteredChapterList[index].id}"),
                       manga: manga,
                       chapter: filteredChapterList[index],
-                      updateData: () => onRefresh(true),
+                      updateData: () => onRefresh(false),
                       isSelected: selectedChapters.value
                           .containsKey(filteredChapterList[index].id),
                       canTapSelect: selectedChapters.value.isNotEmpty,
@@ -93,14 +93,14 @@ class SmallScreenMangaDetails extends ConsumerWidget {
                   child: Emoticons(
                     text: LocaleKeys.noChaptersFound.tr(),
                     button: TextButton(
-                      onPressed: () => onRefresh(false),
+                      onPressed: () => onRefresh(true),
                       child: Text(LocaleKeys.refresh.tr()),
                     ),
                   ),
                 );
               }
             },
-            refresh: () => onRefresh(true),
+            refresh: () => onRefresh(false),
             wrapper: (child) => SliverToBoxAdapter(
               child: SizedBox(
                 height: context.height * .5,

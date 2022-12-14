@@ -35,16 +35,16 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final manga = ref.watch(provider);
     final chapterList = ref.watch(chapterListProvider);
     final selectedChapters = useState<Map<int, Chapter>>({});
-    refresh([useCache = true]) async {
-      if (context.mounted && !useCache) {
+    refresh([onlineFetch = false]) async {
+      if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
               LocaleKeys.updating.tr(),
               withMicrotask: true,
             );
       }
-      await ref.read(chapterListProvider.notifier).refresh(useCache);
-      await ref.read(provider.notifier).refresh(useCache);
-      if (context.mounted && !useCache) {
+      await ref.read(chapterListProvider.notifier).refresh(onlineFetch);
+      await ref.read(provider.notifier).refresh(onlineFetch);
+      if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
               LocaleKeys.updateCompleted.tr(),
               withMicrotask: true,
@@ -104,7 +104,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                 actions: [
                   if (context.isTablet)
                     IconButton(
-                      onPressed: () => refresh(false),
+                      onPressed: () => refresh(true),
                       icon: const Icon(Icons.refresh_rounded),
                     ),
                   Builder(
@@ -144,7 +144,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       ),
                       if (!context.isTablet)
                         PopupMenuItem(
-                          onTap: () => refresh(false),
+                          onTap: () => refresh(true),
                           child: Text(LocaleKeys.refresh.tr()),
                         ),
                     ],
@@ -158,7 +158,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
         bottomSheet: selectedChapters.value.isNotEmpty
             ? MultiChaptersActionsBottomAppBar(
                 afterOptionSelected: () async =>
-                    ref.read(chapterListProvider.notifier).refresh(true),
+                    ref.read(chapterListProvider.notifier).refresh(),
                 selectedChapters: selectedChapters,
               )
             : null,
