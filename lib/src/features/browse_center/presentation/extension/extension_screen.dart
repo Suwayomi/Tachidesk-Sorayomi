@@ -51,9 +51,8 @@ class ExtensionScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     final extensionMapData = ref.watch(extensionMapFilteredAndQueriedProvider)
-      ..showToastOnError(toast, withMicrotask: true);
+      ..showToastOnError(ref.read(toastProvider(context)), withMicrotask: true);
     final extensionMap = {...?extensionMapData.valueOrNull};
     final installed = extensionMap.remove("installed");
     final update = extensionMap.remove("update");

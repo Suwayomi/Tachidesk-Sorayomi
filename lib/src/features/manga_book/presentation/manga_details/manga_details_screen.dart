@@ -7,11 +7,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
+import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
@@ -33,8 +36,20 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final chapterList = ref.watch(chapterListProvider);
     final selectedChapters = useState<Map<int, Chapter>>({});
     refresh([useCache = true]) async {
+      if (context.mounted && !useCache) {
+        ref.read(toastProvider(context)).show(
+              LocaleKeys.updating.tr(),
+              withMicrotask: true,
+            );
+      }
       await ref.read(chapterListProvider.notifier).refresh(useCache);
       await ref.read(provider.notifier).refresh(useCache);
+      if (context.mounted && !useCache) {
+        ref.read(toastProvider(context)).show(
+              LocaleKeys.updateCompleted.tr(),
+              withMicrotask: true,
+            );
+      }
     }
 
     useEffect(() {
@@ -87,6 +102,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
             : AppBar(
                 title: Text(data?.title ?? LocaleKeys.manga.tr()),
                 actions: [
+                  if (context.isTablet)
+                    IconButton(
+                      onPressed: () => refresh(false),
+                      icon: const Icon(Icons.refresh_rounded),
+                    ),
                   Builder(
                     builder: (context) => IconButton(
                       onPressed: () {
@@ -113,7 +133,6 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     icon: const Icon(Icons.more_vert_rounded),
                     itemBuilder: (context) => [
                       PopupMenuItem(
-                        child: Text(LocaleKeys.editCategory.tr()),
                         onTap: () => Future.microtask(
                           () => showDialog(
                             context: context,
@@ -121,7 +140,13 @@ class MangaDetailsScreen extends HookConsumerWidget {
                                 EditMangaCategoryDialog(mangaId: mangaId),
                           ),
                         ),
+                        child: Text(LocaleKeys.editCategory.tr()),
                       ),
+                      if (!context.isTablet)
+                        PopupMenuItem(
+                          onTap: () => refresh(false),
+                          child: Text(LocaleKeys.refresh.tr()),
+                        ),
                     ],
                   )
                 ],
@@ -137,6 +162,21 @@ class MangaDetailsScreen extends HookConsumerWidget {
                 selectedChapters: selectedChapters,
               )
             : null,
+        floatingActionButton: FloatingActionButton.extended(
+          isExtended: context.isTablet,
+          label: Text(
+            data?.lastChapterRead?.index != null
+                ? LocaleKeys.resume.tr()
+                : LocaleKeys.start.tr(),
+          ),
+          icon: const Icon(Icons.play_arrow_rounded),
+          onPressed: () {
+            context.push(
+              Routes.getReader(
+                  "${data?.id}", "${data?.lastChapterRead?.index ?? 1}"),
+            );
+          },
+        ),
         body: data != null
             ? context.isTablet
                 ? BigScreenMangaDetails(

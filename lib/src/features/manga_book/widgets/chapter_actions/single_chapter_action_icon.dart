@@ -32,7 +32,6 @@ class SingleChapterActionIcon extends ConsumerWidget {
   final ImageIcon? imageIcon;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     return LoadingIconButton(
       icon: imageIcon ?? Icon(icon),
       onPressed: () async {
@@ -43,7 +42,7 @@ class SingleChapterActionIcon extends ConsumerWidget {
                 patch: chapterPut,
               ),
         ))
-            .showToastOnError(toast);
+            .showToastOnError(ref.read(toastProvider(context)));
 
         await refresh();
       },

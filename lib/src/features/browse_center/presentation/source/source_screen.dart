@@ -22,9 +22,8 @@ class SourceScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     final sourceMapData = ref.watch(sourceMapFilteredProvider)
-      ..showToastOnError(toast, withMicrotask: true);
+      ..showToastOnError(ref.read(toastProvider(context)), withMicrotask: true);
     final sourceMap = {...?sourceMapData.valueOrNull};
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");

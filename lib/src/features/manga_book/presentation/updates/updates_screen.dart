@@ -60,7 +60,6 @@ class UpdatesScreen extends HookConsumerWidget {
     final controller =
         usePagingController<int, ChapterMangaPair>(firstPageKey: 0);
     final updatesRepository = ref.watch(updatesRepositoryProvider);
-    final toast = ref.watch(toastProvider(context));
     useEffect(() {
       controller.addPageRequestListener((pageKey) => _fetchPage(
             updatesRepository,
@@ -134,7 +133,7 @@ class UpdatesScreen extends HookConsumerWidget {
                           mangaId: "${item.manga!.id!}",
                           chapterIndex: "${item.chapter!.index!}",
                         ))
-                        .valueOrToast(toast);
+                        .valueOrToast(ref.read(toastProvider(context)));
                     try {
                       controller.itemList = [...?controller.itemList]
                         ..replaceRange(index, index + 1, [

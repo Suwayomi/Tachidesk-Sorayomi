@@ -36,7 +36,6 @@ class MangaDescription extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isExpanded = useState(context.isTablet);
-    final toast = ref.watch(toastProvider(context));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -61,7 +60,9 @@ class MangaDescription extends HookConsumerWidget {
                     }
                     await refresh();
                   });
-                  val.showToastOnError(toast);
+                  if (context.mounted) {
+                    val.showToastOnError(ref.read(toastProvider(context)));
+                  }
                 },
                 icon: Icon(
                   manga.inLibrary ?? false
@@ -78,17 +79,18 @@ class MangaDescription extends HookConsumerWidget {
                       : LocaleKeys.addToLibrary.tr(),
                 ),
               ),
-              TextButton.icon(
-                onPressed: () async {
-                  launchUrlInWeb(
-                    (manga.realUrl ?? ""),
-                    toast,
-                  );
-                },
-                icon: const Icon(Icons.public),
-                style: TextButton.styleFrom(foregroundColor: Colors.grey),
-                label: Text(LocaleKeys.webView.tr()),
-              ),
+              if (manga.realUrl.isNotBlank)
+                TextButton.icon(
+                  onPressed: () async {
+                    launchUrlInWeb(
+                      (manga.realUrl ?? ""),
+                      ref.read(toastProvider(context)),
+                    );
+                  },
+                  icon: const Icon(Icons.public),
+                  style: TextButton.styleFrom(foregroundColor: Colors.grey),
+                  label: Text(LocaleKeys.webView.tr()),
+                ),
             ],
           ),
         ),

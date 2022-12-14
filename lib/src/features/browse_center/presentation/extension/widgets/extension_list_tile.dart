@@ -30,7 +30,6 @@ class ExtensionListTile extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repository = ref.watch(extensionRepositoryProvider);
-    final toast = ref.watch(toastProvider(context));
     final isLoading = useState(false);
     return ListTile(
       key: key,
@@ -85,7 +84,7 @@ class ExtensionListTile extends HookConsumerWidget {
 
                           await refresh();
                         }))
-                            .showToastOnError(toast);
+                            .showToastOnError(ref.read(toastProvider(context)));
                         isLoading.value = false;
                       } catch (e) {
                         //
@@ -114,7 +113,7 @@ class ExtensionListTile extends HookConsumerWidget {
                           await repository.installExtension(extension.pkgName!);
                           await refresh();
                         }))
-                            .showToastOnError(toast);
+                            .showToastOnError(ref.read(toastProvider(context)));
                         isLoading.value = false;
                       } catch (e) {
                         //

@@ -29,7 +29,6 @@ class MultiChaptersActionIcon extends ConsumerWidget {
   final IconData icon;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
     return LoadingIconButton(
       icon: Icon(icon),
       onPressed: () async {
@@ -45,7 +44,7 @@ class MultiChaptersActionIcon extends ConsumerWidget {
                     ),
                   ),
         ))
-            .showToastOnError(toast);
+            .showToastOnError(ref.read(toastProvider(context)));
 
         await refresh(change != null);
       },
