@@ -33,11 +33,12 @@ class MangaBookRepository {
   // Mangas
   Future<Manga?> getManga({
     required String mangaId,
-    bool useCache = true,
+    bool onlineFetch = false,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.get<Manga, Manga?>(
-        MangaUrl.fullWithId(mangaId, useCache: useCache),
+        MangaUrl.fullWithId(mangaId),
+        queryParameters: {"onlineFetch": onlineFetch},
         decoder: (e) => e is Map<String, dynamic> ? Manga.fromJson(e) : null,
         cancelToken: cancelToken,
       ))
@@ -48,11 +49,10 @@ class MangaBookRepository {
   Future<Chapter?> getChapter({
     required String mangaId,
     required String chapterIndex,
-    bool useCache = true,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.get<Chapter, Chapter?>(
-        MangaUrl.chapterWithIndex(mangaId, chapterIndex, useCache: useCache),
+        MangaUrl.chapterWithIndex(mangaId, chapterIndex),
         decoder: (e) => e is Map<String, dynamic> ? Chapter.fromJson(e) : null,
         cancelToken: cancelToken,
       ))
@@ -84,11 +84,12 @@ class MangaBookRepository {
 
   Future<List<Chapter>?> getChapterList({
     required String mangaId,
-    bool useCache = true,
+    bool onlineFetch = false,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.get<List<Chapter>, Chapter>(
-        MangaUrl.chapters(mangaId, useCache: useCache),
+        MangaUrl.chapters(mangaId),
+        queryParameters: {"onlineFetch": onlineFetch},
         decoder: (e) =>
             e is Map<String, dynamic> ? Chapter.fromJson(e) : Chapter(),
         cancelToken: cancelToken,

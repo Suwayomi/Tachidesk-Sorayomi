@@ -39,7 +39,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
         ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
 
     return RefreshIndicator(
-      onRefresh: () => onRefresh(false),
+      onRefresh: () => onRefresh(true),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -53,7 +53,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                 addMangaToLibrary: (() => ref
                     .read(mangaBookRepositoryProvider)
                     .addMangaToLibrary(mangaId)),
-                refresh: () => onRefresh(true),
+                refresh: () => onRefresh(false),
               ),
             ),
           ),
@@ -86,7 +86,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                               key: key,
                               manga: manga,
                               chapter: chapter,
-                              updateData: () => onRefresh(true),
+                              updateData: () => onRefresh(false),
                               isSelected: selectedChapters.value
                                   .containsKey(chapter.id),
                               canTapSelect: selectedChapters.value.isNotEmpty,
@@ -106,13 +106,13 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   return Emoticons(
                     text: LocaleKeys.noChaptersFound.tr(),
                     button: TextButton(
-                      onPressed: () => onRefresh(false),
+                      onPressed: () => onRefresh(true),
                       child: Text(LocaleKeys.refresh.tr()),
                     ),
                   );
                 }
               },
-              refresh: () => onRefresh(true),
+              refresh: () => onRefresh(false),
             ),
           ),
         ],
