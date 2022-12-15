@@ -45,16 +45,14 @@ class ReaderQuickSettings extends HookConsumerWidget {
                           value: enumValue.name,
                         ),
                   );
-                  ref.invalidate(
-                    mangaWithIdProvider(mangaId: "${manga.id}"),
-                  );
+                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
                 },
               ),
             ),
         []);
 
-    final VoidCallback showReaderNavigationLayoutPopup = useCallback(
-        () => showDialog(
+    final showReaderNavigationLayoutPopup = useCallback(
+        (BuildContext context) => showDialog(
               context: context,
               builder: (context) => EnumPopup<ReaderNavigationLayout>(
                 enumList: ReaderNavigationLayout.values,
@@ -106,7 +104,7 @@ class ReaderQuickSettings extends HookConsumerWidget {
           ),
           onTap: () {
             context.pop();
-            showReaderNavigationLayoutPopup();
+            showReaderNavigationLayoutPopup(context);
           },
         ),
       ],

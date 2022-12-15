@@ -4,20 +4,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/endpoints.dart';
-import '../../../../../../i18n/locale_keys.g.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../domain/chapter/chapter_model.dart';
 import '../../../../domain/manga/manga_model.dart';
-import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
 
 class SinglePageReaderMode extends HookWidget {
@@ -37,26 +34,19 @@ class SinglePageReaderMode extends HookWidget {
   final Axis scrollDirection;
   @override
   Widget build(BuildContext context) {
-    final scrollController =
-        usePageController(initialPage: chapter.lastPageRead.ifNullOrNegative());
+    final scrollController = usePageController(
+      initialPage:
+          chapter.read.ifNull() ? 0 : chapter.lastPageRead.ifNullOrNegative(),
+    );
     final currentIndex = useState(scrollController.initialPage);
     useEffect(() {
-      final index = currentIndex.value;
-      if (onPageChanged != null) {
-        if (index == ((chapter.pageCount ?? 0) - 1)) {
-          onPageChanged!(-1);
-        } else {
-          onPageChanged!(index);
-        }
-      }
+      if (onPageChanged != null) onPageChanged!(currentIndex.value);
       return;
     }, [currentIndex.value]);
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
-        if (currentPage != null) {
-          currentIndex.value = currentPage.toInt();
-        }
+        if (currentPage != null) currentIndex.value = currentPage.toInt();
       }
 
       scrollController.addListener(listener);
@@ -96,31 +86,7 @@ class SinglePageReaderMode extends HookWidget {
           );
           return InteractiveViewer(
             maxScale: 8,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  if (index == 0)
-                    ChapterSeparator(
-                      title: LocaleKeys.current.tr(),
-                      name: chapter.name ??
-                          LocaleKeys.chapterNumber.tr(namedArgs: {
-                            'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                          }),
-                    ),
-                  image,
-                  if (index == (chapter.pageCount ?? 0) - 1)
-                    ChapterSeparator(
-                      title: LocaleKeys.finished.tr(),
-                      name: chapter.name ??
-                          LocaleKeys.chapterNumber.tr(namedArgs: {
-                            'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                          }),
-                    ),
-                ],
-              ),
-            ),
+            child: image,
           );
         },
         itemCount: chapter.pageCount ?? 0,

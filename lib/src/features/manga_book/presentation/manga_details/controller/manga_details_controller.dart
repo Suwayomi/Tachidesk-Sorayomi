@@ -88,7 +88,7 @@ class MangaChapterList extends _$MangaChapterList {
 }
 
 @riverpod
-List<Chapter>? mangaChapterListWithFilter(
+AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
   MangaChapterListWithFilterRef ref, {
   required String mangaId,
 }) {
@@ -130,8 +130,32 @@ List<Chapter>? mangaChapterListWithFilter(
     }
   }
 
-  return chapterList.valueOrNull?.where(applyChapterFilter).toList()
-    ?..sort(applyChapterSort);
+  return chapterList.copyWithData(
+    (data) => [...?data?.where(applyChapterFilter)]..sort(applyChapterSort),
+  );
+}
+
+@riverpod
+Chapter? firstUnreadInFilteredChapterList(
+  FirstUnreadInFilteredChapterListRef ref, {
+  required String mangaId,
+}) {
+  final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
+      DBKeys.chapterSortDirection.initial;
+  final filteredList = ref
+      .watch(mangaChapterListWithFilterProvider(mangaId: mangaId))
+      .valueOrNull;
+  if (filteredList == null) {
+    return null;
+  } else {
+    if (isAscSorted) {
+      return filteredList
+          .firstWhereOrNull((element) => !element.read.ifNull(true));
+    } else {
+      return filteredList
+          .lastWhereOrNull((element) => !element.read.ifNull(true));
+    }
+  }
 }
 
 @riverpod
@@ -140,18 +164,26 @@ Pair<Chapter?, Chapter?>? getPreviousAndNextChapters(
   required String mangaId,
   required String chapterIndex,
 }) {
-  final filteredList =
-      ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
-  if (filteredList == null) return null;
-  final currentChapterIndex =
-      filteredList.indexWhere((element) => "${element.index}" == chapterIndex);
-  return Pair(
-    first:
-        currentChapterIndex > 0 ? filteredList[currentChapterIndex - 1] : null,
-    second: currentChapterIndex < (filteredList.length - 1)
+  final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
+      DBKeys.chapterSortDirection.initial;
+  final filteredList = ref
+      .watch(mangaChapterListWithFilterProvider(mangaId: mangaId))
+      .valueOrNull;
+  if (filteredList == null) {
+    return null;
+  } else {
+    final currentChapterIndex = filteredList
+        .indexWhere((element) => "${element.index}" == chapterIndex);
+    final prevChapter =
+        currentChapterIndex > 0 ? filteredList[currentChapterIndex - 1] : null;
+    final nextChapter = currentChapterIndex < (filteredList.length - 1)
         ? filteredList[currentChapterIndex + 1]
-        : null,
-  );
+        : null;
+    return Pair(
+      first: isAscSorted ? nextChapter : prevChapter,
+      second: isAscSorted ? prevChapter : nextChapter,
+    );
+  }
 }
 
 @riverpod

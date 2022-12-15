@@ -149,7 +149,7 @@ abstract class _$SourceDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   DisplayMode? build();
 }
 
-String $sourceHash() => r'4b9780685f4d7657fd9d31eb5b535275b9896577';
+String $sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
 
 /// See also [source].
 class SourceProvider extends AutoDisposeFutureProvider<Source?> {
@@ -220,7 +220,7 @@ class SourceFamily extends Family<AsyncValue<Source?>> {
 }
 
 String $baseSourceMangaFilterListHash() =>
-    r'a576d9d103923d24ee4fd66836dfe07e0b896a5a';
+    r'21b6028eb4e3ea54f9708d2faf1c73f21129721e';
 
 /// See also [baseSourceMangaFilterList].
 class BaseSourceMangaFilterListProvider

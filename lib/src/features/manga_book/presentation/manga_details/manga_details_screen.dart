@@ -30,12 +30,20 @@ class MangaDetailsScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = mangaWithIdProvider(mangaId: mangaId);
-    final chapterListProvider = mangaChapterListProvider(mangaId: mangaId);
+    final provider = useMemoized(() => mangaWithIdProvider(mangaId: mangaId));
+    final chapterListProvider = useMemoized(
+      () => mangaChapterListProvider(mangaId: mangaId),
+    );
     final manga = ref.watch(provider);
-    final chapterList = ref.watch(chapterListProvider);
+    final filteredChapterList =
+        ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
+
+    final firstUnreadChapter = ref.watch(
+      firstUnreadInFilteredChapterListProvider(mangaId: mangaId),
+    );
+
     final selectedChapters = useState<Map<int, Chapter>>({});
-    refresh([onlineFetch = false]) async {
+    final refresh = useCallback(([onlineFetch = false]) async {
       if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
               LocaleKeys.updating.tr(),
@@ -50,10 +58,10 @@ class MangaDetailsScreen extends HookConsumerWidget {
               withMicrotask: true,
             );
       }
-    }
+    }, []);
 
     useEffect(() {
-      if (!chapterList.isLoading && !manga.isLoading) refresh();
+      if (!filteredChapterList.isLoading && !manga.isLoading) refresh();
       return;
     }, []);
 
@@ -75,10 +83,14 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     onPressed: () {
                       selectedChapters.value = {
                         for (Chapter i in [
-                          ...?ref.read(mangaChapterListWithFilterProvider(
-                              mangaId: mangaId))
+                          ...?ref
+                              .read(
+                                mangaChapterListWithFilterProvider(
+                                    mangaId: mangaId),
+                              )
+                              .valueOrNull
                         ])
-                          i.id ?? -1: i
+                          if (i.id != null) i.id!: i
                       };
                     },
                     icon: const Icon(Icons.select_all_rounded),
@@ -87,12 +99,15 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     onPressed: () {
                       final newMap = {
                         for (Chapter i in [
-                          ...?ref.read(mangaChapterListWithFilterProvider(
-                              mangaId: mangaId))
+                          ...?ref
+                              .read(mangaChapterListWithFilterProvider(
+                                  mangaId: mangaId))
+                              .valueOrNull
                         ])
-                          i.id ?? -1: i
-                      }..removeWhere((key, value) =>
-                          selectedChapters.value.containsKey(key));
+                          if (i.id != null &&
+                              !selectedChapters.value.containsKey(key))
+                            i.id!: i
+                      };
                       selectedChapters.value = newMap;
                     },
                     icon: const Icon(Icons.flip_to_back_rounded),
@@ -162,32 +177,36 @@ class MangaDetailsScreen extends HookConsumerWidget {
                 selectedChapters: selectedChapters,
               )
             : null,
-        floatingActionButton: FloatingActionButton.extended(
-          isExtended: context.isTablet,
-          label: Text(
-            data?.lastChapterRead?.index != null
-                ? LocaleKeys.resume.tr()
-                : LocaleKeys.start.tr(),
-          ),
-          icon: const Icon(Icons.play_arrow_rounded),
-          onPressed: () {
-            context.push(
-              Routes.getReader(
-                  "${data?.id}", "${data?.lastChapterRead?.index ?? 1}"),
-            );
-          },
-        ),
+        floatingActionButton: firstUnreadChapter != null
+            ? FloatingActionButton.extended(
+                isExtended: context.isTablet,
+                label: Text(
+                  data?.lastChapterRead?.index != null
+                      ? LocaleKeys.resume.tr()
+                      : LocaleKeys.start.tr(),
+                ),
+                icon: const Icon(Icons.play_arrow_rounded),
+                onPressed: () {
+                  context.push(
+                    Routes.getReader(
+                      "${firstUnreadChapter.mangaId ?? mangaId}",
+                      "${firstUnreadChapter.index ?? 0}",
+                    ),
+                  );
+                },
+              )
+            : null,
         body: data != null
             ? context.isTablet
                 ? BigScreenMangaDetails(
-                    chapterList: chapterList,
+                    chapterList: filteredChapterList,
                     manga: data,
                     mangaId: mangaId,
                     onRefresh: refresh,
                     selectedChapters: selectedChapters,
                   )
                 : SmallScreenMangaDetails(
-                    chapterList: chapterList,
+                    chapterList: filteredChapterList,
                     manga: data,
                     mangaId: mangaId,
                     onRefresh: refresh,

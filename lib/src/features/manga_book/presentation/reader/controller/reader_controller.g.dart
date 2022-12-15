@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $chapterHash() => r'0b6a4b8db86a7e4732a22b54bec76e9f6ecbd26e';
+String $chapterHash() => r'80779674a17d3466d24f1b08fc563a41c58f8070';
 
 /// See also [chapter].
 class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {

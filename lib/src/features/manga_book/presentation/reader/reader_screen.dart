@@ -38,80 +38,89 @@ class ReaderScreen extends HookConsumerWidget {
     final defaultReaderMode = ref.watch(readerModeKeyProvider);
     final onPageChanged =
         useCallback<AsyncValueSetter<int>>((int currentPage) async {
+      final chapterValue = chapter.valueOrNull;
+      final isReadingCompeted = chapterValue != null &&
+          ((chapterValue.read).ifNull() ||
+              (currentPage >
+                  ((chapterValue.pageCount).ifNullOrNegative() - 1)));
       await AsyncValue.guard(
         () => ref.read(mangaBookRepositoryProvider).putChapter(
               mangaId: mangaId,
               chapterIndex: chapterIndex,
               patch: ChapterPut(
                 lastPageRead: currentPage,
-                read: (currentPage == -1),
+                read: isReadingCompeted,
               ),
             ),
       );
-      if (currentPage == -1) {
-        ref.invalidate(mangaChapterListProvider(mangaId: mangaId));
-      }
       return;
-    }, []);
+    }, [chapter]);
 
-    return SafeArea(
-      child: manga.showUiWhenData(
-        addScaffoldWrapper: true,
-        refresh: () => ref.refresh(mangaProvider),
-        (data) {
-          if (data == null) return const SizedBox.shrink();
-          final readerMode = data.meta.isNotBlank &&
-                  data.meta!.containsKey(ChapterMeta.readerMode.key)
-              ? ReaderMode.values.firstWhere(
-                  (element) =>
-                      element.name == data.meta![ChapterMeta.readerMode.key],
-                  orElse: () => defaultReaderMode ?? ReaderMode.webtoon,
-                )
-              : defaultReaderMode;
-          return chapter.showUiWhenData(
-            refresh: () => ref.refresh(provider),
-            addScaffoldWrapper: true,
-            (chapterData) {
-              if (chapterData == null) return const SizedBox.shrink();
-              switch (readerMode) {
-                case ReaderMode.singleVertical:
-                  return SinglePageReaderMode(
-                    chapter: chapterData,
-                    manga: data,
-                    onPageChanged: onPageChanged,
-                    scrollDirection: Axis.vertical,
-                  );
-                case ReaderMode.singleHorizontalRTL:
-                  return SinglePageReaderMode(
-                    chapter: chapterData,
-                    manga: data,
-                    onPageChanged: onPageChanged,
-                    reverse: true,
-                  );
-                case ReaderMode.singleHorizontalLTR:
-                  return SinglePageReaderMode(
-                    chapter: chapterData,
-                    manga: data,
-                    onPageChanged: onPageChanged,
-                  );
-                case ReaderMode.continuousVertical:
-                  return WebtoonReaderMode(
-                    chapter: chapterData,
-                    manga: data,
-                    onPageChanged: onPageChanged,
-                    showSeparator: true,
-                  );
-                case ReaderMode.webtoon:
-                default:
-                  return WebtoonReaderMode(
-                    chapter: chapterData,
-                    manga: data,
-                    onPageChanged: onPageChanged,
-                  );
-              }
-            },
-          );
-        },
+    return WillPopScope(
+      onWillPop: () async {
+        ref.invalidate(provider);
+        ref.invalidate(mangaChapterListProvider(mangaId: mangaId));
+        return true;
+      },
+      child: SafeArea(
+        child: manga.showUiWhenData(
+          addScaffoldWrapper: true,
+          refresh: () => ref.refresh(mangaProvider),
+          (data) {
+            if (data == null) return const SizedBox.shrink();
+            final readerMode = data.meta.isNotBlank &&
+                    data.meta!.containsKey(ChapterMeta.readerMode.key)
+                ? ReaderMode.values.firstWhere(
+                    (element) =>
+                        element.name == data.meta![ChapterMeta.readerMode.key],
+                    orElse: () => defaultReaderMode ?? ReaderMode.webtoon,
+                  )
+                : defaultReaderMode;
+            return chapter.showUiWhenData(
+              refresh: () => ref.refresh(provider),
+              addScaffoldWrapper: true,
+              (chapterData) {
+                if (chapterData == null) return const SizedBox.shrink();
+                switch (readerMode) {
+                  case ReaderMode.singleVertical:
+                    return SinglePageReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                      scrollDirection: Axis.vertical,
+                    );
+                  case ReaderMode.singleHorizontalRTL:
+                    return SinglePageReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                      reverse: true,
+                    );
+                  case ReaderMode.singleHorizontalLTR:
+                    return SinglePageReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                    );
+                  case ReaderMode.continuousVertical:
+                    return WebtoonReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                      showSeparator: true,
+                    );
+                  case ReaderMode.webtoon:
+                  default:
+                    return WebtoonReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                    );
+                }
+              },
+            );
+          },
+        ),
       ),
     );
   }

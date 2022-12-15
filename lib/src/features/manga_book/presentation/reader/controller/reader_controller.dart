@@ -17,10 +17,10 @@ FutureOr<Chapter?> chapter(
   ChapterRef ref, {
   required String mangaId,
   required String chapterIndex,
-}) {
+}) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
-  final result = ref.watch(mangaBookRepositoryProvider).getChapter(
+  final result = await ref.watch(mangaBookRepositoryProvider).getChapter(
         mangaId: mangaId,
         chapterIndex: chapterIndex,
       );

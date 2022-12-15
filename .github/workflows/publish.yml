@@ -32,7 +32,7 @@ jobs:
           - os: ubuntu-20.04
             target: linux
             build_path: build/linux/x64/release/bundle
-          - os: macos-10.15 # Catalina
+          - os: macos-latest # Catalina
             target: macos
             build_path: build/macos/Build/Products/Release
           - os: windows-2019

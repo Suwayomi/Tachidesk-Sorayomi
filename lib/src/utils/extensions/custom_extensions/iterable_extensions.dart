@@ -23,4 +23,22 @@ extension IterableExtensions<T> on Iterable<T>? {
   }
 
   String get toPath => isNotBlank ? this!.join("/") : "/";
+
+  T? lastWhereOrNull(bool Function(T element) test, {T Function()? orElse}) {
+    if (isNull) return null;
+    try {
+      return this!.lastWhere(test, orElse: orElse);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  T? firstWhereOrNull(bool Function(T element) test, {T Function()? orElse}) {
+    if (isNull) return null;
+    try {
+      return this!.firstWhere(test, orElse: orElse);
+    } catch (e) {
+      return null;
+    }
+  }
 }

@@ -72,14 +72,14 @@ class ChapterListTile extends StatelessWidget {
                     color: chapter.read ?? false ? Colors.grey : null,
                   ),
                 ),
-                if ((chapter.lastPageRead).ifNullOrNegative().isNotEquals([
-                  0,
-                  chapter.pageCount ?? 0,
-                  ((chapter.pageCount ?? 1) - 1)
-                ]))
+                if (!chapter.read.ifNull() &&
+                    (chapter.lastPageRead).ifNullOrNegative() != 0)
                   Text(
                     " • ${LocaleKeys.page.tr(
-                      namedArgs: {"number": "${chapter.lastPageRead}"},
+                      namedArgs: {
+                        "number":
+                            "${chapter.lastPageRead.ifNullOrNegative() + 1}"
+                      },
                     )}",
                     style: const TextStyle(color: Colors.grey),
                   ),
