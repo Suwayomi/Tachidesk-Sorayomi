@@ -15,7 +15,6 @@ import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/manga/manga_model.dart';
-import '../controller/manga_details_controller.dart';
 import 'chapter_list_tile.dart';
 import 'manga_description.dart';
 
@@ -35,9 +34,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
   final AsyncValue<List<Chapter>?> chapterList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filteredChapterList =
-        ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
-
+    final filteredChapterList = chapterList.valueOrNull;
     return RefreshIndicator(
       onRefresh: () => onRefresh(true),
       child: CustomScrollView(

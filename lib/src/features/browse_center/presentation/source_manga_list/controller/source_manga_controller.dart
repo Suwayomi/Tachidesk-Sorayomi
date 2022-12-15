@@ -19,10 +19,10 @@ import '../../../domain/source/source_model.dart';
 part 'source_manga_controller.g.dart';
 
 @riverpod
-Future<Source?> source(SourceRef ref, String sourceId) {
+FutureOr<Source?> source(SourceRef ref, String sourceId) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
-  final result = ref
+  final result = await ref
       .watch(sourceRepositoryProvider)
       .getSource(sourceId: sourceId, cancelToken: token);
   ref.keepAlive();
@@ -33,11 +33,12 @@ Future<Source?> source(SourceRef ref, String sourceId) {
 Future<List<Filter>?> baseSourceMangaFilterList(
   BaseSourceMangaFilterListRef ref,
   String sourceId,
-) {
+) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
-  final result =
-      ref.watch(sourceRepositoryProvider).getFilterList(sourceId: sourceId);
+  final result = await ref
+      .watch(sourceRepositoryProvider)
+      .getFilterList(sourceId: sourceId);
   ref.keepAlive();
   return result;
 }
