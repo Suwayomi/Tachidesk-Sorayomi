@@ -41,14 +41,14 @@ class ReaderScreen extends HookConsumerWidget {
       final chapterValue = chapter.valueOrNull;
       final isReadingCompeted = chapterValue != null &&
           ((chapterValue.read).ifNull() ||
-              (currentPage >
+              (currentPage >=
                   ((chapterValue.pageCount).ifNullOrNegative() - 1)));
       await AsyncValue.guard(
         () => ref.read(mangaBookRepositoryProvider).putChapter(
               mangaId: mangaId,
               chapterIndex: chapterIndex,
               patch: ChapterPut(
-                lastPageRead: currentPage,
+                lastPageRead: isReadingCompeted ? 0 : currentPage,
                 read: isReadingCompeted,
               ),
             ),
