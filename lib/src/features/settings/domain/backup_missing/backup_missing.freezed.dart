@@ -22,6 +22,7 @@ BackupMissing _$BackupMissingFromJson(Map<String, dynamic> json) {
 mixin _$BackupMissing {
   List<String>? get missingSources => throw _privateConstructorUsedError;
   List<String>? get missingTrackers => throw _privateConstructorUsedError;
+  List<String>? get mangasMissingSources => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,10 @@ abstract class $BackupMissingCopyWith<$Res> {
           BackupMissing value, $Res Function(BackupMissing) then) =
       _$BackupMissingCopyWithImpl<$Res, BackupMissing>;
   @useResult
-  $Res call({List<String>? missingSources, List<String>? missingTrackers});
+  $Res call(
+      {List<String>? missingSources,
+      List<String>? missingTrackers,
+      List<String>? mangasMissingSources});
 }
 
 /// @nodoc
@@ -53,6 +57,7 @@ class _$BackupMissingCopyWithImpl<$Res, $Val extends BackupMissing>
   $Res call({
     Object? missingSources = freezed,
     Object? missingTrackers = freezed,
+    Object? mangasMissingSources = freezed,
   }) {
     return _then(_value.copyWith(
       missingSources: freezed == missingSources
@@ -62,6 +67,10 @@ class _$BackupMissingCopyWithImpl<$Res, $Val extends BackupMissing>
       missingTrackers: freezed == missingTrackers
           ? _value.missingTrackers
           : missingTrackers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      mangasMissingSources: freezed == mangasMissingSources
+          ? _value.mangasMissingSources
+          : mangasMissingSources // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ) as $Val);
   }
@@ -75,7 +84,10 @@ abstract class _$$_BackupMissingCopyWith<$Res>
       __$$_BackupMissingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String>? missingSources, List<String>? missingTrackers});
+  $Res call(
+      {List<String>? missingSources,
+      List<String>? missingTrackers,
+      List<String>? mangasMissingSources});
 }
 
 /// @nodoc
@@ -91,6 +103,7 @@ class __$$_BackupMissingCopyWithImpl<$Res>
   $Res call({
     Object? missingSources = freezed,
     Object? missingTrackers = freezed,
+    Object? mangasMissingSources = freezed,
   }) {
     return _then(_$_BackupMissing(
       missingSources: freezed == missingSources
@@ -101,6 +114,10 @@ class __$$_BackupMissingCopyWithImpl<$Res>
           ? _value._missingTrackers
           : missingTrackers // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      mangasMissingSources: freezed == mangasMissingSources
+          ? _value._mangasMissingSources
+          : mangasMissingSources // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -109,9 +126,12 @@ class __$$_BackupMissingCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BackupMissing extends _BackupMissing {
   _$_BackupMissing(
-      {final List<String>? missingSources, final List<String>? missingTrackers})
+      {final List<String>? missingSources,
+      final List<String>? missingTrackers,
+      final List<String>? mangasMissingSources})
       : _missingSources = missingSources,
         _missingTrackers = missingTrackers,
+        _mangasMissingSources = mangasMissingSources,
         super._();
 
   factory _$_BackupMissing.fromJson(Map<String, dynamic> json) =>
@@ -137,9 +157,20 @@ class _$_BackupMissing extends _BackupMissing {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<String>? _mangasMissingSources;
+  @override
+  List<String>? get mangasMissingSources {
+    final value = _mangasMissingSources;
+    if (value == null) return null;
+    if (_mangasMissingSources is EqualUnmodifiableListView)
+      return _mangasMissingSources;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'BackupMissing(missingSources: $missingSources, missingTrackers: $missingTrackers)';
+    return 'BackupMissing(missingSources: $missingSources, missingTrackers: $missingTrackers, mangasMissingSources: $mangasMissingSources)';
   }
 
   @override
@@ -150,7 +181,9 @@ class _$_BackupMissing extends _BackupMissing {
             const DeepCollectionEquality()
                 .equals(other._missingSources, _missingSources) &&
             const DeepCollectionEquality()
-                .equals(other._missingTrackers, _missingTrackers));
+                .equals(other._missingTrackers, _missingTrackers) &&
+            const DeepCollectionEquality()
+                .equals(other._mangasMissingSources, _mangasMissingSources));
   }
 
   @JsonKey(ignore: true)
@@ -158,7 +191,8 @@ class _$_BackupMissing extends _BackupMissing {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_missingSources),
-      const DeepCollectionEquality().hash(_missingTrackers));
+      const DeepCollectionEquality().hash(_missingTrackers),
+      const DeepCollectionEquality().hash(_mangasMissingSources));
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +211,8 @@ class _$_BackupMissing extends _BackupMissing {
 abstract class _BackupMissing extends BackupMissing {
   factory _BackupMissing(
       {final List<String>? missingSources,
-      final List<String>? missingTrackers}) = _$_BackupMissing;
+      final List<String>? missingTrackers,
+      final List<String>? mangasMissingSources}) = _$_BackupMissing;
   _BackupMissing._() : super._();
 
   factory _BackupMissing.fromJson(Map<String, dynamic> json) =
@@ -187,6 +222,8 @@ abstract class _BackupMissing extends BackupMissing {
   List<String>? get missingSources;
   @override
   List<String>? get missingTrackers;
+  @override
+  List<String>? get mangasMissingSources;
   @override
   @JsonKey(ignore: true)
   _$$_BackupMissingCopyWith<_$_BackupMissing> get copyWith =>

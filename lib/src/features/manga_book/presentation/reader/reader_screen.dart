@@ -68,20 +68,12 @@ class ReaderScreen extends HookConsumerWidget {
           refresh: () => ref.refresh(mangaProvider),
           (data) {
             if (data == null) return const SizedBox.shrink();
-            final readerMode = data.meta.isNotBlank &&
-                    data.meta!.containsKey(ChapterMeta.readerMode.key)
-                ? ReaderMode.values.firstWhere(
-                    (element) =>
-                        element.name == data.meta![ChapterMeta.readerMode.key],
-                    orElse: () => defaultReaderMode ?? ReaderMode.webtoon,
-                  )
-                : defaultReaderMode;
             return chapter.showUiWhenData(
               refresh: () => ref.refresh(provider),
               addScaffoldWrapper: true,
               (chapterData) {
                 if (chapterData == null) return const SizedBox.shrink();
-                switch (readerMode) {
+                switch (data.meta?.readerMode ?? defaultReaderMode) {
                   case ReaderMode.singleVertical:
                     return SinglePageReaderMode(
                       chapter: chapterData,

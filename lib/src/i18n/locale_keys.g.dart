@@ -105,6 +105,7 @@ abstract class LocaleKeys {
   static const library = 'library';
   static const loading = 'loading';
   static const manga = 'manga';
+  static const mangaMissingSources = 'mangaMissingSources';
   static const mangaSearch = 'mangaSearch';
   static const MangaSort_alphabetical = 'MangaSort.alphabetical';
   static const MangaSort_dateAdded = 'MangaSort.dateAdded';

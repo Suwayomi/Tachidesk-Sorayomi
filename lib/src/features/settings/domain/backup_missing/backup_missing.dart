@@ -17,6 +17,7 @@ class BackupMissing with _$BackupMissing {
   factory BackupMissing({
     List<String>? missingSources,
     List<String>? missingTrackers,
+    List<String>? mangasMissingSources,
   }) = _BackupMissing;
 
   BackupMissing get filter => BackupMissing(
@@ -24,9 +25,13 @@ class BackupMissing with _$BackupMissing {
           ..removeWhere((element) => element.isBlank),
         missingTrackers: [...?missingTrackers]
           ..removeWhere((element) => element.isBlank),
+        mangasMissingSources: [...?mangasMissingSources]
+          ..removeWhere((element) => element.isBlank),
       );
-  bool get isNotEmpty =>
-      missingSources.isNotBlank && missingTrackers.isNotBlank;
+  bool get isEmpty =>
+      missingSources.isBlank &&
+      missingTrackers.isBlank &&
+      mangasMissingSources.isBlank;
 
   factory BackupMissing.fromJson(Map<String, dynamic> json) =>
       _$BackupMissingFromJson(json);

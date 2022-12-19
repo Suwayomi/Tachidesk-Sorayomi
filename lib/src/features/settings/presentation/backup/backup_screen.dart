@@ -39,7 +39,7 @@ class BackupScreen extends ConsumerWidget {
           final backupMissing = data?.filter;
           if (backupMissing == null) return;
           toast.instantShow(LocaleKeys.restored.tr());
-          if (backupMissing.isNotEmpty) {
+          if (!backupMissing.isEmpty) {
             showDialog(
               context: context,
               builder: (context) => BackupMissingDialog(

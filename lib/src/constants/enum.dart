@@ -79,12 +79,3 @@ enum SourceType {
   final IconData icon;
   final IconData selectedIcon;
 }
-
-enum ChapterMeta {
-  invertTap("flutter_readerNavigationLayoutInvert"),
-  readerNavigationLayout("flutter_readerNavigationLayout"),
-  readerMode("flutter_readerMode");
-
-  const ChapterMeta(this.key);
-  final String key;
-}
