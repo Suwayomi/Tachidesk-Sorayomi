@@ -24,28 +24,42 @@ class BackupMissingDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (backupMissing.missingSources.isNotBlank)
+          if (backupMissing.missingSources.isNotBlank) ...[
             Text(
               LocaleKeys.missingExtension.tr(),
               style: context.textTheme.titleMedium,
             ),
-          ...?backupMissing.missingSources?.map(
-            (e) => ListTile(
-              leading: const Icon(Icons.extension_rounded),
-              title: Text(e),
+            ...?backupMissing.missingSources?.map(
+              (e) => ListTile(
+                leading: const Icon(Icons.extension_rounded),
+                title: Text(e),
+              ),
             ),
-          ),
-          if (backupMissing.missingTrackers.isNotBlank)
+          ],
+          if (backupMissing.missingTrackers.isNotBlank) ...[
             Text(
               LocaleKeys.missingTrackers.tr(),
               style: context.textTheme.titleMedium,
             ),
-          ...?backupMissing.missingTrackers?.map(
-            (e) => ListTile(
-              leading: const Icon(Icons.sync_rounded),
-              title: Text(e),
+            ...?backupMissing.missingTrackers?.map(
+              (e) => ListTile(
+                leading: const Icon(Icons.sync_rounded),
+                title: Text(e),
+              ),
             ),
-          ),
+          ],
+          if (backupMissing.mangasMissingSources.isNotBlank) ...[
+            Text(
+              LocaleKeys.mangaMissingSources.tr(),
+              style: context.textTheme.titleMedium,
+            ),
+            ...?backupMissing.mangasMissingSources?.map(
+              (e) => ListTile(
+                leading: const Icon(Icons.explore),
+                title: Text(e),
+              ),
+            ),
+          ]
         ],
       ),
       actions: [PopButton(popText: LocaleKeys.close.tr())],

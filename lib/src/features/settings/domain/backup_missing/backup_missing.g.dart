@@ -14,10 +14,14 @@ _$_BackupMissing _$$_BackupMissingFromJson(Map<String, dynamic> json) =>
       missingTrackers: (json['missingTrackers'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
+      mangasMissingSources: (json['mangasMissingSources'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_BackupMissingToJson(_$_BackupMissing instance) =>
     <String, dynamic>{
       'missingSources': instance.missingSources,
       'missingTrackers': instance.missingTrackers,
+      'mangasMissingSources': instance.mangasMissingSources,
     };

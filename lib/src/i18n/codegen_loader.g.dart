@@ -120,6 +120,7 @@ class CodegenLoader extends AssetLoader {
     "library": "Library",
     "loading": "Loading!",
     "manga": "Manga",
+    "mangaMissingSources": "Manga Missing Sources",
     "mangaSearch": "Search manga..",
     "MangaSort": {
       "alphabetical": "Alphabetical",
