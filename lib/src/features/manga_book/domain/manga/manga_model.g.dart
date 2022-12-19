@@ -34,7 +34,9 @@ _$_Manga _$$_MangaFromJson(Map<String, dynamic> json) => _$_Manga(
       lastFetchedAt: json['lastFetchedAt'] as int?,
       chaptersLastFetchedAt: json['chaptersLastFetchedAt'] as int?,
       url: json['url'] as String?,
-      meta: json['meta'] as Map<String, dynamic>?,
+      meta: json['meta'] == null
+          ? null
+          : MangaMeta.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
@@ -60,5 +62,40 @@ Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
       'lastFetchedAt': instance.lastFetchedAt,
       'chaptersLastFetchedAt': instance.chaptersLastFetchedAt,
       'url': instance.url,
-      'meta': instance.meta,
+      'meta': instance.meta?.toJson(),
     };
+
+_$_MangaMeta _$$_MangaMetaFromJson(Map<String, dynamic> json) => _$_MangaMeta(
+      invertTap: json['flutter_readerNavigationLayoutInvert'] as bool?,
+      readerNavigationLayout: $enumDecodeNullable(
+          _$ReaderNavigationLayoutEnumMap,
+          json['flutter_readerNavigationLayout']),
+      readerMode:
+          $enumDecodeNullable(_$ReaderModeEnumMap, json['flutter_readerMode']),
+    );
+
+Map<String, dynamic> _$$_MangaMetaToJson(_$_MangaMeta instance) =>
+    <String, dynamic>{
+      'flutter_readerNavigationLayoutInvert': instance.invertTap,
+      'flutter_readerNavigationLayout':
+          _$ReaderNavigationLayoutEnumMap[instance.readerNavigationLayout],
+      'flutter_readerMode': _$ReaderModeEnumMap[instance.readerMode],
+    };
+
+const _$ReaderNavigationLayoutEnumMap = {
+  ReaderNavigationLayout.defaultNavigation: 'defaultNavigation',
+  ReaderNavigationLayout.lShaped: 'lShaped',
+  ReaderNavigationLayout.rightAndLeft: 'rightAndLeft',
+  ReaderNavigationLayout.edge: 'edge',
+  ReaderNavigationLayout.kindlish: 'kindlish',
+  ReaderNavigationLayout.disabled: 'disabled',
+};
+
+const _$ReaderModeEnumMap = {
+  ReaderMode.defaultReader: 'defaultReader',
+  ReaderMode.continuousVertical: 'continuousVertical',
+  ReaderMode.singleHorizontalLTR: 'singleHorizontalLTR',
+  ReaderMode.singleHorizontalRTL: 'singleHorizontalRTL',
+  ReaderMode.singleVertical: 'singleVertical',
+  ReaderMode.webtoon: 'webtoon',
+};

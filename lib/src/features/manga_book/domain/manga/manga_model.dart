@@ -39,8 +39,30 @@ class Manga with _$Manga {
     int? lastFetchedAt,
     int? chaptersLastFetchedAt,
     String? url,
-    Map<String, dynamic>? meta,
+    MangaMeta? meta,
   }) = _Manga;
 
   factory Manga.fromJson(Map<String, dynamic> json) => _$MangaFromJson(json);
+}
+
+@freezed
+class MangaMeta with _$MangaMeta {
+  factory MangaMeta({
+    @JsonKey(name: "flutter_readerNavigationLayoutInvert") bool? invertTap,
+    @JsonKey(name: "flutter_readerNavigationLayout")
+        ReaderNavigationLayout? readerNavigationLayout,
+    @JsonKey(name: "flutter_readerMode") ReaderMode? readerMode,
+  }) = _MangaMeta;
+
+  factory MangaMeta.fromJson(Map<String, dynamic> json) =>
+      _$MangaMetaFromJson(json);
+}
+
+enum MangaMetaKeys {
+  invertTap("flutter_readerNavigationLayoutInvert"),
+  readerNavigationLayout("flutter_readerNavigationLayout"),
+  readerMode("flutter_readerMode");
+
+  const MangaMetaKeys(this.key);
+  final String key;
 }
