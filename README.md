@@ -57,21 +57,23 @@ These are the versions of [Tachidesk-Server][tachidesk-server] that Tachidesk-So
 
 ### Android
 
-Download the latest apk file from [the releases section][release].
+Download *-android-all.apk file from latest release [the releases section][release].
 
 
 ### iOS
 
-Download the latest ipa file from [the releases section][release].
+- Download the latest .ipa file from [the releases section][release]
+- use [AltStore](https://altstore.io/) to install Sorayomi in ios.
 
 ### Windows
 
-Download the latest msi file from [the releases section][release].
+Download the latest .msi file from [the releases section][release].
 
 ### MacOS
 
-Download the latest dmg release from [the releases section][release].
-
+- Download the *-macos-x64.zip from the latest release [the releases section][release]
+- Extract the file.
+- Drag and drop the extracted app file to applications folder in finder.
 ### Debian based Linux
 
 Download the latest deb release from [the releases section][release].
