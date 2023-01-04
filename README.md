@@ -50,7 +50,7 @@ These are the versions of [Tachidesk-Server][tachidesk-server] that Tachidesk-So
 
 #### [Release build][release]
 
-- [Tachidesk-Server][tachidesk-server] v0.6.0+
+- [Tachidesk-Server][tachidesk-server] v0.6.6+
 
 
 ## Downloading and Running the app
