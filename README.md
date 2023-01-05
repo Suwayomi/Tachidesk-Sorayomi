@@ -92,6 +92,8 @@ inside a terminal window.
 
 Download the latest web.zip file from [the releases section][release].
 
+- Sorayomi-web deployed in GitHub pages. You can check out [Sorayomi here](https://suwayomi.github.io/Tachidesk-Sorayomi/).
+
 
 ## Post installation
 
