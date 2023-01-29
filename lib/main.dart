@@ -30,7 +30,7 @@ Future<void> main() async {
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
       ],
       child: EasyLocalization(
-        supportedLocales: const [Locale('en', 'US')],
+        supportedLocales: const [Locale('en', 'US'), Locale('pt', 'PT')],
         path: "assets/locales/",
         fallbackLocale: const Locale('en', "US"),
         assetLoader: const CodegenLoader(),
