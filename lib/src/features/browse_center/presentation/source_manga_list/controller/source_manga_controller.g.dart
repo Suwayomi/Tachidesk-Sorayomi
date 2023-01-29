@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $SourceMangaFilterListHash() =>
+String _$SourceMangaFilterListHash() =>
     r'531b3942c3a4430a0439d920a49f5d9a1b0cf8fe';
 
 /// See also [SourceMangaFilterList].
@@ -47,7 +47,7 @@ class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $SourceMangaFilterListHash,
+                  : _$SourceMangaFilterListHash,
         );
 
   final String sourceId;
@@ -131,7 +131,7 @@ abstract class _$SourceMangaFilterList
   });
 }
 
-String $SourceDisplayModeHash() => r'6c61e478095507fe31213a1d671f0f6e20229131';
+String _$SourceDisplayModeHash() => r'6c61e478095507fe31213a1d671f0f6e20229131';
 
 /// See also [SourceDisplayMode].
 final sourceDisplayModeProvider =
@@ -140,7 +140,7 @@ final sourceDisplayModeProvider =
   name: r'sourceDisplayModeProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $SourceDisplayModeHash,
+      : _$SourceDisplayModeHash,
 );
 typedef SourceDisplayModeRef = AutoDisposeNotifierProviderRef<DisplayMode?>;
 
@@ -149,7 +149,7 @@ abstract class _$SourceDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   DisplayMode? build();
 }
 
-String $sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
+String _$sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
 
 /// See also [source].
 class SourceProvider extends AutoDisposeFutureProvider<Source?> {
@@ -165,7 +165,7 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $sourceHash,
+                  : _$sourceHash,
         );
 
   final String sourceId;
@@ -219,7 +219,7 @@ class SourceFamily extends Family<AsyncValue<Source?>> {
   String? get name => r'sourceProvider';
 }
 
-String $baseSourceMangaFilterListHash() =>
+String _$baseSourceMangaFilterListHash() =>
     r'21b6028eb4e3ea54f9708d2faf1c73f21129721e';
 
 /// See also [baseSourceMangaFilterList].
@@ -237,7 +237,7 @@ class BaseSourceMangaFilterListProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $baseSourceMangaFilterListHash,
+                  : _$baseSourceMangaFilterListHash,
         );
 
   final String sourceId;

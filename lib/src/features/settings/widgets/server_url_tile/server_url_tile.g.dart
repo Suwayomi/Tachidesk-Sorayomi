@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-String $ServerUrlHash() => r'99f4cbdc6bc8870eaa75e5d7fc9b295ff68f1aa9';
+String _$ServerUrlHash() => r'99f4cbdc6bc8870eaa75e5d7fc9b295ff68f1aa9';
 
 /// See also [ServerUrl].
 final serverUrlProvider = AutoDisposeNotifierProvider<ServerUrl, String?>(
   ServerUrl.new,
   name: r'serverUrlProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $ServerUrlHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ServerUrlHash,
 );
 typedef ServerUrlRef = AutoDisposeNotifierProviderRef<String?>;
 

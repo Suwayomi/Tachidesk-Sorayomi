@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $mangaBookRepositoryHash() =>
+String _$mangaBookRepositoryHash() =>
     r'fbc0619db23d43e750686649e9c371b48bb46f66';
 
 /// See also [mangaBookRepository].
@@ -38,6 +38,6 @@ final mangaBookRepositoryProvider = AutoDisposeProvider<MangaBookRepository>(
   name: r'mangaBookRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $mangaBookRepositoryHash,
+      : _$mangaBookRepositoryHash,
 );
 typedef MangaBookRepositoryRef = AutoDisposeProviderRef<MangaBookRepository>;

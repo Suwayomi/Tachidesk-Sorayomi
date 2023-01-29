@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ExtensionLanguageFilterHash() =>
+String _$ExtensionLanguageFilterHash() =>
     r'0f6c82b2c72cc893e82f869b65ac91cb8e7a14e9';
 
 /// See also [ExtensionLanguageFilter].
@@ -39,7 +39,7 @@ final extensionLanguageFilterProvider =
   name: r'extensionLanguageFilterProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $ExtensionLanguageFilterHash,
+      : _$ExtensionLanguageFilterHash,
 );
 typedef ExtensionLanguageFilterRef
     = AutoDisposeNotifierProviderRef<List<String>?>;
@@ -50,7 +50,7 @@ abstract class _$ExtensionLanguageFilter
   List<String>? build();
 }
 
-String $ExtensionQueryHash() => r'fbf22cd295f0065c5d9f0c591f87ff58272b7810';
+String _$ExtensionQueryHash() => r'fbf22cd295f0065c5d9f0c591f87ff58272b7810';
 
 /// See also [ExtensionQuery].
 final extensionQueryProvider =
@@ -59,7 +59,7 @@ final extensionQueryProvider =
   name: r'extensionQueryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $ExtensionQueryHash,
+      : _$ExtensionQueryHash,
 );
 typedef ExtensionQueryRef = AutoDisposeNotifierProviderRef<String?>;
 
@@ -68,17 +68,17 @@ abstract class _$ExtensionQuery extends AutoDisposeNotifier<String?> {
   String? build();
 }
 
-String $extensionHash() => r'7f4a60c97e38a62db718b504d572bd031b5b845d';
+String _$extensionHash() => r'7f4a60c97e38a62db718b504d572bd031b5b845d';
 
 /// See also [extension].
 final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>(
   extension,
   name: r'extensionProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $extensionHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$extensionHash,
 );
 typedef ExtensionRef = AutoDisposeFutureProviderRef<List<Extension>?>;
-String $extensionMapHash() => r'0a012417eeb39b5366182099e88cf9a614c5002c';
+String _$extensionMapHash() => r'0a012417eeb39b5366182099e88cf9a614c5002c';
 
 /// See also [extensionMap].
 final extensionMapProvider =
@@ -86,11 +86,11 @@ final extensionMapProvider =
   extensionMap,
   name: r'extensionMapProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $extensionMapHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$extensionMapHash,
 );
 typedef ExtensionMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
-String $extensionFilterLangListHash() =>
+String _$extensionFilterLangListHash() =>
     r'86c8b07116486c19f0ac21976ce798304bb7f2ee';
 
 /// See also [extensionFilterLangList].
@@ -99,10 +99,10 @@ final extensionFilterLangListProvider = AutoDisposeProvider<List<String>>(
   name: r'extensionFilterLangListProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $extensionFilterLangListHash,
+      : _$extensionFilterLangListHash,
 );
 typedef ExtensionFilterLangListRef = AutoDisposeProviderRef<List<String>>;
-String $extensionMapFilteredHash() =>
+String _$extensionMapFilteredHash() =>
     r'bcfe4ed3d11f2987273f35b672a3a27d9156fe77';
 
 /// See also [extensionMapFiltered].
@@ -112,11 +112,11 @@ final extensionMapFilteredProvider =
   name: r'extensionMapFilteredProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $extensionMapFilteredHash,
+      : _$extensionMapFilteredHash,
 );
 typedef ExtensionMapFilteredRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
-String $extensionMapFilteredAndQueriedHash() =>
+String _$extensionMapFilteredAndQueriedHash() =>
     r'211f3d7c994d5a1c7d9f4b1aba3437162cc69521';
 
 /// See also [extensionMapFilteredAndQueried].
@@ -126,7 +126,7 @@ final extensionMapFilteredAndQueriedProvider =
   name: r'extensionMapFilteredAndQueriedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $extensionMapFilteredAndQueriedHash,
+      : _$extensionMapFilteredAndQueriedHash,
 );
 typedef ExtensionMapFilteredAndQueriedRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;

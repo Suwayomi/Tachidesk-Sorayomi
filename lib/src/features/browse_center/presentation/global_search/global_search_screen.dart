@@ -40,7 +40,6 @@ class GlobalSearchScreen extends HookConsumerWidget {
                 child: SearchField(
                   initialText: query.value,
                   onSubmitted: (value) => query.value = value,
-                  // hintText: LocaleKeys.searchGlobally.tr(),
                 ),
               ),
             ],

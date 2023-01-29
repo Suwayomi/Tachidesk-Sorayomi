@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $backupRepositoryHash() => r'f23ad9ca70263d5a36808247d3868230cacaa3cd';
+String _$backupRepositoryHash() => r'f23ad9ca70263d5a36808247d3868230cacaa3cd';
 
 /// See also [backupRepository].
 final backupRepositoryProvider = AutoDisposeProvider<BackupRepository>(
@@ -37,6 +37,6 @@ final backupRepositoryProvider = AutoDisposeProvider<BackupRepository>(
   name: r'backupRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $backupRepositoryHash,
+      : _$backupRepositoryHash,
 );
 typedef BackupRepositoryRef = AutoDisposeProviderRef<BackupRepository>;

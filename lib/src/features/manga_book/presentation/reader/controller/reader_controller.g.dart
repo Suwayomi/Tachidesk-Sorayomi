@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $chapterHash() => r'80779674a17d3466d24f1b08fc563a41c58f8070';
+String _$chapterHash() => r'80779674a17d3466d24f1b08fc563a41c58f8070';
 
 /// See also [chapter].
 class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
@@ -47,7 +47,7 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $chapterHash,
+                  : _$chapterHash,
         );
 
   final String mangaId;

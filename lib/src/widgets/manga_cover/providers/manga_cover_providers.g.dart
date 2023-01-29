@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $DownloadedBadgeHash() => r'87a75683efec7ac3af30542b8db7905ef201698b';
+String _$DownloadedBadgeHash() => r'87a75683efec7ac3af30542b8db7905ef201698b';
 
 /// See also [DownloadedBadge].
 final downloadedBadgeProvider =
@@ -38,7 +38,7 @@ final downloadedBadgeProvider =
   name: r'downloadedBadgeProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $DownloadedBadgeHash,
+      : _$DownloadedBadgeHash,
 );
 typedef DownloadedBadgeRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -47,14 +47,14 @@ abstract class _$DownloadedBadge extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $UnreadBadgeHash() => r'28d64c3752401f1afb1c0075bd227f64fc090126';
+String _$UnreadBadgeHash() => r'28d64c3752401f1afb1c0075bd227f64fc090126';
 
 /// See also [UnreadBadge].
 final unreadBadgeProvider = AutoDisposeNotifierProvider<UnreadBadge, bool?>(
   UnreadBadge.new,
   name: r'unreadBadgeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $UnreadBadgeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$UnreadBadgeHash,
 );
 typedef UnreadBadgeRef = AutoDisposeNotifierProviderRef<bool?>;
 

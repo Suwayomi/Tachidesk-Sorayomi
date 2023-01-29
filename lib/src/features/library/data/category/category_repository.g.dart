@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-String $categoryRepositoryHash() => r'f62ecef9ec108e4aba46068e319e118730be6d06';
+String _$categoryRepositoryHash() =>
+    r'f62ecef9ec108e4aba46068e319e118730be6d06';
 
 /// See also [categoryRepository].
 final categoryRepositoryProvider = AutoDisposeProvider<CategoryRepository>(
@@ -37,6 +38,6 @@ final categoryRepositoryProvider = AutoDisposeProvider<CategoryRepository>(
   name: r'categoryRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $categoryRepositoryHash,
+      : _$categoryRepositoryHash,
 );
 typedef CategoryRepositoryRef = AutoDisposeProviderRef<CategoryRepository>;

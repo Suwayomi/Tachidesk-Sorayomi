@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ReaderNavigationLayoutKeyHash() =>
+String _$ReaderNavigationLayoutKeyHash() =>
     r'e6bea91f9a9f8bbd473ca3a29f1bcbbe792f4fac';
 
 /// See also [ReaderNavigationLayoutKey].
@@ -39,7 +39,7 @@ final readerNavigationLayoutKeyProvider = AutoDisposeNotifierProvider<
   name: r'readerNavigationLayoutKeyProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $ReaderNavigationLayoutKeyHash,
+      : _$ReaderNavigationLayoutKeyHash,
 );
 typedef ReaderNavigationLayoutKeyRef
     = AutoDisposeNotifierProviderRef<ReaderNavigationLayout?>;

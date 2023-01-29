@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $sourceQuickSearchMangaListHash() =>
+String _$sourceQuickSearchMangaListHash() =>
     r'df77dd3a05f0e53944d646e57d2fb74cbc38d807';
 
 /// See also [sourceQuickSearchMangaList].
@@ -49,7 +49,7 @@ class SourceQuickSearchMangaListProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $sourceQuickSearchMangaListHash,
+                  : _$sourceQuickSearchMangaListHash,
         );
 
   final String sourceId;

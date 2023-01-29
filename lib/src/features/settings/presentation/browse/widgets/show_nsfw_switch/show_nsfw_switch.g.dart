@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-String $ShowNSFWHash() => r'ca96408e191b4ad20487c9191759aef73ca939ba';
+String _$ShowNSFWHash() => r'ca96408e191b4ad20487c9191759aef73ca939ba';
 
 /// See also [ShowNSFW].
 final showNSFWProvider = AutoDisposeNotifierProvider<ShowNSFW, bool?>(
   ShowNSFW.new,
   name: r'showNSFWProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $ShowNSFWHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ShowNSFWHash,
 );
 typedef ShowNSFWRef = AutoDisposeNotifierProviderRef<bool?>;
 

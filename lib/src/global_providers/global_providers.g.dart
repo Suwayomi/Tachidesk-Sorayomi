@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-String $AuthTypeKeyHash() => r'4ec3957b64a93c74d7034a0b4a05567fa59a212d';
+String _$AuthTypeKeyHash() => r'4ec3957b64a93c74d7034a0b4a05567fa59a212d';
 
 /// See also [AuthTypeKey].
 final authTypeKeyProvider = AutoDisposeNotifierProvider<AuthTypeKey, AuthType?>(
   AuthTypeKey.new,
   name: r'authTypeKeyProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $AuthTypeKeyHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$AuthTypeKeyHash,
 );
 typedef AuthTypeKeyRef = AutoDisposeNotifierProviderRef<AuthType?>;
 
@@ -45,13 +45,13 @@ abstract class _$AuthTypeKey extends AutoDisposeNotifier<AuthType?> {
   AuthType? build();
 }
 
-String $dioClientKeyHash() => r'aa6e40fe7fd11fd2fd884674cf4d47c1c5f93048';
+String _$dioClientKeyHash() => r'aa6e40fe7fd11fd2fd884674cf4d47c1c5f93048';
 
 /// See also [dioClientKey].
 final dioClientKeyProvider = AutoDisposeProvider<DioClient>(
   dioClientKey,
   name: r'dioClientKeyProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $dioClientKeyHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$dioClientKeyHash,
 );
 typedef DioClientKeyRef = AutoDisposeProviderRef<DioClient>;

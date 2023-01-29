@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $extensionRepositoryHash() =>
+String _$extensionRepositoryHash() =>
     r'd5be612415075dc1ca3ac53de932d9ec4ee92ff2';
 
 /// See also [extensionRepository].
@@ -38,6 +38,6 @@ final extensionRepositoryProvider = AutoDisposeProvider<ExtensionRepository>(
   name: r'extensionRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $extensionRepositoryHash,
+      : _$extensionRepositoryHash,
 );
 typedef ExtensionRepositoryRef = AutoDisposeProviderRef<ExtensionRepository>;
