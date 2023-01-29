@@ -97,7 +97,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                 ref.read(provider.notifier).updateFilter(value);
                 controller.refresh();
               } else {
-                context.replace(
+                context.pushReplacement(
                   Routes.getSourceManga(sourceId, SourceType.filter),
                   extra: value,
                 );
@@ -153,7 +153,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                       groupValue: sourceType,
                       onSelected: (val) {
                         if (sourceType == SourceType.popular) return;
-                        context.replace(
+                        context.pushReplacement(
                           Routes.getSourceManga(sourceId, SourceType.popular),
                         );
                       },
@@ -164,7 +164,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                         groupValue: sourceType,
                         onSelected: (val) {
                           if (sourceType == SourceType.latest) return;
-                          context.replace(
+                          context.pushReplacement(
                             Routes.getSourceManga(sourceId, SourceType.latest),
                           );
                         },
@@ -204,7 +204,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                           controller.refresh();
                         } else {
                           if (val == null) return;
-                          context.replace(
+                          context.pushReplacement(
                             Routes.getSourceManga(
                               sourceId,
                               SourceType.filter,

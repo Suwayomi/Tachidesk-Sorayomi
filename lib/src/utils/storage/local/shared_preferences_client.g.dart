@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $sharedPreferencesHash() => r'dd034076f3a6cac11ba173b2ebd1bd0debcadd42';
+String _$sharedPreferencesHash() => r'dd034076f3a6cac11ba173b2ebd1bd0debcadd42';
 
 /// See also [sharedPreferences].
 final sharedPreferencesProvider = AutoDisposeProvider<SharedPreferences>(
@@ -37,6 +37,6 @@ final sharedPreferencesProvider = AutoDisposeProvider<SharedPreferences>(
   name: r'sharedPreferencesProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $sharedPreferencesHash,
+      : _$sharedPreferencesHash,
 );
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;

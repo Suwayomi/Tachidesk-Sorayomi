@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-String $InvertTapHash() => r'adb0cbab12d2c1584f4a7693c68bb371002af51b';
+String _$InvertTapHash() => r'adb0cbab12d2c1584f4a7693c68bb371002af51b';
 
 /// See also [InvertTap].
 final invertTapProvider = AutoDisposeNotifierProvider<InvertTap, bool?>(
   InvertTap.new,
   name: r'invertTapProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $InvertTapHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$InvertTapHash,
 );
 typedef InvertTapRef = AutoDisposeNotifierProviderRef<bool?>;
 

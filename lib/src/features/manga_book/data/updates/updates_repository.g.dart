@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $updatesRepositoryHash() => r'7137ec4e542f1b7b9e5f9d74abcc570b100530d0';
+String _$updatesRepositoryHash() => r'7137ec4e542f1b7b9e5f9d74abcc570b100530d0';
 
 /// See also [updatesRepository].
 final updatesRepositoryProvider = AutoDisposeProvider<UpdatesRepository>(
@@ -37,16 +37,17 @@ final updatesRepositoryProvider = AutoDisposeProvider<UpdatesRepository>(
   name: r'updatesRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $updatesRepositoryHash,
+      : _$updatesRepositoryHash,
 );
 typedef UpdatesRepositoryRef = AutoDisposeProviderRef<UpdatesRepository>;
-String $updateSummaryHash() => r'cd04991640fe6971183b65daf9e45e9445205800';
+String _$updateSummaryHash() => r'cd04991640fe6971183b65daf9e45e9445205800';
 
 /// See also [updateSummary].
 final updateSummaryProvider = AutoDisposeFutureProvider<UpdateStatus?>(
   updateSummary,
   name: r'updateSummaryProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $updateSummaryHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$updateSummaryHash,
 );
 typedef UpdateSummaryRef = AutoDisposeFutureProviderRef<UpdateStatus?>;

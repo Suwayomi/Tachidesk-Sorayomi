@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $MangaWithIdHash() => r'34066d958171e4089e173a5124751043e0aad8ec';
+String _$MangaWithIdHash() => r'34066d958171e4089e173a5124751043e0aad8ec';
 
 /// See also [MangaWithId].
 class MangaWithIdProvider
@@ -43,7 +43,7 @@ class MangaWithIdProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $MangaWithIdHash,
+                  : _$MangaWithIdHash,
         );
 
   final String mangaId;
@@ -114,7 +114,7 @@ abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
   });
 }
 
-String $MangaChapterListHash() => r'e29cf9a87f5f09029b63f16b0074a4f7466d8b92';
+String _$MangaChapterListHash() => r'e29cf9a87f5f09029b63f16b0074a4f7466d8b92';
 
 /// See also [MangaChapterList].
 class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
@@ -128,7 +128,7 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $MangaChapterListHash,
+                  : _$MangaChapterListHash,
         );
 
   final String mangaId;
@@ -202,7 +202,7 @@ abstract class _$MangaChapterList
   });
 }
 
-String $MangaChapterSortHash() => r'5dc6e9a235babc683a798127f62e403aa6051eca';
+String _$MangaChapterSortHash() => r'5dc6e9a235babc683a798127f62e403aa6051eca';
 
 /// See also [MangaChapterSort].
 final mangaChapterSortProvider =
@@ -211,7 +211,7 @@ final mangaChapterSortProvider =
   name: r'mangaChapterSortProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $MangaChapterSortHash,
+      : _$MangaChapterSortHash,
 );
 typedef MangaChapterSortRef = AutoDisposeNotifierProviderRef<ChapterSort?>;
 
@@ -220,7 +220,7 @@ abstract class _$MangaChapterSort extends AutoDisposeNotifier<ChapterSort?> {
   ChapterSort? build();
 }
 
-String $MangaChapterSortDirectionHash() =>
+String _$MangaChapterSortDirectionHash() =>
     r'eadfe69e90a84123236e2d0420964f1d65e8f357';
 
 /// See also [MangaChapterSortDirection].
@@ -230,7 +230,7 @@ final mangaChapterSortDirectionProvider =
   name: r'mangaChapterSortDirectionProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $MangaChapterSortDirectionHash,
+      : _$MangaChapterSortDirectionHash,
 );
 typedef MangaChapterSortDirectionRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -239,7 +239,7 @@ abstract class _$MangaChapterSortDirection extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $MangaChapterFilterDownloadedHash() =>
+String _$MangaChapterFilterDownloadedHash() =>
     r'e6f5e69389b85837139df8fbf0fec44468e622be';
 
 /// See also [MangaChapterFilterDownloaded].
@@ -249,7 +249,7 @@ final mangaChapterFilterDownloadedProvider =
   name: r'mangaChapterFilterDownloadedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $MangaChapterFilterDownloadedHash,
+      : _$MangaChapterFilterDownloadedHash,
 );
 typedef MangaChapterFilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -259,7 +259,7 @@ abstract class _$MangaChapterFilterDownloaded
   bool? build();
 }
 
-String $MangaChapterFilterUnreadHash() =>
+String _$MangaChapterFilterUnreadHash() =>
     r'd95df0b4352bc44c6eaf9a7c54783f2faa5b32f4';
 
 /// See also [MangaChapterFilterUnread].
@@ -269,7 +269,7 @@ final mangaChapterFilterUnreadProvider =
   name: r'mangaChapterFilterUnreadProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $MangaChapterFilterUnreadHash,
+      : _$MangaChapterFilterUnreadHash,
 );
 typedef MangaChapterFilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -278,7 +278,7 @@ abstract class _$MangaChapterFilterUnread extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $MangaChapterFilterBookmarkedHash() =>
+String _$MangaChapterFilterBookmarkedHash() =>
     r'7e6335c2796527a3772dca1d79589b4fd883ae1c';
 
 /// See also [MangaChapterFilterBookmarked].
@@ -288,7 +288,7 @@ final mangaChapterFilterBookmarkedProvider =
   name: r'mangaChapterFilterBookmarkedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $MangaChapterFilterBookmarkedHash,
+      : _$MangaChapterFilterBookmarkedHash,
 );
 typedef MangaChapterFilterBookmarkedRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -298,7 +298,7 @@ abstract class _$MangaChapterFilterBookmarked
   bool? build();
 }
 
-String $MangaCategoryListHash() => r'b8c64815b0fcdb2ee1f21818161e654b477affb0';
+String _$MangaCategoryListHash() => r'b8c64815b0fcdb2ee1f21818161e654b477affb0';
 
 /// See also [MangaCategoryList].
 class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
@@ -312,7 +312,7 @@ class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $MangaCategoryListHash,
+                  : _$MangaCategoryListHash,
         );
 
   final String mangaId;
@@ -387,7 +387,7 @@ abstract class _$MangaCategoryList
   );
 }
 
-String $mangaChapterListWithFilterHash() =>
+String _$mangaChapterListWithFilterHash() =>
     r'a5ca407ed7a6d0989e90ce3d56614bb387597ac2';
 
 /// See also [mangaChapterListWithFilter].
@@ -405,7 +405,7 @@ class MangaChapterListWithFilterProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $mangaChapterListWithFilterHash,
+                  : _$mangaChapterListWithFilterHash,
         );
 
   final String mangaId;
@@ -462,7 +462,7 @@ class MangaChapterListWithFilterFamily
   String? get name => r'mangaChapterListWithFilterProvider';
 }
 
-String $firstUnreadInFilteredChapterListHash() =>
+String _$firstUnreadInFilteredChapterListHash() =>
     r'60d7452267e74bafdc290890223cc3a641e06305';
 
 /// See also [firstUnreadInFilteredChapterList].
@@ -480,7 +480,7 @@ class FirstUnreadInFilteredChapterListProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $firstUnreadInFilteredChapterListHash,
+                  : _$firstUnreadInFilteredChapterListHash,
         );
 
   final String mangaId;
@@ -536,7 +536,7 @@ class FirstUnreadInFilteredChapterListFamily extends Family<Chapter?> {
   String? get name => r'firstUnreadInFilteredChapterListProvider';
 }
 
-String $getPreviousAndNextChaptersHash() =>
+String _$getPreviousAndNextChaptersHash() =>
     r'c96d69daa0b66402a78052eb11af57f223c3e465';
 
 /// See also [getPreviousAndNextChapters].
@@ -556,7 +556,7 @@ class GetPreviousAndNextChaptersProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $getPreviousAndNextChaptersHash,
+                  : _$getPreviousAndNextChaptersHash,
         );
 
   final String mangaId;

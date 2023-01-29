@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-String $CredentialsHash() => r'd36ec9987003881324c04805a28b1c6d2bfaba83';
+String _$CredentialsHash() => r'd36ec9987003881324c04805a28b1c6d2bfaba83';
 
 /// See also [Credentials].
 final credentialsProvider = AutoDisposeNotifierProvider<Credentials, String?>(
   Credentials.new,
   name: r'credentialsProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $CredentialsHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$CredentialsHash,
 );
 typedef CredentialsRef = AutoDisposeNotifierProviderRef<String?>;
 

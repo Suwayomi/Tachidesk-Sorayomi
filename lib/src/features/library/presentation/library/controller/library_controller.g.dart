@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $CategoryMangaListWithQueryAndFilterHash() =>
+String _$CategoryMangaListWithQueryAndFilterHash() =>
     r'c2edbd4a27b545f55985a625ed5df2dabbaf6919';
 
 /// See also [CategoryMangaListWithQueryAndFilter].
@@ -45,7 +45,7 @@ class CategoryMangaListWithQueryAndFilterProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $CategoryMangaListWithQueryAndFilterHash,
+                  : _$CategoryMangaListWithQueryAndFilterHash,
         );
 
   final int categoryId;
@@ -122,14 +122,14 @@ abstract class _$CategoryMangaListWithQueryAndFilter
   });
 }
 
-String $LibraryQueryHash() => r'84087050ef9f75c04375c648a971b67e3b0b28ba';
+String _$LibraryQueryHash() => r'84087050ef9f75c04375c648a971b67e3b0b28ba';
 
 /// See also [LibraryQuery].
 final libraryQueryProvider = AutoDisposeNotifierProvider<LibraryQuery, String?>(
   LibraryQuery.new,
   name: r'libraryQueryProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $LibraryQueryHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$LibraryQueryHash,
 );
 typedef LibraryQueryRef = AutoDisposeNotifierProviderRef<String?>;
 
@@ -138,7 +138,7 @@ abstract class _$LibraryQuery extends AutoDisposeNotifier<String?> {
   String? build();
 }
 
-String $LibraryMangaFilterDownloadedHash() =>
+String _$LibraryMangaFilterDownloadedHash() =>
     r'173f948640462772ba13cd4efb03b750a4b50f50';
 
 /// See also [LibraryMangaFilterDownloaded].
@@ -148,7 +148,7 @@ final libraryMangaFilterDownloadedProvider =
   name: r'libraryMangaFilterDownloadedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LibraryMangaFilterDownloadedHash,
+      : _$LibraryMangaFilterDownloadedHash,
 );
 typedef LibraryMangaFilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -158,7 +158,7 @@ abstract class _$LibraryMangaFilterDownloaded
   bool? build();
 }
 
-String $LibraryMangaFilterUnreadHash() =>
+String _$LibraryMangaFilterUnreadHash() =>
     r'6c168a40a9e5599d8f2cb02915ff1546b5f3c531';
 
 /// See also [LibraryMangaFilterUnread].
@@ -168,7 +168,7 @@ final libraryMangaFilterUnreadProvider =
   name: r'libraryMangaFilterUnreadProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LibraryMangaFilterUnreadHash,
+      : _$LibraryMangaFilterUnreadHash,
 );
 typedef LibraryMangaFilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -177,7 +177,7 @@ abstract class _$LibraryMangaFilterUnread extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $LibraryMangaFilterCompletedHash() =>
+String _$LibraryMangaFilterCompletedHash() =>
     r'1d959032909f57d964b60cf6f86efd4e2b4960e9';
 
 /// See also [LibraryMangaFilterCompleted].
@@ -187,7 +187,7 @@ final libraryMangaFilterCompletedProvider =
   name: r'libraryMangaFilterCompletedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LibraryMangaFilterCompletedHash,
+      : _$LibraryMangaFilterCompletedHash,
 );
 typedef LibraryMangaFilterCompletedRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -197,7 +197,7 @@ abstract class _$LibraryMangaFilterCompleted
   bool? build();
 }
 
-String $LibraryMangaSortHash() => r'88a025259f3957cb221cd1237c6e118d546eec64';
+String _$LibraryMangaSortHash() => r'88a025259f3957cb221cd1237c6e118d546eec64';
 
 /// See also [LibraryMangaSort].
 final libraryMangaSortProvider =
@@ -206,7 +206,7 @@ final libraryMangaSortProvider =
   name: r'libraryMangaSortProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LibraryMangaSortHash,
+      : _$LibraryMangaSortHash,
 );
 typedef LibraryMangaSortRef = AutoDisposeNotifierProviderRef<MangaSort?>;
 
@@ -215,7 +215,7 @@ abstract class _$LibraryMangaSort extends AutoDisposeNotifier<MangaSort?> {
   MangaSort? build();
 }
 
-String $LibraryMangaSortDirectionHash() =>
+String _$LibraryMangaSortDirectionHash() =>
     r'e75ba9131a09c697f6bc6488347051de72249cb2';
 
 /// See also [LibraryMangaSortDirection].
@@ -225,7 +225,7 @@ final libraryMangaSortDirectionProvider =
   name: r'libraryMangaSortDirectionProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LibraryMangaSortDirectionHash,
+      : _$LibraryMangaSortDirectionHash,
 );
 typedef LibraryMangaSortDirectionRef = AutoDisposeNotifierProviderRef<bool?>;
 
@@ -234,7 +234,8 @@ abstract class _$LibraryMangaSortDirection extends AutoDisposeNotifier<bool?> {
   bool? build();
 }
 
-String $LibraryDisplayModeHash() => r'c7adbf4cb2db2c67b7d10e75bb14404e05551ab4';
+String _$LibraryDisplayModeHash() =>
+    r'c7adbf4cb2db2c67b7d10e75bb14404e05551ab4';
 
 /// See also [LibraryDisplayMode].
 final libraryDisplayModeProvider =
@@ -243,7 +244,7 @@ final libraryDisplayModeProvider =
   name: r'libraryDisplayModeProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $LibraryDisplayModeHash,
+      : _$LibraryDisplayModeHash,
 );
 typedef LibraryDisplayModeRef = AutoDisposeNotifierProviderRef<DisplayMode?>;
 
@@ -252,7 +253,7 @@ abstract class _$LibraryDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
   DisplayMode? build();
 }
 
-String $categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
+String _$categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
 
 /// See also [categoryMangaList].
 class CategoryMangaListProvider
@@ -269,7 +270,7 @@ class CategoryMangaListProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $categoryMangaListHash,
+                  : _$categoryMangaListHash,
         );
 
   final int categoryId;

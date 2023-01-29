@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $downloadsRepositoryHash() =>
+String _$downloadsRepositoryHash() =>
     r'5863e339050a4025a026249d55ea40d25137c001';
 
 /// See also [downloadsRepository].
@@ -38,20 +38,20 @@ final downloadsRepositoryProvider = AutoDisposeProvider<DownloadsRepository>(
   name: r'downloadsRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $downloadsRepositoryHash,
+      : _$downloadsRepositoryHash,
 );
 typedef DownloadsRepositoryRef = AutoDisposeProviderRef<DownloadsRepository>;
-String $downloadsMapHash() => r'069e7137bb59b01aea1cc49d4605e4b8c8a9d7fd';
+String _$downloadsMapHash() => r'069e7137bb59b01aea1cc49d4605e4b8c8a9d7fd';
 
 /// See also [downloadsMap].
 final downloadsMapProvider = AutoDisposeProvider<Map<int, DownloadsQueue>>(
   downloadsMap,
   name: r'downloadsMapProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $downloadsMapHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$downloadsMapHash,
 );
 typedef DownloadsMapRef = AutoDisposeProviderRef<Map<int, DownloadsQueue>>;
-String $downloadsFromIdHash() => r'da4ab5797ab7eeb647433cc50c56d2e8b827218b';
+String _$downloadsFromIdHash() => r'da4ab5797ab7eeb647433cc50c56d2e8b827218b';
 
 /// See also [downloadsFromId].
 class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
@@ -67,7 +67,7 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $downloadsFromIdHash,
+                  : _$downloadsFromIdHash,
         );
 
   final int chapterId;

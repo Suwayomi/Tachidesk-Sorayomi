@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $ThemeModeKeyHash() => r'cbaff231794f107e08321e52db71c6a171edae43';
+String _$ThemeModeKeyHash() => r'cbaff231794f107e08321e52db71c6a171edae43';
 
 /// See also [ThemeModeKey].
 final themeModeKeyProvider =
@@ -37,7 +37,7 @@ final themeModeKeyProvider =
   ThemeModeKey.new,
   name: r'themeModeKeyProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $ThemeModeKeyHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$ThemeModeKeyHash,
 );
 typedef ThemeModeKeyRef = AutoDisposeNotifierProviderRef<ThemeMode?>;
 

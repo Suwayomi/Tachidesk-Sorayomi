@@ -29,13 +29,14 @@ class _SystemHash {
   }
 }
 
-String $networkModuleHash() => r'684a8cf88504e7b453fe8b38d8725a49b83d1e98';
+String _$networkModuleHash() => r'684a8cf88504e7b453fe8b38d8725a49b83d1e98';
 
 /// See also [networkModule].
 final networkModuleProvider = AutoDisposeProvider<DioNetworkModule>(
   networkModule,
   name: r'networkModuleProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $networkModuleHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$networkModuleHash,
 );
 typedef NetworkModuleRef = AutoDisposeProviderRef<DioNetworkModule>;

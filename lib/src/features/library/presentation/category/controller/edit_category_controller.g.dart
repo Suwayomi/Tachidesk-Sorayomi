@@ -29,7 +29,8 @@ class _SystemHash {
   }
 }
 
-String $CategoryControllerHash() => r'2231c7c5b8ea2d7ebf9726d6f8cc63ecf7498fbb';
+String _$CategoryControllerHash() =>
+    r'2231c7c5b8ea2d7ebf9726d6f8cc63ecf7498fbb';
 
 /// See also [CategoryController].
 final categoryControllerProvider =
@@ -38,7 +39,7 @@ final categoryControllerProvider =
   name: r'categoryControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : $CategoryControllerHash,
+      : _$CategoryControllerHash,
 );
 typedef CategoryControllerRef
     = AutoDisposeAsyncNotifierProviderRef<List<Category>?>;
@@ -49,7 +50,7 @@ abstract class _$CategoryController
   FutureOr<List<Category>?> build();
 }
 
-String $categoryListHash() => r'ec95a714a5556e167c3746d05151c0fe2a55a711';
+String _$categoryListHash() => r'ec95a714a5556e167c3746d05151c0fe2a55a711';
 
 /// See also [categoryList].
 class CategoryListProvider
@@ -66,7 +67,7 @@ class CategoryListProvider
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : $categoryListHash,
+                  : _$categoryListHash,
         );
 
   final bool getDefault;

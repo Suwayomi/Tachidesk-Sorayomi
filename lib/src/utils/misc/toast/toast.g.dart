@@ -29,7 +29,7 @@ class _SystemHash {
   }
 }
 
-String $toastHash() => r'6bc9df511e9180eea4d509e57fdd4eed4c062779';
+String _$toastHash() => r'6bc9df511e9180eea4d509e57fdd4eed4c062779';
 
 /// See also [toast].
 class ToastProvider extends AutoDisposeProvider<Toast> {
@@ -43,7 +43,9 @@ class ToastProvider extends AutoDisposeProvider<Toast> {
           from: toastProvider,
           name: r'toastProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : $toastHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$toastHash,
         );
 
   final BuildContext context;

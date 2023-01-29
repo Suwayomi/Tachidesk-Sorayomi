@@ -29,15 +29,16 @@ class _SystemHash {
   }
 }
 
-String $ReaderModeKeyHash() => r'bd86778f0d09706cc8b9e46190ec5c3f05847ded';
+String _$ReaderModeKeyHash() => r'bd86778f0d09706cc8b9e46190ec5c3f05847ded';
 
 /// See also [ReaderModeKey].
 final readerModeKeyProvider =
     AutoDisposeNotifierProvider<ReaderModeKey, ReaderMode?>(
   ReaderModeKey.new,
   name: r'readerModeKeyProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : $ReaderModeKeyHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$ReaderModeKeyHash,
 );
 typedef ReaderModeKeyRef = AutoDisposeNotifierProviderRef<ReaderMode?>;
 

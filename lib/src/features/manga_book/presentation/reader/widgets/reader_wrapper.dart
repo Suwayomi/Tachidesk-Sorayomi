@@ -190,7 +190,7 @@ class ReaderWrapper extends HookConsumerWidget {
                           shape: const CircleBorder(),
                           child: IconButton(
                             onPressed: prevNextChapterPair?.second != null
-                                ? () => context.replace(
+                                ? () => context.pushReplacement(
                                       Routes.getReader(
                                         "${prevNextChapterPair!.second!.mangaId}",
                                         "${prevNextChapterPair.second!.index}",
@@ -214,7 +214,7 @@ class ReaderWrapper extends HookConsumerWidget {
                           shape: const CircleBorder(),
                           child: IconButton(
                             onPressed: prevNextChapterPair?.first != null
-                                ? () => context.replace(
+                                ? () => context.pushReplacement(
                                       Routes.getReader(
                                         "${prevNextChapterPair!.first!.mangaId}",
                                         "${prevNextChapterPair.first!.index}",
