@@ -12,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../widgets/enum_popup.dart';
+import '../../../../../widgets/list_popup.dart';
 
 class AuthTypeTile extends ConsumerWidget {
   const AuthTypeTile({super.key});
@@ -26,8 +26,9 @@ class AuthTypeTile extends ConsumerWidget {
       title: Text(LocaleKeys.baseAuthType.tr()),
       onTap: () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<AuthType>(
-          enumList: AuthType.values,
+        builder: (context) => RadioListPopup<AuthType>(
+          title: LocaleKeys.baseAuthType.tr(),
+          optionList: AuthType.values,
           value: authType ?? AuthType.none,
           onChange: (enumValue) {
             ref.read(authTypeKeyProvider.notifier).update(enumValue);

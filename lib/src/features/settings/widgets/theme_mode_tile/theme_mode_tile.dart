@@ -14,7 +14,7 @@ import '../../../../constants/db_keys.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
-import '../../../../widgets/enum_popup.dart';
+import '../../../../widgets/list_popup.dart';
 
 part 'theme_mode_tile.g.dart';
 
@@ -46,8 +46,9 @@ class AppThemeTile extends ConsumerWidget {
       title: Text(LocaleKeys.appTheme.tr()),
       onTap: () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<ThemeMode>(
-          enumList: ThemeMode.values,
+        builder: (context) => RadioListPopup<ThemeMode>(
+          title: LocaleKeys.appTheme.tr(),
+          optionList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,
           onChange: (enumValue) async {
             ref.read(themeModeKeyProvider.notifier).update(enumValue);

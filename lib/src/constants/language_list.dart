@@ -4,7 +4,19 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:ui';
+
 import '../features/browse_center/domain/language/language_model.dart';
+
+String getLanguageNameFormLocale(Locale locale) {
+  String? displayName;
+  if (languageMap[locale.toString().toLowerCase()] != null) {
+    displayName = languageMap[locale.toString()]!.displayName;
+  } else if (languageMap[locale.languageCode.toLowerCase()] != null) {
+    displayName = languageMap[locale.languageCode.toLowerCase()]!.displayName;
+  }
+  return displayName ?? locale.toLanguageTag();
+}
 
 final languageMap = {
   for (final e in customLanguageList) e['code'] ?? "other": Language.fromJson(e)

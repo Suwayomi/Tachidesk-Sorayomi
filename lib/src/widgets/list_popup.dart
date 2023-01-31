@@ -8,57 +8,65 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/app_sizes.dart';
-import '../i18n/locale_keys.g.dart';
 import '../utils/extensions/custom_extensions.dart';
 import 'pop_button.dart';
 
-class EnumPopup<T extends Enum> extends StatelessWidget {
-  const EnumPopup({
+class RadioListPopup<T> extends StatelessWidget {
+  const RadioListPopup({
     super.key,
-    required this.enumList,
+    required this.title,
+    required this.optionList,
     required this.value,
     required this.onChange,
+    this.optionDisplayName,
   });
 
-  final List<T> enumList;
+  final String title;
+  final List<T> optionList;
   final T value;
   final ValueChanged<T> onChange;
+  final String Function(T)? optionDisplayName;
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: KEdgeInsets.v8.size,
-      title: Text(LocaleKeys.appTheme.tr()),
-      content: EnumRadio(
-        enumList: enumList,
+      title: Text(title),
+      content: RadioList(
+        optionList: optionList,
         value: value,
         onChange: onChange,
+        displayName: optionDisplayName,
       ),
       actions: const [PopButton()],
     );
   }
 }
 
-class EnumRadio<T extends Enum> extends StatelessWidget {
-  const EnumRadio({
+class RadioList<T> extends StatelessWidget {
+  const RadioList({
     super.key,
-    required this.enumList,
+    required this.optionList,
     required this.value,
     required this.onChange,
+    this.displayName,
   });
 
-  final List<T> enumList;
+  final List<T> optionList;
   final T value;
   final ValueChanged<T> onChange;
+  final String Function(T)? displayName;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: enumList
+      children: optionList
           .map(
             (e) => RadioListTile<T>(
               activeColor: context.theme.indicatorColor,
-              title: Text(e.toString().tr()),
+              title: Text(
+                displayName != null ? displayName!(e) : e.toString().tr(),
+              ),
               value: e,
               groupValue: value,
               onChanged: (value) {
