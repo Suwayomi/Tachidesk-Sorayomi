@@ -35,78 +35,81 @@ class ChapterListTile extends StatelessWidget {
   final bool isSelected;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (chapter.bookmarked ?? false) ...[
-            Icon(
-              Icons.bookmark,
-              color: chapter.read ?? false ? Colors.grey : context.iconColor,
-              size: 20,
-            ),
-            KSizedBox.w4.size,
-          ],
-          Expanded(
-            child: Text(
-              chapter.name ??
-                  LocaleKeys.chapterNumber.tr(
-                    namedArgs: {
-                      "number":
-                          "${chapter.chapterNumber ?? LocaleKeys.unknown.tr()}"
-                    },
-                  ),
-              style: TextStyle(
-                color: chapter.read ?? false ? Colors.grey : null,
+    return GestureDetector(
+      onSecondaryTap: () => toggleSelect(chapter),
+      child: ListTile(
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (chapter.bookmarked ?? false) ...[
+              Icon(
+                Icons.bookmark,
+                color: chapter.read ?? false ? Colors.grey : context.iconColor,
+                size: 20,
               ),
-            ),
-          ),
-        ],
-      ),
-      subtitle: chapter.uploadDate != null
-          ? Row(
-              children: [
-                Text(
-                  chapter.uploadDate!.toDaysAgo,
-                  style: TextStyle(
-                    color: chapter.read ?? false ? Colors.grey : null,
-                  ),
-                ),
-                if (!chapter.read.ifNull() &&
-                    (chapter.lastPageRead).ifNullOrNegative() != 0)
-                  Text(
-                    " • ${LocaleKeys.page.tr(
+              KSizedBox.w4.size,
+            ],
+            Expanded(
+              child: Text(
+                chapter.name ??
+                    LocaleKeys.chapterNumber.tr(
                       namedArgs: {
                         "number":
-                            "${chapter.lastPageRead.ifNullOrNegative() + 1}"
+                            "${chapter.chapterNumber ?? LocaleKeys.unknown.tr()}"
                       },
-                    )}",
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-              ],
-            )
-          : null,
-      trailing: (chapter.index != null && manga.id != null)
-          ? DownloadStatusIcon(
-              updateData: updateData,
-              chapter: chapter,
-              mangaId: manga.id!,
-              isDownloaded: chapter.downloaded ?? false,
-            )
-          : null,
-      selectedColor: context.theme.colorScheme.onSurface,
-      selectedTileColor:
-          context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
-      selected: isSelected,
-      onTap: canTapSelect
-          ? () => toggleSelect(chapter)
-          : () => context.push(
-                Routes.getReader(
-                  "${manga.id}",
-                  "${chapter.index}",
+                    ),
+                style: TextStyle(
+                  color: chapter.read ?? false ? Colors.grey : null,
                 ),
               ),
-      onLongPress: () => toggleSelect(chapter),
+            ),
+          ],
+        ),
+        subtitle: chapter.uploadDate != null
+            ? Row(
+                children: [
+                  Text(
+                    chapter.uploadDate!.toDaysAgo,
+                    style: TextStyle(
+                      color: chapter.read ?? false ? Colors.grey : null,
+                    ),
+                  ),
+                  if (!chapter.read.ifNull() &&
+                      (chapter.lastPageRead).ifNullOrNegative() != 0)
+                    Text(
+                      " • ${LocaleKeys.page.tr(
+                        namedArgs: {
+                          "number":
+                              "${chapter.lastPageRead.ifNullOrNegative() + 1}"
+                        },
+                      )}",
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                ],
+              )
+            : null,
+        trailing: (chapter.index != null && manga.id != null)
+            ? DownloadStatusIcon(
+                updateData: updateData,
+                chapter: chapter,
+                mangaId: manga.id!,
+                isDownloaded: chapter.downloaded ?? false,
+              )
+            : null,
+        selectedColor: context.theme.colorScheme.onSurface,
+        selectedTileColor:
+            context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+        selected: isSelected,
+        onTap: canTapSelect
+            ? () => toggleSelect(chapter)
+            : () => context.push(
+                  Routes.getReader(
+                    "${manga.id}",
+                    "${chapter.index}",
+                  ),
+                ),
+        onLongPress: () => toggleSelect(chapter),
+      ),
     );
   }
 }

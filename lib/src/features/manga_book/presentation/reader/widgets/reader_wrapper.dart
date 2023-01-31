@@ -16,7 +16,7 @@ import '../../../../../constants/enum.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/enum_popup.dart';
+import '../../../../../widgets/list_popup.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/chapter_patch/chapter_put_model.dart';
@@ -66,9 +66,10 @@ class ReaderWrapper extends HookConsumerWidget {
     final showReaderModePopup = useCallback(
       () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<ReaderMode>(
-          enumList: ReaderMode.values,
+        builder: (context) => RadioListPopup<ReaderMode>(
+          optionList: ReaderMode.values,
           value: defaultReaderMode,
+          title: LocaleKeys.readerMode.tr(),
           onChange: (enumValue) async {
             if (context.mounted) context.pop();
             await AsyncValue.guard(
@@ -88,8 +89,9 @@ class ReaderWrapper extends HookConsumerWidget {
     final showReaderNavigationLayoutPopup = useCallback(
       () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<ReaderNavigationLayout>(
-          enumList: ReaderNavigationLayout.values,
+        builder: (context) => RadioListPopup<ReaderNavigationLayout>(
+          optionList: ReaderNavigationLayout.values,
+          title: LocaleKeys.readerNavigationLayout.tr(),
           value: defaultReaderNavigationLayout,
           onChange: (enumValue) async {
             if (context.mounted) context.pop();

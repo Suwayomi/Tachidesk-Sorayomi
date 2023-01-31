@@ -23,6 +23,7 @@ import '../features/manga_book/presentation/updates/updates_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
+import '../features/settings/presentation/general/general_screen.dart';
 import '../features/settings/presentation/library/library_settings_screen.dart';
 import '../features/settings/presentation/more/more_screen.dart';
 import '../features/settings/presentation/reader/reader_settings_screen.dart';
@@ -48,6 +49,7 @@ abstract class Routes {
   static const more = '/more';
   static const about = '/about';
   static const appearanceSettings = 's-appearance';
+  static const generalSettings = 's-general';
   static const backup = 'backup';
   static const settings = '/settings';
   static const browseSettings = 'browse';
@@ -176,6 +178,10 @@ GoRouter routerConfig(ref) {
           GoRoute(
             path: Routes.appearanceSettings,
             builder: (context, state) => const AppearanceScreen(),
+          ),
+          GoRoute(
+            path: Routes.generalSettings,
+            builder: (context, state) => const GeneralScreen(),
           ),
           GoRoute(
             path: Routes.browseSettings,

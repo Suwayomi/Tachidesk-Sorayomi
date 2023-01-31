@@ -14,7 +14,7 @@ import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
 import '../../../../../../i18n/locale_keys.g.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
-import '../../../../../../widgets/enum_popup.dart';
+import '../../../../../../widgets/list_popup.dart';
 
 part 'reader_mode_tile.g.dart';
 
@@ -42,8 +42,9 @@ class ReaderModeTile extends ConsumerWidget {
       title: Text(LocaleKeys.readerMode.tr()),
       onTap: () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<ReaderMode>(
-          enumList: ReaderMode.values.sublist(1),
+        builder: (context) => RadioListPopup<ReaderMode>(
+          title: LocaleKeys.readerMode.tr(),
+          optionList: ReaderMode.values.sublist(1),
           value: readerMode ?? ReaderMode.webtoon,
           onChange: (enumValue) async {
             ref.read(readerModeKeyProvider.notifier).update(enumValue);

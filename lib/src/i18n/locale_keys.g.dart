@@ -61,6 +61,7 @@ abstract class LocaleKeys {
   static const add = 'add';
   static const addCategory = 'addCategory';
   static const addToLibrary = 'addToLibrary';
+  static const appLanguage = 'appLanguage';
   static const appTheme = 'appTheme';
   static const appTitle = 'appTitle';
   static const appearance = 'appearance';
@@ -120,6 +121,7 @@ abstract class LocaleKeys {
   static const failed = 'failed';
   static const filter = 'filter';
   static const finished = 'finished';
+  static const general = 'general';
   static const gitHub = 'gitHub';
   static const globalSearch = 'globalSearch';
   static const globalUpdate = 'globalUpdate';

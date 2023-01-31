@@ -14,7 +14,7 @@ import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
 import '../../../../../../i18n/locale_keys.g.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
-import '../../../../../../widgets/enum_popup.dart';
+import '../../../../../../widgets/list_popup.dart';
 
 part 'reader_navigation_layout_tile.g.dart';
 
@@ -44,8 +44,9 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
       title: Text(LocaleKeys.readerNavigationLayout.tr()),
       onTap: () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<ReaderNavigationLayout>(
-          enumList: ReaderNavigationLayout.values.sublist(1),
+        builder: (context) => RadioListPopup<ReaderNavigationLayout>(
+          title: LocaleKeys.readerNavigationLayout.tr(),
+          optionList: ReaderNavigationLayout.values.sublist(1),
           value: readerNavigationLayout ?? ReaderNavigationLayout.disabled,
           onChange: (enumValue) async {
             ref

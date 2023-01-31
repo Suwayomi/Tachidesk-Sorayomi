@@ -24,6 +24,12 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
+            title: Text(LocaleKeys.general.tr()),
+            leading: const Icon(Icons.tune_rounded),
+            onTap: () =>
+                context.push([Routes.settings, Routes.generalSettings].toPath),
+          ),
+          ListTile(
             title: Text(LocaleKeys.appearance.tr()),
             leading: const Icon(Icons.color_lens_rounded),
             onTap: () => context

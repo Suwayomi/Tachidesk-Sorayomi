@@ -10,17 +10,19 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../widgets/custom_circular_progress_indicator.dart';
-import '../../../widgets/enum_popup.dart';
+import '../../../widgets/list_popup.dart';
 
 class LoadingEnumPopupIconButton<T extends Enum> extends HookWidget {
   const LoadingEnumPopupIconButton({
     super.key,
+    required this.title,
     required this.icon,
     required this.initial,
     required this.enumList,
     required this.onChanged,
   });
   final IconData icon;
+  final String title;
   final T initial;
   final List<T> enumList;
   final AsyncValueSetter<T> onChanged;
@@ -28,6 +30,7 @@ class LoadingEnumPopupIconButton<T extends Enum> extends HookWidget {
   Widget build(BuildContext context) {
     final isLoading = useState(false);
     return IconButton(
+      tooltip: title,
       icon: isLoading.value
           ? MiniCircularProgressIndicator(
               color: (icon is Icon) ? (icon as Icon).color : null,
@@ -36,8 +39,9 @@ class LoadingEnumPopupIconButton<T extends Enum> extends HookWidget {
           : Icon(icon),
       onPressed: () => showDialog(
         context: context,
-        builder: (context) => EnumPopup<T>(
-          enumList: enumList,
+        builder: (context) => RadioListPopup<T>(
+          title: title,
+          optionList: enumList,
           value: initial,
           onChange: (enumValue) async {
             if (context.mounted) context.pop();
