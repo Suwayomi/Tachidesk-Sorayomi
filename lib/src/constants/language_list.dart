@@ -6,12 +6,15 @@
 
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
+
 import '../features/browse_center/domain/language/language_model.dart';
 
 String getLanguageNameFormLocale(Locale locale) {
   String? displayName;
-  if (languageMap[locale.toString().toLowerCase()] != null) {
-    displayName = languageMap[locale.toString()]!.displayName;
+  final localeCode = locale.toStringWithSeparator(separator: '-').toLowerCase();
+  if (languageMap[localeCode] != null) {
+    displayName = languageMap[localeCode]!.displayName;
   } else if (languageMap[locale.languageCode.toLowerCase()] != null) {
     displayName = languageMap[locale.languageCode.toLowerCase()]!.displayName;
   }
