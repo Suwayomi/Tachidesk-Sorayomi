@@ -34,61 +34,65 @@ class ChapterMangaListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = (pair.chapter?.read).ifNull() ? Colors.grey : null;
-    return ListTile(
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (pair.chapter?.bookmarked ?? false) ...[
-            const Icon(Icons.bookmark, size: 20),
-            KSizedBox.w4.size,
-          ],
-          Expanded(
-            child: Text(
-              pair.manga?.title ?? "",
-              style: TextStyle(color: color),
-            ),
-          ),
-        ],
-      ),
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: ServerImage(
-          imageUrl: pair.manga?.thumbnailUrl ?? "",
-          size: const Size.square(48),
-        ),
-      ),
-      subtitle: Text(
-        pair.chapter?.name ?? pair.chapter?.chapterNumber.toString() ?? "",
-        style: TextStyle(color: color),
-      ),
-      trailing: (pair.manga?.id != null && pair.chapter?.index != null)
-          ? DownloadStatusIcon(
-              isDownloaded: pair.chapter?.downloaded ?? false,
-              mangaId: pair.manga!.id!,
-              chapter: pair.chapter!,
-              updateData: updatePair,
-            )
-          : null,
-      selectedColor: context.theme.colorScheme.onSurface,
-      selectedTileColor:
-          context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
-      selected: isSelected,
-      onTap: pair.chapter != null && pair.manga != null
-          ? () {
-              if (canTapSelect) {
-                toggleSelect(pair.chapter!);
-              } else {
-                context.push(
-                  Routes.getReader(
-                    "${pair.manga!.id}",
-                    "${pair.chapter!.index}",
-                  ),
-                );
-              }
-            }
-          : null,
-      onLongPress:
+    return GestureDetector(
+      onSecondaryTap:
           pair.chapter != null ? () => toggleSelect(pair.chapter!) : null,
+      child: ListTile(
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (pair.chapter?.bookmarked ?? false) ...[
+              const Icon(Icons.bookmark, size: 20),
+              KSizedBox.w4.size,
+            ],
+            Expanded(
+              child: Text(
+                pair.manga?.title ?? "",
+                style: TextStyle(color: color),
+              ),
+            ),
+          ],
+        ),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: ServerImage(
+            imageUrl: pair.manga?.thumbnailUrl ?? "",
+            size: const Size.square(48),
+          ),
+        ),
+        subtitle: Text(
+          pair.chapter?.name ?? pair.chapter?.chapterNumber.toString() ?? "",
+          style: TextStyle(color: color),
+        ),
+        trailing: (pair.manga?.id != null && pair.chapter?.index != null)
+            ? DownloadStatusIcon(
+                isDownloaded: pair.chapter?.downloaded ?? false,
+                mangaId: pair.manga!.id!,
+                chapter: pair.chapter!,
+                updateData: updatePair,
+              )
+            : null,
+        selectedColor: context.theme.colorScheme.onSurface,
+        selectedTileColor:
+            context.isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+        selected: isSelected,
+        onTap: pair.chapter != null && pair.manga != null
+            ? () {
+                if (canTapSelect) {
+                  toggleSelect(pair.chapter!);
+                } else {
+                  context.push(
+                    Routes.getReader(
+                      "${pair.manga!.id}",
+                      "${pair.chapter!.index}",
+                    ),
+                  );
+                }
+              }
+            : null,
+        onLongPress:
+            pair.chapter != null ? () => toggleSelect(pair.chapter!) : null,
+      ),
     );
   }
 }

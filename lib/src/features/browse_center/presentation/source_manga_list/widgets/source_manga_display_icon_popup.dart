@@ -13,7 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../widgets/list_popup.dart';
+import '../../../../../widgets/radio_list_popup.dart';
 import '../controller/source_manga_controller.dart';
 
 class SourceMangaDisplayIconPopup extends ConsumerWidget {

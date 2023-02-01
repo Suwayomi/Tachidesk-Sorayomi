@@ -10,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../constants/language_list.dart';
 import '../../../../i18n/locale_keys.g.dart';
-import '../../../../widgets/list_popup.dart';
+import '../../../../widgets/radio_list_popup.dart';
 
 class GeneralScreen extends StatelessWidget {
   const GeneralScreen({super.key});

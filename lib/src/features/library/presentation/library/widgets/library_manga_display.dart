@@ -13,8 +13,8 @@ import '../../../../../constants/enum.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_checkbox_list_tile.dart';
-import '../../../../../widgets/list_popup.dart';
 import '../../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
+import '../../../../../widgets/radio_list_popup.dart';
 import '../controller/library_controller.dart';
 
 class LibraryMangaDisplay extends ConsumerWidget {

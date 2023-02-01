@@ -12,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../widgets/list_popup.dart';
+import '../../../../../widgets/radio_list_popup.dart';
 
 class AuthTypeTile extends ConsumerWidget {
   const AuthTypeTile({super.key});

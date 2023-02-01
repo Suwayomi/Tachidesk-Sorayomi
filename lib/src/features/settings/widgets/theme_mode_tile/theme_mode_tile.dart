@@ -14,7 +14,7 @@ import '../../../../constants/db_keys.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
-import '../../../../widgets/list_popup.dart';
+import '../../../../widgets/radio_list_popup.dart';
 
 part 'theme_mode_tile.g.dart';
 
