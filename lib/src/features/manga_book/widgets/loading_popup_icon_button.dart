@@ -10,7 +10,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../widgets/custom_circular_progress_indicator.dart';
-import '../../../widgets/list_popup.dart';
+import '../../../widgets/radio_list_popup.dart';
 
 class LoadingEnumPopupIconButton<T extends Enum> extends HookWidget {
   const LoadingEnumPopupIconButton({
