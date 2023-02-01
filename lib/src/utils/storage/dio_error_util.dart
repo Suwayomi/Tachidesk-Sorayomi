@@ -26,8 +26,9 @@ class DioErrorUtil {
           errorDescription = "Receive timeout";
           break;
         case DioErrorType.response:
-          errorDescription =
-              "Received invalid status code: ${error.response?.statusCode}";
+          errorDescription = (error.response?.statusCode) != null
+              ? "Received invalid status code: ${error.response?.statusCode}"
+              : "Something went wrong!";
           break;
         case DioErrorType.sendTimeout:
           errorDescription = "Send timeout";

@@ -35,7 +35,7 @@ class PageNumberSlider extends StatelessWidget {
                 value: min(currentValue.toDouble(), maxValue.toDouble()),
                 min: 0,
                 max: maxValue.toDouble() - 1,
-                divisions: max(maxValue, 1) - 1,
+                divisions: max(maxValue - 1, 1),
                 onChanged: (val) => onChanged(val.toInt()),
               ),
             ),
