@@ -96,6 +96,8 @@ const _$ReaderModeEnumMap = {
   ReaderMode.continuousVertical: 'continuousVertical',
   ReaderMode.singleHorizontalLTR: 'singleHorizontalLTR',
   ReaderMode.singleHorizontalRTL: 'singleHorizontalRTL',
+  ReaderMode.continuousHorizontalLTR: 'continuousHorizontalLTR',
+  ReaderMode.continuousHorizontalRTL: 'continuousHorizontalRTL',
   ReaderMode.singleVertical: 'singleVertical',
   ReaderMode.webtoon: 'webtoon',
 };

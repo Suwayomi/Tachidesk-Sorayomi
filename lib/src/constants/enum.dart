@@ -13,6 +13,8 @@ enum ReaderMode {
   continuousVertical,
   singleHorizontalLTR,
   singleHorizontalRTL,
+  continuousHorizontalLTR,
+  continuousHorizontalRTL,
   singleVertical,
   webtoon,
 }
