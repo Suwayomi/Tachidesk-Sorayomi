@@ -15,8 +15,8 @@ import '../../data/manga_book_repository.dart';
 import '../../domain/chapter_patch/chapter_put_model.dart';
 import '../manga_details/controller/manga_details_controller.dart';
 import 'controller/reader_controller.dart';
-import 'widgets/reader_mode/single_page_reader_mode.dart';
 import 'widgets/reader_mode/continuous_reader_mode.dart';
+import 'widgets/reader_mode/single_page_reader_mode.dart';
 
 class ReaderScreen extends HookConsumerWidget {
   const ReaderScreen({

@@ -136,15 +136,15 @@ class ContinuousReaderMode extends HookWidget {
             );
             if (index == 0 || index == (chapter.pageCount ?? 1)) {
               final separator = ChapterSeparator(
-                title: index == 0
-                    ? LocaleKeys.current.tr()
-                    : LocaleKeys.finished.tr(),
-                name: chapter.name ??
-                    LocaleKeys.chapterNumber.tr(namedArgs: {
-                      'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                    })
-              );
-              final bool reverseDirection = scrollDirection == Axis.horizontal && reverse;
+                  title: index == 0
+                      ? LocaleKeys.current.tr()
+                      : LocaleKeys.finished.tr(),
+                  name: chapter.name ??
+                      LocaleKeys.chapterNumber.tr(namedArgs: {
+                        'chapterNumber': "${chapter.chapterNumber ?? 0}"
+                      }));
+              final bool reverseDirection =
+                  scrollDirection == Axis.horizontal && reverse;
               return Flex(
                 direction: scrollDirection,
                 mainAxisSize: MainAxisSize.min,
