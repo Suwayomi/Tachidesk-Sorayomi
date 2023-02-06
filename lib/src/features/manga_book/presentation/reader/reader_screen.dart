@@ -16,7 +16,7 @@ import '../../domain/chapter_patch/chapter_put_model.dart';
 import '../manga_details/controller/manga_details_controller.dart';
 import 'controller/reader_controller.dart';
 import 'widgets/reader_mode/single_page_reader_mode.dart';
-import 'widgets/reader_mode/webtoon_reader_mode.dart';
+import 'widgets/reader_mode/continuous_reader_mode.dart';
 
 class ReaderScreen extends HookConsumerWidget {
   const ReaderScreen({
@@ -88,6 +88,21 @@ class ReaderScreen extends HookConsumerWidget {
                       onPageChanged: onPageChanged,
                       reverse: true,
                     );
+                  case ReaderMode.continuousHorizontalLTR:
+                    return ContinuousReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                      scrollDirection: Axis.horizontal,
+                    );
+                  case ReaderMode.continuousHorizontalRTL:
+                    return ContinuousReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                      scrollDirection: Axis.horizontal,
+                      reverse: true,
+                    );
                   case ReaderMode.singleHorizontalLTR:
                     return SinglePageReaderMode(
                       chapter: chapterData,
@@ -95,7 +110,7 @@ class ReaderScreen extends HookConsumerWidget {
                       onPageChanged: onPageChanged,
                     );
                   case ReaderMode.continuousVertical:
-                    return WebtoonReaderMode(
+                    return ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
@@ -103,7 +118,7 @@ class ReaderScreen extends HookConsumerWidget {
                     );
                   case ReaderMode.webtoon:
                   default:
-                    return WebtoonReaderMode(
+                    return ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,

@@ -21,18 +21,22 @@ import '../../../../domain/manga/manga_model.dart';
 import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
 
-class WebtoonReaderMode extends HookWidget {
-  const WebtoonReaderMode({
+class ContinuousReaderMode extends HookWidget {
+  const ContinuousReaderMode({
     super.key,
     required this.manga,
     required this.chapter,
     this.showSeparator = false,
     this.onPageChanged,
+    this.scrollDirection = Axis.vertical,
+    this.reverse = false,
   });
   final Manga manga;
   final Chapter chapter;
   final bool showSeparator;
   final AsyncValueSetter<int>? onPageChanged;
+  final Axis scrollDirection;
+  final bool reverse;
   @override
   Widget build(BuildContext context) {
     final scrollController = useMemoized(() => ItemScrollController());
@@ -106,9 +110,13 @@ class WebtoonReaderMode extends HookWidget {
           initialScrollIndex: chapter.read.ifNull()
               ? 0
               : chapter.lastPageRead.ifNullOrNegative(),
+          scrollDirection: scrollDirection,
+          reverse: reverse,
           itemBuilder: (BuildContext context, int index) {
             final image = ServerImage(
-              fit: BoxFit.fitWidth,
+              fit: scrollDirection == Axis.vertical
+                  ? BoxFit.fitWidth
+                  : BoxFit.fitHeight,
               appendApiToUrl: true,
               imageUrl: MangaUrl.chapterPageWithIndex(
                 chapterIndex: "${chapter.index}",
@@ -126,35 +134,24 @@ class WebtoonReaderMode extends HookWidget {
                 child: child,
               ),
             );
-            if (index == 0) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ChapterSeparator(
-                    title: LocaleKeys.current.tr(),
-                    name: chapter.name ??
-                        LocaleKeys.chapterNumber.tr(namedArgs: {
-                          'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                        }),
-                  ),
-                  image,
-                ],
+            if (index == 0 || index == (chapter.pageCount ?? 1)) {
+              final separator = ChapterSeparator(
+                title: index == 0
+                    ? LocaleKeys.current.tr()
+                    : LocaleKeys.finished.tr(),
+                name: chapter.name ??
+                    LocaleKeys.chapterNumber.tr(namedArgs: {
+                      'chapterNumber': "${chapter.chapterNumber ?? 0}"
+                    })
               );
-            } else if (index == (chapter.pageCount ?? 0) - 1) {
-              return Column(
+              final bool reverseDirection = scrollDirection == Axis.horizontal && reverse;
+              return Flex(
+                direction: scrollDirection,
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  image,
-                  ChapterSeparator(
-                    title: LocaleKeys.finished.tr(),
-                    name: chapter.name ??
-                        LocaleKeys.chapterNumber.tr(namedArgs: {
-                          'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                        }),
-                  ),
-                ],
+                children: ((index == 0) != reverseDirection)
+                    ? [separator, image]
+                    : [image, separator],
               );
             } else {
               return image;
