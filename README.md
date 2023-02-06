@@ -136,6 +136,9 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
    flutter pub run easy_localization:generate -S assets/locales -f keys -O lib/src/i18n/ -o locale_keys.g.dart
 ```
 
+- Pull-Request Suggestion
+  - Install GitHooks after cloning the repo using `git config --local core.hooksPath .githooks`
+
 ## Support and help
 
 -   Join Tachidesk's [discord server](https://discord.gg/DDZdqZWaHA) to hang out with the community and receive support and help.
