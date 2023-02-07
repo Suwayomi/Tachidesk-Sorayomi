@@ -25,10 +25,14 @@ class BigScreenMangaDetails extends ConsumerWidget {
     required this.manga,
     required this.mangaId,
     required this.selectedChapters,
+    required this.onListRefresh,
     required this.onRefresh,
+    required this.onDescriptionRefresh,
   });
   final Manga manga;
   final String mangaId;
+  final AsyncValueSetter<bool> onListRefresh;
+  final AsyncValueSetter<bool> onDescriptionRefresh;
   final AsyncValueSetter<bool> onRefresh;
   final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncValue<List<Chapter>?> chapterList;
@@ -50,7 +54,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                 addMangaToLibrary: (() => ref
                     .read(mangaBookRepositoryProvider)
                     .addMangaToLibrary(mangaId)),
-                refresh: () => onRefresh(false),
+                refresh: () => onDescriptionRefresh(false),
               ),
             ),
           ),
@@ -83,7 +87,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                               key: key,
                               manga: manga,
                               chapter: chapter,
-                              updateData: () => onRefresh(false),
+                              updateData: () => onListRefresh(false),
                               isSelected: selectedChapters.value
                                   .containsKey(chapter.id),
                               canTapSelect: selectedChapters.value.isNotEmpty,
@@ -103,7 +107,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   return Emoticons(
                     text: LocaleKeys.noChaptersFound.tr(),
                     button: TextButton(
-                      onPressed: () => onRefresh(true),
+                      onPressed: () => onListRefresh(true),
                       child: Text(LocaleKeys.refresh.tr()),
                     ),
                   );

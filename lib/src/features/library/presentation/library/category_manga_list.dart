@@ -56,7 +56,10 @@ class CategoryMangaList extends HookConsumerWidget {
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
-                    context.push(Routes.getManga(data[index].id!));
+                    context.push(Routes.getManga(
+                      data[index].id!,
+                      categoryId: categoryId,
+                    ));
                   }
                 },
                 showCountBadges: true,
@@ -71,7 +74,10 @@ class CategoryMangaList extends HookConsumerWidget {
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
-                    context.push(Routes.getManga(data[index].id!));
+                    context.push(Routes.getManga(
+                      data[index].id!,
+                      categoryId: categoryId,
+                    ));
                   }
                 },
                 showCountBadges: true,
@@ -85,7 +91,10 @@ class CategoryMangaList extends HookConsumerWidget {
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
-                    context.push(Routes.getManga(data[index].id!));
+                    context.push(Routes.getManga(
+                      data[index].id!,
+                      categoryId: categoryId,
+                    ));
                   }
                 },
                 showBadges: true,

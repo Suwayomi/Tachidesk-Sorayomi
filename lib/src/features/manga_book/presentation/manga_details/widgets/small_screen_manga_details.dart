@@ -26,12 +26,16 @@ class SmallScreenMangaDetails extends ConsumerWidget {
     required this.selectedChapters,
     required this.mangaId,
     required this.onRefresh,
+    required this.onDescriptionRefresh,
+    required this.onListRefresh,
   });
   final String mangaId;
   final Manga manga;
   final AsyncValueSetter<bool> onRefresh;
   final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncValue<List<Chapter>?> chapterList;
+  final AsyncValueSetter<bool> onListRefresh;
+  final AsyncValueSetter<bool> onDescriptionRefresh;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filteredChapterList = chapterList.valueOrNull;
@@ -44,7 +48,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
             child: SingleChildScrollView(
               child: MangaDescription(
                 manga: manga,
-                refresh: () => onRefresh(false),
+                refresh: () => onDescriptionRefresh(false),
                 removeMangaFromLibrary: () => ref
                     .read(mangaBookRepositoryProvider)
                     .removeMangaFromLibrary(mangaId),
@@ -90,7 +94,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
                   child: Emoticons(
                     text: LocaleKeys.noChaptersFound.tr(),
                     button: TextButton(
-                      onPressed: () => onRefresh(true),
+                      onPressed: () => onDescriptionRefresh(true),
                       child: Text(LocaleKeys.refresh.tr()),
                     ),
                   ),
