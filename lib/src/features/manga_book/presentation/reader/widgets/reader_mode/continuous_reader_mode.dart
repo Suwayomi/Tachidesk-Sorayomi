@@ -112,6 +112,9 @@ class ContinuousReaderMode extends HookWidget {
               : chapter.lastPageRead.ifNullOrNegative(),
           scrollDirection: scrollDirection,
           reverse: reverse,
+          itemCount: chapter.pageCount ?? 0,
+          separatorBuilder: (BuildContext context, int index) =>
+              showSeparator ? KSizedBox.h16.size : const SizedBox.shrink(),
           itemBuilder: (BuildContext context, int index) {
             final image = ServerImage(
               fit: scrollDirection == Axis.vertical
@@ -130,19 +133,32 @@ class ContinuousReaderMode extends HookWidget {
                 ),
               ),
               wrapper: (child) => SizedBox(
-                height: context.height * .7,
+                height: scrollDirection == Axis.vertical
+                    ? context.height * .7
+                    : null,
+                width: scrollDirection != Axis.vertical
+                    ? context.width * .7
+                    : null,
                 child: child,
               ),
             );
             if (index == 0 || index == (chapter.pageCount ?? 1)) {
-              final separator = ChapterSeparator(
+              final separator = SizedBox(
+                width: scrollDirection != Axis.vertical
+                    ? context.width * .5
+                    : null,
+                child: ChapterSeparator(
                   title: index == 0
                       ? LocaleKeys.current.tr()
                       : LocaleKeys.finished.tr(),
                   name: chapter.name ??
-                      LocaleKeys.chapterNumber.tr(namedArgs: {
-                        'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                      }));
+                      LocaleKeys.chapterNumber.tr(
+                        namedArgs: {
+                          'chapterNumber': "${chapter.chapterNumber ?? 0}"
+                        },
+                      ),
+                ),
+              );
               final bool reverseDirection =
                   scrollDirection == Axis.horizontal && reverse;
               return Flex(
@@ -157,9 +173,6 @@ class ContinuousReaderMode extends HookWidget {
               return image;
             }
           },
-          itemCount: chapter.pageCount ?? 0,
-          separatorBuilder: (BuildContext context, int index) =>
-              showSeparator ? KSizedBox.h16.size : const SizedBox.shrink(),
         ),
       ),
     );
