@@ -338,18 +338,18 @@ packages:
     dependency: transitive
     description:
       name: flutter_gen_core
-      sha256: "8c5edb4db82dadf0d343b1be8bc5e878b66500eb79a583723147b1efb5749ccb"
+      sha256: e74db9fc706ce43ef0dfd4b296fcfa10f84c4d862b9b68a087e7c703f97c7a0a
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0+1"
+    version: "5.2.0"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       name: flutter_gen_runner
-      sha256: a77b51f955c7d829bf0d077993c88b3be66d496b6a2c2c0d8fdae7b46e0435b5
+      sha256: "434511d7c3f7bb5c67d89a16451056093953bebf7afa8336baeceddfc6fe2a21"
       url: "https://pub.dev"
     source: hosted
-    version: "5.1.0+1"
+    version: "5.2.0"
   flutter_hooks:
     dependency: "direct main"
     description:
@@ -465,10 +465,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "9e8cee9969a9f33821a5594e5822d9a7ef3ae8528e5258f5178436e3deb0e095"
+      sha256: "54ecc1cd90c6948539c8cae3c11d7cb5010ad9b14533e8f49d060839d742be12"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.3"
+    version: "6.0.4"
   graphs:
     dependency: transitive
     description:
@@ -1102,10 +1102,10 @@ packages:
     dependency: "direct main"
     description:
       name: url_launcher
-      sha256: "698fa0b4392effdc73e9e184403b627362eb5fbf904483ac9defbb1c2191d809"
+      sha256: e8f2efc804810c0f2f5b485f49e7942179f56eabcfe81dce3387fec4bb55876b
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.8"
+    version: "6.1.9"
   url_launcher_android:
     dependency: transitive
     description:
@@ -1118,10 +1118,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_ios
-      sha256: bb328b24d3bccc20bdf1024a0990ac4f869d57663660de9c936fb8c043edefe3
+      sha256: "0a5af0aefdd8cf820dd739886efb1637f1f24489900204f50984634c07a54815"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.18"
+    version: "6.1.0"
   url_launcher_linux:
     dependency: transitive
     description:
