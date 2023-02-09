@@ -17,7 +17,6 @@ import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../../../widgets/loading_widgets/loading_text_icon_button.dart';
 import '../../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../domain/manga/manga_model.dart';
 
@@ -50,7 +49,7 @@ class MangaDescription extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              LoadingTextIconButton(
+              TextButton.icon(
                 onPressed: () async {
                   final val = await AsyncValue.guard(() async {
                     if (manga.inLibrary ?? false) {

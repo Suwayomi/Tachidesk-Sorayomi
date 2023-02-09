@@ -11,7 +11,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/loading_widgets/loading_checkbox_list_tile.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../data/manga_book_repository.dart';
@@ -45,10 +44,10 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                     (selectedCategoryList) => Column(
                       children: [
                         for (int index = 0; index < data.length; index++)
-                          LoadingCheckboxListTile(
+                          CheckboxListTile(
                             onChanged: (value) async {
                               await AsyncValue.guard(
-                                () => value
+                                () => value.ifNull()
                                     ? ref
                                         .read(mangaBookRepositoryProvider)
                                         .addMangaToCategory(
@@ -68,7 +67,9 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                                   "${data[index].id}",
                                 ) ??
                                 false,
-                            title: data[index].name ?? LocaleKeys.category.tr(),
+                            title: Text(
+                              data[index].name ?? LocaleKeys.category.tr(),
+                            ),
                           ),
                       ],
                     ),
