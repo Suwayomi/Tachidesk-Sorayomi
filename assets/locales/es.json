@@ -1,1 +1,57 @@
-{}
+{
+    "AuthType": {
+        "basic": "Autenticación Normal",
+        "none": "Ninguna"
+    },
+    "DisplayMode": {
+        "descriptiveList": "Lista Descriptiva",
+        "list": "Lista",
+        "grid": "Cuadricula"
+    },
+    "MangaSort": {
+        "alphabetical": "Alfabético",
+        "dateAdded": "Fecha Añadida",
+        "unread": "No leído"
+    },
+    "MangaStatus": {
+        "cancelled": "Cancelado",
+        "completed": "Completado",
+        "onHiatus": "En Receso",
+        "ongoing": "En publicación",
+        "publishingFinished": "Serie Terminada",
+        "unknown": "Desconocido",
+        "licensed": "Con Licencia"
+    },
+    "ReaderMode": {
+        "continuousVertical": "Vertical Continuo",
+        "defaultReader": "Por Defecto",
+        "singleHorizontalLTR": "Horizontal Individual (IZQ-DER)",
+        "continuousHorizontalLTR": "Horizontal Continuo (IZQ-DER)",
+        "singleVertical": "Horizontal Individual",
+        "webtoon": "Webtoon",
+        "singleHorizontalRTL": "Horizontal Individual (DER-IZQ)",
+        "continuousHorizontalRTL": "Horizontal Continuo (DER-IZQ)"
+    },
+    "ReaderNavigationLayout": {
+        "defaultNavigation": "Por defecto",
+        "disabled": "Deshabilitado",
+        "edge": "Borde",
+        "kindlish": "Estilo Kindle",
+        "lShaped": "En forma de L",
+        "rightAndLeft": "Derecha e Izquierda"
+    },
+    "SourceType": {
+        "filter": "Filtrar",
+        "latest": "Nuevos",
+        "popular": "Populares"
+    },
+    "ThemeMode": {
+        "dark": "Oscuro",
+        "light": "Claro",
+        "system": "Sistema"
+    },
+    "about": "Información",
+    "ChapterSort": {
+        "fetchedDate": "Por Fecha De Subida"
+    }
+}
