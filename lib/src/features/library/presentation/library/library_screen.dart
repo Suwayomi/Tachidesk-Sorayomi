@@ -13,7 +13,7 @@ import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
-import '../../../../widgets/custom_circular_progress_indicator.dart';
+import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../manga_book/widgets/update_status_popup_menu.dart';
 import '../category/controller/edit_category_controller.dart';
@@ -103,7 +103,13 @@ class LibraryScreen extends HookConsumerWidget {
             child: LibraryMangaOrganizer(),
           ),
           body: data.isEmpty
-              ? const CenterCircularProgressIndicator()
+              ? Emoticons(
+                  text: LocaleKeys.noCategoryMangaFound.tr(),
+                  button: TextButton(
+                    onPressed: () => ref.refresh(categoryControllerProvider),
+                    child: Text(LocaleKeys.refresh.tr()),
+                  ),
+                )
               : Padding(
                   padding: KEdgeInsets.h8.size,
                   child: TabBarView(

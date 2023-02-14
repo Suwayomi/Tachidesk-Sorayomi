@@ -11,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/loading_widgets/loading_checkbox_list_tile.dart';
+import '../../../../../widgets/pop_button.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../data/manga_book_repository.dart';
 import '../controller/manga_details_controller.dart';
@@ -30,20 +30,24 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
     return AlertDialog(
       title: Text(LocaleKeys.editCategory.tr()),
       contentPadding: KEdgeInsets.h8v16.size,
+      actions: [PopButton(popText: LocaleKeys.close.tr())],
       content: categoryList.showUiWhenData(
         (data) => ConstrainedBox(
           constraints: BoxConstraints(maxHeight: context.height * .4),
           child: data.isEmpty
-              ? Text(LocaleKeys.noCategoriesFoundAlt.tr())
+              ? Padding(
+                  padding: KEdgeInsets.h16.size,
+                  child: Text(LocaleKeys.noCategoriesFoundAlt.tr()),
+                )
               : SingleChildScrollView(
                   child: mangaCategoryList.showUiWhenData(
                     (selectedCategoryList) => Column(
                       children: [
                         for (int index = 0; index < data.length; index++)
-                          LoadingCheckboxListTile(
+                          CheckboxListTile(
                             onChanged: (value) async {
                               await AsyncValue.guard(
-                                () => value
+                                () => value.ifNull()
                                     ? ref
                                         .read(mangaBookRepositoryProvider)
                                         .addMangaToCategory(
@@ -63,7 +67,9 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                                   "${data[index].id}",
                                 ) ??
                                 false,
-                            title: data[index].name ?? LocaleKeys.category.tr(),
+                            title: Text(
+                              data[index].name ?? LocaleKeys.category.tr(),
+                            ),
                           ),
                       ],
                     ),

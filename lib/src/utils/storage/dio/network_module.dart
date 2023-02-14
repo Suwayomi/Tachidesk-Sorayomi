@@ -28,11 +28,13 @@ class DioNetworkModule {
     String? credentials,
   }) {
     final dio = Dio();
-    (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
+    (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
+
     dio
       ..options.baseUrl = Endpoints.baseApi(baseUrl: baseUrl)
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
+      ..options.contentType = Headers.jsonContentType
       ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
       ..interceptors.add(
         InterceptorsWrapper(

@@ -6,59 +6,35 @@ part of 'manga_cover_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
-
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-String _$DownloadedBadgeHash() => r'87a75683efec7ac3af30542b8db7905ef201698b';
+String _$downloadedBadgeHash() => r'87a75683efec7ac3af30542b8db7905ef201698b';
 
 /// See also [DownloadedBadge].
+@ProviderFor(DownloadedBadge)
 final downloadedBadgeProvider =
-    AutoDisposeNotifierProvider<DownloadedBadge, bool?>(
+    AutoDisposeNotifierProvider<DownloadedBadge, bool?>.internal(
   DownloadedBadge.new,
   name: r'downloadedBadgeProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$DownloadedBadgeHash,
+      : _$downloadedBadgeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef DownloadedBadgeRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$DownloadedBadge extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$UnreadBadgeHash() => r'28d64c3752401f1afb1c0075bd227f64fc090126';
+typedef _$DownloadedBadge = AutoDisposeNotifier<bool?>;
+String _$unreadBadgeHash() => r'28d64c3752401f1afb1c0075bd227f64fc090126';
 
 /// See also [UnreadBadge].
-final unreadBadgeProvider = AutoDisposeNotifierProvider<UnreadBadge, bool?>(
+@ProviderFor(UnreadBadge)
+final unreadBadgeProvider =
+    AutoDisposeNotifierProvider<UnreadBadge, bool?>.internal(
   UnreadBadge.new,
   name: r'unreadBadgeProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$UnreadBadgeHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$unreadBadgeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef UnreadBadgeRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$UnreadBadge extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
+typedef _$UnreadBadge = AutoDisposeNotifier<bool?>;
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -6,7 +6,7 @@ part of 'reader_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$chapterHash() => r'80779674a17d3466d24f1b08fc563a41c58f8070';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,14 +29,60 @@ class _SystemHash {
   }
 }
 
-String _$chapterHash() => r'80779674a17d3466d24f1b08fc563a41c58f8070';
+typedef ChapterRef = AutoDisposeFutureProviderRef<Chapter?>;
+
+/// See also [chapter].
+@ProviderFor(chapter)
+const chapterProvider = ChapterFamily();
+
+/// See also [chapter].
+class ChapterFamily extends Family<AsyncValue<Chapter?>> {
+  /// See also [chapter].
+  const ChapterFamily();
+
+  /// See also [chapter].
+  ChapterProvider call({
+    required String mangaId,
+    required String chapterIndex,
+  }) {
+    return ChapterProvider(
+      mangaId: mangaId,
+      chapterIndex: chapterIndex,
+    );
+  }
+
+  @override
+  ChapterProvider getProviderOverride(
+    covariant ChapterProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+      chapterIndex: provider.chapterIndex,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'chapterProvider';
+}
 
 /// See also [chapter].
 class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
+  /// See also [chapter].
   ChapterProvider({
     required this.mangaId,
     required this.chapterIndex,
-  }) : super(
+  }) : super.internal(
           (ref) => chapter(
             ref,
             mangaId: mangaId,
@@ -48,6 +94,8 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$chapterHash,
+          dependencies: ChapterFamily._dependencies,
+          allTransitiveDependencies: ChapterFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -69,41 +117,4 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef ChapterRef = AutoDisposeFutureProviderRef<Chapter?>;
-
-/// See also [chapter].
-final chapterProvider = ChapterFamily();
-
-class ChapterFamily extends Family<AsyncValue<Chapter?>> {
-  ChapterFamily();
-
-  ChapterProvider call({
-    required String mangaId,
-    required String chapterIndex,
-  }) {
-    return ChapterProvider(
-      mangaId: mangaId,
-      chapterIndex: chapterIndex,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<Chapter?> getProviderOverride(
-    covariant ChapterProvider provider,
-  ) {
-    return call(
-      mangaId: provider.mangaId,
-      chapterIndex: provider.chapterIndex,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'chapterProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

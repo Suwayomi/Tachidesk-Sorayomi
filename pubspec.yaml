@@ -2,7 +2,7 @@ name: tachidesk_sorayomi
 description: A new Flutter frontend for Tachidesk.
 
 publish_to: "none"
-version: 0.3.6+1
+version: 0.3.7+1
 
 environment:
   sdk: ">=2.18.1 <3.0.0"
@@ -10,7 +10,7 @@ environment:
 dependencies:
   cached_network_image: ^3.2.2
   cupertino_icons: ^1.0.5
-  dio: ^4.0.6
+  dio: ^5.0.0
   easy_localization: ^3.0.1
   file_picker: ^5.2.2
   flutter:

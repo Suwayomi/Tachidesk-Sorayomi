@@ -16,22 +16,30 @@ class DioErrorUtil {
         case DioErrorType.cancel:
           errorDescription = "Request cancelled";
           break;
-        case DioErrorType.connectTimeout:
+        case DioErrorType.connectionTimeout:
           errorDescription = "Connection timeout";
           break;
-        case DioErrorType.other:
+        case DioErrorType.unknown:
           errorDescription = "Check your Internet Connection";
           break;
         case DioErrorType.receiveTimeout:
           errorDescription = "Receive timeout";
           break;
-        case DioErrorType.response:
+        case DioErrorType.badResponse:
           errorDescription = (error.response?.statusCode) != null
               ? "Received invalid status code: ${error.response?.statusCode}"
               : "Something went wrong!";
           break;
         case DioErrorType.sendTimeout:
           errorDescription = "Send timeout";
+          break;
+        case DioErrorType.badCertificate:
+          errorDescription =
+              "Check your Internet Connection (Incorrect certificate )";
+          break;
+        case DioErrorType.connectionError:
+          errorDescription =
+              "Check your Internet Connection (Connection Error)";
           break;
       }
     } else {

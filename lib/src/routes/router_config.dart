@@ -61,7 +61,8 @@ abstract class Routes {
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
   static const manga = '/manga/:mangaId';
-  static getManga(int mangaId) => '/manga/$mangaId';
+  static getManga(int mangaId, {int? categoryId}) =>
+      '/manga/$mangaId${categoryId.isNull ? '' : "?categoryId=$categoryId"}';
   static const sourceManga = '/source/:sourceId/:sourceType';
   static getSourceManga(String sourceId, SourceType sourceType,
           {String? query}) =>
@@ -114,6 +115,7 @@ GoRouter routerConfig(ref) {
         builder: (context, state) => MangaDetailsScreen(
           key: ValueKey(state.params['mangaId'] ?? "2"),
           mangaId: state.params['mangaId'] ?? "",
+          categoryId: int.tryParse(state.queryParams['categoryId'] ?? ''),
         ),
       ),
       GoRoute(
