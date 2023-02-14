@@ -41,14 +41,20 @@
             <Component Id="vcruntime140.dll" Guid="*" Win64="yes">
                 <File Id="vcruntime140.dll" Source="vcruntime140.dll" KeyPath="yes" />
             </Component>
-            <Component Id="url_launcher_windows_plugin.dll" Guid="*" Win64="yes">
-                <File Id="url_launcher_windows_plugin.dll" Source="url_launcher_windows_plugin.dll" KeyPath="yes" />
-            </Component>
             <Component Id="msvcp140.dll" Guid="*" Win64="yes">
                 <File Id="msvcp140.dll" Source="msvcp140.dll" KeyPath="yes" />
             </Component>
             <Component Id="flutter_windows.dll" Guid="*" Win64="yes">
                 <File Id="flutter_windows.dll" Source="flutter_windows.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="url_launcher_windows_plugin.dll" Guid="*" Win64="yes">
+                <File Id="url_launcher_windows_plugin.dll" Source="url_launcher_windows_plugin.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="permission_handler_windows_plugin.dll" Guid="*" Win64="yes">
+                <File Id="permission_handler_windows_plugin.dll" Source="permission_handler_windows_plugin.dll" KeyPath="yes" />
+            </Component>
+            <Component Id="share_plus_plugin.dll" Guid="*" Win64="yes">
+                <File Id="share_plus_plugin.dll" Source="share_plus_plugin.dll" KeyPath="yes" />
             </Component>
         </DirectoryRef>
 
@@ -59,9 +65,11 @@
             <ComponentRef Id="ProgramMenuDir" />
             <ComponentRef Id="vcruntime140_1.dll" />
             <ComponentRef Id="vcruntime140.dll" />
-            <ComponentRef Id="url_launcher_windows_plugin.dll" />
             <ComponentRef Id="msvcp140.dll" />
             <ComponentRef Id="flutter_windows.dll" />
+            <ComponentRef Id="url_launcher_windows_plugin.dll" />
+            <ComponentRef Id="permission_handler_windows_plugin.dll" />
+            <ComponentRef Id="share_plus_plugin.dll" />
         </Feature>
 
         <Icon Id="tachidesk_sorayomi.ico" SourceFile="$(var.Icon)" />

@@ -20,29 +20,29 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             target: android
             build_path: build/app/outputs/flutter-apk
           - os: macos-latest
             target: ios
             build_path: build/ios
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             target: web
             build_path: build/web
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             target: linux
             build_path: build/linux/x64/release/bundle
           - os: macos-latest # Catalina
             target: macos
             build_path: build/macos/Build/Products/Release
-          - os: windows-2019
+          - os: windows-latest
             target: windows
             build_path: build\windows\runner\Release
 
     steps:
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'beta'
+          channel: 'stable'
       - name: Install Linux dependencies
         if: matrix.target == 'linux'
         run: |
