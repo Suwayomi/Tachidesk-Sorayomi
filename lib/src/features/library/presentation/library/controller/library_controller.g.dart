@@ -6,7 +6,8 @@ part of 'library_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$categoryMangaListWithQueryAndFilterHash() =>
+    r'c2edbd4a27b545f55985a625ed5df2dabbaf6919';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,23 +30,77 @@ class _SystemHash {
   }
 }
 
-String _$CategoryMangaListWithQueryAndFilterHash() =>
-    r'c2edbd4a27b545f55985a625ed5df2dabbaf6919';
+abstract class _$CategoryMangaListWithQueryAndFilter
+    extends BuildlessAutoDisposeNotifier<AsyncValue<List<Manga>?>> {
+  late final int categoryId;
+
+  AsyncValue<List<Manga>?> build({
+    required int categoryId,
+  });
+}
+
+/// See also [CategoryMangaListWithQueryAndFilter].
+@ProviderFor(CategoryMangaListWithQueryAndFilter)
+const categoryMangaListWithQueryAndFilterProvider =
+    CategoryMangaListWithQueryAndFilterFamily();
+
+/// See also [CategoryMangaListWithQueryAndFilter].
+class CategoryMangaListWithQueryAndFilterFamily
+    extends Family<AsyncValue<List<Manga>?>> {
+  /// See also [CategoryMangaListWithQueryAndFilter].
+  const CategoryMangaListWithQueryAndFilterFamily();
+
+  /// See also [CategoryMangaListWithQueryAndFilter].
+  CategoryMangaListWithQueryAndFilterProvider call({
+    required int categoryId,
+  }) {
+    return CategoryMangaListWithQueryAndFilterProvider(
+      categoryId: categoryId,
+    );
+  }
+
+  @override
+  CategoryMangaListWithQueryAndFilterProvider getProviderOverride(
+    covariant CategoryMangaListWithQueryAndFilterProvider provider,
+  ) {
+    return call(
+      categoryId: provider.categoryId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'categoryMangaListWithQueryAndFilterProvider';
+}
 
 /// See also [CategoryMangaListWithQueryAndFilter].
 class CategoryMangaListWithQueryAndFilterProvider
     extends AutoDisposeNotifierProviderImpl<CategoryMangaListWithQueryAndFilter,
         AsyncValue<List<Manga>?>> {
+  /// See also [CategoryMangaListWithQueryAndFilter].
   CategoryMangaListWithQueryAndFilterProvider({
     required this.categoryId,
-  }) : super(
+  }) : super.internal(
           () => CategoryMangaListWithQueryAndFilter()..categoryId = categoryId,
           from: categoryMangaListWithQueryAndFilterProvider,
           name: r'categoryMangaListWithQueryAndFilterProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$CategoryMangaListWithQueryAndFilterHash,
+                  : _$categoryMangaListWithQueryAndFilterHash,
+          dependencies: CategoryMangaListWithQueryAndFilterFamily._dependencies,
+          allTransitiveDependencies: CategoryMangaListWithQueryAndFilterFamily
+              ._allTransitiveDependencies,
         );
 
   final int categoryId;
@@ -66,7 +121,7 @@ class CategoryMangaListWithQueryAndFilterProvider
 
   @override
   AsyncValue<List<Manga>?> runNotifierBuild(
-    covariant _$CategoryMangaListWithQueryAndFilter notifier,
+    covariant CategoryMangaListWithQueryAndFilter notifier,
   ) {
     return notifier.build(
       categoryId: categoryId,
@@ -74,193 +129,174 @@ class CategoryMangaListWithQueryAndFilterProvider
   }
 }
 
-typedef CategoryMangaListWithQueryAndFilterRef
-    = AutoDisposeNotifierProviderRef<AsyncValue<List<Manga>?>>;
-
-/// See also [CategoryMangaListWithQueryAndFilter].
-final categoryMangaListWithQueryAndFilterProvider =
-    CategoryMangaListWithQueryAndFilterFamily();
-
-class CategoryMangaListWithQueryAndFilterFamily
-    extends Family<AsyncValue<List<Manga>?>> {
-  CategoryMangaListWithQueryAndFilterFamily();
-
-  CategoryMangaListWithQueryAndFilterProvider call({
-    required int categoryId,
-  }) {
-    return CategoryMangaListWithQueryAndFilterProvider(
-      categoryId: categoryId,
-    );
-  }
-
-  @override
-  AutoDisposeNotifierProviderImpl<CategoryMangaListWithQueryAndFilter,
-      AsyncValue<List<Manga>?>> getProviderOverride(
-    covariant CategoryMangaListWithQueryAndFilterProvider provider,
-  ) {
-    return call(
-      categoryId: provider.categoryId,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'categoryMangaListWithQueryAndFilterProvider';
-}
-
-abstract class _$CategoryMangaListWithQueryAndFilter
-    extends BuildlessAutoDisposeNotifier<AsyncValue<List<Manga>?>> {
-  late final int categoryId;
-
-  AsyncValue<List<Manga>?> build({
-    required int categoryId,
-  });
-}
-
-String _$LibraryQueryHash() => r'84087050ef9f75c04375c648a971b67e3b0b28ba';
+String _$libraryQueryHash() => r'84087050ef9f75c04375c648a971b67e3b0b28ba';
 
 /// See also [LibraryQuery].
-final libraryQueryProvider = AutoDisposeNotifierProvider<LibraryQuery, String?>(
+@ProviderFor(LibraryQuery)
+final libraryQueryProvider =
+    AutoDisposeNotifierProvider<LibraryQuery, String?>.internal(
   LibraryQuery.new,
   name: r'libraryQueryProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$LibraryQueryHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$libraryQueryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryQueryRef = AutoDisposeNotifierProviderRef<String?>;
 
-abstract class _$LibraryQuery extends AutoDisposeNotifier<String?> {
-  @override
-  String? build();
-}
-
-String _$LibraryMangaFilterDownloadedHash() =>
+typedef _$LibraryQuery = AutoDisposeNotifier<String?>;
+String _$libraryMangaFilterDownloadedHash() =>
     r'173f948640462772ba13cd4efb03b750a4b50f50';
 
 /// See also [LibraryMangaFilterDownloaded].
+@ProviderFor(LibraryMangaFilterDownloaded)
 final libraryMangaFilterDownloadedProvider =
-    AutoDisposeNotifierProvider<LibraryMangaFilterDownloaded, bool?>(
+    AutoDisposeNotifierProvider<LibraryMangaFilterDownloaded, bool?>.internal(
   LibraryMangaFilterDownloaded.new,
   name: r'libraryMangaFilterDownloadedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$LibraryMangaFilterDownloadedHash,
+      : _$libraryMangaFilterDownloadedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryMangaFilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$LibraryMangaFilterDownloaded
-    extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$LibraryMangaFilterUnreadHash() =>
+typedef _$LibraryMangaFilterDownloaded = AutoDisposeNotifier<bool?>;
+String _$libraryMangaFilterUnreadHash() =>
     r'6c168a40a9e5599d8f2cb02915ff1546b5f3c531';
 
 /// See also [LibraryMangaFilterUnread].
+@ProviderFor(LibraryMangaFilterUnread)
 final libraryMangaFilterUnreadProvider =
-    AutoDisposeNotifierProvider<LibraryMangaFilterUnread, bool?>(
+    AutoDisposeNotifierProvider<LibraryMangaFilterUnread, bool?>.internal(
   LibraryMangaFilterUnread.new,
   name: r'libraryMangaFilterUnreadProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$LibraryMangaFilterUnreadHash,
+      : _$libraryMangaFilterUnreadHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryMangaFilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$LibraryMangaFilterUnread extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$LibraryMangaFilterCompletedHash() =>
+typedef _$LibraryMangaFilterUnread = AutoDisposeNotifier<bool?>;
+String _$libraryMangaFilterCompletedHash() =>
     r'1d959032909f57d964b60cf6f86efd4e2b4960e9';
 
 /// See also [LibraryMangaFilterCompleted].
+@ProviderFor(LibraryMangaFilterCompleted)
 final libraryMangaFilterCompletedProvider =
-    AutoDisposeNotifierProvider<LibraryMangaFilterCompleted, bool?>(
+    AutoDisposeNotifierProvider<LibraryMangaFilterCompleted, bool?>.internal(
   LibraryMangaFilterCompleted.new,
   name: r'libraryMangaFilterCompletedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$LibraryMangaFilterCompletedHash,
+      : _$libraryMangaFilterCompletedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryMangaFilterCompletedRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$LibraryMangaFilterCompleted
-    extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$LibraryMangaSortHash() => r'88a025259f3957cb221cd1237c6e118d546eec64';
+typedef _$LibraryMangaFilterCompleted = AutoDisposeNotifier<bool?>;
+String _$libraryMangaSortHash() => r'88a025259f3957cb221cd1237c6e118d546eec64';
 
 /// See also [LibraryMangaSort].
+@ProviderFor(LibraryMangaSort)
 final libraryMangaSortProvider =
-    AutoDisposeNotifierProvider<LibraryMangaSort, MangaSort?>(
+    AutoDisposeNotifierProvider<LibraryMangaSort, MangaSort?>.internal(
   LibraryMangaSort.new,
   name: r'libraryMangaSortProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$LibraryMangaSortHash,
+      : _$libraryMangaSortHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryMangaSortRef = AutoDisposeNotifierProviderRef<MangaSort?>;
 
-abstract class _$LibraryMangaSort extends AutoDisposeNotifier<MangaSort?> {
-  @override
-  MangaSort? build();
-}
-
-String _$LibraryMangaSortDirectionHash() =>
+typedef _$LibraryMangaSort = AutoDisposeNotifier<MangaSort?>;
+String _$libraryMangaSortDirectionHash() =>
     r'e75ba9131a09c697f6bc6488347051de72249cb2';
 
 /// See also [LibraryMangaSortDirection].
+@ProviderFor(LibraryMangaSortDirection)
 final libraryMangaSortDirectionProvider =
-    AutoDisposeNotifierProvider<LibraryMangaSortDirection, bool?>(
+    AutoDisposeNotifierProvider<LibraryMangaSortDirection, bool?>.internal(
   LibraryMangaSortDirection.new,
   name: r'libraryMangaSortDirectionProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$LibraryMangaSortDirectionHash,
+      : _$libraryMangaSortDirectionHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryMangaSortDirectionRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$LibraryMangaSortDirection extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$LibraryDisplayModeHash() =>
+typedef _$LibraryMangaSortDirection = AutoDisposeNotifier<bool?>;
+String _$libraryDisplayModeHash() =>
     r'c7adbf4cb2db2c67b7d10e75bb14404e05551ab4';
 
 /// See also [LibraryDisplayMode].
+@ProviderFor(LibraryDisplayMode)
 final libraryDisplayModeProvider =
-    AutoDisposeNotifierProvider<LibraryDisplayMode, DisplayMode?>(
+    AutoDisposeNotifierProvider<LibraryDisplayMode, DisplayMode?>.internal(
   LibraryDisplayMode.new,
   name: r'libraryDisplayModeProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$LibraryDisplayModeHash,
+      : _$libraryDisplayModeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef LibraryDisplayModeRef = AutoDisposeNotifierProviderRef<DisplayMode?>;
 
-abstract class _$LibraryDisplayMode extends AutoDisposeNotifier<DisplayMode?> {
-  @override
-  DisplayMode? build();
-}
-
+typedef _$LibraryDisplayMode = AutoDisposeNotifier<DisplayMode?>;
 String _$categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
+typedef CategoryMangaListRef = AutoDisposeFutureProviderRef<List<Manga>?>;
+
+/// See also [categoryMangaList].
+@ProviderFor(categoryMangaList)
+const categoryMangaListProvider = CategoryMangaListFamily();
+
+/// See also [categoryMangaList].
+class CategoryMangaListFamily extends Family<AsyncValue<List<Manga>?>> {
+  /// See also [categoryMangaList].
+  const CategoryMangaListFamily();
+
+  /// See also [categoryMangaList].
+  CategoryMangaListProvider call(
+    int categoryId,
+  ) {
+    return CategoryMangaListProvider(
+      categoryId,
+    );
+  }
+
+  @override
+  CategoryMangaListProvider getProviderOverride(
+    covariant CategoryMangaListProvider provider,
+  ) {
+    return call(
+      provider.categoryId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'categoryMangaListProvider';
+}
 
 /// See also [categoryMangaList].
 class CategoryMangaListProvider
     extends AutoDisposeFutureProvider<List<Manga>?> {
+  /// See also [categoryMangaList].
   CategoryMangaListProvider(
     this.categoryId,
-  ) : super(
+  ) : super.internal(
           (ref) => categoryMangaList(
             ref,
             categoryId,
@@ -271,6 +307,9 @@ class CategoryMangaListProvider
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$categoryMangaListHash,
+          dependencies: CategoryMangaListFamily._dependencies,
+          allTransitiveDependencies:
+              CategoryMangaListFamily._allTransitiveDependencies,
         );
 
   final int categoryId;
@@ -288,38 +327,4 @@ class CategoryMangaListProvider
     return _SystemHash.finish(hash);
   }
 }
-
-typedef CategoryMangaListRef = AutoDisposeFutureProviderRef<List<Manga>?>;
-
-/// See also [categoryMangaList].
-final categoryMangaListProvider = CategoryMangaListFamily();
-
-class CategoryMangaListFamily extends Family<AsyncValue<List<Manga>?>> {
-  CategoryMangaListFamily();
-
-  CategoryMangaListProvider call(
-    int categoryId,
-  ) {
-    return CategoryMangaListProvider(
-      categoryId,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<List<Manga>?> getProviderOverride(
-    covariant CategoryMangaListProvider provider,
-  ) {
-    return call(
-      provider.categoryId,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'categoryMangaListProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

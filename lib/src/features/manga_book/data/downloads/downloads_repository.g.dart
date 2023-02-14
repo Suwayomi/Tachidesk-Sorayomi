@@ -6,7 +6,39 @@ part of 'downloads_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$downloadsRepositoryHash() =>
+    r'5863e339050a4025a026249d55ea40d25137c001';
+
+/// See also [downloadsRepository].
+@ProviderFor(downloadsRepository)
+final downloadsRepositoryProvider =
+    AutoDisposeProvider<DownloadsRepository>.internal(
+  downloadsRepository,
+  name: r'downloadsRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$downloadsRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DownloadsRepositoryRef = AutoDisposeProviderRef<DownloadsRepository>;
+String _$downloadsMapHash() => r'069e7137bb59b01aea1cc49d4605e4b8c8a9d7fd';
+
+/// See also [downloadsMap].
+@ProviderFor(downloadsMap)
+final downloadsMapProvider =
+    AutoDisposeProvider<Map<int, DownloadsQueue>>.internal(
+  downloadsMap,
+  name: r'downloadsMapProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$downloadsMapHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DownloadsMapRef = AutoDisposeProviderRef<Map<int, DownloadsQueue>>;
+String _$downloadsFromIdHash() => r'da4ab5797ab7eeb647433cc50c56d2e8b827218b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,35 +61,56 @@ class _SystemHash {
   }
 }
 
-String _$downloadsRepositoryHash() =>
-    r'5863e339050a4025a026249d55ea40d25137c001';
+typedef DownloadsFromIdRef = AutoDisposeProviderRef<DownloadsQueue?>;
 
-/// See also [downloadsRepository].
-final downloadsRepositoryProvider = AutoDisposeProvider<DownloadsRepository>(
-  downloadsRepository,
-  name: r'downloadsRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$downloadsRepositoryHash,
-);
-typedef DownloadsRepositoryRef = AutoDisposeProviderRef<DownloadsRepository>;
-String _$downloadsMapHash() => r'069e7137bb59b01aea1cc49d4605e4b8c8a9d7fd';
+/// See also [downloadsFromId].
+@ProviderFor(downloadsFromId)
+const downloadsFromIdProvider = DownloadsFromIdFamily();
 
-/// See also [downloadsMap].
-final downloadsMapProvider = AutoDisposeProvider<Map<int, DownloadsQueue>>(
-  downloadsMap,
-  name: r'downloadsMapProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$downloadsMapHash,
-);
-typedef DownloadsMapRef = AutoDisposeProviderRef<Map<int, DownloadsQueue>>;
-String _$downloadsFromIdHash() => r'da4ab5797ab7eeb647433cc50c56d2e8b827218b';
+/// See also [downloadsFromId].
+class DownloadsFromIdFamily extends Family<DownloadsQueue?> {
+  /// See also [downloadsFromId].
+  const DownloadsFromIdFamily();
+
+  /// See also [downloadsFromId].
+  DownloadsFromIdProvider call(
+    int chapterId,
+  ) {
+    return DownloadsFromIdProvider(
+      chapterId,
+    );
+  }
+
+  @override
+  DownloadsFromIdProvider getProviderOverride(
+    covariant DownloadsFromIdProvider provider,
+  ) {
+    return call(
+      provider.chapterId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'downloadsFromIdProvider';
+}
 
 /// See also [downloadsFromId].
 class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
+  /// See also [downloadsFromId].
   DownloadsFromIdProvider(
     this.chapterId,
-  ) : super(
+  ) : super.internal(
           (ref) => downloadsFromId(
             ref,
             chapterId,
@@ -68,6 +121,9 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$downloadsFromIdHash,
+          dependencies: DownloadsFromIdFamily._dependencies,
+          allTransitiveDependencies:
+              DownloadsFromIdFamily._allTransitiveDependencies,
         );
 
   final int chapterId;
@@ -85,38 +141,4 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef DownloadsFromIdRef = AutoDisposeProviderRef<DownloadsQueue?>;
-
-/// See also [downloadsFromId].
-final downloadsFromIdProvider = DownloadsFromIdFamily();
-
-class DownloadsFromIdFamily extends Family<DownloadsQueue?> {
-  DownloadsFromIdFamily();
-
-  DownloadsFromIdProvider call(
-    int chapterId,
-  ) {
-    return DownloadsFromIdProvider(
-      chapterId,
-    );
-  }
-
-  @override
-  AutoDisposeProvider<DownloadsQueue?> getProviderOverride(
-    covariant DownloadsFromIdProvider provider,
-  ) {
-    return call(
-      provider.chapterId,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'downloadsFromIdProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

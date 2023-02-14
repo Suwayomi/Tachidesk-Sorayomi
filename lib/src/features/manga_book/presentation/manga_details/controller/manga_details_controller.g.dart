@@ -6,7 +6,7 @@ part of 'manga_details_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$mangaWithIdHash() => r'34066d958171e4089e173a5124751043e0aad8ec';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,21 +29,73 @@ class _SystemHash {
   }
 }
 
-String _$MangaWithIdHash() => r'34066d958171e4089e173a5124751043e0aad8ec';
+abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
+  late final String mangaId;
+
+  Future<Manga?> build({
+    required String mangaId,
+  });
+}
+
+/// See also [MangaWithId].
+@ProviderFor(MangaWithId)
+const mangaWithIdProvider = MangaWithIdFamily();
+
+/// See also [MangaWithId].
+class MangaWithIdFamily extends Family<AsyncValue<Manga?>> {
+  /// See also [MangaWithId].
+  const MangaWithIdFamily();
+
+  /// See also [MangaWithId].
+  MangaWithIdProvider call({
+    required String mangaId,
+  }) {
+    return MangaWithIdProvider(
+      mangaId: mangaId,
+    );
+  }
+
+  @override
+  MangaWithIdProvider getProviderOverride(
+    covariant MangaWithIdProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'mangaWithIdProvider';
+}
 
 /// See also [MangaWithId].
 class MangaWithIdProvider
     extends AutoDisposeAsyncNotifierProviderImpl<MangaWithId, Manga?> {
+  /// See also [MangaWithId].
   MangaWithIdProvider({
     required this.mangaId,
-  }) : super(
+  }) : super.internal(
           () => MangaWithId()..mangaId = mangaId,
           from: mangaWithIdProvider,
           name: r'mangaWithIdProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$MangaWithIdHash,
+                  : _$mangaWithIdHash,
+          dependencies: MangaWithIdFamily._dependencies,
+          allTransitiveDependencies:
+              MangaWithIdFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -62,8 +114,8 @@ class MangaWithIdProvider
   }
 
   @override
-  FutureOr<Manga?> runNotifierBuild(
-    covariant _$MangaWithId notifier,
+  Future<Manga?> runNotifierBuild(
+    covariant MangaWithId notifier,
   ) {
     return notifier.build(
       mangaId: mangaId,
@@ -71,64 +123,76 @@ class MangaWithIdProvider
   }
 }
 
-typedef MangaWithIdRef = AutoDisposeAsyncNotifierProviderRef<Manga?>;
+String _$mangaChapterListHash() => r'e29cf9a87f5f09029b63f16b0074a4f7466d8b92';
 
-/// See also [MangaWithId].
-final mangaWithIdProvider = MangaWithIdFamily();
+abstract class _$MangaChapterList
+    extends BuildlessAutoDisposeAsyncNotifier<List<Chapter>?> {
+  late final String mangaId;
 
-class MangaWithIdFamily extends Family<AsyncValue<Manga?>> {
-  MangaWithIdFamily();
+  Future<List<Chapter>?> build({
+    required String mangaId,
+  });
+}
 
-  MangaWithIdProvider call({
+/// See also [MangaChapterList].
+@ProviderFor(MangaChapterList)
+const mangaChapterListProvider = MangaChapterListFamily();
+
+/// See also [MangaChapterList].
+class MangaChapterListFamily extends Family<AsyncValue<List<Chapter>?>> {
+  /// See also [MangaChapterList].
+  const MangaChapterListFamily();
+
+  /// See also [MangaChapterList].
+  MangaChapterListProvider call({
     required String mangaId,
   }) {
-    return MangaWithIdProvider(
+    return MangaChapterListProvider(
       mangaId: mangaId,
     );
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderImpl<MangaWithId, Manga?> getProviderOverride(
-    covariant MangaWithIdProvider provider,
+  MangaChapterListProvider getProviderOverride(
+    covariant MangaChapterListProvider provider,
   ) {
     return call(
       mangaId: provider.mangaId,
     );
   }
 
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  List<ProviderOrFamily>? get dependencies => null;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  String? get name => r'mangaWithIdProvider';
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'mangaChapterListProvider';
 }
-
-abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
-  late final String mangaId;
-
-  FutureOr<Manga?> build({
-    required String mangaId,
-  });
-}
-
-String _$MangaChapterListHash() => r'e29cf9a87f5f09029b63f16b0074a4f7466d8b92';
 
 /// See also [MangaChapterList].
 class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     MangaChapterList, List<Chapter>?> {
+  /// See also [MangaChapterList].
   MangaChapterListProvider({
     required this.mangaId,
-  }) : super(
+  }) : super.internal(
           () => MangaChapterList()..mangaId = mangaId,
           from: mangaChapterListProvider,
           name: r'mangaChapterListProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$MangaChapterListHash,
+                  : _$mangaChapterListHash,
+          dependencies: MangaChapterListFamily._dependencies,
+          allTransitiveDependencies:
+              MangaChapterListFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -147,8 +211,8 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  FutureOr<List<Chapter>?> runNotifierBuild(
-    covariant _$MangaChapterList notifier,
+  Future<List<Chapter>?> runNotifierBuild(
+    covariant MangaChapterList notifier,
   ) {
     return notifier.build(
       mangaId: mangaId,
@@ -156,163 +220,161 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 }
 
-typedef MangaChapterListRef
-    = AutoDisposeAsyncNotifierProviderRef<List<Chapter>?>;
-
-/// See also [MangaChapterList].
-final mangaChapterListProvider = MangaChapterListFamily();
-
-class MangaChapterListFamily extends Family<AsyncValue<List<Chapter>?>> {
-  MangaChapterListFamily();
-
-  MangaChapterListProvider call({
-    required String mangaId,
-  }) {
-    return MangaChapterListProvider(
-      mangaId: mangaId,
-    );
-  }
-
-  @override
-  AutoDisposeAsyncNotifierProviderImpl<MangaChapterList, List<Chapter>?>
-      getProviderOverride(
-    covariant MangaChapterListProvider provider,
-  ) {
-    return call(
-      mangaId: provider.mangaId,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'mangaChapterListProvider';
-}
-
-abstract class _$MangaChapterList
-    extends BuildlessAutoDisposeAsyncNotifier<List<Chapter>?> {
-  late final String mangaId;
-
-  FutureOr<List<Chapter>?> build({
-    required String mangaId,
-  });
-}
-
-String _$MangaChapterSortHash() => r'5dc6e9a235babc683a798127f62e403aa6051eca';
+String _$mangaChapterSortHash() => r'5dc6e9a235babc683a798127f62e403aa6051eca';
 
 /// See also [MangaChapterSort].
+@ProviderFor(MangaChapterSort)
 final mangaChapterSortProvider =
-    AutoDisposeNotifierProvider<MangaChapterSort, ChapterSort?>(
+    AutoDisposeNotifierProvider<MangaChapterSort, ChapterSort?>.internal(
   MangaChapterSort.new,
   name: r'mangaChapterSortProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$MangaChapterSortHash,
+      : _$mangaChapterSortHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef MangaChapterSortRef = AutoDisposeNotifierProviderRef<ChapterSort?>;
 
-abstract class _$MangaChapterSort extends AutoDisposeNotifier<ChapterSort?> {
-  @override
-  ChapterSort? build();
-}
-
-String _$MangaChapterSortDirectionHash() =>
+typedef _$MangaChapterSort = AutoDisposeNotifier<ChapterSort?>;
+String _$mangaChapterSortDirectionHash() =>
     r'eadfe69e90a84123236e2d0420964f1d65e8f357';
 
 /// See also [MangaChapterSortDirection].
+@ProviderFor(MangaChapterSortDirection)
 final mangaChapterSortDirectionProvider =
-    AutoDisposeNotifierProvider<MangaChapterSortDirection, bool?>(
+    AutoDisposeNotifierProvider<MangaChapterSortDirection, bool?>.internal(
   MangaChapterSortDirection.new,
   name: r'mangaChapterSortDirectionProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$MangaChapterSortDirectionHash,
+      : _$mangaChapterSortDirectionHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef MangaChapterSortDirectionRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$MangaChapterSortDirection extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$MangaChapterFilterDownloadedHash() =>
+typedef _$MangaChapterSortDirection = AutoDisposeNotifier<bool?>;
+String _$mangaChapterFilterDownloadedHash() =>
     r'e6f5e69389b85837139df8fbf0fec44468e622be';
 
 /// See also [MangaChapterFilterDownloaded].
+@ProviderFor(MangaChapterFilterDownloaded)
 final mangaChapterFilterDownloadedProvider =
-    AutoDisposeNotifierProvider<MangaChapterFilterDownloaded, bool?>(
+    AutoDisposeNotifierProvider<MangaChapterFilterDownloaded, bool?>.internal(
   MangaChapterFilterDownloaded.new,
   name: r'mangaChapterFilterDownloadedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$MangaChapterFilterDownloadedHash,
+      : _$mangaChapterFilterDownloadedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef MangaChapterFilterDownloadedRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$MangaChapterFilterDownloaded
-    extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$MangaChapterFilterUnreadHash() =>
+typedef _$MangaChapterFilterDownloaded = AutoDisposeNotifier<bool?>;
+String _$mangaChapterFilterUnreadHash() =>
     r'd95df0b4352bc44c6eaf9a7c54783f2faa5b32f4';
 
 /// See also [MangaChapterFilterUnread].
+@ProviderFor(MangaChapterFilterUnread)
 final mangaChapterFilterUnreadProvider =
-    AutoDisposeNotifierProvider<MangaChapterFilterUnread, bool?>(
+    AutoDisposeNotifierProvider<MangaChapterFilterUnread, bool?>.internal(
   MangaChapterFilterUnread.new,
   name: r'mangaChapterFilterUnreadProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$MangaChapterFilterUnreadHash,
+      : _$mangaChapterFilterUnreadHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef MangaChapterFilterUnreadRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$MangaChapterFilterUnread extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
-}
-
-String _$MangaChapterFilterBookmarkedHash() =>
+typedef _$MangaChapterFilterUnread = AutoDisposeNotifier<bool?>;
+String _$mangaChapterFilterBookmarkedHash() =>
     r'7e6335c2796527a3772dca1d79589b4fd883ae1c';
 
 /// See also [MangaChapterFilterBookmarked].
+@ProviderFor(MangaChapterFilterBookmarked)
 final mangaChapterFilterBookmarkedProvider =
-    AutoDisposeNotifierProvider<MangaChapterFilterBookmarked, bool?>(
+    AutoDisposeNotifierProvider<MangaChapterFilterBookmarked, bool?>.internal(
   MangaChapterFilterBookmarked.new,
   name: r'mangaChapterFilterBookmarkedProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$MangaChapterFilterBookmarkedHash,
+      : _$mangaChapterFilterBookmarkedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
-typedef MangaChapterFilterBookmarkedRef = AutoDisposeNotifierProviderRef<bool?>;
 
-abstract class _$MangaChapterFilterBookmarked
-    extends AutoDisposeNotifier<bool?> {
-  @override
-  bool? build();
+typedef _$MangaChapterFilterBookmarked = AutoDisposeNotifier<bool?>;
+String _$mangaCategoryListHash() => r'b8c64815b0fcdb2ee1f21818161e654b477affb0';
+
+abstract class _$MangaCategoryList
+    extends BuildlessAutoDisposeAsyncNotifier<Map<String, Category>?> {
+  late final String mangaId;
+
+  FutureOr<Map<String, Category>?> build(
+    String mangaId,
+  );
 }
 
-String _$MangaCategoryListHash() => r'b8c64815b0fcdb2ee1f21818161e654b477affb0';
+/// See also [MangaCategoryList].
+@ProviderFor(MangaCategoryList)
+const mangaCategoryListProvider = MangaCategoryListFamily();
+
+/// See also [MangaCategoryList].
+class MangaCategoryListFamily
+    extends Family<AsyncValue<Map<String, Category>?>> {
+  /// See also [MangaCategoryList].
+  const MangaCategoryListFamily();
+
+  /// See also [MangaCategoryList].
+  MangaCategoryListProvider call(
+    String mangaId,
+  ) {
+    return MangaCategoryListProvider(
+      mangaId,
+    );
+  }
+
+  @override
+  MangaCategoryListProvider getProviderOverride(
+    covariant MangaCategoryListProvider provider,
+  ) {
+    return call(
+      provider.mangaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'mangaCategoryListProvider';
+}
 
 /// See also [MangaCategoryList].
 class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
     MangaCategoryList, Map<String, Category>?> {
+  /// See also [MangaCategoryList].
   MangaCategoryListProvider(
     this.mangaId,
-  ) : super(
+  ) : super.internal(
           () => MangaCategoryList()..mangaId = mangaId,
           from: mangaCategoryListProvider,
           name: r'mangaCategoryListProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$MangaCategoryListHash,
+                  : _$mangaCategoryListHash,
+          dependencies: MangaCategoryListFamily._dependencies,
+          allTransitiveDependencies:
+              MangaCategoryListFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -332,7 +394,7 @@ class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
   @override
   FutureOr<Map<String, Category>?> runNotifierBuild(
-    covariant _$MangaCategoryList notifier,
+    covariant MangaCategoryList notifier,
   ) {
     return notifier.build(
       mangaId,
@@ -340,62 +402,61 @@ class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 }
 
-typedef MangaCategoryListRef
-    = AutoDisposeAsyncNotifierProviderRef<Map<String, Category>?>;
-
-/// See also [MangaCategoryList].
-final mangaCategoryListProvider = MangaCategoryListFamily();
-
-class MangaCategoryListFamily
-    extends Family<AsyncValue<Map<String, Category>?>> {
-  MangaCategoryListFamily();
-
-  MangaCategoryListProvider call(
-    String mangaId,
-  ) {
-    return MangaCategoryListProvider(
-      mangaId,
-    );
-  }
-
-  @override
-  AutoDisposeAsyncNotifierProviderImpl<MangaCategoryList,
-      Map<String, Category>?> getProviderOverride(
-    covariant MangaCategoryListProvider provider,
-  ) {
-    return call(
-      provider.mangaId,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'mangaCategoryListProvider';
-}
-
-abstract class _$MangaCategoryList
-    extends BuildlessAutoDisposeAsyncNotifier<Map<String, Category>?> {
-  late final String mangaId;
-
-  FutureOr<Map<String, Category>?> build(
-    String mangaId,
-  );
-}
-
 String _$mangaChapterListWithFilterHash() =>
     r'a5ca407ed7a6d0989e90ce3d56614bb387597ac2';
+typedef MangaChapterListWithFilterRef
+    = AutoDisposeProviderRef<AsyncValue<List<Chapter>?>>;
+
+/// See also [mangaChapterListWithFilter].
+@ProviderFor(mangaChapterListWithFilter)
+const mangaChapterListWithFilterProvider = MangaChapterListWithFilterFamily();
+
+/// See also [mangaChapterListWithFilter].
+class MangaChapterListWithFilterFamily
+    extends Family<AsyncValue<List<Chapter>?>> {
+  /// See also [mangaChapterListWithFilter].
+  const MangaChapterListWithFilterFamily();
+
+  /// See also [mangaChapterListWithFilter].
+  MangaChapterListWithFilterProvider call({
+    required String mangaId,
+  }) {
+    return MangaChapterListWithFilterProvider(
+      mangaId: mangaId,
+    );
+  }
+
+  @override
+  MangaChapterListWithFilterProvider getProviderOverride(
+    covariant MangaChapterListWithFilterProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'mangaChapterListWithFilterProvider';
+}
 
 /// See also [mangaChapterListWithFilter].
 class MangaChapterListWithFilterProvider
     extends AutoDisposeProvider<AsyncValue<List<Chapter>?>> {
+  /// See also [mangaChapterListWithFilter].
   MangaChapterListWithFilterProvider({
     required this.mangaId,
-  }) : super(
+  }) : super.internal(
           (ref) => mangaChapterListWithFilter(
             ref,
             mangaId: mangaId,
@@ -406,6 +467,9 @@ class MangaChapterListWithFilterProvider
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$mangaChapterListWithFilterHash,
+          dependencies: MangaChapterListWithFilterFamily._dependencies,
+          allTransitiveDependencies:
+              MangaChapterListWithFilterFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -425,52 +489,60 @@ class MangaChapterListWithFilterProvider
   }
 }
 
-typedef MangaChapterListWithFilterRef
-    = AutoDisposeProviderRef<AsyncValue<List<Chapter>?>>;
+String _$firstUnreadInFilteredChapterListHash() =>
+    r'60d7452267e74bafdc290890223cc3a641e06305';
+typedef FirstUnreadInFilteredChapterListRef = AutoDisposeProviderRef<Chapter?>;
 
-/// See also [mangaChapterListWithFilter].
-final mangaChapterListWithFilterProvider = MangaChapterListWithFilterFamily();
+/// See also [firstUnreadInFilteredChapterList].
+@ProviderFor(firstUnreadInFilteredChapterList)
+const firstUnreadInFilteredChapterListProvider =
+    FirstUnreadInFilteredChapterListFamily();
 
-class MangaChapterListWithFilterFamily
-    extends Family<AsyncValue<List<Chapter>?>> {
-  MangaChapterListWithFilterFamily();
+/// See also [firstUnreadInFilteredChapterList].
+class FirstUnreadInFilteredChapterListFamily extends Family<Chapter?> {
+  /// See also [firstUnreadInFilteredChapterList].
+  const FirstUnreadInFilteredChapterListFamily();
 
-  MangaChapterListWithFilterProvider call({
+  /// See also [firstUnreadInFilteredChapterList].
+  FirstUnreadInFilteredChapterListProvider call({
     required String mangaId,
   }) {
-    return MangaChapterListWithFilterProvider(
+    return FirstUnreadInFilteredChapterListProvider(
       mangaId: mangaId,
     );
   }
 
   @override
-  AutoDisposeProvider<AsyncValue<List<Chapter>?>> getProviderOverride(
-    covariant MangaChapterListWithFilterProvider provider,
+  FirstUnreadInFilteredChapterListProvider getProviderOverride(
+    covariant FirstUnreadInFilteredChapterListProvider provider,
   ) {
     return call(
       mangaId: provider.mangaId,
     );
   }
 
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  List<ProviderOrFamily>? get dependencies => null;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  String? get name => r'mangaChapterListWithFilterProvider';
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'firstUnreadInFilteredChapterListProvider';
 }
-
-String _$firstUnreadInFilteredChapterListHash() =>
-    r'60d7452267e74bafdc290890223cc3a641e06305';
 
 /// See also [firstUnreadInFilteredChapterList].
 class FirstUnreadInFilteredChapterListProvider
     extends AutoDisposeProvider<Chapter?> {
+  /// See also [firstUnreadInFilteredChapterList].
   FirstUnreadInFilteredChapterListProvider({
     required this.mangaId,
-  }) : super(
+  }) : super.internal(
           (ref) => firstUnreadInFilteredChapterList(
             ref,
             mangaId: mangaId,
@@ -481,6 +553,9 @@ class FirstUnreadInFilteredChapterListProvider
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$firstUnreadInFilteredChapterListHash,
+          dependencies: FirstUnreadInFilteredChapterListFamily._dependencies,
+          allTransitiveDependencies:
+              FirstUnreadInFilteredChapterListFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -500,52 +575,65 @@ class FirstUnreadInFilteredChapterListProvider
   }
 }
 
-typedef FirstUnreadInFilteredChapterListRef = AutoDisposeProviderRef<Chapter?>;
+String _$getPreviousAndNextChaptersHash() =>
+    r'c96d69daa0b66402a78052eb11af57f223c3e465';
+typedef GetPreviousAndNextChaptersRef
+    = AutoDisposeProviderRef<Pair<Chapter?, Chapter?>?>;
 
-/// See also [firstUnreadInFilteredChapterList].
-final firstUnreadInFilteredChapterListProvider =
-    FirstUnreadInFilteredChapterListFamily();
+/// See also [getPreviousAndNextChapters].
+@ProviderFor(getPreviousAndNextChapters)
+const getPreviousAndNextChaptersProvider = GetPreviousAndNextChaptersFamily();
 
-class FirstUnreadInFilteredChapterListFamily extends Family<Chapter?> {
-  FirstUnreadInFilteredChapterListFamily();
+/// See also [getPreviousAndNextChapters].
+class GetPreviousAndNextChaptersFamily
+    extends Family<Pair<Chapter?, Chapter?>?> {
+  /// See also [getPreviousAndNextChapters].
+  const GetPreviousAndNextChaptersFamily();
 
-  FirstUnreadInFilteredChapterListProvider call({
+  /// See also [getPreviousAndNextChapters].
+  GetPreviousAndNextChaptersProvider call({
     required String mangaId,
+    required String chapterIndex,
   }) {
-    return FirstUnreadInFilteredChapterListProvider(
+    return GetPreviousAndNextChaptersProvider(
       mangaId: mangaId,
+      chapterIndex: chapterIndex,
     );
   }
 
   @override
-  AutoDisposeProvider<Chapter?> getProviderOverride(
-    covariant FirstUnreadInFilteredChapterListProvider provider,
+  GetPreviousAndNextChaptersProvider getProviderOverride(
+    covariant GetPreviousAndNextChaptersProvider provider,
   ) {
     return call(
       mangaId: provider.mangaId,
+      chapterIndex: provider.chapterIndex,
     );
   }
 
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
 
   @override
-  List<ProviderOrFamily>? get dependencies => null;
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
 
   @override
-  String? get name => r'firstUnreadInFilteredChapterListProvider';
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getPreviousAndNextChaptersProvider';
 }
-
-String _$getPreviousAndNextChaptersHash() =>
-    r'c96d69daa0b66402a78052eb11af57f223c3e465';
 
 /// See also [getPreviousAndNextChapters].
 class GetPreviousAndNextChaptersProvider
     extends AutoDisposeProvider<Pair<Chapter?, Chapter?>?> {
+  /// See also [getPreviousAndNextChapters].
   GetPreviousAndNextChaptersProvider({
     required this.mangaId,
     required this.chapterIndex,
-  }) : super(
+  }) : super.internal(
           (ref) => getPreviousAndNextChapters(
             ref,
             mangaId: mangaId,
@@ -557,6 +645,9 @@ class GetPreviousAndNextChaptersProvider
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$getPreviousAndNextChaptersHash,
+          dependencies: GetPreviousAndNextChaptersFamily._dependencies,
+          allTransitiveDependencies:
+              GetPreviousAndNextChaptersFamily._allTransitiveDependencies,
         );
 
   final String mangaId;
@@ -578,43 +669,4 @@ class GetPreviousAndNextChaptersProvider
     return _SystemHash.finish(hash);
   }
 }
-
-typedef GetPreviousAndNextChaptersRef
-    = AutoDisposeProviderRef<Pair<Chapter?, Chapter?>?>;
-
-/// See also [getPreviousAndNextChapters].
-final getPreviousAndNextChaptersProvider = GetPreviousAndNextChaptersFamily();
-
-class GetPreviousAndNextChaptersFamily
-    extends Family<Pair<Chapter?, Chapter?>?> {
-  GetPreviousAndNextChaptersFamily();
-
-  GetPreviousAndNextChaptersProvider call({
-    required String mangaId,
-    required String chapterIndex,
-  }) {
-    return GetPreviousAndNextChaptersProvider(
-      mangaId: mangaId,
-      chapterIndex: chapterIndex,
-    );
-  }
-
-  @override
-  AutoDisposeProvider<Pair<Chapter?, Chapter?>?> getProviderOverride(
-    covariant GetPreviousAndNextChaptersProvider provider,
-  ) {
-    return call(
-      mangaId: provider.mangaId,
-      chapterIndex: provider.chapterIndex,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'getPreviousAndNextChaptersProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -6,7 +6,7 @@ part of 'toast.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$toastHash() => r'6bc9df511e9180eea4d509e57fdd4eed4c062779';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,13 +29,56 @@ class _SystemHash {
   }
 }
 
-String _$toastHash() => r'6bc9df511e9180eea4d509e57fdd4eed4c062779';
+typedef ToastRef = AutoDisposeProviderRef<Toast>;
+
+/// See also [toast].
+@ProviderFor(toast)
+const toastProvider = ToastFamily();
+
+/// See also [toast].
+class ToastFamily extends Family<Toast> {
+  /// See also [toast].
+  const ToastFamily();
+
+  /// See also [toast].
+  ToastProvider call(
+    BuildContext context,
+  ) {
+    return ToastProvider(
+      context,
+    );
+  }
+
+  @override
+  ToastProvider getProviderOverride(
+    covariant ToastProvider provider,
+  ) {
+    return call(
+      provider.context,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'toastProvider';
+}
 
 /// See also [toast].
 class ToastProvider extends AutoDisposeProvider<Toast> {
+  /// See also [toast].
   ToastProvider(
     this.context,
-  ) : super(
+  ) : super.internal(
           (ref) => toast(
             ref,
             context,
@@ -46,6 +89,8 @@ class ToastProvider extends AutoDisposeProvider<Toast> {
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$toastHash,
+          dependencies: ToastFamily._dependencies,
+          allTransitiveDependencies: ToastFamily._allTransitiveDependencies,
         );
 
   final BuildContext context;
@@ -63,38 +108,4 @@ class ToastProvider extends AutoDisposeProvider<Toast> {
     return _SystemHash.finish(hash);
   }
 }
-
-typedef ToastRef = AutoDisposeProviderRef<Toast>;
-
-/// See also [toast].
-final toastProvider = ToastFamily();
-
-class ToastFamily extends Family<Toast> {
-  ToastFamily();
-
-  ToastProvider call(
-    BuildContext context,
-  ) {
-    return ToastProvider(
-      context,
-    );
-  }
-
-  @override
-  AutoDisposeProvider<Toast> getProviderOverride(
-    covariant ToastProvider provider,
-  ) {
-    return call(
-      provider.context,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'toastProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

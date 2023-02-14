@@ -6,7 +6,24 @@ part of 'edit_category_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$categoryControllerHash() =>
+    r'2231c7c5b8ea2d7ebf9726d6f8cc63ecf7498fbb';
+
+/// See also [CategoryController].
+@ProviderFor(CategoryController)
+final categoryControllerProvider = AutoDisposeAsyncNotifierProvider<
+    CategoryController, List<Category>?>.internal(
+  CategoryController.new,
+  name: r'categoryControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$categoryControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CategoryController = AutoDisposeAsyncNotifier<List<Category>?>;
+String _$categoryListHash() => r'ec95a714a5556e167c3746d05151c0fe2a55a711';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,35 +46,57 @@ class _SystemHash {
   }
 }
 
-String _$CategoryControllerHash() =>
-    r'2231c7c5b8ea2d7ebf9726d6f8cc63ecf7498fbb';
+typedef CategoryListRef = AutoDisposeProviderRef<AsyncValue<List<Category>>>;
 
-/// See also [CategoryController].
-final categoryControllerProvider =
-    AutoDisposeAsyncNotifierProvider<CategoryController, List<Category>?>(
-  CategoryController.new,
-  name: r'categoryControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$CategoryControllerHash,
-);
-typedef CategoryControllerRef
-    = AutoDisposeAsyncNotifierProviderRef<List<Category>?>;
+/// See also [categoryList].
+@ProviderFor(categoryList)
+const categoryListProvider = CategoryListFamily();
 
-abstract class _$CategoryController
-    extends AutoDisposeAsyncNotifier<List<Category>?> {
+/// See also [categoryList].
+class CategoryListFamily extends Family<AsyncValue<List<Category>>> {
+  /// See also [categoryList].
+  const CategoryListFamily();
+
+  /// See also [categoryList].
+  CategoryListProvider call({
+    bool getDefault = false,
+  }) {
+    return CategoryListProvider(
+      getDefault: getDefault,
+    );
+  }
+
   @override
-  FutureOr<List<Category>?> build();
-}
+  CategoryListProvider getProviderOverride(
+    covariant CategoryListProvider provider,
+  ) {
+    return call(
+      getDefault: provider.getDefault,
+    );
+  }
 
-String _$categoryListHash() => r'ec95a714a5556e167c3746d05151c0fe2a55a711';
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'categoryListProvider';
+}
 
 /// See also [categoryList].
 class CategoryListProvider
     extends AutoDisposeProvider<AsyncValue<List<Category>>> {
+  /// See also [categoryList].
   CategoryListProvider({
     this.getDefault = false,
-  }) : super(
+  }) : super.internal(
           (ref) => categoryList(
             ref,
             getDefault: getDefault,
@@ -68,6 +107,9 @@ class CategoryListProvider
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$categoryListHash,
+          dependencies: CategoryListFamily._dependencies,
+          allTransitiveDependencies:
+              CategoryListFamily._allTransitiveDependencies,
         );
 
   final bool getDefault;
@@ -85,38 +127,4 @@ class CategoryListProvider
     return _SystemHash.finish(hash);
   }
 }
-
-typedef CategoryListRef = AutoDisposeProviderRef<AsyncValue<List<Category>>>;
-
-/// See also [categoryList].
-final categoryListProvider = CategoryListFamily();
-
-class CategoryListFamily extends Family<AsyncValue<List<Category>>> {
-  CategoryListFamily();
-
-  CategoryListProvider call({
-    bool getDefault = false,
-  }) {
-    return CategoryListProvider(
-      getDefault: getDefault,
-    );
-  }
-
-  @override
-  AutoDisposeProvider<AsyncValue<List<Category>>> getProviderOverride(
-    covariant CategoryListProvider provider,
-  ) {
-    return call(
-      getDefault: provider.getDefault,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'categoryListProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

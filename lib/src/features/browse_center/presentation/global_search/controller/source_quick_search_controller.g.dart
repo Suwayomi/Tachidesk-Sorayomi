@@ -6,7 +6,8 @@ part of 'source_quick_search_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-// ignore_for_file: avoid_private_typedef_functions, non_constant_identifier_names, subtype_of_sealed_class, invalid_use_of_internal_member, unused_element, constant_identifier_names, unnecessary_raw_strings, library_private_types_in_public_api
+String _$sourceQuickSearchMangaListHash() =>
+    r'df77dd3a05f0e53944d646e57d2fb74cbc38d807';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,16 +30,62 @@ class _SystemHash {
   }
 }
 
-String _$sourceQuickSearchMangaListHash() =>
-    r'df77dd3a05f0e53944d646e57d2fb74cbc38d807';
+typedef SourceQuickSearchMangaListRef
+    = AutoDisposeFutureProviderRef<List<Manga>>;
+
+/// See also [sourceQuickSearchMangaList].
+@ProviderFor(sourceQuickSearchMangaList)
+const sourceQuickSearchMangaListProvider = SourceQuickSearchMangaListFamily();
+
+/// See also [sourceQuickSearchMangaList].
+class SourceQuickSearchMangaListFamily extends Family<AsyncValue<List<Manga>>> {
+  /// See also [sourceQuickSearchMangaList].
+  const SourceQuickSearchMangaListFamily();
+
+  /// See also [sourceQuickSearchMangaList].
+  SourceQuickSearchMangaListProvider call(
+    String sourceId, {
+    String? query,
+  }) {
+    return SourceQuickSearchMangaListProvider(
+      sourceId,
+      query: query,
+    );
+  }
+
+  @override
+  SourceQuickSearchMangaListProvider getProviderOverride(
+    covariant SourceQuickSearchMangaListProvider provider,
+  ) {
+    return call(
+      provider.sourceId,
+      query: provider.query,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'sourceQuickSearchMangaListProvider';
+}
 
 /// See also [sourceQuickSearchMangaList].
 class SourceQuickSearchMangaListProvider
     extends AutoDisposeFutureProvider<List<Manga>> {
+  /// See also [sourceQuickSearchMangaList].
   SourceQuickSearchMangaListProvider(
     this.sourceId, {
     this.query,
-  }) : super(
+  }) : super.internal(
           (ref) => sourceQuickSearchMangaList(
             ref,
             sourceId,
@@ -50,6 +97,9 @@ class SourceQuickSearchMangaListProvider
               const bool.fromEnvironment('dart.vm.product')
                   ? null
                   : _$sourceQuickSearchMangaListHash,
+          dependencies: SourceQuickSearchMangaListFamily._dependencies,
+          allTransitiveDependencies:
+              SourceQuickSearchMangaListFamily._allTransitiveDependencies,
         );
 
   final String sourceId;
@@ -71,42 +121,4 @@ class SourceQuickSearchMangaListProvider
     return _SystemHash.finish(hash);
   }
 }
-
-typedef SourceQuickSearchMangaListRef
-    = AutoDisposeFutureProviderRef<List<Manga>>;
-
-/// See also [sourceQuickSearchMangaList].
-final sourceQuickSearchMangaListProvider = SourceQuickSearchMangaListFamily();
-
-class SourceQuickSearchMangaListFamily extends Family<AsyncValue<List<Manga>>> {
-  SourceQuickSearchMangaListFamily();
-
-  SourceQuickSearchMangaListProvider call(
-    String sourceId, {
-    String? query,
-  }) {
-    return SourceQuickSearchMangaListProvider(
-      sourceId,
-      query: query,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProvider<List<Manga>> getProviderOverride(
-    covariant SourceQuickSearchMangaListProvider provider,
-  ) {
-    return call(
-      provider.sourceId,
-      query: provider.query,
-    );
-  }
-
-  @override
-  List<ProviderOrFamily>? get allTransitiveDependencies => null;
-
-  @override
-  List<ProviderOrFamily>? get dependencies => null;
-
-  @override
-  String? get name => r'sourceQuickSearchMangaListProvider';
-}
+// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
