@@ -39,7 +39,7 @@ class ServerImage extends ConsumerWidget {
     final basicToken = ref.watch(credentialsProvider);
     final baseApi =
         "${Endpoints.baseApi(baseUrl: baseUrl, appendApiToUrl: appendApiToUrl)}"
-        "$imageUrl/?useCache=true";
+        "$imageUrl";
     return CachedNetworkImage(
       imageUrl: baseApi,
       height: size?.height,
