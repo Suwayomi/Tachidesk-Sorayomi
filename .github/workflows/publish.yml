@@ -63,7 +63,7 @@ jobs:
           flutter config --enable-windows-desktop
       - run: flutter doctor -v
       - uses: actions/checkout@v3
-      - run: flutter create .
+      # - run: flutter create .
       - run: flutter pub get
       - run: flutter pub run easy_localization:generate -S assets/locales -O lib/src/i18n
       - run: flutter pub run easy_localization:generate -S assets/locales -f keys -O lib/src/i18n/ -o locale_keys.g.dart
