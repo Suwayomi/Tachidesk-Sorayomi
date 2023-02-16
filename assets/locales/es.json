@@ -24,7 +24,7 @@
     },
     "ReaderMode": {
         "continuousVertical": "Vertical Continuo",
-        "defaultReader": "Por Defecto",
+        "defaultReader": "Predeterminado",
         "singleHorizontalLTR": "Horizontal Individual (IZQ-DER)",
         "continuousHorizontalLTR": "Horizontal Continuo (IZQ-DER)",
         "singleVertical": "Horizontal Individual",
@@ -33,7 +33,7 @@
         "continuousHorizontalRTL": "Horizontal Continuo (DER-IZQ)"
     },
     "ReaderNavigationLayout": {
-        "defaultNavigation": "Por defecto",
+        "defaultNavigation": "Predeterminado",
         "disabled": "Deshabilitado",
         "edge": "Borde",
         "kindlish": "Estilo Kindle",
@@ -41,9 +41,9 @@
         "rightAndLeft": "Derecha e Izquierda"
     },
     "SourceType": {
-        "filter": "Filtrar",
-        "latest": "Nuevos",
-        "popular": "Populares"
+        "filter": "Filtro",
+        "latest": "Reciente",
+        "popular": "Popular"
     },
     "ThemeMode": {
         "dark": "Oscuro",
@@ -79,7 +79,7 @@
     "copyMsg": "\"{msg}\" Copiado!",
     "create": "Crear",
     "createBackup": {
-        "subtitle": "Copia de seguridad como copia de seguridad de tachidesk",
+        "subtitle": "Copia de seguridad de biblioteca como copia de seguridad de tachidesk",
         "title": "Crear copia de seguridad"
     },
     "credentials": "Credenciales",
@@ -96,7 +96,7 @@
     "downloads": "Descargas",
     "edit": "Editar",
     "editCategory": "Editar categoría",
-    "emptyCategory": "El nombre de categoría no puede estar vacío",
+    "emptyCategory": "El nombre de la categoría no puede estar vacío",
     "error": {
         "extension": "No se encontró la extensión seleccionada",
         "filePick": "Archivo no seleccionado!",
@@ -107,7 +107,7 @@
         "userName": "Tu nombre no puede estar en blanco",
         "password": "La contraseña no puede estar en blanco",
         "installedExtensionFile": "¡Instalación fallida! Por favor, inténtalo de nuevo",
-        "somethingWentWrong": "¡Algo salió mal! :C"
+        "somethingWentWrong": "¡Algo salió mal!"
     },
     "extensionListEmpty": "La lista de extensiones está vacía",
     "extensions": "Extensiones",
@@ -178,7 +178,7 @@
     "unknownSource": "Fuente desconocida",
     "unread": "Sin leer",
     "update": "Actualizar",
-    "updateCompleted": "Actualización completada",
+    "updateCompleted": "Actualización completa",
     "updates": "Actualizaciones",
     "updating": "Actualizando",
     "url": "Enlace del servidor",
@@ -198,7 +198,7 @@
     "newUpdateAvailable": "Nueva actualización disponible",
     "noCategoriesFoundAlt": "No tienes ninguna categoría.\nCrea uno en ajustes para organizar tu biblioteca",
     "noUpdatesAvailable": "Estas usando la última versión",
-    "page": "página: {number}",
+    "page": "Página: {number}",
     "password": "Contraseña",
     "searchingForUpdates": "Buscando actualizaciones…",
     "sort": "Ordenar",
