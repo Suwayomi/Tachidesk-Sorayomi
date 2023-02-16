@@ -28,6 +28,13 @@ Future<List<Manga>?> categoryMangaList(
   return result;
 }
 
+bool genreMatches(List<String>? mangaGenreList, List<String>? queryGenreList) {
+  Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
+  Set<String>? querySet =
+      queryGenreList?.map((e) => e.toLowerCase().trim()).toSet();
+  return mangaSet?.containsAll(querySet ?? <String>{}) ?? true;
+}
+
 @riverpod
 class CategoryMangaListWithQueryAndFilter
     extends _$CategoryMangaListWithQueryAndFilter {
@@ -58,7 +65,9 @@ class CategoryMangaListWithQueryAndFilter
           (mangaFilterCompleted ^ (manga.status?.title == "COMPLETED"))) {
         return false;
       }
-      if (!manga.title.query(query)) {
+
+      if (!manga.title.query(query) &&
+          !genreMatches(manga.genre, query?.split(','))) {
         return false;
       }
 
