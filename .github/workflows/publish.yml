@@ -173,3 +173,13 @@ jobs:
           draft: false
           files: ${{ env.pkg_name }}*
           token: ${{ secrets.WINGET }}
+
+  winget-publish:
+    needs: create-build
+    runs-on: windows-latest # action can only be run on windows
+    steps:
+      - uses: vedantmgoyal2009/winget-releaser@v2
+        with:
+          identifier: Suwayomi.Tachidesk-Sorayomi
+          version: ${{ github.ref_name }}
+          token: ${{ secrets.WINGET }}
