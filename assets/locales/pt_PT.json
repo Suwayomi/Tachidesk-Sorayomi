@@ -63,7 +63,7 @@
     "appTitle": "Tachidesk Sorayomi",
     "appearance": "Aparência",
     "backup": "Cópia de segurança e restaurar",
-    "badges": "Badges",
+    "badges": "Distintivos",
     "baseAuthType": "Tipo de autenticação",
     "bookmarked": "Marcado",
     "browse": "Procurar",
@@ -91,7 +91,7 @@
     "defaultCategory": "Categoria predefinida quando um novo mangá é adicionado à biblioteca",
     "delete": "Remover",
     "deleteCategory": {
-        "content": "Isto irá fundir todos os manga  s desta categoria para predefinidos!",
+        "content": "Isto irá fundir todos os mangas desta categoria para predefinidos!",
         "title": "Tem a certeza?"
     },
     "discord": "Discord",
@@ -138,9 +138,9 @@
     "missingTrackers": "Rasteadores em falta",
     "more": "Mais",
     "newUpdateAvailable": "Nova atualização disponível",
-    "noCategoriesFound": "Não tem nenhuma categoria. \nToque no no botão mais para criar uma categoria para organizar a sua biblioteca",
-    "noCategoriesFoundAlt": "Não tem nenhuma categoria. \nCria uma nas definições para organizar a sua biblioteca",
-    "noCategoryMangaFound": "Nenhum manga encontrado nesta categoria. \n(Dica: Verifique as suas pesquisas e filtros!)",
+    "noCategoriesFound": "Não tem nenhuma categoria.\nToque no botão mais para criar uma categoria para organizar a sua biblioteca",
+    "noCategoriesFoundAlt": "Não tem nenhuma categoria.\nCria uma nas definições para organizar a sua biblioteca",
+    "noCategoryMangaFound": "Nenhum manga encontrado nesta categoria.\n(Dica: Verifique as suas pesquisas e filtros!)",
     "noChaptersFound": "Nenhum capítulo encontrado",
     "noDownloads": "Nenhuma transferência",
     "noMangaFound": "Nenhum manga encontrado",
@@ -150,7 +150,7 @@
     "noUpdatesAvailable": "Está a usar a versão mais recente",
     "noUpdatesFound": "Nenhuma atualização encontrada",
     "nsfw": {
-        "info": "Isto não impede extensões não oficiais ou incorretamente marcadas de mostrarem conteúdo NSFW (18+) dentro da aplicação.",
+        "info": "Isto não impede extensões não oficiais ou incorretamente marcadas de mostrarem conteúdo NSFW (18+) dentro da aplicação",
         "subtitle": "Requer reiniciar ou recarregar a aplicação",
         "title": "Mostrar extensões e fontes NSFW"
     },
@@ -165,7 +165,7 @@
     "readerNavigationLayout": "Disposição de Navegação",
     "readerNavigationLayoutInvert": "Inverter toque",
     "reddit": "Reddit",
-    "refresh": "Recarregar!",
+    "refresh": "Recarregar",
     "reset": "Reiniciar",
     "restore": {
         "subtitle": "Restaurar Tachidesk pela cópia de segurança",
