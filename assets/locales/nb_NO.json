@@ -1,0 +1,19 @@
+{
+    "DisplayMode": {
+        "grid": "Rutenett",
+        "list": "Liste"
+    },
+    "MangaSort": {
+        "dateAdded": "Dato tillagt",
+        "alphabetical": "Alfabetisk",
+        "unread": "Ulest"
+    },
+    "ChapterSort": {
+        "source": "Etter kilde"
+    },
+    "MangaStatus": {
+        "completed": "Fullført",
+        "onHiatus": "",
+        "unknown": "Ukjent"
+    }
+}
