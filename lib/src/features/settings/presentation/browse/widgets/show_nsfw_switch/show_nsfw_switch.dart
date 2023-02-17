@@ -11,6 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../i18n/locale_keys.g.dart';
+import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
 
 part 'show_nsfw_switch.g.dart';
@@ -37,7 +38,7 @@ class ShowNSFWTile extends ConsumerWidget {
       ),
       subtitle: Text(LocaleKeys.nsfw_subtitle.tr()),
       onChanged: ref.read(showNSFWProvider.notifier).update,
-      value: ref.watch(showNSFWProvider) ?? false,
+      value: ref.watch(showNSFWProvider).ifNull(),
     );
   }
 }

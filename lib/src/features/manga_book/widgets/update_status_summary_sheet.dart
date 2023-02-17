@@ -6,9 +6,11 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../i18n/locale_keys.g.dart';
+import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
 import '../data/updates/updates_repository.dart';
@@ -24,7 +26,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
     final statusUpdate = ref.watch(updateSummaryProvider);
     final statusUpdateStream = ref.watch(updatesSocketProvider);
     final AsyncValue<UpdateStatus?> finalStatus =
-        statusUpdateStream.valueOrNull?.total.isGreaterThan(0) ?? false
+        (statusUpdateStream.valueOrNull?.total.isGreaterThan(0)).ifNull()
             ? statusUpdateStream
             : statusUpdate;
     return Scaffold(
@@ -99,6 +101,9 @@ class UpdateStatusExpansionTile extends StatelessWidget {
           .map((e) => MangaCoverListTile(
                 manga: e,
                 showCountBadges: true,
+                onPressed: () => context.push(
+                  Routes.getManga(e.id!),
+                ),
               ))
           .toList(),
     );

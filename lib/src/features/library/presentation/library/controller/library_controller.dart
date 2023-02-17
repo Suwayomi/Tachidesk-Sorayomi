@@ -32,7 +32,7 @@ bool genreMatches(List<String>? mangaGenreList, List<String>? queryGenreList) {
   Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
   Set<String>? querySet =
       queryGenreList?.map((e) => e.toLowerCase().trim()).toSet();
-  return mangaSet?.containsAll(querySet ?? <String>{}) ?? true;
+  return (mangaSet?.containsAll(querySet ?? <String>{})).ifNull(true);
 }
 
 @riverpod
@@ -48,7 +48,7 @@ class CategoryMangaListWithQueryAndFilter
     final mangaFilterCompleted = ref.watch(libraryMangaFilterCompletedProvider);
     final sortedBy = ref.watch(libraryMangaSortProvider);
     final sortedDirection =
-        ref.watch(libraryMangaSortDirectionProvider) ?? true;
+        ref.watch(libraryMangaSortDirectionProvider).ifNull(true);
 
     bool applyMangaFilter(Manga manga) {
       if (mangaFilterUnread != null &&

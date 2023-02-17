@@ -83,7 +83,7 @@ class CredentialsPopup extends HookConsumerWidget {
         const PopButton(),
         ElevatedButton(
           onPressed: () async {
-            if (formKey.currentState?.validate() ?? false) {
+            if ((formKey.currentState?.validate()).ifNull()) {
               ref.read(credentialsProvider.notifier).update(
                     _basicAuth(
                       userName: username.text,

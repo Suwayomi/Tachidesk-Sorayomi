@@ -23,7 +23,7 @@ class UpdateStatusNavRailLeading extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final updateStatus = ref.watch(updatesSocketProvider);
     final shoeUpdateStatus =
-        (updateStatus.valueOrNull?.showUpdateStatus ?? false);
+        (updateStatus.valueOrNull?.showUpdateStatus).ifNull();
 
     final icon = Stack(
       alignment: AlignmentDirectional.center,

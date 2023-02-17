@@ -44,14 +44,14 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          if (selectedList.any((e) => e.bookmarked ?? false))
+          if (selectedList.any((e) => e.bookmarked.ifNull()))
             MultiChaptersActionIcon(
               icon: Icons.bookmark_remove_sharp,
               chapterList: chapterList,
               change: ChapterChange(isBookmarked: false),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => !(e.bookmarked ?? false)))
+          if (selectedList.any((e) => !(e.bookmarked.ifNull())))
             MultiChaptersActionIcon(
               icon: Icons.bookmark_add_sharp,
               chapterList: chapterList,
@@ -70,30 +70,30 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
               chapterPut: ChapterPut(markPrevRead: true),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => !(e.read ?? false)))
+          if (selectedList.any((e) => !(e.read.ifNull())))
             MultiChaptersActionIcon(
               icon: Icons.done_all_sharp,
               chapterList: chapterList,
               change: ChapterChange(isRead: true),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => (e.read ?? false)))
+          if (selectedList.any((e) => e.read.ifNull()))
             MultiChaptersActionIcon(
               icon: Icons.remove_done_sharp,
               chapterList: chapterList,
               change: ChapterChange(isRead: false),
               refresh: refresh,
             ),
-          if (selectedList.any((e) => !(e.downloaded ?? false)))
+          if (selectedList.any((e) => !(e.downloaded.ifNull())))
             MultiChaptersActionIcon(
               icon: Icons.download_sharp,
               chapterList: <int>[
                 for (var e in selectedList)
-                  if (!(e.downloaded ?? true)) (e.id!)
+                  if (!(e.downloaded.ifNull(true))) (e.id!)
               ],
               refresh: refresh,
             ),
-          if (selectedList.any((e) => (e.downloaded ?? false)))
+          if (selectedList.any((e) => e.downloaded.ifNull()))
             MultiChaptersActionIcon(
               icon: Icons.delete_sharp,
               chapterList: chapterList,

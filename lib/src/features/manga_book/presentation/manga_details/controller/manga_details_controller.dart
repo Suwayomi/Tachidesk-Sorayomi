@@ -98,21 +98,22 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
       ref.watch(mangaChapterFilterDownloadedProvider);
   final chapterFilterBookmark = ref.watch(mangaChapterFilterBookmarkedProvider);
   final sortedBy = ref.watch(mangaChapterSortProvider);
-  final sortedDirection = ref.watch(mangaChapterSortDirectionProvider) ?? true;
+  final sortedDirection =
+      ref.watch(mangaChapterSortDirectionProvider).ifNull(true);
 
   bool applyChapterFilter(Chapter chapter) {
     if (chapterFilterUnread != null &&
-        (chapterFilterUnread ^ !(chapter.read ?? false))) {
+        (chapterFilterUnread ^ !(chapter.read.ifNull()))) {
       return false;
     }
 
     if (chapterFilterDownloaded != null &&
-        (chapterFilterDownloaded ^ (chapter.downloaded ?? false))) {
+        (chapterFilterDownloaded ^ (chapter.downloaded.ifNull()))) {
       return false;
     }
 
     if (chapterFilterBookmark != null &&
-        (chapterFilterBookmark ^ (chapter.bookmarked ?? false))) {
+        (chapterFilterBookmark ^ (chapter.bookmarked.ifNull()))) {
       return false;
     }
     return true;

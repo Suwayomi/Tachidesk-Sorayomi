@@ -71,13 +71,17 @@ class DownloadStatusIcon extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoading = useState(false);
 
-    if (chapter.id == null) return const SizedBox.shrink();
-
     final toast = ref.watch(toastProvider(context));
-    final download = ref.watch(downloadsFromIdProvider(chapter.id!));
-    if (download?.state == "Finished") {
-      Future.microtask(() => newUpdatePair(ref, isLoading));
-    }
+    final download = chapter.id.isNull
+        ? null
+        : ref.watch(downloadsFromIdProvider(chapter.id!));
+    useEffect(() {
+      if (download?.state == "Finished") {
+        Future.microtask(() => newUpdatePair(ref, isLoading));
+      }
+      return;
+    }, [download?.state]);
+
     if (isLoading.value) {
       return Padding(
         padding: KEdgeInsets.h8.size,

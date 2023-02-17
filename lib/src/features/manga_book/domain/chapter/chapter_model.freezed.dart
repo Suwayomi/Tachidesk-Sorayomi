@@ -33,6 +33,7 @@ mixin _$Chapter {
   String? get name => throw _privateConstructorUsedError;
   int? get pageCount => throw _privateConstructorUsedError;
   bool? get read => throw _privateConstructorUsedError;
+  String? get realUrl => throw _privateConstructorUsedError;
   String? get scanlator => throw _privateConstructorUsedError;
   int? get uploadDate => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
@@ -62,6 +63,7 @@ abstract class $ChapterCopyWith<$Res> {
       String? name,
       int? pageCount,
       bool? read,
+      String? realUrl,
       String? scanlator,
       int? uploadDate,
       String? url,
@@ -94,6 +96,7 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
     Object? name = freezed,
     Object? pageCount = freezed,
     Object? read = freezed,
+    Object? realUrl = freezed,
     Object? scanlator = freezed,
     Object? uploadDate = freezed,
     Object? url = freezed,
@@ -152,6 +155,10 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool?,
+      realUrl: freezed == realUrl
+          ? _value.realUrl
+          : realUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       scanlator: freezed == scanlator
           ? _value.scanlator
           : scanlator // ignore: cast_nullable_to_non_nullable
@@ -193,6 +200,7 @@ abstract class _$$_ChapterCopyWith<$Res> implements $ChapterCopyWith<$Res> {
       String? name,
       int? pageCount,
       bool? read,
+      String? realUrl,
       String? scanlator,
       int? uploadDate,
       String? url,
@@ -222,6 +230,7 @@ class __$$_ChapterCopyWithImpl<$Res>
     Object? name = freezed,
     Object? pageCount = freezed,
     Object? read = freezed,
+    Object? realUrl = freezed,
     Object? scanlator = freezed,
     Object? uploadDate = freezed,
     Object? url = freezed,
@@ -280,6 +289,10 @@ class __$$_ChapterCopyWithImpl<$Res>
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
               as bool?,
+      realUrl: freezed == realUrl
+          ? _value.realUrl
+          : realUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       scanlator: freezed == scanlator
           ? _value.scanlator
           : scanlator // ignore: cast_nullable_to_non_nullable
@@ -317,6 +330,7 @@ class _$_Chapter implements _Chapter {
       this.name,
       this.pageCount,
       this.read,
+      this.realUrl,
       this.scanlator,
       this.uploadDate,
       this.url,
@@ -353,6 +367,8 @@ class _$_Chapter implements _Chapter {
   @override
   final bool? read;
   @override
+  final String? realUrl;
+  @override
   final String? scanlator;
   @override
   final int? uploadDate;
@@ -370,7 +386,7 @@ class _$_Chapter implements _Chapter {
 
   @override
   String toString() {
-    return 'Chapter(id: $id, bookmarked: $bookmarked, chapterCount: $chapterCount, chapterNumber: $chapterNumber, downloaded: $downloaded, fetchedAt: $fetchedAt, index: $index, lastPageRead: $lastPageRead, lastReadAt: $lastReadAt, mangaId: $mangaId, name: $name, pageCount: $pageCount, read: $read, scanlator: $scanlator, uploadDate: $uploadDate, url: $url, meta: $meta)';
+    return 'Chapter(id: $id, bookmarked: $bookmarked, chapterCount: $chapterCount, chapterNumber: $chapterNumber, downloaded: $downloaded, fetchedAt: $fetchedAt, index: $index, lastPageRead: $lastPageRead, lastReadAt: $lastReadAt, mangaId: $mangaId, name: $name, pageCount: $pageCount, read: $read, realUrl: $realUrl, scanlator: $scanlator, uploadDate: $uploadDate, url: $url, meta: $meta)';
   }
 
   @override
@@ -399,6 +415,7 @@ class _$_Chapter implements _Chapter {
             (identical(other.pageCount, pageCount) ||
                 other.pageCount == pageCount) &&
             (identical(other.read, read) || other.read == read) &&
+            (identical(other.realUrl, realUrl) || other.realUrl == realUrl) &&
             (identical(other.scanlator, scanlator) ||
                 other.scanlator == scanlator) &&
             (identical(other.uploadDate, uploadDate) ||
@@ -424,6 +441,7 @@ class _$_Chapter implements _Chapter {
       name,
       pageCount,
       read,
+      realUrl,
       scanlator,
       uploadDate,
       url,
@@ -458,6 +476,7 @@ abstract class _Chapter implements Chapter {
       final String? name,
       final int? pageCount,
       final bool? read,
+      final String? realUrl,
       final String? scanlator,
       final int? uploadDate,
       final String? url,
@@ -491,6 +510,8 @@ abstract class _Chapter implements Chapter {
   int? get pageCount;
   @override
   bool? get read;
+  @override
+  String? get realUrl;
   @override
   String? get scanlator;
   @override

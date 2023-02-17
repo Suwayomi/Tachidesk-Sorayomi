@@ -44,7 +44,7 @@ class SourceListTile extends ConsumerWidget {
       subtitle: (source.lang?.displayName).isNotBlank
           ? Text(source.lang?.displayName ?? "")
           : null,
-      trailing: (source.supportsLatest ?? false)
+      trailing: (source.supportsLatest.ifNull())
           ? TextButton(
               onPressed: () async {
                 ref.read(sourceLastUsedProvider.notifier).update(source.id);

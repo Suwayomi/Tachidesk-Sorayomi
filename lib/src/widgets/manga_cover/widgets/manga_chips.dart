@@ -24,14 +24,14 @@ class MangaChipsRow extends ConsumerWidget {
   final bool showCountBadges;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final downloadedBadge = ref.watch(downloadedBadgeProvider) ?? true;
-    final unreadBadge = ref.watch(unreadBadgeProvider) ?? true;
-    // final languageBadge = ref.watch(languageBadgeProvider) ?? false;
+    final downloadedBadge = ref.watch(downloadedBadgeProvider).ifNull(true);
+    final unreadBadge = ref.watch(unreadBadgeProvider).ifNull(true);
+    // final languageBadge = ref.watch(languageBadgeProvider) .ifNull()));
     return Padding(
       padding: KEdgeInsets.v8.size,
       child: Wrap(
         children: [
-          if (!showCountBadges && (manga.inLibrary ?? false))
+          if (!showCountBadges && (manga.inLibrary.ifNull()))
             MangaChip(
               text: LocaleKeys.inLibrary.tr(),
               color: context.theme.colorScheme.primary,

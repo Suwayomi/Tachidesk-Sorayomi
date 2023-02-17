@@ -138,6 +138,8 @@ abstract class LocaleKeys {
   static const missingExtension = 'missingExtension';
   static const missingTrackers = 'missingTrackers';
   static const more = 'more';
+  static const moveToBottom = 'moveToBottom';
+  static const moveToTop = 'moveToTop';
   static const newUpdateAvailable = 'newUpdateAvailable';
   static const noCategoriesFound = 'noCategoriesFound';
   static const noCategoriesFoundAlt = 'noCategoriesFoundAlt';
@@ -156,6 +158,7 @@ abstract class LocaleKeys {
   static const nsfw = 'nsfw';
   static const nsfw18 = 'nsfw18';
   static const numSelected = 'numSelected';
+  static const obsolete = 'obsolete';
   static const page = 'page';
   static const password = 'password';
   static const pause = 'pause';

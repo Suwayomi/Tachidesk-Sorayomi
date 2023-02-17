@@ -25,6 +25,7 @@ class Chapter with _$Chapter {
     String? name,
     int? pageCount,
     bool? read,
+    String? realUrl,
     String? scanlator,
     int? uploadDate,
     String? url,

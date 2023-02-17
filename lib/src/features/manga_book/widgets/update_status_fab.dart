@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../utils/extensions/custom_extensions.dart';
 import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
 
@@ -17,7 +18,7 @@ class UpdateStatusFab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final updateStatus = ref.watch(updatesSocketProvider);
-    return (updateStatus.valueOrNull?.showUpdateStatus ?? false)
+    return ((updateStatus.valueOrNull?.showUpdateStatus).ifNull())
         ? FloatingActionButton(
             onPressed: () => showUpdateStatusSummaryBottomSheet(context),
             child: Text("${updateStatus.valueOrNull?.updateChecked}"

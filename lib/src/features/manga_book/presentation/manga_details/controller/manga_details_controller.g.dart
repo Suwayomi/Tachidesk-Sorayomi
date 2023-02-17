@@ -403,7 +403,7 @@ class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
 }
 
 String _$mangaChapterListWithFilterHash() =>
-    r'a5ca407ed7a6d0989e90ce3d56614bb387597ac2';
+    r'c38f5462d03c80c543f83d2f6910fd7ecc0e1436';
 typedef MangaChapterListWithFilterRef
     = AutoDisposeProviderRef<AsyncValue<List<Chapter>?>>;
 

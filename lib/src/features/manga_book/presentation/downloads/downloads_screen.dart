@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../constants/app_sizes.dart';
 import '../../../../i18n/locale_keys.g.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -55,18 +56,22 @@ class DownloadsScreen extends ConsumerWidget {
               text: LocaleKeys.noDownloads.tr(),
             );
           } else {
+            final downloadsCount = data.queue?.length ?? 0;
             return ListView.builder(
               itemBuilder: (context, index) {
+                if (index == downloadsCount) return KSizedBox.h96.size;
                 final download = data.queue![index];
                 return DownloadProgressListTile(
                   key: ValueKey(
                     "${download.mangaId}${download.chapterIndex}",
                   ),
+                  index: index,
+                  downloadsCount: downloadsCount,
                   download: download,
                   toast: toast,
                 );
               },
-              itemCount: data.queue?.length ?? 0,
+              itemCount: downloadsCount + 1,
             );
           }
         },

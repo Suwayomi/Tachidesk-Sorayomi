@@ -36,7 +36,7 @@ class EditCategoryDialog extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryName = useTextEditingController(text: category?.name);
-    final defaultCategory = useState(category?.defaultCategory ?? false);
+    final defaultCategory = useState((category?.defaultCategory).ifNull());
     return AlertDialog(
       title: Text(
         category == null

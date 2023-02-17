@@ -63,7 +63,7 @@ class SourceQuickSearch extends ConsumerWidget {
                           height: 192,
                           child: MangaCoverGridTile(
                             manga: i,
-                            showDarkOverlay: i.inLibrary ?? false,
+                            showDarkOverlay: i.inLibrary.ifNull(),
                             onPressed: i.id != null
                                 ? () => context.push(Routes.getManga(i.id!))
                                 : null,

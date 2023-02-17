@@ -79,6 +79,9 @@ abstract class DownloaderUrl {
   static String chapter(int mangaId, int chapterIndex) =>
       "/download/$mangaId/chapter/$chapterIndex";
 
+  static String reorderDownload(int mangaId, int chapterIndex, int to) =>
+      "/download/$mangaId/chapter/$chapterIndex/reorder/$to";
+
   static const String downloads = "/downloads";
 }
 

@@ -151,6 +151,8 @@ class CodegenLoader extends AssetLoader {
     "missingExtension": "Extensões em falta",
     "missingTrackers": "Rasteadores em falta",
     "more": "Mais",
+    "moveToBottom": "Mover para baixo",
+    "moveToTop": "Mover para cima",
     "newUpdateAvailable": "Nova atualização disponível",
     "noCategoriesFound":
         "Não tem nenhuma categoria. \nToque no no botão mais para criar uma categoria para organizar a sua biblioteca",
@@ -174,6 +176,7 @@ class CodegenLoader extends AssetLoader {
     },
     "nsfw18": "18+",
     "numSelected": "{num} Selecionado",
+    "obsolete": "Obsoleta",
     "page": "Página: {number}",
     "password": "Senha",
     "pause": "Pausa",
@@ -354,6 +357,8 @@ class CodegenLoader extends AssetLoader {
     "missingExtension": "Missing Extensions",
     "missingTrackers": "Missing Trackers",
     "more": "More",
+    "moveToBottom": "Move to Bottom",
+    "moveToTop": "Move to top",
     "newUpdateAvailable": "New update available",
     "noCategoriesFound":
         "You don't have any Categories. \nTap the Plus button to create one for organizing your library",
@@ -377,6 +382,7 @@ class CodegenLoader extends AssetLoader {
     },
     "nsfw18": "18+",
     "numSelected": "{num} Selected",
+    "obsolete": "Obsolete",
     "page": "Page: {number}",
     "password": "Password",
     "pause": "Pause",

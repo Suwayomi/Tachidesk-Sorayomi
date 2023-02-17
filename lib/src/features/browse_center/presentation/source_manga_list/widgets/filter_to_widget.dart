@@ -43,7 +43,7 @@ class FilterToWidget extends StatelessWidget {
             initialText: text.state,
           ),
           checkBox: (checkbox) => CheckboxListTile(
-            value: checkbox.state ?? false,
+            value: checkbox.state.ifNull(),
             title: Text(checkbox.name ?? ""),
             onChanged: (value) =>
                 onChangedFilterCopyWith(checkbox.copyWith(state: value)),
@@ -66,7 +66,7 @@ class FilterToWidget extends StatelessWidget {
               for (int i = 0; i < (sort.values?.length ?? 0); i++)
                 SortListTile(
                   key: ValueKey("${sort.name}-$i"),
-                  ascending: sort.state?.ascending ?? true,
+                  ascending: (sort.state?.ascending).ifNull(true),
                   title: Text(sort.values != null ? sort.values![i] : ""),
                   selected: i == sort.state?.index,
                   onChanged: (value) {
