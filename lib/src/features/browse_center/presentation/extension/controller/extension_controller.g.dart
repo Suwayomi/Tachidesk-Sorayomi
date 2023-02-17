@@ -53,7 +53,7 @@ final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>.internal(
 );
 
 typedef ExtensionRef = AutoDisposeFutureProviderRef<List<Extension>?>;
-String _$extensionMapHash() => r'0a012417eeb39b5366182099e88cf9a614c5002c';
+String _$extensionMapHash() => r'3f7bc305bee1d774f59c53e079456ad6034a00f3';
 
 /// See also [extensionMap].
 @ProviderFor(extensionMap)

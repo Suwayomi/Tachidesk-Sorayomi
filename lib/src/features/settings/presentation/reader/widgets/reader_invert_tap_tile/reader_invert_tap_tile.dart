@@ -11,6 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../i18n/locale_keys.g.dart';
+import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
 
 part 'reader_invert_tap_tile.g.dart';
@@ -36,7 +37,7 @@ class ReaderInvertTapTile extends HookConsumerWidget {
         LocaleKeys.readerNavigationLayoutInvert.tr(),
       ),
       onChanged: ref.read(invertTapProvider.notifier).update,
-      value: ref.watch(invertTapProvider) ?? false,
+      value: ref.watch(invertTapProvider).ifNull(),
     );
   }
 }

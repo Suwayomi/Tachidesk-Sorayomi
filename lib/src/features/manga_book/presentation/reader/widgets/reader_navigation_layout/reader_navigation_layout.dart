@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/enum.dart';
+import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_navigation_layout_tile/reader_navigation_layout_tile.dart';
 import 'layouts/edge_layout.dart';
@@ -45,7 +46,7 @@ class ReaderNavigationLayoutWidget extends HookConsumerWidget {
             navigationLayout == ReaderNavigationLayout.defaultNavigation
         ? ref.watch(readerNavigationLayoutKeyProvider)
         : navigationLayout;
-    final invertTap = ref.watch(invertTapProvider) ?? false;
+    final invertTap = ref.watch(invertTapProvider).ifNull();
     final VoidCallback? onLeftTap;
     final VoidCallback? onRightTap;
     final Color? leftColor;

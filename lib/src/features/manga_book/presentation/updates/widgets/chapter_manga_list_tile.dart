@@ -41,7 +41,7 @@ class ChapterMangaListTile extends StatelessWidget {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (pair.chapter?.bookmarked ?? false) ...[
+            if ((pair.chapter?.bookmarked).ifNull()) ...[
               const Icon(Icons.bookmark, size: 20),
               KSizedBox.w4.size,
             ],
@@ -66,7 +66,7 @@ class ChapterMangaListTile extends StatelessWidget {
         ),
         trailing: (pair.manga?.id != null && pair.chapter?.index != null)
             ? DownloadStatusIcon(
-                isDownloaded: pair.chapter?.downloaded ?? false,
+                isDownloaded: (pair.chapter?.downloaded).ifNull(),
                 mangaId: pair.manga!.id!,
                 chapter: pair.chapter!,
                 updateData: updatePair,

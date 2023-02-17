@@ -41,10 +41,10 @@ class ChapterListTile extends StatelessWidget {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (chapter.bookmarked ?? false) ...[
+            if (chapter.bookmarked.ifNull()) ...[
               Icon(
                 Icons.bookmark,
-                color: chapter.read ?? false ? Colors.grey : context.iconColor,
+                color: chapter.read.ifNull() ? Colors.grey : context.iconColor,
                 size: 20,
               ),
               KSizedBox.w4.size,
@@ -59,8 +59,9 @@ class ChapterListTile extends StatelessWidget {
                       },
                     ),
                 style: TextStyle(
-                  color: chapter.read ?? false ? Colors.grey : null,
+                  color: chapter.read.ifNull() ? Colors.grey : null,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
@@ -71,7 +72,7 @@ class ChapterListTile extends StatelessWidget {
                   Text(
                     chapter.uploadDate!.toDaysAgo,
                     style: TextStyle(
-                      color: chapter.read ?? false ? Colors.grey : null,
+                      color: chapter.read.ifNull() ? Colors.grey : null,
                     ),
                   ),
                   if (!chapter.read.ifNull() &&
@@ -84,6 +85,7 @@ class ChapterListTile extends StatelessWidget {
                         },
                       )}",
                       style: const TextStyle(color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
                     ),
                 ],
               )
@@ -93,7 +95,7 @@ class ChapterListTile extends StatelessWidget {
                 updateData: updateData,
                 chapter: chapter,
                 mangaId: manga.id!,
-                isDownloaded: chapter.downloaded ?? false,
+                isDownloaded: chapter.downloaded.ifNull(),
               )
             : null,
         selectedColor: context.theme.colorScheme.onSurface,

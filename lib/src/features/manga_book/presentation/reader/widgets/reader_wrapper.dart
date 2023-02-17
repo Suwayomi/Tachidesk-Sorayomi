@@ -16,6 +16,8 @@ import '../../../../../constants/enum.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../utils/launch_url_in_web.dart';
+import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/radio_list_popup.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -173,7 +175,19 @@ class ReaderWrapper extends HookConsumerWidget {
                 ),
                 elevation: 0,
                 backgroundColor: Colors.black.withOpacity(.7),
-                actions: const [SizedBox.shrink()],
+                actions: [
+                  chapter.realUrl.isBlank
+                      ? const SizedBox.shrink()
+                      : IconButton(
+                          onPressed: () async {
+                            launchUrlInWeb(
+                              (chapter.realUrl ?? ""),
+                              ref.read(toastProvider(context)),
+                            );
+                          },
+                          icon: const Icon(Icons.public),
+                        )
+                ],
               )
             : null,
         extendBodyBehindAppBar: true,

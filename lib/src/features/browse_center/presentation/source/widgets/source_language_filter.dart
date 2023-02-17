@@ -40,7 +40,7 @@ class SourceLanguageFilter extends ConsumerWidget {
                         {...?enabledLanguages, languageCodes[index]}.toList(),
                       );
                 } else {
-                  if (!(enabledLanguagesIndex?.isNegative ?? true)) {
+                  if (!((enabledLanguagesIndex?.isNegative).ifNull(true))) {
                     ref.read(sourceLanguageFilterProvider.notifier).update(
                           [...?enabledLanguages]
                             ..removeAt(enabledLanguagesIndex!),

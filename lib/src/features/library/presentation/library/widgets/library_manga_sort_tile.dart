@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/enum.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/sort_list_tile.dart';
 import '../controller/library_controller.dart';
 
@@ -25,10 +26,10 @@ class LibraryMangaSortTile extends ConsumerWidget {
     return SortListTile(
       selected: sortType == sortedBy,
       title: Text(sortType.toString().tr()),
-      ascending: sortedDirection ?? true,
+      ascending: sortedDirection.ifNull(true),
       onChanged: (bool? value) => ref
           .read(libraryMangaSortDirectionProvider.notifier)
-          .update(!(sortedDirection ?? false)),
+          .update(!(sortedDirection.ifNull())),
       onSelected: () =>
           ref.read(libraryMangaSortProvider.notifier).update(sortType),
     );

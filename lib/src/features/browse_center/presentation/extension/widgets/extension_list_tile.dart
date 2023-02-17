@@ -42,7 +42,10 @@ class ExtensionListTile extends HookConsumerWidget {
           isLoading: isLoading.value,
         ),
       ),
-      title: Text(extension.name ?? ""),
+      title: Text(
+        extension.name ?? "",
+        overflow: TextOverflow.ellipsis,
+      ),
       subtitle: Text.rich(
         TextSpan(
           text: (extension.lang) != null
@@ -55,7 +58,7 @@ class ExtensionListTile extends HookConsumerWidget {
                 text: "${extension.versionName ?? ""} ",
                 style: const TextStyle(fontWeight: FontWeight.normal),
               ),
-            if (extension.isNsfw ?? false)
+            if (extension.isNsfw.ifNull())
               TextSpan(
                 text: LocaleKeys.nsfw18.tr(),
                 style: const TextStyle(
@@ -66,65 +69,79 @@ class ExtensionListTile extends HookConsumerWidget {
           ],
         ),
       ),
-      trailing: (extension.installed ?? false)
-          ? TextButton(
-              onPressed: isLoading.value
-                  ? null
-                  : () async {
-                      try {
-                        isLoading.value = true;
-                        (await AsyncValue.guard(() async {
-                          if (extension.pkgName.isBlank) {
-                            throw LocaleKeys.error_extension.tr();
-                          }
-                          await (extension.hasUpdate ?? false
-                              ? repository.updateExtension(extension.pkgName!)
-                              : repository
-                                  .uninstallExtension(extension.pkgName!));
-
-                          await refresh();
-                        }))
-                            .showToastOnError(ref.read(toastProvider(context)));
-                        isLoading.value = false;
-                      } catch (e) {
-                        //
-                      }
-                    },
+      trailing: extension.obsolete.ifNull()
+          ? OutlinedButton(
+              onPressed: extension.installed.ifNull()
+                  ? () => repository.uninstallExtension(extension.pkgName!)
+                  : null,
               child: Text(
-                extension.hasUpdate ?? false
-                    ? isLoading.value
-                        ? LocaleKeys.updating.tr()
-                        : LocaleKeys.update.tr()
-                    : isLoading.value
-                        ? LocaleKeys.uninstalling.tr()
-                        : LocaleKeys.uninstall.tr(),
+                LocaleKeys.obsolete.tr(),
+                style: const TextStyle(color: Colors.redAccent),
               ),
             )
-          : TextButton(
-              onPressed: isLoading.value
-                  ? null
-                  : () async {
-                      try {
-                        isLoading.value = true;
-                        (await AsyncValue.guard(() async {
-                          if (extension.pkgName.isBlank) {
-                            throw LocaleKeys.error_extension.tr();
+          : extension.installed.ifNull()
+              ? TextButton(
+                  onPressed: isLoading.value
+                      ? null
+                      : () async {
+                          try {
+                            isLoading.value = true;
+                            (await AsyncValue.guard(() async {
+                              if (extension.pkgName.isBlank) {
+                                throw LocaleKeys.error_extension.tr();
+                              }
+                              await (extension.hasUpdate.ifNull()
+                                  ? repository
+                                      .updateExtension(extension.pkgName!)
+                                  : repository
+                                      .uninstallExtension(extension.pkgName!));
+
+                              await refresh();
+                            }))
+                                .showToastOnError(
+                                    ref.read(toastProvider(context)));
+                            isLoading.value = false;
+                          } catch (e) {
+                            //
                           }
-                          await repository.installExtension(extension.pkgName!);
-                          await refresh();
-                        }))
-                            .showToastOnError(ref.read(toastProvider(context)));
-                        isLoading.value = false;
-                      } catch (e) {
-                        //
-                      }
-                    },
-              child: Text(
-                isLoading.value
-                    ? LocaleKeys.installing.tr()
-                    : LocaleKeys.install.tr(),
-              ),
-            ),
+                        },
+                  child: Text(
+                    extension.hasUpdate.ifNull()
+                        ? isLoading.value
+                            ? LocaleKeys.updating.tr()
+                            : LocaleKeys.update.tr()
+                        : isLoading.value
+                            ? LocaleKeys.uninstalling.tr()
+                            : LocaleKeys.uninstall.tr(),
+                  ),
+                )
+              : TextButton(
+                  onPressed: isLoading.value
+                      ? null
+                      : () async {
+                          try {
+                            isLoading.value = true;
+                            (await AsyncValue.guard(() async {
+                              if (extension.pkgName.isBlank) {
+                                throw LocaleKeys.error_extension.tr();
+                              }
+                              await repository
+                                  .installExtension(extension.pkgName!);
+                              await refresh();
+                            }))
+                                .showToastOnError(
+                                    ref.read(toastProvider(context)));
+                            isLoading.value = false;
+                          } catch (e) {
+                            //
+                          }
+                        },
+                  child: Text(
+                    isLoading.value
+                        ? LocaleKeys.installing.tr()
+                        : LocaleKeys.install.tr(),
+                  ),
+                ),
     );
   }
 }

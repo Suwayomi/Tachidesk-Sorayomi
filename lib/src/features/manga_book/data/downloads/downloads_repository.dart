@@ -41,6 +41,11 @@ class DownloadsRepository {
   Future<void> removeChapterFromDownloadQueue(int mangaId, int chapterIndex) =>
       dioClient.delete(DownloaderUrl.chapter(mangaId, chapterIndex));
 
+  Future<void> reorderDownload(int mangaId, int chapterIndex, int to) =>
+      dioClient.patch(
+        DownloaderUrl.reorderDownload(mangaId, chapterIndex, to),
+      );
+
   Pair<Stream<Downloads>, AsyncCallback> socketDownloads() {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
     final channel =

@@ -40,7 +40,7 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
                         {...?enabledLanguages, languageCodes[index]}.toList(),
                       );
                 } else {
-                  if (!(enabledLanguagesIndex?.isNegative ?? true)) {
+                  if (!((enabledLanguagesIndex?.isNegative).ifNull(true))) {
                     ref.read(extensionLanguageFilterProvider.notifier).update(
                           [...?enabledLanguages]
                             ..removeAt(enabledLanguagesIndex!),

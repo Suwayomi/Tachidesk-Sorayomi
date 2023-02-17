@@ -52,7 +52,7 @@ class MangaDescription extends HookConsumerWidget {
               TextButton.icon(
                 onPressed: () async {
                   final val = await AsyncValue.guard(() async {
-                    if (manga.inLibrary ?? false) {
+                    if (manga.inLibrary.ifNull()) {
                       await removeMangaFromLibrary();
                     } else {
                       await addMangaToLibrary();
@@ -64,16 +64,16 @@ class MangaDescription extends HookConsumerWidget {
                   }
                 },
                 icon: Icon(
-                  manga.inLibrary ?? false
+                  manga.inLibrary.ifNull()
                       ? Icons.favorite_rounded
                       : Icons.favorite_border_outlined,
                 ),
                 style: TextButton.styleFrom(
                   foregroundColor:
-                      manga.inLibrary ?? false ? null : Colors.grey,
+                      manga.inLibrary.ifNull() ? null : Colors.grey,
                 ),
                 label: Text(
-                  manga.inLibrary ?? false
+                  manga.inLibrary.ifNull()
                       ? LocaleKeys.inLibrary.tr()
                       : LocaleKeys.addToLibrary.tr(),
                 ),

@@ -28,15 +28,15 @@ class MangaBadgesRow extends ConsumerWidget {
   final EdgeInsetsGeometry? padding;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final downloadedBadge = ref.watch(downloadedBadgeProvider) ?? true;
-    final unreadBadge = ref.watch(unreadBadgeProvider) ?? true;
-    // final languageBadge = ref.watch(languageBadgeProvider) ?? false;
+    final downloadedBadge = ref.watch(downloadedBadgeProvider).ifNull(true);
+    final unreadBadge = ref.watch(unreadBadgeProvider).ifNull(true);
+    // final languageBadge = ref.watch(languageBadgeProvider) .ifNull();
     return Padding(
       padding: padding ?? KEdgeInsets.a8.size,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (!showCountBadges && (manga.inLibrary ?? false))
+          if (!showCountBadges && manga.inLibrary.ifNull())
             ClipRRect(
               borderRadius: KBorderRadius.r8.radius,
               child: MangaBadge(

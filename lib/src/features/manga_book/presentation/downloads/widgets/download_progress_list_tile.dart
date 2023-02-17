@@ -6,14 +6,15 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../../../widgets/custom_circular_progress_indicator.dart';
+import '../../../../../widgets/server_image.dart';
 import '../../../data/downloads/downloads_repository.dart';
 import '../../../domain/downloads_queue/downloads_queue_model.dart';
 
@@ -22,18 +23,20 @@ class DownloadProgressListTile extends HookConsumerWidget {
     super.key,
     required this.download,
     required this.toast,
+    required this.index,
+    required this.downloadsCount,
   });
   final DownloadsQueue download;
   final Toast toast;
+  final int index;
+  final int downloadsCount;
 
   Future toggleChapterToQueue(
-    ValueNotifier<bool> isLoading,
     Toast toast,
     WidgetRef ref,
     bool addToDownload,
   ) async {
     try {
-      isLoading.value = true;
       if (!download.chapterIndex.isNull && !download.mangaId.isNull) {
         (await AsyncValue.guard(() async {
           final repo = ref.read(downloadsRepositoryProvider);
@@ -50,8 +53,6 @@ class DownloadProgressListTile extends HookConsumerWidget {
         }))
             .showToastOnError(toast);
       }
-
-      isLoading.value = false;
     } catch (e) {
       //
     }
@@ -64,62 +65,135 @@ class DownloadProgressListTile extends HookConsumerWidget {
         : download.state == "Error"
             ? "${download.state}(${download.tries})"
             : download.state;
-    final isLoading = useState(false);
-    return ListTile(
-      title: Text(download.manga?.title ?? ""),
-      subtitle: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: KEdgeInsets.v4.size,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    download.chapter?.name ??
-                        download.chapter?.chapterNumber.toString() ??
-                        "",
-                    overflow: TextOverflow.ellipsis,
+    return Card(
+      margin: KEdgeInsets.h16v4.size,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(
+          children: [
+            if ((download.manga?.thumbnailUrl).isNotBlank)
+              Padding(
+                padding: KEdgeInsets.a8.size,
+                child: InkWell(
+                  onTap: () => context.push(
+                    Routes.getManga(download.mangaId!),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: ServerImage(
+                      imageUrl: download.manga!.thumbnailUrl!,
+                      size: const Size.square(56),
+                    ),
                   ),
                 ),
-                if (!status.isNull)
-                  Text(
-                    status!,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-              ],
+              ),
+            Expanded(
+              child: Padding(
+                padding: KEdgeInsets.a4.size,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      dense: true,
+                      title: Text(
+                        download.manga?.title ?? "",
+                        style: context.textTheme.labelLarge,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        download.chapter?.name ??
+                            download.chapter?.chapterNumber.toString() ??
+                            "",
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textTheme.labelSmall,
+                      ),
+                      trailing: status.isNull
+                          ? null
+                          : Text(
+                              status!,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                    ),
+                    LinearProgressIndicator(
+                      value: (download.progress ?? 0),
+                      semanticsValue:
+                          "${((download.progress ?? 0) * 100).toInt()}%",
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          visualDensity: VisualDensity.compact,
+                          onPressed: index.isZero
+                              ? null
+                              : () => ref
+                                  .read(downloadsRepositoryProvider)
+                                  .reorderDownload(
+                                    download.mangaId!,
+                                    download.chapterIndex!,
+                                    index - 1,
+                                  ),
+                          icon: const Icon(Icons.arrow_drop_up_rounded),
+                          color: Colors.grey,
+                        ),
+                        IconButton(
+                          visualDensity: VisualDensity.compact,
+                          onPressed: index >= downloadsCount - 1
+                              ? null
+                              : () => ref
+                                  .read(downloadsRepositoryProvider)
+                                  .reorderDownload(
+                                    download.mangaId!,
+                                    download.chapterIndex!,
+                                    index + 1,
+                                  ),
+                          icon: const Icon(Icons.arrow_drop_down_rounded),
+                          color: Colors.grey,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          LinearProgressIndicator(
-            value: (download.progress ?? 0),
-            semanticsValue: "${((download.progress ?? 0) * 100).toInt()}%",
-          ),
-        ],
-      ),
-      trailing: isLoading.value
-          ? const MiniCircularProgressIndicator()
-          : PopupMenuButton(
+            PopupMenuButton(
               shape: RoundedRectangleBorder(
                 borderRadius: KBorderRadius.r16.radius,
               ),
-              padding: EdgeInsets.zero,
-              child: const Icon(Icons.more_vert_rounded),
               itemBuilder: (context) => [
                 if (download.state == "Error")
                   PopupMenuItem(
                     child: Text(LocaleKeys.retry.tr()),
-                    onTap: () =>
-                        toggleChapterToQueue(isLoading, toast, ref, true),
+                    onTap: () => toggleChapterToQueue(toast, ref, true),
                   ),
                 PopupMenuItem(
                   child: Text(LocaleKeys.delete.tr()),
-                  onTap: () =>
-                      toggleChapterToQueue(isLoading, toast, ref, false),
+                  onTap: () => toggleChapterToQueue(toast, ref, false),
                 ),
+                if (!index.isZero)
+                  PopupMenuItem(
+                    child: Text(LocaleKeys.moveToTop.tr()),
+                    onTap: () =>
+                        ref.read(downloadsRepositoryProvider).reorderDownload(
+                              download.mangaId!,
+                              download.chapterIndex!,
+                              0,
+                            ),
+                  ),
+                if (index < downloadsCount - 1)
+                  PopupMenuItem(
+                      child: Text(LocaleKeys.moveToBottom.tr()),
+                      onTap: () =>
+                          ref.read(downloadsRepositoryProvider).reorderDownload(
+                                download.mangaId!,
+                                download.chapterIndex!,
+                                downloadsCount - 1,
+                              )),
               ],
             ),
+          ],
+        ),
+      ),
     );
   }
 }

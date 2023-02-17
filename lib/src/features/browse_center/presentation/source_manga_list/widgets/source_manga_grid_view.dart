@@ -12,6 +12,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../routes/router_config.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
@@ -42,7 +43,7 @@ class SourceMangaGridView extends StatelessWidget {
         ),
         itemBuilder: (context, item, index) => MangaCoverGridTile(
           manga: item.copyWith(source: source),
-          showDarkOverlay: item.inLibrary ?? false,
+          showDarkOverlay: item.inLibrary.ifNull(),
           onPressed: () {
             if (item.id != null) {
               context.push(Routes.getManga(item.id!));

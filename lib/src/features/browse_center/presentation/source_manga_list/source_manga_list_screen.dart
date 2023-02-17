@@ -60,7 +60,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
         data: (recentChaptersPage) {
           try {
             if (recentChaptersPage != null) {
-              if (recentChaptersPage.hasNextPage ?? false) {
+              if (recentChaptersPage.hasNextPage.ifNull()) {
                 controller.appendPage(
                   [...?recentChaptersPage.mangaList],
                   pageKey + 1,
@@ -158,7 +158,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                         );
                       },
                     ),
-                    if (data?.supportsLatest ?? false)
+                    if ((data?.supportsLatest).ifNull())
                       SourceTypeSelectableChip(
                         value: SourceType.latest,
                         groupValue: sourceType,
