@@ -19,15 +19,30 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
   const EditMangaCategoryDialog({
     super.key,
     required this.mangaId,
+    this.title,
   });
   final String mangaId;
+  final String? title;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryList = ref.watch(categoryControllerProvider);
     final provider = mangaCategoryListProvider(mangaId);
     final mangaCategoryList = ref.watch(provider);
     return AlertDialog(
-      title: Text(context.l10n!.editCategory),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            context.l10n!.editCategory,
+          ),
+          if (title.isNotBlank)
+            Text(
+              title!,
+              style: context.textTheme.bodySmall,
+              overflow: TextOverflow.ellipsis,
+            )
+        ],
+      ),
       contentPadding: KEdgeInsets.h8v16.size,
       actions: [PopButton(popText: context.l10n!.close)],
       content: categoryList.showUiWhenData(
