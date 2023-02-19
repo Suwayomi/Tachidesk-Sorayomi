@@ -14,7 +14,6 @@ import 'package:pub_semver/pub_semver.dart';
 import '../../features/about/data/about_repository.dart';
 import '../../features/about/presentation/about/controllers/about_controller.dart';
 import '../../features/about/presentation/about/widget/app_update_dialog.dart';
-import '../../features/manga_book/widgets/update_status_fab.dart';
 
 import '../../utils/extensions/custom_extensions.dart';
 import '../../utils/misc/toast/toast.dart';
@@ -78,7 +77,6 @@ class ShellScreen extends HookConsumerWidget {
           )
         : Scaffold(
             body: child,
-            floatingActionButton: const UpdateStatusFab(),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             bottomNavigationBar: SmallScreenNavigationBar(

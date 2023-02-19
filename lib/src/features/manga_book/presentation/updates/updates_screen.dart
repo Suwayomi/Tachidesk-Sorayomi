@@ -17,6 +17,7 @@ import '../../data/updates/updates_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
+import '../../widgets/update_status_fab.dart';
 import '../../widgets/update_status_popup_menu.dart';
 import '../reader/controller/reader_controller.dart';
 import 'widgets/chapter_manga_list_tile.dart';
@@ -67,6 +68,7 @@ class UpdatesScreen extends HookConsumerWidget {
     }, []);
     final selectedChapters = useState<Map<int, Chapter>>({});
     return Scaffold(
+      floatingActionButton: const UpdateStatusFab(),
       appBar: selectedChapters.value.isNotEmpty
           ? AppBar(
               leading: IconButton(

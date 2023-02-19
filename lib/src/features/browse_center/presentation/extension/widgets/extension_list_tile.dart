@@ -100,9 +100,7 @@ class ExtensionListTile extends HookConsumerWidget {
                                     ref.read(toastProvider(context)));
                             isLoading.value = false;
                           } catch (e) {
-                            ref
-                                .read(toastProvider(context))
-                                .showError(e.toString());
+                            //
                           }
                         },
                   child: Text(
@@ -133,9 +131,7 @@ class ExtensionListTile extends HookConsumerWidget {
                                     ref.read(toastProvider(context)));
                             isLoading.value = false;
                           } catch (e) {
-                            ref
-                                .read(toastProvider(context))
-                                .showError(e.toString());
+                            //
                           }
                         },
                   child: Text(

@@ -25,6 +25,12 @@ extension IntExtensions on int? {
     );
   }
 
+  String? padLeft([int width = 2, String padding = '0']) {
+    if (isNull) return null;
+    if (this == 0) return toString();
+    return toString().padLeft(width, padding);
+  }
+
   String get toDateStringFromSeconds {
     if (isNull) return "";
     return DateTime.fromMillisecondsSinceEpoch(this! * 1000).toDateString;
