@@ -240,6 +240,9 @@
     "@manga": {
         "description": "Screen title and Button text of Manga details screen"
     },
+    "@mangaGridSize": {
+        "description": "Popup title and Button text to change Manga Grid size"
+    },
     "@mangaMissingSources": {
         "description": "Group title to show the Manga Missing Sources when restoring Backup"
     },
@@ -652,6 +655,7 @@
     "latest": "Latest",
     "library": "Library",
     "manga": "Manga",
+    "mangaGridSize": "Manga Grid Size",
     "mangaMissingSources": "Manga Missing Sources",
     "mangaSortAlphabetical": "Alphabetical",
     "mangaSortDateAdded": "Date Added",

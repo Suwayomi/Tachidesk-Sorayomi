@@ -18,6 +18,7 @@ import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
+import '../../../settings/presentation/appearance/widgets/grid_cover_min_width.dart';
 import 'controller/library_controller.dart';
 
 class CategoryMangaList extends HookConsumerWidget {
@@ -50,7 +51,8 @@ class CategoryMangaList extends HookConsumerWidget {
         switch (displayMode) {
           case DisplayMode.grid:
             mangaList = GridView.builder(
-              gridDelegate: mangaCoverGridDelegate,
+              gridDelegate:
+                  mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),
               itemCount: data?.length ?? 0,
               itemBuilder: (context, index) => MangaCoverGridTile(
                 manga: data![index],
