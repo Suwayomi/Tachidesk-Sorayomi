@@ -83,7 +83,8 @@ enum ReaderNavigationLayout {
 enum MangaSort {
   alphabetical,
   dateAdded,
-  unread;
+  unread,
+  lastRead;
 
   String toLocale(BuildContext context) {
     switch (this) {
@@ -93,6 +94,8 @@ enum MangaSort {
         return context.l10n!.mangaSortAlphabetical;
       case MangaSort.unread:
         return context.l10n!.mangaSortAlphabetical;
+      case MangaSort.lastRead:
+        return context.l10n!.mangaSortLastRead;
     }
   }
 }

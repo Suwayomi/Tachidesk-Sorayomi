@@ -85,6 +85,11 @@ class CategoryMangaListWithQueryAndFilter
         case MangaSort.dateAdded:
           return (m1.inLibraryAt ?? 0).compareTo(m2.inLibraryAt ?? 0) *
               sortDirToggle;
+        case MangaSort.lastRead:
+          return (m1.lastChapterRead?.lastReadAt ?? 0)
+                  .compareTo(m2.lastChapterRead?.lastReadAt ?? 0) *
+              sortDirToggle *
+              -1;
         default:
           return 0;
       }

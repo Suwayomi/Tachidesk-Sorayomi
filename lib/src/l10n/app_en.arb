@@ -252,6 +252,9 @@
     "@mangaSortUnread": {
         "description": "Radio button text for Manga sort Type - Unread"
     },
+    "@mangaSortLastRead": {
+        "description": "Radio button text for Manga sort Type - Last Read"
+    },
     "@mangaStatusCancelled": {
         "description": "Text to show Manga Status Cancelled in Manga details screen"
     },
@@ -656,6 +659,7 @@
     "mangaSortAlphabetical": "Alphabetical",
     "mangaSortDateAdded": "Date Added",
     "mangaSortUnread": "Unread",
+    "mangaSortLastRead": "Last Read",
     "mangaStatusCancelled": "Cancelled",
     "mangaStatusCompleted": "Completed",
     "mangaStatusLicensed": "Licensed",
