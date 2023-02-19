@@ -427,5 +427,9 @@
   "findServer": "",
   "@findServer": {
     "description": "Button text of Find Server"
+  },
+  "readerPadding": "",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
   }
 }
