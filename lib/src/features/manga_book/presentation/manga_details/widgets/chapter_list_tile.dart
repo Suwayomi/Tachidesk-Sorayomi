@@ -4,13 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -52,12 +51,7 @@ class ChapterListTile extends StatelessWidget {
             Expanded(
               child: Text(
                 chapter.name ??
-                    LocaleKeys.chapterNumber.tr(
-                      namedArgs: {
-                        "number":
-                            "${chapter.chapterNumber ?? LocaleKeys.unknown.tr()}"
-                      },
-                    ),
+                    context.l10n!.chapterNumber(chapter.chapterNumber ?? 0),
                 style: TextStyle(
                   color: chapter.read.ifNull() ? Colors.grey : null,
                 ),
@@ -78,12 +72,7 @@ class ChapterListTile extends StatelessWidget {
                   if (!chapter.read.ifNull() &&
                       (chapter.lastPageRead).ifNullOrNegative() != 0)
                     Text(
-                      " • ${LocaleKeys.page.tr(
-                        namedArgs: {
-                          "number":
-                              "${chapter.lastPageRead.ifNullOrNegative() + 1}"
-                        },
-                      )}",
+                      " • ${context.l10n!.page(chapter.lastPageRead.ifNullOrNegative() + 1)}",
                       style: const TextStyle(color: Colors.grey),
                       overflow: TextOverflow.ellipsis,
                     ),

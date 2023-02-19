@@ -4,12 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
@@ -61,13 +59,12 @@ class SmallScreenMangaDetails extends ConsumerWidget {
           SliverToBoxAdapter(
             child: ListTile(
               title: Text(
-                LocaleKeys.noOfChapters.tr(
-                  namedArgs: {"count": "${filteredChapterList?.length ?? 0}"},
-                ),
+                context.l10n!.noOfChapters(filteredChapterList?.length ?? 0),
               ),
             ),
           ),
           chapterList.showUiWhenData(
+            context,
             (data) {
               if (data.isNotBlank) {
                 return SliverList(
@@ -92,10 +89,10 @@ class SmallScreenMangaDetails extends ConsumerWidget {
               } else {
                 return SliverToBoxAdapter(
                   child: Emoticons(
-                    text: LocaleKeys.noChaptersFound.tr(),
+                    text: context.l10n!.noChaptersFound,
                     button: TextButton(
                       onPressed: () => onDescriptionRefresh(true),
-                      child: Text(LocaleKeys.refresh.tr()),
+                      child: Text(context.l10n!.refresh),
                     ),
                   ),
                 );

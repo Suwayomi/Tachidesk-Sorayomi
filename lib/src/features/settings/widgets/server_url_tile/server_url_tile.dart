@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/db_keys.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../widgets/pop_button.dart';
@@ -37,7 +36,7 @@ class ServerUrlTile extends ConsumerWidget {
     final serverUrl = ref.watch(serverUrlProvider);
     return ListTile(
       leading: const Icon(Icons.computer_rounded),
-      title: Text(LocaleKeys.url.tr()),
+      title: Text(context.l10n!.serverUrl),
       subtitle: serverUrl.isNotBlank ? Text(serverUrl!) : null,
       onTap: () => showDialog(
         context: context,
@@ -63,7 +62,7 @@ class ServerUrlField extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController(text: initialUrl);
     return AlertDialog(
-      title: Text(LocaleKeys.url.tr()),
+      title: Text(context.l10n!.serverUrl),
       content: TextField(
         autofocus: true,
         controller: controller,
@@ -73,7 +72,7 @@ class ServerUrlField extends HookConsumerWidget {
         },
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          hintText: (LocaleKeys.urlHintText.tr()),
+          hintText: (context.l10n!.serverUrlHintText),
         ),
       ),
       actions: [
@@ -83,7 +82,7 @@ class ServerUrlField extends HookConsumerWidget {
             _update(controller.text, ref);
             context.pop();
           },
-          child: Text(LocaleKeys.save.tr()),
+          child: Text(context.l10n!.save),
         ),
       ],
     );

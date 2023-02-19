@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,7 +11,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/radio_list_popup.dart';
 import '../controller/source_manga_controller.dart';
 
@@ -29,7 +29,8 @@ class SourceMangaDisplayIconPopup extends ConsumerWidget {
         context: context,
         builder: (context) => RadioListPopup<DisplayMode>(
           optionList: DisplayMode.sourceDisplayList,
-          title: LocaleKeys.displayMode.tr(),
+          optionDisplayName: (value) => value.toLocale(context),
+          title: context.l10n!.displayMode,
           value: displayMode,
           onChange: (enumValue) async {
             ref.read(sourceDisplayModeProvider.notifier).update(enumValue);

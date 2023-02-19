@@ -6,7 +6,6 @@
 
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +14,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/db_keys.dart';
-import '../../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../../../widgets/pop_button.dart';
@@ -50,7 +49,7 @@ class CredentialsPopup extends HookConsumerWidget {
     final username = useTextEditingController();
     final password = useTextEditingController();
     return AlertDialog(
-      title: Text(LocaleKeys.credentials.tr()),
+      title: Text(context.l10n!.credentials),
       content: Form(
         key: formKey,
         child: Column(
@@ -59,9 +58,9 @@ class CredentialsPopup extends HookConsumerWidget {
             TextFormField(
               controller: username,
               validator: (value) =>
-                  value.isBlank ? LocaleKeys.error_userName.tr() : null,
+                  value.isBlank ? context.l10n!.errorUserName : null,
               decoration: InputDecoration(
-                hintText: LocaleKeys.userName.tr(),
+                hintText: context.l10n!.userName,
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -69,10 +68,10 @@ class CredentialsPopup extends HookConsumerWidget {
             TextFormField(
               controller: password,
               validator: (value) =>
-                  value.isBlank ? LocaleKeys.error_password.tr() : null,
+                  value.isBlank ? context.l10n!.errorPassword : null,
               obscureText: true,
               decoration: InputDecoration(
-                hintText: LocaleKeys.password.tr(),
+                hintText: context.l10n!.password,
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -93,7 +92,7 @@ class CredentialsPopup extends HookConsumerWidget {
               context.pop();
             }
           },
-          child: Text(LocaleKeys.save.tr()),
+          child: Text(context.l10n!.save),
         ),
       ],
     );

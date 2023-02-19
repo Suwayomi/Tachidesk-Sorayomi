@@ -30,19 +30,6 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [darkIcon, lightIcon, previousDone];
 }
 
-class $AssetsLocalesGen {
-  const $AssetsLocalesGen();
-
-  /// File path: assets/locales/en_US.json
-  String get enUS => 'assets/locales/en_US.json';
-
-  /// File path: assets/locales/pt_PT.json
-  String get ptPT => 'assets/locales/pt_PT.json';
-
-  /// List of all assets
-  List<String> get values => [enUS, ptPT];
-}
-
 class $AssetsIconsLauncherGen {
   const $AssetsIconsLauncherGen();
 
@@ -70,7 +57,6 @@ class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
-  static const $AssetsLocalesGen locales = $AssetsLocalesGen();
 }
 
 class AssetGenImage {

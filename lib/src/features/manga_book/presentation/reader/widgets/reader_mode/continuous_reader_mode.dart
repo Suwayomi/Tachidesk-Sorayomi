@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,7 +12,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/endpoints.dart';
-import '../../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../domain/chapter/chapter_model.dart';
@@ -149,14 +148,10 @@ class ContinuousReaderMode extends HookWidget {
                     : null,
                 child: ChapterSeparator(
                   title: index == 0
-                      ? LocaleKeys.current.tr()
-                      : LocaleKeys.finished.tr(),
+                      ? context.l10n!.current
+                      : context.l10n!.finished,
                   name: chapter.name ??
-                      LocaleKeys.chapterNumber.tr(
-                        namedArgs: {
-                          'chapterNumber': "${chapter.chapterNumber ?? 0}"
-                        },
-                      ),
+                      context.l10n!.chapterNumber(chapter.chapterNumber ?? 0),
                 ),
               );
               final bool reverseDirection =

@@ -4,12 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/language_list.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/language/language_model.dart';
@@ -22,7 +21,7 @@ class SourceLanguageFilter extends ConsumerWidget {
     final languageCodes = ref.watch(sourceFilterLangListProvider);
     final enabledLanguages = ref.watch(sourceLanguageFilterProvider);
     return AlertDialog(
-      title: Text(LocaleKeys.languages.tr()),
+      title: Text(context.l10n!.languages),
       content: SizedBox(
         height: context.heightScale(scale: .5),
         width: context.widthScale(scale: context.isSmallTablet ? .5 : .8),

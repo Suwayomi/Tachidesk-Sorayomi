@@ -4,11 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../data/downloads/downloads_repository.dart';
@@ -26,7 +24,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(downloadsRepositoryProvider).startDownloads))
               .showToastOnError(toast);
         },
-        label: Text(LocaleKeys.resume.tr()),
+        label: Text(context.l10n!.resume),
         isExtended: context.isTablet,
         icon: const Icon(Icons.play_arrow),
       );
@@ -37,7 +35,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(downloadsRepositoryProvider).stopDownloads))
               .showToastOnError(toast);
         },
-        label: Text(LocaleKeys.pause.tr()),
+        label: Text(context.l10n!.pause),
         isExtended: context.isTablet,
         icon: const Icon(Icons.pause_rounded),
       );

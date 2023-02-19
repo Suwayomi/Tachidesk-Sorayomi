@@ -180,6 +180,10 @@ extension ContextExtensions on BuildContext {
   /// True if the width is greater than 1200p
   bool get isDesktop => isDesktopOrWider;
 
+  AppLocalizations? get l10n => AppLocalizations.of(this);
+
+  Locale get currentLocale => Localizations.localeOf(this);
+
   /// Returns a specific value according to the screen size
   /// if the device width is greater than or equal to 1200 return
   /// [desktop] value. if the device width is greater than  or equal to 600

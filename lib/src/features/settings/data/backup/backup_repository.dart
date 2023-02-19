@@ -5,14 +5,15 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/backup_missing/backup_missing.dart';
@@ -24,15 +25,15 @@ class BackupRepository {
 
   final DioClient dioClient;
 
-  Future<BackupMissing?> restoreBackup(PlatformFile? file) async {
+  Future<BackupMissing?> restoreBackup(
+      BuildContext context, PlatformFile? file) async {
     if ((file?.name).isBlank ||
         (kIsWeb && (file?.bytes).isBlank ||
             (!kIsWeb && (file?.path).isBlank))) {
-      throw LocaleKeys.error_filePick.tr();
+      throw context.l10n!.errorFilePick;
     }
     if (!(file!.name.endsWith('.proto.gz'))) {
-      throw LocaleKeys.error_filePickUnknownExtension
-          .tr(namedArgs: {"extensionName": ".proto.gz"});
+      throw context.l10n!.errorFilePickUnknownExtension(".proto.gz");
     }
     return (await dioClient.post<BackupMissing, BackupMissing?>(
       BackupUrl.import,

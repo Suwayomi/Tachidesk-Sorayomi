@@ -4,13 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_checkbox_list_tile.dart';
 import '../../../../../widgets/manga_cover/providers/manga_cover_providers.dart';
@@ -27,32 +26,33 @@ class LibraryMangaDisplay extends ConsumerWidget {
       children: [
         ListTile(
           title: Text(
-            LocaleKeys.displayMode.tr(),
+            context.l10n!.displayMode,
             style: context.textTheme.labelLarge,
           ),
           dense: true,
         ),
         RadioList<DisplayMode>(
           optionList: DisplayMode.values,
+          displayName: (value) => value.toLocale(context),
           value: displayMode ?? DBKeys.libraryDisplayMode.initial,
           onChange: (value) =>
               ref.read(libraryDisplayModeProvider.notifier).update(value),
         ),
         ListTile(
           title: Text(
-            LocaleKeys.badges.tr(),
+            context.l10n!.badges,
             style: context.textTheme.labelLarge,
           ),
           dense: true,
         ),
         CustomCheckboxListTile(
-          title: LocaleKeys.downloaded.tr(),
+          title: context.l10n!.downloaded,
           provider: downloadedBadgeProvider,
           onChanged: ref.read(downloadedBadgeProvider.notifier).update,
           tristate: false,
         ),
         CustomCheckboxListTile(
-          title: LocaleKeys.unread.tr(),
+          title: context.l10n!.unread,
           provider: unreadBadgeProvider,
           onChanged: ref.read(unreadBadgeProvider.notifier).update,
           tristate: false,

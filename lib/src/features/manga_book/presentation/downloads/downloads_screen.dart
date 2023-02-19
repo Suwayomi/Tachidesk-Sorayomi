@@ -4,12 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
@@ -33,7 +32,7 @@ class DownloadsScreen extends ConsumerWidget {
     final downloads = ref.watch(downloadsSocketProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.downloads.tr()),
+        title: Text(context.l10n!.downloads),
         actions: [
           if ((downloads.valueOrNull?.queue).isNotBlank)
             IconButton(
@@ -48,12 +47,13 @@ class DownloadsScreen extends ConsumerWidget {
           ? DownloadsFab(status: downloads.valueOrNull?.status ?? "")
           : null,
       body: downloads.showUiWhenData(
+        context,
         (data) {
           if (data.queue == null) {
-            return Emoticons(text: LocaleKeys.error_somethingWentWrong.tr());
+            return Emoticons(text: context.l10n!.errorSomethingWentWrong);
           } else if (data.queue!.isEmpty) {
             return Emoticons(
-              text: LocaleKeys.noDownloads.tr(),
+              text: context.l10n!.noDownloads,
             );
           } else {
             final downloadsCount = data.queue?.length ?? 0;

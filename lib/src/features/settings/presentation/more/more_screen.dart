@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../constants/urls.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
@@ -26,7 +25,7 @@ class MoreScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.more.tr()),
+        title: Text(context.l10n!.more),
       ),
       body: ListView(
         children: [
@@ -37,7 +36,7 @@ class MoreScreen extends ConsumerWidget {
           const Divider(),
           const ServerUrlTile(),
           ListTile(
-            title: Text(LocaleKeys.categories.tr()),
+            title: Text(context.l10n!.categories),
             leading: const Icon(Icons.label_rounded),
             onTap: () => context.push([
               Routes.settings,
@@ -47,25 +46,26 @@ class MoreScreen extends ConsumerWidget {
           ),
           const AppThemeTile(),
           ListTile(
-            title: Text(LocaleKeys.backup.tr()),
+            title: Text(context.l10n!.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
             onTap: () => context.push([Routes.settings, Routes.backup].toPath),
           ),
           const Divider(),
           ListTile(
-            title: Text(LocaleKeys.settings.tr()),
+            title: Text(context.l10n!.settings),
             leading: const Icon(Icons.settings_rounded),
             onTap: () => context.push(Routes.settings),
           ),
           ListTile(
-            title: Text(LocaleKeys.about.tr()),
+            title: Text(context.l10n!.about),
             leading: const Icon(Icons.info_rounded),
             onTap: () => context.push(Routes.about),
           ),
           ListTile(
-            title: Text(LocaleKeys.help.tr()),
+            title: Text(context.l10n!.help),
             leading: const Icon(Icons.help_rounded),
             onTap: () => launchUrlInWeb(
+              context,
               AppUrls.tachideskHelp.url,
               ref.read(toastProvider(context)),
             ),

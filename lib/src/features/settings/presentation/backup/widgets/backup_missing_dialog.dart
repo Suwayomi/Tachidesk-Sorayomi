@@ -4,10 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/backup_missing/backup_missing.dart';
@@ -26,7 +24,7 @@ class BackupMissingDialog extends StatelessWidget {
         children: [
           if (backupMissing.missingSources.isNotBlank) ...[
             Text(
-              LocaleKeys.missingExtension.tr(),
+              context.l10n!.missingExtension,
               style: context.textTheme.titleMedium,
             ),
             ...?backupMissing.missingSources?.map(
@@ -38,7 +36,7 @@ class BackupMissingDialog extends StatelessWidget {
           ],
           if (backupMissing.missingTrackers.isNotBlank) ...[
             Text(
-              LocaleKeys.missingTrackers.tr(),
+              context.l10n!.missingTrackers,
               style: context.textTheme.titleMedium,
             ),
             ...?backupMissing.missingTrackers?.map(
@@ -50,7 +48,7 @@ class BackupMissingDialog extends StatelessWidget {
           ],
           if (backupMissing.mangasMissingSources.isNotBlank) ...[
             Text(
-              LocaleKeys.mangaMissingSources.tr(),
+              context.l10n!.mangaMissingSources,
               style: context.textTheme.titleMedium,
             ),
             ...?backupMissing.mangasMissingSources?.map(
@@ -62,7 +60,7 @@ class BackupMissingDialog extends StatelessWidget {
           ]
         ],
       ),
-      actions: [PopButton(popText: LocaleKeys.close.tr())],
+      actions: [PopButton(popText: context.l10n!.close)],
     );
   }
 }

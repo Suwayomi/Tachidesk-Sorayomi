@@ -4,12 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../i18n/locale_keys.g.dart';
 import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
@@ -31,10 +29,11 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
             : statusUpdate;
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.updatesSummary.tr()),
+        title: Text(context.l10n!.updatesSummary),
         actions: const [UpdateStatusPopupMenu(showSummaryButton: false)],
       ),
       body: finalStatus.showUiWhenData(
+        context,
         (data) => RefreshIndicator(
           onRefresh: () => ref.refresh(updateSummaryProvider.future),
           child: ListView(
@@ -42,23 +41,23 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
               if ((data?.running).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.running!,
-                  title: LocaleKeys.running.tr(),
+                  title: context.l10n!.running,
                   initiallyExpanded: true,
                 ),
               if ((data?.pending).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.pending!,
-                  title: LocaleKeys.pending.tr(),
+                  title: context.l10n!.pending,
                 ),
               if ((data?.completed).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.completed!,
-                  title: LocaleKeys.completed.tr(),
+                  title: context.l10n!.completed,
                 ),
               if ((data?.failed).isNotBlank)
                 UpdateStatusExpansionTile(
                   mangas: data!.failed!,
-                  title: LocaleKeys.failed.tr(),
+                  title: context.l10n!.failed,
                   initiallyExpanded: true,
                 ),
             ],

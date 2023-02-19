@@ -4,11 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../i18n/locale_keys.g.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 
@@ -19,12 +17,12 @@ class LibrarySettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.library.tr()),
+        title: Text(context.l10n!.library),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text(LocaleKeys.categories.tr()),
+            title: Text(context.l10n!.categories),
             leading: const Icon(Icons.label_rounded),
             onTap: () => context.push([
               Routes.settings,

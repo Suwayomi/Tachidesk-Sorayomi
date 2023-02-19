@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -26,7 +25,7 @@ class ServerScreen extends ConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.server.tr()),
+        title: Text(context.l10n!.server),
       ),
       body: ListView(
         children: [
@@ -35,7 +34,7 @@ class ServerScreen extends ConsumerWidget {
           if (authType != null && authType != AuthType.none)
             ListTile(
               leading: const Icon(Icons.password_rounded),
-              title: Text(LocaleKeys.credentials.tr()),
+              title: Text(context.l10n!.credentials),
               onTap: () {
                 showDialog(
                   context: context,
@@ -46,11 +45,12 @@ class ServerScreen extends ConsumerWidget {
           if (!kIsWeb)
             ListTile(
               leading: const Icon(Icons.web_rounded),
-              title: Text(LocaleKeys.webUI.tr()),
+              title: Text(context.l10n!.webUI),
               onTap: () {
                 final url = ref.read(serverUrlProvider);
                 if (url.isNotBlank) {
                   launchUrlInWeb(
+                    context,
                     url!,
                     ref.read(toastProvider(context)),
                   );

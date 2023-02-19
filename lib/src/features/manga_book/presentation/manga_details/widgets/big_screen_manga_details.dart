@@ -4,12 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../data/manga_book_repository.dart';
@@ -61,17 +59,15 @@ class BigScreenMangaDetails extends ConsumerWidget {
           const VerticalDivider(width: 0),
           Expanded(
             child: chapterList.showUiWhenData(
+              context,
               (data) {
                 if (data.isNotBlank) {
                   return Column(
                     children: [
                       ListTile(
-                        title: Text(
-                          LocaleKeys.noOfChapters.tr(namedArgs: {
-                            "count":
-                                (filteredChapterList?.length ?? 0).toString()
-                          }),
-                        ),
+                        title: Text(context.l10n!.noOfChapters(
+                          filteredChapterList?.length ?? 0,
+                        )),
                       ),
                       Expanded(
                         child: ListView.builder(
@@ -105,10 +101,10 @@ class BigScreenMangaDetails extends ConsumerWidget {
                   );
                 } else {
                   return Emoticons(
-                    text: LocaleKeys.noChaptersFound.tr(),
+                    text: context.l10n!.noChaptersFound,
                     button: TextButton(
                       onPressed: () => onListRefresh(true),
-                      child: Text(LocaleKeys.refresh.tr()),
+                      child: Text(context.l10n!.refresh),
                     ),
                   );
                 }

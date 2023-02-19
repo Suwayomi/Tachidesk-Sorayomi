@@ -4,13 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
@@ -163,16 +162,16 @@ class DownloadProgressListTile extends HookConsumerWidget {
               itemBuilder: (context) => [
                 if (download.state == "Error")
                   PopupMenuItem(
-                    child: Text(LocaleKeys.retry.tr()),
+                    child: Text(context.l10n!.retry),
                     onTap: () => toggleChapterToQueue(toast, ref, true),
                   ),
                 PopupMenuItem(
-                  child: Text(LocaleKeys.delete.tr()),
+                  child: Text(context.l10n!.delete),
                   onTap: () => toggleChapterToQueue(toast, ref, false),
                 ),
                 if (!index.isZero)
                   PopupMenuItem(
-                    child: Text(LocaleKeys.moveToTop.tr()),
+                    child: Text(context.l10n!.moveToTop),
                     onTap: () =>
                         ref.read(downloadsRepositoryProvider).reorderDownload(
                               download.mangaId!,
@@ -182,7 +181,7 @@ class DownloadProgressListTile extends HookConsumerWidget {
                   ),
                 if (index < downloadsCount - 1)
                   PopupMenuItem(
-                      child: Text(LocaleKeys.moveToBottom.tr()),
+                      child: Text(context.l10n!.moveToBottom),
                       onTap: () =>
                           ref.read(downloadsRepositoryProvider).reorderDownload(
                                 download.mangaId!,

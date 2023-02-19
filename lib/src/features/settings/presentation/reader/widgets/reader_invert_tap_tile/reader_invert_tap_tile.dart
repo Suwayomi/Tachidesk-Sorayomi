@@ -4,13 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
-import '../../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
 
@@ -34,7 +33,7 @@ class ReaderInvertTapTile extends HookConsumerWidget {
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.switch_left_rounded),
       title: Text(
-        LocaleKeys.readerNavigationLayoutInvert.tr(),
+        context.l10n!.readerNavigationLayoutInvert,
       ),
       onChanged: ref.read(invertTapProvider.notifier).update,
       value: ref.watch(invertTapProvider).ifNull(),

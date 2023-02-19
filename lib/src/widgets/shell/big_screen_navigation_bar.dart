@@ -31,7 +31,7 @@ class BigScreenNavigationBar extends StatelessWidget {
           .map<NavigationRailDestination>(
             (e) => NavigationRailDestination(
               icon: Icon(e.icon),
-              label: Text(e.label),
+              label: Text(e.label(context)),
               selectedIcon: Icon(e.activeIcon),
             ),
           )

@@ -4,13 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/pop_button.dart';
@@ -40,8 +38,8 @@ class EditCategoryDialog extends HookConsumerWidget {
     return AlertDialog(
       title: Text(
         category == null
-            ? LocaleKeys.addCategory.tr()
-            : LocaleKeys.editCategory.tr(),
+            ? context.l10n!.addCategory
+            : context.l10n!.editCategory,
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -50,7 +48,9 @@ class EditCategoryDialog extends HookConsumerWidget {
             controller: categoryName,
             autofocus: true,
             decoration: InputDecoration(
-              hintText: LocaleKeys.editCategory.tr(),
+              hintText: category == null
+                  ? context.l10n!.addCategory
+                  : context.l10n!.editCategory,
               border: const OutlineInputBorder(),
             ),
             onSubmitted: (categoryName.text).isNotBlank
@@ -70,7 +70,7 @@ class EditCategoryDialog extends HookConsumerWidget {
             onChanged: (value) {
               if (value != null) defaultCategory.value = value;
             },
-            title: Text(LocaleKeys.defaultCategory.tr()),
+            title: Text(context.l10n!.defaultCategory),
           )
         ],
       ),
@@ -81,13 +81,13 @@ class EditCategoryDialog extends HookConsumerWidget {
             if ((categoryName.text).isBlank) {
               ref
                   .read(toastProvider(context))
-                  .show(LocaleKeys.emptyCategory.tr());
+                  .show(context.l10n!.emptyCategory);
               return;
             }
             submitEditCategory(categoryName.text, defaultCategory.value);
             context.pop();
           },
-          child: Text(LocaleKeys.save.tr()),
+          child: Text(context.l10n!.save),
         ),
       ],
     );

@@ -4,11 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_checkbox_list_tile.dart';
 import '../controller/manga_details_controller.dart';
 
@@ -20,18 +19,18 @@ class MangaChapterFilter extends ConsumerWidget {
     return ListView(
       children: [
         CustomCheckboxListTile(
-          title: LocaleKeys.unread.tr(),
+          title: context.l10n!.unread,
           provider: mangaChapterFilterUnreadProvider,
           onChanged: ref.read(mangaChapterFilterUnreadProvider.notifier).update,
         ),
         CustomCheckboxListTile(
-          title: LocaleKeys.bookmarked.tr(),
+          title: context.l10n!.bookmarked,
           provider: mangaChapterFilterBookmarkedProvider,
           onChanged:
               ref.read(mangaChapterFilterBookmarkedProvider.notifier).update,
         ),
         CustomCheckboxListTile(
-          title: LocaleKeys.downloaded.tr(),
+          title: context.l10n!.downloaded,
           provider: mangaChapterFilterDownloadedProvider,
           onChanged:
               ref.read(mangaChapterFilterDownloadedProvider.notifier).update,

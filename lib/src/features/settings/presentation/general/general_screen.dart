@@ -4,35 +4,37 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/language_list.dart';
-import '../../../../i18n/locale_keys.g.dart';
+import '../../../../global_providers/global_providers.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/radio_list_popup.dart';
 
-class GeneralScreen extends StatelessWidget {
+class GeneralScreen extends ConsumerWidget {
   const GeneralScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text(LocaleKeys.general.tr())),
+      appBar: AppBar(title: Text(context.l10n!.general)),
       body: ListView(
         children: [
           ListTile(
             leading: const Icon(Icons.translate_rounded),
-            title: Text(LocaleKeys.appLanguage.tr()),
-            subtitle: Text(getLanguageNameFormLocale(context.locale)),
+            title: Text(context.l10n!.appLanguage),
+            subtitle: Text(getLanguageNameFormLocale(context.currentLocale)),
             onTap: () => showDialog(
               context: context,
               builder: (context) => RadioListPopup<Locale>(
-                title: LocaleKeys.appLanguage.tr(),
-                optionList: context.supportedLocales,
-                value: context.locale,
+                title: context.l10n!.appLanguage,
+                optionList: AppLocalizations.supportedLocales,
+                value: context.currentLocale,
                 onChange: (locale) {
-                  context.setLocale(locale);
+                  ref.read(l10nProvider.notifier).update(locale);
                   context.pop();
                 },
                 optionDisplayName: getLanguageNameFormLocale,

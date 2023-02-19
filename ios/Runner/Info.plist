@@ -51,7 +51,10 @@
 		<false/>
 		<key>CFBundleLocalizations</key>
         <array>
+            <string>ar</string>
             <string>en</string>
+            <string>es</string>
+            <string>nb</string>
             <string>pt</string>
         </array>
 	</dict>

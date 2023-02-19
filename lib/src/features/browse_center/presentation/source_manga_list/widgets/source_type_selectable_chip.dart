@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../constants/app_sizes.dart';
@@ -28,7 +27,7 @@ class SourceTypeSelectableChip extends StatelessWidget {
     return Padding(
       padding: KEdgeInsets.h4v8.size,
       child: ChoiceChip(
-        label: Text(value.toString().tr()),
+        label: Text(value.toLocale(context)),
         selected: selected,
         avatar: selected
             ? null
