@@ -18,6 +18,7 @@ import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
+import '../../../manga_book/presentation/manga_details/widgets/edit_manga_category_dialog.dart';
 import '../../../settings/presentation/appearance/widgets/grid_cover_min_width.dart';
 import 'controller/library_controller.dart';
 
@@ -55,6 +56,18 @@ class CategoryMangaList extends HookConsumerWidget {
                   mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),
               itemCount: data?.length ?? 0,
               itemBuilder: (context, index) => MangaCoverGridTile(
+                onLongPress: () async {
+                  if (data[index].id != null) {
+                    await showDialog(
+                      context: context,
+                      builder: (context) => EditMangaCategoryDialog(
+                        mangaId: "${data[index].id}",
+                        title: data[index].title,
+                      ),
+                    );
+                    refresh();
+                  }
+                },
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
@@ -82,6 +95,18 @@ class CategoryMangaList extends HookConsumerWidget {
                     ));
                   }
                 },
+                onLongPress: () async {
+                  if (data[index].id != null) {
+                    await showDialog(
+                      context: context,
+                      builder: (context) => EditMangaCategoryDialog(
+                        mangaId: "${data[index].id}",
+                        title: data[index].title,
+                      ),
+                    );
+                    refresh();
+                  }
+                },
                 showCountBadges: true,
               ),
             );
@@ -97,6 +122,18 @@ class CategoryMangaList extends HookConsumerWidget {
                       data[index].id!,
                       categoryId: categoryId,
                     ));
+                  }
+                },
+                onLongPress: () async {
+                  if (data[index].id != null) {
+                    await showDialog(
+                      context: context,
+                      builder: (context) => EditMangaCategoryDialog(
+                        mangaId: "${data[index].id}",
+                        title: data[index].title,
+                      ),
+                    );
+                    refresh();
                   }
                 },
                 showBadges: true,
