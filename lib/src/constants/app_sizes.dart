@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/extensions/custom_extensions.dart';
+import 'db_keys.dart';
 
 const kTabSize = Size.fromHeight(kAppBarBottomHeight);
 const kAppBarBottomHeight = 64.0;
@@ -98,9 +99,10 @@ enum KRadius {
   final Radius radius;
 }
 
-const mangaCoverGridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
-  maxCrossAxisExtent: 192,
-  crossAxisSpacing: 2.0,
-  mainAxisSpacing: 2.0,
-  childAspectRatio: 0.75,
-);
+SliverGridDelegateWithMaxCrossAxisExtent mangaCoverGridDelegate(double? size) =>
+    SliverGridDelegateWithMaxCrossAxisExtent(
+      maxCrossAxisExtent: size ?? DBKeys.gridMangaCoverWidth.initial,
+      crossAxisSpacing: 2.0,
+      mainAxisSpacing: 2.0,
+      childAspectRatio: 0.75,
+    );

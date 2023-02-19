@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../widgets/theme_mode_tile/theme_mode_tile.dart';
+import 'widgets/grid_cover_min_width.dart';
 
 class AppearanceScreen extends StatelessWidget {
   const AppearanceScreen({super.key});
@@ -16,7 +17,12 @@ class AppearanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n!.appearance)),
-      body: ListView(children: const [AppThemeTile()]),
+      body: ListView(
+        children: const [
+          AppThemeTile(),
+          GridCoverMinWidth(),
+        ],
+      ),
     );
   }
 }

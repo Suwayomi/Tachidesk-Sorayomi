@@ -36,6 +36,7 @@ enum DBKeys {
   chapterSortDirection(false), // asc=true, dsc=false
   libraryDisplayMode(DisplayMode.grid),
   sourceDisplayMode(DisplayMode.grid),
+  gridMangaCoverWidth(192.0),
   ;
 
   const DBKeys(this.initial);

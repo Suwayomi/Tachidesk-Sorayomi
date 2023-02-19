@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../constants/app_sizes.dart';
@@ -15,14 +16,15 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
+import '../../../../settings/presentation/appearance/widgets/grid_cover_min_width.dart';
 import '../../../domain/source/source_model.dart';
 
-class SourceMangaGridView extends StatelessWidget {
+class SourceMangaGridView extends ConsumerWidget {
   const SourceMangaGridView({super.key, required this.controller, this.source});
   final PagingController<int, Manga> controller;
   final Source? source;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PagedGridView(
       pagingController: controller,
       builderDelegate: PagedChildBuilderDelegate<Manga>(
@@ -50,7 +52,7 @@ class SourceMangaGridView extends StatelessWidget {
           },
         ),
       ),
-      gridDelegate: mangaCoverGridDelegate,
+      gridDelegate: mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),
     );
   }
 }
