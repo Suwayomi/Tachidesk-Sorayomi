@@ -26,16 +26,15 @@ printf "\e[33;1m%s\e[0m\n" 'Finished Running Pub get'
 #
 # Easy Localization
 #
-printf "\e[33;1m%s\e[0m\n" '=== Running Easy Localization ==='
-flutter pub run easy_localization:generate -S assets/locales -O lib/src/i18n
-flutter pub run easy_localization:generate -S assets/locales -f keys -O lib/src/i18n/ -o locale_keys.g.dart
+printf "\e[33;1m%s\e[0m\n" '=== Running Localization ==='
+flutter gen-l10n
 
 hasNewFilesFormatted=$(git diff)
 if [ -n "$hasNewFilesFormatted" ]; then
     git add .
     printf "\e[33;1m%s\e[0m\n" 'Generated locale files added to git stage'
 fi
-printf "\e[33;1m%s\e[0m\n" 'Finished Running Easy Localization'
+printf "\e[33;1m%s\e[0m\n" 'Finished Running Localization'
 printf '%s\n' "${avar}"
 
 #
