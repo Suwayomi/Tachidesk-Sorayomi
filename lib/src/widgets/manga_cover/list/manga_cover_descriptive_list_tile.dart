@@ -4,12 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
-import '../../../i18n/locale_keys.g.dart';
+
 import '../../../utils/extensions/custom_extensions.dart';
 import '../grid/manga_cover_grid_tile.dart';
 import '../widgets/manga_badges.dart';
@@ -34,7 +33,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sourceName =
-        " • ${manga.source?.displayName ?? LocaleKeys.unknownSource.tr()}";
+        " • ${manga.source?.displayName ?? context.l10n!.unknownSource}";
     return InkWell(
       onTap: onPressed,
       onLongPress: onLongPress,
@@ -66,7 +65,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                           ? () => onTitleClicked!(manga.title)
                           : null,
                       child: Text(
-                        (manga.title ?? LocaleKeys.unknownManga.tr()),
+                        (manga.title ?? context.l10n!.unknownManga),
                         style: context.textTheme.titleLarge,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -76,7 +75,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(
-                        manga.author ?? LocaleKeys.unknownAuthor.tr(),
+                        manga.author ?? context.l10n!.unknownAuthor,
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodySmall,
                       ),
@@ -91,7 +90,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                             color: context.textTheme.bodySmall?.color,
                           ),
                           Text(
-                            " ${manga.status!.toString().tr()}",
+                            " ${manga.status!.toLocale(context)}",
                             style: context.textTheme.bodySmall,
                           ),
                         ],

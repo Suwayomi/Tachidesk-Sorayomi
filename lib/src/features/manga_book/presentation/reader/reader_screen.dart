@@ -64,13 +64,11 @@ class ReaderScreen extends HookConsumerWidget {
       },
       child: SafeArea(
         child: manga.showUiWhenData(
-          addScaffoldWrapper: true,
-          refresh: () => ref.refresh(mangaProvider),
+          context,
           (data) {
             if (data == null) return const SizedBox.shrink();
             return chapter.showUiWhenData(
-              refresh: () => ref.refresh(provider),
-              addScaffoldWrapper: true,
+              context,
               (chapterData) {
                 if (chapterData == null) return const SizedBox.shrink();
                 switch (data.meta?.readerMode ?? defaultReaderMode) {
@@ -125,8 +123,12 @@ class ReaderScreen extends HookConsumerWidget {
                     );
                 }
               },
+              refresh: () => ref.refresh(provider),
+              addScaffoldWrapper: true,
             );
           },
+          addScaffoldWrapper: true,
+          refresh: () => ref.refresh(mangaProvider),
         ),
       ),
     );

@@ -23,6 +23,7 @@ enum DBKeys {
   downloadedBadge(true),
   unreadBadge(true),
   languageBadge(false),
+  l10n(Locale('en')),
   mangaFilterDownloaded(null),
   mangaFilterUnread(null),
   mangaFilterCompleted(null),

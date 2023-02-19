@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/db_keys.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../widgets/radio_list_popup.dart';
@@ -32,6 +31,19 @@ class ThemeModeKey extends _$ThemeModeKey
   }
 }
 
+extension ThemeModeExtension on ThemeMode {
+  String toLocale(BuildContext context) {
+    switch (this) {
+      case ThemeMode.system:
+        return context.l10n!.themeModeSystem;
+      case ThemeMode.light:
+        return context.l10n!.themeModeLight;
+      case ThemeMode.dark:
+        return context.l10n!.themeModeDark;
+    }
+  }
+}
+
 class AppThemeTile extends ConsumerWidget {
   const AppThemeTile({super.key});
 
@@ -42,14 +54,15 @@ class AppThemeTile extends ConsumerWidget {
       leading: Icon(
         context.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
       ),
-      subtitle: themeMode != null ? Text(themeMode.toString().tr()) : null,
-      title: Text(LocaleKeys.appTheme.tr()),
+      subtitle: themeMode != null ? Text(themeMode.toLocale(context)) : null,
+      title: Text(context.l10n!.appTheme),
       onTap: () => showDialog(
         context: context,
         builder: (context) => RadioListPopup<ThemeMode>(
-          title: LocaleKeys.appTheme.tr(),
+          title: context.l10n!.appTheme,
           optionList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,
+          optionDisplayName: (value) => value.toLocale(context),
           onChange: (enumValue) async {
             ref.read(themeModeKeyProvider.notifier).update(enumValue);
             if (context.mounted) context.pop();

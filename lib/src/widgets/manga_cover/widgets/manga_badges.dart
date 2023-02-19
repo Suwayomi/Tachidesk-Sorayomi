@@ -4,13 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
-import '../../../i18n/locale_keys.g.dart';
+
 import '../../../utils/extensions/custom_extensions.dart';
 import '../providers/manga_cover_providers.dart';
 
@@ -40,7 +39,7 @@ class MangaBadgesRow extends ConsumerWidget {
             ClipRRect(
               borderRadius: KBorderRadius.r8.radius,
               child: MangaBadge(
-                text: LocaleKeys.inLibrary.tr(),
+                text: context.l10n!.inLibrary,
                 color: context.theme.colorScheme.primary,
                 textColor: context.theme.colorScheme.onPrimary,
               ),

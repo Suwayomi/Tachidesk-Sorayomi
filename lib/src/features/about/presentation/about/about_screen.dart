@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,7 +13,7 @@ import 'package:pub_semver/pub_semver.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../constants/urls.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -36,7 +35,7 @@ class AboutScreen extends ConsumerWidget {
     required Future<List<ServerUpdate>?> Function() updateCallback,
     required Toast toast,
   }) {
-    toast.show(LocaleKeys.searchingForUpdates.tr());
+    toast.show(context.l10n!.searchingForUpdates);
     AsyncValue.guard(updateCallback).then(
       (value) {
         toast.close();
@@ -52,7 +51,7 @@ class AboutScreen extends ConsumerWidget {
               final newVer = Version.parse(newUpdate.tag?.substring(1) ?? "");
               if ((newVer.compareTo(currentVer)).isGreaterThan(0)) {
                 appUpdateDialog(
-                  title: about.name ?? LocaleKeys.server.tr(),
+                  title: about.name ?? context.l10n!.server,
                   newRelease: "${newVer.canonicalizedVersion}"
                       " (${newUpdate.channel})",
                   context: context,
@@ -60,16 +59,14 @@ class AboutScreen extends ConsumerWidget {
                   url: newUpdate.url,
                 );
               } else {
-                toast.show(LocaleKeys.noUpdatesAvailable.tr());
+                toast.show(context.l10n!.noUpdatesAvailable);
               }
             },
             error: (error, stackTrace) => value.showToastOnError(toast),
           );
         } catch (e) {
           toast.showError(
-            kDebugMode
-                ? e.toString()
-                : LocaleKeys.error_somethingWentWrong.tr(),
+            kDebugMode ? e.toString() : context.l10n!.errorSomethingWentWrong,
           );
         }
       },
@@ -82,20 +79,20 @@ class AboutScreen extends ConsumerWidget {
     required Future<AsyncValue<Version?>> Function() updateCallback,
     required Toast toast,
   }) async {
-    toast.show(LocaleKeys.searchingForUpdates.tr());
+    toast.show(context.l10n!.searchingForUpdates);
     updateCallback().then((value) {
       toast.close();
       value.whenOrNull(
         data: (version) {
           if (version != null) {
             appUpdateDialog(
-              title: title ?? LocaleKeys.appTitle.tr(),
+              title: title ?? context.l10n!.appTitle,
               newRelease: "v${version.canonicalizedVersion}",
               context: context,
               toast: toast,
             );
           } else {
-            toast.show(LocaleKeys.noUpdatesAvailable.tr());
+            toast.show(context.l10n!.noUpdatesAvailable);
           }
         },
         error: (error, stackTrace) => value.showToastOnError(toast),
@@ -115,7 +112,7 @@ class AboutScreen extends ConsumerWidget {
     final packageInfo = ref.watch(packageInfoProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.about.tr()),
+        title: Text(context.l10n!.about),
       ),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(aboutProvider.future),
@@ -127,22 +124,22 @@ class AboutScreen extends ConsumerWidget {
             ),
             const Divider(),
             ClipboardListTile(
-              title: LocaleKeys.client.tr(),
+              title: context.l10n!.client,
               subtitle: packageInfo.appName,
             ),
             ClipboardListTile(
-              title: LocaleKeys.clientVersion.tr(),
+              title: context.l10n!.clientVersion,
               subtitle: "v${packageInfo.version}",
             ),
             ListTile(
-              title: Text(LocaleKeys.whatsNew.tr()),
+              title: Text(context.l10n!.whatsNew),
               onTap: () async {
                 final url = AppUrls.sorayomiWhatsNew.url + packageInfo.version;
-                await launchUrlInWeb(url, toast);
+                await launchUrlInWeb(context, url, toast);
               },
             ),
             ListTile(
-              title: Text(LocaleKeys.checkForUpdates.tr()),
+              title: Text(context.l10n!.checkForUpdates),
               onTap: () => checkForUpdate(
                 title: packageInfo.appName,
                 context: context,
@@ -153,20 +150,20 @@ class AboutScreen extends ConsumerWidget {
             if (about != null) ...[
               const Divider(),
               ClipboardListTile(
-                title: LocaleKeys.server.tr(),
+                title: context.l10n!.server,
                 subtitle: about.name,
               ),
               ClipboardListTile(
-                title: LocaleKeys.channel.tr(),
+                title: context.l10n!.channel,
                 subtitle: about.buildType,
               ),
               if (serverVer.isNotBlank)
                 ClipboardListTile(
-                  title: LocaleKeys.serverVersion.tr(),
+                  title: context.l10n!.serverVersion,
                   subtitle: serverVer,
                 ),
               ClipboardListTile(
-                title: LocaleKeys.buildTime.tr(),
+                title: context.l10n!.buildTime,
                 subtitle: (about.buildTime).isNull
                     ? null
                     : DateTime.fromMillisecondsSinceEpoch(
@@ -175,7 +172,7 @@ class AboutScreen extends ConsumerWidget {
               ),
               if (serverVer.isNotBlank)
                 ListTile(
-                  title: Text(LocaleKeys.checkForServerUpdates.tr()),
+                  title: Text(context.l10n!.checkForServerUpdates),
                   onTap: () => checkForServerUpdate(
                     context: context,
                     serverVer: serverVer ?? "",
@@ -192,20 +189,20 @@ class AboutScreen extends ConsumerWidget {
                 alignment: WrapAlignment.spaceEvenly,
                 children: [
                   MediaLaunchButton(
-                    title: "${LocaleKeys.gitHub.tr()} ",
+                    title: "${context.l10n!.gitHub} ",
                     iconData: FontAwesomeIcons.github,
                     url: AppUrls.sorayomiGithubUrl.url,
                     toast: toast,
                   ),
                   if ((about?.discord).isNotBlank)
                     MediaLaunchButton(
-                      title: LocaleKeys.discord.tr(),
+                      title: context.l10n!.discord,
                       iconData: FontAwesomeIcons.discord,
                       url: about!.discord!,
                       toast: toast,
                     ),
                   MediaLaunchButton(
-                    title: LocaleKeys.reddit.tr(),
+                    title: context.l10n!.reddit,
                     iconData: FontAwesomeIcons.reddit,
                     url: AppUrls.tachideskReddit.url,
                     toast: toast,

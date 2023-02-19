@@ -4,12 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
@@ -24,26 +23,28 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
   final String mangaId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categoryList = ref.watch(categoryListProvider());
+    final categoryList = ref.watch(categoryControllerProvider);
     final provider = mangaCategoryListProvider(mangaId);
     final mangaCategoryList = ref.watch(provider);
     return AlertDialog(
-      title: Text(LocaleKeys.editCategory.tr()),
+      title: Text(context.l10n!.editCategory),
       contentPadding: KEdgeInsets.h8v16.size,
-      actions: [PopButton(popText: LocaleKeys.close.tr())],
+      actions: [PopButton(popText: context.l10n!.close)],
       content: categoryList.showUiWhenData(
+        context,
         (data) => ConstrainedBox(
           constraints: BoxConstraints(maxHeight: context.height * .4),
-          child: data.isEmpty
+          child: data.isBlank
               ? Padding(
                   padding: KEdgeInsets.h16.size,
-                  child: Text(LocaleKeys.noCategoriesFoundAlt.tr()),
+                  child: Text(context.l10n!.noCategoriesFoundAlt),
                 )
               : SingleChildScrollView(
                   child: mangaCategoryList.showUiWhenData(
+                    context,
                     (selectedCategoryList) => Column(
                       children: [
-                        for (int index = 0; index < data.length; index++)
+                        for (int index = 0; index < data!.length; index++)
                           CheckboxListTile(
                             onChanged: (value) async {
                               await AsyncValue.guard(
@@ -67,9 +68,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                                   "${data[index].id}",
                                 ) ??
                                 false,
-                            title: Text(
-                              data[index].name ?? LocaleKeys.category.tr(),
-                            ),
+                            title: Text(data[index].name ?? ""),
                           ),
                       ],
                     ),

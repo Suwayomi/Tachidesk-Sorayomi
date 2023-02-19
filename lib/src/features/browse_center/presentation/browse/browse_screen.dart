@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/search_field.dart';
@@ -33,7 +32,7 @@ class BrowseScreen extends HookConsumerWidget {
     final showSearch = useState(false);
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.browse.tr()),
+        title: Text(context.l10n!.browse),
         centerTitle: true,
         actions: [
           IconButton(
@@ -66,8 +65,8 @@ class BrowseScreen extends HookConsumerWidget {
                 isScrollable: context.isTablet,
                 controller: tabController,
                 tabs: [
-                  Tab(text: LocaleKeys.sources.tr()),
-                  Tab(text: LocaleKeys.extensions.tr()),
+                  Tab(text: context.l10n!.sources),
+                  Tab(text: context.l10n!.extensions),
                 ],
               ),
               if (showSearch.value)

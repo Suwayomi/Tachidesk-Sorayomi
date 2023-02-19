@@ -49,6 +49,7 @@ class MangaCoverGridTile extends StatelessWidget {
                   title: Text(
                     (manga.title ?? manga.author ?? ""),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                   ),
                 )
               : null,

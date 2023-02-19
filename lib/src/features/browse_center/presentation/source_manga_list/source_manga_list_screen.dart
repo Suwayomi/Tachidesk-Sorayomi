@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +12,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
@@ -132,9 +131,10 @@ class SourceMangaListScreen extends HookConsumerWidget {
     }, []);
 
     return source.showUiWhenData(
+      context,
       (data) => Scaffold(
         appBar: AppBar(
-          title: Text(data?.displayName ?? LocaleKeys.source.tr()),
+          title: Text(data?.displayName ?? context.l10n!.source),
           actions: [
             IconButton(
               onPressed: () => showSearch.value = true,
@@ -239,7 +239,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
       refresh: () => ref.refresh(sourceProvider(sourceId)),
       wrapper: (body) => Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.source.tr()),
+          title: Text(context.l10n!.source),
           centerTitle: false,
         ),
         body: body,

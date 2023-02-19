@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -25,7 +24,7 @@ class LibraryMangaSortTile extends ConsumerWidget {
     final sortedDirection = ref.watch(libraryMangaSortDirectionProvider);
     return SortListTile(
       selected: sortType == sortedBy,
-      title: Text(sortType.toString().tr()),
+      title: Text(sortType.toLocale(context)),
       ascending: sortedDirection.ifNull(true),
       onChanged: (bool? value) => ref
           .read(libraryMangaSortDirectionProvider.notifier)

@@ -4,13 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
@@ -60,7 +58,7 @@ class ExtensionListTile extends HookConsumerWidget {
               ),
             if (extension.isNsfw.ifNull())
               TextSpan(
-                text: LocaleKeys.nsfw18.tr(),
+                text: context.l10n!.nsfw18,
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Colors.redAccent,
@@ -75,7 +73,7 @@ class ExtensionListTile extends HookConsumerWidget {
                   ? () => repository.uninstallExtension(extension.pkgName!)
                   : null,
               child: Text(
-                LocaleKeys.obsolete.tr(),
+                context.l10n!.obsolete,
                 style: const TextStyle(color: Colors.redAccent),
               ),
             )
@@ -88,7 +86,7 @@ class ExtensionListTile extends HookConsumerWidget {
                             isLoading.value = true;
                             (await AsyncValue.guard(() async {
                               if (extension.pkgName.isBlank) {
-                                throw LocaleKeys.error_extension.tr();
+                                throw context.l10n!.errorExtension;
                               }
                               await (extension.hasUpdate.ifNull()
                                   ? repository
@@ -102,17 +100,19 @@ class ExtensionListTile extends HookConsumerWidget {
                                     ref.read(toastProvider(context)));
                             isLoading.value = false;
                           } catch (e) {
-                            //
+                            ref
+                                .read(toastProvider(context))
+                                .showError(e.toString());
                           }
                         },
                   child: Text(
                     extension.hasUpdate.ifNull()
                         ? isLoading.value
-                            ? LocaleKeys.updating.tr()
-                            : LocaleKeys.update.tr()
+                            ? context.l10n!.updating
+                            : context.l10n!.update
                         : isLoading.value
-                            ? LocaleKeys.uninstalling.tr()
-                            : LocaleKeys.uninstall.tr(),
+                            ? context.l10n!.uninstalling
+                            : context.l10n!.uninstall,
                   ),
                 )
               : TextButton(
@@ -123,7 +123,7 @@ class ExtensionListTile extends HookConsumerWidget {
                             isLoading.value = true;
                             (await AsyncValue.guard(() async {
                               if (extension.pkgName.isBlank) {
-                                throw LocaleKeys.error_extension.tr();
+                                throw context.l10n!.errorExtension;
                               }
                               await repository
                                   .installExtension(extension.pkgName!);
@@ -133,13 +133,15 @@ class ExtensionListTile extends HookConsumerWidget {
                                     ref.read(toastProvider(context)));
                             isLoading.value = false;
                           } catch (e) {
-                            //
+                            ref
+                                .read(toastProvider(context))
+                                .showError(e.toString());
                           }
                         },
                   child: Text(
                     isLoading.value
-                        ? LocaleKeys.installing.tr()
-                        : LocaleKeys.install.tr(),
+                        ? context.l10n!.installing
+                        : context.l10n!.install,
                   ),
                 ),
     );

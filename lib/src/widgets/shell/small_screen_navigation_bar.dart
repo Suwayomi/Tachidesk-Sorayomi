@@ -25,9 +25,9 @@ class SmallScreenNavigationBar extends StatelessWidget {
           .map<NavigationDestination>(
             (e) => NavigationDestination(
               icon: Icon(e.icon),
-              label: e.label,
+              label: e.label(context),
               selectedIcon: Icon(e.activeIcon),
-              tooltip: e.label,
+              tooltip: e.label(context),
             ),
           )
           .toList(),

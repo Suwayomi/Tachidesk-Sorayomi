@@ -6,13 +6,11 @@
 
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
-
 import '../features/browse_center/domain/language/language_model.dart';
 
 String getLanguageNameFormLocale(Locale locale) {
   String? displayName;
-  final localeCode = locale.toStringWithSeparator(separator: '-').toLowerCase();
+  final localeCode = locale.toLanguageTag().toLowerCase();
   if (languageMap[localeCode] != null) {
     displayName = languageMap[localeCode]!.displayName;
   } else if (languageMap[locale.languageCode.toLowerCase()] != null) {
@@ -109,4 +107,9 @@ const languageList = [
   {"code": 'bs', "name": 'Bosnian', "nativeName": 'bosanski'},
   {"code": 'sv', "name": 'Swedish', "nativeName": 'svenska'},
   {"code": 'sv', "name": 'Swedish', "nativeName": 'svenska'},
+  {
+    "code": 'nb-no',
+    "name": 'Norwegian Bokmål (Norway)',
+    "nativeName": 'Norwegian Bokmål (Norway)'
+  },
 ];

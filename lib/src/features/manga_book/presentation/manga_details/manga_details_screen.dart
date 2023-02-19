@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
-import '../../../../i18n/locale_keys.g.dart';
+
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -56,7 +55,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final refresh = useCallback(([onlineFetch = false]) async {
       if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
-              LocaleKeys.updating.tr(),
+              context.l10n!.updating,
               withMicrotask: true,
             );
       }
@@ -64,7 +63,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
       await ref.read(provider.notifier).refresh(onlineFetch);
       if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
-              LocaleKeys.updateCompleted.tr(),
+              context.l10n!.updateCompleted,
               withMicrotask: true,
             );
       }
@@ -76,6 +75,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
     }, []);
 
     return manga.showUiWhenData(
+      context,
       (data) => Scaffold(
         appBar: selectedChapters.value.isNotEmpty
             ? AppBar(
@@ -84,9 +84,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   icon: const Icon(Icons.close_rounded),
                 ),
                 title: Text(
-                  LocaleKeys.numSelected.tr(
-                    namedArgs: {"num": "${selectedChapters.value.length}"},
-                  ),
+                  context.l10n!.numSelected(selectedChapters.value.length),
                 ),
                 actions: [
                   IconButton(
@@ -125,7 +123,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                 ],
               )
             : AppBar(
-                title: Text(data?.title ?? LocaleKeys.manga.tr()),
+                title: Text(data?.title ?? context.l10n!.manga),
                 actions: [
                   if (context.isTablet)
                     IconButton(
@@ -165,12 +163,12 @@ class MangaDetailsScreen extends HookConsumerWidget {
                                 EditMangaCategoryDialog(mangaId: mangaId),
                           ),
                         ),
-                        child: Text(LocaleKeys.editCategory.tr()),
+                        child: Text(context.l10n!.editCategory),
                       ),
                       if (!context.isTablet)
                         PopupMenuItem(
                           onTap: () => refresh(true),
-                          child: Text(LocaleKeys.refresh.tr()),
+                          child: Text(context.l10n!.refresh),
                         ),
                     ],
                   )
@@ -192,8 +190,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                 isExtended: context.isTablet,
                 label: Text(
                   data?.lastChapterRead?.index != null
-                      ? LocaleKeys.resume.tr()
-                      : LocaleKeys.start.tr(),
+                      ? context.l10n!.resume
+                      : context.l10n!.start,
                 ),
                 icon: const Icon(Icons.play_arrow_rounded),
                 onPressed: () {
@@ -229,17 +227,17 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     selectedChapters: selectedChapters,
                   )
             : Emoticons(
-                text: LocaleKeys.noMangaFound.toString(),
+                text: context.l10n!.noMangaFound,
                 button: TextButton(
                   onPressed: refresh,
-                  child: Text(LocaleKeys.refresh.tr()),
+                  child: Text(context.l10n!.refresh),
                 ),
               ),
       ),
       refresh: refresh,
       wrapper: (body) => Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.manga.tr()),
+          title: Text(context.l10n!.manga),
           centerTitle: true,
         ),
         body: body,

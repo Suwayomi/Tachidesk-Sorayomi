@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,7 +11,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
-import '../../../../../../i18n/locale_keys.g.dart';
+
+import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/storage/local/shared_preferences_client.dart';
 import '../../../../../../widgets/radio_list_popup.dart';
 
@@ -38,13 +38,14 @@ class ReaderModeTile extends ConsumerWidget {
     final readerMode = ref.watch(readerModeKeyProvider);
     return ListTile(
       leading: const Icon(Icons.app_settings_alt_rounded),
-      subtitle: readerMode != null ? Text(readerMode.toString().tr()) : null,
-      title: Text(LocaleKeys.readerMode.tr()),
+      subtitle: readerMode != null ? Text(readerMode.toLocale(context)) : null,
+      title: Text(context.l10n!.readerMode),
       onTap: () => showDialog(
         context: context,
         builder: (context) => RadioListPopup<ReaderMode>(
-          title: LocaleKeys.readerMode.tr(),
+          title: context.l10n!.readerMode,
           optionList: ReaderMode.values.sublist(1),
+          optionDisplayName: (value) => value.toLocale(context),
           value: readerMode ?? ReaderMode.webtoon,
           onChange: (enumValue) async {
             ref.read(readerModeKeyProvider.notifier).update(enumValue);

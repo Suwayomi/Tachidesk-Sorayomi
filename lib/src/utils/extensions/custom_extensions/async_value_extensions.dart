@@ -30,6 +30,7 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
       (this..showToastOnError(toast, withMicrotask: withMicrotask)).valueOrNull;
 
   Widget showUiWhenData(
+    BuildContext context,
     Widget Function(T data) data, {
     VoidCallback? refresh,
     Widget Function(Widget)? wrapper,
@@ -44,24 +45,24 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
       error: (error, trace) => wrapper == null
           ? Emoticons(
               text: showGenericError
-                  ? LocaleKeys.error_somethingWentWrong.tr()
+                  ? context.l10n!.errorSomethingWentWrong
                   : error.toString(),
               button: refresh != null
                   ? TextButton(
                       onPressed: refresh,
-                      child: Text(LocaleKeys.refresh.tr()),
+                      child: Text(context.l10n!.refresh),
                     )
                   : null,
             )
           : wrapper(
               Emoticons(
                 text: showGenericError
-                    ? LocaleKeys.error_somethingWentWrong.tr()
+                    ? context.l10n!.errorSomethingWentWrong
                     : error.toString(),
                 button: refresh != null
                     ? TextButton(
                         onPressed: refresh,
-                        child: Text(LocaleKeys.refresh.tr()),
+                        child: Text(context.l10n!.refresh),
                       )
                     : null,
               ),

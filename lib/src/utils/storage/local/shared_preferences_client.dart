@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:convert';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,15 +30,21 @@ mixin SharedPreferenceClient<T extends Object> {
   late final SharedPreferences _client;
   late final T? _initial;
   set state(T? newState);
+  late final dynamic Function(T)? _toJson;
+  late final T? Function(dynamic)? _fromJson;
 
   T? initialize(
     AutoDisposeNotifierProviderRef<T?> ref, {
     required key,
     T? initial,
+    dynamic Function(T)? toJson,
+    T? Function(dynamic)? fromJson,
   }) {
     _client = ref.watch(sharedPreferencesProvider);
     _key = key;
     _initial = initial;
+    _toJson = toJson;
+    _fromJson = fromJson;
     _persistenceRefreshLogic(ref);
     return _get ?? _initial;
   }
@@ -45,6 +53,9 @@ mixin SharedPreferenceClient<T extends Object> {
 
   T? get _get {
     final value = _client.get(_key);
+    if (_fromJson != null) {
+      return _fromJson!(jsonDecode(value.toString()));
+    }
     return value is T? ? value : _initial;
   }
 
@@ -53,6 +64,9 @@ mixin SharedPreferenceClient<T extends Object> {
 
   Future<bool> _set(T? value) async {
     if (value == null) return _client.remove(_key);
+    if (_toJson != null) {
+      _client.setString(_key, jsonEncode(_toJson!(value)));
+    }
     if (value is bool) {
       return await _client.setBool(_key, value);
     } else if (value is double) {

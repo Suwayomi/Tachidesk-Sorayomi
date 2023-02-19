@@ -21,6 +21,20 @@ final authTypeKeyProvider =
 );
 
 typedef _$AuthTypeKey = AutoDisposeNotifier<AuthType?>;
+String _$l10nHash() => r'8a8734741cebf400bc54f9be4365bef9b07da454';
+
+/// See also [L10n].
+@ProviderFor(L10n)
+final l10nProvider = AutoDisposeNotifierProvider<L10n, Locale?>.internal(
+  L10n.new,
+  name: r'l10nProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$l10nHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$L10n = AutoDisposeNotifier<Locale?>;
 String _$dioClientKeyHash() => r'aa6e40fe7fd11fd2fd884674cf4d47c1c5f93048';
 
 /// See also [dioClientKey].

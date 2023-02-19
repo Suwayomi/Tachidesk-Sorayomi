@@ -4,12 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
-import '../../../i18n/locale_keys.g.dart';
+
+import '../../../utils/extensions/custom_extensions.dart';
 import '../../library/domain/category/category_model.dart';
 import '../data/updates/updates_repository.dart';
 import 'update_status_summary_sheet.dart';
@@ -32,14 +32,14 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
         return [
           if (category != null && category.id != null && category.id != 0)
             PopupMenuItem(
-              child: Text(LocaleKeys.categoryUpdate.tr()),
+              child: Text(context.l10n!.categoryUpdate),
               onTap: () => ref
                   .read(updatesRepositoryProvider)
                   .fetchUpdates(categoryId: category.id),
             ),
           PopupMenuItem(
             onTap: ref.read(updatesRepositoryProvider).fetchUpdates,
-            child: Text(LocaleKeys.globalUpdate.tr()),
+            child: Text(context.l10n!.globalUpdate),
           ),
           if (showSummaryButton)
             PopupMenuItem(
@@ -47,7 +47,7 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
                 () => showUpdateStatusSummaryBottomSheet(context),
               ),
               child: Text(
-                LocaleKeys.updatesSummary.tr(),
+                context.l10n!.updatesSummary,
               ),
             ),
         ];

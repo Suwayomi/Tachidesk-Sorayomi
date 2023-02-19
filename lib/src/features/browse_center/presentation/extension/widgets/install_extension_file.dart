@@ -4,12 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../i18n/locale_keys.g.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../data/extension_repository/extension_repository.dart';
@@ -25,16 +23,18 @@ class InstallExtensionFile extends ConsumerWidget {
       allowedExtensions: ['apk'],
     );
     if ((file?.files).isNotBlank) {
-      toast.show(LocaleKeys.installingExtension.tr());
+      if (context.mounted) {
+        toast.show(context.l10n!.installingExtension);
+      }
     }
     AsyncValue.guard(() => ref
         .read(extensionRepositoryProvider)
-        .installExtensionFile(file: file?.files.single)).then(
+        .installExtensionFile(context, file: file?.files.single)).then(
       (result) => result.whenOrNull(
         error: (error, stackTrace) => result.showToastOnError(toast),
         data: (data) {
           ref.invalidate(extensionProvider);
-          toast.instantShow(LocaleKeys.extensionInstalled.tr());
+          toast.instantShow(context.l10n!.extensionInstalled);
         },
       ),
     );

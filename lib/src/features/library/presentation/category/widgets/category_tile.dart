@@ -4,82 +4,109 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../i18n/locale_keys.g.dart';
-import '../../../../../widgets/custom_circular_progress_indicator.dart';
+
+import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
-import 'delete_category_alert.dart';
+import '../controller/edit_category_controller.dart';
 import 'edit_category_dialog.dart';
 
-class CategoryTile extends HookWidget {
+class CategoryTile extends HookConsumerWidget {
   const CategoryTile({
     super.key,
     required this.category,
-    required this.deleteCategory,
-    required this.editCategory,
-    this.leading,
+    required this.minOrderIndex,
+    required this.maxOrderIndex,
   });
 
   final Category category;
-  final Future<void> Function(Category) deleteCategory;
-  final Future<void> Function(Category) editCategory;
-  final Widget? leading;
+  final int minOrderIndex;
+  final int maxOrderIndex;
   @override
-  Widget build(BuildContext context) {
-    final isLoading = useState(false);
-    return ListTile(
-      title: Text(category.name ?? ""),
-      leading: leading,
-      trailing: isLoading.value
-          ? const MiniCircularProgressIndicator()
-          : PopupMenuButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: KBorderRadius.r16.radius,
-              ),
-              padding: EdgeInsets.zero,
-              child: const Icon(Icons.more_vert_rounded),
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: Text(LocaleKeys.edit.tr()),
-                  onTap: () => showDialog(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final order = category.order ?? 0;
+    return Card(
+      margin: KEdgeInsets.h16v4.size,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.label_rounded),
+              title: Text(category.name ?? ""),
+            ),
+            Row(
+              children: [
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: order <= minOrderIndex
+                      ? null
+                      : () => ref
+                          .read(categoryControllerProvider.notifier)
+                          .reorderCategory(order, order - 1),
+                  icon: const Icon(Icons.arrow_drop_up_rounded),
+                  color: Colors.grey,
+                ),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: order >= maxOrderIndex
+                      ? null
+                      : () => ref
+                          .read(categoryControllerProvider.notifier)
+                          .reorderCategory(order, order + 1),
+                  icon: const Icon(Icons.arrow_drop_down_rounded),
+                  color: Colors.grey,
+                ),
+                const Spacer(),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: () => showDialog(
                     context: context,
                     builder: (context) => EditCategoryDialog(
                       category: category,
-                      editCategory: (newCategory) async {
-                        try {
-                          isLoading.value = true;
-                          await editCategory(newCategory);
-                          isLoading.value = false;
-                        } catch (e) {
-                          //
-                        }
-                      },
+                      editCategory: (newCategory) => ref
+                          .read(categoryControllerProvider.notifier)
+                          .editCategory(category),
                     ),
                   ),
+                  icon: const Icon(Icons.edit_rounded),
+                  color: Colors.grey,
                 ),
-                PopupMenuItem(
-                  child: Text(LocaleKeys.delete.tr()),
-                  onTap: () => showDialog(
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: () => showDialog(
                     context: context,
-                    builder: (context) => DeleteCategoryAlert(
-                      deleteCategory: () async {
-                        try {
-                          isLoading.value = true;
-                          await deleteCategory(category);
-                          isLoading.value = false;
-                        } catch (e) {
-                          //
-                        }
-                      },
+                    builder: (context) => AlertDialog(
+                      title: Text(context.l10n!.deleteCategoryTitle),
+                      content: Text(context.l10n!.deleteCategoryDescription),
+                      actions: [
+                        const PopButton(),
+                        ElevatedButton(
+                          onPressed: () {
+                            ref
+                                .read(categoryControllerProvider.notifier)
+                                .deleteCategory(category);
+                            context.pop();
+                          },
+                          child: Text(context.l10n!.delete),
+                        ),
+                      ],
                     ),
                   ),
+                  icon: const Icon(Icons.delete_rounded),
+                  color: Colors.grey,
                 ),
               ],
             ),
+            KSizedBox.h8.size,
+          ],
+        ),
+      ),
     );
   }
 }

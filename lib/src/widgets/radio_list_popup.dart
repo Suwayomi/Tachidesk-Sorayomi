@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/app_sizes.dart';
@@ -65,7 +64,7 @@ class RadioList<T> extends StatelessWidget {
             (e) => RadioListTile<T>(
               activeColor: context.theme.indicatorColor,
               title: Text(
-                displayName != null ? displayName!(e) : e.toString().tr(),
+                displayName != null ? displayName!(e) : e.toString(),
               ),
               value: e,
               groupValue: value,

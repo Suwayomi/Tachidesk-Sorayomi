@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../i18n/locale_keys.g.dart';
 import '../routes/router_config.dart';
+import '../utils/extensions/custom_extensions.dart';
 
 class NavigationBarData {
-  final String label;
+  final String Function(BuildContext context) label;
   final String path;
   final IconData icon;
   final IconData activeIcon;
@@ -27,35 +26,35 @@ class NavigationBarData {
     NavigationBarData(
       icon: Icons.collections_bookmark_outlined,
       activeIcon: Icons.collections_bookmark_rounded,
-      label: LocaleKeys.library.tr(),
+      label: (context) => context.l10n!.library,
       path: Routes.library,
       activeOn: [Routes.library],
     ),
     NavigationBarData(
       icon: Icons.new_releases_outlined,
       activeIcon: Icons.new_releases_rounded,
-      label: LocaleKeys.updates.tr(),
+      label: (context) => context.l10n!.updates,
       path: Routes.updates,
       activeOn: [Routes.updates],
     ),
     NavigationBarData(
       icon: Icons.explore_outlined,
       activeIcon: Icons.explore_rounded,
-      label: LocaleKeys.browse.tr(),
+      label: (context) => context.l10n!.browse,
       path: Routes.browse,
       activeOn: [Routes.browse],
     ),
     NavigationBarData(
       icon: Icons.download_outlined,
       activeIcon: Icons.download_rounded,
-      label: LocaleKeys.downloads.tr(),
+      label: (context) => context.l10n!.downloads,
       path: Routes.downloads,
       activeOn: [Routes.downloads],
     ),
     NavigationBarData(
       icon: Icons.more_horiz_outlined,
       activeIcon: Icons.more_horiz_rounded,
-      label: LocaleKeys.more.tr(),
+      label: (context) => context.l10n!.more,
       path: Routes.more,
       activeOn: [Routes.more, Routes.settings],
     ),

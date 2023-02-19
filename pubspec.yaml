@@ -11,18 +11,19 @@ dependencies:
   cached_network_image: ^3.2.2
   cupertino_icons: ^1.0.5
   dio: ^5.0.0
-  easy_localization: ^3.0.1
   file_picker: ^5.2.2
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.5+1
+  flutter_localizations:
+    sdk: flutter
   fluttertoast: ^8.1.1
   font_awesome_flutter: ^10.2.1
   freezed_annotation: ^2.2.0
   go_router: ^6.0.0
   hooks_riverpod: ^2.1.1
   infinite_scroll_pagination: ^3.2.0
-  intl: ^0.17.0
+  intl: any
   json_annotation: ^4.8.0
   package_info_plus: ^3.0.1
   path_provider: ^2.0.11
@@ -51,10 +52,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
     - assets/icons/
     - assets/icons/launcher/
-    - assets/locales/
 
 flutter_gen:
   output: lib/src/constants/gen/

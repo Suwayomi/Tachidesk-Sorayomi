@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,7 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
@@ -70,8 +69,9 @@ class ReaderWrapper extends HookConsumerWidget {
         context: context,
         builder: (context) => RadioListPopup<ReaderMode>(
           optionList: ReaderMode.values,
+          optionDisplayName: (value) => value.toLocale(context),
           value: defaultReaderMode,
-          title: LocaleKeys.readerMode.tr(),
+          title: context.l10n!.readerMode,
           onChange: (enumValue) async {
             if (context.mounted) context.pop();
             await AsyncValue.guard(
@@ -93,7 +93,8 @@ class ReaderWrapper extends HookConsumerWidget {
         context: context,
         builder: (context) => RadioListPopup<ReaderNavigationLayout>(
           optionList: ReaderNavigationLayout.values,
-          title: LocaleKeys.readerNavigationLayout.tr(),
+          optionDisplayName: (value) => value.toLocale(context),
+          title: context.l10n!.readerNavigationLayout,
           value: defaultReaderNavigationLayout,
           onChange: (enumValue) async {
             if (context.mounted) context.pop();
@@ -121,11 +122,9 @@ class ReaderWrapper extends HookConsumerWidget {
             Icons.app_settings_alt_outlined,
           ),
           title: Text(
-            LocaleKeys.readerMode.tr(),
+            context.l10n!.readerMode,
           ),
-          subtitle: Text(
-            defaultReaderMode.toString().tr(),
-          ),
+          subtitle: Text(defaultReaderMode.toLocale(context)),
           onTap: () {
             context.pop();
             showReaderModePopup();
@@ -136,11 +135,9 @@ class ReaderWrapper extends HookConsumerWidget {
             Icons.touch_app_rounded,
           ),
           title: Text(
-            LocaleKeys.readerNavigationLayout.tr(),
+            context.l10n!.readerNavigationLayout,
           ),
-          subtitle: Text(
-            defaultReaderNavigationLayout.toString().tr(),
-          ),
+          subtitle: Text(defaultReaderNavigationLayout.toLocale(context)),
           onTap: () {
             context.pop();
             showReaderNavigationLayoutPopup();
@@ -181,6 +178,7 @@ class ReaderWrapper extends HookConsumerWidget {
                       : IconButton(
                           onPressed: () async {
                             launchUrlInWeb(
+                              context,
                               (chapter.realUrl ?? ""),
                               ref.read(toastProvider(context)),
                             );

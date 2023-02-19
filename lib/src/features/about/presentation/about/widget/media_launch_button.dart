@@ -30,12 +30,12 @@ class MediaLaunchButton extends StatelessWidget {
         ? context.isSmallTabletOrLess
             ? IconButton(
                 tooltip: title,
-                onPressed: () => launchUrlInWeb(url, toast),
+                onPressed: () => launchUrlInWeb(context, url, toast),
                 icon: Icon(iconData),
               )
             : TextButton.icon(
                 label: Text(title),
-                onPressed: () => launchUrlInWeb(url, toast),
+                onPressed: () => launchUrlInWeb(context, url, toast),
                 icon: Icon(iconData),
               )
         : const SizedBox.shrink();

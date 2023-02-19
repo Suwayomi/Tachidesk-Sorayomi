@@ -4,13 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/urls.dart';
-import '../../../../../i18n/locale_keys.g.dart';
+
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 
@@ -25,25 +25,21 @@ void appUpdateDialog({
       context: context,
       builder: (_) {
         return AlertDialog(
-          title: Text(LocaleKeys.newUpdateAvailable.tr()),
-          content: Text(
-            LocaleKeys.versionAvailable.tr(
-              namedArgs: {"app": title, "version": newRelease},
-            ),
-          ),
+          title: Text(context.l10n!.newUpdateAvailable),
+          content: Text(context.l10n!.versionAvailable(title, newRelease)),
           actions: [
             TextButton(
               onPressed: () => context.pop(),
-              child: Text(LocaleKeys.close.tr()),
+              child: Text(context.l10n!.close),
             ),
             ElevatedButton.icon(
               onPressed: () {
-                launchUrlInWeb(
+                launchUrlInWeb(context,
                     url ?? AppUrls.sorayomiLatestReleaseUrl.url, toast);
                 context.pop();
               },
               icon: const Icon(FontAwesomeIcons.github),
-              label: Text(LocaleKeys.gitHub.tr()),
+              label: Text(context.l10n!.gitHub),
             ),
           ],
         );
