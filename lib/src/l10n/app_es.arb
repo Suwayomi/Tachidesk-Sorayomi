@@ -80,6 +80,7 @@
     "mangaSortAlphabetical": "Alfabético",
     "mangaSortDateAdded": "Fecha añadida",
     "mangaSortUnread": "No leído",
+    "mangaSortLastRead": "Última lectura",
     "mangaStatusCancelled": "Cancelado",
     "mangaStatusCompleted": "Completado",
     "mangaStatusLicensed": "Con Licencia",

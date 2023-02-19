@@ -6,10 +6,11 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import 'library_manga_display.dart';
 import 'library_manga_filter.dart';
-import 'library_manga_sort.dart';
+import 'library_manga_sort_tile.dart';
 
 class LibraryMangaOrganizer extends StatelessWidget {
   const LibraryMangaOrganizer({
@@ -29,11 +30,16 @@ class LibraryMangaOrganizer extends StatelessWidget {
             Tab(text: context.l10n!.display),
           ],
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            LibraryMangaFilter(),
-            LibraryMangaSort(),
-            LibraryMangaDisplay(),
+            const LibraryMangaFilter(),
+            ListView(
+              children: [
+                for (MangaSort sortType in MangaSort.values)
+                  LibraryMangaSortTile(sortType: sortType),
+              ],
+            ),
+            const LibraryMangaDisplay(),
           ],
         ),
       ),
