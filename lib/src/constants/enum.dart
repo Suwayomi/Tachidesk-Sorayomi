@@ -91,9 +91,9 @@ enum MangaSort {
       case MangaSort.alphabetical:
         return context.l10n!.mangaSortAlphabetical;
       case MangaSort.dateAdded:
-        return context.l10n!.mangaSortAlphabetical;
+        return context.l10n!.mangaSortDateAdded;
       case MangaSort.unread:
-        return context.l10n!.mangaSortAlphabetical;
+        return context.l10n!.mangaSortUnread;
       case MangaSort.lastRead:
         return context.l10n!.mangaSortLastRead;
     }
@@ -109,7 +109,7 @@ enum ChapterSort {
       case ChapterSort.source:
         return context.l10n!.chapterSortSource;
       case ChapterSort.fetchedDate:
-        return context.l10n!.chapterSortSource;
+        return context.l10n!.chapterSortFetchedDate;
     }
   }
 }
