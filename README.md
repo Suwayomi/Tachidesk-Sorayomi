@@ -132,8 +132,7 @@ You can install Flutter & Dart from [Official website](https://docs.flutter.dev/
 
 -  Localization generator
 ```
-   flutter pub run easy_localization:generate -S assets/locales -O lib/src/i18n
-   flutter pub run easy_localization:generate -S assets/locales -f keys -O lib/src/i18n/ -o locale_keys.g.dart
+  $ flutter gen-l10n
 ```
 
 - Pull-Request Suggestion
