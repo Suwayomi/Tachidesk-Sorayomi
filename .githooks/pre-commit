@@ -24,7 +24,7 @@ flutter pub get
 printf "\e[33;1m%s\e[0m\n" 'Finished Running Pub get'
 
 #
-# Easy Localization
+# Localization
 #
 printf "\e[33;1m%s\e[0m\n" '=== Running Localization ==='
 flutter gen-l10n
