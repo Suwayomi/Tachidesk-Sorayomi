@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
@@ -19,8 +20,16 @@ class EditCategoryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final categoryList = ref.watch(categoryControllerProvider)
-      ..showToastOnError(ref.read(toastProvider(context)), withMicrotask: true);
+    final categoryList = ref.watch(categoryControllerProvider);
+
+    useEffect(() {
+      categoryList.showToastOnError(
+        ref.read(toastProvider(context)),
+        withMicrotask: true,
+      );
+      return;
+    }, [categoryList]);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n!.editCategory),
