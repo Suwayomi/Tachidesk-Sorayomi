@@ -50,7 +50,7 @@ class MangaMeta with _$MangaMeta {
   factory MangaMeta({
     @JsonKey(
       name: "flutter_readerNavigationLayoutInvert",
-      // fromJson: MangaMeta.fromJsonToBool,
+      fromJson: MangaMeta.fromJsonToBool,
     )
         bool? invertTap,
     @JsonKey(name: "flutter_readerNavigationLayout")

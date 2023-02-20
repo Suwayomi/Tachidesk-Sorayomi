@@ -64,7 +64,7 @@ class ReaderPaddingSlider extends ConsumerWidget {
   }
 }
 
-class AsyncReaderPaddingSlider extends HookWidget {
+class AsyncReaderPaddingSlider extends HookConsumerWidget {
   const AsyncReaderPaddingSlider({
     super.key,
     required this.onChanged,
@@ -75,7 +75,7 @@ class AsyncReaderPaddingSlider extends HookWidget {
   final ValueNotifier<double> readerPadding;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final debounce = useRef<Timer?>(null);
 
     final onDebounceChanged = useCallback<ValueSetter<double>>(
@@ -98,7 +98,9 @@ class AsyncReaderPaddingSlider extends HookWidget {
       leading: const Icon(Icons.width_wide_rounded),
       title: Text(context.l10n!.readerPadding),
       trailing: IconButton(
-        onPressed: () => onDebounceChanged(DBKeys.readerPadding.initial),
+        onPressed: () => onDebounceChanged(
+          ref.read(readerPaddingKeyProvider) ?? DBKeys.readerPadding.initial,
+        ),
         icon: const Icon(Icons.refresh),
       ),
       subtitle: Row(

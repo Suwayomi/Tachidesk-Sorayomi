@@ -66,7 +66,8 @@ Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
     };
 
 _$_MangaMeta _$$_MangaMetaFromJson(Map<String, dynamic> json) => _$_MangaMeta(
-      invertTap: json['flutter_readerNavigationLayoutInvert'] as bool?,
+      invertTap: MangaMeta.fromJsonToBool(
+          json['flutter_readerNavigationLayoutInvert']),
       readerNavigationLayout: $enumDecodeNullable(
           _$ReaderNavigationLayoutEnumMap,
           json['flutter_readerNavigationLayout']),

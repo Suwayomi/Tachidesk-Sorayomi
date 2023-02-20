@@ -694,7 +694,9 @@ MangaMeta _$MangaMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MangaMeta {
-  @JsonKey(name: "flutter_readerNavigationLayoutInvert")
+  @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      fromJson: MangaMeta.fromJsonToBool)
   bool? get invertTap => throw _privateConstructorUsedError;
   @JsonKey(name: "flutter_readerNavigationLayout")
   ReaderNavigationLayout? get readerNavigationLayout =>
@@ -716,7 +718,7 @@ abstract class $MangaMetaCopyWith<$Res> {
       _$MangaMetaCopyWithImpl<$Res, MangaMeta>;
   @useResult
   $Res call(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           ReaderNavigationLayout? readerNavigationLayout,
@@ -773,7 +775,7 @@ abstract class _$$_MangaMetaCopyWith<$Res> implements $MangaMetaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           ReaderNavigationLayout? readerNavigationLayout,
@@ -824,7 +826,7 @@ class __$$_MangaMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MangaMeta implements _MangaMeta {
   _$_MangaMeta(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           this.invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           this.readerNavigationLayout,
@@ -837,7 +839,9 @@ class _$_MangaMeta implements _MangaMeta {
       _$$_MangaMetaFromJson(json);
 
   @override
-  @JsonKey(name: "flutter_readerNavigationLayoutInvert")
+  @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      fromJson: MangaMeta.fromJsonToBool)
   final bool? invertTap;
   @override
   @JsonKey(name: "flutter_readerNavigationLayout")
@@ -890,7 +894,7 @@ class _$_MangaMeta implements _MangaMeta {
 
 abstract class _MangaMeta implements MangaMeta {
   factory _MangaMeta(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           final bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           final ReaderNavigationLayout? readerNavigationLayout,
@@ -903,7 +907,9 @@ abstract class _MangaMeta implements MangaMeta {
       _$_MangaMeta.fromJson;
 
   @override
-  @JsonKey(name: "flutter_readerNavigationLayoutInvert")
+  @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      fromJson: MangaMeta.fromJsonToBool)
   bool? get invertTap;
   @override
   @JsonKey(name: "flutter_readerNavigationLayout")
