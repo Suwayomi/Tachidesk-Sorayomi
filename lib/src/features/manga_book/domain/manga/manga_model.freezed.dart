@@ -25,6 +25,7 @@ mixin _$Manga {
   String? get description => throw _privateConstructorUsedError;
   int? get downloadCount => throw _privateConstructorUsedError;
   int? get chapterCount => throw _privateConstructorUsedError;
+  int? get lastReadAt => throw _privateConstructorUsedError;
   Chapter? get lastChapterRead => throw _privateConstructorUsedError;
   bool? get freshData => throw _privateConstructorUsedError;
   List<String>? get genre => throw _privateConstructorUsedError;
@@ -61,6 +62,7 @@ abstract class $MangaCopyWith<$Res> {
       String? description,
       int? downloadCount,
       int? chapterCount,
+      int? lastReadAt,
       Chapter? lastChapterRead,
       bool? freshData,
       List<String>? genre,
@@ -104,6 +106,7 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
     Object? description = freezed,
     Object? downloadCount = freezed,
     Object? chapterCount = freezed,
+    Object? lastReadAt = freezed,
     Object? lastChapterRead = freezed,
     Object? freshData = freezed,
     Object? genre = freezed,
@@ -143,6 +146,10 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
       chapterCount: freezed == chapterCount
           ? _value.chapterCount
           : chapterCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastReadAt: freezed == lastReadAt
+          ? _value.lastReadAt
+          : lastReadAt // ignore: cast_nullable_to_non_nullable
               as int?,
       lastChapterRead: freezed == lastChapterRead
           ? _value.lastChapterRead
@@ -268,6 +275,7 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       String? description,
       int? downloadCount,
       int? chapterCount,
+      int? lastReadAt,
       Chapter? lastChapterRead,
       bool? freshData,
       List<String>? genre,
@@ -310,6 +318,7 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
     Object? description = freezed,
     Object? downloadCount = freezed,
     Object? chapterCount = freezed,
+    Object? lastReadAt = freezed,
     Object? lastChapterRead = freezed,
     Object? freshData = freezed,
     Object? genre = freezed,
@@ -349,6 +358,10 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
       chapterCount: freezed == chapterCount
           ? _value.chapterCount
           : chapterCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastReadAt: freezed == lastReadAt
+          ? _value.lastReadAt
+          : lastReadAt // ignore: cast_nullable_to_non_nullable
               as int?,
       lastChapterRead: freezed == lastChapterRead
           ? _value.lastChapterRead
@@ -435,6 +448,7 @@ class _$_Manga implements _Manga {
       this.description,
       this.downloadCount,
       this.chapterCount,
+      this.lastReadAt,
       this.lastChapterRead,
       this.freshData,
       final List<String>? genre,
@@ -469,6 +483,8 @@ class _$_Manga implements _Manga {
   final int? downloadCount;
   @override
   final int? chapterCount;
+  @override
+  final int? lastReadAt;
   @override
   final Chapter? lastChapterRead;
   @override
@@ -517,7 +533,7 @@ class _$_Manga implements _Manga {
 
   @override
   String toString() {
-    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, chapterCount: $chapterCount, lastChapterRead: $lastChapterRead, freshData: $freshData, genre: $genre, inLibrary: $inLibrary, id: $id, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, title: $title, unreadCount: $unreadCount, lastFetchedAt: $lastFetchedAt, chaptersLastFetchedAt: $chaptersLastFetchedAt, url: $url, meta: $meta)';
+    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, chapterCount: $chapterCount, lastReadAt: $lastReadAt, lastChapterRead: $lastChapterRead, freshData: $freshData, genre: $genre, inLibrary: $inLibrary, id: $id, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, title: $title, unreadCount: $unreadCount, lastFetchedAt: $lastFetchedAt, chaptersLastFetchedAt: $chaptersLastFetchedAt, url: $url, meta: $meta)';
   }
 
   @override
@@ -533,6 +549,8 @@ class _$_Manga implements _Manga {
                 other.downloadCount == downloadCount) &&
             (identical(other.chapterCount, chapterCount) ||
                 other.chapterCount == chapterCount) &&
+            (identical(other.lastReadAt, lastReadAt) ||
+                other.lastReadAt == lastReadAt) &&
             (identical(other.lastChapterRead, lastChapterRead) ||
                 other.lastChapterRead == lastChapterRead) &&
             (identical(other.freshData, freshData) ||
@@ -572,6 +590,7 @@ class _$_Manga implements _Manga {
         description,
         downloadCount,
         chapterCount,
+        lastReadAt,
         lastChapterRead,
         freshData,
         const DeepCollectionEquality().hash(_genre),
@@ -613,6 +632,7 @@ abstract class _Manga implements Manga {
       final String? description,
       final int? downloadCount,
       final int? chapterCount,
+      final int? lastReadAt,
       final Chapter? lastChapterRead,
       final bool? freshData,
       final List<String>? genre,
@@ -645,6 +665,8 @@ abstract class _Manga implements Manga {
   int? get downloadCount;
   @override
   int? get chapterCount;
+  @override
+  int? get lastReadAt;
   @override
   Chapter? get lastChapterRead;
   @override
