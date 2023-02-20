@@ -6,6 +6,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
@@ -25,7 +26,7 @@ import 'widget/app_update_dialog.dart';
 import 'widget/clipboard_list_tile.dart';
 import 'widget/media_launch_button.dart';
 
-class AboutScreen extends ConsumerWidget {
+class AboutScreen extends HookConsumerWidget {
   const AboutScreen({super.key});
 
   void checkForServerUpdate({
@@ -104,16 +105,20 @@ class AboutScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final about =
-        ref.watch(aboutProvider).valueOrToast(toast, withMicrotask: true);
+    final aboutAsync = ref.watch(aboutProvider);
+    final about = aboutAsync.valueOrNull;
     final serverVer = about?.buildType == "Stable"
         ? about?.version
         : "${about?.version}-${about?.revision}";
     final packageInfo = ref.watch(packageInfoProvider);
+
+    useEffect(() {
+      aboutAsync.showToastOnError(toast, withMicrotask: true);
+      return;
+    }, [aboutAsync]);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n!.about),
-      ),
+      appBar: AppBar(title: Text(context.l10n!.about)),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(aboutProvider.future),
         child: ListView(

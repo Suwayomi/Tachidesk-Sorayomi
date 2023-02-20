@@ -84,20 +84,25 @@ class ExtensionListTile extends HookConsumerWidget {
                       : () async {
                           try {
                             isLoading.value = true;
-                            (await AsyncValue.guard(() async {
-                              if (extension.pkgName.isBlank) {
-                                throw context.l10n!.errorExtension;
-                              }
-                              await (extension.hasUpdate.ifNull()
-                                  ? repository
-                                      .updateExtension(extension.pkgName!)
-                                  : repository
-                                      .uninstallExtension(extension.pkgName!));
+                            (await AsyncValue.guard(
+                              () async {
+                                if (extension.pkgName.isBlank) {
+                                  throw context.l10n!.errorExtension;
+                                }
+                                if (extension.hasUpdate.ifNull()) {
+                                  await repository
+                                      .updateExtension(extension.pkgName!);
+                                } else {
+                                  await repository
+                                      .uninstallExtension(extension.pkgName!);
+                                }
 
-                              await refresh();
-                            }))
+                                await refresh();
+                              },
+                            ))
                                 .showToastOnError(
-                                    ref.read(toastProvider(context)));
+                              ref.read(toastProvider(context)),
+                            );
                             isLoading.value = false;
                           } catch (e) {
                             //
@@ -128,7 +133,8 @@ class ExtensionListTile extends HookConsumerWidget {
                               await refresh();
                             }))
                                 .showToastOnError(
-                                    ref.read(toastProvider(context)));
+                              ref.read(toastProvider(context)),
+                            );
                             isLoading.value = false;
                           } catch (e) {
                             //

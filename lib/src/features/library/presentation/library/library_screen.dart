@@ -26,9 +26,14 @@ class LibraryScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final categoryList = ref.watch(categoryControllerProvider)
-      ..showToastOnError(toast, withMicrotask: true);
+    final categoryList = ref.watch(categoryControllerProvider);
     final showSearch = useState(false);
+
+    useEffect(() {
+      categoryList.showToastOnError(toast, withMicrotask: true);
+      return;
+    }, [categoryList]);
+
     return categoryList.showUiWhenData(
       context,
       (data) => data.isBlank

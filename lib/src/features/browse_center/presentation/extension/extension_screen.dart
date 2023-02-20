@@ -49,17 +49,26 @@ class ExtensionScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final extensionMapData = ref.watch(extensionMapFilteredAndQueriedProvider)
-      ..showToastOnError(ref.read(toastProvider(context)), withMicrotask: true);
+    final extensionMapData = ref.watch(extensionMapFilteredAndQueriedProvider);
     final extensionMap = {...?extensionMapData.valueOrNull};
     final installed = extensionMap.remove("installed");
     final update = extensionMap.remove("update");
     final all = extensionMap.remove("all");
+
     refresh() => ref.refresh(extensionProvider.future);
     useEffect(() {
       if (!extensionMapData.isLoading) refresh();
       return;
     }, []);
+
+    useEffect(() {
+      extensionMapData.showToastOnError(
+        ref.read(toastProvider(context)),
+        withMicrotask: true,
+      );
+      return;
+    }, [extensionMapData]);
+
     return extensionMapData.showUiWhenData(
       context,
       (data) => (extensionMap.isEmpty &&
