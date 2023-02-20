@@ -3,6 +3,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -36,25 +38,49 @@ class ReaderScreen extends HookConsumerWidget {
     final manga = ref.watch(mangaProvider);
     final chapter = ref.watch(provider);
     final defaultReaderMode = ref.watch(readerModeKeyProvider);
-    final onPageChanged =
-        useCallback<AsyncValueSetter<int>>((int currentPage) async {
-      final chapterValue = chapter.valueOrNull;
-      final isReadingCompeted = chapterValue != null &&
-          ((chapterValue.read).ifNull() ||
-              (currentPage >=
-                  ((chapterValue.pageCount).ifNullOrNegative() - 1)));
-      await AsyncValue.guard(
-        () => ref.read(mangaBookRepositoryProvider).putChapter(
-              mangaId: mangaId,
-              chapterIndex: chapterIndex,
-              patch: ChapterPut(
-                lastPageRead: isReadingCompeted ? 0 : currentPage,
-                read: isReadingCompeted,
-              ),
-            ),
-      );
-      return;
-    }, [chapter]);
+
+    final debounce = useRef<Timer?>(null);
+    final onPageChanged = useCallback<AsyncValueSetter<int>>(
+      (int currentPage) async {
+        final chapterValue = chapter.valueOrNull;
+        if ((chapterValue?.read).ifNull() ||
+            (chapterValue?.lastPageRead).ifNullOrNegative() >= currentPage) {
+          return;
+        }
+
+        updateLastRead() async {
+          final chapterValue = chapter.valueOrNull;
+          final isReadingCompeted = chapterValue != null &&
+              ((chapterValue.read).ifNull() ||
+                  (currentPage >=
+                      ((chapterValue.pageCount).ifNullOrNegative() - 1)));
+          await AsyncValue.guard(
+            () => ref.read(mangaBookRepositoryProvider).putChapter(
+                  mangaId: mangaId,
+                  chapterIndex: chapterIndex,
+                  patch: ChapterPut(
+                    lastPageRead: isReadingCompeted ? 0 : currentPage,
+                    read: isReadingCompeted,
+                  ),
+                ),
+          );
+        }
+
+        final finalDebounce = debounce.value;
+        if ((finalDebounce?.isActive).ifNull()) {
+          finalDebounce?.cancel();
+        }
+
+        if ((currentPage >=
+            ((chapter.valueOrNull?.pageCount).ifNullOrNegative() - 1))) {
+          updateLastRead();
+        } else {
+          debounce.value = Timer(const Duration(seconds: 2), updateLastRead);
+        }
+        return;
+      },
+      [chapter],
+    );
 
     return WillPopScope(
       onWillPop: () async {

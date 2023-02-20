@@ -16,6 +16,7 @@ import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
+import '../../../../../widgets/async_buttons/async_text_button_icon.dart';
 import '../../../../../widgets/manga_cover/list/manga_cover_descriptive_list_tile.dart';
 import '../../../domain/manga/manga_model.dart';
 
@@ -48,7 +49,7 @@ class MangaDescription extends HookConsumerWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextButton.icon(
+              AsyncTextButtonIcon(
                 onPressed: () async {
                   final val = await AsyncValue.guard(() async {
                     if (manga.inLibrary.ifNull()) {
@@ -62,20 +63,13 @@ class MangaDescription extends HookConsumerWidget {
                     val.showToastOnError(ref.read(toastProvider(context)));
                   }
                 },
-                icon: Icon(
-                  manga.inLibrary.ifNull()
-                      ? Icons.favorite_rounded
-                      : Icons.favorite_border_outlined,
-                ),
-                style: TextButton.styleFrom(
-                  foregroundColor:
-                      manga.inLibrary.ifNull() ? null : Colors.grey,
-                ),
-                label: Text(
-                  manga.inLibrary.ifNull()
-                      ? context.l10n!.inLibrary
-                      : context.l10n!.addToLibrary,
-                ),
+                isPrimary: manga.inLibrary.ifNull(),
+                primaryIcon: const Icon(Icons.favorite_rounded),
+                secondaryIcon: const Icon(Icons.favorite_border_outlined),
+                secondaryStyle:
+                    TextButton.styleFrom(foregroundColor: Colors.grey),
+                primaryLabel: Text(context.l10n!.inLibrary),
+                secondaryLabel: Text(context.l10n!.addToLibrary),
               ),
               if (manga.realUrl.isNotBlank)
                 TextButton.icon(

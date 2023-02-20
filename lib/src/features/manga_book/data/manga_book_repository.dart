@@ -73,12 +73,12 @@ class MangaBookRepository {
   Future<void> patchMangaMeta({
     required String mangaId,
     required String key,
-    required String value,
+    required dynamic value,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.patch<Chapter, Chapter?>(
         MangaUrl.meta(mangaId),
-        data: FormData.fromMap({"key": key, "value": value}),
+        data: FormData.fromMap({"key": key, "value": value.toString()}),
         cancelToken: cancelToken,
       ));
 

@@ -442,6 +442,9 @@
     "@readerNavigationLayoutRightAndLeft": {
         "description": "Radio button text for Reader Navigation Layout - Right And Left"
     },
+    "@readerPadding": {
+        "description": "Slider title text for Reader Padding"
+    },
     "@reddit": {
         "description": "Reddit app title"
     },
@@ -716,6 +719,7 @@
     "readerNavigationLayoutKindlish": "Kindle-ish",
     "readerNavigationLayoutLShaped": "L Shaped",
     "readerNavigationLayoutRightAndLeft": "Right And Left",
+    "readerPadding": "Reader Padding",
     "reddit": "Reddit",
     "refresh": "Refresh",
     "reset": "Reset",

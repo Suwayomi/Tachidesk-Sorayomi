@@ -48,12 +48,28 @@ class Manga with _$Manga {
 @freezed
 class MangaMeta with _$MangaMeta {
   factory MangaMeta({
-    @JsonKey(name: "flutter_readerNavigationLayoutInvert") bool? invertTap,
+    @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      // fromJson: MangaMeta.fromJsonToBool,
+    )
+        bool? invertTap,
     @JsonKey(name: "flutter_readerNavigationLayout")
         ReaderNavigationLayout? readerNavigationLayout,
-    @JsonKey(name: "flutter_readerMode") ReaderMode? readerMode,
+    @JsonKey(name: "flutter_readerMode")
+        ReaderMode? readerMode,
+    @JsonKey(
+      name: "flutter_readerPadding",
+      fromJson: MangaMeta.fromJsonToDouble,
+    )
+        double? readerPadding,
   }) = _MangaMeta;
 
+  static bool? fromJsonToBool(dynamic val) => val != null && val is String
+      ? val.toLowerCase().compareTo(true.toString()) == 0
+      : null;
+
+  static double? fromJsonToDouble(dynamic val) =>
+      val != null && val is String ? double.parse(val) : null;
   factory MangaMeta.fromJson(Map<String, dynamic> json) =>
       _$MangaMetaFromJson(json);
 }
@@ -61,7 +77,9 @@ class MangaMeta with _$MangaMeta {
 enum MangaMetaKeys {
   invertTap("flutter_readerNavigationLayoutInvert"),
   readerNavigationLayout("flutter_readerNavigationLayout"),
-  readerMode("flutter_readerMode");
+  readerMode("flutter_readerMode"),
+  readerPadding("flutter_readerPadding"),
+  ;
 
   const MangaMetaKeys(this.key);
   final String key;

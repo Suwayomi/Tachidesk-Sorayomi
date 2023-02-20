@@ -27,8 +27,10 @@ class EditCategoryDialog extends HookConsumerWidget {
     String categoryName,
     bool defaultCategory,
   ) async {
-    return editCategory((category ?? Category())
-        .copyWith(name: categoryName, defaultCategory: defaultCategory));
+    return editCategory((category ?? Category()).copyWith(
+      name: categoryName,
+      defaultCategory: defaultCategory,
+    ));
   }
 
   @override
