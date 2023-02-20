@@ -74,7 +74,7 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
             MultiChaptersActionIcon(
               icon: Icons.done_all_sharp,
               chapterList: chapterList,
-              change: ChapterChange(isRead: true),
+              change: ChapterChange(isRead: true, lastPageRead: 0),
               refresh: refresh,
             ),
           if (selectedList.any((e) => e.read.ifNull()))

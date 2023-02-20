@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -33,7 +32,7 @@ class ContinuousReaderMode extends HookWidget {
   final Manga manga;
   final Chapter chapter;
   final bool showSeparator;
-  final AsyncValueSetter<int>? onPageChanged;
+  final ValueSetter<int>? onPageChanged;
   final Axis scrollDirection;
   final bool reverse;
   @override
@@ -69,6 +68,7 @@ class ContinuousReaderMode extends HookWidget {
       return () => positionsListener.itemPositions.removeListener(listener);
     }, []);
     return ReaderWrapper(
+      scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
       currentIndex: currentIndex.value,
@@ -125,8 +125,7 @@ class ContinuousReaderMode extends HookWidget {
                 mangaId: "${manga.id}",
                 pageIndex: index.toString(),
               ),
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  Center(
+              progressIndicatorBuilder: (_, __, downloadProgress) => Center(
                 child: CircularProgressIndicator(
                   value: downloadProgress.progress,
                 ),
@@ -141,7 +140,7 @@ class ContinuousReaderMode extends HookWidget {
                 child: child,
               ),
             );
-            if (index == 0 || index == (chapter.pageCount ?? 1)) {
+            if (index == 0 || index == (chapter.pageCount ?? 1) - 1) {
               final separator = SizedBox(
                 width: scrollDirection != Axis.vertical
                     ? context.width * .5

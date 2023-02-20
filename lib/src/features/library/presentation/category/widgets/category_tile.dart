@@ -71,7 +71,7 @@ class CategoryTile extends HookConsumerWidget {
                       category: category,
                       editCategory: (newCategory) => ref
                           .read(categoryControllerProvider.notifier)
-                          .editCategory(category),
+                          .editCategory(newCategory),
                     ),
                   ),
                   icon: const Icon(Icons.edit_rounded),

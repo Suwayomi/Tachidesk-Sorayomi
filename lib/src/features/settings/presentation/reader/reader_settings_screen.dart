@@ -10,6 +10,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import 'widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import 'widgets/reader_mode_tile/reader_mode_tile.dart';
 import 'widgets/reader_navigation_layout_tile/reader_navigation_layout_tile.dart';
+import 'widgets/reader_padding_slider/reader_padding_slider.dart';
 
 class ReaderSettingsScreen extends StatelessWidget {
   const ReaderSettingsScreen({super.key});
@@ -17,14 +18,13 @@ class ReaderSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n!.reader),
-      ),
+      appBar: AppBar(title: Text(context.l10n!.reader)),
       body: ListView(
         children: const [
           ReaderModeTile(),
           ReaderNavigationLayoutTile(),
           ReaderInvertTapTile(),
+          ReaderPaddingSlider(),
         ],
       ),
     );

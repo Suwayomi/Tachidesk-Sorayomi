@@ -694,13 +694,17 @@ MangaMeta _$MangaMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MangaMeta {
-  @JsonKey(name: "flutter_readerNavigationLayoutInvert")
+  @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      fromJson: MangaMeta.fromJsonToBool)
   bool? get invertTap => throw _privateConstructorUsedError;
   @JsonKey(name: "flutter_readerNavigationLayout")
   ReaderNavigationLayout? get readerNavigationLayout =>
       throw _privateConstructorUsedError;
   @JsonKey(name: "flutter_readerMode")
   ReaderMode? get readerMode => throw _privateConstructorUsedError;
+  @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+  double? get readerPadding => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -714,12 +718,14 @@ abstract class $MangaMetaCopyWith<$Res> {
       _$MangaMetaCopyWithImpl<$Res, MangaMeta>;
   @useResult
   $Res call(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           ReaderNavigationLayout? readerNavigationLayout,
       @JsonKey(name: "flutter_readerMode")
-          ReaderMode? readerMode});
+          ReaderMode? readerMode,
+      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+          double? readerPadding});
 }
 
 /// @nodoc
@@ -738,6 +744,7 @@ class _$MangaMetaCopyWithImpl<$Res, $Val extends MangaMeta>
     Object? invertTap = freezed,
     Object? readerNavigationLayout = freezed,
     Object? readerMode = freezed,
+    Object? readerPadding = freezed,
   }) {
     return _then(_value.copyWith(
       invertTap: freezed == invertTap
@@ -752,6 +759,10 @@ class _$MangaMetaCopyWithImpl<$Res, $Val extends MangaMeta>
           ? _value.readerMode
           : readerMode // ignore: cast_nullable_to_non_nullable
               as ReaderMode?,
+      readerPadding: freezed == readerPadding
+          ? _value.readerPadding
+          : readerPadding // ignore: cast_nullable_to_non_nullable
+              as double?,
     ) as $Val);
   }
 }
@@ -764,12 +775,14 @@ abstract class _$$_MangaMetaCopyWith<$Res> implements $MangaMetaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           ReaderNavigationLayout? readerNavigationLayout,
       @JsonKey(name: "flutter_readerMode")
-          ReaderMode? readerMode});
+          ReaderMode? readerMode,
+      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+          double? readerPadding});
 }
 
 /// @nodoc
@@ -786,6 +799,7 @@ class __$$_MangaMetaCopyWithImpl<$Res>
     Object? invertTap = freezed,
     Object? readerNavigationLayout = freezed,
     Object? readerMode = freezed,
+    Object? readerPadding = freezed,
   }) {
     return _then(_$_MangaMeta(
       invertTap: freezed == invertTap
@@ -800,6 +814,10 @@ class __$$_MangaMetaCopyWithImpl<$Res>
           ? _value.readerMode
           : readerMode // ignore: cast_nullable_to_non_nullable
               as ReaderMode?,
+      readerPadding: freezed == readerPadding
+          ? _value.readerPadding
+          : readerPadding // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -808,18 +826,22 @@ class __$$_MangaMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MangaMeta implements _MangaMeta {
   _$_MangaMeta(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           this.invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           this.readerNavigationLayout,
       @JsonKey(name: "flutter_readerMode")
-          this.readerMode});
+          this.readerMode,
+      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+          this.readerPadding});
 
   factory _$_MangaMeta.fromJson(Map<String, dynamic> json) =>
       _$$_MangaMetaFromJson(json);
 
   @override
-  @JsonKey(name: "flutter_readerNavigationLayoutInvert")
+  @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      fromJson: MangaMeta.fromJsonToBool)
   final bool? invertTap;
   @override
   @JsonKey(name: "flutter_readerNavigationLayout")
@@ -827,10 +849,13 @@ class _$_MangaMeta implements _MangaMeta {
   @override
   @JsonKey(name: "flutter_readerMode")
   final ReaderMode? readerMode;
+  @override
+  @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+  final double? readerPadding;
 
   @override
   String toString() {
-    return 'MangaMeta(invertTap: $invertTap, readerNavigationLayout: $readerNavigationLayout, readerMode: $readerMode)';
+    return 'MangaMeta(invertTap: $invertTap, readerNavigationLayout: $readerNavigationLayout, readerMode: $readerMode, readerPadding: $readerPadding)';
   }
 
   @override
@@ -843,13 +868,15 @@ class _$_MangaMeta implements _MangaMeta {
             (identical(other.readerNavigationLayout, readerNavigationLayout) ||
                 other.readerNavigationLayout == readerNavigationLayout) &&
             (identical(other.readerMode, readerMode) ||
-                other.readerMode == readerMode));
+                other.readerMode == readerMode) &&
+            (identical(other.readerPadding, readerPadding) ||
+                other.readerPadding == readerPadding));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, invertTap, readerNavigationLayout, readerMode);
+  int get hashCode => Object.hash(runtimeType, invertTap,
+      readerNavigationLayout, readerMode, readerPadding);
 
   @JsonKey(ignore: true)
   @override
@@ -867,18 +894,22 @@ class _$_MangaMeta implements _MangaMeta {
 
 abstract class _MangaMeta implements MangaMeta {
   factory _MangaMeta(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert")
+      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
           final bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
           final ReaderNavigationLayout? readerNavigationLayout,
       @JsonKey(name: "flutter_readerMode")
-          final ReaderMode? readerMode}) = _$_MangaMeta;
+          final ReaderMode? readerMode,
+      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+          final double? readerPadding}) = _$_MangaMeta;
 
   factory _MangaMeta.fromJson(Map<String, dynamic> json) =
       _$_MangaMeta.fromJson;
 
   @override
-  @JsonKey(name: "flutter_readerNavigationLayoutInvert")
+  @JsonKey(
+      name: "flutter_readerNavigationLayoutInvert",
+      fromJson: MangaMeta.fromJsonToBool)
   bool? get invertTap;
   @override
   @JsonKey(name: "flutter_readerNavigationLayout")
@@ -886,6 +917,9 @@ abstract class _MangaMeta implements MangaMeta {
   @override
   @JsonKey(name: "flutter_readerMode")
   ReaderMode? get readerMode;
+  @override
+  @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+  double? get readerPadding;
   @override
   @JsonKey(ignore: true)
   _$$_MangaMetaCopyWith<_$_MangaMeta> get copyWith =>

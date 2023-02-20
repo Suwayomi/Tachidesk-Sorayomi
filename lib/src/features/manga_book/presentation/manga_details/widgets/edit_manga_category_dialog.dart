@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/app_sizes.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../widgets/async_buttons/async_checkbox_list_tile.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../data/manga_book_repository.dart';
@@ -32,9 +33,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            context.l10n!.editCategory,
-          ),
+          Text(context.l10n!.editCategory),
           if (title.isNotBlank)
             Text(
               title!,
@@ -59,8 +58,8 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                     context,
                     (selectedCategoryList) => Column(
                       children: [
-                        for (int index = 0; index < data!.length; index++)
-                          CheckboxListTile(
+                        for (int index = 1; index < data!.length; index++)
+                          AsyncCheckboxListTile(
                             onChanged: (value) async {
                               await AsyncValue.guard(
                                 () => value.ifNull()

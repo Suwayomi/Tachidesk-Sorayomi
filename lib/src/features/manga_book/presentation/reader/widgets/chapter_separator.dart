@@ -15,25 +15,29 @@ class ChapterSeparator extends StatelessWidget {
   final String name;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        KSizedBox.h16.size,
-        Text(
-          "$title:",
-          style: context.textTheme.titleMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-          overflow: TextOverflow.ellipsis,
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            KSizedBox.h16.size,
+            Text(
+              "$title:",
+              style: context.textTheme.titleMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              name,
+              style: context.textTheme.bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+            KSizedBox.h16.size,
+          ],
         ),
-        Text(
-          name,
-          style: context.textTheme.bodyMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-          overflow: TextOverflow.ellipsis,
-        ),
-        KSizedBox.h16.size,
-      ],
+      ),
     );
   }
 }

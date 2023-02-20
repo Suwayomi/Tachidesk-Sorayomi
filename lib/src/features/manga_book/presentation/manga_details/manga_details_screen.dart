@@ -98,7 +98,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                             ...?ref
                                 .read(
                                   mangaChapterListWithFilterProvider(
-                                      mangaId: mangaId),
+                                    mangaId: mangaId,
+                                  ),
                                 )
                                 .valueOrNull
                           ])
