@@ -17,20 +17,27 @@ class SmallScreenNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
-      onDestinationSelected: (value) =>
-          context.go(NavigationBarData.navList[value].path),
-      destinations: NavigationBarData.navList
-          .map<NavigationDestination>(
-            (e) => NavigationDestination(
-              icon: Icon(e.icon),
-              label: e.label(context),
-              selectedIcon: Icon(e.activeIcon),
-              tooltip: e.label(context),
-            ),
-          )
-          .toList(),
+    return NavigationBarTheme(
+      data: NavigationBarThemeData(
+        labelTextStyle: MaterialStateProperty.all(
+          const TextStyle(overflow: TextOverflow.ellipsis),
+        ),
+      ),
+      child: NavigationBar(
+        selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
+        onDestinationSelected: (value) =>
+            context.go(NavigationBarData.navList[value].path),
+        destinations: NavigationBarData.navList
+            .map<NavigationDestination>(
+              (e) => NavigationDestination(
+                icon: Icon(e.icon),
+                label: e.label(context),
+                selectedIcon: Icon(e.activeIcon),
+                tooltip: e.label(context),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
