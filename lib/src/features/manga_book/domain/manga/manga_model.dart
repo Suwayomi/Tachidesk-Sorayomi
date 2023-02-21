@@ -21,6 +21,7 @@ class Manga with _$Manga {
     String? description,
     int? downloadCount,
     int? chapterCount,
+    int? lastReadAt,
     Chapter? lastChapterRead,
     bool? freshData,
     List<String>? genre,
