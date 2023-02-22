@@ -359,5 +359,9 @@
   "mangaGridSize": "Tamanho do Manga na Grelha",
   "@mangaGridSize": {
     "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "readerPadding": "Preenchimento do Leitor",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
   }
 }
