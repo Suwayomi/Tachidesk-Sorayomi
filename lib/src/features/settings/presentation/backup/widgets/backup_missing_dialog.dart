@@ -19,46 +19,48 @@ class BackupMissingDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (backupMissing.missingSources.isNotBlank) ...[
-            Text(
-              context.l10n!.missingExtension,
-              style: context.textTheme.titleMedium,
-            ),
-            ...?backupMissing.missingSources?.map(
-              (e) => ListTile(
-                leading: const Icon(Icons.extension_rounded),
-                title: Text(e),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (backupMissing.missingSources.isNotBlank) ...[
+              Text(
+                context.l10n!.missingExtension,
+                style: context.textTheme.titleMedium,
               ),
-            ),
+              ...?backupMissing.missingSources?.map(
+                (e) => ListTile(
+                  leading: const Icon(Icons.extension_rounded),
+                  title: Text(e),
+                ),
+              ),
+            ],
+            if (backupMissing.missingTrackers.isNotBlank) ...[
+              Text(
+                context.l10n!.missingTrackers,
+                style: context.textTheme.titleMedium,
+              ),
+              ...?backupMissing.missingTrackers?.map(
+                (e) => ListTile(
+                  leading: const Icon(Icons.sync_rounded),
+                  title: Text(e),
+                ),
+              ),
+            ],
+            if (backupMissing.mangasMissingSources.isNotBlank) ...[
+              Text(
+                context.l10n!.mangaMissingSources,
+                style: context.textTheme.titleMedium,
+              ),
+              ...?backupMissing.mangasMissingSources?.map(
+                (e) => ListTile(
+                  leading: const Icon(Icons.explore),
+                  title: Text(e),
+                ),
+              ),
+            ]
           ],
-          if (backupMissing.missingTrackers.isNotBlank) ...[
-            Text(
-              context.l10n!.missingTrackers,
-              style: context.textTheme.titleMedium,
-            ),
-            ...?backupMissing.missingTrackers?.map(
-              (e) => ListTile(
-                leading: const Icon(Icons.sync_rounded),
-                title: Text(e),
-              ),
-            ),
-          ],
-          if (backupMissing.mangasMissingSources.isNotBlank) ...[
-            Text(
-              context.l10n!.mangaMissingSources,
-              style: context.textTheme.titleMedium,
-            ),
-            ...?backupMissing.mangasMissingSources?.map(
-              (e) => ListTile(
-                leading: const Icon(Icons.explore),
-                title: Text(e),
-              ),
-            ),
-          ]
-        ],
+        ),
       ),
       actions: [PopButton(popText: context.l10n!.close)],
     );
