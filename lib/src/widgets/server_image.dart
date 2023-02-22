@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -48,6 +49,9 @@ class ServerImage extends ConsumerWidget {
           : null,
       width: size?.width,
       fit: fit ?? BoxFit.cover,
+      imageRenderMethodForWeb: authType == AuthType.basic && basicToken != null
+          ? ImageRenderMethodForWeb.HttpGet
+          : ImageRenderMethodForWeb.HtmlImage,
       progressIndicatorBuilder: progressIndicatorBuilder == null
           ? null
           : (context, url, progress) => wrapper != null

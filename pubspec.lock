@@ -130,7 +130,7 @@ packages:
     source: hosted
     version: "3.2.3"
   cached_network_image_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: cached_network_image_platform_interface
       sha256: bb2b8403b4ccdc60ef5f25c70dead1f3d32d24b9d6117cfc087f496b178594a7
