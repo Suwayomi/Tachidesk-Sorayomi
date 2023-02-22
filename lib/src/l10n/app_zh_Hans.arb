@@ -169,7 +169,7 @@
   "@credentials": {
     "description": "Popup title and Button text to enter Authentication credentials"
   },
-  "defaultCategory": "默认添加到此库",
+  "defaultCategory": "默认添加到此分类",
   "@defaultCategory": {
     "description": "Checkbox description when creating a Category to add manga to the Category by Default"
   },
@@ -185,7 +185,7 @@
   "@deleteCategoryDescription": {
     "description": "Popup description when deleting Category"
   },
-  "deleteCategoryTitle": "确定？",
+  "deleteCategoryTitle": "确定删除分类？",
   "@deleteCategoryTitle": {
     "description": "Popup title when deleting Category"
   },
@@ -377,7 +377,7 @@
   "@noUpdatesAvailable": {
     "description": "Text to show that the user is using the latest version of the app"
   },
-  "nsfw": "在图源和插件中显示",
+  "nsfw": "显示 NSFW 插件和图源",
   "@nsfw": {
     "description": "Switch text to show/hide the nsfw extensions"
   },
@@ -419,19 +419,19 @@
   "@readerModeDefaultReader": {
     "description": "Radio button text for Reader Mode Type - Default"
   },
-  "readerModeContinuousHorizontalLTR": "从左到右",
+  "readerModeContinuousHorizontalLTR": "从左到右（连续）",
   "@readerModeContinuousHorizontalLTR": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
   },
-  "readerModeContinuousVertical": "从上到下",
+  "readerModeContinuousVertical": "从上到下（连续）",
   "@readerModeContinuousVertical": {
     "description": "Radio button text for Reader Mode Type - Continuous Vertical"
   },
-  "readerModeSingleHorizontalLTR": "从左到右",
+  "readerModeSingleHorizontalLTR": "从左到右（翻页）",
   "@readerModeSingleHorizontalLTR": {
     "description": "Radio button text for Reader Mode Type - Single Horizontal (LTR)"
   },
-  "readerModeSingleHorizontalRTL": "从右到左",
+  "readerModeSingleHorizontalRTL": "从右到左（翻页）",
   "@readerModeSingleHorizontalRTL": {
     "description": "Radio button text for Reader Mode Type - Single Horizontal (RTL)"
   },
@@ -707,7 +707,7 @@
   "@password": {
     "description": "Title text for password field"
   },
-  "readerModeContinuousHorizontalRTL": "从右到左",
+  "readerModeContinuousHorizontalRTL": "从右到左（连续）",
   "@readerModeContinuousHorizontalRTL": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
   },
