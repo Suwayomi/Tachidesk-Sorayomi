@@ -1,0 +1,6 @@
+{
+  "library": "Bibltiotek",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  }
+}
