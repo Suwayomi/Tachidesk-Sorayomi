@@ -53,10 +53,10 @@ class EditCategoryScreen extends HookConsumerWidget {
               child: ListView.builder(
                 itemCount: data!.length,
                 itemBuilder: (context, index) {
-                  if (index == 0) {
+                  final category = data[index];
+                  if (category.id == 0) {
                     return const SizedBox.shrink();
                   } else {
-                    final category = data[index];
                     return CategoryTile(
                       key: ValueKey(category.id),
                       minOrderIndex: 1,

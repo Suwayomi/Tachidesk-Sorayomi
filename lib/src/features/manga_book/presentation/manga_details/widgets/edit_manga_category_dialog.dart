@@ -47,7 +47,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
       content: categoryList.showUiWhenData(
         context,
         (data) => ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: context.height * .4),
+          constraints: BoxConstraints(maxHeight: context.height * .7),
           child: data.isBlank
               ? Padding(
                   padding: KEdgeInsets.h16.size,
@@ -59,31 +59,34 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                     (selectedCategoryList) => Column(
                       children: [
                         for (int index = 1; index < data!.length; index++)
-                          AsyncCheckboxListTile(
-                            onChanged: (value) async {
-                              await AsyncValue.guard(
-                                () => value.ifNull()
-                                    ? ref
-                                        .read(mangaBookRepositoryProvider)
-                                        .addMangaToCategory(
-                                          mangaId,
-                                          "${data[index].id!}",
-                                        )
-                                    : ref
-                                        .read(mangaBookRepositoryProvider)
-                                        .removeMangaFromCategory(
-                                          mangaId,
-                                          "${data[index].id!}",
-                                        ),
-                              );
-                              await ref.read(provider.notifier).refresh();
-                            },
-                            value: selectedCategoryList?.containsKey(
-                                  "${data[index].id}",
-                                ) ??
-                                false,
-                            title: Text(data[index].name ?? ""),
-                          ),
+                          if (data[index].id == 0)
+                            const SizedBox.shrink()
+                          else
+                            AsyncCheckboxListTile(
+                              onChanged: (value) async {
+                                await AsyncValue.guard(
+                                  () => value.ifNull()
+                                      ? ref
+                                          .read(mangaBookRepositoryProvider)
+                                          .addMangaToCategory(
+                                            mangaId,
+                                            "${data[index].id!}",
+                                          )
+                                      : ref
+                                          .read(mangaBookRepositoryProvider)
+                                          .removeMangaFromCategory(
+                                            mangaId,
+                                            "${data[index].id!}",
+                                          ),
+                                );
+                                await ref.read(provider.notifier).refresh();
+                              },
+                              value: selectedCategoryList?.containsKey(
+                                    "${data[index].id}",
+                                  ) ??
+                                  false,
+                              title: Text(data[index].name ?? ""),
+                            ),
                       ],
                     ),
                   ),
