@@ -15,18 +15,18 @@ class ClipboardListTile extends ConsumerWidget {
   const ClipboardListTile({
     super.key,
     required this.title,
-    required this.subtitle,
+    required this.value,
   });
   final String title;
-  final String? subtitle;
+  final String? value;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       title: Text(title),
-      subtitle: subtitle.isNotBlank ? Text(subtitle!) : null,
-      onTap: subtitle.isNotBlank
+      subtitle: value.isNotBlank ? Text(value!) : null,
+      onTap: value.isNotBlank
           ? () {
-              final msg = "$title: $subtitle";
+              final msg = "$title: $value";
               Clipboard.setData(
                 ClipboardData(text: msg),
               );
