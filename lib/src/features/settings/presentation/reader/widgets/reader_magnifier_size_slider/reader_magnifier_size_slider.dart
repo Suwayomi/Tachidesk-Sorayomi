@@ -18,77 +18,78 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/slider_setting_tile/slider_setting_tile.dart';
 
-part 'reader_padding_slider.g.dart';
+part 'reader_magnifier_size_slider.g.dart';
 
 @riverpod
-class ReaderPaddingKey extends _$ReaderPaddingKey
+class ReaderMagnifierSizeKey extends _$ReaderMagnifierSizeKey
     with SharedPreferenceClientMixin<double> {
   @override
   double? build() => initialize(
         ref,
-        initial: DBKeys.readerPadding.initial,
-        key: DBKeys.readerPadding.name,
+        initial: DBKeys.readerMagnifierSize.initial,
+        key: DBKeys.readerMagnifierSize.name,
       );
 }
 
-class ReaderPaddingSlider extends ConsumerWidget {
-  const ReaderPaddingSlider({super.key});
+class ReaderMagnifierSizeSlider extends ConsumerWidget {
+  const ReaderMagnifierSizeSlider({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final double readerPadding =
-        ref.watch(readerPaddingKeyProvider) ?? DBKeys.readerPadding.initial;
+    final double readerMagnifierSize =
+        ref.watch(readerMagnifierSizeKeyProvider) ??
+            DBKeys.readerMagnifierSize.initial;
     return SliderSettingTile(
-      icon: Icons.width_wide_rounded,
-      title: context.l10n!.readerPadding,
-      value: readerPadding,
-      labelGenerator: (val) => (val * 2.5).toStringAsFixed(2),
-      onChanged: ref.read(readerPaddingKeyProvider.notifier).update,
-      defaultValue: DBKeys.readerPadding.initial,
-      min: 0,
-      max: 0.4,
+      icon: Icons.search,
+      title: context.l10n!.readerMagnifierSize,
+      value: readerMagnifierSize,
+      labelGenerator: (val) => val.toStringAsFixed(2),
+      onChanged: ref.read(readerMagnifierSizeKeyProvider.notifier).update,
+      defaultValue: DBKeys.readerMagnifierSize.initial,
+      min: 1,
+      max: 5,
     );
   }
 }
 
-class AsyncReaderPaddingSlider extends HookConsumerWidget {
-  const AsyncReaderPaddingSlider({
+class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
+  const AsyncReaderMagnifierSizeSlider({
     super.key,
     required this.onChanged,
-    required this.readerPadding,
+    required this.readerMagnifierSize,
   });
 
   final ValueSetter<double> onChanged;
-  final ValueNotifier<double> readerPadding;
+  final ValueNotifier<double> readerMagnifierSize;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final debounce = useRef<Timer?>(null);
 
     final onDebounceChanged = useCallback<ValueSetter<double>>(
-      (double paddingValue) async {
-        readerPadding.value = paddingValue;
+      (double magnifierSizeValue) async {
+        readerMagnifierSize.value = magnifierSizeValue;
         final finalDebounce = debounce.value;
         if ((finalDebounce?.isActive).ifNull()) {
           finalDebounce?.cancel();
         }
         debounce.value = Timer(
           kDebounceDuration,
-          () => onChanged(paddingValue),
+          () => onChanged(magnifierSizeValue),
         );
         return;
       },
       [],
     );
     return SliderSettingTile(
-      icon: Icons.width_wide_rounded,
-      title: context.l10n!.readerPadding,
-      value: readerPadding.value,
-      labelGenerator: (val) => (val * 2.5).toStringAsFixed(2),
+      icon: Icons.search,
+      title: context.l10n!.readerMagnifierSize,
+      value: readerMagnifierSize.value,
+      labelGenerator: (val) => val.toStringAsFixed(2),
       onChanged: onDebounceChanged,
-      defaultValue: DBKeys.readerPadding.initial,
-      min: 0,
-      max: 0.4,
+      defaultValue: DBKeys.readerMagnifierSize.initial,
+      min: 1,
+      max: 5,
     );
   }
 }

@@ -442,6 +442,9 @@
     "@readerNavigationLayoutRightAndLeft": {
         "description": "Radio button text for Reader Navigation Layout - Right And Left"
     },
+    "@readerMagnifierSize": {
+        "description": "Slider title text for Reader Magnifier Size"
+    },
     "@readerPadding": {
         "description": "Slider title text for Reader Padding"
     },
@@ -720,6 +723,7 @@
     "readerNavigationLayoutLShaped": "L Shaped",
     "readerNavigationLayoutRightAndLeft": "Right And Left",
     "readerPadding": "Reader Padding",
+    "readerMagnifierSize": "Magnifier Size",
     "reddit": "Reddit",
     "refresh": "Refresh",
     "reset": "Reset",

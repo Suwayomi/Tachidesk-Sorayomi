@@ -18,6 +18,7 @@ enum DBKeys {
   basicCredentials(null),
   readerMode(ReaderMode.webtoon),
   readerPadding(0.0),
+  readerMagnifierSize(1.0),
   readerNavigationLayout(ReaderNavigationLayout.disabled),
   invertTap(false),
   showNSFW(true),

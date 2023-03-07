@@ -20,12 +20,10 @@ class CategoryTile extends HookConsumerWidget {
   const CategoryTile({
     super.key,
     required this.category,
-    required this.minOrderIndex,
     required this.maxOrderIndex,
   });
 
   final Category category;
-  final int minOrderIndex;
   final int maxOrderIndex;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,7 +42,7 @@ class CategoryTile extends HookConsumerWidget {
               children: [
                 IconButton(
                   visualDensity: VisualDensity.compact,
-                  onPressed: order <= minOrderIndex
+                  onPressed: order <= 1
                       ? null
                       : () => ref
                           .read(categoryControllerProvider.notifier)

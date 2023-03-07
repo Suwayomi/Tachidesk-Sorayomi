@@ -76,6 +76,8 @@ _$_MangaMeta _$$_MangaMetaFromJson(Map<String, dynamic> json) => _$_MangaMeta(
       readerMode:
           $enumDecodeNullable(_$ReaderModeEnumMap, json['flutter_readerMode']),
       readerPadding: MangaMeta.fromJsonToDouble(json['flutter_readerPadding']),
+      readerMagnifierSize:
+          MangaMeta.fromJsonToDouble(json['flutter_readerMagnifierSize']),
     );
 
 Map<String, dynamic> _$$_MangaMetaToJson(_$_MangaMeta instance) =>
@@ -85,6 +87,7 @@ Map<String, dynamic> _$$_MangaMetaToJson(_$_MangaMeta instance) =>
           _$ReaderNavigationLayoutEnumMap[instance.readerNavigationLayout],
       'flutter_readerMode': _$ReaderModeEnumMap[instance.readerMode],
       'flutter_readerPadding': instance.readerPadding,
+      'flutter_readerMagnifierSize': instance.readerMagnifierSize,
     };
 
 const _$ReaderNavigationLayoutEnumMap = {

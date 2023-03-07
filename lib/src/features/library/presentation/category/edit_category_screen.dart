@@ -40,7 +40,8 @@ class EditCategoryScreen extends HookConsumerWidget {
       body: categoryList.showUiWhenData(
         context,
         (data) {
-          if (data.isBlank || data.isSingletonList) {
+          if (data.isBlank ||
+              (data.isSingletonList && data?.firstOrNull?.id == 0)) {
             return Emoticons(
               text: context.l10n!.noCategoriesFound,
               button: TextButton(
@@ -49,9 +50,10 @@ class EditCategoryScreen extends HookConsumerWidget {
               ),
             );
           } else {
+            final isDefaultInCategoryList = data!.first.id == 0;
             return RefreshIndicator(
               child: ListView.builder(
-                itemCount: data!.length,
+                itemCount: data.length,
                 itemBuilder: (context, index) {
                   final category = data[index];
                   if (category.id == 0) {
@@ -59,8 +61,9 @@ class EditCategoryScreen extends HookConsumerWidget {
                   } else {
                     return CategoryTile(
                       key: ValueKey(category.id),
-                      minOrderIndex: 1,
-                      maxOrderIndex: data.length - 1,
+                      maxOrderIndex: isDefaultInCategoryList
+                          ? data.length - 1
+                          : data.length,
                       category: category,
                     );
                   }
