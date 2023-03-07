@@ -9,7 +9,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
+import '../../../../../utils/mixin/state_provider_mixin.dart';
 import '../../../../settings/presentation/browse/widgets/show_nsfw_switch/show_nsfw_switch.dart';
 import '../../../data/extension_repository/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
@@ -72,7 +73,7 @@ List<String> extensionFilterLangList(ExtensionFilterLangListRef ref) {
 
 @riverpod
 class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
-    with SharedPreferenceClient<List<String>> {
+    with SharedPreferenceClientMixin<List<String>> {
   @override
   List<String>? build() => initialize(
         ref,
@@ -113,7 +114,7 @@ AsyncValue<Map<String, List<Extension>>> extensionMapFilteredAndQueried(
 }
 
 @riverpod
-class ExtensionQuery extends _$ExtensionQuery {
+class ExtensionQuery extends _$ExtensionQuery with StateProviderMixin<String?> {
   @override
   String? build() => null;
 }

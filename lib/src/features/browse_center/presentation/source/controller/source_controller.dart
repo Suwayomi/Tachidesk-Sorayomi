@@ -9,7 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/source/source_model.dart';
 
@@ -67,7 +67,7 @@ AsyncValue<Map<String, List<Source>>?> sourceMapFiltered(
 
 @riverpod
 class SourceLanguageFilter extends _$SourceLanguageFilter
-    with SharedPreferenceClient<List<String>> {
+    with SharedPreferenceClientMixin<List<String>> {
   @override
   List<String>? build() => initialize(
         ref,
@@ -78,7 +78,7 @@ class SourceLanguageFilter extends _$SourceLanguageFilter
 
 @riverpod
 class SourceLastUsed extends _$SourceLastUsed
-    with SharedPreferenceClient<String> {
+    with SharedPreferenceClientMixin<String> {
   @override
   String? build() => initialize(
         ref,

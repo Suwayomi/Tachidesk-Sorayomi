@@ -6,39 +6,6 @@ part of 'source_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sourceLanguageFilterHash() =>
-    r'85534834566ef4108261b5fd629aa9129a6937b7';
-
-/// See also [SourceLanguageFilter].
-@ProviderFor(SourceLanguageFilter)
-final sourceLanguageFilterProvider =
-    AutoDisposeNotifierProvider<SourceLanguageFilter, List<String>?>.internal(
-  SourceLanguageFilter.new,
-  name: r'sourceLanguageFilterProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$sourceLanguageFilterHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SourceLanguageFilter = AutoDisposeNotifier<List<String>?>;
-String _$sourceLastUsedHash() => r'b8f039f84d5b077393b2646530f97db5085f2e05';
-
-/// See also [SourceLastUsed].
-@ProviderFor(SourceLastUsed)
-final sourceLastUsedProvider =
-    AutoDisposeNotifierProvider<SourceLastUsed, String?>.internal(
-  SourceLastUsed.new,
-  name: r'sourceLastUsedProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$sourceLastUsedHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SourceLastUsed = AutoDisposeNotifier<String?>;
 String _$sourceListHash() => r'80d37bd602ce3e229ac64c39743cee84d94fd1f9';
 
 /// See also [sourceList].
@@ -102,4 +69,37 @@ final sourceMapFilteredProvider =
 
 typedef SourceMapFilteredRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>?>>;
+String _$sourceLanguageFilterHash() =>
+    r'a5a8701a5d14b4c784744131113eb56cf1979dbc';
+
+/// See also [SourceLanguageFilter].
+@ProviderFor(SourceLanguageFilter)
+final sourceLanguageFilterProvider =
+    AutoDisposeNotifierProvider<SourceLanguageFilter, List<String>?>.internal(
+  SourceLanguageFilter.new,
+  name: r'sourceLanguageFilterProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sourceLanguageFilterHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SourceLanguageFilter = AutoDisposeNotifier<List<String>?>;
+String _$sourceLastUsedHash() => r'afe764b063f80d11ed033dd6386ad8133b2c0fcd';
+
+/// See also [SourceLastUsed].
+@ProviderFor(SourceLastUsed)
+final sourceLastUsedProvider =
+    AutoDisposeNotifierProvider<SourceLastUsed, String?>.internal(
+  SourceLastUsed.new,
+  name: r'sourceLastUsedProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sourceLastUsedHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SourceLastUsed = AutoDisposeNotifier<String?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

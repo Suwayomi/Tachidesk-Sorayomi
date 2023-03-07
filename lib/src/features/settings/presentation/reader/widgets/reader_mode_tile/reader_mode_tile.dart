@@ -13,14 +13,14 @@ import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../../widgets/radio_list_popup.dart';
 
 part 'reader_mode_tile.g.dart';
 
 @riverpod
 class ReaderModeKey extends _$ReaderModeKey
-    with SharedPreferenceEnumClient<ReaderMode> {
+    with SharedPreferenceEnumClientMixin<ReaderMode> {
   @override
   ReaderMode? build() => initialize(
         ref,

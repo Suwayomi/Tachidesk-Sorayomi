@@ -9,14 +9,10 @@ import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../extensions/custom_extensions.dart';
+import '../../global_providers/global_providers.dart';
+import '../extensions/custom_extensions.dart';
 
-part 'shared_preferences_client.g.dart';
-
-@riverpod
-SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
-
-/// [SharedPreferenceClient] is a mixin to add [_get] and [update] functions to
+/// [SharedPreferenceClientMixin] is a mixin to add [_get] and [update] functions to
 /// the provider.
 ///
 /// * Remember to use [ initialize ] function to assign [_key], [_client]
@@ -25,7 +21,7 @@ SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
 /// * optionally provide [_initial] for giving initial value to the [_key].
 ///
 /// * [T] should not be a Nullable Type.
-mixin SharedPreferenceClient<T extends Object> {
+mixin SharedPreferenceClientMixin<T extends Object> {
   late final String _key;
   late final SharedPreferences _client;
   late final T? _initial;
@@ -82,12 +78,12 @@ mixin SharedPreferenceClient<T extends Object> {
   }
 }
 
-/// [SharedPreferenceEnumClient] is a mixin to add [get] and [update] functions to
+/// [SharedPreferenceEnumClientMixin] is a mixin to add [get] and [update] functions to
 /// the provider.
 ///
 /// * Remember to initialize [_key], [_client], [_enumList] in [build] function of provider
 /// * optionally provide [_initial] for giving initial value to the [_key].
-mixin SharedPreferenceEnumClient<T extends Enum> {
+mixin SharedPreferenceEnumClientMixin<T extends Enum> {
   late String _key;
   late SharedPreferences _client;
   T? _initial;

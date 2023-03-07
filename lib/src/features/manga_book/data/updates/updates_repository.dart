@@ -8,7 +8,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -97,9 +96,12 @@ Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
   return result;
 }
 
-//TODO SUPPORT FOR RIVERPOD STREAM GENERATOR https://github.com/rrousselGit/riverpod/issues/1663
-final updatesSocketProvider = StreamProvider.autoDispose<UpdateStatus>((ref) {
-  final pair = ref.watch(updatesRepositoryProvider).socketUpdates();
-  ref.onDispose(pair.second);
-  return pair.first;
-});
+@riverpod
+class UpdatesSocket extends _$UpdatesSocket {
+  @override
+  Stream<UpdateStatus> build() {
+    final pair = ref.watch(updatesRepositoryProvider).socketUpdates();
+    ref.onDispose(pair.second);
+    return pair.first;
+  }
+}

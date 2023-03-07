@@ -6,8 +6,7 @@ part of 'source_manga_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sourceMangaFilterListHash() =>
-    r'531b3942c3a4430a0439d920a49f5d9a1b0cf8fe';
+String _$sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,131 +29,6 @@ class _SystemHash {
   }
 }
 
-abstract class _$SourceMangaFilterList
-    extends BuildlessAutoDisposeNotifier<AsyncValue<List<Filter>?>> {
-  late final String sourceId;
-  late final List<Filter>? filter;
-
-  AsyncValue<List<Filter>?> build(
-    String sourceId, {
-    List<Filter>? filter,
-  });
-}
-
-/// See also [SourceMangaFilterList].
-@ProviderFor(SourceMangaFilterList)
-const sourceMangaFilterListProvider = SourceMangaFilterListFamily();
-
-/// See also [SourceMangaFilterList].
-class SourceMangaFilterListFamily extends Family<AsyncValue<List<Filter>?>> {
-  /// See also [SourceMangaFilterList].
-  const SourceMangaFilterListFamily();
-
-  /// See also [SourceMangaFilterList].
-  SourceMangaFilterListProvider call(
-    String sourceId, {
-    List<Filter>? filter,
-  }) {
-    return SourceMangaFilterListProvider(
-      sourceId,
-      filter: filter,
-    );
-  }
-
-  @override
-  SourceMangaFilterListProvider getProviderOverride(
-    covariant SourceMangaFilterListProvider provider,
-  ) {
-    return call(
-      provider.sourceId,
-      filter: provider.filter,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'sourceMangaFilterListProvider';
-}
-
-/// See also [SourceMangaFilterList].
-class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
-    SourceMangaFilterList, AsyncValue<List<Filter>?>> {
-  /// See also [SourceMangaFilterList].
-  SourceMangaFilterListProvider(
-    this.sourceId, {
-    this.filter,
-  }) : super.internal(
-          () => SourceMangaFilterList()
-            ..sourceId = sourceId
-            ..filter = filter,
-          from: sourceMangaFilterListProvider,
-          name: r'sourceMangaFilterListProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$sourceMangaFilterListHash,
-          dependencies: SourceMangaFilterListFamily._dependencies,
-          allTransitiveDependencies:
-              SourceMangaFilterListFamily._allTransitiveDependencies,
-        );
-
-  final String sourceId;
-  final List<Filter>? filter;
-
-  @override
-  bool operator ==(Object other) {
-    return other is SourceMangaFilterListProvider &&
-        other.sourceId == sourceId &&
-        other.filter == filter;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, sourceId.hashCode);
-    hash = _SystemHash.combine(hash, filter.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-
-  @override
-  AsyncValue<List<Filter>?> runNotifierBuild(
-    covariant SourceMangaFilterList notifier,
-  ) {
-    return notifier.build(
-      sourceId,
-      filter: filter,
-    );
-  }
-}
-
-String _$sourceDisplayModeHash() => r'6c61e478095507fe31213a1d671f0f6e20229131';
-
-/// See also [SourceDisplayMode].
-@ProviderFor(SourceDisplayMode)
-final sourceDisplayModeProvider =
-    AutoDisposeNotifierProvider<SourceDisplayMode, DisplayMode?>.internal(
-  SourceDisplayMode.new,
-  name: r'sourceDisplayModeProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$sourceDisplayModeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$SourceDisplayMode = AutoDisposeNotifier<DisplayMode?>;
-String _$sourceHash() => r'02ebbe306c0a96174aa221c8e90e9f2c96f398ee';
 typedef SourceRef = AutoDisposeFutureProviderRef<Source?>;
 
 /// See also [source].
@@ -321,4 +195,132 @@ class BaseSourceMangaFilterListProvider
     return _SystemHash.finish(hash);
   }
 }
+
+String _$sourceMangaFilterListHash() =>
+    r'531b3942c3a4430a0439d920a49f5d9a1b0cf8fe';
+
+abstract class _$SourceMangaFilterList
+    extends BuildlessAutoDisposeNotifier<AsyncValue<List<Filter>?>> {
+  late final String sourceId;
+  late final List<Filter>? filter;
+
+  AsyncValue<List<Filter>?> build(
+    String sourceId, {
+    List<Filter>? filter,
+  });
+}
+
+/// See also [SourceMangaFilterList].
+@ProviderFor(SourceMangaFilterList)
+const sourceMangaFilterListProvider = SourceMangaFilterListFamily();
+
+/// See also [SourceMangaFilterList].
+class SourceMangaFilterListFamily extends Family<AsyncValue<List<Filter>?>> {
+  /// See also [SourceMangaFilterList].
+  const SourceMangaFilterListFamily();
+
+  /// See also [SourceMangaFilterList].
+  SourceMangaFilterListProvider call(
+    String sourceId, {
+    List<Filter>? filter,
+  }) {
+    return SourceMangaFilterListProvider(
+      sourceId,
+      filter: filter,
+    );
+  }
+
+  @override
+  SourceMangaFilterListProvider getProviderOverride(
+    covariant SourceMangaFilterListProvider provider,
+  ) {
+    return call(
+      provider.sourceId,
+      filter: provider.filter,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'sourceMangaFilterListProvider';
+}
+
+/// See also [SourceMangaFilterList].
+class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
+    SourceMangaFilterList, AsyncValue<List<Filter>?>> {
+  /// See also [SourceMangaFilterList].
+  SourceMangaFilterListProvider(
+    this.sourceId, {
+    this.filter,
+  }) : super.internal(
+          () => SourceMangaFilterList()
+            ..sourceId = sourceId
+            ..filter = filter,
+          from: sourceMangaFilterListProvider,
+          name: r'sourceMangaFilterListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$sourceMangaFilterListHash,
+          dependencies: SourceMangaFilterListFamily._dependencies,
+          allTransitiveDependencies:
+              SourceMangaFilterListFamily._allTransitiveDependencies,
+        );
+
+  final String sourceId;
+  final List<Filter>? filter;
+
+  @override
+  bool operator ==(Object other) {
+    return other is SourceMangaFilterListProvider &&
+        other.sourceId == sourceId &&
+        other.filter == filter;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, sourceId.hashCode);
+    hash = _SystemHash.combine(hash, filter.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+
+  @override
+  AsyncValue<List<Filter>?> runNotifierBuild(
+    covariant SourceMangaFilterList notifier,
+  ) {
+    return notifier.build(
+      sourceId,
+      filter: filter,
+    );
+  }
+}
+
+String _$sourceDisplayModeHash() => r'363b2f9b0683cd1abea761e244ae9362260f4c5e';
+
+/// See also [SourceDisplayMode].
+@ProviderFor(SourceDisplayMode)
+final sourceDisplayModeProvider =
+    AutoDisposeNotifierProvider<SourceDisplayMode, DisplayMode?>.internal(
+  SourceDisplayMode.new,
+  name: r'sourceDisplayModeProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sourceDisplayModeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SourceDisplayMode = AutoDisposeNotifier<DisplayMode?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -11,12 +11,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../constants/db_keys.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 
 part 'show_nsfw_switch.g.dart';
 
 @riverpod
-class ShowNSFW extends _$ShowNSFW with SharedPreferenceClient<bool> {
+class ShowNSFW extends _$ShowNSFW with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,

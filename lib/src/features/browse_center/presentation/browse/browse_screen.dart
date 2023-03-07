@@ -87,7 +87,7 @@ class BrowseScreen extends HookConsumerWidget {
                           initialText: ref.read(extensionQueryProvider),
                           onChanged: (val) => ref
                               .read(extensionQueryProvider.notifier)
-                              .state = val,
+                              .update(val),
                           onClose: () => showSearch.value = false,
                         ),
                 ),

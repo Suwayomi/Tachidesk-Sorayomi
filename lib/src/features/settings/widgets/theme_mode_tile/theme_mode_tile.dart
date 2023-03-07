@@ -12,14 +12,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../constants/db_keys.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/radio_list_popup.dart';
 
 part 'theme_mode_tile.g.dart';
 
 @riverpod
 class ThemeModeKey extends _$ThemeModeKey
-    with SharedPreferenceEnumClient<ThemeMode> {
+    with SharedPreferenceEnumClientMixin<ThemeMode> {
   @override
   ThemeMode? build() {
     return initialize(

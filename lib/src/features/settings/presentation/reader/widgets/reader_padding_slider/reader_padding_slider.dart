@@ -14,13 +14,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../constants/db_keys.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 
 part 'reader_padding_slider.g.dart';
 
 @riverpod
 class ReaderPaddingKey extends _$ReaderPaddingKey
-    with SharedPreferenceClient<double> {
+    with SharedPreferenceClientMixin<double> {
   @override
   double? build() => initialize(
         ref,

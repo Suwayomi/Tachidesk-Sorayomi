@@ -7,7 +7,7 @@ part of 'reader_navigation_layout_tile.dart';
 // **************************************************************************
 
 String _$readerNavigationLayoutKeyHash() =>
-    r'e6bea91f9a9f8bbd473ca3a29f1bcbbe792f4fac';
+    r'aa37cea42eb029b459e56aad6a1803fa139d7db0';
 
 /// See also [ReaderNavigationLayoutKey].
 @ProviderFor(ReaderNavigationLayoutKey)

@@ -10,8 +10,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/features/about/presentation/about/controllers/about_controller.dart';
+import 'src/global_providers/global_providers.dart';
 import 'src/sorayomi.dart';
-import 'src/utils/storage/local/shared_preferences_client.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

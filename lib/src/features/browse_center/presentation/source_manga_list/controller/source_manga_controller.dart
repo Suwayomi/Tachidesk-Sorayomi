@@ -11,7 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../data/source_repository/source_repository.dart';
 import '../../../domain/filter/filter_model.dart';
 import '../../../domain/source/source_model.dart';
@@ -75,7 +75,7 @@ class SourceMangaFilterList extends _$SourceMangaFilterList {
 
 @riverpod
 class SourceDisplayMode extends _$SourceDisplayMode
-    with SharedPreferenceEnumClient<DisplayMode> {
+    with SharedPreferenceEnumClientMixin<DisplayMode> {
   @override
   DisplayMode? build() => initialize(
         ref,

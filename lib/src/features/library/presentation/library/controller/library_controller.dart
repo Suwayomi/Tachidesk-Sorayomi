@@ -10,7 +10,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
+import '../../../../../utils/mixin/state_provider_mixin.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../data/category/category_repository.dart';
 
@@ -105,14 +106,14 @@ class CategoryMangaListWithQueryAndFilter
 }
 
 @riverpod
-class LibraryQuery extends _$LibraryQuery {
+class LibraryQuery extends _$LibraryQuery with StateProviderMixin<String?> {
   @override
   String? build() => null;
 }
 
 @riverpod
 class LibraryMangaFilterDownloaded extends _$LibraryMangaFilterDownloaded
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -123,7 +124,7 @@ class LibraryMangaFilterDownloaded extends _$LibraryMangaFilterDownloaded
 
 @riverpod
 class LibraryMangaFilterUnread extends _$LibraryMangaFilterUnread
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -134,7 +135,7 @@ class LibraryMangaFilterUnread extends _$LibraryMangaFilterUnread
 
 @riverpod
 class LibraryMangaFilterCompleted extends _$LibraryMangaFilterCompleted
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -145,7 +146,7 @@ class LibraryMangaFilterCompleted extends _$LibraryMangaFilterCompleted
 
 @riverpod
 class LibraryMangaSort extends _$LibraryMangaSort
-    with SharedPreferenceEnumClient<MangaSort> {
+    with SharedPreferenceEnumClientMixin<MangaSort> {
   @override
   MangaSort? build() => initialize(
         ref,
@@ -157,7 +158,7 @@ class LibraryMangaSort extends _$LibraryMangaSort
 
 @riverpod
 class LibraryMangaSortDirection extends _$LibraryMangaSortDirection
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -168,7 +169,7 @@ class LibraryMangaSortDirection extends _$LibraryMangaSortDirection
 
 @riverpod
 class LibraryDisplayMode extends _$LibraryDisplayMode
-    with SharedPreferenceEnumClient<DisplayMode> {
+    with SharedPreferenceEnumClientMixin<DisplayMode> {
   @override
   DisplayMode? build() => initialize(
         ref,

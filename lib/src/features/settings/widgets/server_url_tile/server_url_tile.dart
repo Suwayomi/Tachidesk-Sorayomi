@@ -13,13 +13,13 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../constants/db_keys.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/pop_button.dart';
 
 part 'server_url_tile.g.dart';
 
 @riverpod
-class ServerUrl extends _$ServerUrl with SharedPreferenceClient<String> {
+class ServerUrl extends _$ServerUrl with SharedPreferenceClientMixin<String> {
   @override
   String? build() => initialize(
         ref,

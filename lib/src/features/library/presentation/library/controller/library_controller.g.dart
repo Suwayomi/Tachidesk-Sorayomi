@@ -6,8 +6,7 @@ part of 'library_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoryMangaListWithQueryAndFilterHash() =>
-    r'c7c4c6d4717fa47e57d0ada372d733ab30caa986';
+String _$categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,6 +28,91 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+typedef CategoryMangaListRef = AutoDisposeFutureProviderRef<List<Manga>?>;
+
+/// See also [categoryMangaList].
+@ProviderFor(categoryMangaList)
+const categoryMangaListProvider = CategoryMangaListFamily();
+
+/// See also [categoryMangaList].
+class CategoryMangaListFamily extends Family<AsyncValue<List<Manga>?>> {
+  /// See also [categoryMangaList].
+  const CategoryMangaListFamily();
+
+  /// See also [categoryMangaList].
+  CategoryMangaListProvider call(
+    int categoryId,
+  ) {
+    return CategoryMangaListProvider(
+      categoryId,
+    );
+  }
+
+  @override
+  CategoryMangaListProvider getProviderOverride(
+    covariant CategoryMangaListProvider provider,
+  ) {
+    return call(
+      provider.categoryId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'categoryMangaListProvider';
+}
+
+/// See also [categoryMangaList].
+class CategoryMangaListProvider
+    extends AutoDisposeFutureProvider<List<Manga>?> {
+  /// See also [categoryMangaList].
+  CategoryMangaListProvider(
+    this.categoryId,
+  ) : super.internal(
+          (ref) => categoryMangaList(
+            ref,
+            categoryId,
+          ),
+          from: categoryMangaListProvider,
+          name: r'categoryMangaListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$categoryMangaListHash,
+          dependencies: CategoryMangaListFamily._dependencies,
+          allTransitiveDependencies:
+              CategoryMangaListFamily._allTransitiveDependencies,
+        );
+
+  final int categoryId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is CategoryMangaListProvider && other.categoryId == categoryId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, categoryId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$categoryMangaListWithQueryAndFilterHash() =>
+    r'c7c4c6d4717fa47e57d0ada372d733ab30caa986';
 
 abstract class _$CategoryMangaListWithQueryAndFilter
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<Manga>?>> {
@@ -129,7 +213,7 @@ class CategoryMangaListWithQueryAndFilterProvider
   }
 }
 
-String _$libraryQueryHash() => r'84087050ef9f75c04375c648a971b67e3b0b28ba';
+String _$libraryQueryHash() => r'e9f6238da1c3475448f4839b567e65833e7e151e';
 
 /// See also [LibraryQuery].
 @ProviderFor(LibraryQuery)
@@ -145,7 +229,7 @@ final libraryQueryProvider =
 
 typedef _$LibraryQuery = AutoDisposeNotifier<String?>;
 String _$libraryMangaFilterDownloadedHash() =>
-    r'173f948640462772ba13cd4efb03b750a4b50f50';
+    r'4b5c2ca8b1f0321d704f8676676f62eb3eb21888';
 
 /// See also [LibraryMangaFilterDownloaded].
 @ProviderFor(LibraryMangaFilterDownloaded)
@@ -162,7 +246,7 @@ final libraryMangaFilterDownloadedProvider =
 
 typedef _$LibraryMangaFilterDownloaded = AutoDisposeNotifier<bool?>;
 String _$libraryMangaFilterUnreadHash() =>
-    r'6c168a40a9e5599d8f2cb02915ff1546b5f3c531';
+    r'26994046eb38ff69b5ea7efc5b1878e59308eddb';
 
 /// See also [LibraryMangaFilterUnread].
 @ProviderFor(LibraryMangaFilterUnread)
@@ -179,7 +263,7 @@ final libraryMangaFilterUnreadProvider =
 
 typedef _$LibraryMangaFilterUnread = AutoDisposeNotifier<bool?>;
 String _$libraryMangaFilterCompletedHash() =>
-    r'1d959032909f57d964b60cf6f86efd4e2b4960e9';
+    r'286c538b222f4212f1c1b1d25c6205db9e1ef092';
 
 /// See also [LibraryMangaFilterCompleted].
 @ProviderFor(LibraryMangaFilterCompleted)
@@ -195,7 +279,7 @@ final libraryMangaFilterCompletedProvider =
 );
 
 typedef _$LibraryMangaFilterCompleted = AutoDisposeNotifier<bool?>;
-String _$libraryMangaSortHash() => r'88a025259f3957cb221cd1237c6e118d546eec64';
+String _$libraryMangaSortHash() => r'0442be97843a0ef97ead6592820af33162ecc11e';
 
 /// See also [LibraryMangaSort].
 @ProviderFor(LibraryMangaSort)
@@ -212,7 +296,7 @@ final libraryMangaSortProvider =
 
 typedef _$LibraryMangaSort = AutoDisposeNotifier<MangaSort?>;
 String _$libraryMangaSortDirectionHash() =>
-    r'e75ba9131a09c697f6bc6488347051de72249cb2';
+    r'70819ff0294ca866e94d229cce3bf75d7ed614a0';
 
 /// See also [LibraryMangaSortDirection].
 @ProviderFor(LibraryMangaSortDirection)
@@ -229,7 +313,7 @@ final libraryMangaSortDirectionProvider =
 
 typedef _$LibraryMangaSortDirection = AutoDisposeNotifier<bool?>;
 String _$libraryDisplayModeHash() =>
-    r'c7adbf4cb2db2c67b7d10e75bb14404e05551ab4';
+    r'59e6744684315ec99998bb19f91c6c85c6659161';
 
 /// See also [LibraryDisplayMode].
 @ProviderFor(LibraryDisplayMode)
@@ -245,86 +329,4 @@ final libraryDisplayModeProvider =
 );
 
 typedef _$LibraryDisplayMode = AutoDisposeNotifier<DisplayMode?>;
-String _$categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
-typedef CategoryMangaListRef = AutoDisposeFutureProviderRef<List<Manga>?>;
-
-/// See also [categoryMangaList].
-@ProviderFor(categoryMangaList)
-const categoryMangaListProvider = CategoryMangaListFamily();
-
-/// See also [categoryMangaList].
-class CategoryMangaListFamily extends Family<AsyncValue<List<Manga>?>> {
-  /// See also [categoryMangaList].
-  const CategoryMangaListFamily();
-
-  /// See also [categoryMangaList].
-  CategoryMangaListProvider call(
-    int categoryId,
-  ) {
-    return CategoryMangaListProvider(
-      categoryId,
-    );
-  }
-
-  @override
-  CategoryMangaListProvider getProviderOverride(
-    covariant CategoryMangaListProvider provider,
-  ) {
-    return call(
-      provider.categoryId,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'categoryMangaListProvider';
-}
-
-/// See also [categoryMangaList].
-class CategoryMangaListProvider
-    extends AutoDisposeFutureProvider<List<Manga>?> {
-  /// See also [categoryMangaList].
-  CategoryMangaListProvider(
-    this.categoryId,
-  ) : super.internal(
-          (ref) => categoryMangaList(
-            ref,
-            categoryId,
-          ),
-          from: categoryMangaListProvider,
-          name: r'categoryMangaListProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$categoryMangaListHash,
-          dependencies: CategoryMangaListFamily._dependencies,
-          allTransitiveDependencies:
-              CategoryMangaListFamily._allTransitiveDependencies,
-        );
-
-  final int categoryId;
-
-  @override
-  bool operator ==(Object other) {
-    return other is CategoryMangaListProvider && other.categoryId == categoryId;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, categoryId.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
