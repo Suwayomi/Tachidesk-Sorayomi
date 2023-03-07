@@ -11,6 +11,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
+import '../../../widgets/slider_setting_tile/slider_setting_tile.dart';
 
 part 'grid_cover_min_width.g.dart';
 
@@ -30,34 +31,17 @@ class GridCoverMinWidth extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final double width =
-        ref.watch(gridMinWidthProvider) ?? DBKeys.gridMangaCoverWidth.initial;
-    return ListTile(
-      dense: true,
-      leading: const Icon(Icons.grid_view_rounded),
-      title: Text(context.l10n!.mangaGridSize),
-      trailing: IconButton(
-        onPressed: () => ref
-            .read(gridMinWidthProvider.notifier)
-            .update(DBKeys.gridMangaCoverWidth.initial),
-        icon: const Icon(Icons.refresh),
-      ),
-      subtitle: Row(
-        children: [
-          Expanded(
-            child: Slider(
-              label: width.toString(),
-              value: width,
-              min: 100,
-              max: 999,
-              onChanged: (value) => ref
-                  .read(gridMinWidthProvider.notifier)
-                  .update(value.roundToDouble()),
-            ),
-          ),
-          Text(width.round().toString()),
-        ],
-      ),
+    return SliderSettingTile(
+      defaultValue: DBKeys.gridMangaCoverWidth.initial,
+      labelGenerator: (value) => value.round().toString(),
+      title: context.l10n!.mangaGridSize,
+      icon: Icons.grid_view_rounded,
+      value:
+          ref.watch(gridMinWidthProvider) ?? DBKeys.gridMangaCoverWidth.initial,
+      onChanged: (val) =>
+          ref.read(gridMinWidthProvider.notifier).update(val.roundToDouble()),
+      min: 100,
+      max: 999,
     );
   }
 }

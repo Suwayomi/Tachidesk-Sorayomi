@@ -12,6 +12,7 @@ import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/async_buttons/async_checkbox_list_tile.dart';
 import '../../../../../widgets/pop_button.dart';
+import '../../../../library/domain/category/category_model.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../data/manga_book_repository.dart';
 import '../controller/manga_details_controller.dart';
@@ -58,10 +59,8 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                     context,
                     (selectedCategoryList) => Column(
                       children: [
-                        for (int index = 1; index < data!.length; index++)
-                          if (data[index].id == 0)
-                            const SizedBox.shrink()
-                          else
+                        for (Category category in data!)
+                          if (category.id != 0)
                             AsyncCheckboxListTile(
                               onChanged: (value) async {
                                 await AsyncValue.guard(
@@ -70,22 +69,22 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                                           .read(mangaBookRepositoryProvider)
                                           .addMangaToCategory(
                                             mangaId,
-                                            "${data[index].id!}",
+                                            "${category.id!}",
                                           )
                                       : ref
                                           .read(mangaBookRepositoryProvider)
                                           .removeMangaFromCategory(
                                             mangaId,
-                                            "${data[index].id!}",
+                                            "${category.id!}",
                                           ),
                                 );
                                 await ref.read(provider.notifier).refresh();
                               },
                               value: selectedCategoryList?.containsKey(
-                                    "${data[index].id}",
+                                    "${category.id}",
                                   ) ??
                                   false,
-                              title: Text(data[index].name ?? ""),
+                              title: Text(category.name ?? ""),
                             ),
                       ],
                     ),

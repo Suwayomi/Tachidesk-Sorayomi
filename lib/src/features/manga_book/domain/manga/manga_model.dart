@@ -63,6 +63,11 @@ class MangaMeta with _$MangaMeta {
       fromJson: MangaMeta.fromJsonToDouble,
     )
         double? readerPadding,
+    @JsonKey(
+      name: "flutter_readerMagnifierSize",
+      fromJson: MangaMeta.fromJsonToDouble,
+    )
+        double? readerMagnifierSize,
   }) = _MangaMeta;
 
   static bool? fromJsonToBool(dynamic val) => val != null && val is String
@@ -80,6 +85,7 @@ enum MangaMetaKeys {
   readerNavigationLayout("flutter_readerNavigationLayout"),
   readerMode("flutter_readerMode"),
   readerPadding("flutter_readerPadding"),
+  readerMagnifierSize("flutter_readerMagnifierSize"),
   ;
 
   const MangaMetaKeys(this.key);
