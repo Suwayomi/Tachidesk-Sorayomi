@@ -6,7 +6,7 @@ part of 'reader_padding_slider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$readerPaddingKeyHash() => r'0ea049ed6f7699646d8ab4c4527a60ca71045468';
+String _$readerPaddingKeyHash() => r'733c2f49bded5354ed4bc6016d2951bb3626a23e';
 
 /// See also [ReaderPaddingKey].
 @ProviderFor(ReaderPaddingKey)

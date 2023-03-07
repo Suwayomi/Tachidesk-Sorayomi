@@ -6,7 +6,7 @@ part of 'reader_mode_tile.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$readerModeKeyHash() => r'bd86778f0d09706cc8b9e46190ec5c3f05847ded';
+String _$readerModeKeyHash() => r'ce3cb3f4277926e44291974f73e2ff82c91242e6';
 
 /// See also [ReaderModeKey].
 @ProviderFor(ReaderModeKey)

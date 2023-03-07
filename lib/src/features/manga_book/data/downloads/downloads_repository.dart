@@ -8,7 +8,6 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -67,12 +66,15 @@ class DownloadsRepository {
 DownloadsRepository downloadsRepository(DownloadsRepositoryRef ref) =>
     DownloadsRepository(ref.watch(dioClientKeyProvider));
 
-//TODO SUPPORT FOR RIVERPOD STREAM GENERATOR https://github.com/rrousselGit/riverpod/issues/1663
-final downloadsSocketProvider = StreamProvider.autoDispose<Downloads>((ref) {
-  final pair = ref.watch(downloadsRepositoryProvider).socketDownloads();
-  ref.onDispose(pair.second);
-  return pair.first;
-});
+@riverpod
+class DownloadsSocket extends _$DownloadsSocket {
+  @override
+  Stream<Downloads> build() {
+    final pair = ref.watch(downloadsRepositoryProvider).socketDownloads();
+    ref.onDispose(pair.second);
+    return pair.first;
+  }
+}
 
 @riverpod
 Map<int, DownloadsQueue> downloadsMap(DownloadsMapRef ref) {

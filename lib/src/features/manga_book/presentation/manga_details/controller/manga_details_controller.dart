@@ -11,7 +11,7 @@ import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/classes/pair/pair_model.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../library/domain/category/category_model.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
@@ -189,7 +189,7 @@ Pair<Chapter?, Chapter?>? getPreviousAndNextChapters(
 
 @riverpod
 class MangaChapterSort extends _$MangaChapterSort
-    with SharedPreferenceEnumClient<ChapterSort> {
+    with SharedPreferenceEnumClientMixin<ChapterSort> {
   @override
   ChapterSort? build() => initialize(
         ref,
@@ -201,7 +201,7 @@ class MangaChapterSort extends _$MangaChapterSort
 
 @riverpod
 class MangaChapterSortDirection extends _$MangaChapterSortDirection
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -212,7 +212,7 @@ class MangaChapterSortDirection extends _$MangaChapterSortDirection
 
 @riverpod
 class MangaChapterFilterDownloaded extends _$MangaChapterFilterDownloaded
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -223,7 +223,7 @@ class MangaChapterFilterDownloaded extends _$MangaChapterFilterDownloaded
 
 @riverpod
 class MangaChapterFilterUnread extends _$MangaChapterFilterUnread
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -234,7 +234,7 @@ class MangaChapterFilterUnread extends _$MangaChapterFilterUnread
 
 @riverpod
 class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,

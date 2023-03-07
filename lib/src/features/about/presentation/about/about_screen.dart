@@ -130,11 +130,11 @@ class AboutScreen extends HookConsumerWidget {
             const Divider(),
             ClipboardListTile(
               title: context.l10n!.client,
-              subtitle: packageInfo.appName,
+              value: packageInfo.appName,
             ),
             ClipboardListTile(
               title: context.l10n!.clientVersion,
-              subtitle: "v${packageInfo.version}",
+              value: "v${packageInfo.version}",
             ),
             ListTile(
               title: Text(context.l10n!.whatsNew),
@@ -156,20 +156,20 @@ class AboutScreen extends HookConsumerWidget {
               const Divider(),
               ClipboardListTile(
                 title: context.l10n!.server,
-                subtitle: about.name,
+                value: about.name,
               ),
               ClipboardListTile(
                 title: context.l10n!.channel,
-                subtitle: about.buildType,
+                value: about.buildType,
               ),
               if (serverVer.isNotBlank)
                 ClipboardListTile(
                   title: context.l10n!.serverVersion,
-                  subtitle: serverVer,
+                  value: serverVer,
                 ),
               ClipboardListTile(
                 title: context.l10n!.buildTime,
-                subtitle: (about.buildTime).isNull
+                value: (about.buildTime).isNull
                     ? null
                     : DateTime.fromMillisecondsSinceEpoch(
                         (about.buildTime ?? 0) * 1000,

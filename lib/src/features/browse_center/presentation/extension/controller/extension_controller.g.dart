@@ -6,39 +6,6 @@ part of 'extension_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$extensionLanguageFilterHash() =>
-    r'0f6c82b2c72cc893e82f869b65ac91cb8e7a14e9';
-
-/// See also [ExtensionLanguageFilter].
-@ProviderFor(ExtensionLanguageFilter)
-final extensionLanguageFilterProvider = AutoDisposeNotifierProvider<
-    ExtensionLanguageFilter, List<String>?>.internal(
-  ExtensionLanguageFilter.new,
-  name: r'extensionLanguageFilterProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$extensionLanguageFilterHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ExtensionLanguageFilter = AutoDisposeNotifier<List<String>?>;
-String _$extensionQueryHash() => r'fbf22cd295f0065c5d9f0c591f87ff58272b7810';
-
-/// See also [ExtensionQuery].
-@ProviderFor(ExtensionQuery)
-final extensionQueryProvider =
-    AutoDisposeNotifierProvider<ExtensionQuery, String?>.internal(
-  ExtensionQuery.new,
-  name: r'extensionQueryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$extensionQueryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ExtensionQuery = AutoDisposeNotifier<String?>;
 String _$extensionHash() => r'7f4a60c97e38a62db718b504d572bd031b5b845d';
 
 /// See also [extension].
@@ -122,4 +89,37 @@ final extensionMapFilteredAndQueriedProvider =
 
 typedef ExtensionMapFilteredAndQueriedRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
+String _$extensionLanguageFilterHash() =>
+    r'88d38cadc3c1d8ac110d8f0e6150bae813c204f4';
+
+/// See also [ExtensionLanguageFilter].
+@ProviderFor(ExtensionLanguageFilter)
+final extensionLanguageFilterProvider = AutoDisposeNotifierProvider<
+    ExtensionLanguageFilter, List<String>?>.internal(
+  ExtensionLanguageFilter.new,
+  name: r'extensionLanguageFilterProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$extensionLanguageFilterHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ExtensionLanguageFilter = AutoDisposeNotifier<List<String>?>;
+String _$extensionQueryHash() => r'342455d95d1f785523fc35799015958a9be4c3e4';
+
+/// See also [ExtensionQuery].
+@ProviderFor(ExtensionQuery)
+final extensionQueryProvider =
+    AutoDisposeNotifierProvider<ExtensionQuery, String?>.internal(
+  ExtensionQuery.new,
+  name: r'extensionQueryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$extensionQueryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$ExtensionQuery = AutoDisposeNotifier<String?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -71,7 +71,7 @@ class LibraryScreen extends HookConsumerWidget {
                               initialText: ref.read(libraryQueryProvider),
                               onChanged: (val) => ref
                                   .read(libraryQueryProvider.notifier)
-                                  .state = val,
+                                  .update(val),
                               onClose: () => showSearch.value = false,
                             ),
                           ),

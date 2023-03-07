@@ -141,4 +141,21 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
     return _SystemHash.finish(hash);
   }
 }
+
+String _$downloadsSocketHash() => r'060ac98c0d410b18eb986a5a01c44a2f55c4a4b6';
+
+/// See also [DownloadsSocket].
+@ProviderFor(DownloadsSocket)
+final downloadsSocketProvider =
+    AutoDisposeStreamNotifierProvider<DownloadsSocket, Downloads>.internal(
+  DownloadsSocket.new,
+  name: r'downloadsSocketProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$downloadsSocketHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$DownloadsSocket = AutoDisposeStreamNotifier<Downloads>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

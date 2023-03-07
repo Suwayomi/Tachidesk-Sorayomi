@@ -16,13 +16,14 @@ import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/db_keys.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../../widgets/pop_button.dart';
 
 part 'credentials_popup.g.dart';
 
 @riverpod
-class Credentials extends _$Credentials with SharedPreferenceClient<String> {
+class Credentials extends _$Credentials
+    with SharedPreferenceClientMixin<String> {
   @override
   String? build() => initialize(
         ref,

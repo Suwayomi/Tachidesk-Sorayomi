@@ -6,7 +6,7 @@ part of 'credentials_popup.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$credentialsHash() => r'd36ec9987003881324c04805a28b1c6d2bfaba83';
+String _$credentialsHash() => r'e509b70ba4135d6ff261c22f96f600f70e1fb5e0';
 
 /// See also [Credentials].
 @ProviderFor(Credentials)

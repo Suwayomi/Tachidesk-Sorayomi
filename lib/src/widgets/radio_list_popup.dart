@@ -57,25 +57,30 @@ class RadioList<T> extends StatelessWidget {
   final String Function(T)? displayName;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: optionList
-          .map(
-            (e) => RadioListTile<T>(
-              activeColor: context.theme.indicatorColor,
-              title: Text(
-                displayName != null ? displayName!(e) : e.toString(),
-              ),
-              value: e,
-              groupValue: value,
-              onChanged: (value) {
-                if (value != null) {
-                  onChange(value);
-                }
-              },
-            ),
-          )
-          .toList(),
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: context.height * .7),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: optionList
+              .map(
+                (e) => RadioListTile<T>(
+                  activeColor: context.theme.indicatorColor,
+                  title: Text(
+                    displayName != null ? displayName!(e) : e.toString(),
+                  ),
+                  value: e,
+                  groupValue: value,
+                  onChanged: (value) {
+                    if (value != null) {
+                      onChange(value);
+                    }
+                  },
+                ),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }

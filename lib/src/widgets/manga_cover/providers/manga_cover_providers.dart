@@ -7,13 +7,13 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/db_keys.dart';
-import '../../../utils/storage/local/shared_preferences_client.dart';
+import '../../../utils/mixin/shared_preferences_client_mixin.dart';
 
 part 'manga_cover_providers.g.dart';
 
 @riverpod
 class DownloadedBadge extends _$DownloadedBadge
-    with SharedPreferenceClient<bool> {
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
@@ -23,7 +23,7 @@ class DownloadedBadge extends _$DownloadedBadge
 }
 
 @riverpod
-class UnreadBadge extends _$UnreadBadge with SharedPreferenceClient<bool> {
+class UnreadBadge extends _$UnreadBadge with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,

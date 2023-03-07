@@ -6,7 +6,7 @@ part of 'server_url_tile.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$serverUrlHash() => r'99f4cbdc6bc8870eaa75e5d7fc9b295ff68f1aa9';
+String _$serverUrlHash() => r'0ce7ed7758ce8760ad2db99bfe9d7a7703fae57b';
 
 /// See also [ServerUrl].
 @ProviderFor(ServerUrl)
