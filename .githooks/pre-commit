@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "\e[33;1m%s\e[0m\n" 'Pre-Commit'
+printf "\e[33;1m%s\e[0m\n" 'Started Sorayomi Pre-Commit hook'
 
 # Undo the stash of the files
 pop_stash_files () {
@@ -104,4 +104,5 @@ printf '%s\n' "${avar}"
 # printf "\e[33;1m%s\e[0m\n" 'Finished running Unit Tests'
 # printf '%s\n' "${avar}"
 
+printf "\e[33;1m%s\e[0m\n" 'Finished running Sorayomi Pre-hook'
 pop_stash_files
