@@ -91,7 +91,7 @@ class UpdateStatusExpansionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: Text(title),
+      title: Text("$title (${mangas.length.padLeft()})"),
       initiallyExpanded: initiallyExpanded,
       textColor: context.theme.indicatorColor,
       iconColor: context.theme.indicatorColor,
