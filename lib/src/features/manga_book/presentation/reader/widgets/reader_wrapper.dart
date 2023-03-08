@@ -131,60 +131,6 @@ class ReaderWrapper extends HookConsumerWidget {
       [mangaReaderNavigationLayout],
     );
 
-    final quickSettings = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ListTile(
-          leading: const Icon(Icons.app_settings_alt_outlined),
-          title: Text(context.l10n!.readerMode),
-          subtitle: Text(mangaReaderMode.toLocale(context)),
-          onTap: () {
-            context.pop();
-            showReaderModePopup();
-          },
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.touch_app_rounded,
-          ),
-          title: Text(
-            context.l10n!.readerNavigationLayout,
-          ),
-          subtitle: Text(mangaReaderNavigationLayout.toLocale(context)),
-          onTap: () {
-            context.pop();
-            showReaderNavigationLayoutPopup();
-          },
-        ),
-        AsyncReaderPaddingSlider(
-          readerPadding: mangaReaderPadding,
-          onChanged: (value) {
-            AsyncValue.guard(
-              () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: "${manga.id}",
-                    key: MangaMetaKeys.readerPadding.key,
-                    value: value,
-                  ),
-            );
-            ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
-          },
-        ),
-        AsyncReaderMagnifierSizeSlider(
-          readerMagnifierSize: mangaReaderMagnifierSize,
-          onChanged: (value) {
-            AsyncValue.guard(
-              () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: "${manga.id}",
-                    key: MangaMetaKeys.readerMagnifierSize.key,
-                    value: value,
-                  ),
-            );
-            ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
-          },
-        ),
-      ],
-    );
-
     return Theme(
       data: context.theme.copyWith(
         bottomSheetTheme: const BottomSheetThemeData(
@@ -230,7 +176,64 @@ class ReaderWrapper extends HookConsumerWidget {
         extendBodyBehindAppBar: true,
         extendBody: true,
         endDrawerEnableOpenDragGesture: false,
-        endDrawer: Drawer(width: kDrawerWidth, child: quickSettings),
+        endDrawer: Drawer(
+          width: kDrawerWidth,
+          shape: const RoundedRectangleBorder(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                actions: const [SizedBox.shrink()],
+              ),
+              ListTile(
+                leading: const Icon(Icons.app_settings_alt_outlined),
+                title: Text(context.l10n!.readerMode),
+                subtitle: Text(mangaReaderMode.toLocale(context)),
+                onTap: () {
+                  context.pop();
+                  showReaderModePopup();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.touch_app_rounded),
+                title: Text(context.l10n!.readerNavigationLayout),
+                subtitle: Text(mangaReaderNavigationLayout.toLocale(context)),
+                onTap: () {
+                  context.pop();
+                  showReaderNavigationLayoutPopup();
+                },
+              ),
+              AsyncReaderPaddingSlider(
+                readerPadding: mangaReaderPadding,
+                onChanged: (value) {
+                  AsyncValue.guard(
+                    () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
+                          mangaId: "${manga.id}",
+                          key: MangaMetaKeys.readerPadding.key,
+                          value: value,
+                        ),
+                  );
+                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+                },
+              ),
+              AsyncReaderMagnifierSizeSlider(
+                readerMagnifierSize: mangaReaderMagnifierSize,
+                onChanged: (value) {
+                  AsyncValue.guard(
+                    () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
+                          mangaId: "${manga.id}",
+                          key: MangaMetaKeys.readerMagnifierSize.key,
+                          value: value,
+                        ),
+                  );
+                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+                },
+              ),
+            ],
+          ),
+        ),
         bottomSheet: visibility.value
             ? ExcludeFocus(
                 child: Column(
@@ -312,18 +315,8 @@ class ReaderWrapper extends HookConsumerWidget {
                           ),
                           Builder(builder: (context) {
                             return IconButton(
-                              onPressed: () {
-                                if (context.isTablet) {
-                                  Scaffold.of(context).openEndDrawer();
-                                } else {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    backgroundColor: context.theme.cardColor,
-                                    clipBehavior: Clip.hardEdge,
-                                    builder: (context) => quickSettings,
-                                  );
-                                }
-                              },
+                              onPressed: () =>
+                                  Scaffold.of(context).openEndDrawer(),
                               icon: const Icon(Icons.settings_rounded),
                             );
                           }),
