@@ -84,10 +84,7 @@ class SinglePageReaderMode extends HookWidget {
               value: downloadProgress.progress,
             ),
           );
-          return InteractiveViewer(
-            maxScale: 8,
-            child: image,
-          );
+          return image;
         },
         itemCount: chapter.pageCount ?? 0,
       ),
