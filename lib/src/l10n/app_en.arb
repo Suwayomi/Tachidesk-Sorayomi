@@ -72,6 +72,9 @@
     "@chapterSortSource": {
         "description": "Radio button text for sort by Source"
     },
+    "@chapterSortUploadDate": {
+        "description": "Radio button text for sort by Upload Date"
+    },
     "@checkForServerUpdates": {
         "description": "Button text to check for Server updates"
     },
@@ -612,6 +615,7 @@
     "chapterNumber": "Chapter {number}",
     "chapterSortFetchedDate": "By Fetched Data",
     "chapterSortSource": "By Source",
+    "chapterSortUploadDate": "By Upload Date",
     "checkForServerUpdates": "Check for Server updates",
     "checkForUpdates": "Check for updates",
     "client": "Client",
