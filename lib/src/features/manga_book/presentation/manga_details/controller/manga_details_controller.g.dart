@@ -7,7 +7,7 @@ part of 'manga_details_controller.dart';
 // **************************************************************************
 
 String _$mangaChapterListWithFilterHash() =>
-    r'c38f5462d03c80c543f83d2f6910fd7ecc0e1436';
+    r'f5082f1f063ab87e9bc05b65dc8f9bdf7913e901';
 
 /// Copied from Dart SDK
 class _SystemHash {

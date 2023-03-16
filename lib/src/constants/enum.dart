@@ -102,6 +102,7 @@ enum MangaSort {
 
 enum ChapterSort {
   source,
+  uploadDate,
   fetchedDate;
 
   String toLocale(BuildContext context) {
@@ -110,6 +111,8 @@ enum ChapterSort {
         return context.l10n!.chapterSortSource;
       case ChapterSort.fetchedDate:
         return context.l10n!.chapterSortFetchedDate;
+      case ChapterSort.uploadDate:
+        return context.l10n!.chapterSortUploadDate;
     }
   }
 }

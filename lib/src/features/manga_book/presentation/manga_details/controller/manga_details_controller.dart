@@ -97,7 +97,8 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
   final chapterFilterDownloaded =
       ref.watch(mangaChapterFilterDownloadedProvider);
   final chapterFilterBookmark = ref.watch(mangaChapterFilterBookmarkedProvider);
-  final sortedBy = ref.watch(mangaChapterSortProvider);
+  final ChapterSort sortedBy = ref.watch(mangaChapterSortProvider) ??
+      DBKeys.chapterSortDirection.initial;
   final sortedDirection =
       ref.watch(mangaChapterSortDirectionProvider).ifNull(true);
 
@@ -126,8 +127,9 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
         return (m1.fetchedAt ?? 0).compareTo(m2.fetchedAt ?? 0) * sortDirToggle;
       case ChapterSort.source:
         return (m1.index ?? 0).compareTo(m2.index ?? 0) * sortDirToggle;
-      default:
-        return 0;
+      case ChapterSort.uploadDate:
+        return (m1.uploadDate ?? 0).compareTo(m2.uploadDate ?? 0) *
+            sortDirToggle;
     }
   }
 

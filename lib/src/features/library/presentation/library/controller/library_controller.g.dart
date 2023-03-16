@@ -112,7 +112,7 @@ class CategoryMangaListProvider
 }
 
 String _$categoryMangaListWithQueryAndFilterHash() =>
-    r'c7c4c6d4717fa47e57d0ada372d733ab30caa986';
+    r'a6eb84f3b6a265358662794d788606abf7ef4af5';
 
 abstract class _$CategoryMangaListWithQueryAndFilter
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<Manga>?>> {

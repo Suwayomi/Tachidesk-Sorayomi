@@ -17,10 +17,10 @@ class MangaChapterSort extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
-      children: const [
-        Divider(height: .5),
-        MangaChapterSortTile(sortType: ChapterSort.source),
-        MangaChapterSortTile(sortType: ChapterSort.fetchedDate),
+      children: [
+        const Divider(height: .5),
+        for (ChapterSort chapterSort in ChapterSort.values)
+          MangaChapterSortTile(sortType: chapterSort),
       ],
     );
   }

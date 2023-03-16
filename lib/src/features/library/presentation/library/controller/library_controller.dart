@@ -47,7 +47,8 @@ class CategoryMangaListWithQueryAndFilter
     final mangaFilterDownloaded =
         ref.watch(libraryMangaFilterDownloadedProvider);
     final mangaFilterCompleted = ref.watch(libraryMangaFilterCompletedProvider);
-    final sortedBy = ref.watch(libraryMangaSortProvider);
+    final MangaSort sortedBy =
+        ref.watch(libraryMangaSortProvider) ?? DBKeys.mangaSort.initial;
     final sortedDirection =
         ref.watch(libraryMangaSortDirectionProvider).ifNull(true);
 
@@ -89,8 +90,6 @@ class CategoryMangaListWithQueryAndFilter
         case MangaSort.lastRead:
           return (m2.lastReadAt ?? 0).compareTo(m1.lastReadAt ?? 0) *
               sortDirToggle;
-        default:
-          return 0;
       }
     }
 

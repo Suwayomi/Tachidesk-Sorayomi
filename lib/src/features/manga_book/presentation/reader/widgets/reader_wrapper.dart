@@ -34,7 +34,11 @@ import 'reader_navigation_layout/reader_navigation_layout.dart';
 
 class NextScrollIntent extends Intent {}
 
+class NextChapterIntent extends Intent {}
+
 class PreviousScrollIntent extends Intent {}
+
+class PreviousChapterIntent extends Intent {}
 
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
@@ -56,6 +60,7 @@ class ReaderWrapper extends HookConsumerWidget {
   final VoidCallback onNext;
   final int currentIndex;
   final Axis scrollDirection;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prevNextChapterPair = ref.watch(
@@ -131,60 +136,6 @@ class ReaderWrapper extends HookConsumerWidget {
       [mangaReaderNavigationLayout],
     );
 
-    final quickSettings = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ListTile(
-          leading: const Icon(Icons.app_settings_alt_outlined),
-          title: Text(context.l10n!.readerMode),
-          subtitle: Text(mangaReaderMode.toLocale(context)),
-          onTap: () {
-            context.pop();
-            showReaderModePopup();
-          },
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.touch_app_rounded,
-          ),
-          title: Text(
-            context.l10n!.readerNavigationLayout,
-          ),
-          subtitle: Text(mangaReaderNavigationLayout.toLocale(context)),
-          onTap: () {
-            context.pop();
-            showReaderNavigationLayoutPopup();
-          },
-        ),
-        AsyncReaderPaddingSlider(
-          readerPadding: mangaReaderPadding,
-          onChanged: (value) {
-            AsyncValue.guard(
-              () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: "${manga.id}",
-                    key: MangaMetaKeys.readerPadding.key,
-                    value: value,
-                  ),
-            );
-            ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
-          },
-        ),
-        AsyncReaderMagnifierSizeSlider(
-          readerMagnifierSize: mangaReaderMagnifierSize,
-          onChanged: (value) {
-            AsyncValue.guard(
-              () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: "${manga.id}",
-                    key: MangaMetaKeys.readerMagnifierSize.key,
-                    value: value,
-                  ),
-            );
-            ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
-          },
-        ),
-      ],
-    );
-
     return Theme(
       data: context.theme.copyWith(
         bottomSheetTheme: const BottomSheetThemeData(
@@ -230,7 +181,64 @@ class ReaderWrapper extends HookConsumerWidget {
         extendBodyBehindAppBar: true,
         extendBody: true,
         endDrawerEnableOpenDragGesture: false,
-        endDrawer: Drawer(width: kDrawerWidth, child: quickSettings),
+        endDrawer: Drawer(
+          width: kDrawerWidth,
+          shape: const RoundedRectangleBorder(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                actions: const [SizedBox.shrink()],
+              ),
+              ListTile(
+                leading: const Icon(Icons.app_settings_alt_outlined),
+                title: Text(context.l10n!.readerMode),
+                subtitle: Text(mangaReaderMode.toLocale(context)),
+                onTap: () {
+                  context.pop();
+                  showReaderModePopup();
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.touch_app_rounded),
+                title: Text(context.l10n!.readerNavigationLayout),
+                subtitle: Text(mangaReaderNavigationLayout.toLocale(context)),
+                onTap: () {
+                  context.pop();
+                  showReaderNavigationLayoutPopup();
+                },
+              ),
+              AsyncReaderPaddingSlider(
+                readerPadding: mangaReaderPadding,
+                onChanged: (value) {
+                  AsyncValue.guard(
+                    () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
+                          mangaId: "${manga.id}",
+                          key: MangaMetaKeys.readerPadding.key,
+                          value: value,
+                        ),
+                  );
+                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+                },
+              ),
+              AsyncReaderMagnifierSizeSlider(
+                readerMagnifierSize: mangaReaderMagnifierSize,
+                onChanged: (value) {
+                  AsyncValue.guard(
+                    () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
+                          mangaId: "${manga.id}",
+                          key: MangaMetaKeys.readerMagnifierSize.key,
+                          value: value,
+                        ),
+                  );
+                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+                },
+              ),
+            ],
+          ),
+        ),
         bottomSheet: visibility.value
             ? ExcludeFocus(
                 child: Column(
@@ -312,18 +320,8 @@ class ReaderWrapper extends HookConsumerWidget {
                           ),
                           Builder(builder: (context) {
                             return IconButton(
-                              onPressed: () {
-                                if (context.isTablet) {
-                                  Scaffold.of(context).openEndDrawer();
-                                } else {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    backgroundColor: context.theme.cardColor,
-                                    clipBehavior: Clip.hardEdge,
-                                    builder: (context) => quickSettings,
-                                  );
-                                }
-                              },
+                              onPressed: () =>
+                                  Scaffold.of(context).openEndDrawer(),
                               icon: const Icon(Icons.settings_rounded),
                             );
                           }),
@@ -337,19 +335,37 @@ class ReaderWrapper extends HookConsumerWidget {
         body: Shortcuts(
           shortcuts: {
             const SingleActivator(LogicalKeyboardKey.arrowLeft):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowRight):
-                NextScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowUp):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowDown):
-                NextScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyW):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyS): NextScrollIntent(),
+                scrollDirection == Axis.horizontal
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.keyA):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyD): NextScrollIntent(),
+                scrollDirection == Axis.horizontal
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.arrowRight):
+                scrollDirection == Axis.horizontal
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.keyD):
+                scrollDirection == Axis.horizontal
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.arrowUp):
+                scrollDirection == Axis.vertical
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.keyW):
+                scrollDirection == Axis.vertical
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.arrowDown):
+                scrollDirection == Axis.vertical
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.keyS):
+                scrollDirection == Axis.vertical
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
           },
           child: Actions(
             actions: {
@@ -358,6 +374,26 @@ class ReaderWrapper extends HookConsumerWidget {
               ),
               NextScrollIntent: CallbackAction<NextScrollIntent>(
                 onInvoke: (intent) => onNext(),
+              ),
+              PreviousChapterIntent: CallbackAction<PreviousChapterIntent>(
+                onInvoke: (intent) => prevNextChapterPair?.second != null
+                    ? context.pushReplacement(
+                        Routes.getReader(
+                          "${prevNextChapterPair!.second!.mangaId}",
+                          "${prevNextChapterPair.second!.index}",
+                        ),
+                      )
+                    : onPrevious(),
+              ),
+              NextChapterIntent: CallbackAction<NextChapterIntent>(
+                onInvoke: (intent) => prevNextChapterPair?.first != null
+                    ? context.pushReplacement(
+                        Routes.getReader(
+                          "${prevNextChapterPair!.first!.mangaId}",
+                          "${prevNextChapterPair.first!.index}",
+                        ),
+                      )
+                    : onNext(),
               ),
             },
             child: Focus(
