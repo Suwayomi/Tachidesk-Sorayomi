@@ -101,73 +101,65 @@ class ContinuousReaderMode extends HookWidget {
           alignment: alignment,
         );
       },
-      child: InteractiveViewer(
-        maxScale: 8,
-        child: ScrollablePositionedList.separated(
-          itemScrollController: scrollController,
-          itemPositionsListener: positionsListener,
-          initialScrollIndex: chapter.read.ifNull()
-              ? 0
-              : chapter.lastPageRead.ifNullOrNegative(),
-          scrollDirection: scrollDirection,
-          reverse: reverse,
-          itemCount: chapter.pageCount ?? 0,
-          separatorBuilder: (BuildContext context, int index) =>
-              showSeparator ? KSizedBox.h16.size : const SizedBox.shrink(),
-          itemBuilder: (BuildContext context, int index) {
-            final image = ServerImage(
-              fit: scrollDirection == Axis.vertical
-                  ? BoxFit.fitWidth
-                  : BoxFit.fitHeight,
-              appendApiToUrl: true,
-              imageUrl: MangaUrl.chapterPageWithIndex(
-                chapterIndex: "${chapter.index}",
-                mangaId: "${manga.id}",
-                pageIndex: index.toString(),
+      child: ScrollablePositionedList.separated(
+        itemScrollController: scrollController,
+        itemPositionsListener: positionsListener,
+        initialScrollIndex:
+            chapter.read.ifNull() ? 0 : chapter.lastPageRead.ifNullOrNegative(),
+        scrollDirection: scrollDirection,
+        reverse: reverse,
+        itemCount: chapter.pageCount ?? 0,
+        separatorBuilder: (BuildContext context, int index) =>
+            showSeparator ? KSizedBox.h16.size : const SizedBox.shrink(),
+        itemBuilder: (BuildContext context, int index) {
+          final image = ServerImage(
+            fit: scrollDirection == Axis.vertical
+                ? BoxFit.fitWidth
+                : BoxFit.fitHeight,
+            appendApiToUrl: true,
+            imageUrl: MangaUrl.chapterPageWithIndex(
+              chapterIndex: "${chapter.index}",
+              mangaId: "${manga.id}",
+              pageIndex: index.toString(),
+            ),
+            progressIndicatorBuilder: (_, __, downloadProgress) => Center(
+              child: CircularProgressIndicator(
+                value: downloadProgress.progress,
               ),
-              progressIndicatorBuilder: (_, __, downloadProgress) => Center(
-                child: CircularProgressIndicator(
-                  value: downloadProgress.progress,
-                ),
-              ),
-              wrapper: (child) => SizedBox(
-                height: scrollDirection == Axis.vertical
-                    ? context.height * .7
-                    : null,
-                width: scrollDirection != Axis.vertical
-                    ? context.width * .7
-                    : null,
-                child: child,
+            ),
+            wrapper: (child) => SizedBox(
+              height:
+                  scrollDirection == Axis.vertical ? context.height * .7 : null,
+              width:
+                  scrollDirection != Axis.vertical ? context.width * .7 : null,
+              child: child,
+            ),
+          );
+          if (index == 0 || index == (chapter.pageCount ?? 1) - 1) {
+            final separator = SizedBox(
+              width:
+                  scrollDirection != Axis.vertical ? context.width * .5 : null,
+              child: ChapterSeparator(
+                title:
+                    index == 0 ? context.l10n!.current : context.l10n!.finished,
+                name: chapter.name ??
+                    context.l10n!.chapterNumber(chapter.chapterNumber ?? 0),
               ),
             );
-            if (index == 0 || index == (chapter.pageCount ?? 1) - 1) {
-              final separator = SizedBox(
-                width: scrollDirection != Axis.vertical
-                    ? context.width * .5
-                    : null,
-                child: ChapterSeparator(
-                  title: index == 0
-                      ? context.l10n!.current
-                      : context.l10n!.finished,
-                  name: chapter.name ??
-                      context.l10n!.chapterNumber(chapter.chapterNumber ?? 0),
-                ),
-              );
-              final bool reverseDirection =
-                  scrollDirection == Axis.horizontal && reverse;
-              return Flex(
-                direction: scrollDirection,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: ((index == 0) != reverseDirection)
-                    ? [separator, image]
-                    : [image, separator],
-              );
-            } else {
-              return image;
-            }
-          },
-        ),
+            final bool reverseDirection =
+                scrollDirection == Axis.horizontal && reverse;
+            return Flex(
+              direction: scrollDirection,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: ((index == 0) != reverseDirection)
+                  ? [separator, image]
+                  : [image, separator],
+            );
+          } else {
+            return image;
+          }
+        },
       ),
     );
   }

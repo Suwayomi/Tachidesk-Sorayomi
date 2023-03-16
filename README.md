@@ -108,7 +108,7 @@ These instructions will get you a copy of the project up and running on your loc
 You can install Flutter & Dart from [Official website](https://docs.flutter.dev/get-started/install)
 
   - Dart sdk
-  - Flutter - Channel beta
+  - Flutter - Channel Stable
 
 ### Building
 
