@@ -13,28 +13,29 @@ import '../../../../../../constants/db_keys.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 
-part 'reader_invert_tap_tile.g.dart';
+part 'reader_scroll_animation_tile.g.dart';
 
 @riverpod
-class InvertTap extends _$InvertTap with SharedPreferenceClientMixin<bool> {
+class ReaderScrollAnimation extends _$ReaderScrollAnimation
+    with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
         ref,
-        key: DBKeys.invertTap.name,
-        initial: DBKeys.invertTap.initial,
+        key: DBKeys.scrollAnimation.name,
+        initial: DBKeys.scrollAnimation.initial,
       );
 }
 
-class ReaderInvertTapTile extends HookConsumerWidget {
-  const ReaderInvertTapTile({super.key});
+class ReaderScrollAnimationTile extends HookConsumerWidget {
+  const ReaderScrollAnimationTile({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
-      secondary: const Icon(Icons.switch_left_rounded),
-      title: Text(context.l10n!.readerNavigationLayoutInvert),
-      onChanged: ref.read(invertTapProvider.notifier).update,
-      value: ref.watch(invertTapProvider).ifNull(),
+      secondary: const Icon(Icons.animation_rounded),
+      title: Text(context.l10n!.readerScrollAnimation),
+      onChanged: ref.read(readerScrollAnimationProvider.notifier).update,
+      value: ref.watch(readerScrollAnimationProvider).ifNull(),
     );
   }
 }

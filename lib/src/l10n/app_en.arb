@@ -436,6 +436,9 @@
     "@readerNavigationLayoutInvert": {
         "description": "Switch title to invert Tap to scroll in reader screen"
     },
+    "@readerScrollAnimation": {
+        "description": "Switch title to Disable scroll animation in reader screen"
+    },
     "@readerNavigationLayoutKindlish": {
         "description": "Radio button text for Reader Navigation Layout - Kindle-ish"
     },
@@ -723,6 +726,7 @@
     "readerNavigationLayoutDisabled": "Disabled",
     "readerNavigationLayoutEdge": "Edge",
     "readerNavigationLayoutInvert": "Invert tapping",
+    "readerScrollAnimation": "Scroll animation",
     "readerNavigationLayoutKindlish": "Kindle-ish",
     "readerNavigationLayoutLShaped": "L Shaped",
     "readerNavigationLayoutRightAndLeft": "Right And Left",

@@ -21,6 +21,7 @@ enum DBKeys {
   readerMagnifierSize(1.0),
   readerNavigationLayout(ReaderNavigationLayout.disabled),
   invertTap(false),
+  scrollAnimation(true),
   showNSFW(true),
   downloadedBadge(true),
   unreadBadge(true),
