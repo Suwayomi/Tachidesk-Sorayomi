@@ -35,6 +35,7 @@ class Manga with _$Manga {
     @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
         MangaStatus? status,
     String? thumbnailUrl,
+    int? thumbnailUrlLastFetched,
     String? title,
     int? unreadCount,
     int? lastFetchedAt,

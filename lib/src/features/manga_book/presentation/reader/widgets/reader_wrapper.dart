@@ -34,7 +34,11 @@ import 'reader_navigation_layout/reader_navigation_layout.dart';
 
 class NextScrollIntent extends Intent {}
 
+class NextChapterIntent extends Intent {}
+
 class PreviousScrollIntent extends Intent {}
+
+class PreviousChapterIntent extends Intent {}
 
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
@@ -56,6 +60,7 @@ class ReaderWrapper extends HookConsumerWidget {
   final VoidCallback onNext;
   final int currentIndex;
   final Axis scrollDirection;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prevNextChapterPair = ref.watch(
@@ -330,19 +335,37 @@ class ReaderWrapper extends HookConsumerWidget {
         body: Shortcuts(
           shortcuts: {
             const SingleActivator(LogicalKeyboardKey.arrowLeft):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowRight):
-                NextScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowUp):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowDown):
-                NextScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyW):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyS): NextScrollIntent(),
+                scrollDirection == Axis.horizontal
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.keyA):
-                PreviousScrollIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyD): NextScrollIntent(),
+                scrollDirection == Axis.horizontal
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.arrowRight):
+                scrollDirection == Axis.horizontal
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.keyD):
+                scrollDirection == Axis.horizontal
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.arrowUp):
+                scrollDirection == Axis.vertical
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.keyW):
+                scrollDirection == Axis.vertical
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.arrowDown):
+                scrollDirection == Axis.vertical
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.keyS):
+                scrollDirection == Axis.vertical
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
           },
           child: Actions(
             actions: {
@@ -351,6 +374,26 @@ class ReaderWrapper extends HookConsumerWidget {
               ),
               NextScrollIntent: CallbackAction<NextScrollIntent>(
                 onInvoke: (intent) => onNext(),
+              ),
+              PreviousChapterIntent: CallbackAction<PreviousChapterIntent>(
+                onInvoke: (intent) => prevNextChapterPair?.second != null
+                    ? context.pushReplacement(
+                        Routes.getReader(
+                          "${prevNextChapterPair!.second!.mangaId}",
+                          "${prevNextChapterPair.second!.index}",
+                        ),
+                      )
+                    : onPrevious(),
+              ),
+              NextChapterIntent: CallbackAction<NextChapterIntent>(
+                onInvoke: (intent) => prevNextChapterPair?.first != null
+                    ? context.pushReplacement(
+                        Routes.getReader(
+                          "${prevNextChapterPair!.first!.mangaId}",
+                          "${prevNextChapterPair.first!.index}",
+                        ),
+                      )
+                    : onNext(),
               ),
             },
             child: Focus(
