@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../../constants/app_constants.dart';
@@ -14,12 +15,13 @@ import '../../../../../../constants/endpoints.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/server_image.dart';
+import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
 
-class ContinuousReaderMode extends HookWidget {
+class ContinuousReaderMode extends HookConsumerWidget {
   const ContinuousReaderMode({
     super.key,
     required this.manga,
@@ -36,7 +38,7 @@ class ContinuousReaderMode extends HookWidget {
   final Axis scrollDirection;
   final bool reverse;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useMemoized(() => ItemScrollController());
     final positionsListener = useMemoized(() => ItemPositionsListener.create());
     final currentIndex = useState(
@@ -76,12 +78,17 @@ class ContinuousReaderMode extends HookWidget {
       onPrevious: () {
         final ItemPosition itemPosition =
             positionsListener.itemPositions.value.toList().first;
-        scrollController.scrollTo(
-          index: itemPosition.index,
-          duration: kDuration,
-          curve: kCurve,
-          alignment: itemPosition.itemLeadingEdge + .8,
-        );
+        ref.read(readerScrollAnimationProvider).ifNull(true)
+            ? scrollController.scrollTo(
+                index: itemPosition.index,
+                duration: kDuration,
+                curve: kCurve,
+                alignment: itemPosition.itemLeadingEdge + .8,
+              )
+            : scrollController.jumpTo(
+                index: itemPosition.index,
+                alignment: itemPosition.itemLeadingEdge + .8,
+              );
       },
       onNext: () {
         ItemPosition itemPosition = positionsListener.itemPositions.value.first;
@@ -94,12 +101,17 @@ class ContinuousReaderMode extends HookWidget {
           index = itemPosition.index + 1;
           alignment = 0;
         }
-        scrollController.scrollTo(
-          index: index,
-          duration: kDuration,
-          curve: kCurve,
-          alignment: alignment,
-        );
+        ref.read(readerScrollAnimationProvider).ifNull(true)
+            ? scrollController.scrollTo(
+                index: index,
+                duration: kDuration,
+                curve: kCurve,
+                alignment: alignment,
+              )
+            : scrollController.jumpTo(
+                index: index,
+                alignment: alignment,
+              );
       },
       child: ScrollablePositionedList.separated(
         itemScrollController: scrollController,

@@ -12,6 +12,7 @@ import 'widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import 'widgets/reader_mode_tile/reader_mode_tile.dart';
 import 'widgets/reader_navigation_layout_tile/reader_navigation_layout_tile.dart';
 import 'widgets/reader_padding_slider/reader_padding_slider.dart';
+import 'widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 
 class ReaderSettingsScreen extends StatelessWidget {
   const ReaderSettingsScreen({super.key});
@@ -25,6 +26,7 @@ class ReaderSettingsScreen extends StatelessWidget {
           ReaderModeTile(),
           ReaderNavigationLayoutTile(),
           ReaderInvertTapTile(),
+          ReaderScrollAnimationTile(),
           ReaderPaddingSlider(),
           ReaderMagnifierSizeSlider(),
         ],
