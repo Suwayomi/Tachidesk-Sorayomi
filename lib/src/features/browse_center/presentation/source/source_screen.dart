@@ -22,13 +22,14 @@ class SourceScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sourceMapData = ref.watch(sourceMapFilteredProvider);
+
     final sourceMap = {...?sourceMapData.valueOrNull};
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");
 
     refresh() => ref.refresh(sourceListProvider.future);
     useEffect(() {
-      if (!sourceMapData.isLoading) refresh();
+      if (sourceMapData.isNotLoading) refresh();
       return;
     }, []);
 

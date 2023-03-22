@@ -22,9 +22,13 @@ class GlobalSearchScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sourceMapData = ref.watch(sourceMapFilteredProvider);
+
     final sourceMap = {...?sourceMapData.valueOrNull}..remove("lastUsed");
     final sourceList = sourceMap.values.fold(
-        <Source>[], (previousValue, element) => [...previousValue, ...element]);
+      <Source>[],
+      (previousValue, element) => [...previousValue, ...element],
+    );
+
     final query = useState(initialQuery);
     return Scaffold(
       appBar: AppBar(

@@ -4,8 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -35,7 +33,7 @@ class Emoticons extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final errorNumber = useMemoized(() => Random().nextInt(errorFaces.length));
+    final errorFace = useMemoized(() => errorFaces.getRandom!);
     return Padding(
       padding: KEdgeInsets.a8.size,
       child: Center(
@@ -46,7 +44,7 @@ class Emoticons extends HookWidget {
             iconData != null
                 ? Icon(iconData, size: context.height * .2)
                 : Text(
-                    errorFaces[errorNumber],
+                    errorFace,
                     textAlign: TextAlign.center,
                     style: context.textTheme.displayMedium,
                   ),

@@ -33,7 +33,7 @@ class CategoryMangaList extends HookConsumerWidget {
     final displayMode = ref.watch(libraryDisplayModeProvider);
     refresh() => ref.invalidate(categoryMangaListProvider(categoryId));
     useEffect(() {
-      if (!mangaList.isLoading) refresh();
+      if (mangaList.isNotLoading) refresh();
       return;
     }, []);
     return mangaList.showUiWhenData(

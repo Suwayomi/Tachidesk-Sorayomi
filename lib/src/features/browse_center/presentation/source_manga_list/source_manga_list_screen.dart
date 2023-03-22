@@ -107,9 +107,10 @@ class SourceMangaListScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sourceRepository = ref.watch(sourceRepositoryProvider);
     final filtersProvider =
         sourceMangaFilterListProvider(sourceId, filter: initialFilter);
+
+    final sourceRepository = ref.watch(sourceRepositoryProvider);
     final filterList = ref.watch(filtersProvider);
     final source = ref.watch(sourceProvider(sourceId));
 
@@ -240,7 +241,6 @@ class SourceMangaListScreen extends HookConsumerWidget {
       wrapper: (body) => Scaffold(
         appBar: AppBar(
           title: Text(context.l10n!.source),
-          centerTitle: false,
         ),
         body: body,
       ),
