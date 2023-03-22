@@ -29,8 +29,9 @@ class SourceQuickSearch extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final source = ref.watch(sourceProvider(sourceId));
-    final mangaList =
-        ref.watch(sourceQuickSearchMangaListProvider(sourceId, query: query));
+    final mangaList = ref.watch(
+      sourceQuickSearchMangaListProvider(sourceId, query: query),
+    );
     return source.showUiWhenData(
       context,
       (data) => Column(

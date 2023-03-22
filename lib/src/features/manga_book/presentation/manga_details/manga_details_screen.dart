@@ -30,24 +30,33 @@ class MangaDetailsScreen extends HookConsumerWidget {
   final int? categoryId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final provider = useMemoized(() => mangaWithIdProvider(mangaId: mangaId));
-    final manga = ref.watch(provider);
+    // Providers as Class for this screen
+    final mangaProvider =
+        useMemoized(() => mangaWithIdProvider(mangaId: mangaId), []);
+    final chapterListProvider =
+        useMemoized(() => mangaChapterListProvider(mangaId: mangaId), []);
+    final chapterListFilteredProvider = useMemoized(
+        () => mangaChapterListWithFilterProvider(mangaId: mangaId), []);
 
-    final chapterListProvider = useMemoized(
-      () => mangaChapterListProvider(mangaId: mangaId),
-    );
-
-    final filteredChapterList =
-        ref.watch(mangaChapterListWithFilterProvider(mangaId: mangaId));
+    final manga = ref.watch(mangaProvider);
+    final filteredChapterList = ref.watch(chapterListFilteredProvider);
     final firstUnreadChapter = ref.watch(
       firstUnreadInFilteredChapterListProvider(mangaId: mangaId),
     );
 
     final selectedChapters = useState<Map<int, Chapter>>({});
 
-    final mangaRefresh = useCallback(([onlineFetch = false]) async {
-      await ref.read(provider.notifier).refresh(onlineFetch);
-    }, []);
+    // Refresh manga
+    final mangaRefresh = useCallback(
+        ([bool onlineFetch = false]) async =>
+            await ref.read(mangaProvider.notifier).refresh(onlineFetch),
+        [mangaProvider]);
+
+    // Refresh chapter list
+    final chapterListRefresh = useCallback(
+        ([bool onlineFetch = false]) async =>
+            await ref.read(chapterListProvider.notifier).refresh(onlineFetch),
+        [chapterListProvider]);
 
     final refresh = useCallback(([onlineFetch = false]) async {
       if (context.mounted && onlineFetch) {
@@ -57,7 +66,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
             );
       }
       await mangaRefresh(onlineFetch);
-      await ref.read(provider.notifier).refresh(onlineFetch);
+      await chapterListRefresh(onlineFetch);
       if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
               context.l10n!.updateCompleted,
@@ -67,7 +76,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
     }, []);
 
     useEffect(() {
-      if (!filteredChapterList.isLoading && !manga.isLoading) refresh();
+      if (filteredChapterList.isNotLoading && manga.isNotLoading) refresh();
       return;
     }, []);
 
@@ -95,13 +104,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       onPressed: () {
                         selectedChapters.value = {
                           for (Chapter i in [
-                            ...?ref
-                                .read(
-                                  mangaChapterListWithFilterProvider(
-                                    mangaId: mangaId,
-                                  ),
-                                )
-                                .valueOrNull
+                            ...?filteredChapterList.valueOrNull
                           ])
                             if (i.id != null) i.id!: i
                         };
@@ -110,18 +113,14 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        final newMap = {
+                        selectedChapters.value = {
                           for (Chapter i in [
-                            ...?ref
-                                .read(mangaChapterListWithFilterProvider(
-                                    mangaId: mangaId))
-                                .valueOrNull
+                            ...?filteredChapterList.valueOrNull
                           ])
                             if (i.id != null &&
-                                !selectedChapters.value.containsKey(key))
+                                !selectedChapters.value.containsKey(i.id))
                               i.id!: i
                         };
-                        selectedChapters.value = newMap;
                       },
                       icon: const Icon(Icons.flip_to_back_rounded),
                     ),
@@ -185,8 +184,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
           ),
           bottomSheet: selectedChapters.value.isNotEmpty
               ? MultiChaptersActionsBottomAppBar(
-                  afterOptionSelected: () async =>
-                      ref.read(chapterListProvider.notifier).refresh(),
+                  afterOptionSelected: chapterListRefresh,
                   selectedChapters: selectedChapters,
                 )
               : null,
@@ -217,8 +215,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       mangaId: mangaId,
                       onRefresh: refresh,
                       onDescriptionRefresh: mangaRefresh,
-                      onListRefresh:
-                          ref.read(chapterListProvider.notifier).refresh,
+                      onListRefresh: chapterListRefresh,
                       selectedChapters: selectedChapters,
                     )
                   : SmallScreenMangaDetails(
@@ -227,8 +224,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       mangaId: mangaId,
                       onRefresh: refresh,
                       onDescriptionRefresh: mangaRefresh,
-                      onListRefresh:
-                          ref.read(chapterListProvider.notifier).refresh,
+                      onListRefresh: chapterListRefresh,
                       selectedChapters: selectedChapters,
                     )
               : Emoticons(
@@ -243,7 +239,6 @@ class MangaDetailsScreen extends HookConsumerWidget {
         wrapper: (body) => Scaffold(
           appBar: AppBar(
             title: Text(context.l10n!.manga),
-            centerTitle: true,
           ),
           body: body,
         ),

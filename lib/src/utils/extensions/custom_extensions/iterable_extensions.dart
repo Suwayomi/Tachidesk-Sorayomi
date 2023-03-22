@@ -41,4 +41,7 @@ extension IterableExtensions<T> on Iterable<T>? {
       return null;
     }
   }
+
+  T? get getRandom =>
+      isNull ? null : this!.elementAt(Random().nextInt(this!.length));
 }

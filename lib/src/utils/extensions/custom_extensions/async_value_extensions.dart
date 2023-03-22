@@ -7,6 +7,8 @@
 part of '../custom_extensions.dart';
 
 extension AsyncValueExtensions<T> on AsyncValue<T> {
+  bool get isNotLoading => !isLoading;
+
   void _showToastOnError(Toast toast) {
     if (!isRefreshing) {
       whenOrNull(
