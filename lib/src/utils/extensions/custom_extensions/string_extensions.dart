@@ -13,7 +13,10 @@ extension StringExtensions on String? {
 
   bool get isNotBlank => !isBlank;
 
-  double? tryParse() => isNull ? null : double.tryParse(this!);
+  bool? get tryParseBool => isNull ? null : (this!).toLowerCase() == 'true';
+
+  double? get tryParseInt => isNull ? null : double.tryParse(this!);
+
   bool hasMatch(String pattern) =>
       (isNull) ? false : RegExp(pattern).hasMatch(this!);
 

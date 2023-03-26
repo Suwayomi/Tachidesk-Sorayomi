@@ -16,6 +16,7 @@ import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 
 import '../../../../../routes/router_config.dart';
+import '../../../../../utils/classes/pair/pair_model.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
@@ -161,7 +162,6 @@ class ReaderWrapper extends HookConsumerWidget {
                       : null,
                 ),
                 elevation: 0,
-                backgroundColor: Colors.black.withOpacity(.7),
                 actions: [
                   chapter.realUrl.isBlank
                       ? const SizedBox.shrink()
@@ -247,7 +247,6 @@ class ReaderWrapper extends HookConsumerWidget {
                     Row(
                       children: [
                         Card(
-                          color: Colors.black.withOpacity(.7),
                           shape: const CircleBorder(),
                           child: IconButton(
                             onPressed: prevNextChapterPair?.second != null
@@ -255,6 +254,9 @@ class ReaderWrapper extends HookConsumerWidget {
                                       Routes.getReader(
                                         "${prevNextChapterPair!.second!.mangaId}",
                                         "${prevNextChapterPair.second!.index}",
+                                        toPrev: true,
+                                        transVertical:
+                                            scrollDirection != Axis.vertical,
                                       ),
                                     )
                                 : null,
@@ -271,7 +273,6 @@ class ReaderWrapper extends HookConsumerWidget {
                           ),
                         ),
                         Card(
-                          color: Colors.black.withOpacity(.7),
                           shape: const CircleBorder(),
                           child: IconButton(
                             onPressed: prevNextChapterPair?.first != null
@@ -279,6 +280,8 @@ class ReaderWrapper extends HookConsumerWidget {
                                       Routes.getReader(
                                         "${prevNextChapterPair!.first!.mangaId}",
                                         "${prevNextChapterPair.first!.index}",
+                                        transVertical:
+                                            scrollDirection != Axis.vertical,
                                       ),
                                     )
                                 : null,
@@ -288,44 +291,52 @@ class ReaderWrapper extends HookConsumerWidget {
                       ],
                     ),
                     KSizedBox.h8.size,
-                    Container(
-                      color: Colors.black.withOpacity(.7),
-                      padding: KEdgeInsets.h16v8.size,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          if (chapter.index != null &&
-                              chapter.bookmarked != null)
-                            SingleChapterActionIcon(
-                              icon: chapter.bookmarked!
-                                  ? Icons.bookmark_rounded
-                                  : Icons.bookmark_outline_rounded,
-                              chapterIndex: "${chapter.index!}",
-                              mangaId: "${manga.id}",
-                              chapterPut: ChapterPut(
-                                bookmarked: !chapter.bookmarked!,
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: KRadius.r8.radius,
+                        ),
+                      ),
+                      margin: EdgeInsets.zero,
+                      child: Padding(
+                        padding: KEdgeInsets.h16v8.size,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            if (chapter.index != null &&
+                                chapter.bookmarked != null)
+                              SingleChapterActionIcon(
+                                icon: chapter.bookmarked!
+                                    ? Icons.bookmark_rounded
+                                    : Icons.bookmark_outline_rounded,
+                                chapterIndex: "${chapter.index!}",
+                                mangaId: "${manga.id}",
+                                chapterPut: ChapterPut(
+                                  bookmarked: !chapter.bookmarked!,
+                                ),
+                                refresh: () async {
+                                  if (manga.id != null &&
+                                      chapter.index != null) {
+                                    return ref.refresh(chapterProvider(
+                                      mangaId: "${manga.id!}",
+                                      chapterIndex: "${chapter.index!}",
+                                    ).future);
+                                  }
+                                },
                               ),
-                              refresh: () async {
-                                if (manga.id != null && chapter.index != null) {
-                                  return ref.refresh(chapterProvider(
-                                    mangaId: "${manga.id!}",
-                                    chapterIndex: "${chapter.index!}",
-                                  ).future);
-                                }
-                              },
+                            IconButton(
+                              icon: const Icon(Icons.app_settings_alt_outlined),
+                              onPressed: () => showReaderModePopup(),
                             ),
-                          IconButton(
-                            icon: const Icon(Icons.app_settings_alt_outlined),
-                            onPressed: () => showReaderModePopup(),
-                          ),
-                          Builder(builder: (context) {
-                            return IconButton(
-                              onPressed: () =>
-                                  Scaffold.of(context).openEndDrawer(),
-                              icon: const Icon(Icons.settings_rounded),
-                            );
-                          }),
-                        ],
+                            Builder(builder: (context) {
+                              return IconButton(
+                                onPressed: () =>
+                                    Scaffold.of(context).openEndDrawer(),
+                                icon: const Icon(Icons.settings_rounded),
+                              );
+                            }),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -352,20 +363,20 @@ class ReaderWrapper extends HookConsumerWidget {
                     : NextChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.arrowUp):
                 scrollDirection == Axis.vertical
-                    ? PreviousScrollIntent()
-                    : PreviousChapterIntent(),
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.keyW):
                 scrollDirection == Axis.vertical
-                    ? PreviousScrollIntent()
-                    : PreviousChapterIntent(),
+                    ? NextScrollIntent()
+                    : NextChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.arrowDown):
                 scrollDirection == Axis.vertical
-                    ? NextScrollIntent()
-                    : NextChapterIntent(),
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.keyS):
                 scrollDirection == Axis.vertical
-                    ? NextScrollIntent()
-                    : NextChapterIntent(),
+                    ? PreviousScrollIntent()
+                    : PreviousChapterIntent(),
           },
           child: Actions(
             actions: {
@@ -381,6 +392,8 @@ class ReaderWrapper extends HookConsumerWidget {
                         Routes.getReader(
                           "${prevNextChapterPair!.second!.mangaId}",
                           "${prevNextChapterPair.second!.index}",
+                          toPrev: true,
+                          transVertical: scrollDirection != Axis.vertical,
                         ),
                       )
                     : onPrevious(),
@@ -391,6 +404,7 @@ class ReaderWrapper extends HookConsumerWidget {
                         Routes.getReader(
                           "${prevNextChapterPair!.first!.mangaId}",
                           "${prevNextChapterPair.first!.index}",
+                          transVertical: scrollDirection != Axis.vertical,
                         ),
                       )
                     : onNext(),
@@ -407,6 +421,7 @@ class ReaderWrapper extends HookConsumerWidget {
                   onNext: onNext,
                   onPrevious: onPrevious,
                   mangaReaderNavigationLayout: mangaReaderNavigationLayout,
+                  prevNextChapterPair: prevNextChapterPair,
                   child: child,
                 ),
               ),
@@ -428,6 +443,7 @@ class ReaderView extends HookWidget {
     required this.child,
     required this.onNext,
     required this.onPrevious,
+    required this.prevNextChapterPair,
     required this.mangaReaderNavigationLayout,
   });
 
@@ -438,6 +454,7 @@ class ReaderView extends HookWidget {
   final Widget child;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
+  final Pair<Chapter?, Chapter?>? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
 
   @override
@@ -449,6 +466,25 @@ class ReaderView extends HookWidget {
       context.mediaQuerySize,
       mangaReaderMagnifierSize,
     );
+    nextChapter() => prevNextChapterPair?.first != null
+        ? context.pushReplacement(
+            Routes.getReader(
+              "${prevNextChapterPair!.first!.mangaId}",
+              "${prevNextChapterPair!.first!.index}",
+              transVertical: scrollDirection != Axis.vertical,
+            ),
+          )
+        : null;
+    prevChapter() => prevNextChapterPair?.second != null
+        ? context.pushReplacement(
+            Routes.getReader(
+              "${prevNextChapterPair!.second!.mangaId}",
+              "${prevNextChapterPair!.second!.index}",
+              transVertical: scrollDirection != Axis.vertical,
+              toPrev: true,
+            ),
+          )
+        : null;
     return Stack(
       children: [
         GestureDetector(
@@ -464,6 +500,28 @@ class ReaderView extends HookWidget {
               dragGesturePosition.value = details.localPosition,
           onTap: toggleVisibility,
           behavior: HitTestBehavior.translucent,
+          onHorizontalDragEnd: (details) {
+            if (scrollDirection == Axis.vertical) {
+              if (details.primaryVelocity == null) {
+                return;
+              } else if (details.primaryVelocity! > 0) {
+                nextChapter();
+              } else {
+                prevChapter();
+              }
+            }
+          },
+          onVerticalDragEnd: (details) {
+            if (scrollDirection == Axis.horizontal) {
+              if (details.primaryVelocity == null) {
+                return;
+              } else if (details.primaryVelocity! > 0) {
+                prevChapter();
+              } else {
+                nextChapter();
+              }
+            }
+          },
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: context.height *
