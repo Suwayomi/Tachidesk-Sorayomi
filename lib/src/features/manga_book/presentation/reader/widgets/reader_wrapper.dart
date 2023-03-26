@@ -504,10 +504,10 @@ class ReaderView extends HookWidget {
             if (scrollDirection == Axis.vertical) {
               if (details.primaryVelocity == null) {
                 return;
-              } else if (details.primaryVelocity! > 0) {
-                nextChapter();
-              } else {
+              } else if (details.primaryVelocity! > 8) {
                 prevChapter();
+              } else {
+                nextChapter();
               }
             }
           },
@@ -515,7 +515,7 @@ class ReaderView extends HookWidget {
             if (scrollDirection == Axis.horizontal) {
               if (details.primaryVelocity == null) {
                 return;
-              } else if (details.primaryVelocity! > 0) {
+              } else if (details.primaryVelocity! > 8) {
                 prevChapter();
               } else {
                 nextChapter();
