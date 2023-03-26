@@ -8,6 +8,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../../../../../utils/extensions/custom_extensions.dart';
+
 class PageNumberSlider extends StatelessWidget {
   const PageNumberSlider({
     super.key,
@@ -21,7 +23,7 @@ class PageNumberSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black.withOpacity(.7),
+      color: context.theme.appBarTheme.backgroundColor?.withOpacity(.7),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),

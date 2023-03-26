@@ -55,8 +55,22 @@ abstract class Routes {
   static const browseSettings = 'browse';
   static const readerSettings = 'reader';
   static const reader = '/reader/:mangaId/:chapterIndex';
-  static getReader(String mangaId, String chapterIndex) =>
-      '/reader/$mangaId/$chapterIndex';
+  static getReader(
+    String mangaId,
+    String chapterIndex, {
+    bool? transVertical,
+    bool? toPrev,
+  }) {
+    String route = '/reader/$mangaId/$chapterIndex?';
+    if (toPrev.isNotNull && toPrev!) {
+      route += 'toPrev=$toPrev&&';
+    }
+    if (transVertical.isNotNull && transVertical!) {
+      route += 'transVertical=$transVertical';
+    }
+    return route;
+  }
+
   static const serverSettings = 'server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
@@ -150,9 +164,30 @@ GoRouter routerConfig(ref) {
       GoRoute(
         path: Routes.reader,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => ReaderScreen(
-          mangaId: state.params['mangaId'] ?? '',
-          chapterIndex: state.params['chapterIndex'] ?? '',
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: ReaderScreen(
+            mangaId: state.params['mangaId'] ?? '',
+            chapterIndex: state.params['chapterIndex'] ?? '',
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            Offset offset = Offset.zero;
+            if (state.queryParams['transVertical'].tryParseBool.ifNull()) {
+              offset += const Offset(0, 1);
+            } else {
+              offset += const Offset(1, 0);
+            }
+            if (state.queryParams['toPrev'].tryParseBool.ifNull()) {
+              offset *= -1;
+            }
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: offset,
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
         ),
       ),
       GoRoute(
