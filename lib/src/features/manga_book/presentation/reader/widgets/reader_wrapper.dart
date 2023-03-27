@@ -363,19 +363,19 @@ class ReaderWrapper extends HookConsumerWidget {
                     : NextChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.arrowUp):
                 scrollDirection == Axis.vertical
-                    ? NextScrollIntent()
+                    ? PreviousScrollIntent()
                     : NextChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.keyW):
                 scrollDirection == Axis.vertical
-                    ? NextScrollIntent()
+                    ? PreviousScrollIntent()
                     : NextChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.arrowDown):
                 scrollDirection == Axis.vertical
-                    ? PreviousScrollIntent()
+                    ? NextScrollIntent()
                     : PreviousChapterIntent(),
             const SingleActivator(LogicalKeyboardKey.keyS):
                 scrollDirection == Axis.vertical
-                    ? PreviousScrollIntent()
+                    ? NextScrollIntent()
                     : PreviousChapterIntent(),
           },
           child: Actions(
