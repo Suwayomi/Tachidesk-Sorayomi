@@ -7,6 +7,8 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -27,6 +29,12 @@ class DioNetworkModule {
     required AuthType authType,
     String? credentials,
   }) {
+    final cacheOptions = CacheOptions(
+      store: HiveCacheStore('dio_cache'),
+      policy: CachePolicy.forceCache,
+      hitCacheOnErrorExcept: [401, 403],
+      priority: CachePriority.normal,
+    );
     final dio = Dio();
     (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
 
@@ -36,6 +44,7 @@ class DioNetworkModule {
       ..options.receiveTimeout = Endpoints.receiveTimeout
       ..options.contentType = Headers.jsonContentType
       ..options.headers = {'Content-Type': 'application/json; charset=utf-8'}
+      ..interceptors.add(DioCacheInterceptor(options: cacheOptions))
       ..interceptors.add(
         InterceptorsWrapper(
           onRequest: (options, handler) {

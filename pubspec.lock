@@ -281,6 +281,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.3"
+  dio_cache_interceptor:
+    dependency: "direct main"
+    description:
+      name: dio_cache_interceptor
+      sha256: "24f5fb2fbffea25325e9eabc1501b6582d0928b0ef5cb9127c920e58fbf6ca62"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.0"
+  dio_cache_interceptor_hive_store:
+    dependency: "direct main"
+    description:
+      name: dio_cache_interceptor_hive_store
+      sha256: "7a376b1db0a153e16ad51ce0cf1d2549ca14a2ddf462523c362fac9e077c5f14"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.1"
   fake_async:
     dependency: transitive
     description:
@@ -485,6 +501,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  hive:
+    dependency: "direct main"
+    description:
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
+  hive_flutter:
+    dependency: "direct main"
+    description:
+      name: hive_flutter
+      sha256: dca1da446b1d808a51689fb5d0c6c9510c0a2ba01e22805d492c73b68e33eecc
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  hive_generator:
+    dependency: "direct dev"
+    description:
+      name: hive_generator
+      sha256: "65998cc4d2cd9680a3d9709d893d2f6bb15e6c1f92626c3f1fa650b4b3281521"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   hooks_riverpod:
     dependency: "direct main"
     description:
