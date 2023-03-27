@@ -43,7 +43,11 @@ class MangaWithId extends _$MangaWithId {
           ),
     );
     ref.keepAlive();
-    state = result;
+    if (result.hasError) {
+      state = result.copyWithPrevious(state);
+    } else {
+      state = result;
+    }
   }
 }
 
@@ -73,7 +77,11 @@ class MangaChapterList extends _$MangaChapterList {
           ),
     );
     ref.keepAlive();
-    state = result;
+    if (result.hasError) {
+      state = result.copyWithPrevious(state);
+    } else {
+      state = result;
+    }
   }
 
   void updateChapter(int index, Chapter chapter) {

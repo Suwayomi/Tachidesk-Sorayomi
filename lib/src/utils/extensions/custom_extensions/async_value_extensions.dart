@@ -44,6 +44,7 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     }
     return when(
       data: data,
+      skipError: true,
       error: (error, trace) => wrapper == null
           ? Emoticons(
               text: showGenericError
@@ -76,6 +77,7 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
   }
 
   AsyncValue<U> copyWithData<U>(U Function(T) data) => when(
+        skipError: true,
         data: (prev) => AsyncData(data(prev)),
         error: (error, stackTrace) => AsyncError<U>(error, stackTrace),
         loading: () => AsyncLoading<U>(),
