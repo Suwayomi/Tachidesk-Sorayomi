@@ -296,7 +296,7 @@ class GetPreviousAndNextChaptersProvider
   }
 }
 
-String _$mangaWithIdHash() => r'34066d958171e4089e173a5124751043e0aad8ec';
+String _$mangaWithIdHash() => r'5dc29c6c769a4ec284919e9c93a80b43ba5a3e57';
 
 abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
   late final String mangaId;
@@ -392,7 +392,7 @@ class MangaWithIdProvider
   }
 }
 
-String _$mangaChapterListHash() => r'e29cf9a87f5f09029b63f16b0074a4f7466d8b92';
+String _$mangaChapterListHash() => r'c585c5dc22f569dc2ba2003a903c7e3215d7ab89';
 
 abstract class _$MangaChapterList
     extends BuildlessAutoDisposeAsyncNotifier<List<Chapter>?> {

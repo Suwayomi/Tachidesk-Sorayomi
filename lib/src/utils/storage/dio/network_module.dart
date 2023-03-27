@@ -31,9 +31,10 @@ class DioNetworkModule {
   }) {
     final cacheOptions = CacheOptions(
       store: HiveCacheStore('dio_cache'),
-      policy: CachePolicy.forceCache,
+      policy: CachePolicy.refreshForceCache,
       hitCacheOnErrorExcept: [401, 403],
       priority: CachePriority.normal,
+      maxStale: const Duration(days: 14),
     );
     final dio = Dio();
     (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
@@ -56,7 +57,7 @@ class DioNetworkModule {
                 );
               } else {
                 if (kDebugMode) {
-                  print('credential is null');
+                  debugPrint('credential is null');
                 }
               }
             }
