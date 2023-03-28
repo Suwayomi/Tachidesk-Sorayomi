@@ -43,7 +43,7 @@ class AsyncTextButtonIcon extends HookWidget {
       icon: (secondaryIcon != null && !isLocalPrimary.value)
           ? secondaryIcon!
           : primaryIcon,
-      label: (secondaryLabel != null && isLocalPrimary.value)
+      label: (secondaryLabel != null && !isLocalPrimary.value)
           ? secondaryLabel!
           : primaryLabel,
     );
