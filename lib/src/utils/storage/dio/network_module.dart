@@ -27,10 +27,11 @@ class DioNetworkModule {
   Dio provideDio({
     required String baseUrl,
     required AuthType authType,
+    HiveCacheStore? hiveCacheStore,
     String? credentials,
   }) {
     final cacheOptions = CacheOptions(
-      store: HiveCacheStore('dio_cache'),
+      store: hiveCacheStore,
       policy: CachePolicy.refreshForceCache,
       hitCacheOnErrorExcept: [401, 403],
       priority: CachePriority.normal,
