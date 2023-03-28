@@ -12,6 +12,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/language_list.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/radio_list_popup.dart';
 
 class GeneralScreen extends ConsumerWidget {
@@ -40,6 +41,18 @@ class GeneralScreen extends ConsumerWidget {
                 optionDisplayName: getLanguageNameFormLocale,
               ),
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.cached_rounded),
+            title: Text(context.l10n!.clearCache),
+            onTap: () async {
+              await ref.watch(hiveCacheStoreProvider).clean();
+              if (context.mounted) {
+                ref
+                    .read(toastProvider(context))
+                    .show(context.l10n!.cacheCleared);
+              }
+            },
           ),
         ],
       ),

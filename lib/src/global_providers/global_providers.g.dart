@@ -6,7 +6,7 @@ part of 'global_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioClientKeyHash() => r'aa6e40fe7fd11fd2fd884674cf4d47c1c5f93048';
+String _$dioClientKeyHash() => r'f8ac67719cc287981dabd817e2010e3b8650659a';
 
 /// See also [dioClientKey].
 @ProviderFor(dioClientKey)
@@ -36,6 +36,35 @@ final sharedPreferencesProvider =
 );
 
 typedef SharedPreferencesRef = AutoDisposeProviderRef<SharedPreferences>;
+String _$appDirectoryHash() => r'598612365ff87cbdf65761e923161467412ec463';
+
+/// See also [appDirectory].
+@ProviderFor(appDirectory)
+final appDirectoryProvider = AutoDisposeProvider<Directory?>.internal(
+  appDirectory,
+  name: r'appDirectoryProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$appDirectoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AppDirectoryRef = AutoDisposeProviderRef<Directory?>;
+String _$hiveCacheStoreHash() => r'9b2759c40cc610a05bf24953b306f6dec44cb2e6';
+
+/// See also [hiveCacheStore].
+@ProviderFor(hiveCacheStore)
+final hiveCacheStoreProvider = AutoDisposeProvider<HiveCacheStore>.internal(
+  hiveCacheStore,
+  name: r'hiveCacheStoreProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$hiveCacheStoreHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef HiveCacheStoreRef = AutoDisposeProviderRef<HiveCacheStore>;
 String _$authTypeKeyHash() => r'8264b20583c2d0e3c9da5073ff1c13fda7e7fc34';
 
 /// See also [AuthTypeKey].

@@ -45,6 +45,9 @@
     "@buildTime": {
         "description": "Text title to show build time of Server in About Screen"
     },
+    "@cacheCleared": {
+        "description": "Toast Text to show after clearing cache"
+    },
     "@cancel": {
         "description": "Text for Cancel button in a Popup"
     },
@@ -80,6 +83,9 @@
     },
     "@checkForUpdates": {
         "description": "Button text to check for App Updates"
+    },
+    "@clearCache": {
+        "description": "Button text for clear cache in General Settings screen"
     },
     "@client": {
         "description": "Text title for the name of the client in About screen"
@@ -611,6 +617,7 @@
     "bookmarked": "Bookmarked",
     "browse": "Browse",
     "buildTime": "Build time",
+    "cacheCleared": "Cache Cleared",
     "cancel": "Cancel",
     "categories": "Categories",
     "categoryUpdate": "Category Update",
@@ -621,6 +628,7 @@
     "chapterSortUploadDate": "By Upload Date",
     "checkForServerUpdates": "Check for Server updates",
     "checkForUpdates": "Check for updates",
+    "clearCache": "Clear Cache",
     "client": "Client",
     "clientVersion": "Client version",
     "close": "Close",

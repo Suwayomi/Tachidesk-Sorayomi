@@ -4,6 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:io';
+
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,11 +23,12 @@ import '../utils/storage/dio/network_module.dart';
 part 'global_providers.g.dart';
 
 @riverpod
-DioClient dioClientKey(ref) => DioClient(
+DioClient dioClientKey(DioClientKeyRef ref) => DioClient(
       dio: ref.watch(networkModuleProvider).provideDio(
             baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
             authType: ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial,
             credentials: ref.watch(credentialsProvider),
+            hiveCacheStore: ref.watch(hiveCacheStoreProvider),
           ),
     );
 
@@ -67,3 +71,10 @@ class L10n extends _$L10n with SharedPreferenceClientMixin<Locale> {
 
 @riverpod
 SharedPreferences sharedPreferences(ref) => throw UnimplementedError();
+
+@riverpod
+Directory? appDirectory(ref) => throw UnimplementedError();
+
+@riverpod
+HiveCacheStore hiveCacheStore(HiveCacheStoreRef ref) =>
+    HiveCacheStore(ref.watch(appDirectoryProvider)?.path);
