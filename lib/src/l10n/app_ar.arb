@@ -15,11 +15,11 @@
   "@appLanguage": {
     "description": "Popup title and Button text to change App Language"
   },
-  "appTheme": "سمة التطبيق",
+  "appTheme": "مظهر التطبيق",
   "@appTheme": {
     "description": "Popup title and Button text to change App Theme"
   },
-  "appTitle": "Tachidesk Sorayomi",
+  "appTitle": "تاشيديسك سورايومي",
   "@appTitle": {
     "description": "Name of the app (Tachidesk Sorayomi in native script)"
   },
@@ -39,11 +39,11 @@
   "@backup": {
     "description": "Screen title and Button text of Backup & Restore screen"
   },
-  "badges": "شارات",
+  "badges": "الشارات",
   "@badges": {
     "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
   },
-  "bookmarked": "إشارة مرجعية",
+  "bookmarked": "المحفوظة",
   "@bookmarked": {
     "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
   },
@@ -51,11 +51,11 @@
   "@browse": {
     "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
   },
-  "buildTime": "وقت بناء الخادم",
+  "buildTime": "تاريخ بناء الخادم",
   "@buildTime": {
     "description": "Text title to show build time of Server in About Screen"
   },
-  "cacheCleared": "تم تنظيف الملفات المؤقتة",
+  "cacheCleared": "تم محو الذاكرة المؤقتة",
   "@cacheCleared": {
     "description": "Toast Text to show after clearing cache"
   },
@@ -77,7 +77,7 @@
       }
     }
   },
-  "chapterSortFetchedDate": "حسب البيانات التي تم جلبها",
+  "chapterSortFetchedDate": "حسب جلب البيانات",
   "@chapterSortFetchedDate": {
     "description": "Radio button text for sort by Fetched Date"
   },
@@ -143,7 +143,7 @@
   "@delete": {
     "description": "Text for delete button"
   },
-  "deleteCategoryDescription": "سيؤدي إلى دمج جميع المانجا في هذه الفئة إلى الوضع الافتراضي!",
+  "deleteCategoryDescription": "سيؤدي إلى دمج جميع المانجا في هذه الفئة إلى الافتراضية!",
   "@deleteCategoryDescription": {
     "description": "Popup description when deleting Category"
   },
@@ -219,15 +219,15 @@
   "@appearance": {
     "description": "Screen title and Button text of Appearance screen"
   },
-  "cancel": "إغلاق",
+  "cancel": "إلغاء",
   "@cancel": {
     "description": "Text for Cancel button in a Popup"
   },
-  "channel": "القناة",
+  "channel": "النوع",
   "@channel": {
     "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
   },
-  "chapterSortUploadDate": "حسب تاريخ الرفع",
+  "chapterSortUploadDate": "حسب تاريخ الإضافة",
   "@chapterSortUploadDate": {
     "description": "Radio button text for sort by Upload Date"
   },
@@ -243,7 +243,7 @@
   "@displayMode": {
     "description": "Radio Group title to change manga Cover display in Library and Source Screens"
   },
-  "displayModeGrid": "شبكة",
+  "displayModeGrid": "شبكة مدمجة",
   "@displayModeGrid": {
     "description": "Radio button text for Manga Cover display mode - Grid"
   },
@@ -264,5 +264,57 @@
   "extensions": "الإضافات",
   "@extensions": {
     "description": "Extension list Tab title in Browse Screen"
+  },
+  "filter": "فرز",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "finished": "النهاية",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "globalSearch": "البحث",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "globalUpdate": "تحديث الكل",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "help": "مساعدة",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "inLibrary": "في المكتبة",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "library": "المكتبة",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "installingExtension": "جار التحميل",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "languages": "اللغات",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "general": "عام",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "installing": "جار التحميل",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "install": "تحميل",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "latest": "الأخير",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
   }
 }
