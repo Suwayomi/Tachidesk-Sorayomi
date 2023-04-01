@@ -762,5 +762,25 @@
   "missingTrackers": "跟踪器缺失",
   "@missingTrackers": {
     "description": "Group title to show the Missing Trackers when restoring Backup"
+  },
+  "chapterSortUploadDate": "按上传日期",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "readerScrollAnimation": "滚动动画",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "readerMagnifierSize": "放大大小",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "clearCache": "清除缓存",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "cacheCleared": "已清除缓存",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
   }
 }
