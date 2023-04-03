@@ -2,5 +2,169 @@
   "library": "Bibltiotek",
   "@library": {
     "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "chapterSortUploadDate": "Nach Hochladedatum",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "client": "Endgerät",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "Endgerät Version",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "Schließen",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "Abgeschlossen",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "credentials": "Anmeldedaten",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "current": "Aktuell",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "copyMsg": "'{msg}' kopiert!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupDescription": "Bibliothek als Tachidesk backup sichern",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "createBackupTitle": "Sicherung erstellen",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "delete": "Löschen",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "cacheCleared": "Zwischenspeicher geleert",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "clearCache": "Zwischenspeicher leeren",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "about": "Über",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "Kategorie hinzufügen",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "chapterNumber": "Kapitel {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortFetchedDate": "Nach Abrufdatum",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "chapterSortSource": "Nach Quelle",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "checkForUpdates": "Nach Aktualisierungen suchen",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "checkForServerUpdates": "Nach Serveraktualisierungen suchen",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "addToLibrary": "Zur Bibliothek hinzufügen",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "appLanguage": "App Sprache",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "App Design",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme"
+  },
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "appearance": "Aussehen",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Authentifizierungsart",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeBasic": "Basic Auth",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "Keine",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "backup": "Sichern und wiederherstellen",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "badges": "Indikatoren",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Hat Lesezeichen",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "Suchen",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "buildTime": "Build time",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cancel": "Abbrechen",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categories": "Kategorien",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "categoryUpdate": "Kategorie aktualisierung",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "channel": "Kanal",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "defaultCategory": "Standard Kategorie, wenn neue Manga zur Bibliothek hinzugefügt werden",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
   }
 }
