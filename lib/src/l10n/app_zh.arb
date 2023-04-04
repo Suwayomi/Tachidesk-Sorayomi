@@ -255,7 +255,7 @@
   "@general": {
     "description": "Screen title and Button text of General setting screen"
   },
-  "gitHub": "Github",
+  "gitHub": "GitHub",
   "@gitHub": {
     "description": "GitHub app title"
   },
