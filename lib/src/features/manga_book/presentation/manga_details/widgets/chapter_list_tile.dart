@@ -6,7 +6,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/app_sizes.dart';
 
@@ -93,12 +92,10 @@ class ChapterListTile extends StatelessWidget {
         selected: isSelected,
         onTap: canTapSelect
             ? () => toggleSelect(chapter)
-            : () => context.push(
-                  Routes.getReader(
-                    "${manga.id}",
-                    "${chapter.index}",
-                  ),
-                ),
+            : () => ReaderRoute(
+                  mangaId: manga.id!,
+                  chapterIndex: chapter.index!,
+                ).push(context),
         onLongPress: () => toggleSelect(chapter),
       ),
     );

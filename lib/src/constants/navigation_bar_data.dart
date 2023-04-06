@@ -11,7 +11,7 @@ import '../utils/extensions/custom_extensions.dart';
 
 class NavigationBarData {
   final String Function(BuildContext context) label;
-  final String path;
+  final ValueSetter<BuildContext> go;
   final IconData icon;
   final IconData activeIcon;
   final List<String> activeOn;
@@ -27,42 +27,42 @@ class NavigationBarData {
       icon: Icons.collections_bookmark_outlined,
       activeIcon: Icons.collections_bookmark_rounded,
       label: (context) => context.l10n!.library,
-      path: Routes.library,
-      activeOn: [Routes.library],
+      go: const LibraryRoute().go,
+      activeOn: [const LibraryRoute().location],
     ),
     NavigationBarData(
       icon: Icons.new_releases_outlined,
       activeIcon: Icons.new_releases_rounded,
       label: (context) => context.l10n!.updates,
-      path: Routes.updates,
-      activeOn: [Routes.updates],
+      go: const UpdatesRoute().go,
+      activeOn: [const UpdatesRoute().location],
     ),
     NavigationBarData(
       icon: Icons.explore_outlined,
       activeIcon: Icons.explore_rounded,
       label: (context) => context.l10n!.browse,
-      path: Routes.browse,
-      activeOn: [Routes.browse],
+      go: const BrowseRoute().go,
+      activeOn: [const BrowseRoute().location],
     ),
     NavigationBarData(
       icon: Icons.download_outlined,
       activeIcon: Icons.download_rounded,
       label: (context) => context.l10n!.downloads,
-      path: Routes.downloads,
-      activeOn: [Routes.downloads],
+      go: const DownloadsRoute().go,
+      activeOn: [const DownloadsRoute().location],
     ),
     NavigationBarData(
       icon: Icons.more_horiz_outlined,
       activeIcon: Icons.more_horiz_rounded,
       label: (context) => context.l10n!.more,
-      path: Routes.more,
-      activeOn: [Routes.more, Routes.settings],
+      go: const MoreRoute().go,
+      activeOn: [const MoreRoute().location, const SettingsRoute().location],
     ),
   ];
 
   NavigationBarData({
     required this.label,
-    required this.path,
+    required this.go,
     required this.icon,
     required this.activeIcon,
     required this.activeOn,

@@ -6,7 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -26,7 +25,7 @@ import 'widgets/small_screen_manga_details.dart';
 
 class MangaDetailsScreen extends HookConsumerWidget {
   const MangaDetailsScreen({super.key, required this.mangaId, this.categoryId});
-  final String mangaId;
+  final int mangaId;
   final int? categoryId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -204,12 +203,10 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   ),
                   icon: const Icon(Icons.play_arrow_rounded),
                   onPressed: () {
-                    context.push(
-                      Routes.getReader(
-                        "${firstUnreadChapter.mangaId ?? mangaId}",
-                        "${firstUnreadChapter.index ?? 0}",
-                      ),
-                    );
+                    ReaderRoute(
+                      mangaId: firstUnreadChapter.mangaId ?? mangaId,
+                      chapterIndex: firstUnreadChapter.index ?? 0,
+                    ).push(context);
                   },
                 )
               : null,

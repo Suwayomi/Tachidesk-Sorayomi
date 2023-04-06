@@ -127,8 +127,8 @@ class UpdatesScreen extends HookConsumerWidget {
                   } else {
                     final chapter = ref
                         .refresh(chapterProvider(
-                          mangaId: "${item.manga!.id!}",
-                          chapterIndex: "${item.chapter!.index!}",
+                          mangaId: item.manga!.id!,
+                          chapterIndex: item.chapter!.index!,
                         ))
                         .valueOrToast(ref.read(toastProvider(context)));
                     try {

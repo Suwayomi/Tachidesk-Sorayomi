@@ -7,7 +7,7 @@ part of 'manga_details_controller.dart';
 // **************************************************************************
 
 String _$mangaChapterListWithFilterHash() =>
-    r'f5082f1f063ab87e9bc05b65dc8f9bdf7913e901';
+    r'dfa3bd1f24f74a48f1f1f22d09ece9cba364e762';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -45,7 +45,7 @@ class MangaChapterListWithFilterFamily
 
   /// See also [mangaChapterListWithFilter].
   MangaChapterListWithFilterProvider call({
-    required String mangaId,
+    required int mangaId,
   }) {
     return MangaChapterListWithFilterProvider(
       mangaId: mangaId,
@@ -98,7 +98,7 @@ class MangaChapterListWithFilterProvider
               MangaChapterListWithFilterFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
+  final int mangaId;
 
   @override
   bool operator ==(Object other) {
@@ -116,7 +116,7 @@ class MangaChapterListWithFilterProvider
 }
 
 String _$firstUnreadInFilteredChapterListHash() =>
-    r'60d7452267e74bafdc290890223cc3a641e06305';
+    r'ed13a5108da7bb4f9224899075348531da8a118e';
 typedef FirstUnreadInFilteredChapterListRef = AutoDisposeProviderRef<Chapter?>;
 
 /// See also [firstUnreadInFilteredChapterList].
@@ -131,7 +131,7 @@ class FirstUnreadInFilteredChapterListFamily extends Family<Chapter?> {
 
   /// See also [firstUnreadInFilteredChapterList].
   FirstUnreadInFilteredChapterListProvider call({
-    required String mangaId,
+    required int mangaId,
   }) {
     return FirstUnreadInFilteredChapterListProvider(
       mangaId: mangaId,
@@ -184,7 +184,7 @@ class FirstUnreadInFilteredChapterListProvider
               FirstUnreadInFilteredChapterListFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
+  final int mangaId;
 
   @override
   bool operator ==(Object other) {
@@ -202,7 +202,7 @@ class FirstUnreadInFilteredChapterListProvider
 }
 
 String _$getPreviousAndNextChaptersHash() =>
-    r'c96d69daa0b66402a78052eb11af57f223c3e465';
+    r'e633dd8efea79545ab172e90987f0d87d9cd1e40';
 typedef GetPreviousAndNextChaptersRef
     = AutoDisposeProviderRef<Pair<Chapter?, Chapter?>?>;
 
@@ -218,7 +218,7 @@ class GetPreviousAndNextChaptersFamily
 
   /// See also [getPreviousAndNextChapters].
   GetPreviousAndNextChaptersProvider call({
-    required String mangaId,
+    required int mangaId,
     required String chapterIndex,
   }) {
     return GetPreviousAndNextChaptersProvider(
@@ -276,7 +276,7 @@ class GetPreviousAndNextChaptersProvider
               GetPreviousAndNextChaptersFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
+  final int mangaId;
   final String chapterIndex;
 
   @override
@@ -296,13 +296,13 @@ class GetPreviousAndNextChaptersProvider
   }
 }
 
-String _$mangaWithIdHash() => r'5dc29c6c769a4ec284919e9c93a80b43ba5a3e57';
+String _$mangaWithIdHash() => r'aea36ab8126c57f1c73a24b1f8dc6ecbd03f25c1';
 
 abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
-  late final String mangaId;
+  late final int mangaId;
 
   Future<Manga?> build({
-    required String mangaId,
+    required int mangaId,
   });
 }
 
@@ -317,7 +317,7 @@ class MangaWithIdFamily extends Family<AsyncValue<Manga?>> {
 
   /// See also [MangaWithId].
   MangaWithIdProvider call({
-    required String mangaId,
+    required int mangaId,
   }) {
     return MangaWithIdProvider(
       mangaId: mangaId,
@@ -367,7 +367,7 @@ class MangaWithIdProvider
               MangaWithIdFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
+  final int mangaId;
 
   @override
   bool operator ==(Object other) {
@@ -392,14 +392,14 @@ class MangaWithIdProvider
   }
 }
 
-String _$mangaChapterListHash() => r'c585c5dc22f569dc2ba2003a903c7e3215d7ab89';
+String _$mangaChapterListHash() => r'cf56cf36f6e1373d708eb3099b396395ec54032d';
 
 abstract class _$MangaChapterList
     extends BuildlessAutoDisposeAsyncNotifier<List<Chapter>?> {
-  late final String mangaId;
+  late final int mangaId;
 
   Future<List<Chapter>?> build({
-    required String mangaId,
+    required int mangaId,
   });
 }
 
@@ -414,7 +414,7 @@ class MangaChapterListFamily extends Family<AsyncValue<List<Chapter>?>> {
 
   /// See also [MangaChapterList].
   MangaChapterListProvider call({
-    required String mangaId,
+    required int mangaId,
   }) {
     return MangaChapterListProvider(
       mangaId: mangaId,
@@ -464,7 +464,7 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
               MangaChapterListFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
+  final int mangaId;
 
   @override
   bool operator ==(Object other) {
@@ -573,14 +573,14 @@ final mangaChapterFilterBookmarkedProvider =
 );
 
 typedef _$MangaChapterFilterBookmarked = AutoDisposeNotifier<bool?>;
-String _$mangaCategoryListHash() => r'b8c64815b0fcdb2ee1f21818161e654b477affb0';
+String _$mangaCategoryListHash() => r'3fec3a544adc138ec7fbc98ad216e1b7399d0983';
 
 abstract class _$MangaCategoryList
     extends BuildlessAutoDisposeAsyncNotifier<Map<String, Category>?> {
-  late final String mangaId;
+  late final int mangaId;
 
   FutureOr<Map<String, Category>?> build(
-    String mangaId,
+    int mangaId,
   );
 }
 
@@ -596,7 +596,7 @@ class MangaCategoryListFamily
 
   /// See also [MangaCategoryList].
   MangaCategoryListProvider call(
-    String mangaId,
+    int mangaId,
   ) {
     return MangaCategoryListProvider(
       mangaId,
@@ -646,7 +646,7 @@ class MangaCategoryListProvider extends AutoDisposeAsyncNotifierProviderImpl<
               MangaCategoryListFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
+  final int mangaId;
 
   @override
   bool operator ==(Object other) {

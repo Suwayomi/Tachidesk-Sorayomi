@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
@@ -24,11 +23,7 @@ class LibrarySettingsScreen extends StatelessWidget {
           ListTile(
             title: Text(context.l10n!.categories),
             leading: const Icon(Icons.label_rounded),
-            onTap: () => context.push([
-              Routes.settings,
-              Routes.librarySettings,
-              Routes.editCategories
-            ].toPath),
+            onTap: () => const EditCategoriesRoute().push(context),
           ),
         ],
       ),

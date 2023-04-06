@@ -6,7 +6,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../routes/router_config.dart';
@@ -81,12 +80,10 @@ class ChapterMangaListTile extends StatelessWidget {
                 if (canTapSelect) {
                   toggleSelect(pair.chapter!);
                 } else {
-                  context.push(
-                    Routes.getReader(
-                      "${pair.manga!.id}",
-                      "${pair.chapter!.index}",
-                    ),
-                  );
+                  ReaderRoute(
+                    mangaId: pair.manga!.id!,
+                    chapterIndex: pair.chapter!.index!,
+                  ).push(context);
                 }
               }
             : null,

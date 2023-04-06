@@ -6,7 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -61,7 +60,7 @@ class CategoryMangaList extends HookConsumerWidget {
                     await showDialog(
                       context: context,
                       builder: (context) => EditMangaCategoryDialog(
-                        mangaId: "${data[index].id}",
+                        mangaId: data[index].id!,
                         title: data[index].title,
                       ),
                     );
@@ -71,10 +70,10 @@ class CategoryMangaList extends HookConsumerWidget {
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
-                    context.push(Routes.getManga(
-                      data[index].id!,
+                    MangaRoute(
+                      mangaId: data[index].id!,
                       categoryId: categoryId,
-                    ));
+                    ).push(context);
                   }
                 },
                 showCountBadges: true,
@@ -89,10 +88,10 @@ class CategoryMangaList extends HookConsumerWidget {
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
-                    context.push(Routes.getManga(
-                      data[index].id!,
+                    MangaRoute(
+                      mangaId: data[index].id!,
                       categoryId: categoryId,
-                    ));
+                    ).push(context);
                   }
                 },
                 onLongPress: () async {
@@ -100,7 +99,7 @@ class CategoryMangaList extends HookConsumerWidget {
                     await showDialog(
                       context: context,
                       builder: (context) => EditMangaCategoryDialog(
-                        mangaId: "${data[index].id}",
+                        mangaId: data[index].id!,
                         title: data[index].title,
                       ),
                     );
@@ -118,10 +117,10 @@ class CategoryMangaList extends HookConsumerWidget {
                 manga: data![index],
                 onPressed: () {
                   if (data[index].id != null) {
-                    context.push(Routes.getManga(
-                      data[index].id!,
+                    MangaRoute(
+                      mangaId: data[index].id!,
                       categoryId: categoryId,
-                    ));
+                    ).push(context);
                   }
                 },
                 onLongPress: () async {
@@ -129,7 +128,7 @@ class CategoryMangaList extends HookConsumerWidget {
                     await showDialog(
                       context: context,
                       builder: (context) => EditMangaCategoryDialog(
-                        mangaId: "${data[index].id}",
+                        mangaId: data[index].id!,
                         title: data[index].title,
                       ),
                     );
