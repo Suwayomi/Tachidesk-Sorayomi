@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -47,6 +48,7 @@ class GeneralScreen extends ConsumerWidget {
             title: Text(context.l10n!.clearCache),
             onTap: () async {
               await ref.watch(hiveCacheStoreProvider).clean();
+              DefaultCacheManager().emptyCache();
               if (context.mounted) {
                 ref
                     .read(toastProvider(context))
