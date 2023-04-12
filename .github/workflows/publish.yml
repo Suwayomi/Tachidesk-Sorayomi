@@ -181,3 +181,16 @@ jobs:
           identifier: Suwayomi.Tachidesk-Sorayomi
           version: ${{ github.ref_name }}
           token: ${{ secrets.WINGET }}
+  homebrew-publish:
+    needs: create-build
+    runs-on: macos-latest
+    steps:
+      - name: Update Homebrew cask
+        uses: macauley/action-homebrew-bump-cask@v1
+        with:
+          # Required, custom GitHub access token with the 'public_repo' and 'workflow' scopes
+          token: ${{secrets.WINGET}}
+          # Optional, defaults to homebrew/core
+          tap: Homebrew/homebrew-cask
+          # Cask name, required
+          cask: tachidesk-sorayomi
