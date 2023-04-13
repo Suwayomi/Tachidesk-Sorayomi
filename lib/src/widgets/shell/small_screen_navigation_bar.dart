@@ -6,8 +6,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
-
 import '../../constants/navigation_bar_data.dart';
 
 class SmallScreenNavigationBar extends StatelessWidget {
@@ -26,7 +24,7 @@ class SmallScreenNavigationBar extends StatelessWidget {
       child: NavigationBar(
         selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
         onDestinationSelected: (value) =>
-            context.go(NavigationBarData.navList[value].path),
+            NavigationBarData.navList[value].go(context),
         destinations: NavigationBarData.navList
             .map<NavigationDestination>(
               (e) => NavigationDestination(

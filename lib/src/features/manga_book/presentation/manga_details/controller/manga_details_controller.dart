@@ -22,7 +22,7 @@ part 'manga_details_controller.g.dart';
 @riverpod
 class MangaWithId extends _$MangaWithId {
   @override
-  Future<Manga?> build({required String mangaId}) async {
+  Future<Manga?> build({required int mangaId}) async {
     final token = CancelToken();
     ref.onDispose(token.cancel);
     final result = await ref
@@ -54,7 +54,7 @@ class MangaWithId extends _$MangaWithId {
 @riverpod
 class MangaChapterList extends _$MangaChapterList {
   @override
-  Future<List<Chapter>?> build({required String mangaId}) async {
+  Future<List<Chapter>?> build({required int mangaId}) async {
     final token = CancelToken();
     ref.onDispose(token.cancel);
     final result = await ref.watch(mangaBookRepositoryProvider).getChapterList(
@@ -98,7 +98,7 @@ class MangaChapterList extends _$MangaChapterList {
 @riverpod
 AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
   MangaChapterListWithFilterRef ref, {
-  required String mangaId,
+  required int mangaId,
 }) {
   final chapterList = ref.watch(mangaChapterListProvider(mangaId: mangaId));
   final chapterFilterUnread = ref.watch(mangaChapterFilterUnreadProvider);
@@ -149,7 +149,7 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
 @riverpod
 Chapter? firstUnreadInFilteredChapterList(
   FirstUnreadInFilteredChapterListRef ref, {
-  required String mangaId,
+  required int mangaId,
 }) {
   final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
       DBKeys.chapterSortDirection.initial;
@@ -172,7 +172,7 @@ Chapter? firstUnreadInFilteredChapterList(
 @riverpod
 Pair<Chapter?, Chapter?>? getPreviousAndNextChapters(
   GetPreviousAndNextChaptersRef ref, {
-  required String mangaId,
+  required int mangaId,
   required String chapterIndex,
 }) {
   final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
@@ -256,7 +256,7 @@ class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
 @riverpod
 class MangaCategoryList extends _$MangaCategoryList {
   @override
-  FutureOr<Map<String, Category>?> build(String mangaId) async {
+  FutureOr<Map<String, Category>?> build(int mangaId) async {
     final result = await ref
         .watch(mangaBookRepositoryProvider)
         .getMangaCategoryList(mangaId: mangaId);

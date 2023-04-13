@@ -23,8 +23,8 @@ class SingleChapterActionIcon extends ConsumerWidget {
     required this.refresh,
     super.key,
   }) : assert(imageIcon != null || icon != null);
-  final String chapterIndex;
-  final String mangaId;
+  final int chapterIndex;
+  final int mangaId;
   final ChapterPut chapterPut;
   final AsyncCallback refresh;
   final IconData? icon;

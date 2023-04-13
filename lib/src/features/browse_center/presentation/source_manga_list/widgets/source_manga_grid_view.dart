@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -47,7 +46,7 @@ class SourceMangaGridView extends ConsumerWidget {
           showDarkOverlay: item.inLibrary.ifNull(),
           onPressed: () {
             if (item.id != null) {
-              context.push(Routes.getManga(item.id!));
+              MangaRoute(mangaId: item.id!).push(context);
             }
           },
         ),

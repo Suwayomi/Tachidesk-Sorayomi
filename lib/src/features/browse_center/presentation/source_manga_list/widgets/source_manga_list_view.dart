@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../routes/router_config.dart';
@@ -42,7 +41,7 @@ class SourceMangaListView extends StatelessWidget {
           manga: item.copyWith(source: source),
           onPressed: () {
             if (item.id != null) {
-              context.push(Routes.getManga(item.id!));
+              MangaRoute(mangaId: item.id!).push(context);
             }
           },
         ),

@@ -6,7 +6,7 @@ part of 'reader_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chapterHash() => r'80779674a17d3466d24f1b08fc563a41c58f8070';
+String _$chapterHash() => r'8cdfda4725491b07f03c8b51a655b22090fca811';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -42,8 +42,8 @@ class ChapterFamily extends Family<AsyncValue<Chapter?>> {
 
   /// See also [chapter].
   ChapterProvider call({
-    required String mangaId,
-    required String chapterIndex,
+    required int mangaId,
+    required int chapterIndex,
   }) {
     return ChapterProvider(
       mangaId: mangaId,
@@ -98,8 +98,8 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
           allTransitiveDependencies: ChapterFamily._allTransitiveDependencies,
         );
 
-  final String mangaId;
-  final String chapterIndex;
+  final int mangaId;
+  final int chapterIndex;
 
   @override
   bool operator ==(Object other) {

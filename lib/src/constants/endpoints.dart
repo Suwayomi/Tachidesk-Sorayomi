@@ -44,26 +44,26 @@ abstract class CategoryUrl {
 
 abstract class MangaUrl {
   static String withId(int mangaId) => "$_manga/$mangaId";
-  static String fullWithId(String mangaId) => "$_manga/$mangaId/full";
+  static String fullWithId(int mangaId) => "$_manga/$mangaId/full";
   static String thumbnail(int mangaId) => "$_manga/$mangaId/thumbnail";
-  static String category(String mangaId) => "$_manga/$mangaId/category";
-  static String categoryId(String mangaId, String categoryId) =>
+  static String category(int mangaId) => "$_manga/$mangaId/category";
+  static String categoryId(int mangaId, String categoryId) =>
       "$_manga/$mangaId/category/$categoryId";
-  static String library(String mangaId) => "$_manga/$mangaId/library";
-  static String meta(String mangaId) => "$_manga/$mangaId/meta";
-  static String chapters(String mangaId) => "$_manga/$mangaId/chapters";
+  static String library(int mangaId) => "$_manga/$mangaId/library";
+  static String meta(int mangaId) => "$_manga/$mangaId/meta";
+  static String chapters(int mangaId) => "$_manga/$mangaId/chapters";
   static String chapterWithIndex(
-    String mangaId,
-    String chapterIndex,
+    int mangaId,
+    int chapterIndex,
   ) =>
       "$_manga/$mangaId/chapter/$chapterIndex";
   static String chapterMetaWithIndex(int mangaId, int chapterIndex) =>
       "$_manga/$mangaId/chapter/$chapterIndex/meta";
   static String chapterBatch = "/chapter/batch";
   static String chapterPageWithIndex({
-    required String mangaId,
-    required String chapterIndex,
-    required String pageIndex,
+    required int mangaId,
+    required int chapterIndex,
+    required int pageIndex,
   }) =>
       "$_manga/$mangaId/chapter/$chapterIndex/page/$pageIndex";
 

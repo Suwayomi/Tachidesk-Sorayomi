@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
@@ -74,9 +73,8 @@ class DownloadProgressListTile extends HookConsumerWidget {
               Padding(
                 padding: KEdgeInsets.a8.size,
                 child: InkWell(
-                  onTap: () => context.push(
-                    Routes.getManga(download.mangaId!),
-                  ),
+                  onTap: () =>
+                      MangaRoute(mangaId: download.mangaId!).push(context),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: ServerImage(

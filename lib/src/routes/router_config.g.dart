@@ -3,10 +3,501 @@
 part of 'router_config.dart';
 
 // **************************************************************************
+// GoRouterGenerator
+// **************************************************************************
+
+List<RouteBase> get $appRoutes => [
+      $mangaRoute,
+      $globalSearchRoute,
+      $sourceMangaRoute,
+      $aboutRoute,
+      $readerRoute,
+      $settingsRoute,
+      $shellRoute,
+    ];
+
+RouteBase get $mangaRoute => GoRouteData.$route(
+      path: '/manga/:mangaId',
+      factory: $MangaRouteExtension._fromState,
+      parentNavigatorKey: MangaRoute.$parentNavigatorKey,
+    );
+
+extension $MangaRouteExtension on MangaRoute {
+  static MangaRoute _fromState(GoRouterState state) => MangaRoute(
+        mangaId: int.parse(state.params['mangaId']!),
+        categoryId:
+            _$convertMapValue('category-id', state.queryParams, int.parse),
+      );
+
+  String get location => GoRouteData.$location(
+        '/manga/${Uri.encodeComponent(mangaId.toString())}',
+        queryParams: {
+          if (categoryId != null) 'category-id': categoryId!.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
+}
+
+RouteBase get $globalSearchRoute => GoRouteData.$route(
+      path: '/global-search',
+      factory: $GlobalSearchRouteExtension._fromState,
+      parentNavigatorKey: GlobalSearchRoute.$parentNavigatorKey,
+    );
+
+extension $GlobalSearchRouteExtension on GlobalSearchRoute {
+  static GlobalSearchRoute _fromState(GoRouterState state) => GlobalSearchRoute(
+        query: state.queryParams['query'],
+      );
+
+  String get location => GoRouteData.$location(
+        '/global-search',
+        queryParams: {
+          if (query != null) 'query': query,
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+RouteBase get $sourceMangaRoute => GoRouteData.$route(
+      path: '/source/:sourceId/:sourceType',
+      factory: $SourceMangaRouteExtension._fromState,
+      parentNavigatorKey: SourceMangaRoute.$parentNavigatorKey,
+    );
+
+extension $SourceMangaRouteExtension on SourceMangaRoute {
+  static SourceMangaRoute _fromState(GoRouterState state) => SourceMangaRoute(
+        sourceId: state.params['sourceId']!,
+        sourceType: _$SourceTypeEnumMap._$fromName(state.params['sourceType']!),
+        query: state.queryParams['query'],
+        $extra: state.extra as List<Filter>?,
+      );
+
+  String get location => GoRouteData.$location(
+        '/source/${Uri.encodeComponent(sourceId)}/${Uri.encodeComponent(_$SourceTypeEnumMap[sourceType]!)}',
+        queryParams: {
+          if (query != null) 'query': query,
+        },
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  void push(BuildContext context) => context.push(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+}
+
+const _$SourceTypeEnumMap = {
+  SourceType.latest: 'latest',
+  SourceType.popular: 'popular',
+  SourceType.filter: 'filter',
+};
+
+extension<T extends Enum> on Map<T, String> {
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
+}
+
+RouteBase get $aboutRoute => GoRouteData.$route(
+      path: '/about',
+      factory: $AboutRouteExtension._fromState,
+      parentNavigatorKey: AboutRoute.$parentNavigatorKey,
+    );
+
+extension $AboutRouteExtension on AboutRoute {
+  static AboutRoute _fromState(GoRouterState state) => const AboutRoute();
+
+  String get location => GoRouteData.$location(
+        '/about',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+RouteBase get $readerRoute => GoRouteData.$route(
+      path: '/reader/:mangaId/:chapterIndex',
+      factory: $ReaderRouteExtension._fromState,
+      parentNavigatorKey: ReaderRoute.$parentNavigatorKey,
+    );
+
+extension $ReaderRouteExtension on ReaderRoute {
+  static ReaderRoute _fromState(GoRouterState state) => ReaderRoute(
+        mangaId: int.parse(state.params['mangaId']!),
+        chapterIndex: int.parse(state.params['chapterIndex']!),
+        transVertical: _$convertMapValue(
+            'trans-vertical', state.queryParams, _$boolConverter),
+        toPrev:
+            _$convertMapValue('to-prev', state.queryParams, _$boolConverter),
+      );
+
+  String get location => GoRouteData.$location(
+        '/reader/${Uri.encodeComponent(mangaId.toString())}/${Uri.encodeComponent(chapterIndex.toString())}',
+        queryParams: {
+          if (transVertical != null)
+            'trans-vertical': transVertical!.toString(),
+          if (toPrev != null) 'to-prev': toPrev!.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+bool _$boolConverter(String value) {
+  switch (value) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      throw UnsupportedError('Cannot convert "$value" into a bool.');
+  }
+}
+
+RouteBase get $settingsRoute => GoRouteData.$route(
+      path: '/settings',
+      factory: $SettingsRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'library',
+          factory: $LibrarySettingsRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'edit-categories',
+              factory: $EditCategoriesRouteExtension._fromState,
+            ),
+          ],
+        ),
+        GoRouteData.$route(
+          path: 'server',
+          factory: $ServerSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'reader',
+          factory: $ReaderSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'appearance',
+          factory: $AppearanceSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'general',
+          factory: $GeneralSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'browse',
+          factory: $BrowseSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'backup',
+          factory: $BackupRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $SettingsRouteExtension on SettingsRoute {
+  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $LibrarySettingsRouteExtension on LibrarySettingsRoute {
+  static LibrarySettingsRoute _fromState(GoRouterState state) =>
+      const LibrarySettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/library',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $EditCategoriesRouteExtension on EditCategoriesRoute {
+  static EditCategoriesRoute _fromState(GoRouterState state) =>
+      const EditCategoriesRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/library/edit-categories',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $ServerSettingsRouteExtension on ServerSettingsRoute {
+  static ServerSettingsRoute _fromState(GoRouterState state) =>
+      const ServerSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/server',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $ReaderSettingsRouteExtension on ReaderSettingsRoute {
+  static ReaderSettingsRoute _fromState(GoRouterState state) =>
+      const ReaderSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/reader',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $AppearanceSettingsRouteExtension on AppearanceSettingsRoute {
+  static AppearanceSettingsRoute _fromState(GoRouterState state) =>
+      const AppearanceSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/appearance',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $GeneralSettingsRouteExtension on GeneralSettingsRoute {
+  static GeneralSettingsRoute _fromState(GoRouterState state) =>
+      const GeneralSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/general',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $BrowseSettingsRouteExtension on BrowseSettingsRoute {
+  static BrowseSettingsRoute _fromState(GoRouterState state) =>
+      const BrowseSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/browse',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $BackupRouteExtension on BackupRoute {
+  static BackupRoute _fromState(GoRouterState state) => const BackupRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/backup',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+RouteBase get $shellRoute => ShellRouteData.$route(
+      factory: $ShellRouteExtension._fromState,
+      navigatorKey: ShellRoute.$navigatorKey,
+      routes: [
+        GoRouteData.$route(
+          path: '/',
+          factory: $HomeRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/library',
+          factory: $LibraryRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/updates',
+          factory: $UpdatesRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/browse',
+          factory: $BrowseRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/downloads',
+          factory: $DownloadsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/more',
+          factory: $MoreRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $ShellRouteExtension on ShellRoute {
+  static ShellRoute _fromState(GoRouterState state) => const ShellRoute();
+}
+
+extension $HomeRouteExtension on HomeRoute {
+  static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
+
+  String get location => GoRouteData.$location(
+        '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $LibraryRouteExtension on LibraryRoute {
+  static LibraryRoute _fromState(GoRouterState state) => const LibraryRoute();
+
+  String get location => GoRouteData.$location(
+        '/library',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $UpdatesRouteExtension on UpdatesRoute {
+  static UpdatesRoute _fromState(GoRouterState state) => const UpdatesRoute();
+
+  String get location => GoRouteData.$location(
+        '/updates',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $BrowseRouteExtension on BrowseRoute {
+  static BrowseRoute _fromState(GoRouterState state) => const BrowseRoute();
+
+  String get location => GoRouteData.$location(
+        '/browse',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $DownloadsRouteExtension on DownloadsRoute {
+  static DownloadsRoute _fromState(GoRouterState state) =>
+      const DownloadsRoute();
+
+  String get location => GoRouteData.$location(
+        '/downloads',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+extension $MoreRouteExtension on MoreRoute {
+  static MoreRoute _fromState(GoRouterState state) => const MoreRoute();
+
+  String get location => GoRouteData.$location(
+        '/more',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  void push(BuildContext context) => context.push(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+}
+
+// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerConfigHash() => r'a0269a8d7a3e511e56cedc4991024e849d4af207';
+String _$routerConfigHash() => r'c9473ad31b2ecd6bf97eb8e0a2a4edf6683e5f6f';
 
 /// See also [routerConfig].
 @ProviderFor(routerConfig)

@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/enum.dart';
@@ -27,10 +26,10 @@ class SourceListTile extends ConsumerWidget {
       onTap: (() async {
         if (source.id == null) return;
         ref.read(sourceLastUsedProvider.notifier).update(source.id);
-        context.push(Routes.getSourceManga(
-          source.id!,
-          SourceType.popular,
-        ));
+        SourceMangaRoute(
+          sourceId: source.id!,
+          sourceType: SourceType.popular,
+        ).push(context);
       }),
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8),
@@ -47,10 +46,10 @@ class SourceListTile extends ConsumerWidget {
           ? TextButton(
               onPressed: () async {
                 ref.read(sourceLastUsedProvider.notifier).update(source.id);
-                context.push(Routes.getSourceManga(
-                  source.id!,
-                  SourceType.latest,
-                ));
+                SourceMangaRoute(
+                  sourceId: source.id!,
+                  sourceType: SourceType.latest,
+                ).push(context);
               },
               child: Text(context.l10n!.latest),
             )

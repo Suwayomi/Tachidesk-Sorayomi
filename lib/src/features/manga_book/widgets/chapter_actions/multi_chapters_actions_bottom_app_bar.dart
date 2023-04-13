@@ -60,9 +60,8 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
             ),
           if (selectedList.isSingletonList)
             SingleChapterActionIcon(
-              chapterIndex:
-                  "${selectedChapters.value[chapterList.first]?.index}",
-              mangaId: "${selectedChapters.value[chapterList.first]?.mangaId}",
+              chapterIndex: selectedChapters.value[chapterList.first]!.index!,
+              mangaId: selectedChapters.value[chapterList.first]!.mangaId!,
               imageIcon: ImageIcon(
                 Assets.icons.previousDone.provider(),
                 color: context.theme.cardTheme.color,

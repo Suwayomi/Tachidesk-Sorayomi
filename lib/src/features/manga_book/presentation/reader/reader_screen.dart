@@ -26,8 +26,8 @@ class ReaderScreen extends HookConsumerWidget {
     required this.mangaId,
     required this.chapterIndex,
   });
-  final String mangaId;
-  final String chapterIndex;
+  final int mangaId;
+  final int chapterIndex;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mangaProvider =
