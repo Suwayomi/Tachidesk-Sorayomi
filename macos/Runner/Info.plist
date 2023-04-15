@@ -30,11 +30,13 @@
 	<string>NSApplication</string>
 	<key>CFBundleLocalizations</key>
 	<array>
+		<string>ar</string>
 		<string>de</string>
 		<string>en</string>
 		<string>es</string>
-		<string>pt-pt</string>
+		<string>fr</string>
 		<string>pt</string>
+		<string>pt-pt</string>
 		<string>zh</string>
 		<string>zh-hans</string>
 	</array>
