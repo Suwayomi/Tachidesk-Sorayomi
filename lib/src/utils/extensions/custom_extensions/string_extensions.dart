@@ -13,6 +13,8 @@ extension StringExtensions on String? {
 
   bool get isNotBlank => !isBlank;
 
+  bool get isInt => isNull ? false : int.tryParse(this!) != null;
+
   bool? get tryParseBool => isNull ? null : (this!).toLowerCase() == 'true';
 
   double? get tryParseInt => isNull ? null : double.tryParse(this!);

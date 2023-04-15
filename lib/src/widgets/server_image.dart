@@ -13,8 +13,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
+import '../features/settings/widgets/server_port_tile/server_port_tile.dart';
 import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../global_providers/global_providers.dart';
+import '../utils/extensions/custom_extensions.dart';
 
 class ServerImage extends ConsumerWidget {
   const ServerImage({
@@ -36,11 +38,14 @@ class ServerImage extends ConsumerWidget {
   final Widget Function(Widget child)? wrapper;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final baseUrl = ref.watch(serverUrlProvider);
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
-    final baseApi =
-        "${Endpoints.baseApi(baseUrl: baseUrl, appendApiToUrl: appendApiToUrl)}"
+    final baseApi = "${Endpoints.baseApi(
+      baseUrl: ref.watch(serverUrlProvider),
+      port: ref.watch(serverPortProvider),
+      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+      appendApiToUrl: appendApiToUrl,
+    )}"
         "$imageUrl";
     return CachedNetworkImage(
       imageUrl: baseApi,

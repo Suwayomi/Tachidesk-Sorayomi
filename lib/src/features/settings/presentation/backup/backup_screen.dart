@@ -14,6 +14,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../data/backup/backup_repository.dart';
+import '../../widgets/server_port_tile/server_port_tile.dart';
 import '../../widgets/server_url_tile/server_url_tile.dart';
 import 'widgets/backup_missing_dialog.dart';
 
@@ -67,7 +68,11 @@ class BackupScreen extends ConsumerWidget {
               final toast = ref.read(toastProvider(context));
               launchUrlInWeb(
                 context,
-                Endpoints.baseApi(baseUrl: ref.read(serverUrlProvider)) +
+                Endpoints.baseApi(
+                      baseUrl: ref.read(serverUrlProvider),
+                      port: ref.read(serverPortProvider),
+                      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                    ) +
                     BackupUrl.export,
                 toast,
               );

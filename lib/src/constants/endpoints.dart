@@ -8,8 +8,14 @@ import 'db_keys.dart';
 
 abstract class Endpoints {
   // base url
-  static String baseApi({String? baseUrl, bool appendApiToUrl = true}) =>
+  static String baseApi({
+    String? baseUrl,
+    int? port,
+    bool addPort = true,
+    bool appendApiToUrl = true,
+  }) =>
       "${baseUrl ?? DBKeys.serverUrl.initial}"
+      "${port != null && addPort ? ":$port" : ''}"
       "${appendApiToUrl ? '/api/v1' : ''}";
 
   // receiveTimeout
