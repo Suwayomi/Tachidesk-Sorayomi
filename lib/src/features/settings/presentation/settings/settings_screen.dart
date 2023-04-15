@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
@@ -24,43 +23,37 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             title: Text(context.l10n!.general),
             leading: const Icon(Icons.tune_rounded),
-            onTap: () =>
-                context.push([Routes.settings, Routes.generalSettings].toPath),
+            onTap: () => const GeneralSettingsRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.appearance),
             leading: const Icon(Icons.color_lens_rounded),
-            onTap: () => context
-                .push([Routes.settings, Routes.appearanceSettings].toPath),
+            onTap: () => const AppearanceSettingsRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.library),
             leading: const Icon(Icons.collections_bookmark_rounded),
-            onTap: () =>
-                context.push([Routes.settings, Routes.librarySettings].toPath),
+            onTap: () => const LibrarySettingsRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.reader),
             leading: const Icon(Icons.chrome_reader_mode_rounded),
-            onTap: () =>
-                context.push([Routes.settings, Routes.readerSettings].toPath),
+            onTap: () => const ReaderSettingsRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.browse),
             leading: const Icon(Icons.explore_rounded),
-            onTap: () =>
-                context.push([Routes.settings, Routes.browseSettings].toPath),
+            onTap: () => const BrowseSettingsRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
-            onTap: () => context.push([Routes.settings, Routes.backup].toPath),
+            onTap: () => const BackupRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.server),
             leading: const Icon(Icons.computer_rounded),
-            onTap: () =>
-                context.push([Routes.settings, Routes.serverSettings].toPath),
+            onTap: () => const ServerSettingsRoute().push(context),
           ),
         ],
       ),

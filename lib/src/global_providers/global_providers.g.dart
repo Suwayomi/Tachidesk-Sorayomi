@@ -6,7 +6,7 @@ part of 'global_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioClientKeyHash() => r'f8ac67719cc287981dabd817e2010e3b8650659a';
+String _$dioClientKeyHash() => r'3c0bdf6561be103898cbba24855ca355c5dfba6b';
 
 /// See also [dioClientKey].
 @ProviderFor(dioClientKey)

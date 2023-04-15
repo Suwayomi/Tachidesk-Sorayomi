@@ -15,8 +15,8 @@ part 'reader_controller.g.dart';
 @riverpod
 FutureOr<Chapter?> chapter(
   ChapterRef ref, {
-  required String mangaId,
-  required String chapterIndex,
+  required int mangaId,
+  required int chapterIndex,
 }) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);

@@ -66,7 +66,7 @@ class ReaderWrapper extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final prevNextChapterPair = ref.watch(
       getPreviousAndNextChaptersProvider(
-        mangaId: "${manga.id}",
+        mangaId: manga.id!,
         chapterIndex: "${chapter.index}",
       ),
     );
@@ -99,12 +99,12 @@ class ReaderWrapper extends HookConsumerWidget {
             if (context.mounted) context.pop();
             await AsyncValue.guard(
               () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: "${manga.id}",
+                    mangaId: manga.id!,
                     key: MangaMetaKeys.readerMode.key,
                     value: enumValue.name,
                   ),
             );
-            ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+            ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
           },
         ),
       ),
@@ -123,13 +123,13 @@ class ReaderWrapper extends HookConsumerWidget {
             if (context.mounted) context.pop();
             await AsyncValue.guard(
               () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: "${manga.id}",
+                    mangaId: manga.id!,
                     key: MangaMetaKeys.readerNavigationLayout.key,
                     value: enumValue.name,
                   ),
             );
             ref.invalidate(
-              mangaWithIdProvider(mangaId: "${manga.id}"),
+              mangaWithIdProvider(mangaId: manga.id!),
             );
           },
         ),
@@ -215,12 +215,12 @@ class ReaderWrapper extends HookConsumerWidget {
                 onChanged: (value) {
                   AsyncValue.guard(
                     () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                          mangaId: "${manga.id}",
+                          mangaId: manga.id!,
                           key: MangaMetaKeys.readerPadding.key,
                           value: value,
                         ),
                   );
-                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+                  ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
                 },
               ),
               AsyncReaderMagnifierSizeSlider(
@@ -228,12 +228,12 @@ class ReaderWrapper extends HookConsumerWidget {
                 onChanged: (value) {
                   AsyncValue.guard(
                     () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                          mangaId: "${manga.id}",
+                          mangaId: manga.id!,
                           key: MangaMetaKeys.readerMagnifierSize.key,
                           value: value,
                         ),
                   );
-                  ref.invalidate(mangaWithIdProvider(mangaId: "${manga.id}"));
+                  ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
                 },
               ),
             ],
@@ -250,15 +250,15 @@ class ReaderWrapper extends HookConsumerWidget {
                           shape: const CircleBorder(),
                           child: IconButton(
                             onPressed: prevNextChapterPair?.second != null
-                                ? () => context.pushReplacement(
-                                      Routes.getReader(
-                                        "${prevNextChapterPair!.second!.mangaId}",
-                                        "${prevNextChapterPair.second!.index}",
-                                        toPrev: true,
-                                        transVertical:
-                                            scrollDirection != Axis.vertical,
-                                      ),
-                                    )
+                                ? () => ReaderRoute(
+                                      mangaId:
+                                          prevNextChapterPair!.second!.mangaId!,
+                                      chapterIndex:
+                                          prevNextChapterPair.second!.index!,
+                                      toPrev: true,
+                                      transVertical:
+                                          scrollDirection != Axis.vertical,
+                                    ).pushReplacement(context)
                                 : null,
                             icon: const Icon(
                               Icons.skip_previous_rounded,
@@ -276,14 +276,14 @@ class ReaderWrapper extends HookConsumerWidget {
                           shape: const CircleBorder(),
                           child: IconButton(
                             onPressed: prevNextChapterPair?.first != null
-                                ? () => context.pushReplacement(
-                                      Routes.getReader(
-                                        "${prevNextChapterPair!.first!.mangaId}",
-                                        "${prevNextChapterPair.first!.index}",
-                                        transVertical:
-                                            scrollDirection != Axis.vertical,
-                                      ),
-                                    )
+                                ? () => ReaderRoute(
+                                      mangaId:
+                                          prevNextChapterPair!.first!.mangaId!,
+                                      chapterIndex:
+                                          prevNextChapterPair.first!.index!,
+                                      transVertical:
+                                          scrollDirection != Axis.vertical,
+                                    ).pushReplacement(context)
                                 : null,
                             icon: const Icon(Icons.skip_next_rounded),
                           ),
@@ -309,8 +309,8 @@ class ReaderWrapper extends HookConsumerWidget {
                                 icon: chapter.bookmarked!
                                     ? Icons.bookmark_rounded
                                     : Icons.bookmark_outline_rounded,
-                                chapterIndex: "${chapter.index!}",
-                                mangaId: "${manga.id}",
+                                chapterIndex: chapter.index!,
+                                mangaId: manga.id!,
                                 chapterPut: ChapterPut(
                                   bookmarked: !chapter.bookmarked!,
                                 ),
@@ -318,8 +318,8 @@ class ReaderWrapper extends HookConsumerWidget {
                                   if (manga.id != null &&
                                       chapter.index != null) {
                                     return ref.refresh(chapterProvider(
-                                      mangaId: "${manga.id!}",
-                                      chapterIndex: "${chapter.index!}",
+                                      mangaId: manga.id!,
+                                      chapterIndex: chapter.index!,
                                     ).future);
                                   }
                                 },
@@ -387,26 +387,25 @@ class ReaderWrapper extends HookConsumerWidget {
                 onInvoke: (intent) => onNext(),
               ),
               PreviousChapterIntent: CallbackAction<PreviousChapterIntent>(
-                onInvoke: (intent) => prevNextChapterPair?.second != null
-                    ? context.pushReplacement(
-                        Routes.getReader(
-                          "${prevNextChapterPair!.second!.mangaId}",
-                          "${prevNextChapterPair.second!.index}",
+                onInvoke: (intent) {
+                  prevNextChapterPair?.second != null
+                      ? ReaderRoute(
+                          mangaId: prevNextChapterPair!.second!.mangaId!,
+                          chapterIndex: prevNextChapterPair.second!.index!,
                           toPrev: true,
                           transVertical: scrollDirection != Axis.vertical,
-                        ),
-                      )
-                    : onPrevious(),
+                        ).pushReplacement(context)
+                      : onPrevious();
+                  return null;
+                },
               ),
               NextChapterIntent: CallbackAction<NextChapterIntent>(
                 onInvoke: (intent) => prevNextChapterPair?.first != null
-                    ? context.pushReplacement(
-                        Routes.getReader(
-                          "${prevNextChapterPair!.first!.mangaId}",
-                          "${prevNextChapterPair.first!.index}",
-                          transVertical: scrollDirection != Axis.vertical,
-                        ),
-                      )
+                    ? ReaderRoute(
+                        mangaId: prevNextChapterPair!.first!.mangaId!,
+                        chapterIndex: prevNextChapterPair.first!.index!,
+                        transVertical: scrollDirection != Axis.vertical,
+                      ).pushReplacement(context)
                     : onNext(),
               ),
             },
@@ -467,22 +466,18 @@ class ReaderView extends HookWidget {
       mangaReaderMagnifierSize,
     );
     nextChapter() => prevNextChapterPair?.first != null
-        ? context.pushReplacement(
-            Routes.getReader(
-              "${prevNextChapterPair!.first!.mangaId}",
-              "${prevNextChapterPair!.first!.index}",
-              transVertical: scrollDirection != Axis.vertical,
-            ),
-          )
+        ? ReaderRoute(
+            mangaId: prevNextChapterPair!.first!.mangaId!,
+            chapterIndex: prevNextChapterPair!.first!.index!,
+            transVertical: scrollDirection != Axis.vertical,
+          ).pushReplacement(context)
         : null;
     prevChapter() => prevNextChapterPair?.second != null
-        ? context.pushReplacement(
-            Routes.getReader(
-              "${prevNextChapterPair!.second!.mangaId}",
-              "${prevNextChapterPair!.second!.index}",
-              transVertical: scrollDirection != Axis.vertical,
-              toPrev: true,
-            ),
+        ? ReaderRoute(
+            mangaId: prevNextChapterPair!.second!.mangaId!,
+            chapterIndex: prevNextChapterPair!.second!.index!,
+            toPrev: true,
+            transVertical: scrollDirection != Axis.vertical,
           )
         : null;
     return Stack(

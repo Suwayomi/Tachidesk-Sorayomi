@@ -26,6 +26,8 @@ parseJson(String text) => compute(_parseAndDecode, text);
 class DioNetworkModule {
   Dio provideDio({
     required String baseUrl,
+    int? port,
+    bool addPort = true,
     required AuthType authType,
     HiveCacheStore? hiveCacheStore,
     String? credentials,
@@ -41,7 +43,11 @@ class DioNetworkModule {
     (dio.transformer as BackgroundTransformer).jsonDecodeCallback = parseJson;
 
     dio
-      ..options.baseUrl = Endpoints.baseApi(baseUrl: baseUrl)
+      ..options.baseUrl = Endpoints.baseApi(
+        baseUrl: baseUrl,
+        port: port,
+        addPort: addPort,
+      )
       ..options.connectTimeout = Endpoints.connectionTimeout
       ..options.receiveTimeout = Endpoints.receiveTimeout
       ..options.contentType = Headers.jsonContentType

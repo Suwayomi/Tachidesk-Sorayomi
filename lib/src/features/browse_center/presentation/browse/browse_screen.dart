@@ -6,7 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -77,7 +76,7 @@ class BrowseScreen extends HookConsumerWidget {
                           key: const ValueKey(0),
                           onSubmitted: (value) {
                             if (value.isNotBlank) {
-                              context.push(Routes.getGlobalSearch(value));
+                              GlobalSearchRoute(query: value).push(context);
                             }
                           },
                           onClose: () => showSearch.value = false,

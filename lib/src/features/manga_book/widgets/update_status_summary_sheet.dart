@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../routes/router_config.dart';
@@ -100,9 +99,7 @@ class UpdateStatusExpansionTile extends StatelessWidget {
           .map((e) => MangaCoverListTile(
                 manga: e,
                 showCountBadges: true,
-                onPressed: () => context.push(
-                  Routes.getManga(e.id!),
-                ),
+                onPressed: () => MangaRoute(mangaId: e.id!).push(context),
               ))
           .toList(),
     );

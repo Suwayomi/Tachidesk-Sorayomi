@@ -22,9 +22,9 @@ class MangaBookRepository {
   const MangaBookRepository(this.dioClient);
 
   final DioClient dioClient;
-  Future<void> addMangaToLibrary(String mangaId) =>
+  Future<void> addMangaToLibrary(int mangaId) =>
       dioClient.get(MangaUrl.library(mangaId));
-  Future<void> removeMangaFromLibrary(String mangaId) =>
+  Future<void> removeMangaFromLibrary(int mangaId) =>
       dioClient.delete(MangaUrl.library(mangaId));
 
   Future<void> modifyBulkChapters({ChapterBatch? batch}) =>
@@ -32,7 +32,7 @@ class MangaBookRepository {
 
   // Mangas
   Future<Manga?> getManga({
-    required String mangaId,
+    required int mangaId,
     bool onlineFetch = false,
     CancelToken? cancelToken,
   }) async =>
@@ -47,8 +47,8 @@ class MangaBookRepository {
   // Chapters
 
   Future<Chapter?> getChapter({
-    required String mangaId,
-    required String chapterIndex,
+    required int mangaId,
+    required int chapterIndex,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.get<Chapter, Chapter?>(
@@ -59,8 +59,8 @@ class MangaBookRepository {
           .data;
 
   Future<void> putChapter({
-    required String mangaId,
-    required String chapterIndex,
+    required int mangaId,
+    required int chapterIndex,
     required ChapterPut patch,
     CancelToken? cancelToken,
   }) async =>
@@ -71,7 +71,7 @@ class MangaBookRepository {
       ));
 
   Future<void> patchMangaMeta({
-    required String mangaId,
+    required int mangaId,
     required String key,
     required dynamic value,
     CancelToken? cancelToken,
@@ -83,7 +83,7 @@ class MangaBookRepository {
       ));
 
   Future<List<Chapter>?> getChapterList({
-    required String mangaId,
+    required int mangaId,
     bool onlineFetch = false,
     CancelToken? cancelToken,
   }) async =>
@@ -97,7 +97,7 @@ class MangaBookRepository {
           .data;
 
   Future<List<Category>?> getMangaCategoryList({
-    required String mangaId,
+    required int mangaId,
     CancelToken? cancelToken,
   }) async =>
       (await dioClient.get<List<Category>, Category>(
@@ -107,9 +107,9 @@ class MangaBookRepository {
         cancelToken: cancelToken,
       ))
           .data;
-  Future<void> addMangaToCategory(String mangaId, String categoryId) =>
+  Future<void> addMangaToCategory(int mangaId, String categoryId) =>
       dioClient.get(MangaUrl.categoryId(mangaId, categoryId));
-  Future<void> removeMangaFromCategory(String mangaId, String categoryId) =>
+  Future<void> removeMangaFromCategory(int mangaId, String categoryId) =>
       dioClient.delete(MangaUrl.categoryId(mangaId, categoryId));
 }
 

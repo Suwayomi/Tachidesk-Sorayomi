@@ -27,7 +27,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
     required this.onDescriptionRefresh,
     required this.onListRefresh,
   });
-  final String mangaId;
+  final int mangaId;
   final Manga manga;
   final AsyncValueSetter<bool> onRefresh;
   final ValueNotifier<Map<int, Chapter>> selectedChapters;

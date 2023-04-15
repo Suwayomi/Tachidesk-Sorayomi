@@ -23,7 +23,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
     required this.mangaId,
     this.title,
   });
-  final String mangaId;
+  final int mangaId;
   final String? title;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

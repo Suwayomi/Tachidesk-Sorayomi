@@ -176,8 +176,20 @@ jobs:
     needs: create-build
     runs-on: windows-latest # action can only be run on windows
     steps:
-      - uses: vedantmgoyal2009/winget-releaser@v2
+      - name: Update WINGET manifest
+        uses: vedantmgoyal2009/winget-releaser@v2
         with:
           identifier: Suwayomi.Tachidesk-Sorayomi
           version: ${{ github.ref_name }}
           token: ${{ secrets.WINGET }}
+
+  homebrew-cask-publish:
+    needs: create-build
+    runs-on: macos-latest
+    steps:
+      - name: Update Homebrew cask
+        uses: macauley/action-homebrew-bump-cask@v1
+        with:
+          token: ${{secrets.WINGET}}
+          tap: homebrew/homebrew-cask
+          cask: tachidesk-sorayomi

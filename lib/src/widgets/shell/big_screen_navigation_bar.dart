@@ -6,8 +6,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
-
 import '../../constants/gen/assets.gen.dart';
 import '../../constants/navigation_bar_data.dart';
 import '../../routes/router_config.dart';
@@ -29,7 +27,7 @@ class BigScreenNavigationBar extends StatelessWidget {
           : NavigationRailLabelType.all,
       leading: context.isDesktop
           ? TextButton.icon(
-              onPressed: () => context.push(Routes.about),
+              onPressed: () => const AboutRoute().push(context),
               icon: ImageIcon(
                 AssetImage(Assets.icons.darkIcon.path),
                 size: 48,
@@ -40,7 +38,7 @@ class BigScreenNavigationBar extends StatelessWidget {
               ),
             )
           : IconButton(
-              onPressed: () => context.push(Routes.about),
+              onPressed: () => const AboutRoute().push(context),
               icon: ImageIcon(
                 AssetImage(Assets.icons.darkIcon.path),
                 size: 48,
@@ -57,7 +55,7 @@ class BigScreenNavigationBar extends StatelessWidget {
           .toList(),
       selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
       onDestinationSelected: (value) =>
-          context.go(NavigationBarData.navList[value].path),
+          NavigationBarData.navList[value].go(context),
     );
   }
 }

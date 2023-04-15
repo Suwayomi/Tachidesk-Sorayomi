@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
@@ -41,13 +40,11 @@ class SourceQuickSearch extends ConsumerWidget {
           ListTile(
             title: Text(data?.displayName ?? data?.name ?? ""),
             trailing: const Icon(Icons.arrow_forward_rounded),
-            onTap: () => context.push(
-              Routes.getSourceManga(
-                sourceId,
-                SourceType.filter,
-                query: query,
-              ),
-            ),
+            onTap: () => SourceMangaRoute(
+              sourceId: sourceId,
+              sourceType: SourceType.filter,
+              query: query,
+            ).push(context),
           ),
           mangaList.showUiWhenData(
               context,
@@ -68,7 +65,8 @@ class SourceQuickSearch extends ConsumerWidget {
                                 manga: i,
                                 showDarkOverlay: i.inLibrary.ifNull(),
                                 onPressed: i.id != null
-                                    ? () => context.push(Routes.getManga(i.id!))
+                                    ? () =>
+                                        MangaRoute(mangaId: i.id!).push(context)
                                     : null,
                               ),
                             ),

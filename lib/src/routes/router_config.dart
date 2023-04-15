@@ -42,194 +42,280 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
 abstract class Routes {
   static const home = '/';
   static const library = '/library';
-  static const librarySettings = 's-library';
+  static const librarySettings = 'library';
   static const updates = '/updates';
   static const browse = '/browse';
   static const downloads = '/downloads';
   static const more = '/more';
   static const about = '/about';
-  static const appearanceSettings = 's-appearance';
-  static const generalSettings = 's-general';
+  static const appearanceSettings = 'appearance';
+  static const generalSettings = 'general';
   static const backup = 'backup';
   static const settings = '/settings';
   static const browseSettings = 'browse';
   static const readerSettings = 'reader';
   static const reader = '/reader/:mangaId/:chapterIndex';
-  static getReader(
-    String mangaId,
-    String chapterIndex, {
-    bool? transVertical,
-    bool? toPrev,
-  }) {
-    String route = '/reader/$mangaId/$chapterIndex?';
-    if (toPrev.isNotNull && toPrev!) {
-      route += 'toPrev=$toPrev&&';
-    }
-    if (transVertical.isNotNull && transVertical!) {
-      route += 'transVertical=$transVertical';
-    }
-    return route;
-  }
-
   static const serverSettings = 'server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
   static const manga = '/manga/:mangaId';
-  static getManga(int mangaId, {int? categoryId}) =>
-      '/manga/$mangaId${categoryId.isNull ? '' : "?categoryId=$categoryId"}';
   static const sourceManga = '/source/:sourceId/:sourceType';
-  static getSourceManga(String sourceId, SourceType sourceType,
-          {String? query}) =>
-      '/source/$sourceId/${sourceType.name}${query.isNotBlank ? "?query=$query" : ''}';
   static const globalSearch = '/global-search';
-  static getGlobalSearch([String? query]) =>
-      '/global-search${query.isNotBlank ? "?query=$query" : ''}';
 }
 
 @riverpod
 GoRouter routerConfig(ref) {
   return GoRouter(
+    routes: $appRoutes,
     debugLogDiagnostics: true,
     initialLocation: Routes.library,
     navigatorKey: _rootNavigatorKey,
-    routes: [
-      ShellRoute(
-        navigatorKey: _shellNavigatorKey,
-        builder: (context, state, child) => ShellScreen(child: child),
-        routes: [
-          GoRoute(
-            path: Routes.home,
-            redirect: (context, state) => Routes.library,
-          ),
-          GoRoute(
-            path: Routes.library,
-            builder: (context, state) => const LibraryScreen(),
-          ),
-          GoRoute(
-            path: Routes.updates,
-            builder: (context, state) => const UpdatesScreen(),
-          ),
-          GoRoute(
-            path: Routes.browse,
-            builder: (context, state) => const BrowseScreen(),
-          ),
-          GoRoute(
-            path: Routes.downloads,
-            builder: (context, state) => const DownloadsScreen(),
-          ),
-          GoRoute(
-            path: Routes.more,
-            builder: (context, state) => const MoreScreen(),
-          ),
-        ],
-      ),
-      GoRoute(
-        path: Routes.manga,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => MangaDetailsScreen(
-          key: ValueKey(state.params['mangaId'] ?? "2"),
-          mangaId: state.params['mangaId'] ?? "",
-          categoryId: int.tryParse(state.queryParams['categoryId'] ?? ''),
-        ),
-      ),
-      GoRoute(
-        path: Routes.globalSearch,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => GlobalSearchScreen(
-          key: ValueKey(state.queryParams['query'] ?? "1"),
-          initialQuery: state.queryParams['query'],
-        ),
-      ),
-      GoRoute(
-        path: Routes.sourceManga,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => SourceMangaListScreen(
-          key: ValueKey(state.params['sourceId'] ?? "0"),
-          sourceId: state.params['sourceId'] ?? "0",
-          initialQuery: state.queryParams['query'],
-          initialFilter: (state.extra is List<Filter>?)
-              ? (state.extra as List<Filter>?)
-              : null,
-          sourceType: SourceType.values.firstWhere(
-            (element) => element.name.query(state.params['sourceType']),
-            orElse: () => SourceType.popular,
-          ),
-        ),
-      ),
-      GoRoute(
-        path: Routes.about,
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const AboutScreen(),
-      ),
-      GoRoute(
-        path: Routes.reader,
-        parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: ReaderScreen(
-            mangaId: state.params['mangaId'] ?? '',
-            chapterIndex: state.params['chapterIndex'] ?? '',
-          ),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            Offset offset = Offset.zero;
-            if (state.queryParams['transVertical'].tryParseBool.ifNull()) {
-              offset += const Offset(0, 1);
-            } else {
-              offset += const Offset(1, 0);
-            }
-            if (state.queryParams['toPrev'].tryParseBool.ifNull()) {
-              offset *= -1;
-            }
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: offset,
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
-          },
-        ),
-      ),
-      GoRoute(
-        path: Routes.settings,
-        builder: (context, state) => const SettingsScreen(),
-        routes: [
-          GoRoute(
-            path: Routes.librarySettings,
-            builder: (context, state) => const LibrarySettingsScreen(),
-            routes: [
-              GoRoute(
-                path: Routes.editCategories,
-                builder: (context, state) => const EditCategoryScreen(),
-              ),
-            ],
-          ),
-          GoRoute(
-            path: Routes.serverSettings,
-            builder: (context, state) => const ServerScreen(),
-          ),
-          GoRoute(
-            path: Routes.readerSettings,
-            builder: (context, state) => const ReaderSettingsScreen(),
-          ),
-          GoRoute(
-            path: Routes.appearanceSettings,
-            builder: (context, state) => const AppearanceScreen(),
-          ),
-          GoRoute(
-            path: Routes.generalSettings,
-            builder: (context, state) => const GeneralScreen(),
-          ),
-          GoRoute(
-            path: Routes.browseSettings,
-            builder: (context, state) => const BrowseSettingsScreen(),
-          ),
-          GoRoute(
-            path: Routes.backup,
-            builder: (context, state) => const BackupScreen(),
-          ),
-        ],
-      ),
-    ],
   );
+}
+
+@TypedShellRoute<ShellRoute>(
+  routes: [
+    TypedGoRoute<HomeRoute>(path: Routes.home),
+    TypedGoRoute<LibraryRoute>(path: Routes.library),
+    TypedGoRoute<UpdatesRoute>(path: Routes.updates),
+    TypedGoRoute<BrowseRoute>(path: Routes.browse),
+    TypedGoRoute<DownloadsRoute>(path: Routes.downloads),
+    TypedGoRoute<MoreRoute>(path: Routes.more),
+  ],
+)
+class ShellRoute extends ShellRouteData {
+  const ShellRoute();
+
+  static final $navigatorKey = _shellNavigatorKey;
+
+  @override
+  Widget builder(context, state, navigator) => ShellScreen(child: navigator);
+}
+
+class HomeRoute extends GoRouteData {
+  const HomeRoute();
+  @override
+  FutureOr<String?> redirect(context, state) => Routes.library;
+}
+
+class LibraryRoute extends GoRouteData {
+  const LibraryRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const LibraryScreen();
+}
+
+class UpdatesRoute extends GoRouteData {
+  const UpdatesRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const UpdatesScreen();
+}
+
+class BrowseRoute extends GoRouteData {
+  const BrowseRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const BrowseScreen();
+}
+
+class DownloadsRoute extends GoRouteData {
+  const DownloadsRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const DownloadsScreen();
+}
+
+class MoreRoute extends GoRouteData {
+  const MoreRoute();
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const MoreScreen();
+}
+
+@TypedGoRoute<MangaRoute>(path: Routes.manga)
+class MangaRoute extends GoRouteData {
+  const MangaRoute({required this.mangaId, this.categoryId});
+  final int mangaId;
+  final int? categoryId;
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      MangaDetailsScreen(mangaId: mangaId, categoryId: categoryId);
+}
+
+@TypedGoRoute<GlobalSearchRoute>(path: Routes.globalSearch)
+class GlobalSearchRoute extends GoRouteData {
+  const GlobalSearchRoute({this.query});
+  final String? query;
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      GlobalSearchScreen(key: ValueKey(query), initialQuery: query);
+}
+
+@TypedGoRoute<SourceMangaRoute>(path: Routes.sourceManga)
+class SourceMangaRoute extends GoRouteData {
+  const SourceMangaRoute({
+    required this.sourceId,
+    required this.sourceType,
+    this.query,
+    this.$extra,
+  });
+  final String sourceId;
+  final SourceType sourceType;
+  final String? query;
+  final List<Filter>? $extra;
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      SourceMangaListScreen(
+        key: ValueKey(sourceId),
+        sourceId: sourceId,
+        sourceType: sourceType,
+        initialQuery: query,
+        initialFilter: $extra,
+      );
+}
+
+@TypedGoRoute<AboutRoute>(path: Routes.about)
+class AboutRoute extends GoRouteData {
+  const AboutRoute();
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AboutScreen();
+}
+
+@TypedGoRoute<ReaderRoute>(path: Routes.reader)
+class ReaderRoute extends GoRouteData {
+  const ReaderRoute({
+    required this.mangaId,
+    required this.chapterIndex,
+    this.transVertical,
+    this.toPrev,
+  });
+  final int mangaId;
+  final int chapterIndex;
+  final bool? transVertical;
+  final bool? toPrev;
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return CustomTransitionPage(
+      key: state.pageKey,
+      child: ReaderScreen(mangaId: mangaId, chapterIndex: chapterIndex),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        Offset offset = Offset.zero;
+        offset += Offset(
+          transVertical.ifNull() ? 0 : 1,
+          transVertical.ifNull() ? 1 : 0,
+        );
+        if (toPrev.ifNull()) {
+          offset *= -1;
+        }
+
+        return SlideTransition(
+          position: Tween<Offset>(
+            begin: offset,
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        );
+      },
+    );
+  }
+}
+
+@TypedGoRoute<SettingsRoute>(path: Routes.settings, routes: [
+  TypedGoRoute<LibrarySettingsRoute>(
+    path: Routes.librarySettings,
+    routes: [TypedGoRoute<EditCategoriesRoute>(path: Routes.editCategories)],
+  ),
+  TypedGoRoute<ServerSettingsRoute>(path: Routes.serverSettings),
+  TypedGoRoute<ReaderSettingsRoute>(path: Routes.readerSettings),
+  TypedGoRoute<AppearanceSettingsRoute>(path: Routes.appearanceSettings),
+  TypedGoRoute<GeneralSettingsRoute>(path: Routes.generalSettings),
+  TypedGoRoute<BrowseSettingsRoute>(path: Routes.browseSettings),
+  TypedGoRoute<BackupRoute>(path: Routes.backup),
+])
+class SettingsRoute extends GoRouteData {
+  const SettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SettingsScreen();
+}
+
+class LibrarySettingsRoute extends GoRouteData {
+  const LibrarySettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const LibrarySettingsScreen();
+}
+
+class EditCategoriesRoute extends GoRouteData {
+  const EditCategoriesRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const EditCategoryScreen();
+}
+
+class ServerSettingsRoute extends GoRouteData {
+  const ServerSettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ServerScreen();
+}
+
+class ReaderSettingsRoute extends GoRouteData {
+  const ReaderSettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ReaderSettingsScreen();
+}
+
+class AppearanceSettingsRoute extends GoRouteData {
+  const AppearanceSettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AppearanceScreen();
+}
+
+class GeneralSettingsRoute extends GoRouteData {
+  const GeneralSettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const GeneralScreen();
+}
+
+class BrowseSettingsRoute extends GoRouteData {
+  const BrowseSettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const BrowseSettingsScreen();
+}
+
+class BackupRoute extends GoRouteData {
+  const BackupRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const BackupScreen();
 }

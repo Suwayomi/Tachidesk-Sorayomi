@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/gen/assets.gen.dart';
@@ -38,28 +37,24 @@ class MoreScreen extends ConsumerWidget {
           ListTile(
             title: Text(context.l10n!.categories),
             leading: const Icon(Icons.label_rounded),
-            onTap: () => context.push([
-              Routes.settings,
-              Routes.librarySettings,
-              Routes.editCategories
-            ].toPath),
+            onTap: () => const EditCategoriesRoute().push(context),
           ),
           const AppThemeTile(),
           ListTile(
             title: Text(context.l10n!.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
-            onTap: () => context.push([Routes.settings, Routes.backup].toPath),
+            onTap: () => const BackupRoute().push(context),
           ),
           const Divider(),
           ListTile(
             title: Text(context.l10n!.settings),
             leading: const Icon(Icons.settings_rounded),
-            onTap: () => context.push(Routes.settings),
+            onTap: () => const SettingsRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.about),
             leading: const Icon(Icons.info_rounded),
-            onTap: () => context.push(Routes.about),
+            onTap: () => const AboutRoute().push(context),
           ),
           ListTile(
             title: Text(context.l10n!.help),

@@ -28,7 +28,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
     required this.onDescriptionRefresh,
   });
   final Manga manga;
-  final String mangaId;
+  final int mangaId;
   final AsyncValueSetter<bool> onListRefresh;
   final AsyncValueSetter<bool> onDescriptionRefresh;
   final AsyncValueSetter<bool> onRefresh;

@@ -39,7 +39,7 @@ class DioErrorUtil {
           break;
         case DioErrorType.connectionError:
           errorDescription =
-              "Check your Internet Connection (Connection Error)";
+              "Check your Internet Connection (Check server IP in settings)";
           break;
       }
     } else {
