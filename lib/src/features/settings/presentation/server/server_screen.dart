@@ -8,12 +8,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../constants/endpoints.dart';
 import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
+import '../../widgets/server_port_tile/server_port_tile.dart';
 import '../../widgets/server_url_tile/server_url_tile.dart';
 import 'widget/auth_type_tile.dart';
 import 'widget/credential_popup/credentials_popup.dart';
@@ -30,6 +32,7 @@ class ServerScreen extends ConsumerWidget {
       body: ListView(
         children: [
           const ServerUrlTile(),
+          const ServerPortTile(),
           const AuthTypeTile(),
           if (authType != null && authType != AuthType.none)
             ListTile(
@@ -47,11 +50,15 @@ class ServerScreen extends ConsumerWidget {
               leading: const Icon(Icons.web_rounded),
               title: Text(context.l10n!.webUI),
               onTap: () {
-                final url = ref.read(serverUrlProvider);
+                final url = Endpoints.baseApi(
+                  baseUrl: ref.read(serverUrlProvider),
+                  port: ref.read(serverPortProvider),
+                  addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                );
                 if (url.isNotBlank) {
                   launchUrlInWeb(
                     context,
-                    url!,
+                    url,
                     ref.read(toastProvider(context)),
                   );
                 }

@@ -207,6 +207,9 @@
     "@filter": {
         "description": "title of filter Tab across the app"
     },
+    "@findServer": {
+        "description": "Button text of Find Server"
+    },
     "@finished": {
         "description": "Text to show the Currently Finished reading chapter in Reader Screen"
     },
@@ -348,6 +351,9 @@
     },
     "@noResultFound": {
         "description": "Text to show that no results found for the given search query"
+    },
+    "@noServerFound": {
+        "description": "Text to show that no Server found in locale network"
     },
     "@noSourcesFound": {
         "description": "Text to show that the Source list is empty"
@@ -505,8 +511,14 @@
     "@serverUrl": {
         "description": "Popup title and Button text to update Server Url"
     },
+    "@serverPort": {
+        "description": "Popup title and Button text to update Server Port"
+    },
     "@serverUrlHintText": {
         "description": "Text Filed hint text to update Server Url"
+    },
+    "@serverPortHintText": {
+        "description": "Text Filed hint text to update Server Port"
     },
     "@serverVersion": {
         "description": "Text title for the current version of the Server in About screen"
@@ -665,6 +677,7 @@
     "extensions": "Extensions",
     "failed": "Failed",
     "filter": "Filter",
+    "findServer" : "Find",
     "finished": "Finished",
     "general": "General",
     "gitHub": "GitHub",
@@ -707,6 +720,7 @@
     "noMangaFound": "No Mangas Found",
     "noOfChapters": "{count} Chapters",
     "noResultFound": "No results found",
+    "noServerFound": "No Server found in your local network",
     "noSourcesFound": "No sources found",
     "noUpdatesAvailable": "You're using the latest version",
     "noUpdatesFound": "No updates found",
@@ -755,7 +769,9 @@
     "searchingForUpdates": "Searching for updates",
     "server": "Server",
     "serverUrl": "Server URL",
-    "serverUrlHintText": "Enter server url",
+    "serverUrlHintText": "Server url",
+    "serverPort": "Server Port",
+    "serverPortHintText": "Server port",
     "serverVersion": "Server version",
     "settings": "Settings",
     "sort": "Sort",
