@@ -69,11 +69,22 @@ Download *-android-all.apk file from latest release [the releases section][relea
 
 Download the latest .msi file from [the releases section][release].
 
+if you use WINGET, you can run
+```
+winget install tachidesk-sorayomi
+```
+
 ### MacOS
 
 - Download the *-macos-x64.zip from the latest release [the releases section][release]
 - Extract the file.
 - Drag and drop the extracted app file to applications folder in finder.
+
+if you use HomeBrew, you can run
+```
+brew install --cask tachidesk-sorayomi
+```
+
 ### Debian based Linux
 
 Download the latest deb release from [the releases section][release].
