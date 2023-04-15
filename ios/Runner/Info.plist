@@ -51,13 +51,15 @@
 		<false/>
 		<key>CFBundleLocalizations</key>
         <array>
-            <string>de</string>
-            <string>en</string>
-            <string>es</string>
-            <string>pt-pt</string>
-            <string>pt</string>
-            <string>zh</string>
-            <string>zh-hans</string>
+			<string>ar</string>
+			<string>de</string>
+			<string>en</string>
+			<string>es</string>
+			<string>fr</string>
+			<string>pt</string>
+			<string>pt-pt</string>
+			<string>zh</string>
+			<string>zh-hans</string>
         </array>
 	</dict>
 </plist>

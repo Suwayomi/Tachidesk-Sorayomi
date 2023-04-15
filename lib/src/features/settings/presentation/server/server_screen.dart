@@ -54,6 +54,7 @@ class ServerScreen extends ConsumerWidget {
                   baseUrl: ref.read(serverUrlProvider),
                   port: ref.read(serverPortProvider),
                   addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                  appendApiToUrl: false,
                 );
                 if (url.isNotBlank) {
                   launchUrlInWeb(
