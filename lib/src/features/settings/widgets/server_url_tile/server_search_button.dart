@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 
+import '../../../../constants/db_keys.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/async_buttons/async_text_button.dart';
@@ -34,13 +35,13 @@ class ServerSearchButton extends ConsumerWidget {
     port ??= 4567;
     String serverIp = ip!;
 
-    if (await pingIp(serverIp, port)) return serverIp;
+    if (await pingIp(serverIp, port)) return DBKeys.serverUrl.initial;
 
     final String subnet = ip.substring(0, ip.lastIndexOf('.'));
 
     for (var i = 0; i < 254; i++) {
       serverIp = '$subnet.$i';
-      if (await pingIp(serverIp, port)) return serverIp;
+      if (await pingIp(serverIp, port)) return "http://$serverIp";
     }
     return null;
   }
@@ -67,11 +68,12 @@ class ServerSearchButton extends ConsumerWidget {
     final addPort = ref.watch(serverPortToggleProvider).ifNull();
     if (!addPort) return const SizedBox.shrink();
     return AsyncTextButton(
+      icon: const Icon(Icons.search),
       onPressed: port != null
           ? () async {
               final value = await getServerAddress(port);
               if (value != null) {
-                _update("http://$value", ref);
+                _update(value, ref);
               } else {
                 if (context.mounted) {
                   ref
@@ -81,7 +83,7 @@ class ServerSearchButton extends ConsumerWidget {
               }
             }
           : null,
-      child: Text(text ?? "Find Server"),
+      child: Text(context.l10n!.findServer),
     );
   }
 }

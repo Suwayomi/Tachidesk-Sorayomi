@@ -15,15 +15,17 @@ class AsyncTextButton extends HookWidget {
     super.key,
     required this.onPressed,
     required this.child,
+    required this.icon,
   });
 
   final AsyncCallback? onPressed;
   final Widget child;
+  final Widget icon;
 
   @override
   Widget build(BuildContext context) {
     final isLoading = useState(false);
-    return TextButton(
+    return TextButton.icon(
       onPressed: !isLoading.value
           ? () async {
               isLoading.value = true;
@@ -31,7 +33,8 @@ class AsyncTextButton extends HookWidget {
               isLoading.value = false;
             }
           : null,
-      child: isLoading.value ? const MiniCircularProgressIndicator() : child,
+      icon: isLoading.value ? const SizedBox.shrink() : icon,
+      label: isLoading.value ? const MiniCircularProgressIndicator() : child,
     );
   }
 }
