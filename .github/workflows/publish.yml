@@ -193,3 +193,4 @@ jobs:
           token: ${{secrets.WINGET}}
           tap: homebrew/homebrew-cask
           cask: tachidesk-sorayomi
+          livecheck: true
