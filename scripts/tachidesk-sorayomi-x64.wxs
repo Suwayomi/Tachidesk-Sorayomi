@@ -53,6 +53,9 @@
             <Component Id="permission_handler_windows_plugin.dll" Guid="*" Win64="yes">
                 <File Id="permission_handler_windows_plugin.dll" Source="permission_handler_windows_plugin.dll" KeyPath="yes" />
             </Component>
+            <Component Id="network_info_plus_plugin.dll" Guid="*" Win64="yes">
+                <File Id="network_info_plus_plugin.dll" Source="network_info_plus_plugin.dll" KeyPath="yes" />
+            </Component>
             <Component Id="share_plus_plugin.dll" Guid="*" Win64="yes">
                 <File Id="share_plus_plugin.dll" Source="share_plus_plugin.dll" KeyPath="yes" />
             </Component>
@@ -69,6 +72,7 @@
             <ComponentRef Id="flutter_windows.dll" />
             <ComponentRef Id="url_launcher_windows_plugin.dll" />
             <ComponentRef Id="permission_handler_windows_plugin.dll" />
+            <ComponentRef Id="network_info_plus_plugin.dll" />
             <ComponentRef Id="share_plus_plugin.dll" />
         </Feature>
 
