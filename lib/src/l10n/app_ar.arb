@@ -1,0 +1,320 @@
+{
+  "about": "حول",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "إضافة فئة",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "إضافة إلى المكتبة",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "appLanguage": "لغة التطبيق",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "مظهر التطبيق",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme"
+  },
+  "appTitle": "تاشيديسك سورايومي",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "authType": "نوع المصادقة",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeBasic": "مصادقة أساسية",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "بلا",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "backup": "النسخ الاحتياطي و الاستعادة",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "badges": "الشارات",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "المحفوظة",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "تصفح",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "buildTime": "تاريخ بناء الخادم",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cacheCleared": "تم محو الذاكرة المؤقتة",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "categories": "الفئات",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "categoryUpdate": "تحديث الفئة",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "chapterNumber": "الفصل {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortFetchedDate": "حسب جلب البيانات",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "chapterSortSource": "حسب المصدر",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "checkForServerUpdates": "تحقق من وجود تحديثات الخادم",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "تحقق من وجود تحديثات",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "تنظيف الملفات المؤقتة",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "client": "الوكيل",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "إصدار الوكيل",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "إغلاق",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "منتهية",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "copyMsg": "تم النسخ!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupDescription": "نسخ احتياطي للمكتبة كنسخة Tachidesk",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "createBackupTitle": "إنشاء نسخة احتياطية",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "current": "حالياً",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "credentials": "الشهادات",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "delete": "حذف",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "سيؤدي إلى دمج جميع المانجا في هذه الفئة إلى الافتراضية!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "deleteCategoryTitle": "هل أنت متأكد؟",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "display": "العرض",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "displayModeList": "قائمة",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "edit": "تعديل",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "editCategory": "تعديل الفئة",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "لا يمكن أن يكون اسم الفئة فارغًا",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "errorFilePick": "لم يتم تحديد الملف!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorFilePickUnknownExtension": "الرجاء تحديد ملف بالامتداد {extensionName}",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorExtension": "لم نعثر على الامتداد المحدد",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorPassword": "كلمة السر فارغة",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "downloaded": "منزلة",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "downloads": "التنزيلات",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "errorSomethingWentWrong": "هناك خطأ ما!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "errorUserName": "اسم المستخدم فارغ",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "extensionInstalled": "تم تحميل الإضافة!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "قائمة الإضافات فارغة",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "appearance": "المظهر",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "channel": "النوع",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterSortUploadDate": "حسب تاريخ الإضافة",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "defaultCategory": "الفئة الافتراضية عند إضافة مانجا جديدة إلى المكتبة",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "displayModeDescriptiveList": "قائمة وصفية",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "displayMode": "وضع العرض",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeGrid": "شبكة مدمجة",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "errorLaunchURL": "فشل في الفتح!\nنسخ \"{url}\" الى الحافظة",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "failed": "فشل",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "extensions": "الإضافات",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "filter": "فرز",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "finished": "النهاية",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "globalSearch": "البحث",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "globalUpdate": "تحديث الكل",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "help": "مساعدة",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "inLibrary": "في المكتبة",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "library": "المكتبة",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "installingExtension": "جار التحميل",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "languages": "اللغات",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "general": "عام",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "installing": "جار التحميل",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "install": "تحميل",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "latest": "الأخير",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  }
+}
