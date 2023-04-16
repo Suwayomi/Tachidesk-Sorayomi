@@ -213,8 +213,6 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add PKGBUILD
           git commit -m "Update version to ${{github.ref_name}}"
 
