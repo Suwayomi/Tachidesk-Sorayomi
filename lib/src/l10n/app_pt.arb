@@ -375,5 +375,13 @@
   "findServer": "Procurar",
   "@findServer": {
     "description": "Button text of Find Server"
+  },
+  "chapterSortUploadDate": "Por ordem de envio",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "readerScrollAnimation": "Animação de rolagem",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
   }
 }
