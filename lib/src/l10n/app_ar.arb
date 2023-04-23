@@ -123,7 +123,7 @@
       }
     }
   },
-  "createBackupDescription": "نسخ احتياطي للمكتبة كنسخة Tachidesk",
+  "createBackupDescription": "احفظ المكتبة كنسخة احتياطية من Tachidesk",
   "@createBackupDescription": {
     "description": "Button text description to create backup"
   },
@@ -421,19 +421,19 @@
   "@newUpdateAvailable": {
     "description": "Popup title to show that the App/Server has and update"
   },
-  "noCategoriesFound": "ليس لديك أي فئات. \n(نصيحة: اضغط على زر علامة الزائد لإنشاء واحدة لتنظيم مكتبتك)",
+  "noCategoriesFound": "ليس لديك أي فئات. \n(نصيحة: اضغط على زر علامة الزائد لإنشاء فئة لتنظيم مكتبتك)",
   "@noCategoriesFound": {
     "description": "Hint text to add new Category when category list is empty"
   },
-  "noCategoriesFoundAlt": "ليس لديك أي فئات.\nقم بإنشاء واحدة في الإعدادات لتنظيم مكتبتك",
+  "noCategoriesFoundAlt": "ليس لديك أي فئات.\nقم بإنشاء فئة في الإعدادات لتنظيم مكتبتك",
   "@noCategoriesFoundAlt": {
     "description": "Hint text to add new Category in Settings when category list is empty"
   },
-  "noCategoryMangaFound": "لم يتم العثور على مانغا في هذه الفئة. \n(نصيحة: تحقق من البحث والفلاتر!)",
+  "noCategoryMangaFound": "لم يتم العثور على مانجا في هذه الفئة. \n(نصيحة: تحقق من البحث والفلاتر!)",
   "@noCategoryMangaFound": {
     "description": "Hint text to check filter when manga list is empty in Category tab in Library"
   },
-  "noChaptersFound": "لم يتم العثور على فصول",
+  "noChaptersFound": "لا يوجد فصول",
   "@noChaptersFound": {
     "description": "Text to show that the Chapter list is empty in Manga details Screen"
   },
@@ -476,5 +476,327 @@
   "nsfwInfo": "هذا لا يمنع الإضافات غير الرسمية أو التي يحتمل أن يتم وضع علامة عليها بشكل غير صحيح من الظهور على محتوى NSFW (18+) داخل التطبيق",
   "@nsfwInfo": {
     "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
+  },
+  "readerNavigationLayoutInvert": "بالنقر",
+  "@readerNavigationLayoutInvert": {
+    "description": "Switch title to invert Tap to scroll in reader screen"
+  },
+  "readerScrollAnimation": "مؤثرات الانتقال بين الصفحات",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "readerMagnifierSize": "حجم التكبير",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "reddit": "Reddit",
+  "@reddit": {
+    "description": "Reddit app title"
+  },
+  "refresh": "تحديث",
+  "@refresh": {
+    "description": "Refresh button text"
+  },
+  "reset": "إعادة ضبط",
+  "@reset": {
+    "description": "Button text of reset button in source filters"
+  },
+  "restoring": "جاري استعادة النسخة الاحتياطية",
+  "@restoring": {
+    "description": "Toast Text to show that the backup is restoring"
+  },
+  "resume": "استأنف",
+  "@resume": {
+    "description": "Button Text to resume Chapter reading/downloading"
+  },
+  "retry": "أعد المحاولة",
+  "@retry": {
+    "description": "Retry Button Text"
+  },
+  "restored": "تمت استعادة النسخة الاحتياطية!",
+  "@restored": {
+    "description": "Toast Text to show that the backup has been restored"
+  },
+  "serverVersion": "إصدار السيرفر",
+  "@serverVersion": {
+    "description": "Text title for the current version of the Server in About screen"
+  },
+  "sort": "ترتيب",
+  "@sort": {
+    "description": "title of sort Tab across the app"
+  },
+  "source": "المصدر",
+  "@source": {
+    "description": "Screen title and Button text of source screen"
+  },
+  "settings": "الإعدادات",
+  "@settings": {
+    "description": "Screen title and Button text of Settings screen"
+  },
+  "updates": "التحديثات",
+  "@updates": {
+    "description": "Screen title and Button text of Updates screen"
+  },
+  "updatesSummary": "ملخص التحديثات",
+  "@updatesSummary": {
+    "description": "Screen title and Button text of Updates Summary screen"
+  },
+  "unread": "غير مقروء",
+  "@unread": {
+    "description": "Checkbox text to unread bookmarked manga/chapters across app"
+  },
+  "update": "تحديث",
+  "@update": {
+    "description": "Button text to update the extension"
+  },
+  "updateCompleted": "اكتمل التحديث",
+  "@updateCompleted": {
+    "description": "Button text to show that extension update is completed"
+  },
+  "gitHub": "GitHub",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "nameCountDisplay": "{name}: {count}",
+  "@nameCountDisplay": {
+    "description": "Text pattern to display an name and count in a string",
+    "placeholders": {
+      "name": {
+        "example": "Downloaded",
+        "type": "String"
+      },
+      "count": {
+        "example": "22",
+        "type": "int"
+      }
+    }
+  },
+  "readerModeContinuousVertical": "عمودي مستمر",
+  "@readerModeContinuousVertical": {
+    "description": "Radio button text for Reader Mode Type - Continuous Vertical"
+  },
+  "obsolete": "قديمة",
+  "@obsolete": {
+    "description": "Text to show that the extension has become Obsolete"
+  },
+  "page": "الصفحة: {number}",
+  "@page": {
+    "description": "Text to show the last read Page number of the chapter in Manga details screen",
+    "placeholders": {
+      "number": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "password": "كلمة المرور",
+  "@password": {
+    "description": "Title text for password field"
+  },
+  "pause": "إيقاف",
+  "@pause": {
+    "description": "Button text to pause downloads"
+  },
+  "pending": "في الانتظار",
+  "@pending": {
+    "description": "Pending status Manga Group title in Update Summary Screen"
+  },
+  "reader": "القارئ",
+  "@reader": {
+    "description": "Screen title and Button text of Reader screen"
+  },
+  "readerMode": "وضع القراءة",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerModeDefaultReader": "الافتراضي",
+  "@readerModeDefaultReader": {
+    "description": "Radio button text for Reader Mode Type - Default"
+  },
+  "readerModeContinuousHorizontalLTR": "افقي مستمر (من اليسار لليمين)",
+  "@readerModeContinuousHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
+  },
+  "readerModeContinuousHorizontalRTL": "افقي مستمر (من اليمين لليسار)",
+  "@readerModeContinuousHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
+  },
+  "readerModeSingleHorizontalLTR": "من اليسار لليمين",
+  "@readerModeSingleHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (LTR)"
+  },
+  "readerModeSingleHorizontalRTL": "من اليمين لليسار",
+  "@readerModeSingleHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (RTL)"
+  },
+  "readerModeSingleVertical": "عموديا",
+  "@readerModeSingleVertical": {
+    "description": "Radio button text for Reader Mode Type - Single Vertical"
+  },
+  "readerModeWebtoon": "ويبتون",
+  "@readerModeWebtoon": {
+    "description": "Radio button text for Reader Mode Type - Webtoon"
+  },
+  "readerNavigationLayout": "نوع الانتقال",
+  "@readerNavigationLayout": {
+    "description": "Popup title and Button text of Reader Navigation Layout popup"
+  },
+  "readerNavigationLayoutDisabled": "تعطيل",
+  "@readerNavigationLayoutDisabled": {
+    "description": "Radio button text for Reader Navigation Layout - Disabled"
+  },
+  "readerNavigationLayoutEdge": "في الحافة",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "readerNavigationLayoutKindlish": "وضع الكيندل",
+  "@readerNavigationLayoutKindlish": {
+    "description": "Radio button text for Reader Navigation Layout - Kindle-ish"
+  },
+  "readerNavigationLayoutDefault": "الافتراضي",
+  "@readerNavigationLayoutDefault": {
+    "description": "Radio button text for Reader Navigation Layout - Default"
+  },
+  "readerNavigationLayoutLShaped": "شكل حرف L",
+  "@readerNavigationLayoutLShaped": {
+    "description": "Radio button text for Reader Navigation Layout - L Shaped"
+  },
+  "readerNavigationLayoutRightAndLeft": "يمينا و يسارا",
+  "@readerNavigationLayoutRightAndLeft": {
+    "description": "Radio button text for Reader Navigation Layout - Right And Left"
+  },
+  "running": "جاري",
+  "@running": {
+    "description": "Running status Manga Group title in Update Summary Screen"
+  },
+  "save": "حفظ",
+  "@save": {
+    "description": "Save Button Text"
+  },
+  "search": "ابحث",
+  "@search": {
+    "description": "Search field hint Text"
+  },
+  "searchingForUpdates": "البحث عن التحديثات",
+  "@searchingForUpdates": {
+    "description": "Toast Text for searching for updates of the App/Server"
+  },
+  "server": "سيرفر",
+  "@server": {
+    "description": "Text title for the server in About screen"
+  },
+  "serverUrl": "عنوان السيرفر",
+  "@serverUrl": {
+    "description": "Popup title and Button text to update Server Url"
+  },
+  "serverUrlHintText": "أدخل عنوان السيرفر",
+  "@serverUrlHintText": {
+    "description": "Text Filed hint text to update Server Url"
+  },
+  "serverPort": "منفذ السيرفر",
+  "@serverPort": {
+    "description": "Popup title and Button text to update Server Port"
+  },
+  "serverPortHintText": "أدخل منفذ السيرفر",
+  "@serverPortHintText": {
+    "description": "Text Filed hint text to update Server Port"
+  },
+  "sourceTypeFilter": "فرز",
+  "@sourceTypeFilter": {
+    "description": "Tab text Filter for source screen type"
+  },
+  "sourceTypeLatest": "الحديثة",
+  "@sourceTypeLatest": {
+    "description": "Tab text Latest for source screen type"
+  },
+  "sourceTypePopular": "الشائعة",
+  "@sourceTypePopular": {
+    "description": "Tab text Popular for source screen type"
+  },
+  "sources": "المصادر",
+  "@sources": {
+    "description": "title of Sources Tab in Browse Screen"
+  },
+  "start": "ابدأ",
+  "@start": {
+    "description": "Button text start reading the manga"
+  },
+  "themeModeDark": "داكن",
+  "@themeModeDark": {
+    "description": "Radio button text for App theme - Dark"
+  },
+  "themeModeLight": "فاتح",
+  "@themeModeLight": {
+    "description": "Radio button text for App theme - Light"
+  },
+  "themeModeSystem": "النظام",
+  "@themeModeSystem": {
+    "description": "Radio button text for App theme - System"
+  },
+  "uninstall": "إلغاء التثبيت",
+  "@uninstall": {
+    "description": "Button text to Uninstall the extension"
+  },
+  "uninstalling": "جاري إلغاء التثبيت",
+  "@uninstalling": {
+    "description": "Button text to show that the extension is uninstalling"
+  },
+  "unknownManga": "مانجا غير معروفة",
+  "@unknownManga": {
+    "description": "Text to show unknown manga in Manga details screen"
+  },
+  "unknownSource": "المصدر مجهول",
+  "@unknownSource": {
+    "description": "Text to show unknown Source in Manga details screen"
+  },
+  "updating": "جاري التحديث",
+  "@updating": {
+    "description": "Button text to show that the extension is updating"
+  },
+  "userName": "اسم المستخدم",
+  "@userName": {
+    "description": "Title text for User Name field"
+  },
+  "webUI": "فتح في المتصفح",
+  "@webUI": {
+    "description": "Button text to open in web UI"
+  },
+  "webView": "عرض الويب",
+  "@webView": {
+    "description": "Button text to open manga website"
+  },
+  "whatsNew": "ما الجديد؟",
+  "@whatsNew": {
+    "description": "Button text to open whats new page of app in web"
+  },
+  "restoreBackupDescription": "استعادة Tachidesk من النسخة الاحتياطية",
+  "@restoreBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "restoreBackupTitle": "استعادة النسخة الاحتياطية",
+  "@restoreBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "readerPadding": "ملاءمة القارىء",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
+  },
+  "unknownAuthor": "مؤلف مجهول",
+  "@unknownAuthor": {
+    "description": "Text to show unknown author in Manga details screen"
+  },
+  "versionAvailable": "الإصدار {version} متاح لـ {app}!!",
+  "@versionAvailable": {
+    "description": "Text to show that there is an update to App/Server",
+    "placeholders": {
+      "app": {
+        "example": "Server",
+        "type": "String"
+      },
+      "version": {
+        "example": "v0.4.2",
+        "type": "String"
+      }
+    }
   }
 }
