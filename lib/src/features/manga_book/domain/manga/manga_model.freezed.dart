@@ -753,6 +753,8 @@ mixin _$MangaMeta {
   @JsonKey(
       name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
   double? get readerMagnifierSize => throw _privateConstructorUsedError;
+  @JsonKey(name: "flutter_scanlator")
+  String? get scanlator => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -775,7 +777,9 @@ abstract class $MangaMetaCopyWith<$Res> {
       @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
           double? readerPadding,
       @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          double? readerMagnifierSize});
+          double? readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator")
+          String? scanlator});
 }
 
 /// @nodoc
@@ -796,6 +800,7 @@ class _$MangaMetaCopyWithImpl<$Res, $Val extends MangaMeta>
     Object? readerMode = freezed,
     Object? readerPadding = freezed,
     Object? readerMagnifierSize = freezed,
+    Object? scanlator = freezed,
   }) {
     return _then(_value.copyWith(
       invertTap: freezed == invertTap
@@ -818,6 +823,10 @@ class _$MangaMetaCopyWithImpl<$Res, $Val extends MangaMeta>
           ? _value.readerMagnifierSize
           : readerMagnifierSize // ignore: cast_nullable_to_non_nullable
               as double?,
+      scanlator: freezed == scanlator
+          ? _value.scanlator
+          : scanlator // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -839,7 +848,9 @@ abstract class _$$_MangaMetaCopyWith<$Res> implements $MangaMetaCopyWith<$Res> {
       @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
           double? readerPadding,
       @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          double? readerMagnifierSize});
+          double? readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator")
+          String? scanlator});
 }
 
 /// @nodoc
@@ -858,6 +869,7 @@ class __$$_MangaMetaCopyWithImpl<$Res>
     Object? readerMode = freezed,
     Object? readerPadding = freezed,
     Object? readerMagnifierSize = freezed,
+    Object? scanlator = freezed,
   }) {
     return _then(_$_MangaMeta(
       invertTap: freezed == invertTap
@@ -880,6 +892,10 @@ class __$$_MangaMetaCopyWithImpl<$Res>
           ? _value.readerMagnifierSize
           : readerMagnifierSize // ignore: cast_nullable_to_non_nullable
               as double?,
+      scanlator: freezed == scanlator
+          ? _value.scanlator
+          : scanlator // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -897,7 +913,9 @@ class _$_MangaMeta implements _MangaMeta {
       @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
           this.readerPadding,
       @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          this.readerMagnifierSize});
+          this.readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator")
+          this.scanlator});
 
   factory _$_MangaMeta.fromJson(Map<String, dynamic> json) =>
       _$$_MangaMetaFromJson(json);
@@ -920,10 +938,13 @@ class _$_MangaMeta implements _MangaMeta {
   @JsonKey(
       name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
   final double? readerMagnifierSize;
+  @override
+  @JsonKey(name: "flutter_scanlator")
+  final String? scanlator;
 
   @override
   String toString() {
-    return 'MangaMeta(invertTap: $invertTap, readerNavigationLayout: $readerNavigationLayout, readerMode: $readerMode, readerPadding: $readerPadding, readerMagnifierSize: $readerMagnifierSize)';
+    return 'MangaMeta(invertTap: $invertTap, readerNavigationLayout: $readerNavigationLayout, readerMode: $readerMode, readerPadding: $readerPadding, readerMagnifierSize: $readerMagnifierSize, scanlator: $scanlator)';
   }
 
   @override
@@ -940,13 +961,21 @@ class _$_MangaMeta implements _MangaMeta {
             (identical(other.readerPadding, readerPadding) ||
                 other.readerPadding == readerPadding) &&
             (identical(other.readerMagnifierSize, readerMagnifierSize) ||
-                other.readerMagnifierSize == readerMagnifierSize));
+                other.readerMagnifierSize == readerMagnifierSize) &&
+            (identical(other.scanlator, scanlator) ||
+                other.scanlator == scanlator));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, invertTap,
-      readerNavigationLayout, readerMode, readerPadding, readerMagnifierSize);
+  int get hashCode => Object.hash(
+      runtimeType,
+      invertTap,
+      readerNavigationLayout,
+      readerMode,
+      readerPadding,
+      readerMagnifierSize,
+      scanlator);
 
   @JsonKey(ignore: true)
   @override
@@ -973,7 +1002,9 @@ abstract class _MangaMeta implements MangaMeta {
       @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
           final double? readerPadding,
       @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          final double? readerMagnifierSize}) = _$_MangaMeta;
+          final double? readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator")
+          final String? scanlator}) = _$_MangaMeta;
 
   factory _MangaMeta.fromJson(Map<String, dynamic> json) =
       _$_MangaMeta.fromJson;
@@ -996,6 +1027,9 @@ abstract class _MangaMeta implements MangaMeta {
   @JsonKey(
       name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
   double? get readerMagnifierSize;
+  @override
+  @JsonKey(name: "flutter_scanlator")
+  String? get scanlator;
   @override
   @JsonKey(ignore: true)
   _$$_MangaMetaCopyWith<_$_MangaMeta> get copyWith =>

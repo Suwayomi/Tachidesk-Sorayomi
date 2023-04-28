@@ -11,11 +11,8 @@ import 'manga_chapter_filter.dart';
 import 'manga_chapter_sort.dart';
 
 class MangaChapterOrganizer extends StatelessWidget {
-  const MangaChapterOrganizer({
-    super.key,
-    /* required this.controller */
-  });
-  // final ScrollController controller;
+  const MangaChapterOrganizer({super.key, required this.mangaId});
+  final int mangaId;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -27,10 +24,10 @@ class MangaChapterOrganizer extends StatelessWidget {
             Tab(text: context.l10n!.sort),
           ],
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            MangaChapterFilter(),
-            MangaChapterSort(),
+            MangaChapterFilter(mangaId: mangaId),
+            const MangaChapterSort(),
           ],
         ),
       ),

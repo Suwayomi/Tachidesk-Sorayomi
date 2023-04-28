@@ -9,33 +9,64 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_checkbox_list_tile.dart';
+import '../../../domain/manga/manga_model.dart';
 import '../controller/manga_details_controller.dart';
 
 class MangaChapterFilter extends ConsumerWidget {
-  const MangaChapterFilter({super.key});
-
+  const MangaChapterFilter({super.key, required this.mangaId});
+  final int mangaId;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView(
-      children: [
-        CustomCheckboxListTile(
-          title: context.l10n!.unread,
-          provider: mangaChapterFilterUnreadProvider,
-          onChanged: ref.read(mangaChapterFilterUnreadProvider.notifier).update,
+    final scanlatorList =
+        ref.watch(mangaScanlatorListProvider(mangaId: mangaId));
+    final selectedScanlator =
+        ref.watch(mangaChapterFilterScanlatorProvider(mangaId: mangaId));
+    return ListView(children: [
+      CustomCheckboxListTile(
+        title: context.l10n!.unread,
+        provider: mangaChapterFilterUnreadProvider,
+        onChanged: ref.read(mangaChapterFilterUnreadProvider.notifier).update,
+      ),
+      CustomCheckboxListTile(
+        title: context.l10n!.bookmarked,
+        provider: mangaChapterFilterBookmarkedProvider,
+        onChanged:
+            ref.read(mangaChapterFilterBookmarkedProvider.notifier).update,
+      ),
+      CustomCheckboxListTile(
+        title: context.l10n!.downloaded,
+        provider: mangaChapterFilterDownloadedProvider,
+        onChanged:
+            ref.read(mangaChapterFilterDownloadedProvider.notifier).update,
+      ),
+      if (scanlatorList.isNotBlank && scanlatorList.length > 1) ...[
+        ListTile(
+          title: Text(
+            context.l10n!.scanlators,
+            style: context.textTheme.labelLarge,
+          ),
+          dense: true,
         ),
-        CustomCheckboxListTile(
-          title: context.l10n!.bookmarked,
-          provider: mangaChapterFilterBookmarkedProvider,
-          onChanged:
-              ref.read(mangaChapterFilterBookmarkedProvider.notifier).update,
+        RadioListTile(
+          title: Text(context.l10n!.allScanlators),
+          value: MangaMetaKeys.scanlator.key,
+          groupValue: selectedScanlator,
+          onChanged: (val) => ref
+              .read(mangaChapterFilterScanlatorProvider(mangaId: mangaId)
+                  .notifier)
+              .update(val),
         ),
-        CustomCheckboxListTile(
-          title: context.l10n!.downloaded,
-          provider: mangaChapterFilterDownloadedProvider,
-          onChanged:
-              ref.read(mangaChapterFilterDownloadedProvider.notifier).update,
-        ),
+        for (final scanlator in scanlatorList)
+          RadioListTile(
+            title: Text(scanlator),
+            value: scanlator,
+            groupValue: selectedScanlator,
+            onChanged: (val) => ref
+                .read(mangaChapterFilterScanlatorProvider(mangaId: mangaId)
+                    .notifier)
+                .update(val),
+          ),
       ],
-    );
+    ]);
   }
 }
