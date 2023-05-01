@@ -315,7 +315,7 @@ class __$$_ChapterCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Chapter implements _Chapter {
+class _$_Chapter extends _Chapter {
   _$_Chapter(
       {this.id,
       this.bookmarked,
@@ -335,7 +335,8 @@ class _$_Chapter implements _Chapter {
       this.uploadDate,
       this.url,
       final Map<String, String>? meta})
-      : _meta = meta;
+      : _meta = meta,
+        super._();
 
   factory _$_Chapter.fromJson(Map<String, dynamic> json) =>
       _$$_ChapterFromJson(json);
@@ -461,7 +462,7 @@ class _$_Chapter implements _Chapter {
   }
 }
 
-abstract class _Chapter implements Chapter {
+abstract class _Chapter extends Chapter {
   factory _Chapter(
       {final int? id,
       final bool? bookmarked,
@@ -481,6 +482,7 @@ abstract class _Chapter implements Chapter {
       final int? uploadDate,
       final String? url,
       final Map<String, String>? meta}) = _$_Chapter;
+  _Chapter._() : super._();
 
   factory _Chapter.fromJson(Map<String, dynamic> json) = _$_Chapter.fromJson;
 

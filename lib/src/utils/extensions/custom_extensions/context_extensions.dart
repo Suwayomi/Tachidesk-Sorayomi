@@ -9,6 +9,8 @@ part of '../custom_extensions.dart';
 /// Helper class for device related operations.
 ///
 extension ContextExtensions on BuildContext {
+  String? get location => GoRouter.maybeOf(this)?.location;
+
   ///
   /// hides the keyboard if its already open
   ///

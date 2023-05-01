@@ -111,8 +111,25 @@ class CategoryMangaListProvider
   }
 }
 
+String _$libraryDisplayCategoryHash() =>
+    r'984e71bb74c05d7d19d4a6131f2d7b569493fd56';
+
+/// See also [LibraryDisplayCategory].
+@ProviderFor(LibraryDisplayCategory)
+final libraryDisplayCategoryProvider =
+    AutoDisposeNotifierProvider<LibraryDisplayCategory, Category?>.internal(
+  LibraryDisplayCategory.new,
+  name: r'libraryDisplayCategoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$libraryDisplayCategoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$LibraryDisplayCategory = AutoDisposeNotifier<Category?>;
 String _$categoryMangaListWithQueryAndFilterHash() =>
-    r'a6eb84f3b6a265358662794d788606abf7ef4af5';
+    r'5f8b59c1af443eab8ef78d92adaf87a932cf1be8';
 
 abstract class _$CategoryMangaListWithQueryAndFilter
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<Manga>?>> {

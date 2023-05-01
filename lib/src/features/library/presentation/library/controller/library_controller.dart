@@ -14,6 +14,7 @@ import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../utils/mixin/state_provider_mixin.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../data/category/category_repository.dart';
+import '../../../domain/category/category_model.dart';
 
 part 'library_controller.g.dart';
 
@@ -29,11 +30,11 @@ Future<List<Manga>?> categoryMangaList(
   return result;
 }
 
-bool genreMatches(List<String>? mangaGenreList, List<String>? queryGenreList) {
-  Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
-  Set<String>? querySet =
-      queryGenreList?.map((e) => e.toLowerCase().trim()).toSet();
-  return (mangaSet?.containsAll(querySet ?? <String>{})).ifNull(true);
+@riverpod
+class LibraryDisplayCategory extends _$LibraryDisplayCategory
+    with StateProviderMixin<Category?> {
+  @override
+  Category? build() => null;
 }
 
 @riverpod
@@ -68,8 +69,7 @@ class CategoryMangaListWithQueryAndFilter
         return false;
       }
 
-      if (!manga.title.query(query) &&
-          !genreMatches(manga.genre, query?.split(','))) {
+      if (!manga.query(query)) {
         return false;
       }
 

@@ -36,7 +36,7 @@ class MangaCoverListTile extends StatelessWidget {
           Padding(
             padding: KEdgeInsets.a8.size,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: KBorderRadius.r8.radius,
               child: ServerImage(
                 imageUrl: manga.thumbnailUrl ?? "",
                 size: const Size(60, 80),

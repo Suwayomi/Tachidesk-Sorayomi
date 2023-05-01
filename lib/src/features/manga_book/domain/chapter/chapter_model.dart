@@ -6,11 +6,14 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../utils/extensions/custom_extensions.dart';
+
 part 'chapter_model.freezed.dart';
 part 'chapter_model.g.dart';
 
 @freezed
 class Chapter with _$Chapter {
+  Chapter._();
   factory Chapter({
     int? id,
     bool? bookmarked,
@@ -34,4 +37,8 @@ class Chapter with _$Chapter {
 
   factory Chapter.fromJson(Map<String, dynamic> json) =>
       _$ChapterFromJson(json);
+
+  bool query([String? query]) {
+    return name.query(query) || index == int.tryParse(query ?? '');
+  }
 }

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
@@ -32,7 +33,7 @@ class ExtensionListTile extends HookConsumerWidget {
     return ListTile(
       key: key,
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: KBorderRadius.r8.radius,
         child: ServerImageWithCpi(
           url: extension.iconUrl ?? "",
           outerSize: const Size.square(48),

@@ -19,9 +19,9 @@ import 'server_url_tile.dart';
 
 class ServerSearchButton extends ConsumerWidget {
   const ServerSearchButton({
-    Key? key,
+    super.key,
     this.text,
-  }) : super(key: key);
+  });
   final String? text;
   void _update(String url, WidgetRef ref) {
     final tempUrl = url.endsWith('/') ? url.substring(0, url.length - 1) : url;

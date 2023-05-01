@@ -7,6 +7,7 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../data/category/category_repository.dart';
 import '../../../domain/category/category_model.dart';
 
@@ -57,4 +58,13 @@ class CategoryController extends _$CategoryController {
       return loadCategories(ref);
     });
   }
+}
+
+@riverpod
+List<Category>? categoryListQuery(
+  CategoryListQueryRef ref, {
+  required String query,
+}) {
+  final categoryList = ref.watch(categoryControllerProvider).valueOrNull;
+  return categoryList?.where((element) => element.name.query(query)).toList();
 }

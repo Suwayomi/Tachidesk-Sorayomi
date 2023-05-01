@@ -27,7 +27,7 @@ class GridMinWidth extends _$GridMinWidth
 }
 
 class GridCoverMinWidth extends ConsumerWidget {
-  const GridCoverMinWidth({Key? key}) : super(key: key);
+  const GridCoverMinWidth({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
