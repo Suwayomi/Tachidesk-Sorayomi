@@ -194,30 +194,3 @@ jobs:
           tap: homebrew/homebrew-cask
           cask: tachidesk-sorayomi
           livecheck: true
-
-  aur-publish:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Install dependencies
-        run: sudo pacman -Syu --noconfirm git
-
-      - name: Clone AUR package
-        uses: actions/checkout@v2
-        with:
-          repository: aur.archlinux.org/tachidesk-sorayomi.git
-          ref: refs/heads/master
-
-      - name: Update version
-        run: sed -i "s/pkgver=.*/pkgver=${{github.ref_name}}/" PKGBUILD
-
-      - name: Commit changes
-        run: |
-          git add PKGBUILD
-          git commit -m "Update version to ${{github.ref_name}}"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.WINGET }}
-          branch: master

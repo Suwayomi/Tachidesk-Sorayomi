@@ -151,7 +151,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                                 borderRadius: KBorderRadius.rT16.radius,
                               ),
                               clipBehavior: Clip.hardEdge,
-                              builder: (_) => const MangaChapterOrganizer(),
+                              builder: (_) =>
+                                  MangaChapterOrganizer(mangaId: mangaId),
                             );
                           }
                         },
@@ -183,9 +184,9 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     )
                   ],
                 ),
-          endDrawer: const Drawer(
+          endDrawer: Drawer(
             width: kDrawerWidth,
-            child: MangaChapterOrganizer(),
+            child: MangaChapterOrganizer(mangaId: mangaId),
           ),
           bottomSheet: selectedChapters.value.isNotEmpty
               ? MultiChaptersActionsBottomAppBar(

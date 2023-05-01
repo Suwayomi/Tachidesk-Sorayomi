@@ -9,6 +9,9 @@
     "@addToLibrary": {
         "description": "Button text to add Manga to Library in Manga Details Screen"
     },
+    "@allScanlators": {
+        "description": "Text for all Scanlators in manga description screen chapter filter"
+    },
     "@appLanguage": {
         "description": "Popup title and Button text to change App Language"
     },
@@ -499,6 +502,9 @@
     "@save": {
         "description": "Save Button Text"
     },
+    "@scanlators": {
+        "description": "Title text for Scanlators"
+    },
     "@search": {
         "description": "Search field hint Text"
     },
@@ -617,6 +623,7 @@
     "about": "About",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
+    "allScanlators": "All Scanlators",
     "appLanguage": "App Language",
     "appTheme": "App Theme",
     "appTitle": "Tachidesk Sorayomi",
@@ -765,6 +772,7 @@
     "retry": "Retry",
     "running": "Running",
     "save": "Save",
+    "scanlators": "Scanlators",
     "search": "Search",
     "searchingForUpdates": "Searching for updates",
     "server": "Server",
