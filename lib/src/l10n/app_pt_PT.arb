@@ -359,5 +359,73 @@
   "mangaGridSize": "Tamanho do Manga na Grelha",
   "@mangaGridSize": {
     "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "serverPort": "",
+  "@serverPort": {
+    "description": "Popup title and Button text to update Server Port"
+  },
+  "serverPortHintText": "",
+  "@serverPortHintText": {
+    "description": "Text Filed hint text to update Server Port"
+  },
+  "allScanlators": "",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "quickSearchSourceManga": "",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "readerScrollAnimation": "",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "quickSearchContext": "",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchCategoryMangaChapter": "",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "quickSearchCategory": "",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchCategoryManga": "",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "scanlators": "",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "quickSearchSource": "",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "chapterSortUploadDate": "",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "noServerFound": "",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "readerMagnifierSize": "",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "cacheCleared": "",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "clearCache": "",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "findServer": "",
+  "@findServer": {
+    "description": "Button text of Find Server"
   }
 }
