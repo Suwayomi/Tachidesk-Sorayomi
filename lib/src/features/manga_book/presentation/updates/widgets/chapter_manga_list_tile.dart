@@ -53,7 +53,7 @@ class ChapterMangaListTile extends StatelessWidget {
           ],
         ),
         leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: KBorderRadius.r8.radius,
           child: ServerImage(
             imageUrl: pair.manga?.thumbnailUrl ?? "",
             size: const Size.square(48),

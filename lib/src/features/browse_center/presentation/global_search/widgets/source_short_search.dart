@@ -16,8 +16,8 @@ import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../source_manga_list/controller/source_manga_controller.dart';
 import '../controller/source_quick_search_controller.dart';
 
-class SourceQuickSearch extends ConsumerWidget {
-  const SourceQuickSearch({
+class SourceShortSearch extends ConsumerWidget {
+  const SourceShortSearch({
     super.key,
     required this.sourceId,
     this.query,

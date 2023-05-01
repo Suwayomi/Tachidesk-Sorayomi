@@ -454,7 +454,7 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Manga implements _Manga {
+class _$_Manga extends _Manga {
   _$_Manga(
       {this.artist,
       this.author,
@@ -482,7 +482,8 @@ class _$_Manga implements _Manga {
       this.chaptersLastFetchedAt,
       this.url,
       this.meta})
-      : _genre = genre;
+      : _genre = genre,
+        super._();
 
   factory _$_Manga.fromJson(Map<String, dynamic> json) =>
       _$$_MangaFromJson(json);
@@ -645,7 +646,7 @@ class _$_Manga implements _Manga {
   }
 }
 
-abstract class _Manga implements Manga {
+abstract class _Manga extends Manga {
   factory _Manga(
       {final String? artist,
       final String? author,
@@ -673,6 +674,7 @@ abstract class _Manga implements Manga {
       final int? chaptersLastFetchedAt,
       final String? url,
       final MangaMeta? meta}) = _$_Manga;
+  _Manga._() : super._();
 
   factory _Manga.fromJson(Map<String, dynamic> json) = _$_Manga.fromJson;
 

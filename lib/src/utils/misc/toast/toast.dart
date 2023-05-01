@@ -74,7 +74,7 @@ class ToastWidget extends StatelessWidget {
     return Container(
       padding: KEdgeInsets.h16v8.size,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: KBorderRadius.r16.radius,
         color: backgroundColor ?? Colors.black54,
       ),
       child: icon != null

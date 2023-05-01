@@ -66,6 +66,20 @@ AsyncValue<Map<String, List<Source>>?> sourceMapFiltered(
 }
 
 @riverpod
+List<Source>? sourceQuery(SourceQueryRef ref, {String? query}) {
+  final sourceMap = {...?ref.watch(sourceMapFilteredProvider).valueOrNull}
+    ..remove('lastUsed');
+  if (query.isNotBlank) {
+    return sourceMap.values
+        .expand((list) => list.where(
+              (element) => element.name.query(query),
+            ))
+        .toList();
+  }
+  return sourceMap.values.expand((list) => list).toList();
+}
+
+@riverpod
 class SourceLanguageFilter extends _$SourceLanguageFilter
     with SharedPreferenceClientMixin<List<String>> {
   @override

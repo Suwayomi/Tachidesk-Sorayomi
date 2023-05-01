@@ -69,6 +69,110 @@ final sourceMapFilteredProvider =
 
 typedef SourceMapFilteredRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>?>>;
+String _$sourceQueryHash() => r'4e0ea33fcbc3640e4cc3ecbdf15c75923384ed69';
+
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
+
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
+  }
+
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
+
+typedef SourceQueryRef = AutoDisposeProviderRef<List<Source>?>;
+
+/// See also [sourceQuery].
+@ProviderFor(sourceQuery)
+const sourceQueryProvider = SourceQueryFamily();
+
+/// See also [sourceQuery].
+class SourceQueryFamily extends Family<List<Source>?> {
+  /// See also [sourceQuery].
+  const SourceQueryFamily();
+
+  /// See also [sourceQuery].
+  SourceQueryProvider call({
+    String? query,
+  }) {
+    return SourceQueryProvider(
+      query: query,
+    );
+  }
+
+  @override
+  SourceQueryProvider getProviderOverride(
+    covariant SourceQueryProvider provider,
+  ) {
+    return call(
+      query: provider.query,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'sourceQueryProvider';
+}
+
+/// See also [sourceQuery].
+class SourceQueryProvider extends AutoDisposeProvider<List<Source>?> {
+  /// See also [sourceQuery].
+  SourceQueryProvider({
+    this.query,
+  }) : super.internal(
+          (ref) => sourceQuery(
+            ref,
+            query: query,
+          ),
+          from: sourceQueryProvider,
+          name: r'sourceQueryProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$sourceQueryHash,
+          dependencies: SourceQueryFamily._dependencies,
+          allTransitiveDependencies:
+              SourceQueryFamily._allTransitiveDependencies,
+        );
+
+  final String? query;
+
+  @override
+  bool operator ==(Object other) {
+    return other is SourceQueryProvider && other.query == query;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, query.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
 String _$sourceLanguageFilterHash() =>
     r'a5a8701a5d14b4c784744131113eb56cf1979dbc';
 

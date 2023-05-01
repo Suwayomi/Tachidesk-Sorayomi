@@ -76,7 +76,7 @@ class DownloadProgressListTile extends HookConsumerWidget {
                   onTap: () =>
                       MangaRoute(mangaId: download.mangaId!).push(context),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: KBorderRadius.r8.radius,
                     child: ServerImage(
                       imageUrl: download.manga!.thumbnailUrl!,
                       size: const Size.square(56),
