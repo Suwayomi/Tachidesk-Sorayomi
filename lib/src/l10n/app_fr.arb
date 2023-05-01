@@ -774,5 +774,61 @@
   "update": "Mettre à jour",
   "@update": {
     "description": "Button text to update the extension"
+  },
+  "quickSearchSource": "",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "quickSearchSourceManga": "",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "quickSearchCategoryMangaChapter": "",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "readerNavigationLayoutEdge": "",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "readerNavigationLayoutInvert": "",
+  "@readerNavigationLayoutInvert": {
+    "description": "Switch title to invert Tap to scroll in reader screen"
+  },
+  "serverPort": "",
+  "@serverPort": {
+    "description": "Popup title and Button text to update Server Port"
+  },
+  "serverPortHintText": "",
+  "@serverPortHintText": {
+    "description": "Text Filed hint text to update Server Port"
+  },
+  "noServerFound": "",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "findServer": "",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "allScanlators": "",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "quickSearchCategory": "",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchContext": "",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "scanlators": "",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "quickSearchCategoryManga": "",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
   }
 }

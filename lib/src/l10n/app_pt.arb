@@ -383,5 +383,53 @@
   "readerScrollAnimation": "Animação de rolagem",
   "@readerScrollAnimation": {
     "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "readerMagnifierSize": "",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "quickSearchCategoryManga": "",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "quickSearchCategory": "",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchSource": "",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "quickSearchCategoryMangaChapter": "",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "noServerFound": "",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "quickSearchContext": "",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "readerPadding": "",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
+  },
+  "quickSearchSourceManga": "",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "scanlators": "",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "allScanlators": "",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "mangaGridSize": "",
+  "@mangaGridSize": {
+    "description": "Popup title and Button text to change Manga Grid size"
   }
 }
