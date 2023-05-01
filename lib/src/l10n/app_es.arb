@@ -399,5 +399,37 @@
   "noServerFound": "No se ha encontrado ningún servidor en tu red local",
   "@noServerFound": {
     "description": "Text to show that no Server found in locale network"
+  },
+  "scanlators": "",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "quickSearchSource": "",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "allScanlators": "",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "quickSearchCategoryManga": "",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "quickSearchCategoryMangaChapter": "",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "quickSearchCategory": "",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchContext": "",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchSourceManga": "",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
   }
 }
