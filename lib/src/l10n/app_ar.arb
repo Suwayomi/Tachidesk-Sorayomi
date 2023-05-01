@@ -798,5 +798,37 @@
         "type": "String"
       }
     }
+  },
+  "quickSearchCategoryManga": "",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "quickSearchSourceManga": "",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "quickSearchCategoryMangaChapter": "",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "scanlators": "",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "allScanlators": "",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "quickSearchContext": "",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchSource": "",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "quickSearchCategory": "",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
   }
 }
