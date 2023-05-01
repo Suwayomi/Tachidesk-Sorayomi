@@ -7,6 +7,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../constants/enum.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../browse_center/domain/source/source_model.dart';
 import '../chapter/chapter_model.dart';
 
@@ -15,6 +16,7 @@ part 'manga_model.g.dart';
 
 @freezed
 class Manga with _$Manga {
+  Manga._();
   factory Manga({
     String? artist,
     String? author,
@@ -45,6 +47,20 @@ class Manga with _$Manga {
   }) = _Manga;
 
   factory Manga.fromJson(Map<String, dynamic> json) => _$MangaFromJson(json);
+
+  bool genreMatches(
+      List<String>? mangaGenreList, List<String>? queryGenreList) {
+    Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
+    Set<String>? querySet =
+        queryGenreList?.map((e) => e.toLowerCase().trim()).toSet();
+    return (mangaSet?.containsAll(querySet ?? <String>{})).ifNull(true);
+  }
+
+  bool query([String? query]) {
+    return title.query(query) ||
+        author.query(query) ||
+        genreMatches(genre, query?.split(','));
+  }
 }
 
 @freezed
@@ -69,6 +85,8 @@ class MangaMeta with _$MangaMeta {
       fromJson: MangaMeta.fromJsonToDouble,
     )
         double? readerMagnifierSize,
+    @JsonKey(name: "flutter_scanlator")
+        String? scanlator,
   }) = _MangaMeta;
 
   static bool? fromJsonToBool(dynamic val) => val != null && val is String
@@ -87,6 +105,7 @@ enum MangaMetaKeys {
   readerMode("flutter_readerMode"),
   readerPadding("flutter_readerPadding"),
   readerMagnifierSize("flutter_readerMagnifierSize"),
+  scanlator("flutter_scanlator"),
   ;
 
   const MangaMetaKeys(this.key);

@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/enum.dart';
 
 import '../../../../../routes/router_config.dart';
@@ -32,7 +33,7 @@ class SourceListTile extends ConsumerWidget {
         ).push(context);
       }),
       leading: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: KBorderRadius.r8.radius,
         child: ServerImage(
           imageUrl: source.iconUrl ?? "",
           size: const Size.square(48),

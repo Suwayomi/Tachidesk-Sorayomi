@@ -9,6 +9,9 @@
     "@addToLibrary": {
         "description": "Button text to add Manga to Library in Manga Details Screen"
     },
+    "@allScanlators": {
+        "description": "Text for all Scanlators in manga description screen chapter filter"
+    },
     "@appLanguage": {
         "description": "Popup title and Button text to change App Language"
     },
@@ -403,6 +406,24 @@
     "@pending": {
         "description": "Pending status Manga Group title in Update Summary Screen"
     },
+    "@quickSearchContext": {
+        "description": "Quick Open Hint text for query X"
+    },
+    "@quickSearchSource": {
+        "description": "Quick Open Hint text for Source S with prefill '@S'"
+    },
+    "@quickSearchSourceManga": {
+        "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+    },
+    "@quickSearchCategory": {
+        "description": "Quick Open Hint text for Category C with prefill '#C'"
+    },
+    "@quickSearchCategoryManga": {
+        "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+    },
+    "@quickSearchCategoryMangaChapter": {
+        "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+    },
     "@reader": {
         "description": "Screen title and Button text of Reader screen"
     },
@@ -498,6 +519,9 @@
     },
     "@save": {
         "description": "Save Button Text"
+    },
+    "@scanlators": {
+        "description": "Title text for Scanlators"
     },
     "@search": {
         "description": "Search field hint Text"
@@ -617,6 +641,7 @@
     "about": "About",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
+    "allScanlators": "All Scanlators",
     "appLanguage": "App Language",
     "appTheme": "App Theme",
     "appTitle": "Tachidesk Sorayomi",
@@ -733,6 +758,12 @@
     "password": "Password",
     "pause": "Pause",
     "pending": "Pending",
+    "quickSearchCategory": "Go to Category 'C'",
+    "quickSearchContext": "Search for query X (Results are based on screen context)",
+    "quickSearchSource": "Go to Source 'S'",
+    "quickSearchSourceManga": "Search for Manga 'M' in Source 'S'",
+    "quickSearchCategoryManga": "Go to Manga 'M' in Category 'C'",
+    "quickSearchCategoryMangaChapter": "Go to Chapter Name 'CN' from Manga 'M' in Category 'C'",
     "reader": "Reader",
     "readerMode": "Reading Mode",
     "readerModeContinuousHorizontalLTR": "Continuous Horizontal (LTR)",
@@ -765,6 +796,7 @@
     "retry": "Retry",
     "running": "Running",
     "save": "Save",
+    "scanlators": "Scanlators",
     "search": "Search",
     "searchingForUpdates": "Searching for updates",
     "server": "Server",

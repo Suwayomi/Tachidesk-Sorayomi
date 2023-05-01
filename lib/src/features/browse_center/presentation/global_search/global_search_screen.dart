@@ -14,7 +14,7 @@ import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
 import '../../domain/source/source_model.dart';
 import '../source/controller/source_controller.dart';
-import 'widgets/source_quick_search.dart';
+import 'widgets/source_short_search.dart';
 
 class GlobalSearchScreen extends HookConsumerWidget {
   const GlobalSearchScreen({super.key, this.initialQuery});
@@ -63,7 +63,7 @@ class GlobalSearchScreen extends HookConsumerWidget {
                   if (sourceList[index].id == null) {
                     return const SizedBox.shrink();
                   } else {
-                    return SourceQuickSearch(
+                    return SourceShortSearch(
                       sourceId: sourceList[index].id!,
                       query: query.value,
                     );

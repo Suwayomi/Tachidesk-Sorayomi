@@ -6,8 +6,8 @@ part of 'manga_details_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mangaChapterListWithFilterHash() =>
-    r'dfa3bd1f24f74a48f1f1f22d09ece9cba364e762';
+String _$mangaScanlatorListHash() =>
+    r'de9a418bc7324f26283f6409bff10dff5b8c676d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,6 +30,89 @@ class _SystemHash {
   }
 }
 
+typedef MangaScanlatorListRef = AutoDisposeProviderRef<Set<String>>;
+
+/// See also [mangaScanlatorList].
+@ProviderFor(mangaScanlatorList)
+const mangaScanlatorListProvider = MangaScanlatorListFamily();
+
+/// See also [mangaScanlatorList].
+class MangaScanlatorListFamily extends Family<Set<String>> {
+  /// See also [mangaScanlatorList].
+  const MangaScanlatorListFamily();
+
+  /// See also [mangaScanlatorList].
+  MangaScanlatorListProvider call({
+    required int mangaId,
+  }) {
+    return MangaScanlatorListProvider(
+      mangaId: mangaId,
+    );
+  }
+
+  @override
+  MangaScanlatorListProvider getProviderOverride(
+    covariant MangaScanlatorListProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'mangaScanlatorListProvider';
+}
+
+/// See also [mangaScanlatorList].
+class MangaScanlatorListProvider extends AutoDisposeProvider<Set<String>> {
+  /// See also [mangaScanlatorList].
+  MangaScanlatorListProvider({
+    required this.mangaId,
+  }) : super.internal(
+          (ref) => mangaScanlatorList(
+            ref,
+            mangaId: mangaId,
+          ),
+          from: mangaScanlatorListProvider,
+          name: r'mangaScanlatorListProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$mangaScanlatorListHash,
+          dependencies: MangaScanlatorListFamily._dependencies,
+          allTransitiveDependencies:
+              MangaScanlatorListFamily._allTransitiveDependencies,
+        );
+
+  final int mangaId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is MangaScanlatorListProvider && other.mangaId == mangaId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mangaId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$mangaChapterListWithFilterHash() =>
+    r'0c43472b7bde2aefe5e4cbcf44db64897d223661';
 typedef MangaChapterListWithFilterRef
     = AutoDisposeProviderRef<AsyncValue<List<Chapter>?>>;
 
@@ -482,6 +565,106 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   @override
   Future<List<Chapter>?> runNotifierBuild(
     covariant MangaChapterList notifier,
+  ) {
+    return notifier.build(
+      mangaId: mangaId,
+    );
+  }
+}
+
+String _$mangaChapterFilterScanlatorHash() =>
+    r'4d6da76af3cbbf033f1ca5fb04ea6eb7798c5820';
+
+abstract class _$MangaChapterFilterScanlator
+    extends BuildlessAutoDisposeNotifier<String> {
+  late final int mangaId;
+
+  String build({
+    required int mangaId,
+  });
+}
+
+/// See also [MangaChapterFilterScanlator].
+@ProviderFor(MangaChapterFilterScanlator)
+const mangaChapterFilterScanlatorProvider = MangaChapterFilterScanlatorFamily();
+
+/// See also [MangaChapterFilterScanlator].
+class MangaChapterFilterScanlatorFamily extends Family<String> {
+  /// See also [MangaChapterFilterScanlator].
+  const MangaChapterFilterScanlatorFamily();
+
+  /// See also [MangaChapterFilterScanlator].
+  MangaChapterFilterScanlatorProvider call({
+    required int mangaId,
+  }) {
+    return MangaChapterFilterScanlatorProvider(
+      mangaId: mangaId,
+    );
+  }
+
+  @override
+  MangaChapterFilterScanlatorProvider getProviderOverride(
+    covariant MangaChapterFilterScanlatorProvider provider,
+  ) {
+    return call(
+      mangaId: provider.mangaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'mangaChapterFilterScanlatorProvider';
+}
+
+/// See also [MangaChapterFilterScanlator].
+class MangaChapterFilterScanlatorProvider
+    extends AutoDisposeNotifierProviderImpl<MangaChapterFilterScanlator,
+        String> {
+  /// See also [MangaChapterFilterScanlator].
+  MangaChapterFilterScanlatorProvider({
+    required this.mangaId,
+  }) : super.internal(
+          () => MangaChapterFilterScanlator()..mangaId = mangaId,
+          from: mangaChapterFilterScanlatorProvider,
+          name: r'mangaChapterFilterScanlatorProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$mangaChapterFilterScanlatorHash,
+          dependencies: MangaChapterFilterScanlatorFamily._dependencies,
+          allTransitiveDependencies:
+              MangaChapterFilterScanlatorFamily._allTransitiveDependencies,
+        );
+
+  final int mangaId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is MangaChapterFilterScanlatorProvider &&
+        other.mangaId == mangaId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mangaId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+
+  @override
+  String runNotifierBuild(
+    covariant MangaChapterFilterScanlator notifier,
   ) {
     return notifier.build(
       mangaId: mangaId,

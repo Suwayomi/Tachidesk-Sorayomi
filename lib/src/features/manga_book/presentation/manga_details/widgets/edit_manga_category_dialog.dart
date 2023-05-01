@@ -49,7 +49,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
         context,
         (data) => ConstrainedBox(
           constraints: BoxConstraints(maxHeight: context.height * .7),
-          child: data.isBlank
+          child: data.isBlank || (data.isSingletonList && data!.first.id == 0)
               ? Padding(
                   padding: KEdgeInsets.h16.size,
                   child: Text(context.l10n!.noCategoriesFoundAlt),
