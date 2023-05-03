@@ -41,6 +41,8 @@ class PreviousScrollIntent extends Intent {}
 
 class PreviousChapterIntent extends Intent {}
 
+class HideQuickOpenIntent extends Intent {}
+
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
     super.key,
@@ -377,6 +379,8 @@ class ReaderWrapper extends HookConsumerWidget {
                 scrollDirection == Axis.vertical
                     ? NextScrollIntent()
                     : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.escape):
+                HideQuickOpenIntent(),
           },
           child: Actions(
             actions: {
@@ -407,6 +411,12 @@ class ReaderWrapper extends HookConsumerWidget {
                         transVertical: scrollDirection != Axis.vertical,
                       ).pushReplacement(context)
                     : onNext(),
+              ),
+              HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
+                onInvoke: (HideQuickOpenIntent intent) {
+                  visibility.value = !visibility.value;
+                  return null;
+                },
               ),
             },
             child: Focus(

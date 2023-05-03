@@ -65,7 +65,7 @@ RouteBase get $quickSearchRoute => ShellRouteData.$route(
           parentNavigatorKey: AboutRoute.$parentNavigatorKey,
         ),
         GoRouteData.$route(
-          path: '/reader/:mangaId/:chapterIndex',
+          path: '/manga/:mangaId/chapter/:chapterIndex',
           factory: $ReaderRouteExtension._fromState,
           parentNavigatorKey: ReaderRoute.$parentNavigatorKey,
         ),
@@ -320,7 +320,7 @@ extension $ReaderRouteExtension on ReaderRoute {
       );
 
   String get location => GoRouteData.$location(
-        '/reader/${Uri.encodeComponent(mangaId.toString())}/${Uri.encodeComponent(chapterIndex.toString())}',
+        '/manga/${Uri.encodeComponent(mangaId.toString())}/chapter/${Uri.encodeComponent(chapterIndex.toString())}',
         queryParams: {
           if (transVertical != null)
             'trans-vertical': transVertical!.toString(),
