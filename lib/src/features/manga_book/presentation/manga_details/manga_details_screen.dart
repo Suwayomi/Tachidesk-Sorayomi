@@ -68,13 +68,13 @@ class MangaDetailsScreen extends HookConsumerWidget {
       await chapterListRefresh(onlineFetch);
       if (context.mounted && onlineFetch) {
         if (manga.hasError) {
+          ref.read(toastProvider(context)).showError(
+                context.l10n!.errorSomethingWentWrong,
+              );
+        } else {
           ref.read(toastProvider(context)).show(
                 context.l10n!.updateCompleted,
                 withMicrotask: true,
-              );
-        } else {
-          ref.read(toastProvider(context)).showError(
-                context.l10n!.errorSomethingWentWrong,
               );
         }
       }
