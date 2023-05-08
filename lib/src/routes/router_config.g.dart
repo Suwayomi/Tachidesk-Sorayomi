@@ -148,7 +148,7 @@ extension $HomeRouteExtension on HomeRoute {
 extension $LibraryRouteExtension on LibraryRoute {
   static LibraryRoute _fromState(GoRouterState state) => LibraryRoute(
         initialCategoryOrder: _$convertMapValue(
-            'initial-category-order', state.queryParams, int.parse),
+            'initial-category-order', state.queryParameters, int.parse),
       );
 
   String get location => GoRouteData.$location(
@@ -230,9 +230,9 @@ extension $MoreRouteExtension on MoreRoute {
 
 extension $MangaRouteExtension on MangaRoute {
   static MangaRoute _fromState(GoRouterState state) => MangaRoute(
-        mangaId: int.parse(state.params['mangaId']!),
+        mangaId: int.parse(state.pathParameters['mangaId']!),
         categoryId:
-            _$convertMapValue('category-id', state.queryParams, int.parse),
+            _$convertMapValue('category-id', state.queryParameters, int.parse),
       );
 
   String get location => GoRouteData.$location(
@@ -252,7 +252,7 @@ extension $MangaRouteExtension on MangaRoute {
 
 extension $GlobalSearchRouteExtension on GlobalSearchRoute {
   static GlobalSearchRoute _fromState(GoRouterState state) => GlobalSearchRoute(
-        query: state.queryParams['query'],
+        query: state.queryParameters['query'],
       );
 
   String get location => GoRouteData.$location(
@@ -272,9 +272,10 @@ extension $GlobalSearchRouteExtension on GlobalSearchRoute {
 
 extension $SourceMangaRouteExtension on SourceMangaRoute {
   static SourceMangaRoute _fromState(GoRouterState state) => SourceMangaRoute(
-        sourceId: state.params['sourceId']!,
-        sourceType: _$SourceTypeEnumMap._$fromName(state.params['sourceType']!),
-        query: state.queryParams['query'],
+        sourceId: state.pathParameters['sourceId']!,
+        sourceType:
+            _$SourceTypeEnumMap._$fromName(state.pathParameters['sourceType']!),
+        query: state.queryParameters['query'],
         $extra: state.extra as List<Filter>?,
       );
 
@@ -311,12 +312,12 @@ extension $AboutRouteExtension on AboutRoute {
 
 extension $ReaderRouteExtension on ReaderRoute {
   static ReaderRoute _fromState(GoRouterState state) => ReaderRoute(
-        mangaId: int.parse(state.params['mangaId']!),
-        chapterIndex: int.parse(state.params['chapterIndex']!),
+        mangaId: int.parse(state.pathParameters['mangaId']!),
+        chapterIndex: int.parse(state.pathParameters['chapterIndex']!),
         transVertical: _$convertMapValue(
-            'trans-vertical', state.queryParams, _$boolConverter),
-        toPrev:
-            _$convertMapValue('to-prev', state.queryParams, _$boolConverter),
+            'trans-vertical', state.queryParameters, _$boolConverter),
+        toPrev: _$convertMapValue(
+            'to-prev', state.queryParameters, _$boolConverter),
       );
 
   String get location => GoRouteData.$location(
