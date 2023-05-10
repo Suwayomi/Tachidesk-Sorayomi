@@ -175,7 +175,9 @@ class UpdatesScreen extends HookConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
-                      title: Text(item.chapter!.fetchedAt.toDaysAgoFromSeconds),
+                      title: Text(
+                        item.chapter!.fetchedAt.toDaysAgoFromSeconds(context),
+                      ),
                     ),
                     chapterTile,
                   ],

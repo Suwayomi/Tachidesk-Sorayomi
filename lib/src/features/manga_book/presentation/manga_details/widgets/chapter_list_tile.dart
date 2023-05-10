@@ -63,7 +63,7 @@ class ChapterListTile extends StatelessWidget {
             ? Row(
                 children: [
                   Text(
-                    chapter.uploadDate!.toDaysAgo,
+                    chapter.uploadDate!.toDaysAgo(context),
                     style: TextStyle(
                       color: chapter.read.ifNull() ? Colors.grey : null,
                     ),
