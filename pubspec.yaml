@@ -79,7 +79,7 @@ flutter_native_splash:
     image: assets/icons/dark_icon.png
     image_dark: assets/icons/light_icon.png
 
-flutter_icons:
+flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
