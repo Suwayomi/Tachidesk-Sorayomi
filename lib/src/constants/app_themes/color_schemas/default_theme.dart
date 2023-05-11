@@ -19,11 +19,6 @@ final LightAndDarkThemeData defaultTheme = LightAndDarkThemeData(
   ),
 );
 
-const defaultColorSchema = ThemeColorSchema(
-  _lightColorScheme,
-  _darkColorScheme,
-);
-
 const _lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF335CA8),

@@ -47,10 +47,35 @@ class CategoryMangaList extends HookConsumerWidget {
             ),
           );
         }
-        late final Widget mangaList;
-        switch (displayMode) {
-          case DisplayMode.grid:
-            mangaList = GridView.builder(
+        final Widget mangaList = switch (displayMode) {
+          DisplayMode.list || null => ListView.builder(
+              itemCount: data?.length ?? 0,
+              itemBuilder: (context, index) => MangaCoverListTile(
+                manga: data![index],
+                onPressed: () {
+                  if (data[index].id != null) {
+                    MangaRoute(
+                      mangaId: data[index].id!,
+                      categoryId: categoryId,
+                    ).push(context);
+                  }
+                },
+                onLongPress: () async {
+                  if (data[index].id != null) {
+                    await showDialog(
+                      context: context,
+                      builder: (context) => EditMangaCategoryDialog(
+                        mangaId: data[index].id!,
+                        title: data[index].title,
+                      ),
+                    );
+                    refresh();
+                  }
+                },
+                showCountBadges: true,
+              ),
+            ),
+          DisplayMode.grid => GridView.builder(
               gridDelegate:
                   mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),
               itemCount: data?.length ?? 0,
@@ -79,39 +104,8 @@ class CategoryMangaList extends HookConsumerWidget {
                 showCountBadges: true,
                 showDarkOverlay: false,
               ),
-            );
-            break;
-          case DisplayMode.list:
-            mangaList = ListView.builder(
-              itemCount: data?.length ?? 0,
-              itemBuilder: (context, index) => MangaCoverListTile(
-                manga: data![index],
-                onPressed: () {
-                  if (data[index].id != null) {
-                    MangaRoute(
-                      mangaId: data[index].id!,
-                      categoryId: categoryId,
-                    ).push(context);
-                  }
-                },
-                onLongPress: () async {
-                  if (data[index].id != null) {
-                    await showDialog(
-                      context: context,
-                      builder: (context) => EditMangaCategoryDialog(
-                        mangaId: data[index].id!,
-                        title: data[index].title,
-                      ),
-                    );
-                    refresh();
-                  }
-                },
-                showCountBadges: true,
-              ),
-            );
-            break;
-          case DisplayMode.descriptiveList:
-            mangaList = ListView.builder(
+            ),
+          DisplayMode.descriptiveList => ListView.builder(
               itemCount: data?.length ?? 0,
               itemBuilder: (context, index) => MangaCoverDescriptiveListTile(
                 manga: data![index],
@@ -137,10 +131,8 @@ class CategoryMangaList extends HookConsumerWidget {
                 },
                 showBadges: true,
               ),
-            );
-            break;
-          default:
-        }
+            )
+        };
         return RefreshIndicator(
           onRefresh: () async => refresh(),
           child: mangaList,

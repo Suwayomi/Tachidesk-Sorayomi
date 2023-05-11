@@ -28,14 +28,15 @@ class SourceMangaDisplayView extends ConsumerWidget {
   final Source? source;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final displayMode = ref.watch(sourceDisplayModeProvider) ??
+    final DisplayMode displayMode = ref.watch(sourceDisplayModeProvider) ??
         DBKeys.sourceDisplayMode.initial;
-    switch (displayMode) {
-      case DisplayMode.grid:
-        return SourceMangaGridView(controller: controller, source: source);
-      case DisplayMode.list:
-      default:
-        return SourceMangaListView(controller: controller, source: source);
-    }
+    return switch (displayMode) {
+      DisplayMode.grid =>
+        SourceMangaGridView(controller: controller, source: source),
+      DisplayMode.list =>
+        SourceMangaListView(controller: controller, source: source),
+      DisplayMode.descriptiveList =>
+        SourceMangaListView(controller: controller, source: source)
+    };
   }
 }
