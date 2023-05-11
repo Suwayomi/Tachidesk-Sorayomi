@@ -12,36 +12,20 @@ class DioErrorUtil {
   static String handleError(DioError? error) {
     String errorDescription = "";
     if (error is DioError) {
-      switch (error.type) {
-        case DioErrorType.cancel:
-          errorDescription = "Request cancelled";
-          break;
-        case DioErrorType.connectionTimeout:
-          errorDescription = "Connection timeout";
-          break;
-        case DioErrorType.unknown:
-          errorDescription = "Check your Internet Connection";
-          break;
-        case DioErrorType.receiveTimeout:
-          errorDescription = "Receive timeout";
-          break;
-        case DioErrorType.badResponse:
-          errorDescription = (error.response?.statusCode) != null
-              ? "Received invalid status code: ${error.response?.statusCode}"
-              : "Something went wrong!";
-          break;
-        case DioErrorType.sendTimeout:
-          errorDescription = "Send timeout";
-          break;
-        case DioErrorType.badCertificate:
-          errorDescription =
-              "Check your Internet Connection (Incorrect certificate )";
-          break;
-        case DioErrorType.connectionError:
-          errorDescription =
-              "Check your Internet Connection (Check server IP in settings)";
-          break;
-      }
+      errorDescription = switch (error.type) {
+        DioErrorType.cancel => "Request cancelled",
+        DioErrorType.connectionTimeout => "Connection timeout",
+        DioErrorType.unknown => "Check your Internet Connection",
+        DioErrorType.receiveTimeout => "Receive timeout",
+        DioErrorType.badResponse => (error.response?.statusCode) != null
+            ? "Received invalid status code: ${error.response?.statusCode}"
+            : "Something went wrong!",
+        DioErrorType.sendTimeout => "Send timeout",
+        DioErrorType.badCertificate =>
+          "Check your Internet Connection (Incorrect certificate )",
+        DioErrorType.connectionError =>
+          "Check your Internet Connection (Check server IP in settings)"
+      };
     } else {
       errorDescription = "Unexpected error occurred";
     }

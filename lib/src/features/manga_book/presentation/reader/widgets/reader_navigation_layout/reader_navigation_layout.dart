@@ -62,39 +62,35 @@ class ReaderNavigationLayoutWidget extends HookConsumerWidget {
       leftColor = prevColorTween;
       rightColor = nextColorTween;
     }
-    switch (layout) {
-      case ReaderNavigationLayout.edge:
-        return EdgeLayout(
+    return switch (layout) {
+      ReaderNavigationLayout.edge => EdgeLayout(
           onLeftTap: onLeftTap,
           onRightTap: onRightTap,
           leftColor: leftColor,
           rightColor: rightColor,
-        );
-      case ReaderNavigationLayout.kindlish:
-        return KindlishLayout(
+        ),
+      ReaderNavigationLayout.kindlish => KindlishLayout(
           onLeftTap: onLeftTap,
           onRightTap: onRightTap,
           leftColor: leftColor,
           rightColor: rightColor,
-        );
-      case ReaderNavigationLayout.lShaped:
-        return LShapedLayout(
+        ),
+      ReaderNavigationLayout.lShaped => LShapedLayout(
           onLeftTap: onLeftTap,
           onRightTap: onRightTap,
           leftColor: leftColor,
           rightColor: rightColor,
-        );
-      case ReaderNavigationLayout.rightAndLeft:
-        return RightAndLeftLayout(
+        ),
+      ReaderNavigationLayout.rightAndLeft => RightAndLeftLayout(
           onLeftTap: onLeftTap,
           onRightTap: onRightTap,
           leftColor: leftColor,
           rightColor: rightColor,
-        );
-      case ReaderNavigationLayout.disabled:
-      case ReaderNavigationLayout.defaultNavigation:
-      default:
-        return const SizedBox.shrink();
-    }
+        ),
+      ReaderNavigationLayout.defaultNavigation ||
+      ReaderNavigationLayout.disabled ||
+      null =>
+        const SizedBox.shrink(),
+    };
   }
 }

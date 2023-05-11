@@ -13,7 +13,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
-import '../../../../utils/classes/pair/pair_model.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/downloads/downloads_model.dart';
@@ -45,19 +44,19 @@ class DownloadsRepository {
         DownloaderUrl.reorderDownload(mangaId, chapterIndex, to),
       );
 
-  Pair<Stream<Downloads>, AsyncCallback> socketDownloads() {
+  ({Stream<Downloads> stream, AsyncCallback closeStream}) socketDownloads() {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
     final channel =
         WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads));
 
-    return Pair<Stream<Downloads>, AsyncCallback>(
-      first: channel.stream.asyncMap<Downloads>(
+    return (
+      stream: channel.stream.asyncMap<Downloads>(
         (event) => compute<String, Downloads>(
           (s) => Downloads.fromJson(json.decode(s)),
           event,
         ),
       ),
-      second: channel.sink.close,
+      closeStream: channel.sink.close,
     );
   }
 }
@@ -70,9 +69,9 @@ DownloadsRepository downloadsRepository(DownloadsRepositoryRef ref) =>
 class DownloadsSocket extends _$DownloadsSocket {
   @override
   Stream<Downloads> build() {
-    final pair = ref.watch(downloadsRepositoryProvider).socketDownloads();
-    ref.onDispose(pair.second);
-    return pair.first;
+    final socket = ref.watch(downloadsRepositoryProvider).socketDownloads();
+    ref.onDispose(socket.closeStream);
+    return socket.stream;
   }
 }
 

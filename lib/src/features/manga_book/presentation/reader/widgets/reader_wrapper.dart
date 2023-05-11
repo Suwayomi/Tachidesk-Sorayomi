@@ -16,7 +16,6 @@ import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 
 import '../../../../../routes/router_config.dart';
-import '../../../../../utils/classes/pair/pair_model.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
@@ -463,7 +462,7 @@ class ReaderView extends HookWidget {
   final Widget child;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
-  final Pair<Chapter?, Chapter?>? prevNextChapterPair;
+  final ({Chapter? first, Chapter? second})? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
 
   @override

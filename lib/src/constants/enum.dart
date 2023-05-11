@@ -12,14 +12,10 @@ enum AuthType {
   none,
   basic;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case AuthType.none:
-        return context.l10n!.authTypeNone;
-      case AuthType.basic:
-        return context.l10n!.authTypeBasic;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        AuthType.none => context.l10n!.authTypeNone,
+        AuthType.basic => context.l10n!.authTypeBasic,
+      };
 }
 
 enum ReaderMode {
@@ -32,26 +28,21 @@ enum ReaderMode {
   singleVertical,
   webtoon;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case ReaderMode.defaultReader:
-        return context.l10n!.readerModeDefaultReader;
-      case ReaderMode.continuousVertical:
-        return context.l10n!.readerModeContinuousVertical;
-      case ReaderMode.singleHorizontalLTR:
-        return context.l10n!.readerModeSingleHorizontalLTR;
-      case ReaderMode.singleHorizontalRTL:
-        return context.l10n!.readerModeSingleHorizontalRTL;
-      case ReaderMode.continuousHorizontalLTR:
-        return context.l10n!.readerModeContinuousHorizontalLTR;
-      case ReaderMode.continuousHorizontalRTL:
-        return context.l10n!.readerModeContinuousHorizontalRTL;
-      case ReaderMode.singleVertical:
-        return context.l10n!.readerModeSingleVertical;
-      case ReaderMode.webtoon:
-        return context.l10n!.readerModeWebtoon;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        ReaderMode.defaultReader => context.l10n!.readerModeDefaultReader,
+        ReaderMode.continuousVertical =>
+          context.l10n!.readerModeContinuousVertical,
+        ReaderMode.singleHorizontalLTR =>
+          context.l10n!.readerModeSingleHorizontalLTR,
+        ReaderMode.singleHorizontalRTL =>
+          context.l10n!.readerModeSingleHorizontalRTL,
+        ReaderMode.continuousHorizontalLTR =>
+          context.l10n!.readerModeContinuousHorizontalLTR,
+        ReaderMode.continuousHorizontalRTL =>
+          context.l10n!.readerModeContinuousHorizontalRTL,
+        ReaderMode.singleVertical => context.l10n!.readerModeSingleVertical,
+        ReaderMode.webtoon => context.l10n!.readerModeWebtoon
+      };
 }
 
 enum ReaderNavigationLayout {
@@ -62,22 +53,19 @@ enum ReaderNavigationLayout {
   kindlish,
   disabled;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case ReaderNavigationLayout.defaultNavigation:
-        return context.l10n!.readerNavigationLayoutDefault;
-      case ReaderNavigationLayout.lShaped:
-        return context.l10n!.readerNavigationLayoutLShaped;
-      case ReaderNavigationLayout.rightAndLeft:
-        return context.l10n!.readerNavigationLayoutRightAndLeft;
-      case ReaderNavigationLayout.edge:
-        return context.l10n!.readerNavigationLayoutEdge;
-      case ReaderNavigationLayout.kindlish:
-        return context.l10n!.readerNavigationLayoutKindlish;
-      case ReaderNavigationLayout.disabled:
-        return context.l10n!.readerNavigationLayoutDisabled;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        ReaderNavigationLayout.defaultNavigation =>
+          context.l10n!.readerNavigationLayoutDefault,
+        ReaderNavigationLayout.lShaped =>
+          context.l10n!.readerNavigationLayoutLShaped,
+        ReaderNavigationLayout.rightAndLeft =>
+          context.l10n!.readerNavigationLayoutRightAndLeft,
+        ReaderNavigationLayout.edge => context.l10n!.readerNavigationLayoutEdge,
+        ReaderNavigationLayout.kindlish =>
+          context.l10n!.readerNavigationLayoutKindlish,
+        ReaderNavigationLayout.disabled =>
+          context.l10n!.readerNavigationLayoutDisabled
+      };
 }
 
 enum MangaSort {
@@ -86,18 +74,12 @@ enum MangaSort {
   unread,
   lastRead;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case MangaSort.alphabetical:
-        return context.l10n!.mangaSortAlphabetical;
-      case MangaSort.dateAdded:
-        return context.l10n!.mangaSortDateAdded;
-      case MangaSort.unread:
-        return context.l10n!.mangaSortUnread;
-      case MangaSort.lastRead:
-        return context.l10n!.mangaSortLastRead;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        MangaSort.alphabetical => context.l10n!.mangaSortAlphabetical,
+        MangaSort.dateAdded => context.l10n!.mangaSortDateAdded,
+        MangaSort.unread => context.l10n!.mangaSortUnread,
+        MangaSort.lastRead => context.l10n!.mangaSortLastRead
+      };
 }
 
 enum ChapterSort {
@@ -105,16 +87,11 @@ enum ChapterSort {
   uploadDate,
   fetchedDate;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case ChapterSort.source:
-        return context.l10n!.chapterSortSource;
-      case ChapterSort.fetchedDate:
-        return context.l10n!.chapterSortFetchedDate;
-      case ChapterSort.uploadDate:
-        return context.l10n!.chapterSortUploadDate;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        ChapterSort.source => context.l10n!.chapterSortSource,
+        ChapterSort.fetchedDate => context.l10n!.chapterSortFetchedDate,
+        ChapterSort.uploadDate => context.l10n!.chapterSortUploadDate
+      };
 }
 
 enum DisplayMode {
@@ -131,16 +108,11 @@ enum DisplayMode {
   final IconData icon;
   const DisplayMode(this.icon);
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case DisplayMode.grid:
-        return context.l10n!.displayModeGrid;
-      case DisplayMode.list:
-        return context.l10n!.displayModeList;
-      case DisplayMode.descriptiveList:
-        return context.l10n!.displayModeDescriptiveList;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        DisplayMode.grid => context.l10n!.displayModeGrid,
+        DisplayMode.list => context.l10n!.displayModeList,
+        DisplayMode.descriptiveList => context.l10n!.displayModeDescriptiveList
+      };
 }
 
 enum MangaStatus {
@@ -166,24 +138,16 @@ enum MangaStatus {
   static String toJson(MangaStatus? status) =>
       status?.title ?? MangaStatus.unknown.title;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case MangaStatus.unknown:
-        return context.l10n!.mangaStatusUnknown;
-      case MangaStatus.ongoing:
-        return context.l10n!.mangaStatusOngoing;
-      case MangaStatus.completed:
-        return context.l10n!.mangaStatusCompleted;
-      case MangaStatus.licensed:
-        return context.l10n!.mangaStatusLicensed;
-      case MangaStatus.publishingFinished:
-        return context.l10n!.mangaStatusPublishingFinished;
-      case MangaStatus.cancelled:
-        return context.l10n!.mangaStatusCancelled;
-      case MangaStatus.onHiatus:
-        return context.l10n!.mangaStatusOnHiatus;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        MangaStatus.unknown => context.l10n!.mangaStatusUnknown,
+        MangaStatus.ongoing => context.l10n!.mangaStatusOngoing,
+        MangaStatus.completed => context.l10n!.mangaStatusCompleted,
+        MangaStatus.licensed => context.l10n!.mangaStatusLicensed,
+        MangaStatus.publishingFinished =>
+          context.l10n!.mangaStatusPublishingFinished,
+        MangaStatus.cancelled => context.l10n!.mangaStatusCancelled,
+        MangaStatus.onHiatus => context.l10n!.mangaStatusOnHiatus
+      };
 }
 
 enum SourceType {
@@ -196,14 +160,9 @@ enum SourceType {
   final IconData icon;
   final IconData selectedIcon;
 
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case SourceType.latest:
-        return context.l10n!.sourceTypeLatest;
-      case SourceType.popular:
-        return context.l10n!.sourceTypePopular;
-      case SourceType.filter:
-        return context.l10n!.sourceTypeFilter;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        SourceType.latest => context.l10n!.sourceTypeLatest,
+        SourceType.popular => context.l10n!.sourceTypePopular,
+        SourceType.filter => context.l10n!.sourceTypeFilter
+      };
 }

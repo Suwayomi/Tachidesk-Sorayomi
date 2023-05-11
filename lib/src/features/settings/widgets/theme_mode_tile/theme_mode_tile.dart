@@ -32,16 +32,11 @@ class ThemeModeKey extends _$ThemeModeKey
 }
 
 extension ThemeModeExtension on ThemeMode {
-  String toLocale(BuildContext context) {
-    switch (this) {
-      case ThemeMode.system:
-        return context.l10n!.themeModeSystem;
-      case ThemeMode.light:
-        return context.l10n!.themeModeLight;
-      case ThemeMode.dark:
-        return context.l10n!.themeModeDark;
-    }
-  }
+  String toLocale(BuildContext context) => switch (this) {
+        ThemeMode.system => context.l10n!.themeModeSystem,
+        ThemeMode.light => context.l10n!.themeModeLight,
+        ThemeMode.dark => context.l10n!.themeModeDark
+      };
 }
 
 class AppThemeTile extends ConsumerWidget {

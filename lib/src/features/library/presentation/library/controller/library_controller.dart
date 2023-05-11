@@ -78,19 +78,17 @@ class CategoryMangaListWithQueryAndFilter
 
     int applyMangaSort(Manga m1, Manga m2) {
       final sortDirToggle = (sortedDirection ? 1 : -1);
-      switch (sortedBy) {
-        case MangaSort.alphabetical:
-          return (m1.title ?? "").compareTo(m2.title ?? "") * sortDirToggle;
-        case MangaSort.unread:
-          return (m1.unreadCount ?? 0).compareTo(m2.unreadCount ?? 0) *
-              sortDirToggle;
-        case MangaSort.dateAdded:
-          return (m1.inLibraryAt ?? 0).compareTo(m2.inLibraryAt ?? 0) *
-              sortDirToggle;
-        case MangaSort.lastRead:
-          return (m2.lastReadAt ?? 0).compareTo(m1.lastReadAt ?? 0) *
-              sortDirToggle;
-      }
+      return (switch (sortedBy) {
+            MangaSort.alphabetical =>
+              (m1.title ?? "").compareTo(m2.title ?? ""),
+            MangaSort.unread =>
+              (m1.unreadCount ?? 0).compareTo(m2.unreadCount ?? 0),
+            MangaSort.dateAdded =>
+              (m1.inLibraryAt ?? 0).compareTo(m2.inLibraryAt ?? 0),
+            MangaSort.lastRead =>
+              (m2.lastReadAt ?? 0).compareTo(m1.lastReadAt ?? 0)
+          }) *
+          sortDirToggle;
     }
 
     return mangaList.map<AsyncValue<List<Manga>?>>(

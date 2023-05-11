@@ -9,7 +9,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-import '../../../../../utils/classes/pair/pair_model.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../library/domain/category/category_model.dart';
@@ -175,15 +174,14 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
 
   int applyChapterSort(Chapter m1, Chapter m2) {
     final sortDirToggle = (sortedDirection ? 1 : -1);
-    switch (sortedBy) {
-      case ChapterSort.fetchedDate:
-        return (m1.fetchedAt ?? 0).compareTo(m2.fetchedAt ?? 0) * sortDirToggle;
-      case ChapterSort.source:
-        return (m1.index ?? 0).compareTo(m2.index ?? 0) * sortDirToggle;
-      case ChapterSort.uploadDate:
-        return (m1.uploadDate ?? 0).compareTo(m2.uploadDate ?? 0) *
-            sortDirToggle;
-    }
+    return (switch (sortedBy) {
+          ChapterSort.fetchedDate =>
+            (m1.fetchedAt ?? 0).compareTo(m2.fetchedAt ?? 0),
+          ChapterSort.source => (m1.index ?? 0).compareTo(m2.index ?? 0),
+          ChapterSort.uploadDate =>
+            (m1.uploadDate ?? 0).compareTo(m2.uploadDate ?? 0),
+        }) *
+        sortDirToggle;
   }
 
   return chapterList.copyWithData(
@@ -215,7 +213,7 @@ Chapter? firstUnreadInFilteredChapterList(
 }
 
 @riverpod
-Pair<Chapter?, Chapter?>? getPreviousAndNextChapters(
+({Chapter? first, Chapter? second})? getPreviousAndNextChapters(
   GetPreviousAndNextChaptersRef ref, {
   required int mangaId,
   required String chapterIndex,
@@ -235,7 +233,7 @@ Pair<Chapter?, Chapter?>? getPreviousAndNextChapters(
     final nextChapter = currentChapterIndex < (filteredList.length - 1)
         ? filteredList[currentChapterIndex + 1]
         : null;
-    return Pair(
+    return (
       first: isAscSorted ? nextChapter : prevChapter,
       second: isAscSorted ? prevChapter : nextChapter,
     );

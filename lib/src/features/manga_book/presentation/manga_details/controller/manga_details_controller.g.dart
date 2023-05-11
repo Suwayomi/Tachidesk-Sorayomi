@@ -112,7 +112,7 @@ class MangaScanlatorListProvider extends AutoDisposeProvider<Set<String>> {
 }
 
 String _$mangaChapterListWithFilterHash() =>
-    r'0c43472b7bde2aefe5e4cbcf44db64897d223661';
+    r'd8e95ee63920e7ee5acf15deda7b9d795ca452c9';
 typedef MangaChapterListWithFilterRef
     = AutoDisposeProviderRef<AsyncValue<List<Chapter>?>>;
 
@@ -285,9 +285,9 @@ class FirstUnreadInFilteredChapterListProvider
 }
 
 String _$getPreviousAndNextChaptersHash() =>
-    r'e633dd8efea79545ab172e90987f0d87d9cd1e40';
+    r'72d82e93a696623ac8656cbcc6d2cb999ac58c6a';
 typedef GetPreviousAndNextChaptersRef
-    = AutoDisposeProviderRef<Pair<Chapter?, Chapter?>?>;
+    = AutoDisposeProviderRef<({Chapter? first, Chapter? second})?>;
 
 /// See also [getPreviousAndNextChapters].
 @ProviderFor(getPreviousAndNextChapters)
@@ -295,7 +295,7 @@ const getPreviousAndNextChaptersProvider = GetPreviousAndNextChaptersFamily();
 
 /// See also [getPreviousAndNextChapters].
 class GetPreviousAndNextChaptersFamily
-    extends Family<Pair<Chapter?, Chapter?>?> {
+    extends Family<({Chapter? first, Chapter? second})?> {
   /// See also [getPreviousAndNextChapters].
   const GetPreviousAndNextChaptersFamily();
 
@@ -337,7 +337,7 @@ class GetPreviousAndNextChaptersFamily
 
 /// See also [getPreviousAndNextChapters].
 class GetPreviousAndNextChaptersProvider
-    extends AutoDisposeProvider<Pair<Chapter?, Chapter?>?> {
+    extends AutoDisposeProvider<({Chapter? first, Chapter? second})?> {
   /// See also [getPreviousAndNextChapters].
   GetPreviousAndNextChaptersProvider({
     required this.mangaId,
