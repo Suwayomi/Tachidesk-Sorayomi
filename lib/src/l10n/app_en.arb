@@ -123,6 +123,9 @@
     "@current": {
         "description": "Text to show the currently reading chapter in Reader Screen"
     },
+    "@daysAgo": {
+        "description": "Days ago text to show the release date of manga"
+    },
     "@defaultCategory": {
         "description": "Checkbox description when creating a Category to add manga to the Category by Default"
     },
@@ -571,6 +574,12 @@
     "@start": {
         "description": "Button text start reading the manga"
     },
+    "@today": {
+        "description": "Today Text to show the release date of manga"
+    },
+    "@yesterday": {
+        "description": "Yesterday Text to show the release date of manga"
+    },
     "@themeModeDark": {
         "description": "Radio button text for App theme - Dark"
     },
@@ -675,6 +684,7 @@
     "createBackupTitle": "Create Backup",
     "credentials": "Credentials",
     "current": "Current",
+    "daysAgo": "{days} days ago",
     "defaultCategory": "Default category when adding new manga to library",
     "delete": "Delete",
     "deleteCategoryDescription": "This will merge all Mangas in this Category to Default!",
@@ -816,6 +826,8 @@
     "themeModeDark": "Dark",
     "themeModeLight": "Light",
     "themeModeSystem": "System",
+    "today": "Today",
+    "yesterday" : "Yesterday",
     "uninstall": "Uninstall",
     "uninstalling": "Uninstalling",
     "unknownAuthor": "Unknown Author",

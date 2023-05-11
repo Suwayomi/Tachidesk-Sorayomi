@@ -23,10 +23,12 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
     super.key,
     required this.selectedChapters,
     required this.afterOptionSelected,
+    this.hasPreviousDone = true,
   });
 
   final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncCallback afterOptionSelected;
+  final bool hasPreviousDone;
 
   List<int> get chapterList => selectedChapters.value.keys.toList();
 
@@ -58,7 +60,7 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
               change: ChapterChange(isBookmarked: true),
               refresh: refresh,
             ),
-          if (selectedList.isSingletonList)
+          if (selectedList.isSingletonList && hasPreviousDone)
             SingleChapterActionIcon(
               chapterIndex: selectedChapters.value[chapterList.first]!.index!,
               mangaId: selectedChapters.value[chapterList.first]!.mangaId!,

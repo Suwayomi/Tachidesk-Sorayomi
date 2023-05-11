@@ -63,7 +63,7 @@ class ChapterListTile extends StatelessWidget {
             ? Row(
                 children: [
                   Text(
-                    chapter.uploadDate!.toDaysAgo,
+                    chapter.uploadDate!.toDaysAgo(context),
                     style: TextStyle(
                       color: chapter.read.ifNull() ? Colors.grey : null,
                     ),
@@ -76,12 +76,14 @@ class ChapterListTile extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   if (chapter.scanlator.isNotBlank)
-                    Text(
-                      " • ${chapter.scanlator}",
-                      style: TextStyle(
-                        color: chapter.read.ifNull() ? Colors.grey : null,
+                    Expanded(
+                      child: Text(
+                        " • ${chapter.scanlator}",
+                        style: TextStyle(
+                          color: chapter.read.ifNull() ? Colors.grey : null,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      overflow: TextOverflow.ellipsis,
                     ),
                 ],
               )

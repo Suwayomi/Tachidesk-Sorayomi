@@ -30,9 +30,10 @@ class UpdateStatus with _$UpdateStatus {
 
   int get updateChecked => (completed?.length ?? 0) + (failed?.length ?? 0);
 
-  bool get isUpdateCompleted => total == updateChecked;
+  bool get isUpdateCheckCompleted => total == updateChecked;
 
-  bool get showUpdateStatus => (total).isGreaterThan(0) && !(isUpdateCompleted);
+  bool get isUpdateChecking =>
+      (total).isGreaterThan(0) && !(isUpdateCheckCompleted);
 
   factory UpdateStatus.fromJson(Map<String, dynamic> json) =>
       _$UpdateStatusFromJson(json);

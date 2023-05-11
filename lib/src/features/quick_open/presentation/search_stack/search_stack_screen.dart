@@ -26,23 +26,11 @@ class SearchStackScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final visible = useState(false);
-    final focus = useFocusNode();
-    useEffect(() {
-      if (!visible.value) {
-        focus.requestFocus();
-      }
-      return null;
-    }, [visible.value]);
     return QuickSearchShortcutWrapper(
       visible: visible,
       child: Stack(
         children: [
-          if (child != null)
-            Focus(
-              autofocus: true,
-              focusNode: focus,
-              child: child!,
-            ),
+          if (child != null) child!,
           if (visible.value)
             GestureDetector(
               onTap: () => visible.value = false,

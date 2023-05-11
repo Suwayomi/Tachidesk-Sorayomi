@@ -18,7 +18,7 @@ class UpdateStatusFab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final updateStatus = ref.watch(updatesSocketProvider);
-    final showStatus = (updateStatus.valueOrNull?.showUpdateStatus).ifNull();
+    final showStatus = (updateStatus.valueOrNull?.isUpdateChecking).ifNull();
     return FloatingActionButton.extended(
       icon: showStatus ? null : const Icon(Icons.refresh),
       onPressed: () => showStatus
