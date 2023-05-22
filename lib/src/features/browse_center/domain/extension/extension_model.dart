@@ -24,7 +24,7 @@ class Extension with _$Extension {
       fromJson: LanguageJsonConverter.fromJson,
       toJson: LanguageJsonConverter.toJson,
     )
-        Language? lang,
+    Language? lang,
     String? name,
     bool? obsolete,
     String? pkgName,

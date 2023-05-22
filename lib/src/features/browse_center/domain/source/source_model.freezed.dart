@@ -48,8 +48,10 @@ abstract class $SourceCopyWith<$Res> {
       String? id,
       bool? isConfigurable,
       bool? isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          Language? lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      Language? lang,
       String? name,
       bool? supportsLatest});
 
@@ -139,8 +141,10 @@ abstract class _$$_SourceCopyWith<$Res> implements $SourceCopyWith<$Res> {
       String? id,
       bool? isConfigurable,
       bool? isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          Language? lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      Language? lang,
       String? name,
       bool? supportsLatest});
 
@@ -213,8 +217,10 @@ class _$_Source implements _Source {
       this.id,
       this.isConfigurable,
       this.isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          this.lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      this.lang,
       this.name,
       this.supportsLatest});
 
@@ -290,8 +296,10 @@ abstract class _Source implements Source {
       final String? id,
       final bool? isConfigurable,
       final bool? isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          final Language? lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      final Language? lang,
       final String? name,
       final bool? supportsLatest}) = _$_Source;
 

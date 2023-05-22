@@ -52,8 +52,10 @@ abstract class $ExtensionCopyWith<$Res> {
       String? iconUrl,
       bool? installed,
       bool? isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          Language? lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      Language? lang,
       String? name,
       bool? obsolete,
       String? pkgName,
@@ -162,8 +164,10 @@ abstract class _$$_ExtensionCopyWith<$Res> implements $ExtensionCopyWith<$Res> {
       String? iconUrl,
       bool? installed,
       bool? isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          Language? lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      Language? lang,
       String? name,
       bool? obsolete,
       String? pkgName,
@@ -255,8 +259,10 @@ class _$_Extension implements _Extension {
       this.iconUrl,
       this.installed,
       this.isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          this.lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      this.lang,
       this.name,
       this.obsolete,
       this.pkgName,
@@ -357,8 +363,10 @@ abstract class _Extension implements Extension {
       final String? iconUrl,
       final bool? installed,
       final bool? isNsfw,
-      @JsonKey(fromJson: LanguageJsonConverter.fromJson, toJson: LanguageJsonConverter.toJson)
-          final Language? lang,
+      @JsonKey(
+          fromJson: LanguageJsonConverter.fromJson,
+          toJson: LanguageJsonConverter.toJson)
+      final Language? lang,
       final String? name,
       final bool? obsolete,
       final String? pkgName,
