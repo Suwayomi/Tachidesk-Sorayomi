@@ -24,7 +24,7 @@ class Source with _$Source {
       fromJson: LanguageJsonConverter.fromJson,
       toJson: LanguageJsonConverter.toJson,
     )
-        Language? lang,
+    Language? lang,
     String? name,
     bool? supportsLatest,
   }) = _Source;
