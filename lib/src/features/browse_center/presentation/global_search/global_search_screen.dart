@@ -12,8 +12,8 @@ import '../../../../constants/app_sizes.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
-import '../../domain/source/source_model.dart';
 import '../source/controller/source_controller.dart';
+import 'controller/source_quick_search_controller.dart';
 import 'widgets/source_short_search.dart';
 
 class GlobalSearchScreen extends HookConsumerWidget {
@@ -21,15 +21,9 @@ class GlobalSearchScreen extends HookConsumerWidget {
   final String? initialQuery;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sourceMapData = ref.watch(sourceMapFilteredProvider);
-
-    final sourceMap = {...?sourceMapData.valueOrNull}..remove("lastUsed");
-    final sourceList = sourceMap.values.fold(
-      <Source>[],
-      (previousValue, element) => [...previousValue, ...element],
-    );
-
     final query = useState(initialQuery);
+    final quickSearchResult =
+        ref.watch(quickSearchResultsProvider(query: query.value));
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n!.globalSearch),
@@ -48,9 +42,9 @@ class GlobalSearchScreen extends HookConsumerWidget {
           ),
         ),
       ),
-      body: sourceMapData.showUiWhenData(
+      body: quickSearchResult.showUiWhenData(
         context,
-        (data) => sourceList.isBlank
+        (data) => data.isBlank
             ? Emoticons(
                 text: context.l10n!.noSourcesFound,
                 button: TextButton(
@@ -60,16 +54,17 @@ class GlobalSearchScreen extends HookConsumerWidget {
               )
             : ListView.builder(
                 itemBuilder: (context, index) {
-                  if (sourceList[index].id == null) {
+                  if (data[index].source.id == null) {
                     return const SizedBox.shrink();
                   } else {
                     return SourceShortSearch(
-                      sourceId: sourceList[index].id!,
+                      source: data[index].source,
+                      mangaList: data[index].mangaList,
                       query: query.value,
                     );
                   }
                 },
-                itemCount: sourceList.length,
+                itemCount: data.length,
               ),
       ),
     );
