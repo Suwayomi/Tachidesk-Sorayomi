@@ -110,7 +110,8 @@ extension DateTimeExtensions on DateTime {
     } else if (diff.inDays < 10) {
       return context.l10n!.daysAgo(diff.inDays);
     } else {
-      return DateFormat.yMMMd().format(this);
+      return DateFormat.yMMMd(context.currentLocale.toLanguageTag())
+          .format(this);
     }
   }
 }
