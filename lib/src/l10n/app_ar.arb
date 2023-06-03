@@ -830,5 +830,17 @@
   "quickSearchCategory": "اذهب إلى الفئة 'C'",
   "@quickSearchCategory": {
     "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "today": "اليوم",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "daysAgo": "منذ {days} أيام",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "yesterday": "أمس",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
   }
 }
