@@ -98,57 +98,54 @@ class ReaderScreen extends HookConsumerWidget {
               context,
               (chapterData) {
                 if (chapterData == null) return const SizedBox.shrink();
-                switch (data.meta?.readerMode ?? defaultReaderMode) {
-                  case ReaderMode.singleVertical:
-                    return SinglePageReaderMode(
+                return switch (data.meta?.readerMode ?? defaultReaderMode) {
+                  ReaderMode.singleVertical => SinglePageReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       scrollDirection: Axis.vertical,
-                    );
-                  case ReaderMode.singleHorizontalRTL:
-                    return SinglePageReaderMode(
+                    ),
+                  ReaderMode.singleHorizontalRTL => SinglePageReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       reverse: true,
-                    );
-                  case ReaderMode.continuousHorizontalLTR:
-                    return ContinuousReaderMode(
+                    ),
+                  ReaderMode.continuousHorizontalLTR => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       scrollDirection: Axis.horizontal,
-                    );
-                  case ReaderMode.continuousHorizontalRTL:
-                    return ContinuousReaderMode(
+                    ),
+                  ReaderMode.continuousHorizontalRTL => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       scrollDirection: Axis.horizontal,
                       reverse: true,
-                    );
-                  case ReaderMode.singleHorizontalLTR:
-                    return SinglePageReaderMode(
+                    ),
+                  ReaderMode.singleHorizontalLTR => SinglePageReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
-                    );
-                  case ReaderMode.continuousVertical:
-                    return ContinuousReaderMode(
+                    ),
+                  ReaderMode.continuousVertical => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       showSeparator: true,
-                    );
-                  case ReaderMode.webtoon:
-                  default:
-                    return ContinuousReaderMode(
+                    ),
+                  ReaderMode.webtoon => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
-                    );
-                }
+                    ),
+                  ReaderMode.defaultReader || null => ContinuousReaderMode(
+                      chapter: chapterData,
+                      manga: data,
+                      onPageChanged: onPageChanged,
+                    )
+                };
               },
               refresh: () => ref.refresh(chapterProviderWithIndex),
               addScaffoldWrapper: true,

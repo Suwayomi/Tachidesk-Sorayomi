@@ -75,7 +75,7 @@ abstract class $MangaCopyWith<$Res> {
       Source? source,
       String? sourceId,
       @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
-          MangaStatus? status,
+      MangaStatus? status,
       String? thumbnailUrl,
       int? thumbnailUrlLastFetched,
       String? title,
@@ -294,7 +294,7 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
       Source? source,
       String? sourceId,
       @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
-          MangaStatus? status,
+      MangaStatus? status,
       String? thumbnailUrl,
       int? thumbnailUrlLastFetched,
       String? title,
@@ -473,7 +473,7 @@ class _$_Manga extends _Manga {
       this.source,
       this.sourceId,
       @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
-          this.status,
+      this.status,
       this.thumbnailUrl,
       this.thumbnailUrlLastFetched,
       this.title,
@@ -665,7 +665,7 @@ abstract class _Manga extends Manga {
       final Source? source,
       final String? sourceId,
       @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
-          final MangaStatus? status,
+      final MangaStatus? status,
       final String? thumbnailUrl,
       final int? thumbnailUrlLastFetched,
       final String? title,
@@ -770,18 +770,21 @@ abstract class $MangaMetaCopyWith<$Res> {
       _$MangaMetaCopyWithImpl<$Res, MangaMeta>;
   @useResult
   $Res call(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
-          bool? invertTap,
+      {@JsonKey(
+          name: "flutter_readerNavigationLayoutInvert",
+          fromJson: MangaMeta.fromJsonToBool)
+      bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
-          ReaderNavigationLayout? readerNavigationLayout,
-      @JsonKey(name: "flutter_readerMode")
-          ReaderMode? readerMode,
-      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
-          double? readerPadding,
-      @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          double? readerMagnifierSize,
-      @JsonKey(name: "flutter_scanlator")
-          String? scanlator});
+      ReaderNavigationLayout? readerNavigationLayout,
+      @JsonKey(name: "flutter_readerMode") ReaderMode? readerMode,
+      @JsonKey(
+          name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+      double? readerPadding,
+      @JsonKey(
+          name: "flutter_readerMagnifierSize",
+          fromJson: MangaMeta.fromJsonToDouble)
+      double? readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator") String? scanlator});
 }
 
 /// @nodoc
@@ -841,18 +844,21 @@ abstract class _$$_MangaMetaCopyWith<$Res> implements $MangaMetaCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
-          bool? invertTap,
+      {@JsonKey(
+          name: "flutter_readerNavigationLayoutInvert",
+          fromJson: MangaMeta.fromJsonToBool)
+      bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
-          ReaderNavigationLayout? readerNavigationLayout,
-      @JsonKey(name: "flutter_readerMode")
-          ReaderMode? readerMode,
-      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
-          double? readerPadding,
-      @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          double? readerMagnifierSize,
-      @JsonKey(name: "flutter_scanlator")
-          String? scanlator});
+      ReaderNavigationLayout? readerNavigationLayout,
+      @JsonKey(name: "flutter_readerMode") ReaderMode? readerMode,
+      @JsonKey(
+          name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+      double? readerPadding,
+      @JsonKey(
+          name: "flutter_readerMagnifierSize",
+          fromJson: MangaMeta.fromJsonToDouble)
+      double? readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator") String? scanlator});
 }
 
 /// @nodoc
@@ -906,18 +912,21 @@ class __$$_MangaMetaCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MangaMeta implements _MangaMeta {
   _$_MangaMeta(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
-          this.invertTap,
+      {@JsonKey(
+          name: "flutter_readerNavigationLayoutInvert",
+          fromJson: MangaMeta.fromJsonToBool)
+      this.invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
-          this.readerNavigationLayout,
-      @JsonKey(name: "flutter_readerMode")
-          this.readerMode,
-      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
-          this.readerPadding,
-      @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          this.readerMagnifierSize,
-      @JsonKey(name: "flutter_scanlator")
-          this.scanlator});
+      this.readerNavigationLayout,
+      @JsonKey(name: "flutter_readerMode") this.readerMode,
+      @JsonKey(
+          name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+      this.readerPadding,
+      @JsonKey(
+          name: "flutter_readerMagnifierSize",
+          fromJson: MangaMeta.fromJsonToDouble)
+      this.readerMagnifierSize,
+      @JsonKey(name: "flutter_scanlator") this.scanlator});
 
   factory _$_MangaMeta.fromJson(Map<String, dynamic> json) =>
       _$$_MangaMetaFromJson(json);
@@ -995,18 +1004,22 @@ class _$_MangaMeta implements _MangaMeta {
 
 abstract class _MangaMeta implements MangaMeta {
   factory _MangaMeta(
-      {@JsonKey(name: "flutter_readerNavigationLayoutInvert", fromJson: MangaMeta.fromJsonToBool)
-          final bool? invertTap,
+      {@JsonKey(
+          name: "flutter_readerNavigationLayoutInvert",
+          fromJson: MangaMeta.fromJsonToBool)
+      final bool? invertTap,
       @JsonKey(name: "flutter_readerNavigationLayout")
-          final ReaderNavigationLayout? readerNavigationLayout,
-      @JsonKey(name: "flutter_readerMode")
-          final ReaderMode? readerMode,
-      @JsonKey(name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
-          final double? readerPadding,
-      @JsonKey(name: "flutter_readerMagnifierSize", fromJson: MangaMeta.fromJsonToDouble)
-          final double? readerMagnifierSize,
+      final ReaderNavigationLayout? readerNavigationLayout,
+      @JsonKey(name: "flutter_readerMode") final ReaderMode? readerMode,
+      @JsonKey(
+          name: "flutter_readerPadding", fromJson: MangaMeta.fromJsonToDouble)
+      final double? readerPadding,
+      @JsonKey(
+          name: "flutter_readerMagnifierSize",
+          fromJson: MangaMeta.fromJsonToDouble)
+      final double? readerMagnifierSize,
       @JsonKey(name: "flutter_scanlator")
-          final String? scanlator}) = _$_MangaMeta;
+      final String? scanlator}) = _$_MangaMeta;
 
   factory _MangaMeta.fromJson(Map<String, dynamic> json) =
       _$_MangaMeta.fromJson;

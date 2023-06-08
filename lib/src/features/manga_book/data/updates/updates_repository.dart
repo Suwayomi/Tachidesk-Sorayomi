@@ -13,7 +13,6 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
-import '../../../../utils/classes/pair/pair_model.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
@@ -69,15 +68,15 @@ class UpdatesRepository {
       ))
           .data;
 
-  Pair<Stream<UpdateStatus>, AsyncCallback> socketUpdates() {
+  ({Stream<UpdateStatus> stream, AsyncCallback closeStream}) socketUpdates() {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
     final channel = WebSocketChannel.connect(Uri.parse(url + UpdateUrl.update));
-    return Pair<Stream<UpdateStatus>, AsyncCallback>(
-      first: channel.stream.asyncMap<UpdateStatus>((event) =>
+    return (
+      stream: channel.stream.asyncMap<UpdateStatus>((event) =>
           compute<String, UpdateStatus>(
               (s) => UpdateStatus.fromJson({...?json.decode(s)["statusMap"]}),
               event)),
-      second: channel.sink.close,
+      closeStream: channel.sink.close,
     );
   }
 }
@@ -100,8 +99,8 @@ Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
 class UpdatesSocket extends _$UpdatesSocket {
   @override
   Stream<UpdateStatus> build() {
-    final pair = ref.watch(updatesRepositoryProvider).socketUpdates();
-    ref.onDispose(pair.second);
-    return pair.first;
+    final stream = ref.watch(updatesRepositoryProvider).socketUpdates();
+    ref.onDispose(stream.closeStream);
+    return stream.stream;
   }
 }

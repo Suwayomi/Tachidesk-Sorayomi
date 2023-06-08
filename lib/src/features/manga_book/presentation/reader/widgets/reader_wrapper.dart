@@ -16,7 +16,6 @@ import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 
 import '../../../../../routes/router_config.dart';
-import '../../../../../utils/classes/pair/pair_model.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
@@ -40,6 +39,8 @@ class NextChapterIntent extends Intent {}
 class PreviousScrollIntent extends Intent {}
 
 class PreviousChapterIntent extends Intent {}
+
+class HideQuickOpenIntent extends Intent {}
 
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
@@ -377,6 +378,8 @@ class ReaderWrapper extends HookConsumerWidget {
                 scrollDirection == Axis.vertical
                     ? NextScrollIntent()
                     : PreviousChapterIntent(),
+            const SingleActivator(LogicalKeyboardKey.escape):
+                HideQuickOpenIntent(),
           },
           child: Actions(
             actions: {
@@ -407,6 +410,12 @@ class ReaderWrapper extends HookConsumerWidget {
                         transVertical: scrollDirection != Axis.vertical,
                       ).pushReplacement(context)
                     : onNext(),
+              ),
+              HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
+                onInvoke: (HideQuickOpenIntent intent) {
+                  visibility.value = !visibility.value;
+                  return null;
+                },
               ),
             },
             child: Focus(
@@ -453,7 +462,7 @@ class ReaderView extends HookWidget {
   final Widget child;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
-  final Pair<Chapter?, Chapter?>? prevNextChapterPair;
+  final ({Chapter? first, Chapter? second})? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
 
   @override

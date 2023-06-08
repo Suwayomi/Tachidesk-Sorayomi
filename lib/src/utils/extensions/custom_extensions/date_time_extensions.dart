@@ -100,17 +100,18 @@ extension DateTimeExtensions on DateTime {
 
   static DateTime max(DateTime a, DateTime b) => a.compareTo(b) > 0 ? a : b;
 
-  String get convertToDaysAgo {
+  String convertToDaysAgo(BuildContext context) {
     Duration diff = DateTime.now().difference(this);
 
     if (diff.inDays < 1) {
-      return "Today";
+      return context.l10n!.today;
     } else if (diff.inDays < 2) {
-      return 'Yesterday';
+      return context.l10n!.yesterday;
     } else if (diff.inDays < 10) {
-      return '${diff.inDays} days ago';
+      return context.l10n!.daysAgo(diff.inDays);
     } else {
-      return DateFormat.yMMMd().format(this);
+      return DateFormat.yMMMd(context.currentLocale.toLanguageTag())
+          .format(this);
     }
   }
 }

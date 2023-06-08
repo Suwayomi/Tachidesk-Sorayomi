@@ -65,6 +65,21 @@ final hiveCacheStoreProvider = AutoDisposeProvider<HiveCacheStore>.internal(
 );
 
 typedef HiveCacheStoreRef = AutoDisposeProviderRef<HiveCacheStore>;
+String _$rateLimitQueueHash() => r'87eb09e4f32c2b26762db986f09e7788a4fd52bb';
+
+/// See also [rateLimitQueue].
+@ProviderFor(rateLimitQueue)
+final rateLimitQueueProvider = AutoDisposeProvider<Queue>.internal(
+  rateLimitQueue,
+  name: r'rateLimitQueueProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$rateLimitQueueHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef RateLimitQueueRef = AutoDisposeProviderRef<Queue>;
 String _$authTypeKeyHash() => r'8264b20583c2d0e3c9da5073ff1c13fda7e7fc34';
 
 /// See also [AuthTypeKey].

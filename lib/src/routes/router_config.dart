@@ -59,7 +59,7 @@ abstract class Routes {
   static const settings = '/settings';
   static const browseSettings = 'browse';
   static const readerSettings = 'reader';
-  static const reader = '/reader/:mangaId/:chapterIndex';
+  static const reader = '/manga/:mangaId/chapter/:chapterIndex';
   static const serverSettings = 'server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';

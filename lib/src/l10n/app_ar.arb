@@ -123,7 +123,7 @@
       }
     }
   },
-  "createBackupDescription": "احفظ المكتبة كنسخة احتياطية من Tachidesk",
+  "createBackupDescription": "النسخ الاحتياطي لمكتبة Tachidesk",
   "@createBackupDescription": {
     "description": "Button text description to create backup"
   },
@@ -799,35 +799,35 @@
       }
     }
   },
-  "quickSearchCategoryManga": "",
+  "quickSearchCategoryManga": "اذهب إلى المانجا 'M' في الفئة 'C'",
   "@quickSearchCategoryManga": {
     "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
   },
-  "quickSearchSourceManga": "",
+  "quickSearchSourceManga": "ابحث عن المانجا 'M' في المصدر 'S'",
   "@quickSearchSourceManga": {
     "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
   },
-  "quickSearchCategoryMangaChapter": "",
+  "quickSearchCategoryMangaChapter": "انتقل إلى اسم الفصل 'CN' من المانجا 'M' في الفئة 'C'",
   "@quickSearchCategoryMangaChapter": {
     "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
   },
-  "scanlators": "",
+  "scanlators": "فرق الترجمة",
   "@scanlators": {
     "description": "Title text for Scanlators"
   },
-  "allScanlators": "",
+  "allScanlators": "فرق الترجمة",
   "@allScanlators": {
     "description": "Text for all Scanlators in manga description screen chapter filter"
   },
-  "quickSearchContext": "",
+  "quickSearchContext": "للبحث عن استعلام (النتائج مبنية على معلومات الشاشة)",
   "@quickSearchContext": {
     "description": "Quick Open Hint text for query X"
   },
-  "quickSearchSource": "",
+  "quickSearchSource": "اذهب إلى المصدر 'S'",
   "@quickSearchSource": {
     "description": "Quick Open Hint text for Source S with prefill '@S'"
   },
-  "quickSearchCategory": "",
+  "quickSearchCategory": "اذهب إلى الفئة 'C'",
   "@quickSearchCategory": {
     "description": "Quick Open Hint text for Category C with prefill '#C'"
   }

@@ -58,6 +58,11 @@ class UpdatesScreen extends HookConsumerWidget {
     final controller =
         usePagingController<int, ChapterMangaPair>(firstPageKey: 0);
     final updatesRepository = ref.watch(updatesRepositoryProvider);
+    final isUpdatesChecking = ref
+        .watch(updatesSocketProvider
+            .select((value) => value.valueOrNull?.isUpdateChecking))
+        .ifNull();
+    final selectedChapters = useState<Map<int, Chapter>>({});
     useEffect(() {
       controller.addPageRequestListener((pageKey) => _fetchPage(
             updatesRepository,
@@ -66,7 +71,17 @@ class UpdatesScreen extends HookConsumerWidget {
           ));
       return;
     }, []);
-    final selectedChapters = useState<Map<int, Chapter>>({});
+    useEffect(() {
+      if (!isUpdatesChecking) {
+        try {
+          selectedChapters.value = <int, Chapter>{};
+          controller.refresh();
+        } catch (e) {
+          //
+        }
+      }
+      return null;
+    }, [isUpdatesChecking]);
     return Scaffold(
       floatingActionButton: const UpdateStatusFab(),
       appBar: selectedChapters.value.isNotEmpty
@@ -87,6 +102,7 @@ class UpdatesScreen extends HookConsumerWidget {
           ? MultiChaptersActionsBottomAppBar(
               selectedChapters: selectedChapters,
               afterOptionSelected: () async => controller.refresh(),
+              hasPreviousDone: false,
             )
           : null,
       body: RefreshIndicator(
@@ -159,7 +175,9 @@ class UpdatesScreen extends HookConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
-                      title: Text(item.chapter!.fetchedAt.toDaysAgoFromSeconds),
+                      title: Text(
+                        item.chapter!.fetchedAt.toDaysAgoFromSeconds(context),
+                      ),
                     ),
                     chapterTile,
                   ],

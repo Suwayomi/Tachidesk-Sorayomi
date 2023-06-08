@@ -7,7 +7,7 @@ part of 'source_quick_search_controller.dart';
 // **************************************************************************
 
 String _$sourceQuickSearchMangaListHash() =>
-    r'df77dd3a05f0e53944d646e57d2fb74cbc38d807';
+    r'7197c98a64f075ecffb1c416576ad64d1127c385';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -116,6 +116,92 @@ class SourceQuickSearchMangaListProvider
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, sourceId.hashCode);
+    hash = _SystemHash.combine(hash, query.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$quickSearchResultsHash() =>
+    r'95c8745e42306378a3b8981adb88d6d40679966e';
+typedef QuickSearchResultsRef = AutoDisposeProviderRef<
+    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>>;
+
+/// See also [quickSearchResults].
+@ProviderFor(quickSearchResults)
+const quickSearchResultsProvider = QuickSearchResultsFamily();
+
+/// See also [quickSearchResults].
+class QuickSearchResultsFamily extends Family<
+    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
+  /// See also [quickSearchResults].
+  const QuickSearchResultsFamily();
+
+  /// See also [quickSearchResults].
+  QuickSearchResultsProvider call({
+    String? query,
+  }) {
+    return QuickSearchResultsProvider(
+      query: query,
+    );
+  }
+
+  @override
+  QuickSearchResultsProvider getProviderOverride(
+    covariant QuickSearchResultsProvider provider,
+  ) {
+    return call(
+      query: provider.query,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'quickSearchResultsProvider';
+}
+
+/// See also [quickSearchResults].
+class QuickSearchResultsProvider extends AutoDisposeProvider<
+    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
+  /// See also [quickSearchResults].
+  QuickSearchResultsProvider({
+    this.query,
+  }) : super.internal(
+          (ref) => quickSearchResults(
+            ref,
+            query: query,
+          ),
+          from: quickSearchResultsProvider,
+          name: r'quickSearchResultsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$quickSearchResultsHash,
+          dependencies: QuickSearchResultsFamily._dependencies,
+          allTransitiveDependencies:
+              QuickSearchResultsFamily._allTransitiveDependencies,
+        );
+
+  final String? query;
+
+  @override
+  bool operator ==(Object other) {
+    return other is QuickSearchResultsProvider && other.query == query;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, query.hashCode);
 
     return _SystemHash.finish(hash);

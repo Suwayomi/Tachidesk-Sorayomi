@@ -52,7 +52,7 @@ AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
       }
     } else {
       extensionMap.update(
-        e.lang?.code ?? "other",
+        e.lang?.code?.toLowerCase() ?? "other",
         (value) => [...value, e],
         ifAbsent: () => [e],
       );

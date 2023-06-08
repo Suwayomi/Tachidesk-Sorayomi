@@ -9,6 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
+import '../../../utils/extensions/custom_extensions.dart';
 import '../../../utils/storage/dio/dio_client.dart';
 import '../../library/domain/category/category_model.dart';
 import '../domain/chapter/chapter_model.dart';
@@ -27,8 +28,8 @@ class MangaBookRepository {
   Future<void> removeMangaFromLibrary(int mangaId) =>
       dioClient.delete(MangaUrl.library(mangaId));
 
-  Future<void> modifyBulkChapters({ChapterBatch? batch}) =>
-      dioClient.post(MangaUrl.chapterBatch, data: batch?.toJson());
+  Future<void> modifyBulkChapters({ChapterBatch? batch}) => dioClient
+      .post(MangaUrl.chapterBatch, data: batch?.toJson().filterOutNulls);
 
   // Mangas
   Future<Manga?> getManga({
@@ -66,7 +67,7 @@ class MangaBookRepository {
   }) async =>
       (await dioClient.put<Chapter, Chapter?>(
         MangaUrl.chapterWithIndex(mangaId, chapterIndex),
-        data: FormData.fromMap(patch.toJson()),
+        data: FormData.fromMap(patch.toJson().filterOutNulls),
         cancelToken: cancelToken,
       ));
 

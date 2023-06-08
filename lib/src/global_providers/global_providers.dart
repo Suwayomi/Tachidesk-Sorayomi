@@ -8,6 +8,7 @@ import 'dart:io';
 
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:flutter/material.dart';
+import 'package:queue/queue.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -81,3 +82,9 @@ Directory? appDirectory(ref) => throw UnimplementedError();
 @riverpod
 HiveCacheStore hiveCacheStore(HiveCacheStoreRef ref) =>
     HiveCacheStore(ref.watch(appDirectoryProvider)?.path);
+
+@riverpod
+Queue rateLimitQueue(ref) => Queue(
+      parallel: 3,
+      delay: const Duration(milliseconds: 500),
+    );

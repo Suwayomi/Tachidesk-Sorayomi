@@ -37,7 +37,7 @@ abstract class $FilterCopyWith<$Res> {
   $Res call(
       {String? type,
       @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-          FilterState? filterState});
+      FilterState? filterState});
 
   $FilterStateCopyWith<$Res>? get filterState;
 }
@@ -92,7 +92,7 @@ abstract class _$$_FilterCopyWith<$Res> implements $FilterCopyWith<$Res> {
   $Res call(
       {String? type,
       @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-          FilterState? filterState});
+      FilterState? filterState});
 
   @override
   $FilterStateCopyWith<$Res>? get filterState;
@@ -130,7 +130,7 @@ class _$_Filter implements _Filter {
   _$_Filter(
       {this.type,
       @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-          this.filterState});
+      this.filterState});
 
   factory _$_Filter.fromJson(Map<String, dynamic> json) =>
       _$$_FilterFromJson(json);
@@ -178,7 +178,7 @@ abstract class _Filter implements Filter {
   factory _Filter(
       {final String? type,
       @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-          final FilterState? filterState}) = _$_Filter;
+      final FilterState? filterState}) = _$_Filter;
 
   factory _Filter.fromJson(Map<String, dynamic> json) = _$_Filter.fromJson;
 

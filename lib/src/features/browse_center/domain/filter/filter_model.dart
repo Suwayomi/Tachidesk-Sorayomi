@@ -18,7 +18,7 @@ class Filter with _$Filter {
   factory Filter({
     String? type,
     @JsonKey(readValue: Filter.filterFromJson, name: 'filter')
-        FilterState? filterState,
+    FilterState? filterState,
   }) = _Filter;
 
   factory Filter.fromJson(Map<String, dynamic> json) => _$FilterFromJson(json);

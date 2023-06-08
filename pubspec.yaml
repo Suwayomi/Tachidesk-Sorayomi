@@ -2,10 +2,10 @@ name: tachidesk_sorayomi
 description: A new Flutter frontend for Tachidesk.
 
 publish_to: "none"
-version: 0.5.5+1
+version: 0.5.6+1
 
 environment:
-  sdk: ">=2.18.1 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   cached_network_image: ^3.2.2
@@ -24,19 +24,19 @@ dependencies:
   fluttertoast: ^8.1.1
   font_awesome_flutter: ^10.2.1
   freezed_annotation: ^2.2.0
-  go_router: ^6.5.5
+  go_router: ^7.0.0
   hooks_riverpod: ^2.1.1
   infinite_scroll_pagination: ^3.2.0
-  intl: ^0.17.0
-  json_annotation: ^4.8.0
-  network_info_plus: ^3.0.3
-  package_info_plus: ^3.0.1
+  intl: ^0.18.0
+  json_annotation: ^4.8.1
+  network_info_plus: ^4.0.0
+  package_info_plus: ^4.0.0
   path_provider: ^2.0.11
   permission_handler: ^10.2.0
   pub_semver: ^2.1.2
+  queue: ^3.1.0+2
   riverpod_annotation: ^2.0.0
   scrollable_positioned_list: ^0.3.5
-  share_plus: ^6.2.0
   shared_preferences: ^2.0.15
   url_launcher: ^6.1.6
   web_socket_channel: ^2.2.0
@@ -51,7 +51,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.2.1
-  go_router_builder: ^1.2.0
+  go_router_builder: ^2.0.0
   json_serializable: ^6.5.4
   lints: ^2.0.1
   riverpod_generator: ^2.0.0
@@ -80,7 +80,7 @@ flutter_native_splash:
     image: assets/icons/dark_icon.png
     image_dark: assets/icons/light_icon.png
 
-flutter_icons:
+flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true

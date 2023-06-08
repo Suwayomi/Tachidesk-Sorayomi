@@ -142,7 +142,7 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
   }
 }
 
-String _$downloadsSocketHash() => r'060ac98c0d410b18eb986a5a01c44a2f55c4a4b6';
+String _$downloadsSocketHash() => r'0fffb672640ebb3ba41893c1f362e7479f391471';
 
 /// See also [DownloadsSocket].
 @ProviderFor(DownloadsSocket)
