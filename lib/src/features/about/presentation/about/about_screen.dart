@@ -172,7 +172,7 @@ class AboutScreen extends HookConsumerWidget {
                 value: (about.buildTime).isNull
                     ? null
                     : DateTime.fromMillisecondsSinceEpoch(
-                        (about.buildTime ?? 0) * 1000,
+                        (about.buildTime.ifNullOrNegative()) * 1000,
                       ).toDateString,
               ),
               if (serverVer.isNotBlank)

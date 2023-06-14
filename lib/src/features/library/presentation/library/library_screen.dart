@@ -47,7 +47,8 @@ class LibraryScreen extends HookConsumerWidget {
             )
           : DefaultTabController(
               length: data!.length,
-              initialIndex: min(initialCategoryOrder ?? 0, data.length - 1),
+              initialIndex:
+                  min(initialCategoryOrder.ifNullOrNegative(), data.length - 1),
               child: Scaffold(
                 appBar: AppBar(
                   title: Text(context.l10n!.library),
@@ -133,8 +134,8 @@ class LibraryScreen extends HookConsumerWidget {
                         padding: KEdgeInsets.h8.size,
                         child: TabBarView(
                           children: data
-                              .map((e) =>
-                                  CategoryMangaList(categoryId: e.id ?? 0))
+                              .map((e) => CategoryMangaList(
+                                  categoryId: e.id.ifNullOrNegative()))
                               .toList(),
                         ),
                       ),
