@@ -830,5 +830,17 @@
         "type": "String"
       }
     }
+  },
+  "daysAgo": "{days} днів тому",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "yesterday": "Вчора",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
+  },
+  "today": "Сьогодні",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
   }
 }
