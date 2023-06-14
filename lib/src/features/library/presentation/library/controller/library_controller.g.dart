@@ -129,7 +129,7 @@ final libraryDisplayCategoryProvider =
 
 typedef _$LibraryDisplayCategory = AutoDisposeNotifier<Category?>;
 String _$categoryMangaListWithQueryAndFilterHash() =>
-    r'6cb6394a6802b2dbaf991d5b23943ebb658d0905';
+    r'c3cb07540ac6d00d40afcb90e9a105333a8bd18c';
 
 abstract class _$CategoryMangaListWithQueryAndFilter
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<Manga>?>> {

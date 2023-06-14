@@ -9,21 +9,21 @@ import 'package:dio/dio.dart';
 class DioErrorUtil {
   // general methods:------------------------------------------------------------
   /// Handles error for Dio Class
-  static String handleError(DioError? error) {
+  static String handleError(DioException? error) {
     String errorDescription = "";
-    if (error is DioError) {
+    if (error is DioException) {
       errorDescription = switch (error.type) {
-        DioErrorType.cancel => "Request cancelled",
-        DioErrorType.connectionTimeout => "Connection timeout",
-        DioErrorType.unknown => "Check your Internet Connection",
-        DioErrorType.receiveTimeout => "Receive timeout",
-        DioErrorType.badResponse => (error.response?.statusCode) != null
+        DioExceptionType.cancel => "Request cancelled",
+        DioExceptionType.connectionTimeout => "Connection timeout",
+        DioExceptionType.unknown => "Check your Internet Connection",
+        DioExceptionType.receiveTimeout => "Receive timeout",
+        DioExceptionType.badResponse => (error.response?.statusCode) != null
             ? "Received invalid status code: ${error.response?.statusCode}"
             : "Something went wrong!",
-        DioErrorType.sendTimeout => "Send timeout",
-        DioErrorType.badCertificate =>
+        DioExceptionType.sendTimeout => "Send timeout",
+        DioExceptionType.badCertificate =>
           "Check your Internet Connection (Incorrect certificate )",
-        DioErrorType.connectionError =>
+        DioExceptionType.connectionError =>
           "Check your Internet Connection (Check server IP in settings)"
       };
     } else {

@@ -81,12 +81,12 @@ class CategoryMangaListWithQueryAndFilter
       return (switch (sortedBy) {
             MangaSort.alphabetical =>
               (m1.title ?? "").compareTo(m2.title ?? ""),
-            MangaSort.unread =>
-              (m1.unreadCount ?? 0).compareTo(m2.unreadCount ?? 0),
-            MangaSort.dateAdded =>
-              (m1.inLibraryAt ?? 0).compareTo(m2.inLibraryAt ?? 0),
-            MangaSort.lastRead =>
-              (m2.lastReadAt ?? 0).compareTo(m1.lastReadAt ?? 0)
+            MangaSort.unread => (m1.unreadCount.ifNullOrNegative())
+                .compareTo(m2.unreadCount.ifNullOrNegative()),
+            MangaSort.dateAdded => (m1.inLibraryAt.ifNullOrNegative())
+                .compareTo(m2.inLibraryAt.ifNullOrNegative()),
+            MangaSort.lastRead => (m2.lastReadAt.ifNullOrNegative())
+                .compareTo(m1.lastReadAt.ifNullOrNegative())
           }) *
           sortDirToggle;
     }
