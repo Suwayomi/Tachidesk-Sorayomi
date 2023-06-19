@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../utils/extensions/custom_extensions.dart';
 
@@ -15,7 +14,7 @@ class PopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => context.pop(),
+      onPressed: () => Navigator.pop(context),
       child: Text(popText ?? context.l10n!.cancel),
     );
   }

@@ -54,7 +54,7 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
           },
         ),
       ),
-      actions: const [PopButton()],
+      actions: [PopButton(popText: context.l10n!.close)],
     );
   }
 }
