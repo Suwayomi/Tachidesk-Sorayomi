@@ -23,12 +23,14 @@ class UpdateStatus with _$UpdateStatus {
   }) = _UpdateStatus;
 
   int get total =>
-      (pending?.length ?? 0) +
-      (running?.length ?? 0) +
-      (completed?.length ?? 0) +
-      (failed?.length ?? 0);
+      (pending?.length).ifNullOrNegative() +
+      (running?.length).ifNullOrNegative() +
+      (completed?.length).ifNullOrNegative() +
+      (failed?.length).ifNullOrNegative();
 
-  int get updateChecked => (completed?.length ?? 0) + (failed?.length ?? 0);
+  int get updateChecked =>
+      (completed?.length).ifNullOrNegative() +
+      (failed?.length).ifNullOrNegative();
 
   bool get isUpdateCheckCompleted => total == updateChecked;
 

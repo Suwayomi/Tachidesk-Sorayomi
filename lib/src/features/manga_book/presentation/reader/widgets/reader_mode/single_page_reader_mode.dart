@@ -5,18 +5,22 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/endpoints.dart';
+import '../../../../../../utils/extensions/cache_manager_extensions.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../../widgets/server_image.dart';
+import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../reader_wrapper.dart';
 
-class SinglePageReaderMode extends HookWidget {
+class SinglePageReaderMode extends HookConsumerWidget {
   const SinglePageReaderMode({
     super.key,
     required this.manga,
@@ -32,7 +36,8 @@ class SinglePageReaderMode extends HookWidget {
   final bool reverse;
   final Axis scrollDirection;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cacheManager = useMemoized(() => DefaultCacheManager());
     final scrollController = usePageController(
       initialPage:
           chapter.read.ifNull() ? 0 : chapter.lastPageRead.ifNullOrNegative(),
@@ -40,7 +45,41 @@ class SinglePageReaderMode extends HookWidget {
     final currentIndex = useState(scrollController.initialPage);
     useEffect(() {
       if (onPageChanged != null) onPageChanged!(currentIndex.value);
-      return;
+      int currentPage = currentIndex.value;
+      // Prev page
+      if (currentPage > 0) {
+        cacheManager.getServerFile(
+          ref,
+          MangaUrl.chapterPageWithIndex(
+            chapterIndex: chapter.index!,
+            mangaId: manga.id!,
+            pageIndex: currentPage - 1,
+          ),
+        );
+      }
+      // Next page
+      if (currentPage < (chapter.pageCount.ifNullOrNegative() - 1)) {
+        cacheManager.getServerFile(
+          ref,
+          MangaUrl.chapterPageWithIndex(
+            chapterIndex: chapter.index!,
+            mangaId: manga.id!,
+            pageIndex: currentPage + 1,
+          ),
+        );
+      }
+      // 2nd next page
+      if (currentPage < (chapter.pageCount.ifNullOrNegative() - 2)) {
+        cacheManager.getServerFile(
+          ref,
+          MangaUrl.chapterPageWithIndex(
+            chapterIndex: chapter.index!,
+            mangaId: manga.id!,
+            pageIndex: currentPage + 2,
+          ),
+        );
+      }
+      return null;
     }, [currentIndex.value]);
     useEffect(() {
       listener() {
@@ -51,6 +90,8 @@ class SinglePageReaderMode extends HookWidget {
       scrollController.addListener(listener);
       return () => scrollController.removeListener(listener);
     }, []);
+    final isAnimationEnabled =
+        ref.read(readerScrollAnimationProvider).ifNull(true);
     return ReaderWrapper(
       scrollDirection: scrollDirection,
       chapter: chapter,
@@ -58,11 +99,11 @@ class SinglePageReaderMode extends HookWidget {
       currentIndex: currentIndex.value,
       onChanged: (index) => scrollController.jumpToPage(index),
       onPrevious: () => scrollController.previousPage(
-        duration: kDuration,
+        duration: isAnimationEnabled ? kDuration : kInstantDuration,
         curve: kCurve,
       ),
       onNext: () => scrollController.nextPage(
-        duration: kDuration,
+        duration: isAnimationEnabled ? kDuration : kInstantDuration,
         curve: kCurve,
       ),
       child: PageView.builder(
@@ -86,7 +127,7 @@ class SinglePageReaderMode extends HookWidget {
           );
           return image;
         },
-        itemCount: chapter.pageCount ?? 0,
+        itemCount: chapter.pageCount.ifNullOrNegative(),
       ),
     );
   }
