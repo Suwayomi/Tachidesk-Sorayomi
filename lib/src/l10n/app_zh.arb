@@ -369,7 +369,7 @@
   "@noResultFound": {
     "description": "Text to show that no results found for the given search query"
   },
-  "noSourcesFound": "未找到结果",
+  "noSourcesFound": "结果为空",
   "@noSourcesFound": {
     "description": "Text to show that the Source list is empty"
   },
@@ -515,11 +515,11 @@
   "@searchingForUpdates": {
     "description": "Toast Text for searching for updates of the App/Server"
   },
-  "server": "服务端",
+  "server": "服务器",
   "@server": {
     "description": "Text title for the server in About screen"
   },
-  "serverUrl": "服务端地址",
+  "serverUrl": "服务器地址",
   "@serverUrl": {
     "description": "Popup title and Button text to update Server Url"
   },
@@ -715,7 +715,7 @@
   "@readerModeSingleVertical": {
     "description": "Radio button text for Reader Mode Type - Single Vertical"
   },
-  "serverUrlHintText": "服务端地址",
+  "serverUrlHintText": "服务器地址",
   "@serverUrlHintText": {
     "description": "Text Filed hint text to update Server Url"
   },
@@ -723,7 +723,7 @@
   "@readerNavigationLayoutDisabled": {
     "description": "Radio button text for Reader Navigation Layout - Disabled"
   },
-  "serverVersion": "服务端版本",
+  "serverVersion": "服务器版本",
   "@serverVersion": {
     "description": "Text title for the current version of the Server in About screen"
   },
@@ -799,36 +799,48 @@
   "@serverPort": {
     "description": "Popup title and Button text to update Server Port"
   },
-  "allScanlators": "",
+  "allScanlators": "所有过滤器",
   "@allScanlators": {
     "description": "Text for all Scanlators in manga description screen chapter filter"
   },
-  "quickSearchSourceManga": "",
+  "quickSearchSourceManga": "在 'S' 源中搜索漫画 'M'",
   "@quickSearchSourceManga": {
     "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
   },
-  "quickSearchCategoryManga": "",
+  "quickSearchCategoryManga": "在类别 'C' 中搜索漫画 'M'",
   "@quickSearchCategoryManga": {
     "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
   },
-  "quickSearchCategoryMangaChapter": "",
+  "quickSearchCategoryMangaChapter": "在类别 'C' 中搜索漫画 'M' 的章节 'CN'",
   "@quickSearchCategoryMangaChapter": {
     "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
   },
-  "quickSearchCategory": "",
+  "quickSearchCategory": "搜索类别 'C'",
   "@quickSearchCategory": {
     "description": "Quick Open Hint text for Category C with prefill '#C'"
   },
-  "scanlators": "",
+  "scanlators": "扫描",
   "@scanlators": {
     "description": "Title text for Scanlators"
   },
-  "quickSearchSource": "",
+  "quickSearchSource": "搜索源 'S'",
   "@quickSearchSource": {
     "description": "Quick Open Hint text for Source S with prefill '@S'"
   },
-  "quickSearchContext": "",
+  "quickSearchContext": "搜索查询 X",
   "@quickSearchContext": {
     "description": "Quick Open Hint text for query X"
+  },
+  "daysAgo": "{days} 天前",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "today": "今天",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "yesterday": "昨天",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
   }
 }
