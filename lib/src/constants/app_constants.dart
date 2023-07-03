@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 
 const Duration kDuration = Duration(milliseconds: 500);
+const Duration kInstantDuration = Duration(microseconds: 1);
 const Duration kLongDuration = Duration(seconds: 2);
 
 const Curve kCurve = Curves.easeIn;

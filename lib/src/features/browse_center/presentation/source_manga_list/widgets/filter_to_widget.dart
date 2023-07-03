@@ -63,7 +63,7 @@ class FilterToWidget extends StatelessWidget {
               style: context.textTheme.labelLarge,
             ),
             children: [
-              for (int i = 0; i < (sort.values?.length ?? 0); i++)
+              for (int i = 0; i < (sort.values?.length).ifNullOrNegative(); i++)
                 SortListTile(
                   key: ValueKey("${sort.name}-$i"),
                   ascending: (sort.state?.ascending).ifNull(true),
@@ -104,7 +104,7 @@ class FilterToWidget extends StatelessWidget {
                       value: select.state,
                       hint: Text(select.name ?? ""),
                       items: List.generate(
-                        select.displayValues?.length ?? 0,
+                        (select.displayValues?.length).ifNullOrNegative(),
                         (index) => index,
                       )
                           .map((e) => DropdownMenuItem(
@@ -131,7 +131,7 @@ class FilterToWidget extends StatelessWidget {
               style: context.textTheme.labelLarge,
             ),
             children: [
-              for (int i = 0; i < (group.state?.length ?? 0); i++)
+              for (int i = 0; i < (group.state?.length).ifNullOrNegative(); i++)
                 FilterToWidget(
                   key: ValueKey("${group.name}-$i"),
                   filter: group.state![i],

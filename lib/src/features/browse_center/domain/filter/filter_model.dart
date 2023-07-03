@@ -8,6 +8,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../filter_state/filter_state_model.dart';
 
 part 'filter_model.freezed.dart';
@@ -45,7 +46,7 @@ class Filter with _$Filter {
       Filter filter, int position) {
     return filter.filterState?.maybeWhen(
       group: (state, name) => [
-        for (int i = 0; i < (state?.length ?? 0); i++)
+        for (int i = 0; i < (state?.length).ifNullOrNegative(); i++)
           {
             "position": position,
             "state": json.encode(customFilterToJson(state![i], i)?.first),

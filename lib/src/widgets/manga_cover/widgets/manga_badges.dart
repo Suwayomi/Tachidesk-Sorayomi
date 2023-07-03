@@ -52,13 +52,13 @@ class MangaBadgesRow extends ConsumerWidget {
                 children: [
                   if (manga.unreadCount.isGreaterThan(0) && unreadBadge)
                     MangaBadge(
-                      text: "${manga.unreadCount ?? 0}",
+                      text: "${manga.unreadCount.ifNullOrNegative()}",
                       color: context.theme.colorScheme.primary,
                       textColor: context.theme.colorScheme.onPrimary,
                     ),
                   if (manga.downloadCount.isGreaterThan(0) && downloadedBadge)
                     MangaBadge(
-                      text: "${manga.downloadCount ?? 0}",
+                      text: "${manga.downloadCount.ifNullOrNegative()}",
                       color: context.theme.colorScheme.tertiary,
                       textColor: context.theme.colorScheme.onTertiary,
                     ),

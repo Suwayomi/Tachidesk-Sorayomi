@@ -56,7 +56,7 @@ class DownloadsScreen extends ConsumerWidget {
               text: context.l10n!.noDownloads,
             );
           } else {
-            final downloadsCount = data.queue?.length ?? 0;
+            final downloadsCount = (data.queue?.length).ifNullOrNegative();
             return ListView.builder(
               itemBuilder: (context, index) {
                 if (index == downloadsCount) return KSizedBox.h96.size;

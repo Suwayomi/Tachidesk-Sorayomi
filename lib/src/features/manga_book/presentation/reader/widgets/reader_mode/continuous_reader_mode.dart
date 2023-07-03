@@ -69,6 +69,8 @@ class ContinuousReaderMode extends HookConsumerWidget {
       positionsListener.itemPositions.addListener(listener);
       return () => positionsListener.itemPositions.removeListener(listener);
     }, []);
+    final isAnimationEnabled =
+        ref.read(readerScrollAnimationProvider).ifNull(true);
     return ReaderWrapper(
       scrollDirection: scrollDirection,
       chapter: chapter,
@@ -78,7 +80,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
       onPrevious: () {
         final ItemPosition itemPosition =
             positionsListener.itemPositions.value.toList().first;
-        ref.read(readerScrollAnimationProvider).ifNull(true)
+        isAnimationEnabled
             ? scrollController.scrollTo(
                 index: itemPosition.index,
                 duration: kDuration,
@@ -101,7 +103,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
           index = itemPosition.index + 1;
           alignment = 0;
         }
-        ref.read(readerScrollAnimationProvider).ifNull(true)
+        isAnimationEnabled
             ? scrollController.scrollTo(
                 index: index,
                 duration: kDuration,
