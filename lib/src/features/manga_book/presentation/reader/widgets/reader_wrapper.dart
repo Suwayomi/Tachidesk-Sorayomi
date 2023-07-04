@@ -22,6 +22,7 @@ import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/radio_list_popup.dart';
 import '../../../../settings/presentation/reader/widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import '../../../../settings/presentation/reader/widgets/reader_padding_slider/reader_padding_slider.dart';
+import '../../../../settings/presentation/reader/widgets/reader_swipe_toggle_tile/reader_swipe_chapter_toggle_tile.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/chapter_patch/chapter_put_model.dart';
@@ -73,8 +74,18 @@ class ReaderWrapper extends HookConsumerWidget {
     );
     final visibility = useState(true);
 
+    useEffect(() {
+      if (!visibility.value) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      }
+      return null;
+    }, [visibility.value]);
+
     final double localMangaReaderPadding =
         ref.watch(readerPaddingKeyProvider) ?? DBKeys.readerPadding.initial;
+
+    final bool readerSwipeChapterToggle =
+        ref.watch(swipeChapterToggleProvider) ?? DBKeys.swipeToggle.initial;
     final mangaReaderPadding =
         useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
 
@@ -430,6 +441,7 @@ class ReaderWrapper extends HookConsumerWidget {
                   onPrevious: onPrevious,
                   mangaReaderNavigationLayout: mangaReaderNavigationLayout,
                   prevNextChapterPair: prevNextChapterPair,
+                  readerSwipeChapterToggle: readerSwipeChapterToggle,
                   child: child,
                 ),
               ),
@@ -448,22 +460,24 @@ class ReaderView extends HookWidget {
     required this.scrollDirection,
     required this.mangaReaderPadding,
     required this.mangaReaderMagnifierSize,
-    required this.child,
     required this.onNext,
     required this.onPrevious,
     required this.prevNextChapterPair,
     required this.mangaReaderNavigationLayout,
+    required this.readerSwipeChapterToggle,
+    required this.child,
   });
 
   final VoidCallback toggleVisibility;
   final Axis scrollDirection;
   final double mangaReaderPadding;
   final double mangaReaderMagnifierSize;
-  final Widget child;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
   final ({Chapter? first, Chapter? second})? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
+  final bool readerSwipeChapterToggle;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -487,7 +501,7 @@ class ReaderView extends HookWidget {
             chapterIndex: prevNextChapterPair!.second!.index!,
             toPrev: true,
             transVertical: scrollDirection != Axis.vertical,
-          )
+          ).pushReplacement(context)
         : null;
     return Stack(
       children: [
@@ -505,7 +519,7 @@ class ReaderView extends HookWidget {
           onTap: toggleVisibility,
           behavior: HitTestBehavior.translucent,
           onHorizontalDragEnd: (details) {
-            if (scrollDirection == Axis.vertical) {
+            if (scrollDirection == Axis.vertical && readerSwipeChapterToggle) {
               if (details.primaryVelocity == null) {
                 return;
               } else if (details.primaryVelocity! > 8) {
@@ -516,7 +530,8 @@ class ReaderView extends HookWidget {
             }
           },
           onVerticalDragEnd: (details) {
-            if (scrollDirection == Axis.horizontal) {
+            if (scrollDirection == Axis.horizontal &&
+                readerSwipeChapterToggle) {
               if (details.primaryVelocity == null) {
                 return;
               } else if (details.primaryVelocity! > 8) {

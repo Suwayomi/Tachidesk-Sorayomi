@@ -38,7 +38,7 @@ List<QuickSearchResult>? processesQuickSearch(
 
   // Source Search
   if (query.startsWith('@') ||
-      (context.location?.contains(Routes.browse)).ifNull()) {
+      (context.location.contains(Routes.browse)).ifNull()) {
     String sourceQuery = query.startsWith('@') ? query.substring(1) : query;
     final queryList = sourceQuery.split('/');
     final sourceList =
@@ -121,13 +121,13 @@ List<QuickSearchResult>? processesQuickSearch(
 
   // Manga Search
   if (query.startsWith('#') ||
-      (context.location?.contains(Routes.library)).ifNull()) {
+      (context.location.contains(Routes.library)).ifNull()) {
     return mangaSearch(query);
   }
 
   // Manga Description context aware Search
-  if ((context.location?.startsWith(Routes.mangaRoute)).ifNull()) {
-    final id = int.tryParse(context.location!
+  if ((context.location.startsWith(Routes.mangaRoute)).ifNull()) {
+    final id = int.tryParse(context.location
             .substring(Routes.mangaRoute.length)
             .split('/')
             .firstOrNull
