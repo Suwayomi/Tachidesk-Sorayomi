@@ -7,7 +7,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
 
@@ -68,9 +67,7 @@ class ShellScreen extends HookConsumerWidget {
         ? Scaffold(
             body: Row(
               children: [
-                BigScreenNavigationBar(
-                  selectedScreen: GoRouter.of(context).location,
-                ),
+                BigScreenNavigationBar(selectedScreen: context.location),
                 Expanded(child: child),
               ],
             ),
@@ -79,9 +76,8 @@ class ShellScreen extends HookConsumerWidget {
             body: child,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
-            bottomNavigationBar: SmallScreenNavigationBar(
-              selectedScreen: GoRouter.of(context).location,
-            ),
+            bottomNavigationBar:
+                SmallScreenNavigationBar(selectedScreen: context.location),
           );
   }
 }

@@ -475,6 +475,12 @@
     "@readerScrollAnimation": {
         "description": "Switch title to Disable scroll animation in reader screen"
     },
+    "@readerSwipeChapterToggle": {
+        "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+    },
+    "@readerSwipeChapterToggleDescription": {
+        "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+    },
     "@readerNavigationLayoutKindlish": {
         "description": "Radio button text for Reader Navigation Layout - Kindle-ish"
     },
@@ -790,6 +796,8 @@
     "readerNavigationLayoutEdge": "Edge",
     "readerNavigationLayoutInvert": "Invert tapping",
     "readerScrollAnimation": "Scroll animation",
+    "readerSwipeChapterToggle": "Swipe toggle",
+    "readerSwipeChapterToggleDescription": "Swipe to change chapter in reader",
     "readerNavigationLayoutKindlish": "Kindle-ish",
     "readerNavigationLayoutLShaped": "L Shaped",
     "readerNavigationLayoutRightAndLeft": "Right And Left",

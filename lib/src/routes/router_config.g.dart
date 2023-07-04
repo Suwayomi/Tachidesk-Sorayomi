@@ -143,6 +143,8 @@ extension $HomeRouteExtension on HomeRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $LibraryRouteExtension on LibraryRoute {
@@ -165,6 +167,8 @@ extension $LibraryRouteExtension on LibraryRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $UpdatesRouteExtension on UpdatesRoute {
@@ -180,6 +184,8 @@ extension $UpdatesRouteExtension on UpdatesRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $BrowseRouteExtension on BrowseRoute {
@@ -195,6 +201,8 @@ extension $BrowseRouteExtension on BrowseRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $DownloadsRouteExtension on DownloadsRoute {
@@ -211,6 +219,8 @@ extension $DownloadsRouteExtension on DownloadsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $MoreRouteExtension on MoreRoute {
@@ -226,6 +236,8 @@ extension $MoreRouteExtension on MoreRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $MangaRouteExtension on MangaRoute {
@@ -248,6 +260,8 @@ extension $MangaRouteExtension on MangaRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $GlobalSearchRouteExtension on GlobalSearchRoute {
@@ -268,6 +282,8 @@ extension $GlobalSearchRouteExtension on GlobalSearchRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $SourceMangaRouteExtension on SourceMangaRoute {
@@ -293,6 +309,9 @@ extension $SourceMangaRouteExtension on SourceMangaRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
 }
 
 extension $AboutRouteExtension on AboutRoute {
@@ -308,6 +327,8 @@ extension $AboutRouteExtension on AboutRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $ReaderRouteExtension on ReaderRoute {
@@ -335,6 +356,8 @@ extension $ReaderRouteExtension on ReaderRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $SettingsRouteExtension on SettingsRoute {
@@ -350,6 +373,8 @@ extension $SettingsRouteExtension on SettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $LibrarySettingsRouteExtension on LibrarySettingsRoute {
@@ -366,6 +391,8 @@ extension $LibrarySettingsRouteExtension on LibrarySettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $EditCategoriesRouteExtension on EditCategoriesRoute {
@@ -382,6 +409,8 @@ extension $EditCategoriesRouteExtension on EditCategoriesRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $ServerSettingsRouteExtension on ServerSettingsRoute {
@@ -398,6 +427,8 @@ extension $ServerSettingsRouteExtension on ServerSettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $ReaderSettingsRouteExtension on ReaderSettingsRoute {
@@ -414,6 +445,8 @@ extension $ReaderSettingsRouteExtension on ReaderSettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $AppearanceSettingsRouteExtension on AppearanceSettingsRoute {
@@ -430,6 +463,8 @@ extension $AppearanceSettingsRouteExtension on AppearanceSettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $GeneralSettingsRouteExtension on GeneralSettingsRoute {
@@ -446,6 +481,8 @@ extension $GeneralSettingsRouteExtension on GeneralSettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $BrowseSettingsRouteExtension on BrowseSettingsRoute {
@@ -462,6 +499,8 @@ extension $BrowseSettingsRouteExtension on BrowseSettingsRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $BackupRouteExtension on BackupRoute {
@@ -477,6 +516,8 @@ extension $BackupRouteExtension on BackupRoute {
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 const _$SourceTypeEnumMap = {
