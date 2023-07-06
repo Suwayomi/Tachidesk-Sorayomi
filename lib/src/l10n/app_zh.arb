@@ -419,7 +419,7 @@
   "@readerModeDefaultReader": {
     "description": "Radio button text for Reader Mode Type - Default"
   },
-  "readerModeContinuousHorizontalLTR": "从左到右",
+  "readerModeContinuousHorizontalLTR": "从左到右（不分页）",
   "@readerModeContinuousHorizontalLTR": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
   },
@@ -427,11 +427,11 @@
   "@readerModeContinuousVertical": {
     "description": "Radio button text for Reader Mode Type - Continuous Vertical"
   },
-  "readerModeSingleHorizontalLTR": "从左到右",
+  "readerModeSingleHorizontalLTR": "从左到右（分页）",
   "@readerModeSingleHorizontalLTR": {
     "description": "Radio button text for Reader Mode Type - Single Horizontal (LTR)"
   },
-  "readerModeSingleHorizontalRTL": "从右到左",
+  "readerModeSingleHorizontalRTL": "从右到左（分页）",
   "@readerModeSingleHorizontalRTL": {
     "description": "Radio button text for Reader Mode Type - Single Horizontal (RTL)"
   },
@@ -707,7 +707,7 @@
   "@password": {
     "description": "Title text for password field"
   },
-  "readerModeContinuousHorizontalRTL": "从右到左",
+  "readerModeContinuousHorizontalRTL": "从右到左（不分页）",
   "@readerModeContinuousHorizontalRTL": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
   },
