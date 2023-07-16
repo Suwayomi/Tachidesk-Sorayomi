@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +22,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final packageInfo = await PackageInfo.fromPlatform();
   final sharedPreferences = await SharedPreferences.getInstance();
-  var appDirectory = (kIsWeb) ? null : await getApplicationDocumentsDirectory();
+  var appDocDirectory = await getApplicationDocumentsDirectory();
+  if (Platform.isWindows) {
+    appDocDirectory =
+        Directory('${appDocDirectory.path}\\${packageInfo.appName}');
+  }
+  var appDirectory = (kIsWeb) ? null : appDocDirectory;
   SystemChrome.setPreferredOrientations(DeviceOrientation.values);
   runApp(
     ProviderScope(
