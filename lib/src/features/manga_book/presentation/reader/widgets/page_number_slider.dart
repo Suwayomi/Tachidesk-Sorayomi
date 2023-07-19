@@ -17,12 +17,30 @@ class PageNumberSlider extends StatelessWidget {
     required this.currentValue,
     required this.maxValue,
     required this.onChanged,
+    this.inverted = false,
   });
   final int currentValue;
   final int maxValue;
   final ValueChanged<int> onChanged;
+  final bool inverted;
   @override
   Widget build(BuildContext context) {
+    final sliderWidget = [
+      Text("${currentValue + 1}"),
+      Expanded(
+        child: Transform.flip(
+          flipX: inverted,
+          child: Slider(
+            value: min(currentValue.toDouble(), maxValue.toDouble()),
+            min: 0,
+            max: maxValue.toDouble() - 1,
+            divisions: max(maxValue - 1, 1),
+            onChanged: (val) => onChanged(val.toInt()),
+          ),
+        ),
+      ),
+      Text("$maxValue"),
+    ];
     return Card(
       color: context.theme.appBarTheme.backgroundColor?.withOpacity(.7),
       shape: RoundedRectangleBorder(
@@ -31,19 +49,7 @@ class PageNumberSlider extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
-          children: [
-            Text("${currentValue + 1}"),
-            Expanded(
-              child: Slider(
-                value: min(currentValue.toDouble(), maxValue.toDouble()),
-                min: 0,
-                max: maxValue.toDouble() - 1,
-                divisions: max(maxValue - 1, 1),
-                onChanged: (val) => onChanged(val.toInt()),
-              ),
-            ),
-            Text("$maxValue"),
-          ],
+          children: inverted ? sliderWidget.reversed.toList() : sliderWidget,
         ),
       ),
     );

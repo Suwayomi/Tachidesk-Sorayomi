@@ -11,12 +11,12 @@ List<RouteBase> get $appRoutes => [
     ];
 
 RouteBase get $quickSearchRoute => ShellRouteData.$route(
-      factory: $QuickSearchRouteExtension._fromState,
       navigatorKey: QuickSearchRoute.$navigatorKey,
+      factory: $QuickSearchRouteExtension._fromState,
       routes: [
         ShellRouteData.$route(
-          factory: $ShellRouteExtension._fromState,
           navigatorKey: ShellRoute.$navigatorKey,
+          factory: $ShellRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
               path: '/',
@@ -314,6 +314,12 @@ extension $SourceMangaRouteExtension on SourceMangaRoute {
       context.replace(location, extra: $extra);
 }
 
+const _$SourceTypeEnumMap = {
+  SourceType.latest: 'latest',
+  SourceType.popular: 'popular',
+  SourceType.filter: 'filter',
+};
+
 extension $AboutRouteExtension on AboutRoute {
   static AboutRoute _fromState(GoRouterState state) => const AboutRoute();
 
@@ -519,12 +525,6 @@ extension $BackupRouteExtension on BackupRoute {
 
   void replace(BuildContext context) => context.replace(location);
 }
-
-const _$SourceTypeEnumMap = {
-  SourceType.latest: 'latest',
-  SourceType.popular: 'popular',
-  SourceType.filter: 'filter',
-};
 
 T? _$convertMapValue<T>(
   String key,
