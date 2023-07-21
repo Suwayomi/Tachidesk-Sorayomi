@@ -842,5 +842,13 @@
   "yesterday": "昨天",
   "@yesterday": {
     "description": "Yesterday Text to show the release date of manga"
+  },
+  "readerSwipeChapterToggle": "滑动切换",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggleDescription": "滑动切换章节",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
   }
 }
