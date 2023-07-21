@@ -49,30 +49,30 @@ class ReaderScreen extends HookConsumerWidget {
     final defaultReaderMode = ref.watch(readerModeKeyProvider);
 
     final debounce = useRef<Timer?>(null);
+    final updateLastRead = useCallback((int currentPage) async {
+      final chapterValue = chapter.valueOrNull;
+      final isReadingCompeted = chapterValue != null &&
+          ((chapterValue.read).ifNull() ||
+              (currentPage >=
+                  ((chapterValue.pageCount).ifNullOrNegative() - 1)));
+      await AsyncValue.guard(
+        () => ref.read(mangaBookRepositoryProvider).putChapter(
+              mangaId: mangaId,
+              chapterIndex: chapterIndex,
+              patch: ChapterPut(
+                lastPageRead: isReadingCompeted ? 0 : currentPage,
+                read: isReadingCompeted,
+              ),
+            ),
+      );
+    }, [chapter]);
+
     final onPageChanged = useCallback<AsyncValueSetter<int>>(
-      (int currentPage) async {
+      (int index) async {
         final chapterValue = chapter.valueOrNull;
         if ((chapterValue?.read).ifNull() ||
-            (chapterValue?.lastPageRead).ifNullOrNegative() >= currentPage) {
+            (chapterValue?.lastPageRead).ifNullOrNegative() >= index) {
           return;
-        }
-
-        updateLastRead() async {
-          final chapterValue = chapter.valueOrNull;
-          final isReadingCompeted = chapterValue != null &&
-              ((chapterValue.read).ifNull() ||
-                  (currentPage >=
-                      ((chapterValue.pageCount).ifNullOrNegative() - 1)));
-          await AsyncValue.guard(
-            () => ref.read(mangaBookRepositoryProvider).putChapter(
-                  mangaId: mangaId,
-                  chapterIndex: chapterIndex,
-                  patch: ChapterPut(
-                    lastPageRead: isReadingCompeted ? 0 : currentPage,
-                    read: isReadingCompeted,
-                  ),
-                ),
-          );
         }
 
         final finalDebounce = debounce.value;
@@ -80,11 +80,14 @@ class ReaderScreen extends HookConsumerWidget {
           finalDebounce?.cancel();
         }
 
-        if ((currentPage >=
+        if ((index >=
             ((chapter.valueOrNull?.pageCount).ifNullOrNegative() - 1))) {
-          updateLastRead();
+          updateLastRead(index);
         } else {
-          debounce.value = Timer(const Duration(seconds: 2), updateLastRead);
+          debounce.value = Timer(
+            const Duration(seconds: 2),
+            () => updateLastRead(index),
+          );
         }
         return;
       },
