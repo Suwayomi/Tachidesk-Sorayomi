@@ -153,7 +153,7 @@
   "@extensions": {
     "description": "Extension list Tab title in Browse Screen"
   },
-  "failed": "Помилка",
+  "failed": "Не вдалося",
   "@failed": {
     "description": "Failed status Manga Group title in Update Summary Screen"
   },
@@ -842,5 +842,13 @@
   "today": "Сьогодні",
   "@today": {
     "description": "Today Text to show the release date of manga"
+  },
+  "readerSwipeChapterToggle": "Проведіть пальцем, щоб перегорнути",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggleDescription": "Проведіть пальцем, щоб змінити розділ в читачу",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
   }
 }
