@@ -37,7 +37,7 @@ final sourceMapProvider =
 typedef SourceMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>>>;
 String _$sourceFilterLangListHash() =>
-    r'939f87fc2d97aa5e148ebee43b6efe8b21bd8d39';
+    r'89e544ca3fb3ee2546240cb3a7a3e2085213393e';
 
 /// See also [sourceFilterLangList].
 @ProviderFor(sourceFilterLangList)
@@ -206,4 +206,5 @@ final sourceLastUsedProvider =
 );
 
 typedef _$SourceLastUsed = AutoDisposeNotifier<String?>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
