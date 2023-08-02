@@ -141,7 +141,7 @@
   "@channel": {
     "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
   },
-  "chapterSortFetchedDate": "通过获取数据",
+  "chapterSortFetchedDate": "按添加日期",
   "@chapterSortFetchedDate": {
     "description": "Radio button text for sort by Fetched Date"
   },
@@ -423,7 +423,7 @@
   "@readerModeContinuousHorizontalLTR": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
   },
-  "readerModeContinuousVertical": "从上到下",
+  "readerModeContinuousVertical": "从上到下（不分页）",
   "@readerModeContinuousVertical": {
     "description": "Radio button text for Reader Mode Type - Continuous Vertical"
   },
@@ -623,7 +623,7 @@
   "@createBackupTitle": {
     "description": "Button text to create backup"
   },
-  "checkForServerUpdates": "检查服务更新",
+  "checkForServerUpdates": "检查服务端更新",
   "@checkForServerUpdates": {
     "description": "Button text to check for Server updates"
   },
@@ -711,7 +711,7 @@
   "@readerModeContinuousHorizontalRTL": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
   },
-  "readerModeSingleVertical": "从上到下",
+  "readerModeSingleVertical": "从上到下（分页）",
   "@readerModeSingleVertical": {
     "description": "Radio button text for Reader Mode Type - Single Vertical"
   },
