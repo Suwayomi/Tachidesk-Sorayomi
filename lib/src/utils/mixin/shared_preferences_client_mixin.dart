@@ -52,6 +52,13 @@ mixin SharedPreferenceClientMixin<T extends Object> {
     if (_fromJson != null) {
       return _fromJson!(jsonDecode(value.toString()));
     }
+    if (value != null && value is List) {
+      // if value is List<Object> then the only possible type is List<String>
+      // as SharedPreferences only saves List<String> type.
+      // casting it to List<String> and then to T? to
+      // avoid comparing List<Object> with T?.
+      return value.map((e) => e.toString()).toList() as T?;
+    }
     return value is T? ? value : _initial;
   }
 
