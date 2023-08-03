@@ -273,7 +273,7 @@
   "@finished": {
     "description": "Text to show the Currently Finished reading chapter in Reader Screen"
   },
-  "globalSearch": "البحث",
+  "globalSearch": "البحث العام",
   "@globalSearch": {
     "description": "Screen title of Global Search screen"
   },
@@ -293,7 +293,7 @@
   "@library": {
     "description": "Screen title and Button text of Library and Library Settings screen"
   },
-  "installingExtension": "جار التحميل",
+  "installingExtension": "جاري تحميل الاضافة",
   "@installingExtension": {
     "description": "Toast text to show that the extension is installing"
   },
@@ -673,7 +673,7 @@
   "@save": {
     "description": "Save Button Text"
   },
-  "search": "ابحث",
+  "search": "البحث",
   "@search": {
     "description": "Search field hint Text"
   },
@@ -815,7 +815,7 @@
   "@scanlators": {
     "description": "Title text for Scanlators"
   },
-  "allScanlators": "فرق الترجمة",
+  "allScanlators": "كل فرق الترجمة",
   "@allScanlators": {
     "description": "Text for all Scanlators in manga description screen chapter filter"
   },
@@ -842,5 +842,13 @@
   "yesterday": "أمس",
   "@yesterday": {
     "description": "Yesterday Text to show the release date of manga"
+  },
+  "readerSwipeChapterToggle": "اسحب للانتقال",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggleDescription": "اسحب لتغير الفصل في القارئ",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
   }
 }
