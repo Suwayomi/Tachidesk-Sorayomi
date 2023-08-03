@@ -150,7 +150,7 @@ extension $HomeRouteExtension on HomeRoute {
 extension $LibraryRouteExtension on LibraryRoute {
   static LibraryRoute _fromState(GoRouterState state) => LibraryRoute(
         initialCategoryOrder: _$convertMapValue(
-            'initial-category-order', state.queryParameters, int.parse),
+            'initial-category-order', state.uri.queryParameters, int.parse),
       );
 
   String get location => GoRouteData.$location(
@@ -243,8 +243,8 @@ extension $MoreRouteExtension on MoreRoute {
 extension $MangaRouteExtension on MangaRoute {
   static MangaRoute _fromState(GoRouterState state) => MangaRoute(
         mangaId: int.parse(state.pathParameters['mangaId']!),
-        categoryId:
-            _$convertMapValue('category-id', state.queryParameters, int.parse),
+        categoryId: _$convertMapValue(
+            'category-id', state.uri.queryParameters, int.parse),
       );
 
   String get location => GoRouteData.$location(
@@ -266,7 +266,7 @@ extension $MangaRouteExtension on MangaRoute {
 
 extension $GlobalSearchRouteExtension on GlobalSearchRoute {
   static GlobalSearchRoute _fromState(GoRouterState state) => GlobalSearchRoute(
-        query: state.queryParameters['query'],
+        query: state.uri.queryParameters['query'],
       );
 
   String get location => GoRouteData.$location(
@@ -291,7 +291,7 @@ extension $SourceMangaRouteExtension on SourceMangaRoute {
         sourceId: state.pathParameters['sourceId']!,
         sourceType:
             _$SourceTypeEnumMap._$fromName(state.pathParameters['sourceType']!),
-        query: state.queryParameters['query'],
+        query: state.uri.queryParameters['query'],
         $extra: state.extra as List<Filter>?,
       );
 
@@ -342,9 +342,9 @@ extension $ReaderRouteExtension on ReaderRoute {
         mangaId: int.parse(state.pathParameters['mangaId']!),
         chapterIndex: int.parse(state.pathParameters['chapterIndex']!),
         transVertical: _$convertMapValue(
-            'trans-vertical', state.queryParameters, _$boolConverter),
+            'trans-vertical', state.uri.queryParameters, _$boolConverter),
         toPrev: _$convertMapValue(
-            'to-prev', state.queryParameters, _$boolConverter),
+            'to-prev', state.uri.queryParameters, _$boolConverter),
       );
 
   String get location => GoRouteData.$location(
@@ -569,4 +569,5 @@ final routerConfigProvider = AutoDisposeProvider<GoRouter>.internal(
 );
 
 typedef RouterConfigRef = AutoDisposeProviderRef<GoRouter>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

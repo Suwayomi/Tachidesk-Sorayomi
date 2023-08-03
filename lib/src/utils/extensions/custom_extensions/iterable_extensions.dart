@@ -44,4 +44,6 @@ extension IterableExtensions<T> on Iterable<T>? {
 
   T? get getRandom =>
       isNull ? null : this!.elementAt(Random().nextInt(this!.length));
+
+  Iterable<T>? get filterOutNulls => this?.where((element) => element != null);
 }
