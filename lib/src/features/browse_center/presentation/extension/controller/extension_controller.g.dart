@@ -37,7 +37,7 @@ final extensionMapProvider =
 typedef ExtensionMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String _$extensionFilterLangListHash() =>
-    r'86c8b07116486c19f0ac21976ce798304bb7f2ee';
+    r'9b321188e52c96aa6f900d0bd671217e19d36832';
 
 /// See also [extensionFilterLangList].
 @ProviderFor(extensionFilterLangList)
@@ -122,4 +122,5 @@ final extensionQueryProvider =
 );
 
 typedef _$ExtensionQuery = AutoDisposeNotifier<String?>;
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

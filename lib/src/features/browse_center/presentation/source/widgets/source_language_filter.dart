@@ -28,27 +28,29 @@ class SourceLanguageFilter extends ConsumerWidget {
         child: ListView.builder(
           itemCount: languageCodes.length,
           itemBuilder: (context, index) {
-            final Language? language = languageMap[languageCodes[index]];
+            final String languageCode = languageCodes[index];
+            final Language? language = languageMap[languageCode];
             final enabledLanguagesIndex =
-                enabledLanguages?.indexOf(languageCodes[index]);
+                enabledLanguages?.indexOf(languageCode);
             return SwitchListTile(
               value: enabledLanguagesIndex != -1,
               onChanged: (value) {
                 if (value) {
                   ref.read(sourceLanguageFilterProvider.notifier).update(
-                        {...?enabledLanguages, languageCodes[index]}.toList(),
+                        {...?enabledLanguages, languageCode}.toList(),
                       );
                 } else {
                   if (!((enabledLanguagesIndex?.isNegative).ifNull(true))) {
-                    ref.read(sourceLanguageFilterProvider.notifier).update(
-                          [...?enabledLanguages]
-                            ..removeAt(enabledLanguagesIndex!),
-                        );
+                    final updatedEnabledLanguages = [...?enabledLanguages]
+                      ..remove(languageCode);
+                    ref
+                        .read(sourceLanguageFilterProvider.notifier)
+                        .update(updatedEnabledLanguages);
                   }
                 }
               },
               title: Text(
-                language?.nativeName ?? language?.name ?? languageCodes[index],
+                language?.nativeName ?? language?.name ?? languageCode,
               ),
             );
           },

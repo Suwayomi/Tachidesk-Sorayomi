@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -29,6 +30,8 @@ Future<void> main() async {
   }
   var appDirectory = (kIsWeb) ? null : appDocDirectory;
   SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+  GoRouter.optionURLReflectsImperativeAPIs = true;
+
   runApp(
     ProviderScope(
       overrides: [

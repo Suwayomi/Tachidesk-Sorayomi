@@ -63,12 +63,10 @@ AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
 
 @riverpod
 List<String> extensionFilterLangList(ExtensionFilterLangListRef ref) {
-  return [
-    ...?(ref.watch(extensionMapProvider).valueOrNull
-          ?..remove("installed")
-          ..remove("update"))
-        ?.keys
-  ]..sort();
+  final extensionMap = {...?ref.watch(extensionMapProvider).valueOrNull};
+  extensionMap.remove("installed");
+  extensionMap.remove("update");
+  return [...extensionMap.keys]..sort();
 }
 
 @riverpod
