@@ -539,7 +539,7 @@
   "@buildTime": {
     "description": "Text title to show build time of Server in About Screen"
   },
-  "chapterSortFetchedDate": "За отриманими даними",
+  "chapterSortFetchedDate": "За датою отримання",
   "@chapterSortFetchedDate": {
     "description": "Radio button text for sort by Fetched Date"
   },
