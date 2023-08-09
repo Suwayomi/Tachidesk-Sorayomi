@@ -42,7 +42,7 @@
   "@channel": {},
   "chapterNumber": "Capitulo {number}",
   "@chapterNumber": {},
-  "chapterSortFetchedDate": "Por fecha de subida",
+  "chapterSortFetchedDate": "Por fecha de búsqueda",
   "@chapterSortFetchedDate": {},
   "chapterSortSource": "Por fuente",
   "@chapterSortSource": {},
@@ -404,32 +404,52 @@
   "@scanlators": {
     "description": "Title text for Scanlators"
   },
-  "quickSearchSource": "",
+  "quickSearchSource": "Ir a la fuente 'S'",
   "@quickSearchSource": {
     "description": "Quick Open Hint text for Source S with prefill '@S'"
   },
-  "allScanlators": "",
+  "allScanlators": "Todos los escáneres",
   "@allScanlators": {
     "description": "Text for all Scanlators in manga description screen chapter filter"
   },
-  "quickSearchCategoryManga": "",
+  "quickSearchCategoryManga": "Ir al manga 'M' en la categoría 'C'",
   "@quickSearchCategoryManga": {
     "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
   },
-  "quickSearchCategoryMangaChapter": "",
+  "quickSearchCategoryMangaChapter": "Ir al capítulo \"CN\" del manga \"M\" en la categoría \"C\"",
   "@quickSearchCategoryMangaChapter": {
     "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
   },
-  "quickSearchCategory": "",
+  "quickSearchCategory": "Ir a la categoría 'C'",
   "@quickSearchCategory": {
     "description": "Quick Open Hint text for Category C with prefill '#C'"
   },
-  "quickSearchContext": "",
+  "quickSearchContext": "Busca la consulta X (los resultados se basan en el contexto de la pantalla)",
   "@quickSearchContext": {
     "description": "Quick Open Hint text for query X"
   },
-  "quickSearchSourceManga": "",
+  "quickSearchSourceManga": "Buscar el manga 'M' en la fuente 'S'",
   "@quickSearchSourceManga": {
     "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "today": "Hoy",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "daysAgo": "Hace {days} días",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "readerSwipeChapterToggle": "Deslizar el dedo",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "yesterday": "Ayer",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
+  },
+  "readerSwipeChapterToggleDescription": "Deslizar para cambiar de capítulo en el lector",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
   }
 }
