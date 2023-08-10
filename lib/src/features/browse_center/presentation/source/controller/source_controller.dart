@@ -44,12 +44,10 @@ AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
 
 @riverpod
 List<String> sourceFilterLangList(SourceFilterLangListRef ref) {
-  return [
-    ...?(ref.watch(sourceMapProvider).valueOrNull
-          ?..remove("localsourcelang")
-          ..remove("lastUsed"))
-        ?.keys
-  ]..sort();
+  final sourceMap = {...?ref.watch(sourceMapProvider).valueOrNull};
+  sourceMap.remove("lastUsed");
+  sourceMap.remove("localsourcelang");
+  return [...sourceMap.keys]..sort();
 }
 
 @riverpod

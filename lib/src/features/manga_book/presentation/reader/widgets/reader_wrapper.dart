@@ -15,11 +15,13 @@ import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 
+import '../../../../../constants/reader_keyboard_shortcuts.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../settings/presentation/reader/widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import '../../../../settings/presentation/reader/widgets/reader_padding_slider/reader_padding_slider.dart';
 import '../../../../settings/presentation/reader/widgets/reader_swipe_toggle_tile/reader_swipe_chapter_toggle_tile.dart';
@@ -32,16 +34,6 @@ import '../../manga_details/controller/manga_details_controller.dart';
 import '../controller/reader_controller.dart';
 import 'page_number_slider.dart';
 import 'reader_navigation_layout/reader_navigation_layout.dart';
-
-class NextScrollIntent extends Intent {}
-
-class NextChapterIntent extends Intent {}
-
-class PreviousScrollIntent extends Intent {}
-
-class PreviousChapterIntent extends Intent {}
-
-class HideQuickOpenIntent extends Intent {}
 
 class ReaderWrapper extends HookConsumerWidget {
   const ReaderWrapper({
@@ -72,28 +64,24 @@ class ReaderWrapper extends HookConsumerWidget {
         chapterIndex: "${chapter.index}",
       ),
     );
-    final visibility = useState(true);
-
-    useEffect(() {
-      if (!visibility.value) {
-        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-      }
-      return null;
-    }, [visibility.value]);
+    final invertTap = ref.watch(invertTapProvider).ifNull();
 
     final double localMangaReaderPadding =
         ref.watch(readerPaddingKeyProvider) ?? DBKeys.readerPadding.initial;
 
     final bool readerSwipeChapterToggle =
         ref.watch(swipeChapterToggleProvider) ?? DBKeys.swipeToggle.initial;
-    final mangaReaderPadding =
-        useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
 
     final double localMangaReaderMagnifierSize =
         ref.watch(readerMagnifierSizeKeyProvider) ??
             DBKeys.readerMagnifierSize.initial;
+
+    final visibility = useState(true);
+    final mangaReaderPadding =
+        useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
     final mangaReaderMagnifierSize = useState(
-        manga.meta?.readerMagnifierSize ?? localMangaReaderMagnifierSize);
+      manga.meta?.readerMagnifierSize ?? localMangaReaderMagnifierSize,
+    );
 
     final mangaReaderMode = manga.meta?.readerMode ?? ReaderMode.defaultReader;
     final mangaReaderNavigationLayout = manga.meta?.readerNavigationLayout ??
@@ -148,6 +136,13 @@ class ReaderWrapper extends HookConsumerWidget {
       ),
       [mangaReaderNavigationLayout],
     );
+
+    useEffect(() {
+      if (!visibility.value) {
+        SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+      }
+      return null;
+    }, [visibility.value]);
 
     return Theme(
       data: context.theme.copyWith(
@@ -282,6 +277,7 @@ class ReaderWrapper extends HookConsumerWidget {
                             currentValue: currentIndex,
                             maxValue: chapter.pageCount ?? 1,
                             onChanged: (index) => onChanged(index),
+                            inverted: invertTap,
                           ),
                         ),
                         Card(
@@ -355,50 +351,15 @@ class ReaderWrapper extends HookConsumerWidget {
                 ),
               )
             : null,
-        body: Shortcuts(
-          shortcuts: {
-            const SingleActivator(LogicalKeyboardKey.arrowLeft):
-                scrollDirection == Axis.horizontal
-                    ? PreviousScrollIntent()
-                    : PreviousChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyA):
-                scrollDirection == Axis.horizontal
-                    ? PreviousScrollIntent()
-                    : PreviousChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowRight):
-                scrollDirection == Axis.horizontal
-                    ? NextScrollIntent()
-                    : NextChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyD):
-                scrollDirection == Axis.horizontal
-                    ? NextScrollIntent()
-                    : NextChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowUp):
-                scrollDirection == Axis.vertical
-                    ? PreviousScrollIntent()
-                    : NextChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyW):
-                scrollDirection == Axis.vertical
-                    ? PreviousScrollIntent()
-                    : NextChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.arrowDown):
-                scrollDirection == Axis.vertical
-                    ? NextScrollIntent()
-                    : PreviousChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.keyS):
-                scrollDirection == Axis.vertical
-                    ? NextScrollIntent()
-                    : PreviousChapterIntent(),
-            const SingleActivator(LogicalKeyboardKey.escape):
-                HideQuickOpenIntent(),
-          },
+        body: Shortcuts.manager(
+          manager: readerShortcutManager(scrollDirection),
           child: Actions(
             actions: {
               PreviousScrollIntent: CallbackAction<PreviousScrollIntent>(
-                onInvoke: (intent) => onPrevious(),
+                onInvoke: (intent) => invertTap ? onNext() : onPrevious(),
               ),
               NextScrollIntent: CallbackAction<NextScrollIntent>(
-                onInvoke: (intent) => onNext(),
+                onInvoke: (intent) => invertTap ? onPrevious() : onNext(),
               ),
               PreviousChapterIntent: CallbackAction<PreviousChapterIntent>(
                 onInvoke: (intent) {
