@@ -37,7 +37,8 @@ Future<void> main() async {
       final oldCacheFilePath = path.join(appDocDirectory.path, cacheFile);
       final newCacheFilePath = path.join(appDirectory.path, cacheFile);
 
-      if (!(await File(newCacheFilePath).exists())) {
+      if (!(await File(newCacheFilePath).exists()) &&
+          await File(oldCacheFilePath).exists()) {
         await File(oldCacheFilePath).rename(newCacheFilePath);
       }
     }
