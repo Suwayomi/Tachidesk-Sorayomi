@@ -67,7 +67,6 @@ const languageList = [
   {"code": 'ar', "name": 'Arabic', "nativeName": 'العربية'},
   {"code": 'hi', "name": 'Hindi', "nativeName": 'हिन्दी'},
   {"code": 'th', "name": 'Thai', "nativeName": 'ไทย'},
-  {"code": 'zh', "name": 'Chinese', "nativeName": '中文'},
   {"code": 'zh-hans', "name": 'Chinese', "nativeName": '中文 (HANS)'},
   {"code": 'zh-hant', "name": 'Chinese', "nativeName": '中文 (HANT)'},
   {"code": 'zh-rhk', "name": 'Chinese', "nativeName": '中文 (RHK)'},
