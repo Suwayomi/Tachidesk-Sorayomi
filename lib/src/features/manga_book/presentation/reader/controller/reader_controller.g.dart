@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef ChapterRef = AutoDisposeFutureProviderRef<Chapter?>;
-
 /// See also [chapter].
 @ProviderFor(chapter)
 const chapterProvider = ChapterFamily();
@@ -80,11 +78,11 @@ class ChapterFamily extends Family<AsyncValue<Chapter?>> {
 class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
   /// See also [chapter].
   ChapterProvider({
-    required this.mangaId,
-    required this.chapterIndex,
-  }) : super.internal(
+    required int mangaId,
+    required int chapterIndex,
+  }) : this._internal(
           (ref) => chapter(
-            ref,
+            ref as ChapterRef,
             mangaId: mangaId,
             chapterIndex: chapterIndex,
           ),
@@ -96,10 +94,47 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
                   : _$chapterHash,
           dependencies: ChapterFamily._dependencies,
           allTransitiveDependencies: ChapterFamily._allTransitiveDependencies,
+          mangaId: mangaId,
+          chapterIndex: chapterIndex,
         );
+
+  ChapterProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mangaId,
+    required this.chapterIndex,
+  }) : super.internal();
 
   final int mangaId;
   final int chapterIndex;
+
+  @override
+  Override overrideWith(
+    FutureOr<Chapter?> Function(ChapterRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ChapterProvider._internal(
+        (ref) => create(ref as ChapterRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mangaId: mangaId,
+        chapterIndex: chapterIndex,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Chapter?> createElement() {
+    return _ChapterProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -116,6 +151,24 @@ class ChapterProvider extends AutoDisposeFutureProvider<Chapter?> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin ChapterRef on AutoDisposeFutureProviderRef<Chapter?> {
+  /// The parameter `mangaId` of this provider.
+  int get mangaId;
+
+  /// The parameter `chapterIndex` of this provider.
+  int get chapterIndex;
+}
+
+class _ChapterProviderElement extends AutoDisposeFutureProviderElement<Chapter?>
+    with ChapterRef {
+  _ChapterProviderElement(super.provider);
+
+  @override
+  int get mangaId => (origin as ChapterProvider).mangaId;
+  @override
+  int get chapterIndex => (origin as ChapterProvider).chapterIndex;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

@@ -31,7 +31,7 @@ class MultiChaptersActionIcon extends ConsumerWidget {
     return IconButton(
       icon: Icon(icon),
       onPressed: () async {
-        (await AsyncValue.guard(
+        final result = await AsyncValue.guard(
           () => change == null
               ? ref
                   .read(downloadsRepositoryProvider)
@@ -42,9 +42,10 @@ class MultiChaptersActionIcon extends ConsumerWidget {
                       change: change,
                     ),
                   ),
-        ))
-            .showToastOnError(ref.read(toastProvider(context)));
-
+        );
+        if (context.mounted) {
+          result.showToastOnError(ref.read(toastProvider(context)));
+        }
         await refresh(change != null);
       },
     );

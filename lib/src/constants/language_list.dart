@@ -69,8 +69,16 @@ const languageList = [
   {"code": 'th', "name": 'Thai', "nativeName": 'ไทย'},
   {"code": 'zh-hans', "name": 'Simplified Chinese', "nativeName": '简体中文'},
   {"code": 'zh-hant', "name": 'Traditional Chinese', "nativeName": '繁体中文'},
-  {"code": 'zh-rhk', "name": 'Traditional Chinese (HK)', "nativeName": '繁体中文（香港）'},
-  {"code": 'zh-rtw', "name": 'Traditional Chinese (TW)', "nativeName": '繁体中文（台湾）'},
+  {
+    "code": 'zh-rhk',
+    "name": 'Traditional Chinese (HK)',
+    "nativeName": '繁体中文（香港）'
+  },
+  {
+    "code": 'zh-rtw',
+    "name": 'Traditional Chinese (TW)',
+    "nativeName": '繁体中文（台湾）'
+  },
   {"code": 'ja', "name": 'Japanese', "nativeName": '日本語'},
   {"code": 'ko', "name": 'Korean', "nativeName": '한국어'},
   {"code": 'zu', "name": 'Zulu', "nativeName": 'isiZulu'},
