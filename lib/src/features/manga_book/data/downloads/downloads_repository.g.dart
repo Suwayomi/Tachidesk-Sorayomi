@@ -61,8 +61,6 @@ class _SystemHash {
   }
 }
 
-typedef DownloadsFromIdRef = AutoDisposeProviderRef<DownloadsQueue?>;
-
 /// See also [downloadsFromId].
 @ProviderFor(downloadsFromId)
 const downloadsFromIdProvider = DownloadsFromIdFamily();
@@ -109,10 +107,10 @@ class DownloadsFromIdFamily extends Family<DownloadsQueue?> {
 class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
   /// See also [downloadsFromId].
   DownloadsFromIdProvider(
-    this.chapterId,
-  ) : super.internal(
+    int chapterId,
+  ) : this._internal(
           (ref) => downloadsFromId(
-            ref,
+            ref as DownloadsFromIdRef,
             chapterId,
           ),
           from: downloadsFromIdProvider,
@@ -124,9 +122,43 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
           dependencies: DownloadsFromIdFamily._dependencies,
           allTransitiveDependencies:
               DownloadsFromIdFamily._allTransitiveDependencies,
+          chapterId: chapterId,
         );
 
+  DownloadsFromIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.chapterId,
+  }) : super.internal();
+
   final int chapterId;
+
+  @override
+  Override overrideWith(
+    DownloadsQueue? Function(DownloadsFromIdRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: DownloadsFromIdProvider._internal(
+        (ref) => create(ref as DownloadsFromIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        chapterId: chapterId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<DownloadsQueue?> createElement() {
+    return _DownloadsFromIdProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -140,6 +172,20 @@ class DownloadsFromIdProvider extends AutoDisposeProvider<DownloadsQueue?> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin DownloadsFromIdRef on AutoDisposeProviderRef<DownloadsQueue?> {
+  /// The parameter `chapterId` of this provider.
+  int get chapterId;
+}
+
+class _DownloadsFromIdProviderElement
+    extends AutoDisposeProviderElement<DownloadsQueue?>
+    with DownloadsFromIdRef {
+  _DownloadsFromIdProviderElement(super.provider);
+
+  @override
+  int get chapterId => (origin as DownloadsFromIdProvider).chapterId;
 }
 
 String _$downloadsSocketHash() => r'0fffb672640ebb3ba41893c1f362e7479f391471';

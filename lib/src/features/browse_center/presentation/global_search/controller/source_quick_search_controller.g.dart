@@ -30,9 +30,6 @@ class _SystemHash {
   }
 }
 
-typedef SourceQuickSearchMangaListRef
-    = AutoDisposeFutureProviderRef<List<Manga>>;
-
 /// See also [sourceQuickSearchMangaList].
 @ProviderFor(sourceQuickSearchMangaList)
 const sourceQuickSearchMangaListProvider = SourceQuickSearchMangaListFamily();
@@ -83,11 +80,11 @@ class SourceQuickSearchMangaListProvider
     extends AutoDisposeFutureProvider<List<Manga>> {
   /// See also [sourceQuickSearchMangaList].
   SourceQuickSearchMangaListProvider(
-    this.sourceId, {
-    this.query,
-  }) : super.internal(
+    String sourceId, {
+    String? query,
+  }) : this._internal(
           (ref) => sourceQuickSearchMangaList(
-            ref,
+            ref as SourceQuickSearchMangaListRef,
             sourceId,
             query: query,
           ),
@@ -100,10 +97,48 @@ class SourceQuickSearchMangaListProvider
           dependencies: SourceQuickSearchMangaListFamily._dependencies,
           allTransitiveDependencies:
               SourceQuickSearchMangaListFamily._allTransitiveDependencies,
+          sourceId: sourceId,
+          query: query,
         );
+
+  SourceQuickSearchMangaListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.sourceId,
+    required this.query,
+  }) : super.internal();
 
   final String sourceId;
   final String? query;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Manga>> Function(SourceQuickSearchMangaListRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SourceQuickSearchMangaListProvider._internal(
+        (ref) => create(ref as SourceQuickSearchMangaListRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        sourceId: sourceId,
+        query: query,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Manga>> createElement() {
+    return _SourceQuickSearchMangaListProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -122,10 +157,29 @@ class SourceQuickSearchMangaListProvider
   }
 }
 
+mixin SourceQuickSearchMangaListRef
+    on AutoDisposeFutureProviderRef<List<Manga>> {
+  /// The parameter `sourceId` of this provider.
+  String get sourceId;
+
+  /// The parameter `query` of this provider.
+  String? get query;
+}
+
+class _SourceQuickSearchMangaListProviderElement
+    extends AutoDisposeFutureProviderElement<List<Manga>>
+    with SourceQuickSearchMangaListRef {
+  _SourceQuickSearchMangaListProviderElement(super.provider);
+
+  @override
+  String get sourceId =>
+      (origin as SourceQuickSearchMangaListProvider).sourceId;
+  @override
+  String? get query => (origin as SourceQuickSearchMangaListProvider).query;
+}
+
 String _$quickSearchResultsHash() =>
     r'95c8745e42306378a3b8981adb88d6d40679966e';
-typedef QuickSearchResultsRef = AutoDisposeProviderRef<
-    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>>;
 
 /// See also [quickSearchResults].
 @ProviderFor(quickSearchResults)
@@ -175,10 +229,10 @@ class QuickSearchResultsProvider extends AutoDisposeProvider<
     AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
   /// See also [quickSearchResults].
   QuickSearchResultsProvider({
-    this.query,
-  }) : super.internal(
+    String? query,
+  }) : this._internal(
           (ref) => quickSearchResults(
-            ref,
+            ref as QuickSearchResultsRef,
             query: query,
           ),
           from: quickSearchResultsProvider,
@@ -190,9 +244,48 @@ class QuickSearchResultsProvider extends AutoDisposeProvider<
           dependencies: QuickSearchResultsFamily._dependencies,
           allTransitiveDependencies:
               QuickSearchResultsFamily._allTransitiveDependencies,
+          query: query,
         );
 
+  QuickSearchResultsProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.query,
+  }) : super.internal();
+
   final String? query;
+
+  @override
+  Override overrideWith(
+    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>
+            Function(QuickSearchResultsRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: QuickSearchResultsProvider._internal(
+        (ref) => create(ref as QuickSearchResultsRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        query: query,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<
+          AsyncValue<
+              List<({AsyncValue<List<Manga>> mangaList, Source source})>>>
+      createElement() {
+    return _QuickSearchResultsProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -206,6 +299,21 @@ class QuickSearchResultsProvider extends AutoDisposeProvider<
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin QuickSearchResultsRef on AutoDisposeProviderRef<
+    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
+  /// The parameter `query` of this provider.
+  String? get query;
+}
+
+class _QuickSearchResultsProviderElement extends AutoDisposeProviderElement<
+        AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>>
+    with QuickSearchResultsRef {
+  _QuickSearchResultsProviderElement(super.provider);
+
+  @override
+  String? get query => (origin as QuickSearchResultsProvider).query;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
