@@ -34,15 +34,16 @@ class SingleChapterActionIcon extends ConsumerWidget {
     return IconButton(
       icon: imageIcon ?? Icon(icon),
       onPressed: () async {
-        (await AsyncValue.guard(
+        final result = (await AsyncValue.guard(
           () => ref.read(mangaBookRepositoryProvider).putChapter(
                 mangaId: mangaId,
                 chapterIndex: chapterIndex,
                 patch: chapterPut,
               ),
-        ))
-            .showToastOnError(ref.read(toastProvider(context)));
-
+        ));
+        if (context.mounted) {
+          result.showToastOnError(ref.read(toastProvider(context)));
+        }
         await refresh();
       },
     );

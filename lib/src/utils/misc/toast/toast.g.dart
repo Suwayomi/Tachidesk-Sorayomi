@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef ToastRef = AutoDisposeProviderRef<Toast>;
-
 /// See also [toast].
 @ProviderFor(toast)
 const toastProvider = ToastFamily();
@@ -77,10 +75,10 @@ class ToastFamily extends Family<Toast> {
 class ToastProvider extends AutoDisposeProvider<Toast> {
   /// See also [toast].
   ToastProvider(
-    this.context,
-  ) : super.internal(
+    BuildContext context,
+  ) : this._internal(
           (ref) => toast(
-            ref,
+            ref as ToastRef,
             context,
           ),
           from: toastProvider,
@@ -91,9 +89,43 @@ class ToastProvider extends AutoDisposeProvider<Toast> {
                   : _$toastHash,
           dependencies: ToastFamily._dependencies,
           allTransitiveDependencies: ToastFamily._allTransitiveDependencies,
+          context: context,
         );
 
+  ToastProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.context,
+  }) : super.internal();
+
   final BuildContext context;
+
+  @override
+  Override overrideWith(
+    Toast Function(ToastRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ToastProvider._internal(
+        (ref) => create(ref as ToastRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        context: context,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<Toast> createElement() {
+    return _ToastProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -107,6 +139,19 @@ class ToastProvider extends AutoDisposeProvider<Toast> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin ToastRef on AutoDisposeProviderRef<Toast> {
+  /// The parameter `context` of this provider.
+  BuildContext get context;
+}
+
+class _ToastProviderElement extends AutoDisposeProviderElement<Toast>
+    with ToastRef {
+  _ToastProviderElement(super.provider);
+
+  @override
+  BuildContext get context => (origin as ToastProvider).context;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

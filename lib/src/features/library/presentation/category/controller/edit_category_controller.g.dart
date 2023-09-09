@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef CategoryListQueryRef = AutoDisposeProviderRef<List<Category>?>;
-
 /// See also [categoryListQuery].
 @ProviderFor(categoryListQuery)
 const categoryListQueryProvider = CategoryListQueryFamily();
@@ -77,10 +75,10 @@ class CategoryListQueryFamily extends Family<List<Category>?> {
 class CategoryListQueryProvider extends AutoDisposeProvider<List<Category>?> {
   /// See also [categoryListQuery].
   CategoryListQueryProvider({
-    required this.query,
-  }) : super.internal(
+    required String query,
+  }) : this._internal(
           (ref) => categoryListQuery(
-            ref,
+            ref as CategoryListQueryRef,
             query: query,
           ),
           from: categoryListQueryProvider,
@@ -92,9 +90,43 @@ class CategoryListQueryProvider extends AutoDisposeProvider<List<Category>?> {
           dependencies: CategoryListQueryFamily._dependencies,
           allTransitiveDependencies:
               CategoryListQueryFamily._allTransitiveDependencies,
+          query: query,
         );
 
+  CategoryListQueryProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.query,
+  }) : super.internal();
+
   final String query;
+
+  @override
+  Override overrideWith(
+    List<Category>? Function(CategoryListQueryRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CategoryListQueryProvider._internal(
+        (ref) => create(ref as CategoryListQueryRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        query: query,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<List<Category>?> createElement() {
+    return _CategoryListQueryProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -108,6 +140,20 @@ class CategoryListQueryProvider extends AutoDisposeProvider<List<Category>?> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin CategoryListQueryRef on AutoDisposeProviderRef<List<Category>?> {
+  /// The parameter `query` of this provider.
+  String get query;
+}
+
+class _CategoryListQueryProviderElement
+    extends AutoDisposeProviderElement<List<Category>?>
+    with CategoryListQueryRef {
+  _CategoryListQueryProviderElement(super.provider);
+
+  @override
+  String get query => (origin as CategoryListQueryProvider).query;
 }
 
 String _$categoryControllerHash() =>

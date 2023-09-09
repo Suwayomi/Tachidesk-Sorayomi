@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef CategoryMangaListRef = AutoDisposeFutureProviderRef<List<Manga>?>;
-
 /// See also [categoryMangaList].
 @ProviderFor(categoryMangaList)
 const categoryMangaListProvider = CategoryMangaListFamily();
@@ -78,10 +76,10 @@ class CategoryMangaListProvider
     extends AutoDisposeFutureProvider<List<Manga>?> {
   /// See also [categoryMangaList].
   CategoryMangaListProvider(
-    this.categoryId,
-  ) : super.internal(
+    int categoryId,
+  ) : this._internal(
           (ref) => categoryMangaList(
-            ref,
+            ref as CategoryMangaListRef,
             categoryId,
           ),
           from: categoryMangaListProvider,
@@ -93,9 +91,43 @@ class CategoryMangaListProvider
           dependencies: CategoryMangaListFamily._dependencies,
           allTransitiveDependencies:
               CategoryMangaListFamily._allTransitiveDependencies,
+          categoryId: categoryId,
         );
 
+  CategoryMangaListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.categoryId,
+  }) : super.internal();
+
   final int categoryId;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Manga>?> Function(CategoryMangaListRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: CategoryMangaListProvider._internal(
+        (ref) => create(ref as CategoryMangaListRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        categoryId: categoryId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Manga>?> createElement() {
+    return _CategoryMangaListProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -109,6 +141,20 @@ class CategoryMangaListProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin CategoryMangaListRef on AutoDisposeFutureProviderRef<List<Manga>?> {
+  /// The parameter `categoryId` of this provider.
+  int get categoryId;
+}
+
+class _CategoryMangaListProviderElement
+    extends AutoDisposeFutureProviderElement<List<Manga>?>
+    with CategoryMangaListRef {
+  _CategoryMangaListProviderElement(super.provider);
+
+  @override
+  int get categoryId => (origin as CategoryMangaListProvider).categoryId;
 }
 
 String _$libraryDisplayCategoryHash() =>
@@ -190,8 +236,8 @@ class CategoryMangaListWithQueryAndFilterProvider
         AsyncValue<List<Manga>?>> {
   /// See also [CategoryMangaListWithQueryAndFilter].
   CategoryMangaListWithQueryAndFilterProvider({
-    required this.categoryId,
-  }) : super.internal(
+    required int categoryId,
+  }) : this._internal(
           () => CategoryMangaListWithQueryAndFilter()..categoryId = categoryId,
           from: categoryMangaListWithQueryAndFilterProvider,
           name: r'categoryMangaListWithQueryAndFilterProvider',
@@ -202,9 +248,51 @@ class CategoryMangaListWithQueryAndFilterProvider
           dependencies: CategoryMangaListWithQueryAndFilterFamily._dependencies,
           allTransitiveDependencies: CategoryMangaListWithQueryAndFilterFamily
               ._allTransitiveDependencies,
+          categoryId: categoryId,
         );
 
+  CategoryMangaListWithQueryAndFilterProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.categoryId,
+  }) : super.internal();
+
   final int categoryId;
+
+  @override
+  AsyncValue<List<Manga>?> runNotifierBuild(
+    covariant CategoryMangaListWithQueryAndFilter notifier,
+  ) {
+    return notifier.build(
+      categoryId: categoryId,
+    );
+  }
+
+  @override
+  Override overrideWith(CategoryMangaListWithQueryAndFilter Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: CategoryMangaListWithQueryAndFilterProvider._internal(
+        () => create()..categoryId = categoryId,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        categoryId: categoryId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<CategoryMangaListWithQueryAndFilter,
+      AsyncValue<List<Manga>?>> createElement() {
+    return _CategoryMangaListWithQueryAndFilterProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -219,15 +307,23 @@ class CategoryMangaListWithQueryAndFilterProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin CategoryMangaListWithQueryAndFilterRef
+    on AutoDisposeNotifierProviderRef<AsyncValue<List<Manga>?>> {
+  /// The parameter `categoryId` of this provider.
+  int get categoryId;
+}
+
+class _CategoryMangaListWithQueryAndFilterProviderElement
+    extends AutoDisposeNotifierProviderElement<
+        CategoryMangaListWithQueryAndFilter,
+        AsyncValue<List<Manga>?>> with CategoryMangaListWithQueryAndFilterRef {
+  _CategoryMangaListWithQueryAndFilterProviderElement(super.provider);
 
   @override
-  AsyncValue<List<Manga>?> runNotifierBuild(
-    covariant CategoryMangaListWithQueryAndFilter notifier,
-  ) {
-    return notifier.build(
-      categoryId: categoryId,
-    );
-  }
+  int get categoryId =>
+      (origin as CategoryMangaListWithQueryAndFilterProvider).categoryId;
 }
 
 String _$libraryQueryHash() => r'e9f6238da1c3475448f4839b567e65833e7e151e';

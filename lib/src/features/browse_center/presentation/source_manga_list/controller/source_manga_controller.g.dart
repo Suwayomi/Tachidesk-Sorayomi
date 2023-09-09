@@ -29,8 +29,6 @@ class _SystemHash {
   }
 }
 
-typedef SourceRef = AutoDisposeFutureProviderRef<Source?>;
-
 /// See also [source].
 @ProviderFor(source)
 const sourceProvider = SourceFamily();
@@ -77,10 +75,10 @@ class SourceFamily extends Family<AsyncValue<Source?>> {
 class SourceProvider extends AutoDisposeFutureProvider<Source?> {
   /// See also [source].
   SourceProvider(
-    this.sourceId,
-  ) : super.internal(
+    String sourceId,
+  ) : this._internal(
           (ref) => source(
-            ref,
+            ref as SourceRef,
             sourceId,
           ),
           from: sourceProvider,
@@ -91,9 +89,43 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
                   : _$sourceHash,
           dependencies: SourceFamily._dependencies,
           allTransitiveDependencies: SourceFamily._allTransitiveDependencies,
+          sourceId: sourceId,
         );
 
+  SourceProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.sourceId,
+  }) : super.internal();
+
   final String sourceId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Source?> Function(SourceRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SourceProvider._internal(
+        (ref) => create(ref as SourceRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        sourceId: sourceId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Source?> createElement() {
+    return _SourceProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -109,10 +141,21 @@ class SourceProvider extends AutoDisposeFutureProvider<Source?> {
   }
 }
 
+mixin SourceRef on AutoDisposeFutureProviderRef<Source?> {
+  /// The parameter `sourceId` of this provider.
+  String get sourceId;
+}
+
+class _SourceProviderElement extends AutoDisposeFutureProviderElement<Source?>
+    with SourceRef {
+  _SourceProviderElement(super.provider);
+
+  @override
+  String get sourceId => (origin as SourceProvider).sourceId;
+}
+
 String _$baseSourceMangaFilterListHash() =>
     r'21b6028eb4e3ea54f9708d2faf1c73f21129721e';
-typedef BaseSourceMangaFilterListRef
-    = AutoDisposeFutureProviderRef<List<Filter>?>;
 
 /// See also [baseSourceMangaFilterList].
 @ProviderFor(baseSourceMangaFilterList)
@@ -162,10 +205,10 @@ class BaseSourceMangaFilterListProvider
     extends AutoDisposeFutureProvider<List<Filter>?> {
   /// See also [baseSourceMangaFilterList].
   BaseSourceMangaFilterListProvider(
-    this.sourceId,
-  ) : super.internal(
+    String sourceId,
+  ) : this._internal(
           (ref) => baseSourceMangaFilterList(
-            ref,
+            ref as BaseSourceMangaFilterListRef,
             sourceId,
           ),
           from: baseSourceMangaFilterListProvider,
@@ -177,9 +220,44 @@ class BaseSourceMangaFilterListProvider
           dependencies: BaseSourceMangaFilterListFamily._dependencies,
           allTransitiveDependencies:
               BaseSourceMangaFilterListFamily._allTransitiveDependencies,
+          sourceId: sourceId,
         );
 
+  BaseSourceMangaFilterListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.sourceId,
+  }) : super.internal();
+
   final String sourceId;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Filter>?> Function(BaseSourceMangaFilterListRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: BaseSourceMangaFilterListProvider._internal(
+        (ref) => create(ref as BaseSourceMangaFilterListRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        sourceId: sourceId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Filter>?> createElement() {
+    return _BaseSourceMangaFilterListProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -194,6 +272,21 @@ class BaseSourceMangaFilterListProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin BaseSourceMangaFilterListRef
+    on AutoDisposeFutureProviderRef<List<Filter>?> {
+  /// The parameter `sourceId` of this provider.
+  String get sourceId;
+}
+
+class _BaseSourceMangaFilterListProviderElement
+    extends AutoDisposeFutureProviderElement<List<Filter>?>
+    with BaseSourceMangaFilterListRef {
+  _BaseSourceMangaFilterListProviderElement(super.provider);
+
+  @override
+  String get sourceId => (origin as BaseSourceMangaFilterListProvider).sourceId;
 }
 
 String _$sourceMangaFilterListHash() =>
@@ -260,9 +353,9 @@ class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
     SourceMangaFilterList, AsyncValue<List<Filter>?>> {
   /// See also [SourceMangaFilterList].
   SourceMangaFilterListProvider(
-    this.sourceId, {
-    this.filter,
-  }) : super.internal(
+    String sourceId, {
+    List<Filter>? filter,
+  }) : this._internal(
           () => SourceMangaFilterList()
             ..sourceId = sourceId
             ..filter = filter,
@@ -275,10 +368,58 @@ class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
           dependencies: SourceMangaFilterListFamily._dependencies,
           allTransitiveDependencies:
               SourceMangaFilterListFamily._allTransitiveDependencies,
+          sourceId: sourceId,
+          filter: filter,
         );
+
+  SourceMangaFilterListProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.sourceId,
+    required this.filter,
+  }) : super.internal();
 
   final String sourceId;
   final List<Filter>? filter;
+
+  @override
+  AsyncValue<List<Filter>?> runNotifierBuild(
+    covariant SourceMangaFilterList notifier,
+  ) {
+    return notifier.build(
+      sourceId,
+      filter: filter,
+    );
+  }
+
+  @override
+  Override overrideWith(SourceMangaFilterList Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: SourceMangaFilterListProvider._internal(
+        () => create()
+          ..sourceId = sourceId
+          ..filter = filter,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        sourceId: sourceId,
+        filter: filter,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeNotifierProviderElement<SourceMangaFilterList,
+      AsyncValue<List<Filter>?>> createElement() {
+    return _SourceMangaFilterListProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -295,16 +436,26 @@ class SourceMangaFilterListProvider extends AutoDisposeNotifierProviderImpl<
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin SourceMangaFilterListRef
+    on AutoDisposeNotifierProviderRef<AsyncValue<List<Filter>?>> {
+  /// The parameter `sourceId` of this provider.
+  String get sourceId;
+
+  /// The parameter `filter` of this provider.
+  List<Filter>? get filter;
+}
+
+class _SourceMangaFilterListProviderElement
+    extends AutoDisposeNotifierProviderElement<SourceMangaFilterList,
+        AsyncValue<List<Filter>?>> with SourceMangaFilterListRef {
+  _SourceMangaFilterListProviderElement(super.provider);
 
   @override
-  AsyncValue<List<Filter>?> runNotifierBuild(
-    covariant SourceMangaFilterList notifier,
-  ) {
-    return notifier.build(
-      sourceId,
-      filter: filter,
-    );
-  }
+  String get sourceId => (origin as SourceMangaFilterListProvider).sourceId;
+  @override
+  List<Filter>? get filter => (origin as SourceMangaFilterListProvider).filter;
 }
 
 String _$sourceDisplayModeHash() => r'363b2f9b0683cd1abea761e244ae9362260f4c5e';

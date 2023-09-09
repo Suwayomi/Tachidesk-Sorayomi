@@ -30,9 +30,6 @@ class _SystemHash {
   }
 }
 
-typedef ProcessesQuickSearchRef
-    = AutoDisposeProviderRef<List<QuickSearchResult>?>;
-
 /// See also [processesQuickSearch].
 @ProviderFor(processesQuickSearch)
 const processesQuickSearchProvider = ProcessesQuickSearchFamily();
@@ -80,10 +77,10 @@ class ProcessesQuickSearchProvider
     extends AutoDisposeProvider<List<QuickSearchResult>?> {
   /// See also [processesQuickSearch].
   ProcessesQuickSearchProvider({
-    required this.context,
-  }) : super.internal(
+    required BuildContext context,
+  }) : this._internal(
           (ref) => processesQuickSearch(
-            ref,
+            ref as ProcessesQuickSearchRef,
             context: context,
           ),
           from: processesQuickSearchProvider,
@@ -95,9 +92,43 @@ class ProcessesQuickSearchProvider
           dependencies: ProcessesQuickSearchFamily._dependencies,
           allTransitiveDependencies:
               ProcessesQuickSearchFamily._allTransitiveDependencies,
+          context: context,
         );
 
+  ProcessesQuickSearchProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.context,
+  }) : super.internal();
+
   final BuildContext context;
+
+  @override
+  Override overrideWith(
+    List<QuickSearchResult>? Function(ProcessesQuickSearchRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ProcessesQuickSearchProvider._internal(
+        (ref) => create(ref as ProcessesQuickSearchRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        context: context,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<List<QuickSearchResult>?> createElement() {
+    return _ProcessesQuickSearchProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -111,6 +142,21 @@ class ProcessesQuickSearchProvider
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin ProcessesQuickSearchRef
+    on AutoDisposeProviderRef<List<QuickSearchResult>?> {
+  /// The parameter `context` of this provider.
+  BuildContext get context;
+}
+
+class _ProcessesQuickSearchProviderElement
+    extends AutoDisposeProviderElement<List<QuickSearchResult>?>
+    with ProcessesQuickSearchRef {
+  _ProcessesQuickSearchProviderElement(super.provider);
+
+  @override
+  BuildContext get context => (origin as ProcessesQuickSearchProvider).context;
 }
 
 String _$quickSearchQueryHash() => r'92868329e912423e36de604ccac3e6c1a96056e3';

@@ -92,8 +92,6 @@ class _SystemHash {
   }
 }
 
-typedef SourceQueryRef = AutoDisposeProviderRef<List<Source>?>;
-
 /// See also [sourceQuery].
 @ProviderFor(sourceQuery)
 const sourceQueryProvider = SourceQueryFamily();
@@ -140,10 +138,10 @@ class SourceQueryFamily extends Family<List<Source>?> {
 class SourceQueryProvider extends AutoDisposeProvider<List<Source>?> {
   /// See also [sourceQuery].
   SourceQueryProvider({
-    this.query,
-  }) : super.internal(
+    String? query,
+  }) : this._internal(
           (ref) => sourceQuery(
-            ref,
+            ref as SourceQueryRef,
             query: query,
           ),
           from: sourceQueryProvider,
@@ -155,9 +153,43 @@ class SourceQueryProvider extends AutoDisposeProvider<List<Source>?> {
           dependencies: SourceQueryFamily._dependencies,
           allTransitiveDependencies:
               SourceQueryFamily._allTransitiveDependencies,
+          query: query,
         );
 
+  SourceQueryProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.query,
+  }) : super.internal();
+
   final String? query;
+
+  @override
+  Override overrideWith(
+    List<Source>? Function(SourceQueryRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SourceQueryProvider._internal(
+        (ref) => create(ref as SourceQueryRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        query: query,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<List<Source>?> createElement() {
+    return _SourceQueryProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -171,6 +203,19 @@ class SourceQueryProvider extends AutoDisposeProvider<List<Source>?> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin SourceQueryRef on AutoDisposeProviderRef<List<Source>?> {
+  /// The parameter `query` of this provider.
+  String? get query;
+}
+
+class _SourceQueryProviderElement
+    extends AutoDisposeProviderElement<List<Source>?> with SourceQueryRef {
+  _SourceQueryProviderElement(super.provider);
+
+  @override
+  String? get query => (origin as SourceQueryProvider).query;
 }
 
 String _$sourceLanguageFilterHash() =>

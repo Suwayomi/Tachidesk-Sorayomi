@@ -21,7 +21,7 @@ final serverPortProvider =
 );
 
 typedef _$ServerPort = AutoDisposeNotifier<int?>;
-String _$serverPortToggleHash() => r'ee1ab5dd40f037ecb6958ebc0bab7268422c0040';
+String _$serverPortToggleHash() => r'1cfe71a5d9ab5585525f5b1869a82c8e7ba41722';
 
 /// See also [ServerPortToggle].
 @ProviderFor(ServerPortToggle)
