@@ -42,7 +42,7 @@
   "@channel": {},
   "chapterNumber": "Capítulo {number}",
   "@chapterNumber": {},
-  "chapterSortFetchedDate": "Por dados recolhidos",
+  "chapterSortFetchedDate": "Recolhidos por data",
   "@chapterSortFetchedDate": {},
   "chapterSortSource": "Por fonte",
   "@chapterSortSource": {},
@@ -296,7 +296,7 @@
   "@server": {},
   "serverUrl": "URL do Server",
   "@serverUrl": {},
-  "serverUrlHintText": "Inserir o url do server",
+  "serverUrlHintText": "Url do server",
   "@serverUrlHintText": {},
   "serverVersion": "Versão do servidor",
   "@serverVersion": {},
@@ -388,7 +388,7 @@
   "@quickSearchCategoryMangaChapter": {
     "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
   },
-  "quickSearchCategory": "",
+  "quickSearchCategory": "Ir para a Categoria 'C'",
   "@quickSearchCategory": {
     "description": "Quick Open Hint text for Category C with prefill '#C'"
   },
@@ -428,8 +428,12 @@
   "@findServer": {
     "description": "Button text of Find Server"
   },
-  "readerPadding": "",
+  "readerPadding": "Preenchimento do Leitor",
   "@readerPadding": {
     "description": "Slider title text for Reader Padding"
+  },
+  "daysAgo": "{days} dias atrás",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
   }
 }
