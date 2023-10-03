@@ -13,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/app_sizes.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
@@ -29,7 +30,7 @@ class LibraryScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
     final categoryList = ref.watch(categoryControllerProvider);
-    final showSearch = useState(false);
+    final (showSearch, setShowSearch) = useStateRecord(false);
     useEffect(() {
       categoryList.showToastOnError(toast, withMicrotask: true);
       return;
@@ -47,15 +48,15 @@ class LibraryScreen extends HookConsumerWidget {
             )
           : DefaultTabController(
               length: data!.length,
-              initialIndex:
-                  min(initialCategoryOrder.ifNullOrNegative(), data.length - 1),
+              initialIndex: min(initialCategoryOrder.getValueOnNullOrNegative(),
+                  data.length - 1),
               child: Scaffold(
                 appBar: AppBar(
                   title: Text(context.l10n!.library),
                   centerTitle: true,
                   bottom: PreferredSize(
                     preferredSize: kCalculateAppBarBottomSize(
-                      [data.length.isGreaterThan(1), showSearch.value],
+                      [data.length.isGreaterThan(1), showSearch],
                     ),
                     child: Column(
                       children: [
@@ -67,7 +68,7 @@ class LibraryScreen extends HookConsumerWidget {
                                 .toList(),
                             dividerColor: Colors.transparent,
                           ),
-                        if (showSearch.value)
+                        if (showSearch)
                           Align(
                             alignment: Alignment.centerRight,
                             child: SearchField(
@@ -75,7 +76,7 @@ class LibraryScreen extends HookConsumerWidget {
                               onChanged: (val) => ref
                                   .read(libraryQueryProvider.notifier)
                                   .update(val),
-                              onClose: () => showSearch.value = false,
+                              onClose: () => setShowSearch(false),
                             ),
                           ),
                       ],
@@ -83,7 +84,7 @@ class LibraryScreen extends HookConsumerWidget {
                   ),
                   actions: [
                     IconButton(
-                      onPressed: () => showSearch.value = true,
+                      onPressed: () => setShowSearch(true),
                       icon: const Icon(Icons.search_rounded),
                     ),
                     Builder(
@@ -135,7 +136,7 @@ class LibraryScreen extends HookConsumerWidget {
                         child: TabBarView(
                           children: data
                               .map((e) => CategoryMangaList(
-                                  categoryId: e.id.ifNullOrNegative()))
+                                  categoryId: e.id.getValueOnNullOrNegative()))
                               .toList(),
                         ),
                       ),

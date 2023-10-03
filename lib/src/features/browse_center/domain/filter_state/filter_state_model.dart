@@ -11,48 +11,41 @@ import '../filter/filter_model.dart';
 part 'filter_state_model.freezed.dart';
 part 'filter_state_model.g.dart';
 
-abstract class _FilterStateGeneric<T> {
-  T? get state;
-  String? get name;
-}
-
 @Freezed(
   unionKey: 'type',
   unionValueCase: FreezedUnionCase.pascal,
   fallbackUnion: 'separator',
 )
-class FilterState with _$FilterState {
-  @Implements<_FilterStateGeneric<int>>()
-  const factory FilterState.header({int? state, String? name}) = _Header;
+sealed class FilterState with _$FilterState {
+  const factory FilterState.header({int? state, String? name}) = FilterHeader;
 
-  @Implements<_FilterStateGeneric<int>>()
-  const factory FilterState.separator({int? state, String? name}) = _Separator;
+  const factory FilterState.separator({int? state, String? name}) =
+      FilterSeparator;
 
-  @Implements<_FilterStateGeneric<String>>()
-  const factory FilterState.text({String? state, String? name}) = _Text;
+  const factory FilterState.text({String? state, String? name}) = FilterText;
 
-  @Implements<_FilterStateGeneric<bool>>()
-  const factory FilterState.checkBox({bool? state, String? name}) = _CheckBox;
+  const factory FilterState.checkBox({bool? state, String? name}) =
+      FilterCheckBox;
 
-  @Implements<_FilterStateGeneric<int>>()
-  const factory FilterState.triState({int? state, String? name}) = _TriState;
+  const factory FilterState.triState({int? state, String? name}) =
+      FilterTriState;
 
-  @Implements<_FilterStateGeneric<SortState>>()
-  const factory FilterState.sort(
-      {SortState? state, String? name, List<String>? values}) = _Sort;
+  const factory FilterState.sort({
+    SortState? state,
+    String? name,
+    List<String>? values,
+  }) = FilterSort;
 
-  @Implements<_FilterStateGeneric<int>>()
   const factory FilterState.select({
     int? state,
     String? name,
     List<String>? displayValues,
-  }) = _Select;
+  }) = FilterSelect;
 
-  @Implements<_FilterStateGeneric<List<Filter>>>()
   const factory FilterState.group({
     List<Filter>? state,
     String? name,
-  }) = _Group;
+  }) = FilterGroup;
 
   factory FilterState.fromJson(Map<String, dynamic> json) =>
       _$FilterStateFromJson(json);

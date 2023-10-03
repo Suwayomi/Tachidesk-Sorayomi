@@ -25,7 +25,7 @@ Future<void> main() async {
   final packageInfo = await PackageInfo.fromPlatform();
   final sharedPreferences = await SharedPreferences.getInstance();
 
-  Directory? appDirectory;
+  final Directory? appDirectory;
   if (!kIsWeb) {
     final appDocDirectory = await getApplicationDocumentsDirectory();
     appDirectory = Directory(path.join(appDocDirectory.path, 'Sorayomi'));

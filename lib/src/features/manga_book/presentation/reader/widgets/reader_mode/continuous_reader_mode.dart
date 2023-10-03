@@ -14,6 +14,7 @@ import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/endpoints.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
@@ -41,28 +42,30 @@ class ContinuousReaderMode extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useMemoized(() => ItemScrollController());
     final positionsListener = useMemoized(() => ItemPositionsListener.create());
-    final currentIndex = useState(
-      chapter.read.ifNull() ? 0 : (chapter.lastPageRead).ifNullOrNegative(),
+    final (currentIndex, setCurrentIndex) = useStateRecord(
+      chapter.read.ifNull()
+          ? 0
+          : (chapter.lastPageRead).getValueOnNullOrNegative(),
     );
     useEffect(() {
-      if (onPageChanged != null) onPageChanged!(currentIndex.value);
+      if (onPageChanged != null) onPageChanged!(currentIndex);
       return;
-    }, [currentIndex.value]);
+    }, [currentIndex]);
     useEffect(() {
       listener() {
         final positions = positionsListener.itemPositions.value.toList();
         if (positions.isSingletonList) {
-          currentIndex.value = (positions.first.index);
+          setCurrentIndex(positions.first.index);
         } else {
           final newPositions = positions.where((ItemPosition position) =>
               position.itemTrailingEdge.liesBetween());
           if (newPositions.isBlank) return;
-          currentIndex.value = newPositions
+          setCurrentIndex(newPositions
               .reduce((ItemPosition max, ItemPosition position) =>
                   position.itemTrailingEdge > max.itemTrailingEdge
                       ? position
                       : max)
-              .index;
+              .index);
         }
       }
 
@@ -75,7 +78,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
-      currentIndex: currentIndex.value,
+      currentIndex: currentIndex,
       onChanged: (index) => scrollController.jumpTo(index: index),
       onPrevious: () {
         final ItemPosition itemPosition =
@@ -118,8 +121,9 @@ class ContinuousReaderMode extends HookConsumerWidget {
       child: ScrollablePositionedList.separated(
         itemScrollController: scrollController,
         itemPositionsListener: positionsListener,
-        initialScrollIndex:
-            chapter.read.ifNull() ? 0 : chapter.lastPageRead.ifNullOrNegative(),
+        initialScrollIndex: chapter.read.ifNull()
+            ? 0
+            : chapter.lastPageRead.getValueOnNullOrNegative(),
         scrollDirection: scrollDirection,
         reverse: reverse,
         itemCount: chapter.pageCount ?? 0,
@@ -127,6 +131,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
             showSeparator ? KSizedBox.h16.size : const SizedBox.shrink(),
         itemBuilder: (BuildContext context, int index) {
           final image = ServerImage(
+            showReloadButton: true,
             fit: scrollDirection == Axis.vertical
                 ? BoxFit.fitWidth
                 : BoxFit.fitHeight,

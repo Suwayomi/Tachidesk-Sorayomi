@@ -23,6 +23,7 @@ class BigScreenMangaDetails extends ConsumerWidget {
     required this.manga,
     required this.mangaId,
     required this.selectedChapters,
+    required this.setSelectedChapters,
     required this.onListRefresh,
     required this.onRefresh,
     required this.onDescriptionRefresh,
@@ -32,7 +33,8 @@ class BigScreenMangaDetails extends ConsumerWidget {
   final AsyncValueSetter<bool> onListRefresh;
   final AsyncValueSetter<bool> onDescriptionRefresh;
   final AsyncValueSetter<bool> onRefresh;
-  final ValueNotifier<Map<int, Chapter>> selectedChapters;
+  final Map<int, Chapter> selectedChapters;
+  final ValueSetter<Map<int, Chapter>> setSelectedChapters;
   final AsyncValue<List<Chapter>?> chapterList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -84,13 +86,13 @@ class BigScreenMangaDetails extends ConsumerWidget {
                               manga: manga,
                               chapter: chapter,
                               updateData: () => onListRefresh(false),
-                              isSelected: selectedChapters.value
-                                  .containsKey(chapter.id),
-                              canTapSelect: selectedChapters.value.isNotEmpty,
+                              isSelected:
+                                  selectedChapters.containsKey(chapter.id),
+                              canTapSelect: selectedChapters.isNotEmpty,
                               toggleSelect: (Chapter val) {
                                 if ((val.id).isNull) return;
-                                selectedChapters.value = selectedChapters.value
-                                    .toggleKey(val.id!, val);
+                                setSelectedChapters(
+                                    selectedChapters.toggleKey(val.id!, val));
                               },
                             );
                           },

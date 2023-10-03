@@ -47,7 +47,7 @@ extension StringExtensions on String? {
   String get incrementZeroPaddedInt {
     if (isNull) return "1";
     final valLen = this!.length;
-    final newVal = (int.tryParse(this!).ifNullOrNegative()) + 1;
+    final newVal = (int.tryParse(this!).getValueOnNullOrNegative()) + 1;
     final noOfZeros = max(valLen - (newVal.toString()).length, 0);
     return "0" * noOfZeros + newVal.toString();
   }

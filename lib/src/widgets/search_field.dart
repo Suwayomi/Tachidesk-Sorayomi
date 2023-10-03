@@ -31,6 +31,18 @@ class SearchField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useTextEditingController(text: initialText);
+
+    final closeIcon = onClose != null
+        ? IconButton(
+            onPressed: () {
+              onClose?.call();
+              onChanged?.call(null);
+              onSubmitted?.call(null);
+            },
+            icon: const Icon(Icons.close_rounded),
+          )
+        : null;
+
     return SizedBox(
       width: context.isLargeTablet ? context.widthScale(scale: .3) : null,
       child: Padding(
@@ -44,16 +56,7 @@ class SearchField extends HookWidget {
             isDense: true,
             border: const OutlineInputBorder(),
             labelText: hintText ?? context.l10n!.search,
-            suffixIcon: onClose != null
-                ? IconButton(
-                    onPressed: () {
-                      onClose!();
-                      if (onChanged != null) onChanged!(null);
-                      if (onSubmitted != null) onSubmitted!(null);
-                    },
-                    icon: const Icon(Icons.close_rounded),
-                  )
-                : null,
+            suffixIcon: closeIcon,
           ),
         ),
       ),

@@ -88,11 +88,11 @@ class _$UpdateStatusCopyWithImpl<$Res, $Val extends UpdateStatus>
 }
 
 /// @nodoc
-abstract class _$$_UpdateStatusCopyWith<$Res>
+abstract class _$$UpdateStatusImplCopyWith<$Res>
     implements $UpdateStatusCopyWith<$Res> {
-  factory _$$_UpdateStatusCopyWith(
-          _$_UpdateStatus value, $Res Function(_$_UpdateStatus) then) =
-      __$$_UpdateStatusCopyWithImpl<$Res>;
+  factory _$$UpdateStatusImplCopyWith(
+          _$UpdateStatusImpl value, $Res Function(_$UpdateStatusImpl) then) =
+      __$$UpdateStatusImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -103,11 +103,11 @@ abstract class _$$_UpdateStatusCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UpdateStatusCopyWithImpl<$Res>
-    extends _$UpdateStatusCopyWithImpl<$Res, _$_UpdateStatus>
-    implements _$$_UpdateStatusCopyWith<$Res> {
-  __$$_UpdateStatusCopyWithImpl(
-      _$_UpdateStatus _value, $Res Function(_$_UpdateStatus) _then)
+class __$$UpdateStatusImplCopyWithImpl<$Res>
+    extends _$UpdateStatusCopyWithImpl<$Res, _$UpdateStatusImpl>
+    implements _$$UpdateStatusImplCopyWith<$Res> {
+  __$$UpdateStatusImplCopyWithImpl(
+      _$UpdateStatusImpl _value, $Res Function(_$UpdateStatusImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$_UpdateStatusCopyWithImpl<$Res>
     Object? completed = freezed,
     Object? failed = freezed,
   }) {
-    return _then(_$_UpdateStatus(
+    return _then(_$UpdateStatusImpl(
       pending: freezed == pending
           ? _value._pending
           : pending // ignore: cast_nullable_to_non_nullable
@@ -141,8 +141,8 @@ class __$$_UpdateStatusCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UpdateStatus extends _UpdateStatus {
-  _$_UpdateStatus(
+class _$UpdateStatusImpl extends _UpdateStatus {
+  _$UpdateStatusImpl(
       {@JsonKey(name: "PENDING") final List<Manga>? pending,
       @JsonKey(name: "RUNNING") final List<Manga>? running,
       @JsonKey(name: "COMPLETE") final List<Manga>? completed,
@@ -153,8 +153,8 @@ class _$_UpdateStatus extends _UpdateStatus {
         _failed = failed,
         super._();
 
-  factory _$_UpdateStatus.fromJson(Map<String, dynamic> json) =>
-      _$$_UpdateStatusFromJson(json);
+  factory _$UpdateStatusImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UpdateStatusImplFromJson(json);
 
   final List<Manga>? _pending;
   @override
@@ -209,7 +209,7 @@ class _$_UpdateStatus extends _UpdateStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateStatus &&
+            other is _$UpdateStatusImpl &&
             const DeepCollectionEquality().equals(other._pending, _pending) &&
             const DeepCollectionEquality().equals(other._running, _running) &&
             const DeepCollectionEquality()
@@ -229,12 +229,12 @@ class _$_UpdateStatus extends _UpdateStatus {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdateStatusCopyWith<_$_UpdateStatus> get copyWith =>
-      __$$_UpdateStatusCopyWithImpl<_$_UpdateStatus>(this, _$identity);
+  _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
+      __$$UpdateStatusImplCopyWithImpl<_$UpdateStatusImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UpdateStatusToJson(
+    return _$$UpdateStatusImplToJson(
       this,
     );
   }
@@ -245,11 +245,11 @@ abstract class _UpdateStatus extends UpdateStatus {
       {@JsonKey(name: "PENDING") final List<Manga>? pending,
       @JsonKey(name: "RUNNING") final List<Manga>? running,
       @JsonKey(name: "COMPLETE") final List<Manga>? completed,
-      @JsonKey(name: "FAILED") final List<Manga>? failed}) = _$_UpdateStatus;
+      @JsonKey(name: "FAILED") final List<Manga>? failed}) = _$UpdateStatusImpl;
   _UpdateStatus._() : super._();
 
   factory _UpdateStatus.fromJson(Map<String, dynamic> json) =
-      _$_UpdateStatus.fromJson;
+      _$UpdateStatusImpl.fromJson;
 
   @override
   @JsonKey(name: "PENDING")
@@ -265,6 +265,6 @@ abstract class _UpdateStatus extends UpdateStatus {
   List<Manga>? get failed;
   @override
   @JsonKey(ignore: true)
-  _$$_UpdateStatusCopyWith<_$_UpdateStatus> get copyWith =>
+  _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

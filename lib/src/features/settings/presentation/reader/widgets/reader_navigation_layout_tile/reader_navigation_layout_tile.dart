@@ -47,7 +47,7 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
         builder: (context) => RadioListPopup<ReaderNavigationLayout>(
           title: context.l10n!.readerNavigationLayout,
           optionList: ReaderNavigationLayout.values.sublist(1),
-          optionDisplayName: (value) => value.toLocale(context),
+          getOptionTitle: (value) => value.toLocale(context),
           value: readerNavigationLayout ?? ReaderNavigationLayout.disabled,
           onChange: (enumValue) async {
             ref

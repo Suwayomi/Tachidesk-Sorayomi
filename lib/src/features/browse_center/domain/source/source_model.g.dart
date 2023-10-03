@@ -6,7 +6,7 @@ part of 'source_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(
+_$SourceImpl _$$SourceImplFromJson(Map<String, dynamic> json) => _$SourceImpl(
       displayName: json['displayName'] as String?,
       iconUrl: json['iconUrl'] as String?,
       id: json['id'] as String?,
@@ -17,7 +17,8 @@ _$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(
       supportsLatest: json['supportsLatest'] as bool?,
     );
 
-Map<String, dynamic> _$$_SourceToJson(_$_Source instance) => <String, dynamic>{
+Map<String, dynamic> _$$SourceImplToJson(_$SourceImpl instance) =>
+    <String, dynamic>{
       'displayName': instance.displayName,
       'iconUrl': instance.iconUrl,
       'id': instance.id,

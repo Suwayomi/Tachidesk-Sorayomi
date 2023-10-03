@@ -81,25 +81,24 @@ class AboutScreen extends HookConsumerWidget {
     required Toast toast,
   }) async {
     toast.show(context.l10n!.searchingForUpdates);
-    updateCallback().then((value) {
-      toast.close();
-      value.whenOrNull(
-        data: (version) {
-          if (version != null) {
-            appUpdateDialog(
-              title: title ?? context.l10n!.appTitle,
-              newRelease: "v${version.canonicalizedVersion}",
-              context: context,
-              toast: toast,
-            );
-          } else {
-            toast.show(context.l10n!.noUpdatesAvailable);
-          }
-        },
-        error: (error, stackTrace) => value.showToastOnError(toast),
-      );
-      return;
-    });
+    final result = await updateCallback();
+    if (context.mounted) return;
+    toast.close();
+    result.whenOrNull(
+      data: (version) {
+        if (version != null) {
+          appUpdateDialog(
+            title: title ?? context.l10n!.appTitle,
+            newRelease: "v${version.canonicalizedVersion}",
+            context: context,
+            toast: toast,
+          );
+        } else {
+          toast.show(context.l10n!.noUpdatesAvailable);
+        }
+      },
+      error: (error, stackTrace) => result.showToastOnError(toast),
+    );
   }
 
   @override
@@ -172,7 +171,7 @@ class AboutScreen extends HookConsumerWidget {
                 value: (about.buildTime).isNull
                     ? null
                     : DateTime.fromMillisecondsSinceEpoch(
-                        (about.buildTime.ifNullOrNegative()) * 1000,
+                        (about.buildTime.getValueOnNullOrNegative()) * 1000,
                       ).toDateString,
               ),
               if (serverVer.isNotBlank)

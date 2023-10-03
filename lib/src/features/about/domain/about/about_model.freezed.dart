@@ -103,9 +103,10 @@ class _$AboutCopyWithImpl<$Res, $Val extends About>
 }
 
 /// @nodoc
-abstract class _$$_AboutCopyWith<$Res> implements $AboutCopyWith<$Res> {
-  factory _$$_AboutCopyWith(_$_About value, $Res Function(_$_About) then) =
-      __$$_AboutCopyWithImpl<$Res>;
+abstract class _$$AboutImplCopyWith<$Res> implements $AboutCopyWith<$Res> {
+  factory _$$AboutImplCopyWith(
+          _$AboutImpl value, $Res Function(_$AboutImpl) then) =
+      __$$AboutImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -119,9 +120,11 @@ abstract class _$$_AboutCopyWith<$Res> implements $AboutCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AboutCopyWithImpl<$Res> extends _$AboutCopyWithImpl<$Res, _$_About>
-    implements _$$_AboutCopyWith<$Res> {
-  __$$_AboutCopyWithImpl(_$_About _value, $Res Function(_$_About) _then)
+class __$$AboutImplCopyWithImpl<$Res>
+    extends _$AboutCopyWithImpl<$Res, _$AboutImpl>
+    implements _$$AboutImplCopyWith<$Res> {
+  __$$AboutImplCopyWithImpl(
+      _$AboutImpl _value, $Res Function(_$AboutImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -135,7 +138,7 @@ class __$$_AboutCopyWithImpl<$Res> extends _$AboutCopyWithImpl<$Res, _$_About>
     Object? github = freezed,
     Object? discord = freezed,
   }) {
-    return _then(_$_About(
+    return _then(_$AboutImpl(
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -170,8 +173,8 @@ class __$$_AboutCopyWithImpl<$Res> extends _$AboutCopyWithImpl<$Res, _$_About>
 
 /// @nodoc
 @JsonSerializable()
-class _$_About implements _About {
-  const _$_About(
+class _$AboutImpl implements _About {
+  const _$AboutImpl(
       {this.name,
       this.version,
       this.revision,
@@ -180,8 +183,8 @@ class _$_About implements _About {
       this.github,
       this.discord});
 
-  factory _$_About.fromJson(Map<String, dynamic> json) =>
-      _$$_AboutFromJson(json);
+  factory _$AboutImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AboutImplFromJson(json);
 
   @override
   final String? name;
@@ -207,7 +210,7 @@ class _$_About implements _About {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_About &&
+            other is _$AboutImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.version, version) || other.version == version) &&
             (identical(other.revision, revision) ||
@@ -228,12 +231,12 @@ class _$_About implements _About {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AboutCopyWith<_$_About> get copyWith =>
-      __$$_AboutCopyWithImpl<_$_About>(this, _$identity);
+  _$$AboutImplCopyWith<_$AboutImpl> get copyWith =>
+      __$$AboutImplCopyWithImpl<_$AboutImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AboutToJson(
+    return _$$AboutImplToJson(
       this,
     );
   }
@@ -247,9 +250,9 @@ abstract class _About implements About {
       final String? buildType,
       final int? buildTime,
       final String? github,
-      final String? discord}) = _$_About;
+      final String? discord}) = _$AboutImpl;
 
-  factory _About.fromJson(Map<String, dynamic> json) = _$_About.fromJson;
+  factory _About.fromJson(Map<String, dynamic> json) = _$AboutImpl.fromJson;
 
   @override
   String? get name;
@@ -267,6 +270,6 @@ abstract class _About implements About {
   String? get discord;
   @override
   @JsonKey(ignore: true)
-  _$$_AboutCopyWith<_$_About> get copyWith =>
+  _$$AboutImplCopyWith<_$AboutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

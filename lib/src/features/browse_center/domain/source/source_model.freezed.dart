@@ -130,9 +130,10 @@ class _$SourceCopyWithImpl<$Res, $Val extends Source>
 }
 
 /// @nodoc
-abstract class _$$_SourceCopyWith<$Res> implements $SourceCopyWith<$Res> {
-  factory _$$_SourceCopyWith(_$_Source value, $Res Function(_$_Source) then) =
-      __$$_SourceCopyWithImpl<$Res>;
+abstract class _$$SourceImplCopyWith<$Res> implements $SourceCopyWith<$Res> {
+  factory _$$SourceImplCopyWith(
+          _$SourceImpl value, $Res Function(_$SourceImpl) then) =
+      __$$SourceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -153,10 +154,11 @@ abstract class _$$_SourceCopyWith<$Res> implements $SourceCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SourceCopyWithImpl<$Res>
-    extends _$SourceCopyWithImpl<$Res, _$_Source>
-    implements _$$_SourceCopyWith<$Res> {
-  __$$_SourceCopyWithImpl(_$_Source _value, $Res Function(_$_Source) _then)
+class __$$SourceImplCopyWithImpl<$Res>
+    extends _$SourceCopyWithImpl<$Res, _$SourceImpl>
+    implements _$$SourceImplCopyWith<$Res> {
+  __$$SourceImplCopyWithImpl(
+      _$SourceImpl _value, $Res Function(_$SourceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -171,7 +173,7 @@ class __$$_SourceCopyWithImpl<$Res>
     Object? name = freezed,
     Object? supportsLatest = freezed,
   }) {
-    return _then(_$_Source(
+    return _then(_$SourceImpl(
       displayName: freezed == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -210,8 +212,8 @@ class __$$_SourceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Source implements _Source {
-  _$_Source(
+class _$SourceImpl implements _Source {
+  _$SourceImpl(
       {this.displayName,
       this.iconUrl,
       this.id,
@@ -224,8 +226,8 @@ class _$_Source implements _Source {
       this.name,
       this.supportsLatest});
 
-  factory _$_Source.fromJson(Map<String, dynamic> json) =>
-      _$$_SourceFromJson(json);
+  factory _$SourceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SourceImplFromJson(json);
 
   @override
   final String? displayName;
@@ -256,7 +258,7 @@ class _$_Source implements _Source {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Source &&
+            other is _$SourceImpl &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
@@ -278,12 +280,12 @@ class _$_Source implements _Source {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SourceCopyWith<_$_Source> get copyWith =>
-      __$$_SourceCopyWithImpl<_$_Source>(this, _$identity);
+  _$$SourceImplCopyWith<_$SourceImpl> get copyWith =>
+      __$$SourceImplCopyWithImpl<_$SourceImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SourceToJson(
+    return _$$SourceImplToJson(
       this,
     );
   }
@@ -301,9 +303,9 @@ abstract class _Source implements Source {
           toJson: LanguageJsonConverter.toJson)
       final Language? lang,
       final String? name,
-      final bool? supportsLatest}) = _$_Source;
+      final bool? supportsLatest}) = _$SourceImpl;
 
-  factory _Source.fromJson(Map<String, dynamic> json) = _$_Source.fromJson;
+  factory _Source.fromJson(Map<String, dynamic> json) = _$SourceImpl.fromJson;
 
   @override
   String? get displayName;
@@ -326,6 +328,6 @@ abstract class _Source implements Source {
   bool? get supportsLatest;
   @override
   @JsonKey(ignore: true)
-  _$$_SourceCopyWith<_$_Source> get copyWith =>
+  _$$SourceImplCopyWith<_$SourceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

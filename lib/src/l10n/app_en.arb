@@ -502,6 +502,9 @@
     "@refresh": {
         "description": "Refresh button text"
     },
+    "@reload": {
+        "description": "Reload button text"
+    },
     "@reset": {
         "description": "Button text of reset button in source filters"
     },
@@ -805,6 +808,7 @@
     "readerMagnifierSize": "Magnifier Size",
     "reddit": "Reddit",
     "refresh": "Refresh",
+    "reload": "Reload",
     "reset": "Reset",
     "restoreBackupDescription": "Restore Tachidesk from backup",
     "restoreBackupTitle": "Restore Backup",

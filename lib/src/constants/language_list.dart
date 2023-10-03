@@ -19,6 +19,17 @@ String getLanguageNameFormLocale(Locale locale) {
   return displayName ?? locale.toLanguageTag();
 }
 
+String getLanguageNameInEnFormLocale(Locale locale) {
+  String? name;
+  final localeCode = locale.toLanguageTag().toLowerCase();
+  if (languageMap[localeCode] != null) {
+    name = languageMap[localeCode]!.name;
+  } else if (languageMap[locale.languageCode.toLowerCase()] != null) {
+    name = languageMap[locale.languageCode.toLowerCase()]!.name;
+  }
+  return name ?? locale.toLanguageTag();
+}
+
 final languageMap = {
   for (final e in customLanguageList) e['code'] ?? "other": Language.fromJson(e)
 };
@@ -43,6 +54,7 @@ const customLanguageList = [
 
 const languageList = [
   {"code": 'en', "name": 'English', "nativeName": 'English'},
+  {"code": 'en-us', "name": 'English (US)', "nativeName": 'English (US)'},
   {"code": 'ca', "name": 'Catalan; Valencian', "nativeName": 'Català'},
   {"code": 'de', "name": 'German', "nativeName": 'Deutsch'},
   {"code": 'es', "name": 'Spanish; Castilian', "nativeName": 'Español'},
@@ -67,6 +79,7 @@ const languageList = [
   {"code": 'ar', "name": 'Arabic', "nativeName": 'العربية'},
   {"code": 'hi', "name": 'Hindi', "nativeName": 'हिन्दी'},
   {"code": 'th', "name": 'Thai', "nativeName": 'ไทย'},
+  {"code": 'zh', "name": 'Chinese', "nativeName": '中文'},
   {"code": 'zh-hans', "name": 'Simplified Chinese', "nativeName": '简体中文'},
   {"code": 'zh-hant', "name": 'Traditional Chinese', "nativeName": '繁体中文'},
   {

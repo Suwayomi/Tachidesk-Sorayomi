@@ -12,10 +12,6 @@ import '../utils/extensions/custom_extensions.dart';
 List<QuickSearchResult> getQuickShowHintTextList(BuildContext context) {
   return [
     QuickSearchResult.helpText(
-      prefill: 'X',
-      hintText: context.l10n!.quickSearchContext,
-    ),
-    QuickSearchResult.helpText(
       prefill: '@S',
       pattern: '@',
       hintText: context.l10n!.quickSearchSource,
@@ -39,6 +35,10 @@ List<QuickSearchResult> getQuickShowHintTextList(BuildContext context) {
       prefill: '#C/M:CN',
       pattern: '#/:',
       hintText: context.l10n!.quickSearchCategoryMangaChapter,
+    ),
+    QuickSearchResult.helpText(
+      prefill: 'X',
+      hintText: context.l10n!.quickSearchContext,
     ),
   ];
 }

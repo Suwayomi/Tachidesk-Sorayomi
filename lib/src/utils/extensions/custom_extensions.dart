@@ -14,6 +14,7 @@ import 'package:intl/intl.dart';
 
 import '../../widgets/custom_circular_progress_indicator.dart';
 import '../../widgets/emoticons.dart';
+import '../misc/app_utils.dart';
 import '../misc/toast/toast.dart';
 
 part 'custom_extensions/async_value_extensions.dart';

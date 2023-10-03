@@ -132,11 +132,11 @@ class _$DownloadsQueueCopyWithImpl<$Res, $Val extends DownloadsQueue>
 }
 
 /// @nodoc
-abstract class _$$_DownloadsQueueCopyWith<$Res>
+abstract class _$$DownloadsQueueImplCopyWith<$Res>
     implements $DownloadsQueueCopyWith<$Res> {
-  factory _$$_DownloadsQueueCopyWith(
-          _$_DownloadsQueue value, $Res Function(_$_DownloadsQueue) then) =
-      __$$_DownloadsQueueCopyWithImpl<$Res>;
+  factory _$$DownloadsQueueImplCopyWith(_$DownloadsQueueImpl value,
+          $Res Function(_$DownloadsQueueImpl) then) =
+      __$$DownloadsQueueImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -155,11 +155,11 @@ abstract class _$$_DownloadsQueueCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DownloadsQueueCopyWithImpl<$Res>
-    extends _$DownloadsQueueCopyWithImpl<$Res, _$_DownloadsQueue>
-    implements _$$_DownloadsQueueCopyWith<$Res> {
-  __$$_DownloadsQueueCopyWithImpl(
-      _$_DownloadsQueue _value, $Res Function(_$_DownloadsQueue) _then)
+class __$$DownloadsQueueImplCopyWithImpl<$Res>
+    extends _$DownloadsQueueCopyWithImpl<$Res, _$DownloadsQueueImpl>
+    implements _$$DownloadsQueueImplCopyWith<$Res> {
+  __$$DownloadsQueueImplCopyWithImpl(
+      _$DownloadsQueueImpl _value, $Res Function(_$DownloadsQueueImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -173,7 +173,7 @@ class __$$_DownloadsQueueCopyWithImpl<$Res>
     Object? state = freezed,
     Object? tries = freezed,
   }) {
-    return _then(_$_DownloadsQueue(
+    return _then(_$DownloadsQueueImpl(
       chapter: freezed == chapter
           ? _value.chapter
           : chapter // ignore: cast_nullable_to_non_nullable
@@ -208,8 +208,8 @@ class __$$_DownloadsQueueCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DownloadsQueue implements _DownloadsQueue {
-  _$_DownloadsQueue(
+class _$DownloadsQueueImpl implements _DownloadsQueue {
+  _$DownloadsQueueImpl(
       {this.chapter,
       this.chapterIndex,
       this.manga,
@@ -218,8 +218,8 @@ class _$_DownloadsQueue implements _DownloadsQueue {
       this.state,
       this.tries});
 
-  factory _$_DownloadsQueue.fromJson(Map<String, dynamic> json) =>
-      _$$_DownloadsQueueFromJson(json);
+  factory _$DownloadsQueueImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DownloadsQueueImplFromJson(json);
 
   @override
   final Chapter? chapter;
@@ -245,7 +245,7 @@ class _$_DownloadsQueue implements _DownloadsQueue {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DownloadsQueue &&
+            other is _$DownloadsQueueImpl &&
             (identical(other.chapter, chapter) || other.chapter == chapter) &&
             (identical(other.chapterIndex, chapterIndex) ||
                 other.chapterIndex == chapterIndex) &&
@@ -265,12 +265,13 @@ class _$_DownloadsQueue implements _DownloadsQueue {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DownloadsQueueCopyWith<_$_DownloadsQueue> get copyWith =>
-      __$$_DownloadsQueueCopyWithImpl<_$_DownloadsQueue>(this, _$identity);
+  _$$DownloadsQueueImplCopyWith<_$DownloadsQueueImpl> get copyWith =>
+      __$$DownloadsQueueImplCopyWithImpl<_$DownloadsQueueImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DownloadsQueueToJson(
+    return _$$DownloadsQueueImplToJson(
       this,
     );
   }
@@ -284,10 +285,10 @@ abstract class _DownloadsQueue implements DownloadsQueue {
       final int? mangaId,
       final double? progress,
       final String? state,
-      final int? tries}) = _$_DownloadsQueue;
+      final int? tries}) = _$DownloadsQueueImpl;
 
   factory _DownloadsQueue.fromJson(Map<String, dynamic> json) =
-      _$_DownloadsQueue.fromJson;
+      _$DownloadsQueueImpl.fromJson;
 
   @override
   Chapter? get chapter;
@@ -305,6 +306,6 @@ abstract class _DownloadsQueue implements DownloadsQueue {
   int? get tries;
   @override
   @JsonKey(ignore: true)
-  _$$_DownloadsQueueCopyWith<_$_DownloadsQueue> get copyWith =>
+  _$$DownloadsQueueImplCopyWith<_$DownloadsQueueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

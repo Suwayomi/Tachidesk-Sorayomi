@@ -50,8 +50,8 @@ class ServerPortTile extends ConsumerWidget {
     return ListTile(
       leading: const Icon(Icons.dns_rounded),
       title: Text(context.l10n!.serverPort),
-      subtitle: serverToggle && serverPort != null
-          ? Text(serverPort.toString())
+      subtitle: (serverToggle && serverPort != null)
+          ? (Text(serverPort.toString()))
           : null,
       trailing: Switch(
         value: serverToggle,

@@ -128,21 +128,23 @@ class _$QuickSearchResultCopyWithImpl<$Res, $Val extends QuickSearchResult>
 }
 
 /// @nodoc
-abstract class _$$HelpTextQuickSearchResultCopyWith<$Res> {
-  factory _$$HelpTextQuickSearchResultCopyWith(
-          _$HelpTextQuickSearchResult value,
-          $Res Function(_$HelpTextQuickSearchResult) then) =
-      __$$HelpTextQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$HelpTextQuickSearchResultImplCopyWith<$Res> {
+  factory _$$HelpTextQuickSearchResultImplCopyWith(
+          _$HelpTextQuickSearchResultImpl value,
+          $Res Function(_$HelpTextQuickSearchResultImpl) then) =
+      __$$HelpTextQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String prefill, String? pattern, String hintText});
 }
 
 /// @nodoc
-class __$$HelpTextQuickSearchResultCopyWithImpl<$Res>
-    extends _$QuickSearchResultCopyWithImpl<$Res, _$HelpTextQuickSearchResult>
-    implements _$$HelpTextQuickSearchResultCopyWith<$Res> {
-  __$$HelpTextQuickSearchResultCopyWithImpl(_$HelpTextQuickSearchResult _value,
-      $Res Function(_$HelpTextQuickSearchResult) _then)
+class __$$HelpTextQuickSearchResultImplCopyWithImpl<$Res>
+    extends _$QuickSearchResultCopyWithImpl<$Res,
+        _$HelpTextQuickSearchResultImpl>
+    implements _$$HelpTextQuickSearchResultImplCopyWith<$Res> {
+  __$$HelpTextQuickSearchResultImplCopyWithImpl(
+      _$HelpTextQuickSearchResultImpl _value,
+      $Res Function(_$HelpTextQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -152,7 +154,7 @@ class __$$HelpTextQuickSearchResultCopyWithImpl<$Res>
     Object? pattern = freezed,
     Object? hintText = null,
   }) {
-    return _then(_$HelpTextQuickSearchResult(
+    return _then(_$HelpTextQuickSearchResultImpl(
       prefill: null == prefill
           ? _value.prefill
           : prefill // ignore: cast_nullable_to_non_nullable
@@ -171,8 +173,8 @@ class __$$HelpTextQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HelpTextQuickSearchResult implements HelpTextQuickSearchResult {
-  const _$HelpTextQuickSearchResult(
+class _$HelpTextQuickSearchResultImpl implements HelpTextQuickSearchResult {
+  const _$HelpTextQuickSearchResultImpl(
       {required this.prefill, this.pattern, required this.hintText});
 
   @override
@@ -191,7 +193,7 @@ class _$HelpTextQuickSearchResult implements HelpTextQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HelpTextQuickSearchResult &&
+            other is _$HelpTextQuickSearchResultImpl &&
             (identical(other.prefill, prefill) || other.prefill == prefill) &&
             (identical(other.pattern, pattern) || other.pattern == pattern) &&
             (identical(other.hintText, hintText) ||
@@ -204,9 +206,9 @@ class _$HelpTextQuickSearchResult implements HelpTextQuickSearchResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HelpTextQuickSearchResultCopyWith<_$HelpTextQuickSearchResult>
-      get copyWith => __$$HelpTextQuickSearchResultCopyWithImpl<
-          _$HelpTextQuickSearchResult>(this, _$identity);
+  _$$HelpTextQuickSearchResultImplCopyWith<_$HelpTextQuickSearchResultImpl>
+      get copyWith => __$$HelpTextQuickSearchResultImplCopyWithImpl<
+          _$HelpTextQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -328,21 +330,22 @@ abstract class HelpTextQuickSearchResult implements QuickSearchResult {
   const factory HelpTextQuickSearchResult(
       {required final String prefill,
       final String? pattern,
-      required final String hintText}) = _$HelpTextQuickSearchResult;
+      required final String hintText}) = _$HelpTextQuickSearchResultImpl;
 
   String get prefill;
   String? get pattern;
   String get hintText;
   @JsonKey(ignore: true)
-  _$$HelpTextQuickSearchResultCopyWith<_$HelpTextQuickSearchResult>
+  _$$HelpTextQuickSearchResultImplCopyWith<_$HelpTextQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SourceQuickSearchResultCopyWith<$Res> {
-  factory _$$SourceQuickSearchResultCopyWith(_$SourceQuickSearchResult value,
-          $Res Function(_$SourceQuickSearchResult) then) =
-      __$$SourceQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$SourceQuickSearchResultImplCopyWith<$Res> {
+  factory _$$SourceQuickSearchResultImplCopyWith(
+          _$SourceQuickSearchResultImpl value,
+          $Res Function(_$SourceQuickSearchResultImpl) then) =
+      __$$SourceQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source source});
 
@@ -350,11 +353,12 @@ abstract class _$$SourceQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SourceQuickSearchResultCopyWithImpl<$Res>
-    extends _$QuickSearchResultCopyWithImpl<$Res, _$SourceQuickSearchResult>
-    implements _$$SourceQuickSearchResultCopyWith<$Res> {
-  __$$SourceQuickSearchResultCopyWithImpl(_$SourceQuickSearchResult _value,
-      $Res Function(_$SourceQuickSearchResult) _then)
+class __$$SourceQuickSearchResultImplCopyWithImpl<$Res>
+    extends _$QuickSearchResultCopyWithImpl<$Res, _$SourceQuickSearchResultImpl>
+    implements _$$SourceQuickSearchResultImplCopyWith<$Res> {
+  __$$SourceQuickSearchResultImplCopyWithImpl(
+      _$SourceQuickSearchResultImpl _value,
+      $Res Function(_$SourceQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -362,7 +366,7 @@ class __$$SourceQuickSearchResultCopyWithImpl<$Res>
   $Res call({
     Object? source = null,
   }) {
-    return _then(_$SourceQuickSearchResult(
+    return _then(_$SourceQuickSearchResultImpl(
       source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -381,8 +385,8 @@ class __$$SourceQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SourceQuickSearchResult implements SourceQuickSearchResult {
-  const _$SourceQuickSearchResult({required this.source});
+class _$SourceQuickSearchResultImpl implements SourceQuickSearchResult {
+  const _$SourceQuickSearchResultImpl({required this.source});
 
   @override
   final Source source;
@@ -396,7 +400,7 @@ class _$SourceQuickSearchResult implements SourceQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SourceQuickSearchResult &&
+            other is _$SourceQuickSearchResultImpl &&
             (identical(other.source, source) || other.source == source));
   }
 
@@ -406,9 +410,9 @@ class _$SourceQuickSearchResult implements SourceQuickSearchResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SourceQuickSearchResultCopyWith<_$SourceQuickSearchResult> get copyWith =>
-      __$$SourceQuickSearchResultCopyWithImpl<_$SourceQuickSearchResult>(
-          this, _$identity);
+  _$$SourceQuickSearchResultImplCopyWith<_$SourceQuickSearchResultImpl>
+      get copyWith => __$$SourceQuickSearchResultImplCopyWithImpl<
+          _$SourceQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -528,20 +532,20 @@ class _$SourceQuickSearchResult implements SourceQuickSearchResult {
 
 abstract class SourceQuickSearchResult implements QuickSearchResult {
   const factory SourceQuickSearchResult({required final Source source}) =
-      _$SourceQuickSearchResult;
+      _$SourceQuickSearchResultImpl;
 
   Source get source;
   @JsonKey(ignore: true)
-  _$$SourceQuickSearchResultCopyWith<_$SourceQuickSearchResult> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SourceQuickSearchResultImplCopyWith<_$SourceQuickSearchResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SourceSearchQuickSearchResultCopyWith<$Res> {
-  factory _$$SourceSearchQuickSearchResultCopyWith(
-          _$SourceSearchQuickSearchResult value,
-          $Res Function(_$SourceSearchQuickSearchResult) then) =
-      __$$SourceSearchQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$SourceSearchQuickSearchResultImplCopyWith<$Res> {
+  factory _$$SourceSearchQuickSearchResultImplCopyWith(
+          _$SourceSearchQuickSearchResultImpl value,
+          $Res Function(_$SourceSearchQuickSearchResultImpl) then) =
+      __$$SourceSearchQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source source, String query});
 
@@ -549,13 +553,13 @@ abstract class _$$SourceSearchQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SourceSearchQuickSearchResultCopyWithImpl<$Res>
+class __$$SourceSearchQuickSearchResultImplCopyWithImpl<$Res>
     extends _$QuickSearchResultCopyWithImpl<$Res,
-        _$SourceSearchQuickSearchResult>
-    implements _$$SourceSearchQuickSearchResultCopyWith<$Res> {
-  __$$SourceSearchQuickSearchResultCopyWithImpl(
-      _$SourceSearchQuickSearchResult _value,
-      $Res Function(_$SourceSearchQuickSearchResult) _then)
+        _$SourceSearchQuickSearchResultImpl>
+    implements _$$SourceSearchQuickSearchResultImplCopyWith<$Res> {
+  __$$SourceSearchQuickSearchResultImplCopyWithImpl(
+      _$SourceSearchQuickSearchResultImpl _value,
+      $Res Function(_$SourceSearchQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -564,7 +568,7 @@ class __$$SourceSearchQuickSearchResultCopyWithImpl<$Res>
     Object? source = null,
     Object? query = null,
   }) {
-    return _then(_$SourceSearchQuickSearchResult(
+    return _then(_$SourceSearchQuickSearchResultImpl(
       source: null == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -587,8 +591,9 @@ class __$$SourceSearchQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SourceSearchQuickSearchResult implements SourceSearchQuickSearchResult {
-  const _$SourceSearchQuickSearchResult(
+class _$SourceSearchQuickSearchResultImpl
+    implements SourceSearchQuickSearchResult {
+  const _$SourceSearchQuickSearchResultImpl(
       {required this.source, required this.query});
 
   @override
@@ -605,7 +610,7 @@ class _$SourceSearchQuickSearchResult implements SourceSearchQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SourceSearchQuickSearchResult &&
+            other is _$SourceSearchQuickSearchResultImpl &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.query, query) || other.query == query));
   }
@@ -616,9 +621,10 @@ class _$SourceSearchQuickSearchResult implements SourceSearchQuickSearchResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SourceSearchQuickSearchResultCopyWith<_$SourceSearchQuickSearchResult>
-      get copyWith => __$$SourceSearchQuickSearchResultCopyWithImpl<
-          _$SourceSearchQuickSearchResult>(this, _$identity);
+  _$$SourceSearchQuickSearchResultImplCopyWith<
+          _$SourceSearchQuickSearchResultImpl>
+      get copyWith => __$$SourceSearchQuickSearchResultImplCopyWithImpl<
+          _$SourceSearchQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -739,21 +745,22 @@ class _$SourceSearchQuickSearchResult implements SourceSearchQuickSearchResult {
 abstract class SourceSearchQuickSearchResult implements QuickSearchResult {
   const factory SourceSearchQuickSearchResult(
       {required final Source source,
-      required final String query}) = _$SourceSearchQuickSearchResult;
+      required final String query}) = _$SourceSearchQuickSearchResultImpl;
 
   Source get source;
   String get query;
   @JsonKey(ignore: true)
-  _$$SourceSearchQuickSearchResultCopyWith<_$SourceSearchQuickSearchResult>
+  _$$SourceSearchQuickSearchResultImplCopyWith<
+          _$SourceSearchQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CategoryQuickSearchResultCopyWith<$Res> {
-  factory _$$CategoryQuickSearchResultCopyWith(
-          _$CategoryQuickSearchResult value,
-          $Res Function(_$CategoryQuickSearchResult) then) =
-      __$$CategoryQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$CategoryQuickSearchResultImplCopyWith<$Res> {
+  factory _$$CategoryQuickSearchResultImplCopyWith(
+          _$CategoryQuickSearchResultImpl value,
+          $Res Function(_$CategoryQuickSearchResultImpl) then) =
+      __$$CategoryQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Category category});
 
@@ -761,11 +768,13 @@ abstract class _$$CategoryQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CategoryQuickSearchResultCopyWithImpl<$Res>
-    extends _$QuickSearchResultCopyWithImpl<$Res, _$CategoryQuickSearchResult>
-    implements _$$CategoryQuickSearchResultCopyWith<$Res> {
-  __$$CategoryQuickSearchResultCopyWithImpl(_$CategoryQuickSearchResult _value,
-      $Res Function(_$CategoryQuickSearchResult) _then)
+class __$$CategoryQuickSearchResultImplCopyWithImpl<$Res>
+    extends _$QuickSearchResultCopyWithImpl<$Res,
+        _$CategoryQuickSearchResultImpl>
+    implements _$$CategoryQuickSearchResultImplCopyWith<$Res> {
+  __$$CategoryQuickSearchResultImplCopyWithImpl(
+      _$CategoryQuickSearchResultImpl _value,
+      $Res Function(_$CategoryQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -773,7 +782,7 @@ class __$$CategoryQuickSearchResultCopyWithImpl<$Res>
   $Res call({
     Object? category = null,
   }) {
-    return _then(_$CategoryQuickSearchResult(
+    return _then(_$CategoryQuickSearchResultImpl(
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -792,8 +801,8 @@ class __$$CategoryQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CategoryQuickSearchResult implements CategoryQuickSearchResult {
-  const _$CategoryQuickSearchResult({required this.category});
+class _$CategoryQuickSearchResultImpl implements CategoryQuickSearchResult {
+  const _$CategoryQuickSearchResultImpl({required this.category});
 
   @override
   final Category category;
@@ -807,7 +816,7 @@ class _$CategoryQuickSearchResult implements CategoryQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CategoryQuickSearchResult &&
+            other is _$CategoryQuickSearchResultImpl &&
             (identical(other.category, category) ||
                 other.category == category));
   }
@@ -818,9 +827,9 @@ class _$CategoryQuickSearchResult implements CategoryQuickSearchResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CategoryQuickSearchResultCopyWith<_$CategoryQuickSearchResult>
-      get copyWith => __$$CategoryQuickSearchResultCopyWithImpl<
-          _$CategoryQuickSearchResult>(this, _$identity);
+  _$$CategoryQuickSearchResultImplCopyWith<_$CategoryQuickSearchResultImpl>
+      get copyWith => __$$CategoryQuickSearchResultImplCopyWithImpl<
+          _$CategoryQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -940,20 +949,20 @@ class _$CategoryQuickSearchResult implements CategoryQuickSearchResult {
 
 abstract class CategoryQuickSearchResult implements QuickSearchResult {
   const factory CategoryQuickSearchResult({required final Category category}) =
-      _$CategoryQuickSearchResult;
+      _$CategoryQuickSearchResultImpl;
 
   Category get category;
   @JsonKey(ignore: true)
-  _$$CategoryQuickSearchResultCopyWith<_$CategoryQuickSearchResult>
+  _$$CategoryQuickSearchResultImplCopyWith<_$CategoryQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CategoryMangaQuickSearchResultCopyWith<$Res> {
-  factory _$$CategoryMangaQuickSearchResultCopyWith(
-          _$CategoryMangaQuickSearchResult value,
-          $Res Function(_$CategoryMangaQuickSearchResult) then) =
-      __$$CategoryMangaQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$CategoryMangaQuickSearchResultImplCopyWith<$Res> {
+  factory _$$CategoryMangaQuickSearchResultImplCopyWith(
+          _$CategoryMangaQuickSearchResultImpl value,
+          $Res Function(_$CategoryMangaQuickSearchResultImpl) then) =
+      __$$CategoryMangaQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Category category, Manga manga});
 
@@ -962,13 +971,13 @@ abstract class _$$CategoryMangaQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CategoryMangaQuickSearchResultCopyWithImpl<$Res>
+class __$$CategoryMangaQuickSearchResultImplCopyWithImpl<$Res>
     extends _$QuickSearchResultCopyWithImpl<$Res,
-        _$CategoryMangaQuickSearchResult>
-    implements _$$CategoryMangaQuickSearchResultCopyWith<$Res> {
-  __$$CategoryMangaQuickSearchResultCopyWithImpl(
-      _$CategoryMangaQuickSearchResult _value,
-      $Res Function(_$CategoryMangaQuickSearchResult) _then)
+        _$CategoryMangaQuickSearchResultImpl>
+    implements _$$CategoryMangaQuickSearchResultImplCopyWith<$Res> {
+  __$$CategoryMangaQuickSearchResultImplCopyWithImpl(
+      _$CategoryMangaQuickSearchResultImpl _value,
+      $Res Function(_$CategoryMangaQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -977,7 +986,7 @@ class __$$CategoryMangaQuickSearchResultCopyWithImpl<$Res>
     Object? category = null,
     Object? manga = null,
   }) {
-    return _then(_$CategoryMangaQuickSearchResult(
+    return _then(_$CategoryMangaQuickSearchResultImpl(
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -1008,9 +1017,9 @@ class __$$CategoryMangaQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CategoryMangaQuickSearchResult
+class _$CategoryMangaQuickSearchResultImpl
     implements CategoryMangaQuickSearchResult {
-  const _$CategoryMangaQuickSearchResult(
+  const _$CategoryMangaQuickSearchResultImpl(
       {required this.category, required this.manga});
 
   @override
@@ -1027,7 +1036,7 @@ class _$CategoryMangaQuickSearchResult
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CategoryMangaQuickSearchResult &&
+            other is _$CategoryMangaQuickSearchResultImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.manga, manga) || other.manga == manga));
@@ -1039,9 +1048,10 @@ class _$CategoryMangaQuickSearchResult
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CategoryMangaQuickSearchResultCopyWith<_$CategoryMangaQuickSearchResult>
-      get copyWith => __$$CategoryMangaQuickSearchResultCopyWithImpl<
-          _$CategoryMangaQuickSearchResult>(this, _$identity);
+  _$$CategoryMangaQuickSearchResultImplCopyWith<
+          _$CategoryMangaQuickSearchResultImpl>
+      get copyWith => __$$CategoryMangaQuickSearchResultImplCopyWithImpl<
+          _$CategoryMangaQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1162,21 +1172,22 @@ class _$CategoryMangaQuickSearchResult
 abstract class CategoryMangaQuickSearchResult implements QuickSearchResult {
   const factory CategoryMangaQuickSearchResult(
       {required final Category category,
-      required final Manga manga}) = _$CategoryMangaQuickSearchResult;
+      required final Manga manga}) = _$CategoryMangaQuickSearchResultImpl;
 
   Category get category;
   Manga get manga;
   @JsonKey(ignore: true)
-  _$$CategoryMangaQuickSearchResultCopyWith<_$CategoryMangaQuickSearchResult>
+  _$$CategoryMangaQuickSearchResultImplCopyWith<
+          _$CategoryMangaQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CategoryMangaChapterQuickSearchResultCopyWith<$Res> {
-  factory _$$CategoryMangaChapterQuickSearchResultCopyWith(
-          _$CategoryMangaChapterQuickSearchResult value,
-          $Res Function(_$CategoryMangaChapterQuickSearchResult) then) =
-      __$$CategoryMangaChapterQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$CategoryMangaChapterQuickSearchResultImplCopyWith<$Res> {
+  factory _$$CategoryMangaChapterQuickSearchResultImplCopyWith(
+          _$CategoryMangaChapterQuickSearchResultImpl value,
+          $Res Function(_$CategoryMangaChapterQuickSearchResultImpl) then) =
+      __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Category? category, Manga manga, Chapter chapter});
 
@@ -1186,13 +1197,13 @@ abstract class _$$CategoryMangaChapterQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CategoryMangaChapterQuickSearchResultCopyWithImpl<$Res>
+class __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl<$Res>
     extends _$QuickSearchResultCopyWithImpl<$Res,
-        _$CategoryMangaChapterQuickSearchResult>
-    implements _$$CategoryMangaChapterQuickSearchResultCopyWith<$Res> {
-  __$$CategoryMangaChapterQuickSearchResultCopyWithImpl(
-      _$CategoryMangaChapterQuickSearchResult _value,
-      $Res Function(_$CategoryMangaChapterQuickSearchResult) _then)
+        _$CategoryMangaChapterQuickSearchResultImpl>
+    implements _$$CategoryMangaChapterQuickSearchResultImplCopyWith<$Res> {
+  __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl(
+      _$CategoryMangaChapterQuickSearchResultImpl _value,
+      $Res Function(_$CategoryMangaChapterQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1202,7 +1213,7 @@ class __$$CategoryMangaChapterQuickSearchResultCopyWithImpl<$Res>
     Object? manga = null,
     Object? chapter = null,
   }) {
-    return _then(_$CategoryMangaChapterQuickSearchResult(
+    return _then(_$CategoryMangaChapterQuickSearchResultImpl(
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -1249,9 +1260,9 @@ class __$$CategoryMangaChapterQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CategoryMangaChapterQuickSearchResult
+class _$CategoryMangaChapterQuickSearchResultImpl
     implements CategoryMangaChapterQuickSearchResult {
-  const _$CategoryMangaChapterQuickSearchResult(
+  const _$CategoryMangaChapterQuickSearchResultImpl(
       {this.category, required this.manga, required this.chapter});
 
   @override
@@ -1270,7 +1281,7 @@ class _$CategoryMangaChapterQuickSearchResult
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CategoryMangaChapterQuickSearchResult &&
+            other is _$CategoryMangaChapterQuickSearchResultImpl &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.manga, manga) || other.manga == manga) &&
@@ -1283,10 +1294,10 @@ class _$CategoryMangaChapterQuickSearchResult
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CategoryMangaChapterQuickSearchResultCopyWith<
-          _$CategoryMangaChapterQuickSearchResult>
-      get copyWith => __$$CategoryMangaChapterQuickSearchResultCopyWithImpl<
-          _$CategoryMangaChapterQuickSearchResult>(this, _$identity);
+  _$$CategoryMangaChapterQuickSearchResultImplCopyWith<
+          _$CategoryMangaChapterQuickSearchResultImpl>
+      get copyWith => __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl<
+          _$CategoryMangaChapterQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1410,22 +1421,23 @@ abstract class CategoryMangaChapterQuickSearchResult
           {final Category? category,
           required final Manga manga,
           required final Chapter chapter}) =
-      _$CategoryMangaChapterQuickSearchResult;
+      _$CategoryMangaChapterQuickSearchResultImpl;
 
   Category? get category;
   Manga get manga;
   Chapter get chapter;
   @JsonKey(ignore: true)
-  _$$CategoryMangaChapterQuickSearchResultCopyWith<
-          _$CategoryMangaChapterQuickSearchResult>
+  _$$CategoryMangaChapterQuickSearchResultImplCopyWith<
+          _$CategoryMangaChapterQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$MangaQuickSearchResultCopyWith<$Res> {
-  factory _$$MangaQuickSearchResultCopyWith(_$MangaQuickSearchResult value,
-          $Res Function(_$MangaQuickSearchResult) then) =
-      __$$MangaQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$MangaQuickSearchResultImplCopyWith<$Res> {
+  factory _$$MangaQuickSearchResultImplCopyWith(
+          _$MangaQuickSearchResultImpl value,
+          $Res Function(_$MangaQuickSearchResultImpl) then) =
+      __$$MangaQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source? source, Manga manga});
 
@@ -1434,11 +1446,12 @@ abstract class _$$MangaQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$MangaQuickSearchResultCopyWithImpl<$Res>
-    extends _$QuickSearchResultCopyWithImpl<$Res, _$MangaQuickSearchResult>
-    implements _$$MangaQuickSearchResultCopyWith<$Res> {
-  __$$MangaQuickSearchResultCopyWithImpl(_$MangaQuickSearchResult _value,
-      $Res Function(_$MangaQuickSearchResult) _then)
+class __$$MangaQuickSearchResultImplCopyWithImpl<$Res>
+    extends _$QuickSearchResultCopyWithImpl<$Res, _$MangaQuickSearchResultImpl>
+    implements _$$MangaQuickSearchResultImplCopyWith<$Res> {
+  __$$MangaQuickSearchResultImplCopyWithImpl(
+      _$MangaQuickSearchResultImpl _value,
+      $Res Function(_$MangaQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1447,7 +1460,7 @@ class __$$MangaQuickSearchResultCopyWithImpl<$Res>
     Object? source = freezed,
     Object? manga = null,
   }) {
-    return _then(_$MangaQuickSearchResult(
+    return _then(_$MangaQuickSearchResultImpl(
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -1482,8 +1495,8 @@ class __$$MangaQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MangaQuickSearchResult implements MangaQuickSearchResult {
-  const _$MangaQuickSearchResult({this.source, required this.manga});
+class _$MangaQuickSearchResultImpl implements MangaQuickSearchResult {
+  const _$MangaQuickSearchResultImpl({this.source, required this.manga});
 
   @override
   final Source? source;
@@ -1499,7 +1512,7 @@ class _$MangaQuickSearchResult implements MangaQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MangaQuickSearchResult &&
+            other is _$MangaQuickSearchResultImpl &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.manga, manga) || other.manga == manga));
   }
@@ -1510,9 +1523,9 @@ class _$MangaQuickSearchResult implements MangaQuickSearchResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MangaQuickSearchResultCopyWith<_$MangaQuickSearchResult> get copyWith =>
-      __$$MangaQuickSearchResultCopyWithImpl<_$MangaQuickSearchResult>(
-          this, _$identity);
+  _$$MangaQuickSearchResultImplCopyWith<_$MangaQuickSearchResultImpl>
+      get copyWith => __$$MangaQuickSearchResultImplCopyWithImpl<
+          _$MangaQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1633,20 +1646,21 @@ class _$MangaQuickSearchResult implements MangaQuickSearchResult {
 abstract class MangaQuickSearchResult implements QuickSearchResult {
   const factory MangaQuickSearchResult(
       {final Source? source,
-      required final Manga manga}) = _$MangaQuickSearchResult;
+      required final Manga manga}) = _$MangaQuickSearchResultImpl;
 
   Source? get source;
   Manga get manga;
   @JsonKey(ignore: true)
-  _$$MangaQuickSearchResultCopyWith<_$MangaQuickSearchResult> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$MangaQuickSearchResultImplCopyWith<_$MangaQuickSearchResultImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChapterQuickSearchResultCopyWith<$Res> {
-  factory _$$ChapterQuickSearchResultCopyWith(_$ChapterQuickSearchResult value,
-          $Res Function(_$ChapterQuickSearchResult) then) =
-      __$$ChapterQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$ChapterQuickSearchResultImplCopyWith<$Res> {
+  factory _$$ChapterQuickSearchResultImplCopyWith(
+          _$ChapterQuickSearchResultImpl value,
+          $Res Function(_$ChapterQuickSearchResultImpl) then) =
+      __$$ChapterQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source? source, Manga manga, Chapter chapter});
 
@@ -1656,11 +1670,13 @@ abstract class _$$ChapterQuickSearchResultCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ChapterQuickSearchResultCopyWithImpl<$Res>
-    extends _$QuickSearchResultCopyWithImpl<$Res, _$ChapterQuickSearchResult>
-    implements _$$ChapterQuickSearchResultCopyWith<$Res> {
-  __$$ChapterQuickSearchResultCopyWithImpl(_$ChapterQuickSearchResult _value,
-      $Res Function(_$ChapterQuickSearchResult) _then)
+class __$$ChapterQuickSearchResultImplCopyWithImpl<$Res>
+    extends _$QuickSearchResultCopyWithImpl<$Res,
+        _$ChapterQuickSearchResultImpl>
+    implements _$$ChapterQuickSearchResultImplCopyWith<$Res> {
+  __$$ChapterQuickSearchResultImplCopyWithImpl(
+      _$ChapterQuickSearchResultImpl _value,
+      $Res Function(_$ChapterQuickSearchResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1670,7 +1686,7 @@ class __$$ChapterQuickSearchResultCopyWithImpl<$Res>
     Object? manga = null,
     Object? chapter = null,
   }) {
-    return _then(_$ChapterQuickSearchResult(
+    return _then(_$ChapterQuickSearchResultImpl(
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
@@ -1717,8 +1733,8 @@ class __$$ChapterQuickSearchResultCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ChapterQuickSearchResult implements ChapterQuickSearchResult {
-  const _$ChapterQuickSearchResult(
+class _$ChapterQuickSearchResultImpl implements ChapterQuickSearchResult {
+  const _$ChapterQuickSearchResultImpl(
       {this.source, required this.manga, required this.chapter});
 
   @override
@@ -1737,7 +1753,7 @@ class _$ChapterQuickSearchResult implements ChapterQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChapterQuickSearchResult &&
+            other is _$ChapterQuickSearchResultImpl &&
             (identical(other.source, source) || other.source == source) &&
             (identical(other.manga, manga) || other.manga == manga) &&
             (identical(other.chapter, chapter) || other.chapter == chapter));
@@ -1749,10 +1765,9 @@ class _$ChapterQuickSearchResult implements ChapterQuickSearchResult {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChapterQuickSearchResultCopyWith<_$ChapterQuickSearchResult>
-      get copyWith =>
-          __$$ChapterQuickSearchResultCopyWithImpl<_$ChapterQuickSearchResult>(
-              this, _$identity);
+  _$$ChapterQuickSearchResultImplCopyWith<_$ChapterQuickSearchResultImpl>
+      get copyWith => __$$ChapterQuickSearchResultImplCopyWithImpl<
+          _$ChapterQuickSearchResultImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1874,39 +1889,40 @@ abstract class ChapterQuickSearchResult implements QuickSearchResult {
   const factory ChapterQuickSearchResult(
       {final Source? source,
       required final Manga manga,
-      required final Chapter chapter}) = _$ChapterQuickSearchResult;
+      required final Chapter chapter}) = _$ChapterQuickSearchResultImpl;
 
   Source? get source;
   Manga get manga;
   Chapter get chapter;
   @JsonKey(ignore: true)
-  _$$ChapterQuickSearchResultCopyWith<_$ChapterQuickSearchResult>
+  _$$ChapterQuickSearchResultImplCopyWith<_$ChapterQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GlobalSearchQuickSearchResultCopyWith<$Res> {
-  factory _$$GlobalSearchQuickSearchResultCopyWith(
-          _$GlobalSearchQuickSearchResult value,
-          $Res Function(_$GlobalSearchQuickSearchResult) then) =
-      __$$GlobalSearchQuickSearchResultCopyWithImpl<$Res>;
+abstract class _$$GlobalSearchQuickSearchResultImplCopyWith<$Res> {
+  factory _$$GlobalSearchQuickSearchResultImplCopyWith(
+          _$GlobalSearchQuickSearchResultImpl value,
+          $Res Function(_$GlobalSearchQuickSearchResultImpl) then) =
+      __$$GlobalSearchQuickSearchResultImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GlobalSearchQuickSearchResultCopyWithImpl<$Res>
+class __$$GlobalSearchQuickSearchResultImplCopyWithImpl<$Res>
     extends _$QuickSearchResultCopyWithImpl<$Res,
-        _$GlobalSearchQuickSearchResult>
-    implements _$$GlobalSearchQuickSearchResultCopyWith<$Res> {
-  __$$GlobalSearchQuickSearchResultCopyWithImpl(
-      _$GlobalSearchQuickSearchResult _value,
-      $Res Function(_$GlobalSearchQuickSearchResult) _then)
+        _$GlobalSearchQuickSearchResultImpl>
+    implements _$$GlobalSearchQuickSearchResultImplCopyWith<$Res> {
+  __$$GlobalSearchQuickSearchResultImplCopyWithImpl(
+      _$GlobalSearchQuickSearchResultImpl _value,
+      $Res Function(_$GlobalSearchQuickSearchResultImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GlobalSearchQuickSearchResult implements GlobalSearchQuickSearchResult {
-  const _$GlobalSearchQuickSearchResult();
+class _$GlobalSearchQuickSearchResultImpl
+    implements GlobalSearchQuickSearchResult {
+  const _$GlobalSearchQuickSearchResultImpl();
 
   @override
   String toString() {
@@ -1917,7 +1933,7 @@ class _$GlobalSearchQuickSearchResult implements GlobalSearchQuickSearchResult {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GlobalSearchQuickSearchResult);
+            other is _$GlobalSearchQuickSearchResultImpl);
   }
 
   @override
@@ -2041,5 +2057,5 @@ class _$GlobalSearchQuickSearchResult implements GlobalSearchQuickSearchResult {
 
 abstract class GlobalSearchQuickSearchResult implements QuickSearchResult {
   const factory GlobalSearchQuickSearchResult() =
-      _$GlobalSearchQuickSearchResult;
+      _$GlobalSearchQuickSearchResultImpl;
 }

@@ -95,11 +95,11 @@ class _$ChapterMangaPairCopyWithImpl<$Res, $Val extends ChapterMangaPair>
 }
 
 /// @nodoc
-abstract class _$$_ChapterMangaPairCopyWith<$Res>
+abstract class _$$ChapterMangaPairImplCopyWith<$Res>
     implements $ChapterMangaPairCopyWith<$Res> {
-  factory _$$_ChapterMangaPairCopyWith(
-          _$_ChapterMangaPair value, $Res Function(_$_ChapterMangaPair) then) =
-      __$$_ChapterMangaPairCopyWithImpl<$Res>;
+  factory _$$ChapterMangaPairImplCopyWith(_$ChapterMangaPairImpl value,
+          $Res Function(_$ChapterMangaPairImpl) then) =
+      __$$ChapterMangaPairImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Chapter? chapter, Manga? manga});
@@ -111,11 +111,11 @@ abstract class _$$_ChapterMangaPairCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChapterMangaPairCopyWithImpl<$Res>
-    extends _$ChapterMangaPairCopyWithImpl<$Res, _$_ChapterMangaPair>
-    implements _$$_ChapterMangaPairCopyWith<$Res> {
-  __$$_ChapterMangaPairCopyWithImpl(
-      _$_ChapterMangaPair _value, $Res Function(_$_ChapterMangaPair) _then)
+class __$$ChapterMangaPairImplCopyWithImpl<$Res>
+    extends _$ChapterMangaPairCopyWithImpl<$Res, _$ChapterMangaPairImpl>
+    implements _$$ChapterMangaPairImplCopyWith<$Res> {
+  __$$ChapterMangaPairImplCopyWithImpl(_$ChapterMangaPairImpl _value,
+      $Res Function(_$ChapterMangaPairImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -124,7 +124,7 @@ class __$$_ChapterMangaPairCopyWithImpl<$Res>
     Object? chapter = freezed,
     Object? manga = freezed,
   }) {
-    return _then(_$_ChapterMangaPair(
+    return _then(_$ChapterMangaPairImpl(
       chapter: freezed == chapter
           ? _value.chapter
           : chapter // ignore: cast_nullable_to_non_nullable
@@ -139,11 +139,11 @@ class __$$_ChapterMangaPairCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChapterMangaPair implements _ChapterMangaPair {
-  _$_ChapterMangaPair({this.chapter, this.manga});
+class _$ChapterMangaPairImpl implements _ChapterMangaPair {
+  _$ChapterMangaPairImpl({this.chapter, this.manga});
 
-  factory _$_ChapterMangaPair.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterMangaPairFromJson(json);
+  factory _$ChapterMangaPairImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterMangaPairImplFromJson(json);
 
   @override
   final Chapter? chapter;
@@ -159,7 +159,7 @@ class _$_ChapterMangaPair implements _ChapterMangaPair {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChapterMangaPair &&
+            other is _$ChapterMangaPairImpl &&
             (identical(other.chapter, chapter) || other.chapter == chapter) &&
             (identical(other.manga, manga) || other.manga == manga));
   }
@@ -171,12 +171,13 @@ class _$_ChapterMangaPair implements _ChapterMangaPair {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterMangaPairCopyWith<_$_ChapterMangaPair> get copyWith =>
-      __$$_ChapterMangaPairCopyWithImpl<_$_ChapterMangaPair>(this, _$identity);
+  _$$ChapterMangaPairImplCopyWith<_$ChapterMangaPairImpl> get copyWith =>
+      __$$ChapterMangaPairImplCopyWithImpl<_$ChapterMangaPairImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterMangaPairToJson(
+    return _$$ChapterMangaPairImplToJson(
       this,
     );
   }
@@ -184,10 +185,10 @@ class _$_ChapterMangaPair implements _ChapterMangaPair {
 
 abstract class _ChapterMangaPair implements ChapterMangaPair {
   factory _ChapterMangaPair({final Chapter? chapter, final Manga? manga}) =
-      _$_ChapterMangaPair;
+      _$ChapterMangaPairImpl;
 
   factory _ChapterMangaPair.fromJson(Map<String, dynamic> json) =
-      _$_ChapterMangaPair.fromJson;
+      _$ChapterMangaPairImpl.fromJson;
 
   @override
   Chapter? get chapter;
@@ -195,7 +196,7 @@ abstract class _ChapterMangaPair implements ChapterMangaPair {
   Manga? get manga;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterMangaPairCopyWith<_$_ChapterMangaPair> get copyWith =>
+  _$$ChapterMangaPairImplCopyWith<_$ChapterMangaPairImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -253,22 +254,22 @@ class _$ChapterPageCopyWithImpl<$Res, $Val extends ChapterPage>
 }
 
 /// @nodoc
-abstract class _$$_ChapterPageCopyWith<$Res>
+abstract class _$$ChapterPageImplCopyWith<$Res>
     implements $ChapterPageCopyWith<$Res> {
-  factory _$$_ChapterPageCopyWith(
-          _$_ChapterPage value, $Res Function(_$_ChapterPage) then) =
-      __$$_ChapterPageCopyWithImpl<$Res>;
+  factory _$$ChapterPageImplCopyWith(
+          _$ChapterPageImpl value, $Res Function(_$ChapterPageImpl) then) =
+      __$$ChapterPageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool? hasNextPage, List<ChapterMangaPair>? page});
 }
 
 /// @nodoc
-class __$$_ChapterPageCopyWithImpl<$Res>
-    extends _$ChapterPageCopyWithImpl<$Res, _$_ChapterPage>
-    implements _$$_ChapterPageCopyWith<$Res> {
-  __$$_ChapterPageCopyWithImpl(
-      _$_ChapterPage _value, $Res Function(_$_ChapterPage) _then)
+class __$$ChapterPageImplCopyWithImpl<$Res>
+    extends _$ChapterPageCopyWithImpl<$Res, _$ChapterPageImpl>
+    implements _$$ChapterPageImplCopyWith<$Res> {
+  __$$ChapterPageImplCopyWithImpl(
+      _$ChapterPageImpl _value, $Res Function(_$ChapterPageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -277,7 +278,7 @@ class __$$_ChapterPageCopyWithImpl<$Res>
     Object? hasNextPage = freezed,
     Object? page = freezed,
   }) {
-    return _then(_$_ChapterPage(
+    return _then(_$ChapterPageImpl(
       hasNextPage: freezed == hasNextPage
           ? _value.hasNextPage
           : hasNextPage // ignore: cast_nullable_to_non_nullable
@@ -292,12 +293,12 @@ class __$$_ChapterPageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChapterPage implements _ChapterPage {
-  _$_ChapterPage({this.hasNextPage, final List<ChapterMangaPair>? page})
+class _$ChapterPageImpl implements _ChapterPage {
+  _$ChapterPageImpl({this.hasNextPage, final List<ChapterMangaPair>? page})
       : _page = page;
 
-  factory _$_ChapterPage.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterPageFromJson(json);
+  factory _$ChapterPageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterPageImplFromJson(json);
 
   @override
   final bool? hasNextPage;
@@ -320,7 +321,7 @@ class _$_ChapterPage implements _ChapterPage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChapterPage &&
+            other is _$ChapterPageImpl &&
             (identical(other.hasNextPage, hasNextPage) ||
                 other.hasNextPage == hasNextPage) &&
             const DeepCollectionEquality().equals(other._page, _page));
@@ -334,12 +335,12 @@ class _$_ChapterPage implements _ChapterPage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterPageCopyWith<_$_ChapterPage> get copyWith =>
-      __$$_ChapterPageCopyWithImpl<_$_ChapterPage>(this, _$identity);
+  _$$ChapterPageImplCopyWith<_$ChapterPageImpl> get copyWith =>
+      __$$ChapterPageImplCopyWithImpl<_$ChapterPageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterPageToJson(
+    return _$$ChapterPageImplToJson(
       this,
     );
   }
@@ -348,10 +349,10 @@ class _$_ChapterPage implements _ChapterPage {
 abstract class _ChapterPage implements ChapterPage {
   factory _ChapterPage(
       {final bool? hasNextPage,
-      final List<ChapterMangaPair>? page}) = _$_ChapterPage;
+      final List<ChapterMangaPair>? page}) = _$ChapterPageImpl;
 
   factory _ChapterPage.fromJson(Map<String, dynamic> json) =
-      _$_ChapterPage.fromJson;
+      _$ChapterPageImpl.fromJson;
 
   @override
   bool? get hasNextPage;
@@ -359,6 +360,6 @@ abstract class _ChapterPage implements ChapterPage {
   List<ChapterMangaPair>? get page;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterPageCopyWith<_$_ChapterPage> get copyWith =>
+  _$$ChapterPageImplCopyWith<_$ChapterPageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

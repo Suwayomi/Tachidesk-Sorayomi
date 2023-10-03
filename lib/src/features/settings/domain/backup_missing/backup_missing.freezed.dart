@@ -77,11 +77,11 @@ class _$BackupMissingCopyWithImpl<$Res, $Val extends BackupMissing>
 }
 
 /// @nodoc
-abstract class _$$_BackupMissingCopyWith<$Res>
+abstract class _$$BackupMissingImplCopyWith<$Res>
     implements $BackupMissingCopyWith<$Res> {
-  factory _$$_BackupMissingCopyWith(
-          _$_BackupMissing value, $Res Function(_$_BackupMissing) then) =
-      __$$_BackupMissingCopyWithImpl<$Res>;
+  factory _$$BackupMissingImplCopyWith(
+          _$BackupMissingImpl value, $Res Function(_$BackupMissingImpl) then) =
+      __$$BackupMissingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -91,11 +91,11 @@ abstract class _$$_BackupMissingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BackupMissingCopyWithImpl<$Res>
-    extends _$BackupMissingCopyWithImpl<$Res, _$_BackupMissing>
-    implements _$$_BackupMissingCopyWith<$Res> {
-  __$$_BackupMissingCopyWithImpl(
-      _$_BackupMissing _value, $Res Function(_$_BackupMissing) _then)
+class __$$BackupMissingImplCopyWithImpl<$Res>
+    extends _$BackupMissingCopyWithImpl<$Res, _$BackupMissingImpl>
+    implements _$$BackupMissingImplCopyWith<$Res> {
+  __$$BackupMissingImplCopyWithImpl(
+      _$BackupMissingImpl _value, $Res Function(_$BackupMissingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +105,7 @@ class __$$_BackupMissingCopyWithImpl<$Res>
     Object? missingTrackers = freezed,
     Object? mangasMissingSources = freezed,
   }) {
-    return _then(_$_BackupMissing(
+    return _then(_$BackupMissingImpl(
       missingSources: freezed == missingSources
           ? _value._missingSources
           : missingSources // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class __$$_BackupMissingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BackupMissing extends _BackupMissing {
-  _$_BackupMissing(
+class _$BackupMissingImpl extends _BackupMissing {
+  _$BackupMissingImpl(
       {final List<String>? missingSources,
       final List<String>? missingTrackers,
       final List<String>? mangasMissingSources})
@@ -134,8 +134,8 @@ class _$_BackupMissing extends _BackupMissing {
         _mangasMissingSources = mangasMissingSources,
         super._();
 
-  factory _$_BackupMissing.fromJson(Map<String, dynamic> json) =>
-      _$$_BackupMissingFromJson(json);
+  factory _$BackupMissingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BackupMissingImplFromJson(json);
 
   final List<String>? _missingSources;
   @override
@@ -177,7 +177,7 @@ class _$_BackupMissing extends _BackupMissing {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BackupMissing &&
+            other is _$BackupMissingImpl &&
             const DeepCollectionEquality()
                 .equals(other._missingSources, _missingSources) &&
             const DeepCollectionEquality()
@@ -197,12 +197,12 @@ class _$_BackupMissing extends _BackupMissing {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BackupMissingCopyWith<_$_BackupMissing> get copyWith =>
-      __$$_BackupMissingCopyWithImpl<_$_BackupMissing>(this, _$identity);
+  _$$BackupMissingImplCopyWith<_$BackupMissingImpl> get copyWith =>
+      __$$BackupMissingImplCopyWithImpl<_$BackupMissingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BackupMissingToJson(
+    return _$$BackupMissingImplToJson(
       this,
     );
   }
@@ -212,11 +212,11 @@ abstract class _BackupMissing extends BackupMissing {
   factory _BackupMissing(
       {final List<String>? missingSources,
       final List<String>? missingTrackers,
-      final List<String>? mangasMissingSources}) = _$_BackupMissing;
+      final List<String>? mangasMissingSources}) = _$BackupMissingImpl;
   _BackupMissing._() : super._();
 
   factory _BackupMissing.fromJson(Map<String, dynamic> json) =
-      _$_BackupMissing.fromJson;
+      _$BackupMissingImpl.fromJson;
 
   @override
   List<String>? get missingSources;
@@ -226,6 +226,6 @@ abstract class _BackupMissing extends BackupMissing {
   List<String>? get mangasMissingSources;
   @override
   @JsonKey(ignore: true)
-  _$$_BackupMissingCopyWith<_$_BackupMissing> get copyWith =>
+  _$$BackupMissingImplCopyWith<_$BackupMissingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

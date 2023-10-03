@@ -6,8 +6,8 @@ part of 'backup_missing.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BackupMissing _$$_BackupMissingFromJson(Map<String, dynamic> json) =>
-    _$_BackupMissing(
+_$BackupMissingImpl _$$BackupMissingImplFromJson(Map<String, dynamic> json) =>
+    _$BackupMissingImpl(
       missingSources: (json['missingSources'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -19,7 +19,7 @@ _$_BackupMissing _$$_BackupMissingFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_BackupMissingToJson(_$_BackupMissing instance) =>
+Map<String, dynamic> _$$BackupMissingImplToJson(_$BackupMissingImpl instance) =>
     <String, dynamic>{
       'missingSources': instance.missingSources,
       'missingTrackers': instance.missingTrackers,

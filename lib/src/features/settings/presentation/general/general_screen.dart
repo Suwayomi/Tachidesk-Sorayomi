@@ -39,12 +39,13 @@ class GeneralScreen extends ConsumerWidget {
                   ref.read(l10nProvider.notifier).update(locale);
                   context.pop();
                 },
-                optionDisplayName: getLanguageNameFormLocale,
+                getOptionTitle: getLanguageNameFormLocale,
+                getOptionSubtitle: getLanguageNameInEnFormLocale,
               ),
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.cached_rounded),
+            leading: const Icon(Icons.cleaning_services_rounded),
             title: Text(context.l10n!.clearCache),
             onTap: () async {
               await ref.watch(hiveCacheStoreProvider).clean();

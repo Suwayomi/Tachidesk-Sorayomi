@@ -43,7 +43,7 @@ class ReaderMagnifierSizeSlider extends ConsumerWidget {
       icon: Icons.search,
       title: context.l10n!.readerMagnifierSize,
       value: readerMagnifierSize,
-      labelGenerator: (val) => val.toStringAsFixed(2),
+      getSliderLabel: (val) => val.toStringAsFixed(2),
       onChanged: ref.read(readerMagnifierSizeKeyProvider.notifier).update,
       defaultValue: DBKeys.readerMagnifierSize.initial,
       min: 1,
@@ -57,10 +57,12 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
     super.key,
     required this.onChanged,
     required this.readerMagnifierSize,
+    required this.setReaderMagnifierSize,
   });
 
   final ValueSetter<double> onChanged;
-  final ValueNotifier<double> readerMagnifierSize;
+  final double readerMagnifierSize;
+  final ValueSetter<double> setReaderMagnifierSize;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,7 +70,7 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
 
     final onDebounceChanged = useCallback<ValueSetter<double>>(
       (double magnifierSizeValue) async {
-        readerMagnifierSize.value = magnifierSizeValue;
+        setReaderMagnifierSize(magnifierSizeValue);
         final finalDebounce = debounce.value;
         if ((finalDebounce?.isActive).ifNull()) {
           finalDebounce?.cancel();
@@ -84,8 +86,8 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
     return SliderSettingTile(
       icon: Icons.search,
       title: context.l10n!.readerMagnifierSize,
-      value: readerMagnifierSize.value,
-      labelGenerator: (val) => val.toStringAsFixed(2),
+      value: readerMagnifierSize,
+      getSliderLabel: (val) => val.toStringAsFixed(2),
       onChanged: onDebounceChanged,
       defaultValue: DBKeys.readerMagnifierSize.initial,
       min: 1,

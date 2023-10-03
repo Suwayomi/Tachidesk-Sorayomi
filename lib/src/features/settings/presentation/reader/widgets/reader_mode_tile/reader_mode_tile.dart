@@ -45,7 +45,7 @@ class ReaderModeTile extends ConsumerWidget {
         builder: (context) => RadioListPopup<ReaderMode>(
           title: context.l10n!.readerMode,
           optionList: ReaderMode.values.sublist(1),
-          optionDisplayName: (value) => value.toLocale(context),
+          getOptionTitle: (value) => value.toLocale(context),
           value: readerMode ?? ReaderMode.webtoon,
           onChange: (enumValue) async {
             ref.read(readerModeKeyProvider.notifier).update(enumValue);
