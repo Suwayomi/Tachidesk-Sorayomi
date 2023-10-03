@@ -385,7 +385,7 @@
   "@mangaStatusOnHiatus": {
     "description": "Text to show Manga Status On Hiatus in Manga details screen"
   },
-  "mangaStatusOngoing": "جارية",
+  "mangaStatusOngoing": "مستمرة",
   "@mangaStatusOngoing": {
     "description": "Text to show Manga Status Ongoing in Manga details screen"
   },
