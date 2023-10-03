@@ -290,7 +290,7 @@ class _BaseSourceMangaFilterListProviderElement
 }
 
 String _$sourceMangaFilterListHash() =>
-    r'531b3942c3a4430a0439d920a49f5d9a1b0cf8fe';
+    r'8a73132c795c270e84df2fe1f325301b4e955c45';
 
 abstract class _$SourceMangaFilterList
     extends BuildlessAutoDisposeNotifier<AsyncValue<List<Filter>?>> {
@@ -475,4 +475,4 @@ final sourceDisplayModeProvider =
 
 typedef _$SourceDisplayMode = AutoDisposeNotifier<DisplayMode?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

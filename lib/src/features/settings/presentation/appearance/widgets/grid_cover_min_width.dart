@@ -33,7 +33,7 @@ class GridCoverMinWidth extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SliderSettingTile(
       defaultValue: DBKeys.gridMangaCoverWidth.initial,
-      labelGenerator: (value) => value.round().toString(),
+      getSliderLabel: (value) => value.round().toString(),
       title: context.l10n!.mangaGridSize,
       icon: Icons.grid_view_rounded,
       value:

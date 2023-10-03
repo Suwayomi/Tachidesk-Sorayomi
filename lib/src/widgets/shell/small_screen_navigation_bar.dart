@@ -13,6 +13,16 @@ class SmallScreenNavigationBar extends StatelessWidget {
 
   final String selectedScreen;
 
+  NavigationDestination getNavigationDestination(
+      BuildContext context, NavigationBarData data) {
+    return NavigationDestination(
+      icon: Icon(data.icon),
+      label: data.label(context),
+      selectedIcon: Icon(data.activeIcon),
+      tooltip: data.label(context),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return NavigationBarTheme(
@@ -27,12 +37,7 @@ class SmallScreenNavigationBar extends StatelessWidget {
             NavigationBarData.navList[value].go(context),
         destinations: NavigationBarData.navList
             .map<NavigationDestination>(
-              (e) => NavigationDestination(
-                icon: Icon(e.icon),
-                label: e.label(context),
-                selectedIcon: Icon(e.activeIcon),
-                tooltip: e.label(context),
-              ),
+              (e) => getNavigationDestination(context, e),
             )
             .toList(),
       ),

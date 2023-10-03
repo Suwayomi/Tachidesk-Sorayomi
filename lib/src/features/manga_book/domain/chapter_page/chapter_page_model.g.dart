@@ -6,8 +6,9 @@ part of 'chapter_page_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChapterMangaPair _$$_ChapterMangaPairFromJson(Map<String, dynamic> json) =>
-    _$_ChapterMangaPair(
+_$ChapterMangaPairImpl _$$ChapterMangaPairImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ChapterMangaPairImpl(
       chapter: json['chapter'] == null
           ? null
           : Chapter.fromJson(json['chapter'] as Map<String, dynamic>),
@@ -16,21 +17,22 @@ _$_ChapterMangaPair _$$_ChapterMangaPairFromJson(Map<String, dynamic> json) =>
           : Manga.fromJson(json['manga'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ChapterMangaPairToJson(_$_ChapterMangaPair instance) =>
+Map<String, dynamic> _$$ChapterMangaPairImplToJson(
+        _$ChapterMangaPairImpl instance) =>
     <String, dynamic>{
       'chapter': instance.chapter?.toJson(),
       'manga': instance.manga?.toJson(),
     };
 
-_$_ChapterPage _$$_ChapterPageFromJson(Map<String, dynamic> json) =>
-    _$_ChapterPage(
+_$ChapterPageImpl _$$ChapterPageImplFromJson(Map<String, dynamic> json) =>
+    _$ChapterPageImpl(
       hasNextPage: json['hasNextPage'] as bool?,
       page: (json['page'] as List<dynamic>?)
           ?.map((e) => ChapterMangaPair.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_ChapterPageToJson(_$_ChapterPage instance) =>
+Map<String, dynamic> _$$ChapterPageImplToJson(_$ChapterPageImpl instance) =>
     <String, dynamic>{
       'hasNextPage': instance.hasNextPage,
       'page': instance.page?.map((e) => e.toJson()).toList(),

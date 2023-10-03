@@ -13,9 +13,8 @@ class CenterCircularProgressIndicator extends StatelessWidget {
 
   final double? value;
   @override
-  Widget build(BuildContext context) => Center(
-        child: CircularProgressIndicator(value: value),
-      );
+  Widget build(BuildContext context) =>
+      Center(child: CircularProgressIndicator(value: value));
 }
 
 class MiniCircularProgressIndicator extends StatelessWidget {

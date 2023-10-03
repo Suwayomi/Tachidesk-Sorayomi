@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../widgets/two_finger_pointer.dart';
 import '../quick_search/quick_search_screen.dart';
 
@@ -25,15 +26,16 @@ class SearchStackScreen extends HookWidget {
   final Widget? child;
   @override
   Widget build(BuildContext context) {
-    final visible = useState(false);
+    final (visible, setVisible) = useStateRecord(false);
     return QuickSearchShortcutWrapper(
       visible: visible,
+      setVisible: setVisible,
       child: Stack(
         children: [
           if (child != null) child!,
-          if (visible.value)
+          if (visible)
             GestureDetector(
-              onTap: () => visible.value = false,
+              onTap: () => setVisible(false),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                 child: Container(
@@ -42,7 +44,7 @@ class SearchStackScreen extends HookWidget {
                     color: context.theme.canvasColor.withOpacity(.1),
                   ),
                   child: QuickSearchScreen(
-                    afterClick: () => visible.value = false,
+                    afterClick: () => setVisible(false),
                   ),
                 ),
               ),
@@ -58,9 +60,11 @@ class QuickSearchShortcutWrapper extends StatelessWidget {
     super.key,
     required this.child,
     required this.visible,
+    required this.setVisible,
   });
   final Widget child;
-  final ValueNotifier<bool> visible;
+  final bool visible;
+  final ValueSetter<bool> setVisible;
   @override
   Widget build(BuildContext context) {
     return Shortcuts(
@@ -76,19 +80,19 @@ class QuickSearchShortcutWrapper extends StatelessWidget {
         actions: {
           ShowQuickOpenIntent: CallbackAction<ShowQuickOpenIntent>(
             onInvoke: (ShowQuickOpenIntent intent) {
-              visible.value = true;
+              setVisible(true);
               return null;
             },
           ),
           HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
             onInvoke: (HideQuickOpenIntent intent) {
-              visible.value = false;
+              setVisible(false);
               return null;
             },
           ),
         },
         child: TwoFingerPointerWidget(
-          onUpdate: (details) => visible.value = true,
+          onUpdate: (details) => setVisible(true),
           child: child,
         ),
       ),

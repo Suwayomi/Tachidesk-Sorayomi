@@ -16,7 +16,7 @@ class SliderSettingTile<T> extends StatelessWidget {
     required this.onChanged,
     required this.min,
     required this.max,
-    required this.labelGenerator,
+    required this.getSliderLabel,
   });
   final String title;
   final IconData icon;
@@ -25,10 +25,10 @@ class SliderSettingTile<T> extends StatelessWidget {
   final double min;
   final double defaultValue;
   final double max;
-  final String Function(double) labelGenerator;
+  final String Function(double) getSliderLabel;
   @override
   Widget build(BuildContext context) {
-    final label = labelGenerator(value);
+    final label = getSliderLabel(value);
     return ListTile(
       dense: false,
       isThreeLine: true,

@@ -6,7 +6,7 @@ part of 'filter_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Filter _$$_FilterFromJson(Map<String, dynamic> json) => _$_Filter(
+_$FilterImpl _$$FilterImplFromJson(Map<String, dynamic> json) => _$FilterImpl(
       type: json['type'] as String?,
       filterState: Filter.filterFromJson(json, 'filter') == null
           ? null
@@ -14,7 +14,8 @@ _$_Filter _$$_FilterFromJson(Map<String, dynamic> json) => _$_Filter(
               Filter.filterFromJson(json, 'filter') as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_FilterToJson(_$_Filter instance) => <String, dynamic>{
+Map<String, dynamic> _$$FilterImplToJson(_$FilterImpl instance) =>
+    <String, dynamic>{
       'type': instance.type,
       'filter': instance.filterState?.toJson(),
     };

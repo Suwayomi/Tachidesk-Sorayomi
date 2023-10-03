@@ -14,12 +14,14 @@ import '../features/browse_center/domain/filter/filter_model.dart';
 import '../features/browse_center/presentation/browse/browse_screen.dart';
 import '../features/browse_center/presentation/global_search/global_search_screen.dart';
 import '../features/browse_center/presentation/source_manga_list/source_manga_list_screen.dart';
+import '../features/browse_center/presentation/source_preference/source_preference_screen.dart';
 import '../features/library/presentation/category/edit_category_screen.dart';
 import '../features/library/presentation/library/library_screen.dart';
 import '../features/manga_book/presentation/downloads/downloads_screen.dart';
 import '../features/manga_book/presentation/manga_details/manga_details_screen.dart';
 import '../features/manga_book/presentation/reader/reader_screen.dart';
 import '../features/manga_book/presentation/updates/updates_screen.dart';
+import '../features/manga_book/widgets/update_status_summary_sheet.dart';
 import '../features/quick_open/presentation/search_stack/search_stack_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
@@ -66,7 +68,9 @@ abstract class Routes {
   static const manga = '$mangaRoute:mangaId';
   static const mangaRoute = '/manga/';
   static const sourceManga = '/source/:sourceId/:sourceType';
+  static const sourcePreference = '/source/:sourceId/preference';
   static const globalSearch = '/global-search';
+  static const updateStatus = "/update-status";
 }
 
 @riverpod
@@ -92,7 +96,9 @@ GoRouter routerConfig(ref) {
       ],
     ),
     TypedGoRoute<MangaRoute>(path: Routes.manga),
+    TypedGoRoute<UpdateStatusRoute>(path: Routes.updateStatus),
     TypedGoRoute<GlobalSearchRoute>(path: Routes.globalSearch),
+    TypedGoRoute<SourcePreferenceRoute>(path: Routes.sourcePreference),
     TypedGoRoute<SourceMangaRoute>(path: Routes.sourceManga),
     TypedGoRoute<AboutRoute>(path: Routes.about),
     TypedGoRoute<ReaderRoute>(path: Routes.reader),
@@ -142,35 +148,37 @@ class LibraryRoute extends GoRouteData {
   const LibraryRoute({this.initialCategoryOrder});
   final int? initialCategoryOrder;
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      LibraryScreen(initialCategoryOrder: initialCategoryOrder);
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      NoTransitionPage(
+          child: LibraryScreen(initialCategoryOrder: initialCategoryOrder));
 }
 
 class UpdatesRoute extends GoRouteData {
   const UpdatesRoute();
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const UpdatesScreen();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: UpdatesScreen());
 }
 
 class BrowseRoute extends GoRouteData {
   const BrowseRoute();
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const BrowseScreen();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: BrowseScreen());
 }
 
 class DownloadsRoute extends GoRouteData {
   const DownloadsRoute();
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const DownloadsScreen();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: DownloadsScreen());
 }
 
 class MoreRoute extends GoRouteData {
   const MoreRoute();
   @override
-  Widget build(BuildContext context, GoRouterState state) => const MoreScreen();
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage(child: MoreScreen());
 }
 
 //
@@ -184,6 +192,16 @@ class MangaRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       MangaDetailsScreen(mangaId: mangaId, categoryId: categoryId);
+}
+
+class UpdateStatusRoute extends GoRouteData {
+  const UpdateStatusRoute();
+
+  static final $parentNavigatorKey = _quickOpenNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const UpdateStatusSummaryDialog();
 }
 
 class GlobalSearchRoute extends GoRouteData {
@@ -220,6 +238,18 @@ class SourceMangaRoute extends GoRouteData {
         initialQuery: query,
         initialFilter: $extra,
       );
+}
+
+class SourcePreferenceRoute extends GoRouteData {
+  final String sourceId;
+  const SourcePreferenceRoute({required this.sourceId});
+
+  static final $parentNavigatorKey = _quickOpenNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return SourcePreferenceScreen(sourceId: sourceId);
+  }
 }
 
 class AboutRoute extends GoRouteData {

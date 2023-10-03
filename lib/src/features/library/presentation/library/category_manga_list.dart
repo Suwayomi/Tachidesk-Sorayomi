@@ -49,7 +49,7 @@ class CategoryMangaList extends HookConsumerWidget {
         }
         final Widget mangaList = switch (displayMode) {
           DisplayMode.list || null => ListView.builder(
-              itemCount: (data?.length).ifNullOrNegative(),
+              itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverListTile(
                 manga: data![index],
                 onPressed: () {
@@ -78,7 +78,7 @@ class CategoryMangaList extends HookConsumerWidget {
           DisplayMode.grid => GridView.builder(
               gridDelegate:
                   mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),
-              itemCount: (data?.length).ifNullOrNegative(),
+              itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverGridTile(
                 onLongPress: () async {
                   if (data[index].id != null) {
@@ -106,7 +106,7 @@ class CategoryMangaList extends HookConsumerWidget {
               ),
             ),
           DisplayMode.descriptiveList => ListView.builder(
-              itemCount: (data?.length).ifNullOrNegative(),
+              itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverDescriptiveListTile(
                 manga: data![index],
                 onPressed: () {

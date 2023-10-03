@@ -50,9 +50,19 @@ RouteBase get $quickSearchRoute => ShellRouteData.$route(
           factory: $MangaRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: '/update-status',
+          parentNavigatorKey: UpdateStatusRoute.$parentNavigatorKey,
+          factory: $UpdateStatusRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: '/global-search',
           parentNavigatorKey: GlobalSearchRoute.$parentNavigatorKey,
           factory: $GlobalSearchRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/source/:sourceId/preference',
+          parentNavigatorKey: SourcePreferenceRoute.$parentNavigatorKey,
+          factory: $SourcePreferenceRouteExtension._fromState,
         ),
         GoRouteData.$route(
           path: '/source/:sourceId/:sourceType',
@@ -264,6 +274,24 @@ extension $MangaRouteExtension on MangaRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+extension $UpdateStatusRouteExtension on UpdateStatusRoute {
+  static UpdateStatusRoute _fromState(GoRouterState state) =>
+      const UpdateStatusRoute();
+
+  String get location => GoRouteData.$location(
+        '/update-status',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 extension $GlobalSearchRouteExtension on GlobalSearchRoute {
   static GlobalSearchRoute _fromState(GoRouterState state) => GlobalSearchRoute(
         query: state.uri.queryParameters['query'],
@@ -274,6 +302,26 @@ extension $GlobalSearchRouteExtension on GlobalSearchRoute {
         queryParams: {
           if (query != null) 'query': query,
         },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SourcePreferenceRouteExtension on SourcePreferenceRoute {
+  static SourcePreferenceRoute _fromState(GoRouterState state) =>
+      SourcePreferenceRoute(
+        sourceId: state.pathParameters['sourceId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/source/${Uri.encodeComponent(sourceId)}/preference',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -570,4 +618,4 @@ final routerConfigProvider = AutoDisposeProvider<GoRouter>.internal(
 
 typedef RouterConfigRef = AutoDisposeProviderRef<GoRouter>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

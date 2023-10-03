@@ -6,8 +6,8 @@ part of 'chapter_batch_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChapterBatch _$$_ChapterBatchFromJson(Map<String, dynamic> json) =>
-    _$_ChapterBatch(
+_$ChapterBatchImpl _$$ChapterBatchImplFromJson(Map<String, dynamic> json) =>
+    _$ChapterBatchImpl(
       chapterIds:
           (json['chapterIds'] as List<dynamic>?)?.map((e) => e as int).toList(),
       change: json['change'] == null
@@ -15,21 +15,21 @@ _$_ChapterBatch _$$_ChapterBatchFromJson(Map<String, dynamic> json) =>
           : ChapterChange.fromJson(json['change'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ChapterBatchToJson(_$_ChapterBatch instance) =>
+Map<String, dynamic> _$$ChapterBatchImplToJson(_$ChapterBatchImpl instance) =>
     <String, dynamic>{
       'chapterIds': instance.chapterIds,
       'change': instance.change?.toJson(),
     };
 
-_$_ChapterChange _$$_ChapterChangeFromJson(Map<String, dynamic> json) =>
-    _$_ChapterChange(
+_$ChapterChangeImpl _$$ChapterChangeImplFromJson(Map<String, dynamic> json) =>
+    _$ChapterChangeImpl(
       isRead: json['isRead'] as bool?,
       isBookmarked: json['isBookmarked'] as bool?,
       lastPageRead: json['lastPageRead'] as int?,
       delete: json['delete'] as bool?,
     );
 
-Map<String, dynamic> _$$_ChapterChangeToJson(_$_ChapterChange instance) =>
+Map<String, dynamic> _$$ChapterChangeImplToJson(_$ChapterChangeImpl instance) =>
     <String, dynamic>{
       'isRead': instance.isRead,
       'isBookmarked': instance.isBookmarked,

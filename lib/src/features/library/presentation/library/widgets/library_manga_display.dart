@@ -33,7 +33,7 @@ class LibraryMangaDisplay extends ConsumerWidget {
         ),
         RadioList<DisplayMode>(
           optionList: DisplayMode.values,
-          displayName: (value) => value.toLocale(context),
+          getTitle: (value) => value.toLocale(context),
           value: displayMode ?? DBKeys.libraryDisplayMode.initial,
           onChange: (value) =>
               ref.read(libraryDisplayModeProvider.notifier).update(value),

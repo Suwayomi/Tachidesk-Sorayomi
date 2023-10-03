@@ -53,7 +53,7 @@ class MangaCoverGridTile extends StatelessWidget {
                   ),
                 )
               : null,
-          child: manga.thumbnailUrl != null && manga.thumbnailUrl!.isNotEmpty
+          child: manga.thumbnailUrl.isNotBlank
               ? Container(
                   foregroundDecoration: BoxDecoration(
                     border: Border.all(
@@ -63,8 +63,8 @@ class MangaCoverGridTile extends StatelessWidget {
                     boxShadow: showDarkOverlay
                         ? [
                             BoxShadow(
-                                color:
-                                    context.theme.canvasColor.withOpacity(.5))
+                              color: context.theme.canvasColor.withOpacity(.5),
+                            )
                           ]
                         : null,
                     gradient: showTitle

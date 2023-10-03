@@ -67,21 +67,22 @@ class _$MangaPageCopyWithImpl<$Res, $Val extends MangaPage>
 }
 
 /// @nodoc
-abstract class _$$_MangaPageCopyWith<$Res> implements $MangaPageCopyWith<$Res> {
-  factory _$$_MangaPageCopyWith(
-          _$_MangaPage value, $Res Function(_$_MangaPage) then) =
-      __$$_MangaPageCopyWithImpl<$Res>;
+abstract class _$$MangaPageImplCopyWith<$Res>
+    implements $MangaPageCopyWith<$Res> {
+  factory _$$MangaPageImplCopyWith(
+          _$MangaPageImpl value, $Res Function(_$MangaPageImpl) then) =
+      __$$MangaPageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Manga>? mangaList, bool? hasNextPage});
 }
 
 /// @nodoc
-class __$$_MangaPageCopyWithImpl<$Res>
-    extends _$MangaPageCopyWithImpl<$Res, _$_MangaPage>
-    implements _$$_MangaPageCopyWith<$Res> {
-  __$$_MangaPageCopyWithImpl(
-      _$_MangaPage _value, $Res Function(_$_MangaPage) _then)
+class __$$MangaPageImplCopyWithImpl<$Res>
+    extends _$MangaPageCopyWithImpl<$Res, _$MangaPageImpl>
+    implements _$$MangaPageImplCopyWith<$Res> {
+  __$$MangaPageImplCopyWithImpl(
+      _$MangaPageImpl _value, $Res Function(_$MangaPageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +91,7 @@ class __$$_MangaPageCopyWithImpl<$Res>
     Object? mangaList = freezed,
     Object? hasNextPage = freezed,
   }) {
-    return _then(_$_MangaPage(
+    return _then(_$MangaPageImpl(
       mangaList: freezed == mangaList
           ? _value._mangaList
           : mangaList // ignore: cast_nullable_to_non_nullable
@@ -105,12 +106,12 @@ class __$$_MangaPageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MangaPage implements _MangaPage {
-  _$_MangaPage({final List<Manga>? mangaList, this.hasNextPage})
+class _$MangaPageImpl implements _MangaPage {
+  _$MangaPageImpl({final List<Manga>? mangaList, this.hasNextPage})
       : _mangaList = mangaList;
 
-  factory _$_MangaPage.fromJson(Map<String, dynamic> json) =>
-      _$$_MangaPageFromJson(json);
+  factory _$MangaPageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MangaPageImplFromJson(json);
 
   final List<Manga>? _mangaList;
   @override
@@ -134,7 +135,7 @@ class _$_MangaPage implements _MangaPage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MangaPage &&
+            other is _$MangaPageImpl &&
             const DeepCollectionEquality()
                 .equals(other._mangaList, _mangaList) &&
             (identical(other.hasNextPage, hasNextPage) ||
@@ -149,12 +150,12 @@ class _$_MangaPage implements _MangaPage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MangaPageCopyWith<_$_MangaPage> get copyWith =>
-      __$$_MangaPageCopyWithImpl<_$_MangaPage>(this, _$identity);
+  _$$MangaPageImplCopyWith<_$MangaPageImpl> get copyWith =>
+      __$$MangaPageImplCopyWithImpl<_$MangaPageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MangaPageToJson(
+    return _$$MangaPageImplToJson(
       this,
     );
   }
@@ -162,10 +163,10 @@ class _$_MangaPage implements _MangaPage {
 
 abstract class _MangaPage implements MangaPage {
   factory _MangaPage({final List<Manga>? mangaList, final bool? hasNextPage}) =
-      _$_MangaPage;
+      _$MangaPageImpl;
 
   factory _MangaPage.fromJson(Map<String, dynamic> json) =
-      _$_MangaPage.fromJson;
+      _$MangaPageImpl.fromJson;
 
   @override
   List<Manga>? get mangaList;
@@ -173,6 +174,6 @@ abstract class _MangaPage implements MangaPage {
   bool? get hasNextPage;
   @override
   @JsonKey(ignore: true)
-  _$$_MangaPageCopyWith<_$_MangaPage> get copyWith =>
+  _$$MangaPageImplCopyWith<_$MangaPageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

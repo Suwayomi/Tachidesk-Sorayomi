@@ -28,11 +28,12 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
         child: ListView.builder(
           itemCount: languageCodes.length,
           itemBuilder: (context, index) {
-            final String languageCode = languageCodes[index];
+            final String languageCode = languageCodes[index].toLowerCase();
             final Language? language = languageMap[languageCode];
             final enabledLanguagesIndex =
                 enabledLanguages?.indexOf(languageCode);
             return SwitchListTile(
+              key: Key(languageCode),
               value: enabledLanguagesIndex != -1,
               onChanged: (value) {
                 if (value) {
@@ -52,6 +53,10 @@ class ExtensionLanguageFilterDialog extends ConsumerWidget {
               title: Text(
                 language?.nativeName ?? language?.name ?? languageCode,
               ),
+              subtitle: (language?.name).isNotBlank &&
+                      language?.nativeName != language?.name
+                  ? Text(language!.name!)
+                  : null,
             );
           },
         ),

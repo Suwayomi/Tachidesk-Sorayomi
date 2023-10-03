@@ -180,10 +180,10 @@ class _$ChapterCopyWithImpl<$Res, $Val extends Chapter>
 }
 
 /// @nodoc
-abstract class _$$_ChapterCopyWith<$Res> implements $ChapterCopyWith<$Res> {
-  factory _$$_ChapterCopyWith(
-          _$_Chapter value, $Res Function(_$_Chapter) then) =
-      __$$_ChapterCopyWithImpl<$Res>;
+abstract class _$$ChapterImplCopyWith<$Res> implements $ChapterCopyWith<$Res> {
+  factory _$$ChapterImplCopyWith(
+          _$ChapterImpl value, $Res Function(_$ChapterImpl) then) =
+      __$$ChapterImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -208,10 +208,11 @@ abstract class _$$_ChapterCopyWith<$Res> implements $ChapterCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ChapterCopyWithImpl<$Res>
-    extends _$ChapterCopyWithImpl<$Res, _$_Chapter>
-    implements _$$_ChapterCopyWith<$Res> {
-  __$$_ChapterCopyWithImpl(_$_Chapter _value, $Res Function(_$_Chapter) _then)
+class __$$ChapterImplCopyWithImpl<$Res>
+    extends _$ChapterCopyWithImpl<$Res, _$ChapterImpl>
+    implements _$$ChapterImplCopyWith<$Res> {
+  __$$ChapterImplCopyWithImpl(
+      _$ChapterImpl _value, $Res Function(_$ChapterImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -236,7 +237,7 @@ class __$$_ChapterCopyWithImpl<$Res>
     Object? url = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_$_Chapter(
+    return _then(_$ChapterImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -315,8 +316,8 @@ class __$$_ChapterCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Chapter extends _Chapter {
-  _$_Chapter(
+class _$ChapterImpl extends _Chapter {
+  _$ChapterImpl(
       {this.id,
       this.bookmarked,
       this.chapterCount,
@@ -338,8 +339,8 @@ class _$_Chapter extends _Chapter {
       : _meta = meta,
         super._();
 
-  factory _$_Chapter.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterFromJson(json);
+  factory _$ChapterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterImplFromJson(json);
 
   @override
   final int? id;
@@ -394,7 +395,7 @@ class _$_Chapter extends _Chapter {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Chapter &&
+            other is _$ChapterImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.bookmarked, bookmarked) ||
                 other.bookmarked == bookmarked) &&
@@ -451,12 +452,12 @@ class _$_Chapter extends _Chapter {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterCopyWith<_$_Chapter> get copyWith =>
-      __$$_ChapterCopyWithImpl<_$_Chapter>(this, _$identity);
+  _$$ChapterImplCopyWith<_$ChapterImpl> get copyWith =>
+      __$$ChapterImplCopyWithImpl<_$ChapterImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterToJson(
+    return _$$ChapterImplToJson(
       this,
     );
   }
@@ -481,10 +482,10 @@ abstract class _Chapter extends Chapter {
       final String? scanlator,
       final int? uploadDate,
       final String? url,
-      final Map<String, String>? meta}) = _$_Chapter;
+      final Map<String, String>? meta}) = _$ChapterImpl;
   _Chapter._() : super._();
 
-  factory _Chapter.fromJson(Map<String, dynamic> json) = _$_Chapter.fromJson;
+  factory _Chapter.fromJson(Map<String, dynamic> json) = _$ChapterImpl.fromJson;
 
   @override
   int? get id;
@@ -524,6 +525,6 @@ abstract class _Chapter extends Chapter {
   Map<String, String>? get meta;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterCopyWith<_$_Chapter> get copyWith =>
+  _$$ChapterImplCopyWith<_$ChapterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

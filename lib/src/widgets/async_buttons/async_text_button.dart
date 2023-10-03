@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../utils/hooks/hook_primitives_wrapper.dart';
 import '../custom_circular_progress_indicator.dart';
 
 class AsyncTextButton extends HookWidget {
@@ -24,17 +25,17 @@ class AsyncTextButton extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = useState(false);
+    final (isLoading, setIsLoading) = useStateRecord(false);
     return TextButton.icon(
-      onPressed: !isLoading.value
+      onPressed: (!isLoading && onPressed != null)
           ? () async {
-              isLoading.value = true;
+              setIsLoading(true);
               await onPressed!();
-              isLoading.value = false;
+              setIsLoading(false);
             }
           : null,
-      icon: isLoading.value ? const SizedBox.shrink() : icon,
-      label: isLoading.value ? const MiniCircularProgressIndicator() : child,
+      icon: isLoading ? const SizedBox.shrink() : icon,
+      label: isLoading ? const MiniCircularProgressIndicator() : child,
     );
   }
 }

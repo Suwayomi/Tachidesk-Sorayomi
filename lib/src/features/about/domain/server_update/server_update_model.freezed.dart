@@ -74,22 +74,22 @@ class _$ServerUpdateCopyWithImpl<$Res, $Val extends ServerUpdate>
 }
 
 /// @nodoc
-abstract class _$$_ServerUpdateCopyWith<$Res>
+abstract class _$$ServerUpdateImplCopyWith<$Res>
     implements $ServerUpdateCopyWith<$Res> {
-  factory _$$_ServerUpdateCopyWith(
-          _$_ServerUpdate value, $Res Function(_$_ServerUpdate) then) =
-      __$$_ServerUpdateCopyWithImpl<$Res>;
+  factory _$$ServerUpdateImplCopyWith(
+          _$ServerUpdateImpl value, $Res Function(_$ServerUpdateImpl) then) =
+      __$$ServerUpdateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? channel, String? tag, String? url});
 }
 
 /// @nodoc
-class __$$_ServerUpdateCopyWithImpl<$Res>
-    extends _$ServerUpdateCopyWithImpl<$Res, _$_ServerUpdate>
-    implements _$$_ServerUpdateCopyWith<$Res> {
-  __$$_ServerUpdateCopyWithImpl(
-      _$_ServerUpdate _value, $Res Function(_$_ServerUpdate) _then)
+class __$$ServerUpdateImplCopyWithImpl<$Res>
+    extends _$ServerUpdateCopyWithImpl<$Res, _$ServerUpdateImpl>
+    implements _$$ServerUpdateImplCopyWith<$Res> {
+  __$$ServerUpdateImplCopyWithImpl(
+      _$ServerUpdateImpl _value, $Res Function(_$ServerUpdateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_ServerUpdateCopyWithImpl<$Res>
     Object? tag = freezed,
     Object? url = freezed,
   }) {
-    return _then(_$_ServerUpdate(
+    return _then(_$ServerUpdateImpl(
       channel: freezed == channel
           ? _value.channel
           : channel // ignore: cast_nullable_to_non_nullable
@@ -118,11 +118,11 @@ class __$$_ServerUpdateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ServerUpdate implements _ServerUpdate {
-  _$_ServerUpdate({this.channel, this.tag, this.url});
+class _$ServerUpdateImpl implements _ServerUpdate {
+  _$ServerUpdateImpl({this.channel, this.tag, this.url});
 
-  factory _$_ServerUpdate.fromJson(Map<String, dynamic> json) =>
-      _$$_ServerUpdateFromJson(json);
+  factory _$ServerUpdateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServerUpdateImplFromJson(json);
 
   @override
   final String? channel;
@@ -140,7 +140,7 @@ class _$_ServerUpdate implements _ServerUpdate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ServerUpdate &&
+            other is _$ServerUpdateImpl &&
             (identical(other.channel, channel) || other.channel == channel) &&
             (identical(other.tag, tag) || other.tag == tag) &&
             (identical(other.url, url) || other.url == url));
@@ -153,12 +153,12 @@ class _$_ServerUpdate implements _ServerUpdate {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ServerUpdateCopyWith<_$_ServerUpdate> get copyWith =>
-      __$$_ServerUpdateCopyWithImpl<_$_ServerUpdate>(this, _$identity);
+  _$$ServerUpdateImplCopyWith<_$ServerUpdateImpl> get copyWith =>
+      __$$ServerUpdateImplCopyWithImpl<_$ServerUpdateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ServerUpdateToJson(
+    return _$$ServerUpdateImplToJson(
       this,
     );
   }
@@ -168,10 +168,10 @@ abstract class _ServerUpdate implements ServerUpdate {
   factory _ServerUpdate(
       {final String? channel,
       final String? tag,
-      final String? url}) = _$_ServerUpdate;
+      final String? url}) = _$ServerUpdateImpl;
 
   factory _ServerUpdate.fromJson(Map<String, dynamic> json) =
-      _$_ServerUpdate.fromJson;
+      _$ServerUpdateImpl.fromJson;
 
   @override
   String? get channel;
@@ -181,6 +181,6 @@ abstract class _ServerUpdate implements ServerUpdate {
   String? get url;
   @override
   @JsonKey(ignore: true)
-  _$$_ServerUpdateCopyWith<_$_ServerUpdate> get copyWith =>
+  _$$ServerUpdateImplCopyWith<_$ServerUpdateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

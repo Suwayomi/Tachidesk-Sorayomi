@@ -7,6 +7,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../utils/hooks/hook_primitives_wrapper.dart';
+
 class AsyncTextButtonIcon extends HookWidget {
   const AsyncTextButtonIcon({
     super.key,
@@ -31,19 +33,19 @@ class AsyncTextButtonIcon extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isLocalPrimary = useState(isPrimary);
+    final (isLocalPrimary, setIsLocalPrimary) = useStateRecord(isPrimary);
     return TextButton.icon(
-      style: isLocalPrimary.value ? primaryStyle : secondaryStyle,
+      style: isLocalPrimary ? primaryStyle : secondaryStyle,
       onPressed: onPressed != null
           ? () {
-              isLocalPrimary.value = !isLocalPrimary.value;
+              setIsLocalPrimary(!isLocalPrimary);
               onPressed!();
             }
           : null,
-      icon: (secondaryIcon != null && !isLocalPrimary.value)
+      icon: (secondaryIcon != null && !isLocalPrimary)
           ? secondaryIcon!
           : primaryIcon,
-      label: (secondaryLabel != null && !isLocalPrimary.value)
+      label: (secondaryLabel != null && !isLocalPrimary)
           ? secondaryLabel!
           : primaryLabel,
     );

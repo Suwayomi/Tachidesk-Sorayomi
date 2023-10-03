@@ -13,6 +13,7 @@ import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/endpoints.dart';
 import '../../../../../../utils/extensions/cache_manager_extensions.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
@@ -39,13 +40,15 @@ class SinglePageReaderMode extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cacheManager = useMemoized(() => DefaultCacheManager());
     final scrollController = usePageController(
-      initialPage:
-          chapter.read.ifNull() ? 0 : chapter.lastPageRead.ifNullOrNegative(),
+      initialPage: chapter.read.ifNull()
+          ? 0
+          : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
-    final currentIndex = useState(scrollController.initialPage);
+    final (currentIndex, setCurrentIndex) =
+        useStateRecord(scrollController.initialPage);
     useEffect(() {
-      if (onPageChanged != null) onPageChanged!(currentIndex.value);
-      int currentPage = currentIndex.value;
+      if (onPageChanged != null) onPageChanged!(currentIndex);
+      int currentPage = currentIndex;
       // Prev page
       if (currentPage > 0) {
         cacheManager.getServerFile(
@@ -58,7 +61,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       // Next page
-      if (currentPage < (chapter.pageCount.ifNullOrNegative() - 1)) {
+      if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 1)) {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
@@ -69,7 +72,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       // 2nd next page
-      if (currentPage < (chapter.pageCount.ifNullOrNegative() - 2)) {
+      if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 2)) {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
@@ -80,11 +83,11 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       return null;
-    }, [currentIndex.value]);
+    }, [currentIndex]);
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
-        if (currentPage != null) currentIndex.value = currentPage.toInt();
+        if (currentPage != null) setCurrentIndex(currentPage.toInt());
       }
 
       scrollController.addListener(listener);
@@ -96,7 +99,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
-      currentIndex: currentIndex.value,
+      currentIndex: currentIndex,
       onChanged: (index) => scrollController.jumpToPage(index),
       onPrevious: () => scrollController.previousPage(
         duration: isAnimationEnabled ? kDuration : kInstantDuration,
@@ -112,6 +115,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         controller: scrollController,
         itemBuilder: (BuildContext context, int index) {
           final image = ServerImage(
+            showReloadButton: true,
             fit: BoxFit.contain,
             size: Size.fromHeight(context.height),
             appendApiToUrl: true,
@@ -127,7 +131,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
           );
           return image;
         },
-        itemCount: chapter.pageCount.ifNullOrNegative(),
+        itemCount: chapter.pageCount.getValueOnNullOrNegative(),
       ),
     );
   }

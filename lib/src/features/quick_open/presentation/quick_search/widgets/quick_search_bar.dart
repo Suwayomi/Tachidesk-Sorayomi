@@ -37,6 +37,9 @@ class QuickSearchBar extends HookConsumerWidget {
         controller: controller,
         focusNode: focus,
         autofocus: true,
+        onEditingComplete: () {
+          FocusScope.of(context).nextFocus();
+        },
         decoration: InputDecoration(
           isDense: true,
           hintText: context.l10n!.search,

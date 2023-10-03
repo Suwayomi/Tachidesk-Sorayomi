@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   cached_network_image: ^3.2.2
-  cached_network_image_platform_interface: ^2.0.0
+  cached_network_image_platform_interface: ^3.0.0
   cupertino_icons: ^1.0.5
   dio: ^5.0.0
   dio_cache_interceptor: ^3.4.0
@@ -21,10 +21,11 @@ dependencies:
   flutter_hooks: ^0.20.0
   flutter_localizations:
     sdk: flutter
+  flutter_markdown: ^0.6.17+2
   fluttertoast: ^8.1.1
   font_awesome_flutter: ^10.2.1
   freezed_annotation: ^2.2.0
-  go_router: ^10.0.0
+  go_router: ^11.0.0
   hooks_riverpod: ^2.1.1
   infinite_scroll_pagination: ^4.0.0
   intl: ^0.18.0
@@ -33,7 +34,7 @@ dependencies:
   package_info_plus: ^4.0.0
   path: ^1.8.3
   path_provider: ^2.0.11
-  permission_handler: ^10.2.0
+  permission_handler: ^11.0.0
   pub_semver: ^2.1.2
   queue: ^3.1.0+2
   riverpod_annotation: ^2.0.0

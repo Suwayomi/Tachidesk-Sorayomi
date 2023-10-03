@@ -15,6 +15,7 @@ import '../../../../constants/enum.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
@@ -115,8 +116,8 @@ class SourceMangaListScreen extends HookConsumerWidget {
     final filterList = ref.watch(filtersProvider);
     final source = ref.watch(sourceProvider(sourceId));
 
-    final query = useState(initialQuery);
-    final showSearch = useState(initialQuery.isNotBlank);
+    final (query, setQuery) = useStateRecord(initialQuery);
+    final (showSearch, setShowSearch) = useStateRecord(initialQuery.isNotBlank);
     final controller = usePagingController<int, Manga>(firstPageKey: 1);
 
     useEffect(() {
@@ -125,13 +126,12 @@ class SourceMangaListScreen extends HookConsumerWidget {
           sourceRepository,
           controller,
           pageKey,
-          query: query.value,
+          query: query,
           filter: ref.read(filtersProvider.notifier).getAppliedFilter,
         ),
       );
       return;
     }, []);
-
     return source.showUiWhenData(
       context,
       (data) => Scaffold(
@@ -139,13 +139,19 @@ class SourceMangaListScreen extends HookConsumerWidget {
           title: Text(data?.displayName ?? context.l10n!.source),
           actions: [
             IconButton(
-              onPressed: () => showSearch.value = true,
+              onPressed: () => setShowSearch(true),
               icon: const Icon(Icons.search_rounded),
             ),
-            const SourceMangaDisplayIconPopup()
+            const SourceMangaDisplayIconPopup(),
+            if ((data?.isConfigurable).ifNull())
+              IconButton(
+                onPressed: () =>
+                    SourcePreferenceRoute(sourceId: sourceId).push(context),
+                icon: const Icon(Icons.settings_rounded),
+              ),
           ],
           bottom: PreferredSize(
-            preferredSize: kCalculateAppBarBottomSize([true, showSearch.value]),
+            preferredSize: kCalculateAppBarBottomSize([true, showSearch]),
             child: Column(
               children: [
                 Row(
@@ -196,15 +202,15 @@ class SourceMangaListScreen extends HookConsumerWidget {
                   ],
                 ),
                 const Divider(height: 0),
-                if (showSearch.value)
+                if (showSearch)
                   Align(
                     alignment: Alignment.centerRight,
                     child: SearchField(
-                      initialText: query.value,
-                      onClose: () => showSearch.value = false,
+                      initialText: query,
+                      onClose: () => setShowSearch(false),
                       onSubmitted: (val) {
                         if (sourceType == SourceType.filter) {
-                          query.value = val;
+                          setQuery(val);
                           controller.refresh();
                         } else {
                           if (val == null) return;

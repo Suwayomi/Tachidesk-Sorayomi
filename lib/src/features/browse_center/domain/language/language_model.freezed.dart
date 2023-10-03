@@ -73,21 +73,22 @@ class _$LanguageCopyWithImpl<$Res, $Val extends Language>
 }
 
 /// @nodoc
-abstract class _$$_LanguageCopyWith<$Res> implements $LanguageCopyWith<$Res> {
-  factory _$$_LanguageCopyWith(
-          _$_Language value, $Res Function(_$_Language) then) =
-      __$$_LanguageCopyWithImpl<$Res>;
+abstract class _$$LanguageImplCopyWith<$Res>
+    implements $LanguageCopyWith<$Res> {
+  factory _$$LanguageImplCopyWith(
+          _$LanguageImpl value, $Res Function(_$LanguageImpl) then) =
+      __$$LanguageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? code, String? name, String? nativeName});
 }
 
 /// @nodoc
-class __$$_LanguageCopyWithImpl<$Res>
-    extends _$LanguageCopyWithImpl<$Res, _$_Language>
-    implements _$$_LanguageCopyWith<$Res> {
-  __$$_LanguageCopyWithImpl(
-      _$_Language _value, $Res Function(_$_Language) _then)
+class __$$LanguageImplCopyWithImpl<$Res>
+    extends _$LanguageCopyWithImpl<$Res, _$LanguageImpl>
+    implements _$$LanguageImplCopyWith<$Res> {
+  __$$LanguageImplCopyWithImpl(
+      _$LanguageImpl _value, $Res Function(_$LanguageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -97,7 +98,7 @@ class __$$_LanguageCopyWithImpl<$Res>
     Object? name = freezed,
     Object? nativeName = freezed,
   }) {
-    return _then(_$_Language(
+    return _then(_$LanguageImpl(
       code: freezed == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -116,11 +117,11 @@ class __$$_LanguageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Language extends _Language {
-  _$_Language({this.code, this.name, this.nativeName}) : super._();
+class _$LanguageImpl extends _Language {
+  _$LanguageImpl({this.code, this.name, this.nativeName}) : super._();
 
-  factory _$_Language.fromJson(Map<String, dynamic> json) =>
-      _$$_LanguageFromJson(json);
+  factory _$LanguageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LanguageImplFromJson(json);
 
   @override
   final String? code;
@@ -138,7 +139,7 @@ class _$_Language extends _Language {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Language &&
+            other is _$LanguageImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.nativeName, nativeName) ||
@@ -152,12 +153,12 @@ class _$_Language extends _Language {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LanguageCopyWith<_$_Language> get copyWith =>
-      __$$_LanguageCopyWithImpl<_$_Language>(this, _$identity);
+  _$$LanguageImplCopyWith<_$LanguageImpl> get copyWith =>
+      __$$LanguageImplCopyWithImpl<_$LanguageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LanguageToJson(
+    return _$$LanguageImplToJson(
       this,
     );
   }
@@ -167,10 +168,11 @@ abstract class _Language extends Language {
   factory _Language(
       {final String? code,
       final String? name,
-      final String? nativeName}) = _$_Language;
+      final String? nativeName}) = _$LanguageImpl;
   _Language._() : super._();
 
-  factory _Language.fromJson(Map<String, dynamic> json) = _$_Language.fromJson;
+  factory _Language.fromJson(Map<String, dynamic> json) =
+      _$LanguageImpl.fromJson;
 
   @override
   String? get code;
@@ -180,6 +182,6 @@ abstract class _Language extends Language {
   String? get nativeName;
   @override
   @JsonKey(ignore: true)
-  _$$_LanguageCopyWith<_$_Language> get copyWith =>
+  _$$LanguageImplCopyWith<_$LanguageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

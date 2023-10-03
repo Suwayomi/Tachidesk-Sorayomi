@@ -59,7 +59,7 @@ class CredentialsPopup extends HookConsumerWidget {
             TextFormField(
               controller: username,
               validator: (value) =>
-                  value.isBlank ? context.l10n!.errorUserName : null,
+                  value.isBlank ? (context.l10n!.errorUserName) : null,
               decoration: InputDecoration(
                 hintText: context.l10n!.userName,
                 border: const OutlineInputBorder(),
@@ -69,7 +69,7 @@ class CredentialsPopup extends HookConsumerWidget {
             TextFormField(
               controller: password,
               validator: (value) =>
-                  value.isBlank ? context.l10n!.errorPassword : null,
+                  value.isBlank ? (context.l10n!.errorPassword) : null,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: context.l10n!.password,

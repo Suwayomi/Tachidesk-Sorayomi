@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../constants/app_sizes.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
@@ -17,8 +18,10 @@ import '../features/settings/widgets/server_port_tile/server_port_tile.dart';
 import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../global_providers/global_providers.dart';
 import '../utils/extensions/custom_extensions.dart';
+import '../utils/hooks/hook_primitives_wrapper.dart';
+import '../utils/misc/app_utils.dart';
 
-class ServerImage extends ConsumerWidget {
+class ServerImage extends HookConsumerWidget {
   const ServerImage({
     super.key,
     required this.imageUrl,
@@ -27,6 +30,7 @@ class ServerImage extends ConsumerWidget {
     this.appendApiToUrl = false,
     this.progressIndicatorBuilder,
     this.wrapper,
+    this.showReloadButton = false,
   });
 
   final String imageUrl;
@@ -36,10 +40,15 @@ class ServerImage extends ConsumerWidget {
   final Widget Function(BuildContext, String, DownloadProgress)?
       progressIndicatorBuilder;
   final Widget Function(Widget child)? wrapper;
+  final bool showReloadButton;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final (key, setKey) = useStateRecord(UniqueKey());
+    // Providers
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
+
     final baseApi = "${Endpoints.baseApi(
       baseUrl: ref.watch(serverUrlProvider),
       port: ref.watch(serverPortProvider),
@@ -47,34 +56,76 @@ class ServerImage extends ConsumerWidget {
       appendApiToUrl: appendApiToUrl,
     )}"
         "$imageUrl";
+
+    final Map<String, String>? httpHeaders =
+        (authType == AuthType.basic && basicToken != null)
+            ? ({"Authorization": basicToken})
+            : null;
+
+    final ImageRenderMethodForWeb renderMethod;
+    if (authType == AuthType.basic && basicToken != null) {
+      renderMethod = ImageRenderMethodForWeb.HttpGet;
+    } else {
+      renderMethod = ImageRenderMethodForWeb.HtmlImage;
+    }
+
+    final finalProgressIndicatorBuilder = progressIndicatorBuilder != null
+        ? (BuildContext context, String url, DownloadProgress progress) =>
+            AppUtils.wrapIf(
+              wrapper,
+              progressIndicatorBuilder!(context, url, progress),
+            )
+        : null;
+
+    Widget errorWidget(BuildContext context, String error, stackTrace) {
+      if (showReloadButton) {
+        return AppUtils.wrapIf(
+          wrapper,
+          Padding(
+            padding: KEdgeInsets.a8.size,
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.broken_image_rounded,
+                    color: Colors.grey,
+                  ),
+                  KSizedBox.h32.size,
+                  TextButton(
+                    onPressed: () {
+                      setKey(UniqueKey());
+                    },
+                    child: Text(context.l10n!.reload),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      } else {
+        return AppUtils.wrapIf(
+          wrapper,
+          const Icon(
+            Icons.broken_image_rounded,
+            color: Colors.grey,
+          ),
+        );
+      }
+    }
+
     return CachedNetworkImage(
+      key: key,
       imageUrl: baseApi,
       height: size?.height,
       cacheManager: DefaultCacheManager(),
-      httpHeaders: authType == AuthType.basic && basicToken != null
-          ? {"Authorization": basicToken}
-          : null,
+      httpHeaders: httpHeaders,
       width: size?.width,
       fit: fit ?? BoxFit.cover,
-      imageRenderMethodForWeb: authType == AuthType.basic && basicToken != null
-          ? ImageRenderMethodForWeb.HttpGet
-          : ImageRenderMethodForWeb.HtmlImage,
-      progressIndicatorBuilder: progressIndicatorBuilder == null
-          ? null
-          : (context, url, progress) => wrapper != null
-              ? wrapper!(progressIndicatorBuilder!(context, url, progress))
-              : progressIndicatorBuilder!(context, url, progress),
-      errorWidget: (context, error, stackTrace) => wrapper != null
-          ? wrapper!(
-              const Icon(
-                Icons.broken_image_rounded,
-                color: Colors.grey,
-              ),
-            )
-          : const Icon(
-              Icons.broken_image_rounded,
-              color: Colors.grey,
-            ),
+      imageRenderMethodForWeb: renderMethod,
+      progressIndicatorBuilder: finalProgressIndicatorBuilder,
+      errorWidget: errorWidget,
     );
   }
 }
@@ -93,23 +144,25 @@ class ServerImageWithCpi extends StatelessWidget {
   final String url;
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? SizedBox.fromSize(
-            size: outerSize,
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                ),
-                ServerImage(
-                  imageUrl: url,
-                  size: innerSize,
-                )
-              ],
+    if (isLoading) {
+      return SizedBox.fromSize(
+        size: outerSize,
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(4.0),
+              child: CircularProgressIndicator(strokeWidth: 2),
             ),
-          )
-        : ServerImage(imageUrl: url, size: outerSize);
+            ServerImage(
+              imageUrl: url,
+              size: innerSize,
+            )
+          ],
+        ),
+      );
+    } else {
+      return ServerImage(imageUrl: url, size: outerSize);
+    }
   }
 }

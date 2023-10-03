@@ -19,7 +19,13 @@ import '../../extensions/custom_extensions.dart';
 part 'network_module.g.dart';
 
 // Must be top-level function
-_parseAndDecode(String response) => jsonDecode(response);
+_parseAndDecode(String response) {
+  try {
+    return jsonDecode(response);
+  } catch (e) {
+    return response;
+  }
+}
 
 parseJson(String text) => compute(_parseAndDecode, text);
 

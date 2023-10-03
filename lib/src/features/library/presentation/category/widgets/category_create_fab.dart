@@ -5,10 +5,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../controller/edit_category_controller.dart';
 import 'edit_category_dialog.dart';
@@ -18,9 +18,9 @@ class CategoryCreateFab extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = useState(false);
+    final (isLoading, setIsLoading) = useStateRecord(false);
     return FloatingActionButton.extended(
-      onPressed: isLoading.value
+      onPressed: isLoading
           ? null
           : () {
               showDialog(
@@ -28,11 +28,11 @@ class CategoryCreateFab extends HookConsumerWidget {
                 builder: (context) => EditCategoryDialog(
                   editCategory: (newCategory) async {
                     try {
-                      isLoading.value = true;
+                      setIsLoading(true);
                       await ref
                           .read(categoryControllerProvider.notifier)
                           .editCategory(newCategory);
-                      isLoading.value = false;
+                      setIsLoading(false);
                     } catch (e) {
                       //
                     }
@@ -40,9 +40,9 @@ class CategoryCreateFab extends HookConsumerWidget {
                 ),
               );
             },
-      isExtended: context.isTablet && !isLoading.value,
+      isExtended: context.isTablet && !isLoading,
       label: Text(context.l10n!.addCategory),
-      icon: isLoading.value
+      icon: isLoading
           ? MiniCircularProgressIndicator(color: context.iconColor)
           : const Icon(Icons.add_rounded),
     );
