@@ -12,7 +12,6 @@ import '../../../../constants/app_sizes.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../widgets/search_field.dart';
 import '../extension/controller/extension_controller.dart';
 import '../extension/extension_screen.dart';
@@ -29,14 +28,14 @@ class BrowseScreen extends HookConsumerWidget {
     final tabController = useTabController(initialLength: 2);
     useListenable(tabController);
     final key = useMemoized(() => GlobalKey());
-    final (showSearch, setShowSearch) = useStateRecord(false);
+    final showSearch = useState(false);
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n!.browse),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => setShowSearch(true),
+            onPressed: () => showSearch.value = (true),
             icon: Icon(
               tabController.index == 0
                   ? Icons.travel_explore_rounded
@@ -57,7 +56,7 @@ class BrowseScreen extends HookConsumerWidget {
           ),
         ],
         bottom: PreferredSize(
-          preferredSize: kCalculateAppBarBottomSize([true, showSearch]),
+          preferredSize: kCalculateAppBarBottomSize([true, showSearch.value]),
           child: Column(
             children: [
               TabBar(
@@ -69,7 +68,7 @@ class BrowseScreen extends HookConsumerWidget {
                   Tab(text: context.l10n!.extensions),
                 ],
               ),
-              if (showSearch)
+              if (showSearch.value)
                 Align(
                   alignment: Alignment.centerRight,
                   child: tabController.index == 0
@@ -80,7 +79,7 @@ class BrowseScreen extends HookConsumerWidget {
                               GlobalSearchRoute(query: value).push(context);
                             }
                           },
-                          onClose: () => setShowSearch(false),
+                          onClose: () => showSearch.value = (false),
                         )
                       : SearchField(
                           key: const ValueKey(1),
@@ -88,7 +87,7 @@ class BrowseScreen extends HookConsumerWidget {
                           onChanged: (val) => ref
                               .read(extensionQueryProvider.notifier)
                               .update(val),
-                          onClose: () => setShowSearch(false),
+                          onClose: () => showSearch.value = (false),
                         ),
                 ),
             ],

@@ -15,7 +15,6 @@ import '../../../../constants/enum.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
@@ -44,7 +43,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
     SourceRepository repository,
     PagingController<int, Manga> controller,
     int pageKey, {
-    String? query,
+    ValueNotifier<String?>? query,
     List<Map<String, dynamic>>? filter,
   }) {
     AsyncValue.guard(
@@ -52,7 +51,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
         sourceId: sourceId,
         sourceType: sourceType,
         pageNum: pageKey,
-        query: query,
+        query: query?.value,
         filter: filter,
       ),
     ).then(
@@ -116,8 +115,8 @@ class SourceMangaListScreen extends HookConsumerWidget {
     final filterList = ref.watch(filtersProvider);
     final source = ref.watch(sourceProvider(sourceId));
 
-    final (query, setQuery) = useStateRecord(initialQuery);
-    final (showSearch, setShowSearch) = useStateRecord(initialQuery.isNotBlank);
+    final query = useState(initialQuery);
+    final showSearch = useState(initialQuery.isNotBlank);
     final controller = usePagingController<int, Manga>(firstPageKey: 1);
 
     useEffect(() {
@@ -139,7 +138,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
           title: Text(data?.displayName ?? context.l10n!.source),
           actions: [
             IconButton(
-              onPressed: () => setShowSearch(true),
+              onPressed: () => showSearch.value = true,
               icon: const Icon(Icons.search_rounded),
             ),
             const SourceMangaDisplayIconPopup(),
@@ -151,7 +150,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
               ),
           ],
           bottom: PreferredSize(
-            preferredSize: kCalculateAppBarBottomSize([true, showSearch]),
+            preferredSize: kCalculateAppBarBottomSize([true, showSearch.value]),
             child: Column(
               children: [
                 Row(
@@ -202,15 +201,15 @@ class SourceMangaListScreen extends HookConsumerWidget {
                   ],
                 ),
                 const Divider(height: 0),
-                if (showSearch)
+                if (showSearch.value)
                   Align(
                     alignment: Alignment.centerRight,
                     child: SearchField(
-                      initialText: query,
-                      onClose: () => setShowSearch(false),
+                      initialText: query.value,
+                      onClose: () => showSearch.value = (false),
                       onSubmitted: (val) {
                         if (sourceType == SourceType.filter) {
-                          setQuery(val);
+                          query.value = (val);
                           controller.refresh();
                         } else {
                           if (val == null) return;

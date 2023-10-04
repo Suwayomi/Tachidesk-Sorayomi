@@ -22,26 +22,24 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
   const MultiChaptersActionsBottomAppBar({
     super.key,
     required this.selectedChapters,
-    required this.setSelectedChapters,
     required this.afterOptionSelected,
     this.hasPreviousDone = true,
   });
 
-  final Map<int, Chapter> selectedChapters;
-  final ValueSetter<Map<int, Chapter>> setSelectedChapters;
+  final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncCallback afterOptionSelected;
   final bool hasPreviousDone;
 
-  List<int> get chapterList => selectedChapters.keys.toList();
+  List<int> get chapterList => selectedChapters.value.keys.toList();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     refresh([bool triggerAfterOption = true]) async {
-      setSelectedChapters({});
+      selectedChapters.value = {};
       if (triggerAfterOption) await afterOptionSelected();
     }
 
-    final selectedList = selectedChapters.values;
+    final selectedList = selectedChapters.value.values;
 
     return Padding(
       padding: KEdgeInsets.a8.size,
@@ -64,8 +62,8 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
             ),
           if (selectedList.isSingletonList && hasPreviousDone)
             SingleChapterActionIcon(
-              chapterIndex: selectedChapters[chapterList.first]!.index!,
-              mangaId: selectedChapters[chapterList.first]!.mangaId!,
+              chapterIndex: selectedChapters.value[chapterList.first]!.index!,
+              mangaId: selectedChapters.value[chapterList.first]!.mangaId!,
               imageIcon: ImageIcon(
                 Assets.icons.previousDone.provider(),
                 color: context.theme.cardTheme.color,

@@ -10,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
@@ -63,8 +62,7 @@ class UpdatesScreen extends HookConsumerWidget {
         .watch(updatesSocketProvider
             .select((value) => value.valueOrNull?.isUpdateChecking))
         .ifNull();
-    final (selectedChapters, setSelectedChapters) =
-        useStateRecord<Map<int, Chapter>>({});
+    final selectedChapters = useState<Map<int, Chapter>>({});
     useEffect(() {
       controller.addPageRequestListener((pageKey) => _fetchPage(
             updatesRepository,
@@ -76,7 +74,7 @@ class UpdatesScreen extends HookConsumerWidget {
     useEffect(() {
       if (!isUpdatesChecking) {
         try {
-          setSelectedChapters({});
+          selectedChapters.value = ({});
           controller.refresh();
         } catch (e) {
           //
@@ -86,24 +84,23 @@ class UpdatesScreen extends HookConsumerWidget {
     }, [isUpdatesChecking]);
     return Scaffold(
       floatingActionButton:
-          selectedChapters.isEmpty ? const UpdateStatusFab() : null,
-      appBar: selectedChapters.isNotEmpty
+          selectedChapters.value.isEmpty ? const UpdateStatusFab() : null,
+      appBar: selectedChapters.value.isNotEmpty
           ? AppBar(
               leading: IconButton(
-                onPressed: () => setSelectedChapters({}),
+                onPressed: () => selectedChapters.value = ({}),
                 icon: const Icon(Icons.close_rounded),
               ),
               title: Text(
-                context.l10n!.numSelected(selectedChapters.length),
+                context.l10n!.numSelected(selectedChapters.value.length),
               ),
             )
           : AppBar(
               title: Text(context.l10n!.updates),
               actions: const [UpdateStatusPopupMenu()],
             ),
-      bottomSheet: selectedChapters.isNotEmpty
+      bottomSheet: selectedChapters.value.isNotEmpty
           ? MultiChaptersActionsBottomAppBar(
-              setSelectedChapters: setSelectedChapters,
               selectedChapters: selectedChapters,
               afterOptionSelected: () async => controller.refresh(),
               hasPreviousDone: false,
@@ -111,7 +108,7 @@ class UpdatesScreen extends HookConsumerWidget {
           : null,
       body: RefreshIndicator(
         onRefresh: () async {
-          setSelectedChapters({});
+          selectedChapters.value = ({});
           controller.refresh();
         },
         child: PagedListView(
@@ -163,11 +160,13 @@ class UpdatesScreen extends HookConsumerWidget {
                     }
                   }
                 },
-                isSelected: selectedChapters.containsKey(item.chapter!.id!),
-                canTapSelect: selectedChapters.isNotEmpty,
+                isSelected:
+                    selectedChapters.value.containsKey(item.chapter!.id!),
+                canTapSelect: selectedChapters.value.isNotEmpty,
                 toggleSelect: (Chapter val) {
                   if ((val.id).isNull) return;
-                  setSelectedChapters(selectedChapters.toggleKey(val.id!, val));
+                  selectedChapters.value =
+                      (selectedChapters.value.toggleKey(val.id!, val));
                 },
               );
               if ((item.chapter?.fetchedAt).isSameDayAs(previousDate)) {

@@ -6,13 +6,13 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
 
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/async_buttons/async_text_button_icon.dart';
@@ -33,7 +33,7 @@ class MangaDescription extends HookConsumerWidget {
   final AsyncCallback addMangaToLibrary;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (isExpanded, setIsExpanded) = useStateRecord(context.isTablet);
+    final isExpanded = useState(context.isTablet);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -94,7 +94,7 @@ class MangaDescription extends HookConsumerWidget {
               children: [
                 Text(
                   "${manga.description}\n",
-                  maxLines: isExpanded ? null : 3,
+                  maxLines: isExpanded.value ? null : 3,
                 ),
                 InkWell(
                   child: Container(
@@ -118,18 +118,18 @@ class MangaDescription extends HookConsumerWidget {
                     ),
                     child: Center(
                       child: Icon(
-                        isExpanded
+                        isExpanded.value
                             ? Icons.keyboard_arrow_up_rounded
                             : Icons.keyboard_arrow_down_rounded,
                       ),
                     ),
                   ),
-                  onTap: () => setIsExpanded(!isExpanded),
+                  onTap: () => isExpanded.value = (!isExpanded.value),
                 ),
               ],
             ),
           ),
-        if (isExpanded)
+        if (isExpanded.value)
           Padding(
             padding: KEdgeInsets.h16.size,
             child: Wrap(

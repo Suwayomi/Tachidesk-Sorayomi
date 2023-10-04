@@ -10,7 +10,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../../../../constants/app_sizes.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../domain/filter/filter_model.dart';
 import 'filter_to_widget.dart';
 
@@ -28,7 +27,7 @@ class SourceMangaFilter extends HookWidget {
   final VoidCallback onReset;
   @override
   Widget build(BuildContext context) {
-    final (filters, setFilters) = useStateRecord(initialFilters);
+    final filters = useState(initialFilters);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kAppBarBottomHeight),
@@ -39,13 +38,13 @@ class SourceMangaFilter extends HookWidget {
               TextButton(
                 onPressed: () {
                   onReset();
-                  setFilters(initialFilters);
+                  filters.value = (initialFilters);
                 },
                 child: Text(context.l10n!.reset),
               ),
               const Spacer(),
               FilledButton(
-                onPressed: () => onSubmitted(filters),
+                onPressed: () => onSubmitted(filters.value),
                 child: Text(context.l10n!.filter),
               ),
             ],
@@ -54,12 +53,12 @@ class SourceMangaFilter extends HookWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          final filter = filters[index];
+          final filter = filters.value[index];
           return FilterToWidget(
             key: ValueKey("Filter-${filter.filterState?.name}"),
             filter: filter,
             onChanged: (value) {
-              setFilters([...initialFilters]..replaceRange(
+              filters.value = ([...initialFilters]..replaceRange(
                   index,
                   index + 1,
                   [value],
@@ -67,7 +66,7 @@ class SourceMangaFilter extends HookWidget {
             },
           );
         },
-        itemCount: filters.length,
+        itemCount: filters.value.length,
       ),
     );
   }

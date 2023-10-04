@@ -5,11 +5,11 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
 import '../source/controller/source_controller.dart';
@@ -21,9 +21,9 @@ class GlobalSearchScreen extends HookConsumerWidget {
   final String? initialQuery;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (query, setQuery) = useStateRecord(initialQuery);
+    final query = useState(initialQuery);
     final quickSearchResult =
-        ref.watch(quickSearchResultsProvider(query: query));
+        ref.watch(quickSearchResultsProvider(query: query.value));
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n!.globalSearch),
@@ -34,8 +34,8 @@ class GlobalSearchScreen extends HookConsumerWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: SearchField(
-                  initialText: query,
-                  onSubmitted: setQuery,
+                  initialText: query.value,
+                  onSubmitted: (value) => query.value = value,
                 ),
               ),
             ],
@@ -60,7 +60,7 @@ class GlobalSearchScreen extends HookConsumerWidget {
                     return SourceShortSearch(
                       source: data[index].source,
                       mangaList: data[index].mangaList,
-                      query: query,
+                      query: query.value,
                     );
                   }
                 },

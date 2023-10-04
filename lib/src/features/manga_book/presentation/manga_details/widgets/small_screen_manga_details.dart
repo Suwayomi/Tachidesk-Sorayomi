@@ -22,7 +22,6 @@ class SmallScreenMangaDetails extends ConsumerWidget {
     required this.chapterList,
     required this.manga,
     required this.selectedChapters,
-    required this.setSelectedChapters,
     required this.mangaId,
     required this.onRefresh,
     required this.onDescriptionRefresh,
@@ -31,8 +30,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
   final int mangaId;
   final Manga manga;
   final AsyncValueSetter<bool> onRefresh;
-  final Map<int, Chapter> selectedChapters;
-  final ValueSetter<Map<int, Chapter>> setSelectedChapters;
+  final ValueNotifier<Map<int, Chapter>> selectedChapters;
   final AsyncValue<List<Chapter>?> chapterList;
   final AsyncValueSetter<bool> onListRefresh;
   final AsyncValueSetter<bool> onDescriptionRefresh;
@@ -76,13 +74,13 @@ class SmallScreenMangaDetails extends ConsumerWidget {
                       manga: manga,
                       chapter: filteredChapterList[index],
                       updateData: () => onRefresh(false),
-                      isSelected: selectedChapters
+                      isSelected: selectedChapters.value
                           .containsKey(filteredChapterList[index].id),
-                      canTapSelect: selectedChapters.isNotEmpty,
+                      canTapSelect: selectedChapters.value.isNotEmpty,
                       toggleSelect: (Chapter val) {
                         if ((val.id).isNull) return;
-                        setSelectedChapters(
-                            selectedChapters.toggleKey(val.id!, val));
+                        selectedChapters.value =
+                            selectedChapters.value.toggleKey(val.id!, val);
                       },
                     ),
                     childCount: filteredChapterList!.length,

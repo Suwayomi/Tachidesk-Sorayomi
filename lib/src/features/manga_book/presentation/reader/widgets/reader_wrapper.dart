@@ -18,7 +18,6 @@ import '../../../../../constants/enum.dart';
 import '../../../../../constants/reader_keyboard_shortcuts.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/radio_list_popup.dart';
@@ -77,11 +76,10 @@ class ReaderWrapper extends HookConsumerWidget {
         ref.watch(readerMagnifierSizeKeyProvider) ??
             DBKeys.readerMagnifierSize.initial;
 
-    final (visibility, setVisibility) = useStateRecord(true);
-    final (mangaReaderPadding, setMangaReaderPadding) =
-        useStateRecord(manga.meta?.readerPadding ?? localMangaReaderPadding);
-    final (mangaReaderMagnifierSize, setMangaReaderMagnifierSize) =
-        useStateRecord(
+    final visibility = useState(true);
+    final mangaReaderPadding =
+        useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
+    final mangaReaderMagnifierSize = useState(
       manga.meta?.readerMagnifierSize ?? localMangaReaderMagnifierSize,
     );
 
@@ -140,11 +138,11 @@ class ReaderWrapper extends HookConsumerWidget {
     );
 
     useEffect(() {
-      if (!visibility) {
+      if (!visibility.value) {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
       return null;
-    }, [visibility]);
+    }, [visibility.value]);
 
     return Theme(
       data: context.theme.copyWith(
@@ -154,7 +152,7 @@ class ReaderWrapper extends HookConsumerWidget {
         ),
       ),
       child: Scaffold(
-        appBar: visibility
+        appBar: visibility.value
             ? AppBar(
                 title: ListTile(
                   title: (manga.title).isNotBlank
@@ -221,7 +219,6 @@ class ReaderWrapper extends HookConsumerWidget {
               ),
               AsyncReaderPaddingSlider(
                 readerPadding: mangaReaderPadding,
-                setReaderPadding: setMangaReaderPadding,
                 onChanged: (value) {
                   AsyncValue.guard(
                     () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
@@ -234,7 +231,6 @@ class ReaderWrapper extends HookConsumerWidget {
                 },
               ),
               AsyncReaderMagnifierSizeSlider(
-                setReaderMagnifierSize: setMangaReaderMagnifierSize,
                 readerMagnifierSize: mangaReaderMagnifierSize,
                 onChanged: (value) {
                   AsyncValue.guard(
@@ -250,7 +246,7 @@ class ReaderWrapper extends HookConsumerWidget {
             ],
           ),
         ),
-        bottomSheet: visibility
+        bottomSheet: visibility.value
             ? ExcludeFocus(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -389,7 +385,7 @@ class ReaderWrapper extends HookConsumerWidget {
               ),
               HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
                 onInvoke: (HideQuickOpenIntent intent) {
-                  setVisibility(!visibility);
+                  visibility.value = (!visibility.value);
                   return null;
                 },
               ),
@@ -398,10 +394,11 @@ class ReaderWrapper extends HookConsumerWidget {
               autofocus: true,
               child: RepaintBoundary(
                 child: ReaderView(
-                  toggleVisibility: () => setVisibility(!visibility),
+                  toggleVisibility: () =>
+                      visibility.value = (!visibility.value),
                   scrollDirection: scrollDirection,
-                  mangaReaderPadding: mangaReaderPadding,
-                  mangaReaderMagnifierSize: mangaReaderMagnifierSize,
+                  mangaReaderPadding: mangaReaderPadding.value,
+                  mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
                   onNext: onNext,
                   onPrevious: onPrevious,
                   mangaReaderNavigationLayout: mangaReaderNavigationLayout,
@@ -446,11 +443,10 @@ class ReaderView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (showMagnification, setShowMagnification) = useStateRecord(false);
-    final (dragGesturePosition, setDragGesturePosition) =
-        useStateRecord(Offset.zero);
+    final showMagnification = useState(false);
+    final dragGesturePosition = useState(Offset.zero);
     final positionOffset = kMagnifierPosition(
-      dragGesturePosition,
+      dragGesturePosition.value,
       context.mediaQuerySize,
       mangaReaderMagnifierSize,
     );
@@ -473,15 +469,15 @@ class ReaderView extends HookWidget {
       children: [
         GestureDetector(
           onLongPressStart: (details) {
-            setDragGesturePosition(details.localPosition);
-            setShowMagnification(true);
+            dragGesturePosition.value = (details.localPosition);
+            showMagnification.value = (true);
           },
           onLongPressEnd: (details) {
-            setDragGesturePosition(details.localPosition);
-            setShowMagnification(false);
+            dragGesturePosition.value = (details.localPosition);
+            showMagnification.value = (false);
           },
           onLongPressMoveUpdate: (details) =>
-              setDragGesturePosition(details.localPosition),
+              dragGesturePosition.value = (details.localPosition),
           onTap: toggleVisibility,
           behavior: HitTestBehavior.translucent,
           onHorizontalDragEnd: (details) {
@@ -522,7 +518,7 @@ class ReaderView extends HookWidget {
           onPrevious: onPrevious,
           navigationLayout: mangaReaderNavigationLayout,
         ),
-        if (showMagnification)
+        if (showMagnification.value)
           Positioned(
             left: positionOffset.dx,
             top: positionOffset.dy,
@@ -530,7 +526,7 @@ class ReaderView extends HookWidget {
               decoration: kMagnifierDecoration,
               size: kMagnifierSize * mangaReaderMagnifierSize,
               focalPointOffset: kMagnifierOffset(
-                dragGesturePosition,
+                dragGesturePosition.value,
                 context.mediaQuerySize,
                 mangaReaderMagnifierSize,
               ),

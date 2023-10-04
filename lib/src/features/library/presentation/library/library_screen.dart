@@ -13,7 +13,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/app_sizes.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
@@ -30,7 +29,7 @@ class LibraryScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
     final categoryList = ref.watch(categoryControllerProvider);
-    final (showSearch, setShowSearch) = useStateRecord(false);
+    final showSearch = useState(false);
     useEffect(() {
       categoryList.showToastOnError(toast, withMicrotask: true);
       return;
@@ -56,7 +55,7 @@ class LibraryScreen extends HookConsumerWidget {
                   centerTitle: true,
                   bottom: PreferredSize(
                     preferredSize: kCalculateAppBarBottomSize(
-                      [data.length.isGreaterThan(1), showSearch],
+                      [data.length.isGreaterThan(1), showSearch.value],
                     ),
                     child: Column(
                       children: [
@@ -68,7 +67,7 @@ class LibraryScreen extends HookConsumerWidget {
                                 .toList(),
                             dividerColor: Colors.transparent,
                           ),
-                        if (showSearch)
+                        if (showSearch.value)
                           Align(
                             alignment: Alignment.centerRight,
                             child: SearchField(
@@ -76,7 +75,7 @@ class LibraryScreen extends HookConsumerWidget {
                               onChanged: (val) => ref
                                   .read(libraryQueryProvider.notifier)
                                   .update(val),
-                              onClose: () => setShowSearch(false),
+                              onClose: () => showSearch.value = (false),
                             ),
                           ),
                       ],
@@ -84,7 +83,7 @@ class LibraryScreen extends HookConsumerWidget {
                   ),
                   actions: [
                     IconButton(
-                      onPressed: () => setShowSearch(true),
+                      onPressed: () => showSearch.value = (true),
                       icon: const Icon(Icons.search_rounded),
                     ),
                     Builder(

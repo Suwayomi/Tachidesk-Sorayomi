@@ -14,7 +14,6 @@ import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/endpoints.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
@@ -42,25 +41,25 @@ class ContinuousReaderMode extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useMemoized(() => ItemScrollController());
     final positionsListener = useMemoized(() => ItemPositionsListener.create());
-    final (currentIndex, setCurrentIndex) = useStateRecord(
+    final currentIndex = useState(
       chapter.read.ifNull()
           ? 0
           : (chapter.lastPageRead).getValueOnNullOrNegative(),
     );
     useEffect(() {
-      if (onPageChanged != null) onPageChanged!(currentIndex);
+      if (onPageChanged != null) onPageChanged!(currentIndex.value);
       return;
     }, [currentIndex]);
     useEffect(() {
       listener() {
         final positions = positionsListener.itemPositions.value.toList();
         if (positions.isSingletonList) {
-          setCurrentIndex(positions.first.index);
+          currentIndex.value = (positions.first.index);
         } else {
           final newPositions = positions.where((ItemPosition position) =>
               position.itemTrailingEdge.liesBetween());
           if (newPositions.isBlank) return;
-          setCurrentIndex(newPositions
+          currentIndex.value = (newPositions
               .reduce((ItemPosition max, ItemPosition position) =>
                   position.itemTrailingEdge > max.itemTrailingEdge
                       ? position
@@ -78,7 +77,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
-      currentIndex: currentIndex,
+      currentIndex: currentIndex.value,
       onChanged: (index) => scrollController.jumpTo(index: index),
       onPrevious: () {
         final ItemPosition itemPosition =

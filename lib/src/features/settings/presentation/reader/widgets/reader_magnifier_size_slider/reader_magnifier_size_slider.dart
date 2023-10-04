@@ -57,12 +57,10 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
     super.key,
     required this.onChanged,
     required this.readerMagnifierSize,
-    required this.setReaderMagnifierSize,
   });
 
   final ValueSetter<double> onChanged;
-  final double readerMagnifierSize;
-  final ValueSetter<double> setReaderMagnifierSize;
+  final ValueNotifier<double> readerMagnifierSize;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -70,7 +68,7 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
 
     final onDebounceChanged = useCallback<ValueSetter<double>>(
       (double magnifierSizeValue) async {
-        setReaderMagnifierSize(magnifierSizeValue);
+        readerMagnifierSize.value = (magnifierSizeValue);
         final finalDebounce = debounce.value;
         if ((finalDebounce?.isActive).ifNull()) {
           finalDebounce?.cancel();
@@ -86,7 +84,7 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
     return SliderSettingTile(
       icon: Icons.search,
       title: context.l10n!.readerMagnifierSize,
-      value: readerMagnifierSize,
+      value: readerMagnifierSize.value,
       getSliderLabel: (val) => val.toStringAsFixed(2),
       onChanged: onDebounceChanged,
       defaultValue: DBKeys.readerMagnifierSize.initial,
