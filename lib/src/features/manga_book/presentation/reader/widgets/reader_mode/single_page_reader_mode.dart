@@ -13,7 +13,6 @@ import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/endpoints.dart';
 import '../../../../../../utils/extensions/cache_manager_extensions.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
@@ -44,11 +43,10 @@ class SinglePageReaderMode extends HookConsumerWidget {
           ? 0
           : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
-    final (currentIndex, setCurrentIndex) =
-        useStateRecord(scrollController.initialPage);
+    final currentIndex = useState(scrollController.initialPage);
     useEffect(() {
-      if (onPageChanged != null) onPageChanged!(currentIndex);
-      int currentPage = currentIndex;
+      if (onPageChanged != null) onPageChanged!(currentIndex.value);
+      int currentPage = currentIndex.value;
       // Prev page
       if (currentPage > 0) {
         cacheManager.getServerFile(
@@ -87,7 +85,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
-        if (currentPage != null) setCurrentIndex(currentPage.toInt());
+        if (currentPage != null) currentIndex.value = (currentPage.toInt());
       }
 
       scrollController.addListener(listener);
@@ -99,7 +97,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
-      currentIndex: currentIndex,
+      currentIndex: currentIndex.value,
       onChanged: (index) => scrollController.jumpToPage(index),
       onPrevious: () => scrollController.previousPage(
         duration: isAnimationEnabled ? kDuration : kInstantDuration,

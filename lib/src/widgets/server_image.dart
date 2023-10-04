@@ -8,6 +8,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/app_sizes.dart';
@@ -18,7 +19,6 @@ import '../features/settings/widgets/server_port_tile/server_port_tile.dart';
 import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../global_providers/global_providers.dart';
 import '../utils/extensions/custom_extensions.dart';
-import '../utils/hooks/hook_primitives_wrapper.dart';
 import '../utils/misc/app_utils.dart';
 
 class ServerImage extends HookConsumerWidget {
@@ -44,7 +44,7 @@ class ServerImage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (key, setKey) = useStateRecord(UniqueKey());
+    final key = useState(UniqueKey());
     // Providers
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
@@ -95,7 +95,7 @@ class ServerImage extends HookConsumerWidget {
                   KSizedBox.h32.size,
                   TextButton(
                     onPressed: () {
-                      setKey(UniqueKey());
+                      key.value = (UniqueKey());
                     },
                     child: Text(context.l10n!.reload),
                   ),
@@ -116,7 +116,7 @@ class ServerImage extends HookConsumerWidget {
     }
 
     return CachedNetworkImage(
-      key: key,
+      key: key.value,
       imageUrl: baseApi,
       height: size?.height,
       cacheManager: DefaultCacheManager(),

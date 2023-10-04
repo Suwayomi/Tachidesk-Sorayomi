@@ -12,7 +12,6 @@ import '../../../../constants/app_sizes.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../library/presentation/library/controller/library_controller.dart';
@@ -44,8 +43,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
       firstUnreadInFilteredChapterListProvider(mangaId: mangaId),
     );
 
-    final (selectedChapters, setSelectedChapters) =
-        useStateRecord<Map<int, Chapter>>({});
+    final selectedChapters = useState<Map<int, Chapter>>({});
 
     // Refresh manga
     final mangaRefresh = useCallback(
@@ -97,19 +95,19 @@ class MangaDetailsScreen extends HookConsumerWidget {
       child: manga.showUiWhenData(
         context,
         (data) => Scaffold(
-          appBar: selectedChapters.isNotEmpty
+          appBar: selectedChapters.value.isNotEmpty
               ? AppBar(
                   leading: IconButton(
-                    onPressed: () => setSelectedChapters({}),
+                    onPressed: () => selectedChapters.value = ({}),
                     icon: const Icon(Icons.close_rounded),
                   ),
                   title: Text(
-                    context.l10n!.numSelected(selectedChapters.length),
+                    context.l10n!.numSelected(selectedChapters.value.length),
                   ),
                   actions: [
                     IconButton(
                       onPressed: () {
-                        setSelectedChapters({
+                        selectedChapters.value = ({
                           for (Chapter i in [
                             ...?filteredChapterList.valueOrNull
                           ])
@@ -120,12 +118,12 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        setSelectedChapters({
+                        selectedChapters.value = ({
                           for (Chapter i in [
                             ...?filteredChapterList.valueOrNull
                           ])
                             if (i.id != null &&
-                                !selectedChapters.containsKey(i.id))
+                                !selectedChapters.value.containsKey(i.id))
                               i.id!: i
                         });
                       },
@@ -190,15 +188,14 @@ class MangaDetailsScreen extends HookConsumerWidget {
             width: kDrawerWidth,
             child: MangaChapterOrganizer(mangaId: mangaId),
           ),
-          bottomSheet: selectedChapters.isNotEmpty
+          bottomSheet: selectedChapters.value.isNotEmpty
               ? MultiChaptersActionsBottomAppBar(
                   afterOptionSelected: chapterListRefresh,
                   selectedChapters: selectedChapters,
-                  setSelectedChapters: setSelectedChapters,
                 )
               : null,
           floatingActionButton:
-              firstUnreadChapter != null && selectedChapters.isEmpty
+              firstUnreadChapter != null && selectedChapters.value.isEmpty
                   ? FloatingActionButton.extended(
                       isExtended: context.isTablet,
                       label: Text(
@@ -225,7 +222,6 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       onDescriptionRefresh: mangaRefresh,
                       onListRefresh: chapterListRefresh,
                       selectedChapters: selectedChapters,
-                      setSelectedChapters: setSelectedChapters,
                     )
                   : SmallScreenMangaDetails(
                       chapterList: filteredChapterList,
@@ -235,7 +231,6 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       onDescriptionRefresh: mangaRefresh,
                       onListRefresh: chapterListRefresh,
                       selectedChapters: selectedChapters,
-                      setSelectedChapters: setSelectedChapters,
                     )
               : Emoticons(
                   text: context.l10n!.noMangaFound,

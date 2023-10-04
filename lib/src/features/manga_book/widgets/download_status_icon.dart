@@ -12,7 +12,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../utils/extensions/custom_extensions.dart';
-import '../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../utils/misc/toast/toast.dart';
 import '../../../widgets/custom_circular_progress_indicator.dart';
 import '../data/downloads/downloads_repository.dart';
@@ -70,7 +69,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (isLoading, setIsLoading) = useStateRecord(false);
+    final isLoading = useState(false);
 
     final toast = ref.watch(toastProvider(context));
     final download = chapter.id != null
@@ -78,12 +77,13 @@ class DownloadStatusIcon extends HookConsumerWidget {
         : null;
     useEffect(() {
       if (download?.state == "Finished") {
-        Future.microtask(() => newUpdatePair(ref, setIsLoading));
+        Future.microtask(
+            () => newUpdatePair(ref, (value) => isLoading.value = value));
       }
       return;
     }, [download?.state]);
 
-    if (isLoading) {
+    if (isLoading.value) {
       return Padding(
         padding: KEdgeInsets.h8.size,
         child: MiniCircularProgressIndicator(color: context.iconColor),
@@ -118,7 +118,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
                     ),
               ))
                   .showToastOnError(toast);
-              await newUpdatePair(ref, setIsLoading);
+              await newUpdatePair(ref, (value) => isLoading.value = value);
             },
           );
         } else {

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../utils/extensions/custom_extensions.dart';
-import '../../utils/hooks/hook_primitives_wrapper.dart';
 
 class AsyncCheckboxListTile extends HookWidget {
   const AsyncCheckboxListTile({
@@ -23,12 +22,16 @@ class AsyncCheckboxListTile extends HookWidget {
   final Widget title;
   @override
   Widget build(BuildContext context) {
-    final (localValue, setLocalValue) = useStateRecord(value);
+    final localValue = useState(value);
+    useEffect(() {
+      localValue.value = value;
+      return null;
+    }, [value]);
     return CheckboxListTile(
-      value: localValue,
+      value: localValue.value,
       onChanged: onChanged != null
           ? (val) {
-              setLocalValue(val.ifNull());
+              localValue.value = (val.ifNull());
               onChanged!(val.ifNull());
             }
           : null,

@@ -9,7 +9,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../constants/app_sizes.dart';
 import '../utils/extensions/custom_extensions.dart';
-import '../utils/hooks/hook_primitives_wrapper.dart';
 import 'pop_button.dart';
 
 class MultiSelectPopup<T> extends HookWidget {
@@ -38,21 +37,21 @@ class MultiSelectPopup<T> extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final (selectedValues, setSelectedValues) =
-        useStateRecord<Map<T, bool>>(getSelectedValuesFromOptions());
+    final selectedValues =
+        useState<Map<T, bool>>(getSelectedValuesFromOptions());
     useEffect(() {
-      setSelectedValues(getSelectedValuesFromOptions());
+      selectedValues.value = (getSelectedValuesFromOptions());
       return null;
     }, [values, optionList]);
     return AlertDialog(
       contentPadding: KEdgeInsets.v8.size,
       title: Text(title),
       content: CheckboxSelectList(
-        values: selectedValues,
+        values: selectedValues.value,
         onChange: (value) {
-          final multiSelectMap = selectedValues;
+          final multiSelectMap = selectedValues.value;
           multiSelectMap[value.key] = value.value;
-          setSelectedValues(multiSelectMap);
+          selectedValues.value = multiSelectMap;
         },
         getTitle: getOptionTitle,
         getSubtitle: getOptionSubtitle,
@@ -61,7 +60,7 @@ class MultiSelectPopup<T> extends HookWidget {
         const PopButton(),
         ElevatedButton(
           onPressed: () {
-            final multiSelectMap = selectedValues;
+            final multiSelectMap = selectedValues.value;
             final selected = multiSelectMap.keys
                 .where((key) => multiSelectMap[key].ifNull())
                 .toList();

@@ -10,7 +10,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
@@ -37,8 +36,7 @@ class EditCategoryDialog extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryName = useTextEditingController(text: category?.name);
-    final (defaultCategory, setDefaultCategory) =
-        useStateRecord((category?.defaultCategory).ifNull());
+    final defaultCategory = useState((category?.defaultCategory).ifNull());
     return AlertDialog(
       title: Text(
         category == null
@@ -61,18 +59,20 @@ class EditCategoryDialog extends HookConsumerWidget {
                 ? (text) {
                     submitEditCategory(
                       categoryName.text,
-                      defaultCategory,
+                      defaultCategory.value,
                     );
                     context.pop();
                   }
                 : null,
           ),
           CheckboxListTile(
-            value: defaultCategory,
+            value: defaultCategory.value,
             dense: true,
             controlAffinity: ListTileControlAffinity.leading,
             onChanged: (value) {
-              if (value != null) setDefaultCategory(value);
+              if (value != null) {
+                defaultCategory.value = (value);
+              }
             },
             title: Text(context.l10n!.defaultCategory),
           )
@@ -88,7 +88,7 @@ class EditCategoryDialog extends HookConsumerWidget {
                   .show(context.l10n!.emptyCategory);
               return;
             }
-            submitEditCategory(categoryName.text, defaultCategory);
+            submitEditCategory(categoryName.text, defaultCategory.value);
             context.pop();
           },
           child: Text(context.l10n!.save),

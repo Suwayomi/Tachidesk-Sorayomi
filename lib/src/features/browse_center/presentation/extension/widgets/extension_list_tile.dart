@@ -6,11 +6,11 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../utils/hooks/hook_primitives_wrapper.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../data/extension_repository/extension_repository.dart';
@@ -30,7 +30,7 @@ class ExtensionListTile extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final repository = ref.watch(extensionRepositoryProvider);
-    final (isLoading, setIsLoading) = useStateRecord(false);
+    final isLoading = useState(false);
     return ListTile(
       key: key,
       leading: ClipRRect(
@@ -39,7 +39,7 @@ class ExtensionListTile extends HookConsumerWidget {
           url: extension.iconUrl ?? "",
           outerSize: const Size.square(48),
           innerSize: const Size.square(24),
-          isLoading: isLoading,
+          isLoading: isLoading.value,
         ),
       ),
       title: Text(
@@ -73,7 +73,6 @@ class ExtensionListTile extends HookConsumerWidget {
         extension: extension,
         repository: repository,
         isLoading: isLoading,
-        setIsLoading: setIsLoading,
         ref: ref,
         refresh: refresh,
       ),
@@ -87,15 +86,13 @@ class ExtensionListTileTailing extends StatelessWidget {
     required this.extension,
     required this.repository,
     required this.isLoading,
-    required this.setIsLoading,
     required this.ref,
     required this.refresh,
   }) : super(key: key);
 
   final Extension extension;
   final ExtensionRepository repository;
-  final bool isLoading;
-  final ValueSetter<bool> setIsLoading;
+  final ValueNotifier<bool> isLoading;
   final WidgetRef ref;
   final AsyncCallback refresh;
 
@@ -114,10 +111,10 @@ class ExtensionListTileTailing extends StatelessWidget {
     } else {
       if (extension.installed.ifNull()) {
         return TextButton(
-          onPressed: (!isLoading)
+          onPressed: (!isLoading.value)
               ? () async {
                   try {
-                    setIsLoading(true);
+                    isLoading.value = (true);
                     final result = (await AsyncValue.guard(
                       () async {
                         if (extension.pkgName.isBlank) {
@@ -136,7 +133,7 @@ class ExtensionListTileTailing extends StatelessWidget {
                     if (context.mounted) {
                       result.showToastOnError(ref.read(toastProvider(context)));
                     }
-                    setIsLoading(false);
+                    isLoading.value = (false);
                   } catch (e) {
                     //
                   }
@@ -144,20 +141,20 @@ class ExtensionListTileTailing extends StatelessWidget {
               : null,
           child: Text(
             extension.hasUpdate.ifNull()
-                ? isLoading
+                ? isLoading.value
                     ? context.l10n!.updating
                     : context.l10n!.update
-                : isLoading
+                : isLoading.value
                     ? context.l10n!.uninstalling
                     : context.l10n!.uninstall,
           ),
         );
       } else {
         return TextButton(
-          onPressed: !isLoading
+          onPressed: !isLoading.value
               ? () async {
                   try {
-                    setIsLoading(true);
+                    isLoading.value = (true);
                     final result = await AsyncValue.guard(() async {
                       if (extension.pkgName.isBlank) {
                         throw context.l10n!.errorExtension;
@@ -183,14 +180,14 @@ class ExtensionListTileTailing extends StatelessWidget {
                         ref.read(toastProvider(context)),
                       );
                     }
-                    setIsLoading(false);
+                    isLoading.value = (false);
                   } catch (e) {
                     //
                   }
                 }
               : null,
           child: Text(
-            isLoading ? context.l10n!.installing : context.l10n!.install,
+            isLoading.value ? context.l10n!.installing : context.l10n!.install,
           ),
         );
       }
