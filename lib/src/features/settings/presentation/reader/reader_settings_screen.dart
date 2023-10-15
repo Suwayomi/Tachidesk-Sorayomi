@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
+import 'widgets/reader_initial_overlay_tile/reader_initial_overlay_tile.dart';
 import 'widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import 'widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import 'widgets/reader_mode_tile/reader_mode_tile.dart';
@@ -27,6 +28,7 @@ class ReaderSettingsScreen extends StatelessWidget {
           ReaderModeTile(),
           ReaderNavigationLayoutTile(),
           ReaderInvertTapTile(),
+          ReaderInitialOverlayTile(),
           SwipeChapterToggleTile(),
           ReaderScrollAnimationTile(),
           ReaderPaddingSlider(),

@@ -36,8 +36,7 @@ class CategoryQueryListTile extends StatelessWidget {
     } else if ((chapter?.name).isBlank) {
       title = (manga?.title ?? "");
     } else {
-      title = chapter?.name ??
-          context.l10n!.chapterNumber(chapter?.chapterNumber ?? 0);
+      title = chapter?.getDisplayName(context) ?? "";
     }
 
     return InkWell(
@@ -46,6 +45,7 @@ class CategoryQueryListTile extends StatelessWidget {
           ReaderRoute(
             mangaId: manga!.id!,
             chapterIndex: chapter!.index!,
+            showReaderLayoutAnimation: true,
           ).push(context);
         } else if (manga?.id != null) {
           MangaRoute(mangaId: manga!.id!, categoryId: category?.id)

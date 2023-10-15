@@ -268,11 +268,13 @@ class ReaderRoute extends GoRouteData {
     required this.chapterIndex,
     this.transVertical,
     this.toPrev,
+    this.showReaderLayoutAnimation = false,
   });
   final int mangaId;
   final int chapterIndex;
   final bool? transVertical;
   final bool? toPrev;
+  final bool showReaderLayoutAnimation;
 
   static final $parentNavigatorKey = _quickOpenNavigatorKey;
 
@@ -280,7 +282,11 @@ class ReaderRoute extends GoRouteData {
   Page<void> buildPage(BuildContext context, GoRouterState state) {
     return CustomTransitionPage(
       key: state.pageKey,
-      child: ReaderScreen(mangaId: mangaId, chapterIndex: chapterIndex),
+      child: ReaderScreen(
+        mangaId: mangaId,
+        chapterIndex: chapterIndex,
+        showReaderLayoutAnimation: showReaderLayoutAnimation,
+      ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         Offset offset = Offset.zero;
         offset += Offset(

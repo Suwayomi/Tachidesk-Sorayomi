@@ -393,6 +393,11 @@ extension $ReaderRouteExtension on ReaderRoute {
             'trans-vertical', state.uri.queryParameters, _$boolConverter),
         toPrev: _$convertMapValue(
             'to-prev', state.uri.queryParameters, _$boolConverter),
+        showReaderLayoutAnimation: _$convertMapValue(
+                'show-reader-layout-animation',
+                state.uri.queryParameters,
+                _$boolConverter) ??
+            false,
       );
 
   String get location => GoRouteData.$location(
@@ -401,6 +406,9 @@ extension $ReaderRouteExtension on ReaderRoute {
           if (transVertical != null)
             'trans-vertical': transVertical!.toString(),
           if (toPrev != null) 'to-prev': toPrev!.toString(),
+          if (showReaderLayoutAnimation != false)
+            'show-reader-layout-animation':
+                showReaderLayoutAnimation.toString(),
         },
       );
 

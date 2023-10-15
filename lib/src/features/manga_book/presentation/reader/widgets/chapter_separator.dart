@@ -5,16 +5,42 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
+import '../../../../../constants/enum.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../settings/presentation/reader/widgets/reader_navigation_layout_tile/reader_navigation_layout_tile.dart';
+import '../../../domain/chapter/chapter_model.dart';
+import '../../../domain/manga/manga_model.dart';
+import '../../manga_details/controller/manga_details_controller.dart';
 
-class ChapterSeparator extends StatelessWidget {
-  const ChapterSeparator({super.key, required this.title, required this.name});
-  final String title;
-  final String name;
+class ChapterSeparator extends ConsumerWidget {
+  const ChapterSeparator({
+    super.key,
+    required this.manga,
+    required this.chapter,
+    required this.isPreviousChapterSeparator,
+  });
+  final Manga manga;
+  final Chapter chapter;
+  final bool isPreviousChapterSeparator;
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final nextPrevChapterPair = ref.watch(
+      getNextAndPreviousChaptersProvider(
+        mangaId: manga.id!,
+        chapterIndex: "${chapter.index}",
+      ),
+    );
+    final navigationLayout = ref.watch(readerNavigationLayoutKeyProvider);
+    final showPrevNextButtons =
+        manga.meta?.readerNavigationLayout == ReaderNavigationLayout.disabled ||
+            ((manga.meta?.readerNavigationLayout == null ||
+                    manga.meta?.readerNavigationLayout ==
+                        ReaderNavigationLayout.defaultNavigation) &&
+                navigationLayout == ReaderNavigationLayout.disabled);
     return Center(
       child: SingleChildScrollView(
         child: Column(
@@ -22,18 +48,55 @@ class ChapterSeparator extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             KSizedBox.h16.size,
+            if (showPrevNextButtons &&
+                nextPrevChapterPair?.second != null &&
+                isPreviousChapterSeparator)
+              Padding(
+                padding: KEdgeInsets.v16.size,
+                child: FilledButton(
+                  onPressed: () => ReaderRoute(
+                    mangaId: nextPrevChapterPair!.second!.mangaId!,
+                    chapterIndex: nextPrevChapterPair.second!.index!,
+                  ).pushReplacement(context),
+                  child: Text(
+                    context.l10n!.previousChapter(
+                      nextPrevChapterPair?.second?.getDisplayName(context) ??
+                          "",
+                    ),
+                  ),
+                ),
+              ),
             Text(
-              "$title:",
+              isPreviousChapterSeparator
+                  ? context.l10n!.start
+                  : context.l10n!.finished,
               style: context.textTheme.titleMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,
             ),
             Text(
-              name,
+              chapter.getDisplayName(context),
               style: context.textTheme.bodyMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,
             ),
+            if (showPrevNextButtons &&
+                nextPrevChapterPair?.first != null &&
+                !isPreviousChapterSeparator)
+              Padding(
+                padding: KEdgeInsets.v16.size,
+                child: FilledButton(
+                  onPressed: () => ReaderRoute(
+                    mangaId: nextPrevChapterPair!.first!.mangaId!,
+                    chapterIndex: nextPrevChapterPair.first!.index!,
+                  ).pushReplacement(context),
+                  child: Text(
+                    context.l10n!.nextChapter(
+                      nextPrevChapterPair?.first?.getDisplayName(context) ?? "",
+                    ),
+                  ),
+                ),
+              ),
             KSizedBox.h16.size,
           ],
         ),

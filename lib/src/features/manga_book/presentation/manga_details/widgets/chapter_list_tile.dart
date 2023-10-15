@@ -34,6 +34,7 @@ class ChapterListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: Key("manga-${manga.id}-chapter-${chapter.id}"),
       onSecondaryTap: () => toggleSelect(chapter),
       child: ListTile(
         title: Row(
@@ -49,8 +50,7 @@ class ChapterListTile extends StatelessWidget {
             ],
             Expanded(
               child: Text(
-                chapter.name ??
-                    context.l10n!.chapterNumber(chapter.chapterNumber ?? 0),
+                chapter.getDisplayName(context),
                 style: TextStyle(
                   color: chapter.read.ifNull() ? Colors.grey : null,
                 ),
@@ -105,6 +105,7 @@ class ChapterListTile extends StatelessWidget {
             : () => ReaderRoute(
                   mangaId: manga.id!,
                   chapterIndex: chapter.index!,
+                  showReaderLayoutAnimation: true,
                 ).push(context),
         onLongPress: () => toggleSelect(chapter),
       ),

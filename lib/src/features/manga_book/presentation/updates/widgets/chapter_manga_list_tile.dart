@@ -92,6 +92,7 @@ class ChapterMangaListTile extends StatelessWidget {
                   ReaderRoute(
                     mangaId: pair.manga!.id!,
                     chapterIndex: pair.chapter!.index!,
+                    showReaderLayoutAnimation: true,
                   ).push(context);
                 }
               }

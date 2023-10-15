@@ -20,6 +20,7 @@ import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../global_providers/global_providers.dart';
 import '../utils/extensions/custom_extensions.dart';
 import '../utils/misc/app_utils.dart';
+import 'custom_circular_progress_indicator.dart';
 
 class ServerImage extends HookConsumerWidget {
   const ServerImage({
@@ -69,13 +70,13 @@ class ServerImage extends HookConsumerWidget {
       renderMethod = ImageRenderMethodForWeb.HtmlImage;
     }
 
-    final finalProgressIndicatorBuilder = progressIndicatorBuilder != null
-        ? (BuildContext context, String url, DownloadProgress progress) =>
-            AppUtils.wrapIf(
-              wrapper,
-              progressIndicatorBuilder!(context, url, progress),
-            )
-        : null;
+    finalProgressIndicatorBuilder(
+            BuildContext context, String url, DownloadProgress progress) =>
+        AppUtils.wrapIf(
+          wrapper,
+          progressIndicatorBuilder?.call(context, url, progress) ??
+              const CenterSorayomiShimmerIndicator(),
+        );
 
     Widget errorWidget(BuildContext context, String error, stackTrace) {
       if (showReloadButton) {
@@ -157,6 +158,8 @@ class ServerImageWithCpi extends StatelessWidget {
             ServerImage(
               imageUrl: url,
               size: innerSize,
+              progressIndicatorBuilder: (context, url, progress) =>
+                  const CenterSorayomiShimmerIndicator(),
             )
           ],
         ),
