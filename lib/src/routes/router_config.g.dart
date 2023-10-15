@@ -7,134 +7,47 @@ part of 'router_config.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-      $quickSearchRoute,
+      $shellRoute,
+      $mangaRoute,
+      $updateStatusRoute,
+      $globalSearchRoute,
+      $sourceMangaRoute,
+      $sourcePreferenceRoute,
+      $aboutRoute,
+      $readerRoute,
+      $settingsRoute,
     ];
 
-RouteBase get $quickSearchRoute => ShellRouteData.$route(
-      navigatorKey: QuickSearchRoute.$navigatorKey,
-      factory: $QuickSearchRouteExtension._fromState,
+RouteBase get $shellRoute => ShellRouteData.$route(
+      navigatorKey: ShellRoute.$navigatorKey,
+      factory: $ShellRouteExtension._fromState,
       routes: [
-        ShellRouteData.$route(
-          navigatorKey: ShellRoute.$navigatorKey,
-          factory: $ShellRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: '/',
-              factory: $HomeRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: '/library',
-              factory: $LibraryRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: '/updates',
-              factory: $UpdatesRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: '/browse',
-              factory: $BrowseRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: '/downloads',
-              factory: $DownloadsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: '/more',
-              factory: $MoreRouteExtension._fromState,
-            ),
-          ],
+        GoRouteData.$route(
+          path: '/',
+          factory: $HomeRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/manga/:mangaId',
-          parentNavigatorKey: MangaRoute.$parentNavigatorKey,
-          factory: $MangaRouteExtension._fromState,
+          path: '/library',
+          factory: $LibraryRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/update-status',
-          parentNavigatorKey: UpdateStatusRoute.$parentNavigatorKey,
-          factory: $UpdateStatusRouteExtension._fromState,
+          path: '/updates',
+          factory: $UpdatesRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/global-search',
-          parentNavigatorKey: GlobalSearchRoute.$parentNavigatorKey,
-          factory: $GlobalSearchRouteExtension._fromState,
+          path: '/browse',
+          factory: $BrowseRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/source/:sourceId/preference',
-          parentNavigatorKey: SourcePreferenceRoute.$parentNavigatorKey,
-          factory: $SourcePreferenceRouteExtension._fromState,
+          path: '/downloads',
+          factory: $DownloadsRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/source/:sourceId/:sourceType',
-          parentNavigatorKey: SourceMangaRoute.$parentNavigatorKey,
-          factory: $SourceMangaRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: '/about',
-          parentNavigatorKey: AboutRoute.$parentNavigatorKey,
-          factory: $AboutRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: '/manga/:mangaId/chapter/:chapterIndex',
-          parentNavigatorKey: ReaderRoute.$parentNavigatorKey,
-          factory: $ReaderRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: '/settings',
-          parentNavigatorKey: SettingsRoute.$parentNavigatorKey,
-          factory: $SettingsRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'library',
-              parentNavigatorKey: LibrarySettingsRoute.$parentNavigatorKey,
-              factory: $LibrarySettingsRouteExtension._fromState,
-              routes: [
-                GoRouteData.$route(
-                  path: 'edit-categories',
-                  parentNavigatorKey: EditCategoriesRoute.$parentNavigatorKey,
-                  factory: $EditCategoriesRouteExtension._fromState,
-                ),
-              ],
-            ),
-            GoRouteData.$route(
-              path: 'server',
-              parentNavigatorKey: ServerSettingsRoute.$parentNavigatorKey,
-              factory: $ServerSettingsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'reader',
-              parentNavigatorKey: ReaderSettingsRoute.$parentNavigatorKey,
-              factory: $ReaderSettingsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'appearance',
-              parentNavigatorKey: AppearanceSettingsRoute.$parentNavigatorKey,
-              factory: $AppearanceSettingsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'general',
-              parentNavigatorKey: GeneralSettingsRoute.$parentNavigatorKey,
-              factory: $GeneralSettingsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'browse',
-              parentNavigatorKey: BrowseSettingsRoute.$parentNavigatorKey,
-              factory: $BrowseSettingsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
-              path: 'backup',
-              parentNavigatorKey: BackupRoute.$parentNavigatorKey,
-              factory: $BackupRouteExtension._fromState,
-            ),
-          ],
+          path: '/more',
+          factory: $MoreRouteExtension._fromState,
         ),
       ],
     );
-
-extension $QuickSearchRouteExtension on QuickSearchRoute {
-  static QuickSearchRoute _fromState(GoRouterState state) =>
-      const QuickSearchRoute();
-}
 
 extension $ShellRouteExtension on ShellRoute {
   static ShellRoute _fromState(GoRouterState state) => const ShellRoute();
@@ -250,6 +163,21 @@ extension $MoreRouteExtension on MoreRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
+}
+
+RouteBase get $mangaRoute => GoRouteData.$route(
+      path: '/manga/:mangaId',
+      parentNavigatorKey: MangaRoute.$parentNavigatorKey,
+      factory: $MangaRouteExtension._fromState,
+    );
+
 extension $MangaRouteExtension on MangaRoute {
   static MangaRoute _fromState(GoRouterState state) => MangaRoute(
         mangaId: int.parse(state.pathParameters['mangaId']!),
@@ -274,6 +202,12 @@ extension $MangaRouteExtension on MangaRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $updateStatusRoute => GoRouteData.$route(
+      path: '/update-status',
+      parentNavigatorKey: UpdateStatusRoute.$parentNavigatorKey,
+      factory: $UpdateStatusRouteExtension._fromState,
+    );
+
 extension $UpdateStatusRouteExtension on UpdateStatusRoute {
   static UpdateStatusRoute _fromState(GoRouterState state) =>
       const UpdateStatusRoute();
@@ -291,6 +225,12 @@ extension $UpdateStatusRouteExtension on UpdateStatusRoute {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+RouteBase get $globalSearchRoute => GoRouteData.$route(
+      path: '/global-search',
+      parentNavigatorKey: GlobalSearchRoute.$parentNavigatorKey,
+      factory: $GlobalSearchRouteExtension._fromState,
+    );
 
 extension $GlobalSearchRouteExtension on GlobalSearchRoute {
   static GlobalSearchRoute _fromState(GoRouterState state) => GlobalSearchRoute(
@@ -314,25 +254,11 @@ extension $GlobalSearchRouteExtension on GlobalSearchRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SourcePreferenceRouteExtension on SourcePreferenceRoute {
-  static SourcePreferenceRoute _fromState(GoRouterState state) =>
-      SourcePreferenceRoute(
-        sourceId: state.pathParameters['sourceId']!,
-      );
-
-  String get location => GoRouteData.$location(
-        '/source/${Uri.encodeComponent(sourceId)}/preference',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
+RouteBase get $sourceMangaRoute => GoRouteData.$route(
+      path: '/source/:sourceId/:sourceType',
+      parentNavigatorKey: SourceMangaRoute.$parentNavigatorKey,
+      factory: $SourceMangaRouteExtension._fromState,
+    );
 
 extension $SourceMangaRouteExtension on SourceMangaRoute {
   static SourceMangaRoute _fromState(GoRouterState state) => SourceMangaRoute(
@@ -368,6 +294,43 @@ const _$SourceTypeEnumMap = {
   SourceType.filter: 'filter',
 };
 
+extension<T extends Enum> on Map<T, String> {
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
+}
+
+RouteBase get $sourcePreferenceRoute => GoRouteData.$route(
+      path: '/source/:sourceId/preference',
+      parentNavigatorKey: SourcePreferenceRoute.$parentNavigatorKey,
+      factory: $SourcePreferenceRouteExtension._fromState,
+    );
+
+extension $SourcePreferenceRouteExtension on SourcePreferenceRoute {
+  static SourcePreferenceRoute _fromState(GoRouterState state) =>
+      SourcePreferenceRoute(
+        sourceId: state.pathParameters['sourceId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/source/${Uri.encodeComponent(sourceId)}/preference',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $aboutRoute => GoRouteData.$route(
+      path: '/about',
+      parentNavigatorKey: AboutRoute.$parentNavigatorKey,
+      factory: $AboutRouteExtension._fromState,
+    );
+
 extension $AboutRouteExtension on AboutRoute {
   static AboutRoute _fromState(GoRouterState state) => const AboutRoute();
 
@@ -384,6 +347,12 @@ extension $AboutRouteExtension on AboutRoute {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+RouteBase get $readerRoute => GoRouteData.$route(
+      path: '/manga/:mangaId/chapter/:chapterIndex',
+      parentNavigatorKey: ReaderRoute.$parentNavigatorKey,
+      factory: $ReaderRouteExtension._fromState,
+    );
 
 extension $ReaderRouteExtension on ReaderRoute {
   static ReaderRoute _fromState(GoRouterState state) => ReaderRoute(
@@ -421,6 +390,67 @@ extension $ReaderRouteExtension on ReaderRoute {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+bool _$boolConverter(String value) {
+  switch (value) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      throw UnsupportedError('Cannot convert "$value" into a bool.');
+  }
+}
+
+RouteBase get $settingsRoute => GoRouteData.$route(
+      path: '/settings',
+      parentNavigatorKey: SettingsRoute.$parentNavigatorKey,
+      factory: $SettingsRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'library',
+          parentNavigatorKey: LibrarySettingsRoute.$parentNavigatorKey,
+          factory: $LibrarySettingsRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'edit-categories',
+              parentNavigatorKey: EditCategoriesRoute.$parentNavigatorKey,
+              factory: $EditCategoriesRouteExtension._fromState,
+            ),
+          ],
+        ),
+        GoRouteData.$route(
+          path: 'server',
+          parentNavigatorKey: ServerSettingsRoute.$parentNavigatorKey,
+          factory: $ServerSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'reader',
+          parentNavigatorKey: ReaderSettingsRoute.$parentNavigatorKey,
+          factory: $ReaderSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'appearance',
+          parentNavigatorKey: AppearanceSettingsRoute.$parentNavigatorKey,
+          factory: $AppearanceSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'general',
+          parentNavigatorKey: GeneralSettingsRoute.$parentNavigatorKey,
+          factory: $GeneralSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'browse',
+          parentNavigatorKey: BrowseSettingsRoute.$parentNavigatorKey,
+          factory: $BrowseSettingsRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'backup',
+          parentNavigatorKey: BackupRoute.$parentNavigatorKey,
+          factory: $BackupRouteExtension._fromState,
+        ),
+      ],
+    );
 
 extension $SettingsRouteExtension on SettingsRoute {
   static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
@@ -580,31 +610,6 @@ extension $BackupRouteExtension on BackupRoute {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
-}
-
-T? _$convertMapValue<T>(
-  String key,
-  Map<String, String> map,
-  T Function(String) converter,
-) {
-  final value = map[key];
-  return value == null ? null : converter(value);
-}
-
-extension<T extends Enum> on Map<T, String> {
-  T _$fromName(String value) =>
-      entries.singleWhere((element) => element.value == value).key;
-}
-
-bool _$boolConverter(String value) {
-  switch (value) {
-    case 'true':
-      return true;
-    case 'false':
-      return false;
-    default:
-      throw UnsupportedError('Cannot convert "$value" into a bool.');
-  }
 }
 
 // **************************************************************************
