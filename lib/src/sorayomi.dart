@@ -35,15 +35,13 @@ class Sorayomi extends ConsumerWidget {
       routeInformationProvider: routes.routeInformationProvider,
       routeInformationParser: routes.routeInformationParser,
       routerDelegate: routes.routerDelegate,
-      builder: (context, child) {
-        return Overlay(
-          initialEntries: [
-            OverlayEntry(
-              builder: (context) => SearchStackScreen(child: child),
-            ),
-          ],
-        );
-      },
+      builder: (context, child) => Overlay(
+        initialEntries: [
+          OverlayEntry(
+            builder: (context) => SearchStackScreen(child: child),
+          ),
+        ],
+      ),
     );
   }
 }

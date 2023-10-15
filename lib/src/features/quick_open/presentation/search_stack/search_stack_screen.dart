@@ -13,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../widgets/two_finger_pointer.dart';
 import '../quick_search/quick_search_screen.dart';
 
 class ShowQuickOpenIntent extends Intent {}
@@ -87,8 +86,8 @@ class QuickSearchShortcutWrapper extends StatelessWidget {
             },
           ),
         },
-        child: TwoFingerPointerWidget(
-          onUpdate: (details) => visible.value = (true),
+        child: GestureDetector(
+          onLongPress: () => visible.value = (true),
           child: child,
         ),
       ),
