@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
@@ -40,5 +41,12 @@ class Chapter with _$Chapter {
 
   bool query([String? query]) {
     return name.query(query) || index == int.tryParse(query ?? '');
+  }
+
+  String getDisplayName(BuildContext context) {
+    return name ??
+        context.l10n!.chapterNumber(
+          chapterNumber ?? index?.toDouble() ?? 0,
+        );
   }
 }

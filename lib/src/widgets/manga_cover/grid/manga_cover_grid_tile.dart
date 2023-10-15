@@ -7,7 +7,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../../../constants/gen/assets.gen.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
+import '../../../features/manga_book/presentation/manga_thumbnail_viewer/manga_thumbnail_viewer.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../server_image.dart';
 import '../widgets/manga_badges.dart';
@@ -33,7 +35,34 @@ class MangaCoverGridTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkResponse(
-      onTap: onPressed,
+      onTap: onPressed ??
+          () => Navigator.push(
+                context,
+                PageRouteBuilder(
+                  fullscreenDialog: true,
+                  opaque: false,
+                  pageBuilder: (context, _, __) => MangaThumbnailViewer(
+                    imageUrl: manga.thumbnailUrl ?? "",
+                  ),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    const begin = Offset(-1.0, 0.0);
+                    const end = Offset.zero;
+                    const curve = Curves.ease;
+
+                    final tween = Tween(begin: begin, end: end);
+                    final curvedAnimation = CurvedAnimation(
+                      parent: animation,
+                      curve: curve,
+                    );
+
+                    return SlideTransition(
+                      position: tween.animate(curvedAnimation),
+                      child: child,
+                    );
+                  },
+                ),
+              ),
       onLongPress: onLongPress,
       child: Card(
         clipBehavior: Clip.antiAlias,
@@ -83,9 +112,8 @@ class MangaCoverGridTile extends StatelessWidget {
                 )
               : SizedBox(
                   height: context.height * .3,
-                  child: Icon(
-                    Icons.book_rounded,
-                    color: Colors.grey,
+                  child: ImageIcon(
+                    AssetImage(Assets.icons.darkIcon.path),
                     size: context.height * .2,
                   ),
                 ),

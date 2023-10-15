@@ -213,10 +213,11 @@ Chapter? firstUnreadInFilteredChapterList(
 }
 
 @riverpod
-({Chapter? first, Chapter? second})? getPreviousAndNextChapters(
-  GetPreviousAndNextChaptersRef ref, {
+({Chapter? first, Chapter? second})? getNextAndPreviousChapters(
+  GetNextAndPreviousChaptersRef ref, {
   required int mangaId,
   required String chapterIndex,
+  bool shouldAscSort = true,
 }) {
   final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
       DBKeys.chapterSortDirection.initial;
@@ -234,8 +235,8 @@ Chapter? firstUnreadInFilteredChapterList(
         ? filteredList[currentChapterIndex + 1]
         : null;
     return (
-      first: isAscSorted ? nextChapter : prevChapter,
-      second: isAscSorted ? prevChapter : nextChapter,
+      first: shouldAscSort && isAscSorted ? nextChapter : prevChapter,
+      second: shouldAscSort && isAscSorted ? prevChapter : nextChapter,
     );
   }
 }

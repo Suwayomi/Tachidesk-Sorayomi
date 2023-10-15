@@ -12,6 +12,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
+import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/updates/updates_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
@@ -114,6 +115,8 @@ class UpdatesScreen extends HookConsumerWidget {
         child: PagedListView(
           pagingController: controller,
           builderDelegate: PagedChildBuilderDelegate<ChapterMangaPair>(
+            firstPageProgressIndicatorBuilder: (context) =>
+                const CenterSorayomiShimmerIndicator(),
             firstPageErrorIndicatorBuilder: (context) => Emoticons(
               text: controller.error.toString(),
               button: TextButton(
