@@ -16,7 +16,7 @@ class QuickSearchScreen extends HookWidget {
   final VoidCallback afterClick;
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController(text: "?");
+    final controller = useTextEditingController();
     useEffect(() {
       Future.microtask(
         () => controller.selection = TextSelection(
@@ -45,6 +45,10 @@ class QuickSearchScreen extends HookWidget {
                   controller: controller,
                 ),
               ),
+              Material(
+                color: Colors.transparent,
+                child: Text(context.l10n!.quickSearchShowAllCommandTip),
+              )
             ],
           ),
         ),

@@ -433,6 +433,9 @@
     "@quickSearchCategoryMangaChapter": {
         "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
     },
+    "@quickSearchShowAllCommandTip": {
+        "description": "Quick Open Tip text for showing all commands by entering '?'"
+    },
     "@reader": {
         "description": "Screen title and Button text of Reader screen"
     },
@@ -794,6 +797,7 @@
     "quickSearchSourceManga": "Search for Manga 'M' in Source 'S'",
     "quickSearchCategoryManga": "Go to Manga 'M' in Category 'C'",
     "quickSearchCategoryMangaChapter": "Go to Chapter Name 'CN' from Manga 'M' in Category 'C'",
+    "quickSearchShowAllCommandTip": "Tip: Enter '?' to see all commands",
     "reader": "Reader",
     "readerMode": "Reading Mode",
     "readerModeContinuousHorizontalLTR": "Continuous Horizontal (LTR)",

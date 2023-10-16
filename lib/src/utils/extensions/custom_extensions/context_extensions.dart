@@ -9,7 +9,15 @@ part of '../custom_extensions.dart';
 /// Helper class for device related operations.
 ///
 extension ContextExtensions on BuildContext {
-  String get location => GoRouterState.of(this).uri.toString();
+  String get location {
+    GoRouter router = GoRouter.of(this);
+    final RouteMatch lastMatch =
+        router.routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : router.routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
 
   ///
   /// hides the keyboard if its already open
