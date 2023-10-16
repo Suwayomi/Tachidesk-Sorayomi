@@ -46,6 +46,7 @@ mixin _$Manga {
   int? get chaptersLastFetchedAt => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   MangaMeta? get meta => throw _privateConstructorUsedError;
+  List<MangaTracker>? get trackers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,7 +84,8 @@ abstract class $MangaCopyWith<$Res> {
       int? lastFetchedAt,
       int? chaptersLastFetchedAt,
       String? url,
-      MangaMeta? meta});
+      MangaMeta? meta,
+      List<MangaTracker>? trackers});
 
   $ChapterCopyWith<$Res>? get lastChapterRead;
   $SourceCopyWith<$Res>? get source;
@@ -128,6 +130,7 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
     Object? chaptersLastFetchedAt = freezed,
     Object? url = freezed,
     Object? meta = freezed,
+    Object? trackers = freezed,
   }) {
     return _then(_value.copyWith(
       artist: freezed == artist
@@ -230,6 +233,10 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as MangaMeta?,
+      trackers: freezed == trackers
+          ? _value.trackers
+          : trackers // ignore: cast_nullable_to_non_nullable
+              as List<MangaTracker>?,
     ) as $Val);
   }
 
@@ -303,7 +310,8 @@ abstract class _$$MangaImplCopyWith<$Res> implements $MangaCopyWith<$Res> {
       int? lastFetchedAt,
       int? chaptersLastFetchedAt,
       String? url,
-      MangaMeta? meta});
+      MangaMeta? meta,
+      List<MangaTracker>? trackers});
 
   @override
   $ChapterCopyWith<$Res>? get lastChapterRead;
@@ -349,6 +357,7 @@ class __$$MangaImplCopyWithImpl<$Res>
     Object? chaptersLastFetchedAt = freezed,
     Object? url = freezed,
     Object? meta = freezed,
+    Object? trackers = freezed,
   }) {
     return _then(_$MangaImpl(
       artist: freezed == artist
@@ -451,6 +460,10 @@ class __$$MangaImplCopyWithImpl<$Res>
           ? _value.meta
           : meta // ignore: cast_nullable_to_non_nullable
               as MangaMeta?,
+      trackers: freezed == trackers
+          ? _value._trackers
+          : trackers // ignore: cast_nullable_to_non_nullable
+              as List<MangaTracker>?,
     ));
   }
 }
@@ -484,8 +497,10 @@ class _$MangaImpl extends _Manga {
       this.lastFetchedAt,
       this.chaptersLastFetchedAt,
       this.url,
-      this.meta})
+      this.meta,
+      final List<MangaTracker>? trackers})
       : _genre = genre,
+        _trackers = trackers,
         super._();
 
   factory _$MangaImpl.fromJson(Map<String, dynamic> json) =>
@@ -550,10 +565,19 @@ class _$MangaImpl extends _Manga {
   final String? url;
   @override
   final MangaMeta? meta;
+  final List<MangaTracker>? _trackers;
+  @override
+  List<MangaTracker>? get trackers {
+    final value = _trackers;
+    if (value == null) return null;
+    if (_trackers is EqualUnmodifiableListView) return _trackers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, chapterCount: $chapterCount, lastReadAt: $lastReadAt, lastChapterRead: $lastChapterRead, freshData: $freshData, genre: $genre, inLibrary: $inLibrary, id: $id, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, thumbnailUrlLastFetched: $thumbnailUrlLastFetched, title: $title, unreadCount: $unreadCount, lastFetchedAt: $lastFetchedAt, chaptersLastFetchedAt: $chaptersLastFetchedAt, url: $url, meta: $meta)';
+    return 'Manga(artist: $artist, author: $author, description: $description, downloadCount: $downloadCount, chapterCount: $chapterCount, lastReadAt: $lastReadAt, lastChapterRead: $lastChapterRead, freshData: $freshData, genre: $genre, inLibrary: $inLibrary, id: $id, inLibraryAt: $inLibraryAt, initialized: $initialized, realUrl: $realUrl, source: $source, sourceId: $sourceId, status: $status, thumbnailUrl: $thumbnailUrl, thumbnailUrlLastFetched: $thumbnailUrlLastFetched, title: $title, unreadCount: $unreadCount, lastFetchedAt: $lastFetchedAt, chaptersLastFetchedAt: $chaptersLastFetchedAt, url: $url, meta: $meta, trackers: $trackers)';
   }
 
   @override
@@ -601,7 +625,8 @@ class _$MangaImpl extends _Manga {
             (identical(other.chaptersLastFetchedAt, chaptersLastFetchedAt) ||
                 other.chaptersLastFetchedAt == chaptersLastFetchedAt) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.meta, meta) || other.meta == meta));
+            (identical(other.meta, meta) || other.meta == meta) &&
+            const DeepCollectionEquality().equals(other._trackers, _trackers));
   }
 
   @JsonKey(ignore: true)
@@ -632,7 +657,8 @@ class _$MangaImpl extends _Manga {
         lastFetchedAt,
         chaptersLastFetchedAt,
         url,
-        meta
+        meta,
+        const DeepCollectionEquality().hash(_trackers)
       ]);
 
   @JsonKey(ignore: true)
@@ -676,7 +702,8 @@ abstract class _Manga extends Manga {
       final int? lastFetchedAt,
       final int? chaptersLastFetchedAt,
       final String? url,
-      final MangaMeta? meta}) = _$MangaImpl;
+      final MangaMeta? meta,
+      final List<MangaTracker>? trackers}) = _$MangaImpl;
   _Manga._() : super._();
 
   factory _Manga.fromJson(Map<String, dynamic> json) = _$MangaImpl.fromJson;
@@ -732,6 +759,8 @@ abstract class _Manga extends Manga {
   String? get url;
   @override
   MangaMeta? get meta;
+  @override
+  List<MangaTracker>? get trackers;
   @override
   @JsonKey(ignore: true)
   _$$MangaImplCopyWith<_$MangaImpl> get copyWith =>

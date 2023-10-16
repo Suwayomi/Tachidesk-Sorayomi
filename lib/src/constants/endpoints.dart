@@ -123,3 +123,12 @@ abstract class UpdateUrl {
   static const String reset = "/update/reset";
   static const String summary = "/update/summary";
 }
+
+abstract class TrackingUrl {
+  static const String list = "/track/list";
+  static const String login = "/track/login";
+  static const String logout = "/track/logout";
+  static const String search = "/track/search";
+  static const String bind = "/track/bind";
+  static const String update = "/track/update";
+}

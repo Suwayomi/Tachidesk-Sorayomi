@@ -9,6 +9,7 @@ part of 'router_config.dart';
 List<RouteBase> get $appRoutes => [
       $shellRoute,
       $mangaRoute,
+      $mangaTrackSearchRoute,
       $updateStatusRoute,
       $globalSearchRoute,
       $sourceMangaRoute,
@@ -190,6 +191,33 @@ extension $MangaRouteExtension on MangaRoute {
         queryParams: {
           if (categoryId != null) 'category-id': categoryId!.toString(),
         },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $mangaTrackSearchRoute => GoRouteData.$route(
+      path: '/track/search/:trackerId/:mangaId',
+      parentNavigatorKey: MangaTrackSearchRoute.$parentNavigatorKey,
+      factory: $MangaTrackSearchRouteExtension._fromState,
+    );
+
+extension $MangaTrackSearchRouteExtension on MangaTrackSearchRoute {
+  static MangaTrackSearchRoute _fromState(GoRouterState state) =>
+      MangaTrackSearchRoute(
+        trackerId: int.parse(state.pathParameters['trackerId']!),
+        mangaId: int.parse(state.pathParameters['mangaId']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/track/search/${Uri.encodeComponent(trackerId.toString())}/${Uri.encodeComponent(mangaId.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -449,6 +477,11 @@ RouteBase get $settingsRoute => GoRouteData.$route(
           parentNavigatorKey: BackupRoute.$parentNavigatorKey,
           factory: $BackupRouteExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: 'tracking',
+          parentNavigatorKey: TrackerSettingsRoute.$parentNavigatorKey,
+          factory: $TrackerSettingsRouteExtension._fromState,
+        ),
       ],
     );
 
@@ -600,6 +633,24 @@ extension $BackupRouteExtension on BackupRoute {
 
   String get location => GoRouteData.$location(
         '/settings/backup',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $TrackerSettingsRouteExtension on TrackerSettingsRoute {
+  static TrackerSettingsRoute _fromState(GoRouterState state) =>
+      const TrackerSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings/tracking',
       );
 
   void go(BuildContext context) => context.go(location);

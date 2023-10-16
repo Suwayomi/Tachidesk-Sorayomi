@@ -31,6 +31,8 @@ import '../features/settings/presentation/more/more_screen.dart';
 import '../features/settings/presentation/reader/reader_settings_screen.dart';
 import '../features/settings/presentation/server/server_screen.dart';
 import '../features/settings/presentation/settings/settings_screen.dart';
+import '../features/settings/presentation/tracking/tracker_settings_screen.dart';
+import '../features/settings/presentation/tracking/tracking_manga_search_screen.dart';
 import '../utils/extensions/custom_extensions.dart';
 import '../widgets/shell/shell_screen.dart';
 
@@ -57,11 +59,13 @@ abstract class Routes {
   static const settings = '/settings';
   static const browseSettings = 'browse';
   static const readerSettings = 'reader';
+  static const trackingSettings = 'tracking';
   static const reader = '/manga/:mangaId/chapter/:chapterIndex';
   static const serverSettings = 'server';
   static const editCategories = 'edit-categories';
   static const extensions = '/extensions';
   static const manga = '$mangaRoute:mangaId';
+  static const mangaTrackSearch = '/track/search/:trackerId/:mangaId';
   static const mangaRoute = '/manga/';
   static const sourceManga = '/source/:sourceId/:sourceType';
   static const sourcePreference = '/source/:sourceId/preference';
@@ -153,6 +157,19 @@ class MangaRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       MangaDetailsScreen(mangaId: mangaId, categoryId: categoryId);
+}
+
+@TypedGoRoute<MangaTrackSearchRoute>(path: Routes.mangaTrackSearch)
+class MangaTrackSearchRoute extends GoRouteData {
+  const MangaTrackSearchRoute({required this.trackerId, required this.mangaId});
+  final int trackerId;
+  final int mangaId;
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      TrackingMangaSearchScreen(trackerId: trackerId, mangaId: mangaId);
 }
 
 @TypedGoRoute<UpdateStatusRoute>(path: Routes.updateStatus)
@@ -287,6 +304,7 @@ class ReaderRoute extends GoRouteData {
   TypedGoRoute<GeneralSettingsRoute>(path: Routes.generalSettings),
   TypedGoRoute<BrowseSettingsRoute>(path: Routes.browseSettings),
   TypedGoRoute<BackupRoute>(path: Routes.backup),
+  TypedGoRoute<TrackerSettingsRoute>(path: Routes.trackingSettings),
 ])
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
@@ -336,6 +354,16 @@ class ReaderSettingsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ReaderSettingsScreen();
+}
+
+class TrackerSettingsRoute extends GoRouteData {
+  const TrackerSettingsRoute();
+
+  static final $parentNavigatorKey = _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const TrackerSettingsScreen();
 }
 
 class AppearanceSettingsRoute extends GoRouteData {

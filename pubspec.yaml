@@ -22,6 +22,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_markdown: ^0.6.17+2
+  flutter_web_auth_2: ^3.0.1
   fluttertoast: ^8.1.1
   font_awesome_flutter: ^10.2.1
   freezed_annotation: ^2.2.0
@@ -31,6 +32,7 @@ dependencies:
   intl: ^0.18.0
   json_annotation: ^4.8.1
   network_info_plus: ^4.0.0
+  numberpicker: ^2.1.2
   package_info_plus: ^4.0.0
   path: ^1.8.3
   path_provider: ^2.0.11

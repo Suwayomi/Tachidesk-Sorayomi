@@ -39,6 +39,9 @@ _$MangaImpl _$$MangaImplFromJson(Map<String, dynamic> json) => _$MangaImpl(
       meta: json['meta'] == null
           ? null
           : MangaMeta.fromJson(json['meta'] as Map<String, dynamic>),
+      trackers: (json['trackers'] as List<dynamic>?)
+          ?.map((e) => MangaTracker.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$MangaImplToJson(_$MangaImpl instance) =>
@@ -68,6 +71,7 @@ Map<String, dynamic> _$$MangaImplToJson(_$MangaImpl instance) =>
       'chaptersLastFetchedAt': instance.chaptersLastFetchedAt,
       'url': instance.url,
       'meta': instance.meta?.toJson(),
+      'trackers': instance.trackers?.map((e) => e.toJson()).toList(),
     };
 
 _$MangaMetaImpl _$$MangaMetaImplFromJson(Map<String, dynamic> json) =>
