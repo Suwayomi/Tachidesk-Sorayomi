@@ -50,13 +50,18 @@ class ServerImage extends HookConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
 
-    final baseApi = "${Endpoints.baseApi(
+    var baseApi = "${Endpoints.baseApi(
       baseUrl: ref.watch(serverUrlProvider),
       port: ref.watch(serverPortProvider),
       addPort: ref.watch(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,
     )}"
         "$imageUrl";
+
+    // support image from Anilist & MyAnimeList
+    if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+      baseApi = imageUrl;
+    }
 
     final Map<String, String>? httpHeaders =
         (authType == AuthType.basic && basicToken != null)
