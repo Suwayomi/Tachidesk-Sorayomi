@@ -451,5 +451,21 @@
   "readerSwipeChapterToggleDescription": "Deslizar para cambiar de capítulo en el lector",
   "@readerSwipeChapterToggleDescription": {
     "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "readerOverlay": "Superposición inicial del lector",
+  "@readerOverlay": {
+    "description": "Toggle tile text for Initial Reader Overlay"
+  },
+  "reload": "Recargar",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "previousChapter": "Anterior: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "nextChapter": "Siguiente: {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
   }
 }
