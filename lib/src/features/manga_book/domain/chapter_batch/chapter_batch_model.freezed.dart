@@ -82,11 +82,11 @@ class _$ChapterBatchCopyWithImpl<$Res, $Val extends ChapterBatch>
 }
 
 /// @nodoc
-abstract class _$$_ChapterBatchCopyWith<$Res>
+abstract class _$$ChapterBatchImplCopyWith<$Res>
     implements $ChapterBatchCopyWith<$Res> {
-  factory _$$_ChapterBatchCopyWith(
-          _$_ChapterBatch value, $Res Function(_$_ChapterBatch) then) =
-      __$$_ChapterBatchCopyWithImpl<$Res>;
+  factory _$$ChapterBatchImplCopyWith(
+          _$ChapterBatchImpl value, $Res Function(_$ChapterBatchImpl) then) =
+      __$$ChapterBatchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<int>? chapterIds, ChapterChange? change});
@@ -96,11 +96,11 @@ abstract class _$$_ChapterBatchCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChapterBatchCopyWithImpl<$Res>
-    extends _$ChapterBatchCopyWithImpl<$Res, _$_ChapterBatch>
-    implements _$$_ChapterBatchCopyWith<$Res> {
-  __$$_ChapterBatchCopyWithImpl(
-      _$_ChapterBatch _value, $Res Function(_$_ChapterBatch) _then)
+class __$$ChapterBatchImplCopyWithImpl<$Res>
+    extends _$ChapterBatchCopyWithImpl<$Res, _$ChapterBatchImpl>
+    implements _$$ChapterBatchImplCopyWith<$Res> {
+  __$$ChapterBatchImplCopyWithImpl(
+      _$ChapterBatchImpl _value, $Res Function(_$ChapterBatchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$_ChapterBatchCopyWithImpl<$Res>
     Object? chapterIds = freezed,
     Object? change = freezed,
   }) {
-    return _then(_$_ChapterBatch(
+    return _then(_$ChapterBatchImpl(
       chapterIds: freezed == chapterIds
           ? _value._chapterIds
           : chapterIds // ignore: cast_nullable_to_non_nullable
@@ -124,12 +124,12 @@ class __$$_ChapterBatchCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChapterBatch implements _ChapterBatch {
-  _$_ChapterBatch({final List<int>? chapterIds, this.change})
+class _$ChapterBatchImpl implements _ChapterBatch {
+  _$ChapterBatchImpl({final List<int>? chapterIds, this.change})
       : _chapterIds = chapterIds;
 
-  factory _$_ChapterBatch.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterBatchFromJson(json);
+  factory _$ChapterBatchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterBatchImplFromJson(json);
 
   final List<int>? _chapterIds;
   @override
@@ -153,7 +153,7 @@ class _$_ChapterBatch implements _ChapterBatch {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChapterBatch &&
+            other is _$ChapterBatchImpl &&
             const DeepCollectionEquality()
                 .equals(other._chapterIds, _chapterIds) &&
             (identical(other.change, change) || other.change == change));
@@ -167,12 +167,12 @@ class _$_ChapterBatch implements _ChapterBatch {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterBatchCopyWith<_$_ChapterBatch> get copyWith =>
-      __$$_ChapterBatchCopyWithImpl<_$_ChapterBatch>(this, _$identity);
+  _$$ChapterBatchImplCopyWith<_$ChapterBatchImpl> get copyWith =>
+      __$$ChapterBatchImplCopyWithImpl<_$ChapterBatchImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterBatchToJson(
+    return _$$ChapterBatchImplToJson(
       this,
     );
   }
@@ -181,10 +181,10 @@ class _$_ChapterBatch implements _ChapterBatch {
 abstract class _ChapterBatch implements ChapterBatch {
   factory _ChapterBatch(
       {final List<int>? chapterIds,
-      final ChapterChange? change}) = _$_ChapterBatch;
+      final ChapterChange? change}) = _$ChapterBatchImpl;
 
   factory _ChapterBatch.fromJson(Map<String, dynamic> json) =
-      _$_ChapterBatch.fromJson;
+      _$ChapterBatchImpl.fromJson;
 
   @override
   List<int>? get chapterIds;
@@ -192,7 +192,7 @@ abstract class _ChapterBatch implements ChapterBatch {
   ChapterChange? get change;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterBatchCopyWith<_$_ChapterBatch> get copyWith =>
+  _$$ChapterBatchImplCopyWith<_$ChapterBatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -263,11 +263,11 @@ class _$ChapterChangeCopyWithImpl<$Res, $Val extends ChapterChange>
 }
 
 /// @nodoc
-abstract class _$$_ChapterChangeCopyWith<$Res>
+abstract class _$$ChapterChangeImplCopyWith<$Res>
     implements $ChapterChangeCopyWith<$Res> {
-  factory _$$_ChapterChangeCopyWith(
-          _$_ChapterChange value, $Res Function(_$_ChapterChange) then) =
-      __$$_ChapterChangeCopyWithImpl<$Res>;
+  factory _$$ChapterChangeImplCopyWith(
+          _$ChapterChangeImpl value, $Res Function(_$ChapterChangeImpl) then) =
+      __$$ChapterChangeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -275,11 +275,11 @@ abstract class _$$_ChapterChangeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChapterChangeCopyWithImpl<$Res>
-    extends _$ChapterChangeCopyWithImpl<$Res, _$_ChapterChange>
-    implements _$$_ChapterChangeCopyWith<$Res> {
-  __$$_ChapterChangeCopyWithImpl(
-      _$_ChapterChange _value, $Res Function(_$_ChapterChange) _then)
+class __$$ChapterChangeImplCopyWithImpl<$Res>
+    extends _$ChapterChangeCopyWithImpl<$Res, _$ChapterChangeImpl>
+    implements _$$ChapterChangeImplCopyWith<$Res> {
+  __$$ChapterChangeImplCopyWithImpl(
+      _$ChapterChangeImpl _value, $Res Function(_$ChapterChangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -290,7 +290,7 @@ class __$$_ChapterChangeCopyWithImpl<$Res>
     Object? lastPageRead = freezed,
     Object? delete = freezed,
   }) {
-    return _then(_$_ChapterChange(
+    return _then(_$ChapterChangeImpl(
       isRead: freezed == isRead
           ? _value.isRead
           : isRead // ignore: cast_nullable_to_non_nullable
@@ -313,12 +313,12 @@ class __$$_ChapterChangeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChapterChange implements _ChapterChange {
-  _$_ChapterChange(
+class _$ChapterChangeImpl implements _ChapterChange {
+  _$ChapterChangeImpl(
       {this.isRead, this.isBookmarked, this.lastPageRead, this.delete});
 
-  factory _$_ChapterChange.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterChangeFromJson(json);
+  factory _$ChapterChangeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterChangeImplFromJson(json);
 
   @override
   final bool? isRead;
@@ -338,7 +338,7 @@ class _$_ChapterChange implements _ChapterChange {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChapterChange &&
+            other is _$ChapterChangeImpl &&
             (identical(other.isRead, isRead) || other.isRead == isRead) &&
             (identical(other.isBookmarked, isBookmarked) ||
                 other.isBookmarked == isBookmarked) &&
@@ -355,12 +355,12 @@ class _$_ChapterChange implements _ChapterChange {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterChangeCopyWith<_$_ChapterChange> get copyWith =>
-      __$$_ChapterChangeCopyWithImpl<_$_ChapterChange>(this, _$identity);
+  _$$ChapterChangeImplCopyWith<_$ChapterChangeImpl> get copyWith =>
+      __$$ChapterChangeImplCopyWithImpl<_$ChapterChangeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterChangeToJson(
+    return _$$ChapterChangeImplToJson(
       this,
     );
   }
@@ -371,10 +371,10 @@ abstract class _ChapterChange implements ChapterChange {
       {final bool? isRead,
       final bool? isBookmarked,
       final int? lastPageRead,
-      final bool? delete}) = _$_ChapterChange;
+      final bool? delete}) = _$ChapterChangeImpl;
 
   factory _ChapterChange.fromJson(Map<String, dynamic> json) =
-      _$_ChapterChange.fromJson;
+      _$ChapterChangeImpl.fromJson;
 
   @override
   bool? get isRead;
@@ -386,6 +386,6 @@ abstract class _ChapterChange implements ChapterChange {
   bool? get delete;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterChangeCopyWith<_$_ChapterChange> get copyWith =>
+  _$$ChapterChangeImplCopyWith<_$ChapterChangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

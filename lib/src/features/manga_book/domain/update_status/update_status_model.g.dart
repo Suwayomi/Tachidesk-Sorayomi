@@ -6,8 +6,8 @@ part of 'update_status_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UpdateStatus _$$_UpdateStatusFromJson(Map<String, dynamic> json) =>
-    _$_UpdateStatus(
+_$UpdateStatusImpl _$$UpdateStatusImplFromJson(Map<String, dynamic> json) =>
+    _$UpdateStatusImpl(
       pending: (json['PENDING'] as List<dynamic>?)
           ?.map((e) => Manga.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -22,7 +22,7 @@ _$_UpdateStatus _$$_UpdateStatusFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_UpdateStatusToJson(_$_UpdateStatus instance) =>
+Map<String, dynamic> _$$UpdateStatusImplToJson(_$UpdateStatusImpl instance) =>
     <String, dynamic>{
       'PENDING': instance.pending?.map((e) => e.toJson()).toList(),
       'RUNNING': instance.running?.map((e) => e.toJson()).toList(),

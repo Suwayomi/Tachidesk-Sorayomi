@@ -26,9 +26,11 @@ class ReaderScreen extends HookConsumerWidget {
     super.key,
     required this.mangaId,
     required this.chapterIndex,
+    this.showReaderLayoutAnimation = false,
   });
   final int mangaId;
   final int chapterIndex;
+  final bool showReaderLayoutAnimation;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
@@ -54,7 +56,7 @@ class ReaderScreen extends HookConsumerWidget {
       final isReadingCompeted = chapterValue != null &&
           ((chapterValue.read).ifNull() ||
               (currentPage >=
-                  ((chapterValue.pageCount).ifNullOrNegative() - 1)));
+                  ((chapterValue.pageCount).getValueOnNullOrNegative() - 1)));
       await AsyncValue.guard(
         () => ref.read(mangaBookRepositoryProvider).putChapter(
               mangaId: mangaId,
@@ -71,7 +73,7 @@ class ReaderScreen extends HookConsumerWidget {
       (int index) async {
         final chapterValue = chapter.valueOrNull;
         if ((chapterValue?.read).ifNull() ||
-            (chapterValue?.lastPageRead).ifNullOrNegative() >= index) {
+            (chapterValue?.lastPageRead).getValueOnNullOrNegative() >= index) {
           return;
         }
 
@@ -81,7 +83,8 @@ class ReaderScreen extends HookConsumerWidget {
         }
 
         if ((index >=
-            ((chapter.valueOrNull?.pageCount).ifNullOrNegative() - 1))) {
+            ((chapter.valueOrNull?.pageCount).getValueOnNullOrNegative() -
+                1))) {
           updateLastRead(index);
         } else {
           debounce.value = Timer(
@@ -115,18 +118,21 @@ class ReaderScreen extends HookConsumerWidget {
                       manga: data,
                       onPageChanged: onPageChanged,
                       scrollDirection: Axis.vertical,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     ),
                   ReaderMode.singleHorizontalRTL => SinglePageReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       reverse: true,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     ),
                   ReaderMode.continuousHorizontalLTR => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
                       scrollDirection: Axis.horizontal,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     ),
                   ReaderMode.continuousHorizontalRTL => ContinuousReaderMode(
                       chapter: chapterData,
@@ -134,6 +140,7 @@ class ReaderScreen extends HookConsumerWidget {
                       onPageChanged: onPageChanged,
                       scrollDirection: Axis.horizontal,
                       reverse: true,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     ),
                   ReaderMode.singleHorizontalLTR => SinglePageReaderMode(
                       chapter: chapterData,
@@ -145,16 +152,19 @@ class ReaderScreen extends HookConsumerWidget {
                       manga: data,
                       onPageChanged: onPageChanged,
                       showSeparator: true,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     ),
                   ReaderMode.webtoon => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     ),
                   ReaderMode.defaultReader || null => ContinuousReaderMode(
                       chapter: chapterData,
                       manga: data,
                       onPageChanged: onPageChanged,
+                      showReaderLayoutAnimation: showReaderLayoutAnimation,
                     )
                 };
               },

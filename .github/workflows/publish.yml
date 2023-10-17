@@ -174,7 +174,7 @@ jobs:
 
   winget-publish:
     needs: create-build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest # action can only be run on windows
     steps:
       - name: Update WINGET manifest
         uses: vedantmgoyal2009/winget-releaser@v2
@@ -185,7 +185,7 @@ jobs:
 
   homebrew-cask-publish:
     needs: create-build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Update Homebrew cask
         uses: macauley/action-homebrew-bump-cask@v1

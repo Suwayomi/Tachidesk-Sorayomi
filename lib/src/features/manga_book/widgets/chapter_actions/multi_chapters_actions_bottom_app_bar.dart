@@ -35,7 +35,7 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     refresh([bool triggerAfterOption = true]) async {
-      selectedChapters.value = <int, Chapter>{};
+      selectedChapters.value = {};
       if (triggerAfterOption) await afterOptionSelected();
     }
 

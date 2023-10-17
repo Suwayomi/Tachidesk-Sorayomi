@@ -36,7 +36,7 @@ class AsyncTextButtonIcon extends HookWidget {
       style: isLocalPrimary.value ? primaryStyle : secondaryStyle,
       onPressed: onPressed != null
           ? () {
-              isLocalPrimary.value = !isLocalPrimary.value;
+              isLocalPrimary.value = (!isLocalPrimary.value);
               onPressed!();
             }
           : null,

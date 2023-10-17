@@ -6,7 +6,7 @@ part of 'about_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_About _$$_AboutFromJson(Map<String, dynamic> json) => _$_About(
+_$AboutImpl _$$AboutImplFromJson(Map<String, dynamic> json) => _$AboutImpl(
       name: json['name'] as String?,
       version: json['version'] as String?,
       revision: json['revision'] as String?,
@@ -16,7 +16,8 @@ _$_About _$$_AboutFromJson(Map<String, dynamic> json) => _$_About(
       discord: json['discord'] as String?,
     );
 
-Map<String, dynamic> _$$_AboutToJson(_$_About instance) => <String, dynamic>{
+Map<String, dynamic> _$$AboutImplToJson(_$AboutImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
       'version': instance.version,
       'revision': instance.revision,

@@ -16,7 +16,17 @@ class QuickSearchScreen extends HookWidget {
   final VoidCallback afterClick;
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController();
+    final controller = useTextEditingController(text: "?");
+    useEffect(() {
+      Future.microtask(
+        () => controller.selection = TextSelection(
+          baseOffset: 0,
+          extentOffset: controller.text.length,
+        ),
+      );
+
+      return null;
+    }, []);
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: context.widthScale(scale: .1),

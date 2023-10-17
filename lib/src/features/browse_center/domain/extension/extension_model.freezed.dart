@@ -152,10 +152,11 @@ class _$ExtensionCopyWithImpl<$Res, $Val extends Extension>
 }
 
 /// @nodoc
-abstract class _$$_ExtensionCopyWith<$Res> implements $ExtensionCopyWith<$Res> {
-  factory _$$_ExtensionCopyWith(
-          _$_Extension value, $Res Function(_$_Extension) then) =
-      __$$_ExtensionCopyWithImpl<$Res>;
+abstract class _$$ExtensionImplCopyWith<$Res>
+    implements $ExtensionCopyWith<$Res> {
+  factory _$$ExtensionImplCopyWith(
+          _$ExtensionImpl value, $Res Function(_$ExtensionImpl) then) =
+      __$$ExtensionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -179,11 +180,11 @@ abstract class _$$_ExtensionCopyWith<$Res> implements $ExtensionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ExtensionCopyWithImpl<$Res>
-    extends _$ExtensionCopyWithImpl<$Res, _$_Extension>
-    implements _$$_ExtensionCopyWith<$Res> {
-  __$$_ExtensionCopyWithImpl(
-      _$_Extension _value, $Res Function(_$_Extension) _then)
+class __$$ExtensionImplCopyWithImpl<$Res>
+    extends _$ExtensionCopyWithImpl<$Res, _$ExtensionImpl>
+    implements _$$ExtensionImplCopyWith<$Res> {
+  __$$ExtensionImplCopyWithImpl(
+      _$ExtensionImpl _value, $Res Function(_$ExtensionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -201,7 +202,7 @@ class __$$_ExtensionCopyWithImpl<$Res>
     Object? versionCode = freezed,
     Object? versionName = freezed,
   }) {
-    return _then(_$_Extension(
+    return _then(_$ExtensionImpl(
       apkName: freezed == apkName
           ? _value.apkName
           : apkName // ignore: cast_nullable_to_non_nullable
@@ -252,8 +253,8 @@ class __$$_ExtensionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Extension implements _Extension {
-  _$_Extension(
+class _$ExtensionImpl implements _Extension {
+  _$ExtensionImpl(
       {this.apkName,
       this.hasUpdate,
       this.iconUrl,
@@ -269,8 +270,8 @@ class _$_Extension implements _Extension {
       this.versionCode,
       this.versionName});
 
-  factory _$_Extension.fromJson(Map<String, dynamic> json) =>
-      _$$_ExtensionFromJson(json);
+  factory _$ExtensionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ExtensionImplFromJson(json);
 
   @override
   final String? apkName;
@@ -307,7 +308,7 @@ class _$_Extension implements _Extension {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Extension &&
+            other is _$ExtensionImpl &&
             (identical(other.apkName, apkName) || other.apkName == apkName) &&
             (identical(other.hasUpdate, hasUpdate) ||
                 other.hasUpdate == hasUpdate) &&
@@ -345,12 +346,12 @@ class _$_Extension implements _Extension {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExtensionCopyWith<_$_Extension> get copyWith =>
-      __$$_ExtensionCopyWithImpl<_$_Extension>(this, _$identity);
+  _$$ExtensionImplCopyWith<_$ExtensionImpl> get copyWith =>
+      __$$ExtensionImplCopyWithImpl<_$ExtensionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ExtensionToJson(
+    return _$$ExtensionImplToJson(
       this,
     );
   }
@@ -371,10 +372,10 @@ abstract class _Extension implements Extension {
       final bool? obsolete,
       final String? pkgName,
       final int? versionCode,
-      final String? versionName}) = _$_Extension;
+      final String? versionName}) = _$ExtensionImpl;
 
   factory _Extension.fromJson(Map<String, dynamic> json) =
-      _$_Extension.fromJson;
+      _$ExtensionImpl.fromJson;
 
   @override
   String? get apkName;
@@ -403,6 +404,6 @@ abstract class _Extension implements Extension {
   String? get versionName;
   @override
   @JsonKey(ignore: true)
-  _$$_ExtensionCopyWith<_$_Extension> get copyWith =>
+  _$$ExtensionImplCopyWith<_$ExtensionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

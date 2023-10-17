@@ -271,9 +271,10 @@ class _$MangaCopyWithImpl<$Res, $Val extends Manga>
 }
 
 /// @nodoc
-abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
-  factory _$$_MangaCopyWith(_$_Manga value, $Res Function(_$_Manga) then) =
-      __$$_MangaCopyWithImpl<$Res>;
+abstract class _$$MangaImplCopyWith<$Res> implements $MangaCopyWith<$Res> {
+  factory _$$MangaImplCopyWith(
+          _$MangaImpl value, $Res Function(_$MangaImpl) then) =
+      __$$MangaImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -313,9 +314,11 @@ abstract class _$$_MangaCopyWith<$Res> implements $MangaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
-    implements _$$_MangaCopyWith<$Res> {
-  __$$_MangaCopyWithImpl(_$_Manga _value, $Res Function(_$_Manga) _then)
+class __$$MangaImplCopyWithImpl<$Res>
+    extends _$MangaCopyWithImpl<$Res, _$MangaImpl>
+    implements _$$MangaImplCopyWith<$Res> {
+  __$$MangaImplCopyWithImpl(
+      _$MangaImpl _value, $Res Function(_$MangaImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -347,7 +350,7 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
     Object? url = freezed,
     Object? meta = freezed,
   }) {
-    return _then(_$_Manga(
+    return _then(_$MangaImpl(
       artist: freezed == artist
           ? _value.artist
           : artist // ignore: cast_nullable_to_non_nullable
@@ -454,8 +457,8 @@ class __$$_MangaCopyWithImpl<$Res> extends _$MangaCopyWithImpl<$Res, _$_Manga>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Manga extends _Manga {
-  _$_Manga(
+class _$MangaImpl extends _Manga {
+  _$MangaImpl(
       {this.artist,
       this.author,
       this.description,
@@ -485,8 +488,8 @@ class _$_Manga extends _Manga {
       : _genre = genre,
         super._();
 
-  factory _$_Manga.fromJson(Map<String, dynamic> json) =>
-      _$$_MangaFromJson(json);
+  factory _$MangaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MangaImplFromJson(json);
 
   @override
   final String? artist;
@@ -557,7 +560,7 @@ class _$_Manga extends _Manga {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Manga &&
+            other is _$MangaImpl &&
             (identical(other.artist, artist) || other.artist == artist) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.description, description) ||
@@ -635,12 +638,12 @@ class _$_Manga extends _Manga {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MangaCopyWith<_$_Manga> get copyWith =>
-      __$$_MangaCopyWithImpl<_$_Manga>(this, _$identity);
+  _$$MangaImplCopyWith<_$MangaImpl> get copyWith =>
+      __$$MangaImplCopyWithImpl<_$MangaImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MangaToJson(
+    return _$$MangaImplToJson(
       this,
     );
   }
@@ -673,10 +676,10 @@ abstract class _Manga extends Manga {
       final int? lastFetchedAt,
       final int? chaptersLastFetchedAt,
       final String? url,
-      final MangaMeta? meta}) = _$_Manga;
+      final MangaMeta? meta}) = _$MangaImpl;
   _Manga._() : super._();
 
-  factory _Manga.fromJson(Map<String, dynamic> json) = _$_Manga.fromJson;
+  factory _Manga.fromJson(Map<String, dynamic> json) = _$MangaImpl.fromJson;
 
   @override
   String? get artist;
@@ -731,7 +734,7 @@ abstract class _Manga extends Manga {
   MangaMeta? get meta;
   @override
   @JsonKey(ignore: true)
-  _$$_MangaCopyWith<_$_Manga> get copyWith =>
+  _$$MangaImplCopyWith<_$MangaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -837,10 +840,11 @@ class _$MangaMetaCopyWithImpl<$Res, $Val extends MangaMeta>
 }
 
 /// @nodoc
-abstract class _$$_MangaMetaCopyWith<$Res> implements $MangaMetaCopyWith<$Res> {
-  factory _$$_MangaMetaCopyWith(
-          _$_MangaMeta value, $Res Function(_$_MangaMeta) then) =
-      __$$_MangaMetaCopyWithImpl<$Res>;
+abstract class _$$MangaMetaImplCopyWith<$Res>
+    implements $MangaMetaCopyWith<$Res> {
+  factory _$$MangaMetaImplCopyWith(
+          _$MangaMetaImpl value, $Res Function(_$MangaMetaImpl) then) =
+      __$$MangaMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -862,11 +866,11 @@ abstract class _$$_MangaMetaCopyWith<$Res> implements $MangaMetaCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MangaMetaCopyWithImpl<$Res>
-    extends _$MangaMetaCopyWithImpl<$Res, _$_MangaMeta>
-    implements _$$_MangaMetaCopyWith<$Res> {
-  __$$_MangaMetaCopyWithImpl(
-      _$_MangaMeta _value, $Res Function(_$_MangaMeta) _then)
+class __$$MangaMetaImplCopyWithImpl<$Res>
+    extends _$MangaMetaCopyWithImpl<$Res, _$MangaMetaImpl>
+    implements _$$MangaMetaImplCopyWith<$Res> {
+  __$$MangaMetaImplCopyWithImpl(
+      _$MangaMetaImpl _value, $Res Function(_$MangaMetaImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -879,7 +883,7 @@ class __$$_MangaMetaCopyWithImpl<$Res>
     Object? readerMagnifierSize = freezed,
     Object? scanlator = freezed,
   }) {
-    return _then(_$_MangaMeta(
+    return _then(_$MangaMetaImpl(
       invertTap: freezed == invertTap
           ? _value.invertTap
           : invertTap // ignore: cast_nullable_to_non_nullable
@@ -910,8 +914,8 @@ class __$$_MangaMetaCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MangaMeta implements _MangaMeta {
-  _$_MangaMeta(
+class _$MangaMetaImpl implements _MangaMeta {
+  _$MangaMetaImpl(
       {@JsonKey(
           name: "flutter_readerNavigationLayoutInvert",
           fromJson: MangaMeta.fromJsonToBool)
@@ -928,8 +932,8 @@ class _$_MangaMeta implements _MangaMeta {
       this.readerMagnifierSize,
       @JsonKey(name: "flutter_scanlator") this.scanlator});
 
-  factory _$_MangaMeta.fromJson(Map<String, dynamic> json) =>
-      _$$_MangaMetaFromJson(json);
+  factory _$MangaMetaImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MangaMetaImplFromJson(json);
 
   @override
   @JsonKey(
@@ -962,7 +966,7 @@ class _$_MangaMeta implements _MangaMeta {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MangaMeta &&
+            other is _$MangaMetaImpl &&
             (identical(other.invertTap, invertTap) ||
                 other.invertTap == invertTap) &&
             (identical(other.readerNavigationLayout, readerNavigationLayout) ||
@@ -991,12 +995,12 @@ class _$_MangaMeta implements _MangaMeta {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MangaMetaCopyWith<_$_MangaMeta> get copyWith =>
-      __$$_MangaMetaCopyWithImpl<_$_MangaMeta>(this, _$identity);
+  _$$MangaMetaImplCopyWith<_$MangaMetaImpl> get copyWith =>
+      __$$MangaMetaImplCopyWithImpl<_$MangaMetaImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MangaMetaToJson(
+    return _$$MangaMetaImplToJson(
       this,
     );
   }
@@ -1019,10 +1023,10 @@ abstract class _MangaMeta implements MangaMeta {
           fromJson: MangaMeta.fromJsonToDouble)
       final double? readerMagnifierSize,
       @JsonKey(name: "flutter_scanlator")
-      final String? scanlator}) = _$_MangaMeta;
+      final String? scanlator}) = _$MangaMetaImpl;
 
   factory _MangaMeta.fromJson(Map<String, dynamic> json) =
-      _$_MangaMeta.fromJson;
+      _$MangaMetaImpl.fromJson;
 
   @override
   @JsonKey(
@@ -1047,6 +1051,6 @@ abstract class _MangaMeta implements MangaMeta {
   String? get scanlator;
   @override
   @JsonKey(ignore: true)
-  _$$_MangaMetaCopyWith<_$_MangaMeta> get copyWith =>
+  _$$MangaMetaImplCopyWith<_$MangaMetaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

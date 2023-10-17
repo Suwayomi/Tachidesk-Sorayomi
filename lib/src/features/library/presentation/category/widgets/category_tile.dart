@@ -27,7 +27,7 @@ class CategoryTile extends HookConsumerWidget {
   final int maxOrderIndex;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final order = category.order.ifNullOrNegative();
+    final order = category.order.getValueOnNullOrNegative();
     return Card(
       margin: KEdgeInsets.h16v4.size,
       child: Padding(

@@ -26,11 +26,11 @@ class AsyncTextButton extends HookWidget {
   Widget build(BuildContext context) {
     final isLoading = useState(false);
     return TextButton.icon(
-      onPressed: !isLoading.value
+      onPressed: (!isLoading.value && onPressed != null)
           ? () async {
-              isLoading.value = true;
+              isLoading.value = (true);
               await onPressed!();
-              isLoading.value = false;
+              isLoading.value = (false);
             }
           : null,
       icon: isLoading.value ? const SizedBox.shrink() : icon,

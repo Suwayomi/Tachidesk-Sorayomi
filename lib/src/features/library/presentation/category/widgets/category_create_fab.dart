@@ -28,11 +28,11 @@ class CategoryCreateFab extends HookConsumerWidget {
                 builder: (context) => EditCategoryDialog(
                   editCategory: (newCategory) async {
                     try {
-                      isLoading.value = true;
+                      isLoading.value = (true);
                       await ref
                           .read(categoryControllerProvider.notifier)
                           .editCategory(newCategory);
-                      isLoading.value = false;
+                      isLoading.value = (false);
                     } catch (e) {
                       //
                     }

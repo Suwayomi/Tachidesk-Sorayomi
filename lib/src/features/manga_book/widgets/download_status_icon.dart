@@ -33,11 +33,11 @@ class DownloadStatusIcon extends HookConsumerWidget {
   final bool isDownloaded;
 
   Future<void> newUpdatePair(
-      WidgetRef ref, ValueNotifier<bool> isLoading) async {
+      WidgetRef ref, ValueSetter<bool> setIsLoading) async {
     try {
-      isLoading.value = true;
+      setIsLoading(true);
       await updateData();
-      isLoading.value = false;
+      setIsLoading(false);
     } catch (e) {
       //
     }
@@ -72,12 +72,13 @@ class DownloadStatusIcon extends HookConsumerWidget {
     final isLoading = useState(false);
 
     final toast = ref.watch(toastProvider(context));
-    final download = chapter.id.isNull
-        ? null
-        : ref.watch(downloadsFromIdProvider(chapter.id!));
+    final download = chapter.id != null
+        ? ref.watch(downloadsFromIdProvider(chapter.id!))
+        : null;
     useEffect(() {
       if (download?.state == "Finished") {
-        Future.microtask(() => newUpdatePair(ref, isLoading));
+        Future.microtask(
+            () => newUpdatePair(ref, (value) => isLoading.value = value));
       }
       return;
     }, [download?.state]);
@@ -89,20 +90,20 @@ class DownloadStatusIcon extends HookConsumerWidget {
       );
     } else {
       if (download != null) {
-        return download.state == "Error"
-            ? IconButton(
-                onPressed: () =>
-                    toggleChapterToQueue(toast, ref, isError: true),
-                icon: const Icon(Icons.replay_rounded),
-              )
-            : IconButton(
-                onPressed: () =>
-                    toggleChapterToQueue(toast, ref, isRemove: true),
-                icon: MiniCircularProgressIndicator(
-                  value: download.progress == 0 ? null : download.progress,
-                  color: context.iconColor,
-                ),
-              );
+        if (download.state == "Error") {
+          return IconButton(
+            onPressed: () => toggleChapterToQueue(toast, ref, isError: true),
+            icon: const Icon(Icons.replay_rounded),
+          );
+        } else {
+          return IconButton(
+            onPressed: () => toggleChapterToQueue(toast, ref, isRemove: true),
+            icon: MiniCircularProgressIndicator(
+              value: download.progress == 0 ? null : download.progress,
+              color: context.iconColor,
+            ),
+          );
+        }
       } else {
         if (isDownloaded) {
           return IconButton(
@@ -117,7 +118,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
                     ),
               ))
                   .showToastOnError(toast);
-              await newUpdatePair(ref, isLoading);
+              await newUpdatePair(ref, (value) => isLoading.value = value);
             },
           );
         } else {

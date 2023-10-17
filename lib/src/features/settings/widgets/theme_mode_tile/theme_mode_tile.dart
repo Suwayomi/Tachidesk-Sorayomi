@@ -21,14 +21,12 @@ part 'theme_mode_tile.g.dart';
 class ThemeModeKey extends _$ThemeModeKey
     with SharedPreferenceEnumClientMixin<ThemeMode> {
   @override
-  ThemeMode? build() {
-    return initialize(
-      ref,
-      initial: DBKeys.themeMode.initial,
-      key: DBKeys.themeMode.name,
-      enumList: ThemeMode.values,
-    );
-  }
+  ThemeMode? build() => initialize(
+        ref,
+        initial: DBKeys.themeMode.initial,
+        key: DBKeys.themeMode.name,
+        enumList: ThemeMode.values,
+      );
 }
 
 extension ThemeModeExtension on ThemeMode {
@@ -57,7 +55,7 @@ class AppThemeTile extends ConsumerWidget {
           title: context.l10n!.appTheme,
           optionList: ThemeMode.values,
           value: themeMode ?? ThemeMode.system,
-          optionDisplayName: (value) => value.toLocale(context),
+          getOptionTitle: (value) => value.toLocale(context),
           onChange: (enumValue) async {
             ref.read(themeModeKeyProvider.notifier).update(enumValue);
             if (context.mounted) context.pop();

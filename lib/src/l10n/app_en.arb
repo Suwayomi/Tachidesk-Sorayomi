@@ -325,6 +325,9 @@
             }
         }
     },
+    "@nextChapter": {
+        "description": "Text for Next Chapter button in Manga Reader Screen"
+    },
     "@newUpdateAvailable": {
         "description": "Popup title to show that the App/Server has and update"
     },
@@ -408,6 +411,9 @@
     },
     "@pending": {
         "description": "Pending status Manga Group title in Update Summary Screen"
+    },
+    "@previousChapter": {
+        "description": "Text for Previous Chapter button in Manga Reader Screen"
     },
     "@quickSearchContext": {
         "description": "Quick Open Hint text for query X"
@@ -496,11 +502,17 @@
     "@readerPadding": {
         "description": "Slider title text for Reader Padding"
     },
+    "@readerOverlay": {
+        "description": "Toggle tile text for Initial Reader Overlay"
+    },
     "@reddit": {
         "description": "Reddit app title"
     },
     "@refresh": {
         "description": "Refresh button text"
+    },
+    "@reload": {
+        "description": "Reload button text"
     },
     "@reset": {
         "description": "Button text of reset button in source filters"
@@ -753,6 +765,7 @@
     "moveToTop": "Move to top",
     "nameCountDisplay": "{name}: {count}",
     "newUpdateAvailable": "New update available",
+    "nextChapter": "Next: {chapterTitle}",
     "noCategoriesFound": "You don't have any Categories. \n(Tip: Tap the Plus button to create one for organizing your library)",
     "noCategoriesFoundAlt": "You don't have any Categories. \nCreate one in settings for organizing your library",
     "noCategoryMangaFound": "No manga found in this Category. \n(Tip: Check your search & filters!)",
@@ -774,6 +787,7 @@
     "password": "Password",
     "pause": "Pause",
     "pending": "Pending",
+    "previousChapter": "Previous: {chapterTitle}",
     "quickSearchCategory": "Go to Category 'C'",
     "quickSearchContext": "Search for query X (Results are based on screen context)",
     "quickSearchSource": "Go to Source 'S'",
@@ -801,10 +815,12 @@
     "readerNavigationLayoutKindlish": "Kindle-ish",
     "readerNavigationLayoutLShaped": "L Shaped",
     "readerNavigationLayoutRightAndLeft": "Right And Left",
+    "readerOverlay": "Reader initial overlay",
     "readerPadding": "Reader Padding",
     "readerMagnifierSize": "Magnifier Size",
     "reddit": "Reddit",
     "refresh": "Refresh",
+    "reload": "Reload",
     "reset": "Reset",
     "restoreBackupDescription": "Restore Tachidesk from backup",
     "restoreBackupTitle": "Restore Backup",

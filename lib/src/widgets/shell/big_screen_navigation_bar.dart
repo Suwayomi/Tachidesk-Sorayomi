@@ -16,8 +16,40 @@ class BigScreenNavigationBar extends StatelessWidget {
 
   final String selectedScreen;
 
+  NavigationRailDestination getNavigationRailDestination(
+      BuildContext context, NavigationBarData data) {
+    return NavigationRailDestination(
+      icon: Icon(data.icon),
+      label: Text(data.label(context)),
+      selectedIcon: Icon(data.activeIcon),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Widget leadingIcon;
+    if (context.isDesktop) {
+      leadingIcon = TextButton.icon(
+        onPressed: () => const AboutRoute().push(context),
+        icon: ImageIcon(
+          AssetImage(Assets.icons.darkIcon.path),
+          size: 48,
+        ),
+        label: Text(context.l10n!.appTitle),
+        style: TextButton.styleFrom(
+          foregroundColor: context.textTheme.bodyLarge?.color,
+        ),
+      );
+    } else {
+      leadingIcon = IconButton(
+        onPressed: () => const AboutRoute().push(context),
+        icon: ImageIcon(
+          AssetImage(Assets.icons.darkIcon.path),
+          size: 48,
+        ),
+      );
+    }
+
     return NavigationRail(
       useIndicator: true,
       elevation: 5,
@@ -25,33 +57,10 @@ class BigScreenNavigationBar extends StatelessWidget {
       labelType: context.isDesktop
           ? NavigationRailLabelType.none
           : NavigationRailLabelType.all,
-      leading: context.isDesktop
-          ? TextButton.icon(
-              onPressed: () => const AboutRoute().push(context),
-              icon: ImageIcon(
-                AssetImage(Assets.icons.darkIcon.path),
-                size: 48,
-              ),
-              label: Text(context.l10n!.appTitle),
-              style: TextButton.styleFrom(
-                foregroundColor: context.textTheme.bodyLarge?.color,
-              ),
-            )
-          : IconButton(
-              onPressed: () => const AboutRoute().push(context),
-              icon: ImageIcon(
-                AssetImage(Assets.icons.darkIcon.path),
-                size: 48,
-              ),
-            ),
+      leading: leadingIcon,
       destinations: NavigationBarData.navList
           .map<NavigationRailDestination>(
-            (e) => NavigationRailDestination(
-              icon: Icon(e.icon),
-              label: Text(e.label(context)),
-              selectedIcon: Icon(e.activeIcon),
-            ),
-          )
+              (e) => getNavigationRailDestination(context, e))
           .toList(),
       selectedIndex: NavigationBarData.indexWherePathOrZero(selectedScreen),
       onDestinationSelected: (value) =>

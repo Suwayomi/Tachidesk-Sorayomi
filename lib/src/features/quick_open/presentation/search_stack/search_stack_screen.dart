@@ -13,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../widgets/two_finger_pointer.dart';
 import '../quick_search/quick_search_screen.dart';
 
 class ShowQuickOpenIntent extends Intent {}
@@ -33,7 +32,7 @@ class SearchStackScreen extends HookWidget {
           if (child != null) child!,
           if (visible.value)
             GestureDetector(
-              onTap: () => visible.value = false,
+              onTap: () => visible.value = (false),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                 child: Container(
@@ -42,7 +41,7 @@ class SearchStackScreen extends HookWidget {
                     color: context.theme.canvasColor.withOpacity(.1),
                   ),
                   child: QuickSearchScreen(
-                    afterClick: () => visible.value = false,
+                    afterClick: () => visible.value = (false),
                   ),
                 ),
               ),
@@ -76,19 +75,19 @@ class QuickSearchShortcutWrapper extends StatelessWidget {
         actions: {
           ShowQuickOpenIntent: CallbackAction<ShowQuickOpenIntent>(
             onInvoke: (ShowQuickOpenIntent intent) {
-              visible.value = true;
+              visible.value = (true);
               return null;
             },
           ),
           HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
             onInvoke: (HideQuickOpenIntent intent) {
-              visible.value = false;
+              visible.value = (false);
               return null;
             },
           ),
         },
-        child: TwoFingerPointerWidget(
-          onUpdate: (details) => visible.value = true,
+        child: GestureDetector(
+          onLongPress: () => visible.value = (true),
           child: child,
         ),
       ),

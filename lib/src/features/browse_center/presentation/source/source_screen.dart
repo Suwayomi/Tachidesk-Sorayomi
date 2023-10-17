@@ -26,6 +26,7 @@ class SourceScreen extends HookConsumerWidget {
     final sourceMap = {...?sourceMapData.valueOrNull};
     final localSource = sourceMap.remove("localsourcelang");
     final lastUsed = sourceMap.remove("lastUsed");
+    final allSource = sourceMap.remove("all");
 
     refresh() => ref.refresh(sourceListProvider.future);
     useEffect(() {
@@ -65,6 +66,21 @@ class SourceScreen extends HookConsumerWidget {
                 ),
                 SliverToBoxAdapter(
                     child: SourceListTile(source: lastUsed!.first))
+              ],
+              if (allSource.isNotBlank) ...[
+                SliverToBoxAdapter(
+                  child: ListTile(
+                    title: Text(languageMap["all"]?.displayName ?? ""),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => SourceListTile(
+                      source: allSource![index],
+                    ),
+                    childCount: allSource?.length,
+                  ),
+                )
               ],
               for (final k in sourceMap.keys) ...[
                 if (sourceMap[k].isNotBlank) ...[

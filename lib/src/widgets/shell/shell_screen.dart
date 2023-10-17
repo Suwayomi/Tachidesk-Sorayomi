@@ -32,9 +32,10 @@ class ShellScreen extends HookConsumerWidget {
     required Future<AsyncValue<Version?>> Function() updateCallback,
     required Toast toast,
   }) async {
-    updateCallback().then((value) {
-      toast.close();
-      value.whenOrNull(
+    final AsyncValue<Version?> versionResult = await updateCallback();
+    toast.close();
+    if (context.mounted) {
+      versionResult.whenOrNull(
         data: (version) {
           if (version != null) {
             appUpdateDialog(
@@ -46,8 +47,8 @@ class ShellScreen extends HookConsumerWidget {
           }
         },
       );
-      return;
-    });
+    }
+    return;
   }
 
   @override
@@ -63,21 +64,22 @@ class ShellScreen extends HookConsumerWidget {
       );
       return;
     }, []);
-    return context.isTablet
-        ? Scaffold(
-            body: Row(
-              children: [
-                BigScreenNavigationBar(selectedScreen: context.location),
-                Expanded(child: child),
-              ],
-            ),
-          )
-        : Scaffold(
-            body: child,
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
-            bottomNavigationBar:
-                SmallScreenNavigationBar(selectedScreen: context.location),
-          );
+    if (context.isTablet) {
+      return Scaffold(
+        body: Row(
+          children: [
+            BigScreenNavigationBar(selectedScreen: context.location),
+            Expanded(child: child),
+          ],
+        ),
+      );
+    } else {
+      return Scaffold(
+        body: child,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        bottomNavigationBar:
+            SmallScreenNavigationBar(selectedScreen: context.location),
+      );
+    }
   }
 }

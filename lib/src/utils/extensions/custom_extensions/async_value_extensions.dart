@@ -45,34 +45,21 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     return when(
       data: data,
       skipError: true,
-      error: (error, trace) => wrapper == null
-          ? Emoticons(
-              text: showGenericError
-                  ? context.l10n!.errorSomethingWentWrong
-                  : error.toString(),
-              button: refresh != null
-                  ? TextButton(
-                      onPressed: refresh,
-                      child: Text(context.l10n!.refresh),
-                    )
-                  : null,
-            )
-          : wrapper(
-              Emoticons(
-                text: showGenericError
-                    ? context.l10n!.errorSomethingWentWrong
-                    : error.toString(),
-                button: refresh != null
-                    ? TextButton(
-                        onPressed: refresh,
-                        child: Text(context.l10n!.refresh),
-                      )
-                    : null,
-              ),
-            ),
-      loading: () => wrapper == null
-          ? const CenterCircularProgressIndicator()
-          : wrapper(const CenterCircularProgressIndicator()),
+      error: (error, trace) => AppUtils.wrapIf(
+          wrapper,
+          Emoticons(
+            text: showGenericError
+                ? context.l10n!.errorSomethingWentWrong
+                : error.toString(),
+            button: refresh != null
+                ? TextButton(
+                    onPressed: refresh,
+                    child: Text(context.l10n!.refresh),
+                  )
+                : null,
+          )),
+      loading: () =>
+          AppUtils.wrapIf(wrapper, const CenterSorayomiShimmerIndicator()),
     );
   }
 

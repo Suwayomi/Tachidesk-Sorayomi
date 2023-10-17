@@ -124,7 +124,7 @@ class MangaDescription extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  onTap: () => isExpanded.value = !isExpanded.value,
+                  onTap: () => isExpanded.value = (!isExpanded.value),
                 ),
               ],
             ),

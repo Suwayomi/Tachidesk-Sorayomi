@@ -5,17 +5,37 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../constants/app_sizes.dart';
+import '../constants/gen/assets.gen.dart';
+import '../utils/extensions/custom_extensions.dart';
 
-class CenterCircularProgressIndicator extends StatelessWidget {
-  const CenterCircularProgressIndicator({super.key, this.value});
+class CenterSorayomiShimmerIndicator extends StatelessWidget {
+  const CenterSorayomiShimmerIndicator({super.key, this.value});
 
   final double? value;
   @override
   Widget build(BuildContext context) => Center(
-        child: CircularProgressIndicator(value: value),
+        child: SizedBox(
+          height: context.height * .35,
+          width: context.width * .35,
+          child: const SorayomiShimmerIndicator(),
+        ),
       );
+}
+
+class SorayomiShimmerIndicator extends StatelessWidget {
+  const SorayomiShimmerIndicator({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: context.colorScheme.background,
+      highlightColor: context.theme.indicatorColor,
+      child: ImageIcon(AssetImage(Assets.icons.darkIcon.path)),
+    );
+  }
 }
 
 class MiniCircularProgressIndicator extends StatelessWidget {

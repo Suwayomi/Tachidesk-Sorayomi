@@ -12,6 +12,7 @@ import '../../../../../constants/app_sizes.dart';
 
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
@@ -27,6 +28,10 @@ class SourceMangaGridView extends ConsumerWidget {
     return PagedGridView(
       pagingController: controller,
       builderDelegate: PagedChildBuilderDelegate<Manga>(
+        firstPageProgressIndicatorBuilder: (context) =>
+            const CenterSorayomiShimmerIndicator(),
+        newPageProgressIndicatorBuilder: (context) =>
+            const CenterSorayomiShimmerIndicator(),
         firstPageErrorIndicatorBuilder: (context) => Emoticons(
           text: controller.error.toString(),
           button: TextButton(

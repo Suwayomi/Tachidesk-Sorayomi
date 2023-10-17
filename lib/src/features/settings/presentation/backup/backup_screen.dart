@@ -22,35 +22,39 @@ class BackupScreen extends ConsumerWidget {
   const BackupScreen({super.key});
 
   void backupFilePicker(WidgetRef ref, BuildContext context) async {
-    final toast = ref.read(toastProvider(context));
+    Toast getToast(context) => ref.read(toastProvider(context));
     final file = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['gz'],
     );
     if ((file?.files).isNotBlank) {
       if (context.mounted) {
-        toast.show(context.l10n!.restoring);
+        getToast(context).show(context.l10n!.restoring);
       }
     }
-    AsyncValue.guard(() => ref
+    final result = await AsyncValue.guard(() => ref
         .read(backupRepositoryProvider)
-        .restoreBackup(context, file?.files.single)).then(
-      (result) => result.whenOrNull<void>(
-        error: (error, stackTrace) => result.showToastOnError(toast),
-        data: (data) {
-          final backupMissing = data?.filter;
-          if (backupMissing == null) return;
-          toast.instantShow(context.l10n!.restored);
-          if (!backupMissing.isEmpty) {
-            showDialog(
-              context: context,
-              builder: (context) => BackupMissingDialog(
-                backupMissing: backupMissing,
-              ),
-            );
-          }
-        },
-      ),
+        .restoreBackup(context, file?.files.single));
+    result.whenOrNull<void>(
+      error: (error, stackTrace) {
+        if (context.mounted) {
+          result.showToastOnError(getToast(context));
+        }
+      },
+      data: (data) {
+        final backupMissing = data?.filter;
+        if (context.mounted) {
+          getToast(context).instantShow(context.l10n!.restored);
+        }
+        if (backupMissing != null && !backupMissing.isEmpty) {
+          showDialog(
+            context: context,
+            builder: (context) => BackupMissingDialog(
+              backupMissing: backupMissing,
+            ),
+          );
+        }
+      },
     );
   }
 

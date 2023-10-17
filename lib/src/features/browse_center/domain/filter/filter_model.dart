@@ -44,20 +44,24 @@ class Filter with _$Filter {
 
   static List<Map<String, dynamic>>? customFilterToJson(
       Filter filter, int position) {
-    return filter.filterState?.maybeWhen(
-      group: (state, name) => [
-        for (int i = 0; i < (state?.length).ifNullOrNegative(); i++)
+    return switch (filter.filterState) {
+      FilterGroup(
+        state: List<Filter>? state,
+      ) =>
+        [
+          for (int i = 0; i < (state?.length).getValueOnNullOrNegative(); i++)
+            {
+              "position": position,
+              "state": json.encode(customFilterToJson(state![i], i)?.first),
+            },
+        ],
+      null => null,
+      _ => [
           {
             "position": position,
-            "state": json.encode(customFilterToJson(state![i], i)?.first),
-          },
-      ],
-      orElse: () => [
-        {
-          "position": position,
-          "state": json.encode(filter.filterState?.toJson()["state"])
-        }
-      ],
-    );
+            "state": json.encode(filter.filterState?.toJson()["state"])
+          }
+        ],
+    };
   }
 }

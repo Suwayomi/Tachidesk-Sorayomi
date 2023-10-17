@@ -29,7 +29,7 @@ class SourceMangaDisplayIconPopup extends ConsumerWidget {
         context: context,
         builder: (context) => RadioListPopup<DisplayMode>(
           optionList: DisplayMode.sourceDisplayList,
-          optionDisplayName: (value) => value.toLocale(context),
+          getOptionTitle: (value) => value.toLocale(context),
           title: context.l10n!.displayMode,
           value: displayMode,
           onChange: (enumValue) async {

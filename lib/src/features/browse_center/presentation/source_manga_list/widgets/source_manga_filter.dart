@@ -38,7 +38,7 @@ class SourceMangaFilter extends HookWidget {
               TextButton(
                 onPressed: () {
                   onReset();
-                  filters.value = initialFilters;
+                  filters.value = (initialFilters);
                 },
                 child: Text(context.l10n!.reset),
               ),

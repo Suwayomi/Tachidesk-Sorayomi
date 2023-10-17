@@ -98,7 +98,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
           appBar: selectedChapters.value.isNotEmpty
               ? AppBar(
                   leading: IconButton(
-                    onPressed: () => selectedChapters.value = <int, Chapter>{},
+                    onPressed: () => selectedChapters.value = ({}),
                     icon: const Icon(Icons.close_rounded),
                   ),
                   title: Text(
@@ -107,25 +107,25 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   actions: [
                     IconButton(
                       onPressed: () {
-                        selectedChapters.value = {
+                        selectedChapters.value = ({
                           for (Chapter i in [
                             ...?filteredChapterList.valueOrNull
                           ])
                             if (i.id != null) i.id!: i
-                        };
+                        });
                       },
                       icon: const Icon(Icons.select_all_rounded),
                     ),
                     IconButton(
                       onPressed: () {
-                        selectedChapters.value = {
+                        selectedChapters.value = ({
                           for (Chapter i in [
                             ...?filteredChapterList.valueOrNull
                           ])
                             if (i.id != null &&
                                 !selectedChapters.value.containsKey(i.id))
                               i.id!: i
-                        };
+                        });
                       },
                       icon: const Icon(Icons.flip_to_back_rounded),
                     ),
@@ -194,23 +194,25 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   selectedChapters: selectedChapters,
                 )
               : null,
-          floatingActionButton: firstUnreadChapter != null
-              ? FloatingActionButton.extended(
-                  isExtended: context.isTablet,
-                  label: Text(
-                    data?.lastChapterRead?.index != null
-                        ? context.l10n!.resume
-                        : context.l10n!.start,
-                  ),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  onPressed: () {
-                    ReaderRoute(
-                      mangaId: firstUnreadChapter.mangaId ?? mangaId,
-                      chapterIndex: firstUnreadChapter.index ?? 0,
-                    ).push(context);
-                  },
-                )
-              : null,
+          floatingActionButton:
+              firstUnreadChapter != null && selectedChapters.value.isEmpty
+                  ? FloatingActionButton.extended(
+                      isExtended: context.isTablet,
+                      label: Text(
+                        data?.lastChapterRead?.index != null
+                            ? context.l10n!.resume
+                            : context.l10n!.start,
+                      ),
+                      icon: const Icon(Icons.play_arrow_rounded),
+                      onPressed: () {
+                        ReaderRoute(
+                          mangaId: firstUnreadChapter.mangaId ?? mangaId,
+                          chapterIndex: firstUnreadChapter.index ?? 0,
+                          showReaderLayoutAnimation: true,
+                        ).push(context);
+                      },
+                    )
+                  : null,
           body: data != null
               ? context.isTablet
                   ? BigScreenMangaDetails(

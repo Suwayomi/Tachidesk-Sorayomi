@@ -68,15 +68,6 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
   }
 }
 
-void showUpdateStatusSummaryBottomSheet(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    isScrollControlled: true,
-    useSafeArea: true,
-    builder: (context) => const UpdateStatusSummaryDialog(),
-  );
-}
-
 class UpdateStatusExpansionTile extends StatelessWidget {
   const UpdateStatusExpansionTile({
     super.key,

@@ -47,16 +47,16 @@ Future<List<Filter>?> baseSourceMangaFilterList(
 class SourceMangaFilterList extends _$SourceMangaFilterList {
   @override
   AsyncValue<List<Filter>?> build(String sourceId, {List<Filter>? filter}) {
-    return filter != null
-        ? AsyncData(filter)
-        : ref.watch(baseSourceMangaFilterListProvider(sourceId));
+    final networkFilter =
+        ref.watch(baseSourceMangaFilterListProvider(sourceId));
+    return filter != null ? AsyncData(filter) : networkFilter;
   }
 
   void updateFilter(List<Filter>? filter) =>
       state = state.copyWithData((p0) => filter);
 
   Future<void> reset() async =>
-      state = ref.read(baseSourceMangaFilterListProvider(sourceId));
+      ref.invalidate(baseSourceMangaFilterListProvider(sourceId));
 
   List<Map<String, dynamic>> get getAppliedFilter {
     final baseFilters = Filter.filtersToJson(

@@ -21,6 +21,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../settings/presentation/reader/widgets/reader_initial_overlay_tile/reader_initial_overlay_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import '../../../../settings/presentation/reader/widgets/reader_padding_slider/reader_padding_slider.dart';
@@ -46,6 +47,7 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.onNext,
     required this.onPrevious,
     required this.scrollDirection,
+    this.showReaderLayoutAnimation = false,
   });
   final Widget child;
   final Manga manga;
@@ -55,11 +57,12 @@ class ReaderWrapper extends HookConsumerWidget {
   final VoidCallback onNext;
   final int currentIndex;
   final Axis scrollDirection;
+  final bool showReaderLayoutAnimation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final prevNextChapterPair = ref.watch(
-      getPreviousAndNextChaptersProvider(
+    final nextPrevChapterPair = ref.watch(
+      getNextAndPreviousChaptersProvider(
         mangaId: manga.id!,
         chapterIndex: "${chapter.index}",
       ),
@@ -76,7 +79,7 @@ class ReaderWrapper extends HookConsumerWidget {
         ref.watch(readerMagnifierSizeKeyProvider) ??
             DBKeys.readerMagnifierSize.initial;
 
-    final visibility = useState(true);
+    final visibility = ref.watch(readerInitialOverlayProvider).ifNull();
     final mangaReaderPadding =
         useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
     final mangaReaderMagnifierSize = useState(
@@ -92,7 +95,7 @@ class ReaderWrapper extends HookConsumerWidget {
         context: context,
         builder: (context) => RadioListPopup<ReaderMode>(
           optionList: ReaderMode.values,
-          optionDisplayName: (value) => value.toLocale(context),
+          getOptionTitle: (value) => value.toLocale(context),
           value: mangaReaderMode,
           title: context.l10n!.readerMode,
           onChange: (enumValue) async {
@@ -116,7 +119,7 @@ class ReaderWrapper extends HookConsumerWidget {
         context: context,
         builder: (context) => RadioListPopup<ReaderNavigationLayout>(
           optionList: ReaderNavigationLayout.values,
-          optionDisplayName: (value) => value.toLocale(context),
+          getOptionTitle: (value) => value.toLocale(context),
           title: context.l10n!.readerNavigationLayout,
           value: mangaReaderNavigationLayout,
           onChange: (enumValue) async {
@@ -138,11 +141,11 @@ class ReaderWrapper extends HookConsumerWidget {
     );
 
     useEffect(() {
-      if (!visibility.value) {
+      if (!visibility) {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
       return null;
-    }, [visibility.value]);
+    }, [visibility]);
 
     return Theme(
       data: context.theme.copyWith(
@@ -152,7 +155,7 @@ class ReaderWrapper extends HookConsumerWidget {
         ),
       ),
       child: Scaffold(
-        appBar: visibility.value
+        appBar: visibility
             ? AppBar(
                 title: ListTile(
                   title: (manga.title).isNotBlank
@@ -246,7 +249,7 @@ class ReaderWrapper extends HookConsumerWidget {
             ],
           ),
         ),
-        bottomSheet: visibility.value
+        bottomSheet: visibility
             ? ExcludeFocus(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -256,12 +259,12 @@ class ReaderWrapper extends HookConsumerWidget {
                         Card(
                           shape: const CircleBorder(),
                           child: IconButton(
-                            onPressed: prevNextChapterPair?.second != null
+                            onPressed: nextPrevChapterPair?.second != null
                                 ? () => ReaderRoute(
                                       mangaId:
-                                          prevNextChapterPair!.second!.mangaId!,
+                                          nextPrevChapterPair!.second!.mangaId!,
                                       chapterIndex:
-                                          prevNextChapterPair.second!.index!,
+                                          nextPrevChapterPair.second!.index!,
                                       toPrev: true,
                                       transVertical:
                                           scrollDirection != Axis.vertical,
@@ -283,12 +286,12 @@ class ReaderWrapper extends HookConsumerWidget {
                         Card(
                           shape: const CircleBorder(),
                           child: IconButton(
-                            onPressed: prevNextChapterPair?.first != null
+                            onPressed: nextPrevChapterPair?.first != null
                                 ? () => ReaderRoute(
                                       mangaId:
-                                          prevNextChapterPair!.first!.mangaId!,
+                                          nextPrevChapterPair!.first!.mangaId!,
                                       chapterIndex:
-                                          prevNextChapterPair.first!.index!,
+                                          nextPrevChapterPair.first!.index!,
                                       transVertical:
                                           scrollDirection != Axis.vertical,
                                     ).pushReplacement(context)
@@ -363,10 +366,10 @@ class ReaderWrapper extends HookConsumerWidget {
               ),
               PreviousChapterIntent: CallbackAction<PreviousChapterIntent>(
                 onInvoke: (intent) {
-                  prevNextChapterPair?.second != null
+                  nextPrevChapterPair?.second != null
                       ? ReaderRoute(
-                          mangaId: prevNextChapterPair!.second!.mangaId!,
-                          chapterIndex: prevNextChapterPair.second!.index!,
+                          mangaId: nextPrevChapterPair!.second!.mangaId!,
+                          chapterIndex: nextPrevChapterPair.second!.index!,
                           toPrev: true,
                           transVertical: scrollDirection != Axis.vertical,
                         ).pushReplacement(context)
@@ -375,17 +378,19 @@ class ReaderWrapper extends HookConsumerWidget {
                 },
               ),
               NextChapterIntent: CallbackAction<NextChapterIntent>(
-                onInvoke: (intent) => prevNextChapterPair?.first != null
+                onInvoke: (intent) => nextPrevChapterPair?.first != null
                     ? ReaderRoute(
-                        mangaId: prevNextChapterPair!.first!.mangaId!,
-                        chapterIndex: prevNextChapterPair.first!.index!,
+                        mangaId: nextPrevChapterPair!.first!.mangaId!,
+                        chapterIndex: nextPrevChapterPair.first!.index!,
                         transVertical: scrollDirection != Axis.vertical,
                       ).pushReplacement(context)
                     : onNext(),
               ),
               HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
                 onInvoke: (HideQuickOpenIntent intent) {
-                  visibility.value = !visibility.value;
+                  ref
+                      .read(readerInitialOverlayProvider.notifier)
+                      .update(!visibility);
                   return null;
                 },
               ),
@@ -394,15 +399,18 @@ class ReaderWrapper extends HookConsumerWidget {
               autofocus: true,
               child: RepaintBoundary(
                 child: ReaderView(
-                  toggleVisibility: () => visibility.value = !visibility.value,
+                  toggleVisibility: () => ref
+                      .read(readerInitialOverlayProvider.notifier)
+                      .update(!visibility),
                   scrollDirection: scrollDirection,
                   mangaReaderPadding: mangaReaderPadding.value,
                   mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
                   onNext: onNext,
                   onPrevious: onPrevious,
                   mangaReaderNavigationLayout: mangaReaderNavigationLayout,
-                  prevNextChapterPair: prevNextChapterPair,
+                  prevNextChapterPair: nextPrevChapterPair,
                   readerSwipeChapterToggle: readerSwipeChapterToggle,
+                  showReaderLayoutAnimation: showReaderLayoutAnimation,
                   child: child,
                 ),
               ),
@@ -415,19 +423,19 @@ class ReaderWrapper extends HookConsumerWidget {
 }
 
 class ReaderView extends HookWidget {
-  const ReaderView({
-    super.key,
-    required this.toggleVisibility,
-    required this.scrollDirection,
-    required this.mangaReaderPadding,
-    required this.mangaReaderMagnifierSize,
-    required this.onNext,
-    required this.onPrevious,
-    required this.prevNextChapterPair,
-    required this.mangaReaderNavigationLayout,
-    required this.readerSwipeChapterToggle,
-    required this.child,
-  });
+  const ReaderView(
+      {super.key,
+      required this.toggleVisibility,
+      required this.scrollDirection,
+      required this.mangaReaderPadding,
+      required this.mangaReaderMagnifierSize,
+      required this.onNext,
+      required this.onPrevious,
+      required this.prevNextChapterPair,
+      required this.mangaReaderNavigationLayout,
+      required this.readerSwipeChapterToggle,
+      required this.child,
+      this.showReaderLayoutAnimation = false});
 
   final VoidCallback toggleVisibility;
   final Axis scrollDirection;
@@ -438,6 +446,7 @@ class ReaderView extends HookWidget {
   final ({Chapter? first, Chapter? second})? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
   final bool readerSwipeChapterToggle;
+  final bool showReaderLayoutAnimation;
   final Widget child;
 
   @override
@@ -468,15 +477,15 @@ class ReaderView extends HookWidget {
       children: [
         GestureDetector(
           onLongPressStart: (details) {
-            dragGesturePosition.value = details.localPosition;
-            showMagnification.value = true;
+            dragGesturePosition.value = (details.localPosition);
+            showMagnification.value = (true);
           },
           onLongPressEnd: (details) {
-            dragGesturePosition.value = details.localPosition;
-            showMagnification.value = false;
+            dragGesturePosition.value = (details.localPosition);
+            showMagnification.value = (false);
           },
           onLongPressMoveUpdate: (details) =>
-              dragGesturePosition.value = details.localPosition,
+              dragGesturePosition.value = (details.localPosition),
           onTap: toggleVisibility,
           behavior: HitTestBehavior.translucent,
           onHorizontalDragEnd: (details) {
@@ -516,6 +525,7 @@ class ReaderView extends HookWidget {
           onNext: onNext,
           onPrevious: onPrevious,
           navigationLayout: mangaReaderNavigationLayout,
+          showReaderLayoutAnimation: showReaderLayoutAnimation,
         ),
         if (showMagnification.value)
           Positioned(

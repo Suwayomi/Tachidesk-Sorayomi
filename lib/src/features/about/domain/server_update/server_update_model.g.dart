@@ -6,14 +6,14 @@ part of 'server_update_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ServerUpdate _$$_ServerUpdateFromJson(Map<String, dynamic> json) =>
-    _$_ServerUpdate(
+_$ServerUpdateImpl _$$ServerUpdateImplFromJson(Map<String, dynamic> json) =>
+    _$ServerUpdateImpl(
       channel: json['channel'] as String?,
       tag: json['tag'] as String?,
       url: json['url'] as String?,
     );
 
-Map<String, dynamic> _$$_ServerUpdateToJson(_$_ServerUpdate instance) =>
+Map<String, dynamic> _$$ServerUpdateImplToJson(_$ServerUpdateImpl instance) =>
     <String, dynamic>{
       'channel': instance.channel,
       'tag': instance.tag,

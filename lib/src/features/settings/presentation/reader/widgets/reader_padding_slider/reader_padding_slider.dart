@@ -42,7 +42,7 @@ class ReaderPaddingSlider extends ConsumerWidget {
       icon: Icons.width_wide_rounded,
       title: context.l10n!.readerPadding,
       value: readerPadding,
-      labelGenerator: (val) => (val * 2.5).toStringAsFixed(2),
+      getSliderLabel: (val) => (val * 2.5).toStringAsFixed(2),
       onChanged: ref.read(readerPaddingKeyProvider.notifier).update,
       defaultValue: DBKeys.readerPadding.initial,
       min: 0,
@@ -67,7 +67,7 @@ class AsyncReaderPaddingSlider extends HookConsumerWidget {
 
     final onDebounceChanged = useCallback<ValueSetter<double>>(
       (double paddingValue) async {
-        readerPadding.value = paddingValue;
+        readerPadding.value = (paddingValue);
         final finalDebounce = debounce.value;
         if ((finalDebounce?.isActive).ifNull()) {
           finalDebounce?.cancel();
@@ -84,7 +84,7 @@ class AsyncReaderPaddingSlider extends HookConsumerWidget {
       icon: Icons.width_wide_rounded,
       title: context.l10n!.readerPadding,
       value: readerPadding.value,
-      labelGenerator: (val) => (val * 2.5).toStringAsFixed(2),
+      getSliderLabel: (val) => (val * 2.5).toStringAsFixed(2),
       onChanged: onDebounceChanged,
       defaultValue: DBKeys.readerPadding.initial,
       min: 0,

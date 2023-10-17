@@ -12,7 +12,8 @@ extension IntExtensions on int? {
       this != null ? this! >= lower && this! <= upper : false;
   bool isGreaterThan(int i) => isNull ? false : this! > i;
   bool isLessThan(int i) => isNull ? false : this! < i;
-  int ifNullOrNegative([int i = 0]) => isNull || this!.isNegative ? i : this!;
+  int getValueOnNullOrNegative([int i = 0]) =>
+      isNull || this!.isNegative ? i : this!;
   bool isNotEquals(List<int> lst) =>
       isNull || lst.isBlank ? true : lst.every((e) => e != this);
 
@@ -27,7 +28,6 @@ extension IntExtensions on int? {
 
   String? padLeft([int width = 2, String padding = '0']) {
     if (isNull) return null;
-    if (this == 0) return toString();
     return toString().padLeft(width, padding);
   }
 

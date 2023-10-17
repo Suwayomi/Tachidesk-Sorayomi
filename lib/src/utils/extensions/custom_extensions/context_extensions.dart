@@ -186,6 +186,8 @@ extension ContextExtensions on BuildContext {
 
   Locale get currentLocale => Localizations.localeOf(this);
 
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
+
   /// Returns a specific value according to the screen size
   /// if the device width is greater than or equal to 1200 return
   /// [desktop] value. if the device width is greater than  or equal to 600

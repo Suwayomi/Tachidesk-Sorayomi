@@ -26,14 +26,12 @@ class SortListTile extends StatelessWidget {
   final Widget? subtitle;
   @override
   Widget build(BuildContext context) {
+    IconData icon =
+        ascending ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded;
+
     return ListTile(
       leading: selected
-          ? Icon(
-              ascending
-                  ? Icons.arrow_upward_rounded
-                  : Icons.arrow_downward_rounded,
-              color: context.theme.indicatorColor,
-            )
+          ? Icon(icon, color: context.theme.indicatorColor)
           : SizedBox(width: context.theme.iconTheme.size),
       title: title,
       subtitle: subtitle,

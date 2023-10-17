@@ -39,8 +39,8 @@ class ServerUrlTile extends ConsumerWidget {
     return ListTile(
       leading: const Icon(Icons.computer_rounded),
       title: Text(context.l10n!.serverUrl),
-      subtitle: serverUrl.isNotBlank ? Text(serverUrl!) : null,
-      trailing: kIsWeb ? null : const ServerSearchButton(),
+      subtitle: (serverUrl.isNotBlank) ? Text(serverUrl!) : null,
+      trailing: !kIsWeb ? (const ServerSearchButton()) : null,
       onTap: () => showDialog(
         context: context,
         builder: (context) => ServerUrlField(initialUrl: serverUrl),

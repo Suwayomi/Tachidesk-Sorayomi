@@ -2,29 +2,30 @@ name: tachidesk_sorayomi
 description: A new Flutter frontend for Tachidesk.
 
 publish_to: "none"
-version: 0.5.11+1
+version: 0.5.15+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   cached_network_image: ^3.2.2
-  cached_network_image_platform_interface: ^2.0.0
+  cached_network_image_platform_interface: ^3.0.0
   cupertino_icons: ^1.0.5
   dio: ^5.0.0
   dio_cache_interceptor: ^3.4.0
   dio_cache_interceptor_hive_store: ^3.2.1
-  file_picker: ^5.2.2
+  file_picker: ^6.0.0
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.3.0
   flutter_hooks: ^0.20.0
   flutter_localizations:
     sdk: flutter
+  flutter_markdown: ^0.6.17+2
   fluttertoast: ^8.1.1
   font_awesome_flutter: ^10.2.1
   freezed_annotation: ^2.2.0
-  go_router: ^10.0.0
+  go_router: ^11.0.0
   hooks_riverpod: ^2.1.1
   infinite_scroll_pagination: ^4.0.0
   intl: ^0.18.0
@@ -33,12 +34,13 @@ dependencies:
   package_info_plus: ^4.0.0
   path: ^1.8.3
   path_provider: ^2.0.11
-  permission_handler: ^10.2.0
+  permission_handler: ^11.0.0
   pub_semver: ^2.1.2
   queue: ^3.1.0+2
   riverpod_annotation: ^2.0.0
   scrollable_positioned_list: ^0.3.5
   shared_preferences: ^2.0.15
+  shimmer: ^3.0.0
   url_launcher: ^6.1.6
   web_socket_channel: ^2.2.0
 

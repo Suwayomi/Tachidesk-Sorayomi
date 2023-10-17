@@ -7,7 +7,7 @@ part of 'quick_search_controller.dart';
 // **************************************************************************
 
 String _$processesQuickSearchHash() =>
-    r'd0671247c128a4484ee5aed3c70f0267ea2a9baa';
+    r'fc253ae948ddc40613d7c08d04808b1871071608';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -176,4 +176,4 @@ final quickSearchQueryProvider =
 
 typedef _$QuickSearchQuery = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -70,7 +70,9 @@ class EditCategoryDialog extends HookConsumerWidget {
             dense: true,
             controlAffinity: ListTileControlAffinity.leading,
             onChanged: (value) {
-              if (value != null) defaultCategory.value = value;
+              if (value != null) {
+                defaultCategory.value = (value);
+              }
             },
             title: Text(context.l10n!.defaultCategory),
           )

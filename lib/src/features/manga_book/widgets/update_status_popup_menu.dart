@@ -9,10 +9,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
 
+import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../library/domain/category/category_model.dart';
 import '../data/updates/updates_repository.dart';
-import 'update_status_summary_sheet.dart';
 
 class UpdateStatusPopupMenu extends ConsumerWidget {
   const UpdateStatusPopupMenu({
@@ -28,7 +28,7 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
       icon: const Icon(Icons.more_vert_rounded),
       shape: RoundedRectangleBorder(borderRadius: KBorderRadius.r16.radius),
       itemBuilder: (context) {
-        final category = getCategory != null ? getCategory!() : null;
+        final category = getCategory?.call();
         return [
           if (category != null && category.id != null && category.id != 0)
             PopupMenuItem(
@@ -43,9 +43,7 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
           ),
           if (showSummaryButton)
             PopupMenuItem(
-              onTap: () => Future.microtask(
-                () => showUpdateStatusSummaryBottomSheet(context),
-              ),
+              onTap: () => const UpdateStatusRoute().push(context),
               child: Text(
                 context.l10n!.updatesSummary,
               ),

@@ -425,37 +425,40 @@ class _FirstUnreadInFilteredChapterListProviderElement
       (origin as FirstUnreadInFilteredChapterListProvider).mangaId;
 }
 
-String _$getPreviousAndNextChaptersHash() =>
-    r'72d82e93a696623ac8656cbcc6d2cb999ac58c6a';
+String _$getNextAndPreviousChaptersHash() =>
+    r'c4de0562e24cb2b3a6ead00889b2c5325d8cf7b5';
 
-/// See also [getPreviousAndNextChapters].
-@ProviderFor(getPreviousAndNextChapters)
-const getPreviousAndNextChaptersProvider = GetPreviousAndNextChaptersFamily();
+/// See also [getNextAndPreviousChapters].
+@ProviderFor(getNextAndPreviousChapters)
+const getNextAndPreviousChaptersProvider = GetNextAndPreviousChaptersFamily();
 
-/// See also [getPreviousAndNextChapters].
-class GetPreviousAndNextChaptersFamily
+/// See also [getNextAndPreviousChapters].
+class GetNextAndPreviousChaptersFamily
     extends Family<({Chapter? first, Chapter? second})?> {
-  /// See also [getPreviousAndNextChapters].
-  const GetPreviousAndNextChaptersFamily();
+  /// See also [getNextAndPreviousChapters].
+  const GetNextAndPreviousChaptersFamily();
 
-  /// See also [getPreviousAndNextChapters].
-  GetPreviousAndNextChaptersProvider call({
+  /// See also [getNextAndPreviousChapters].
+  GetNextAndPreviousChaptersProvider call({
     required int mangaId,
     required String chapterIndex,
+    bool shouldAscSort = true,
   }) {
-    return GetPreviousAndNextChaptersProvider(
+    return GetNextAndPreviousChaptersProvider(
       mangaId: mangaId,
       chapterIndex: chapterIndex,
+      shouldAscSort: shouldAscSort,
     );
   }
 
   @override
-  GetPreviousAndNextChaptersProvider getProviderOverride(
-    covariant GetPreviousAndNextChaptersProvider provider,
+  GetNextAndPreviousChaptersProvider getProviderOverride(
+    covariant GetNextAndPreviousChaptersProvider provider,
   ) {
     return call(
       mangaId: provider.mangaId,
       chapterIndex: provider.chapterIndex,
+      shouldAscSort: provider.shouldAscSort,
     );
   }
 
@@ -471,36 +474,39 @@ class GetPreviousAndNextChaptersFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'getPreviousAndNextChaptersProvider';
+  String? get name => r'getNextAndPreviousChaptersProvider';
 }
 
-/// See also [getPreviousAndNextChapters].
-class GetPreviousAndNextChaptersProvider
+/// See also [getNextAndPreviousChapters].
+class GetNextAndPreviousChaptersProvider
     extends AutoDisposeProvider<({Chapter? first, Chapter? second})?> {
-  /// See also [getPreviousAndNextChapters].
-  GetPreviousAndNextChaptersProvider({
+  /// See also [getNextAndPreviousChapters].
+  GetNextAndPreviousChaptersProvider({
     required int mangaId,
     required String chapterIndex,
+    bool shouldAscSort = true,
   }) : this._internal(
-          (ref) => getPreviousAndNextChapters(
-            ref as GetPreviousAndNextChaptersRef,
+          (ref) => getNextAndPreviousChapters(
+            ref as GetNextAndPreviousChaptersRef,
             mangaId: mangaId,
             chapterIndex: chapterIndex,
+            shouldAscSort: shouldAscSort,
           ),
-          from: getPreviousAndNextChaptersProvider,
-          name: r'getPreviousAndNextChaptersProvider',
+          from: getNextAndPreviousChaptersProvider,
+          name: r'getNextAndPreviousChaptersProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$getPreviousAndNextChaptersHash,
-          dependencies: GetPreviousAndNextChaptersFamily._dependencies,
+                  : _$getNextAndPreviousChaptersHash,
+          dependencies: GetNextAndPreviousChaptersFamily._dependencies,
           allTransitiveDependencies:
-              GetPreviousAndNextChaptersFamily._allTransitiveDependencies,
+              GetNextAndPreviousChaptersFamily._allTransitiveDependencies,
           mangaId: mangaId,
           chapterIndex: chapterIndex,
+          shouldAscSort: shouldAscSort,
         );
 
-  GetPreviousAndNextChaptersProvider._internal(
+  GetNextAndPreviousChaptersProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -509,21 +515,23 @@ class GetPreviousAndNextChaptersProvider
     required super.from,
     required this.mangaId,
     required this.chapterIndex,
+    required this.shouldAscSort,
   }) : super.internal();
 
   final int mangaId;
   final String chapterIndex;
+  final bool shouldAscSort;
 
   @override
   Override overrideWith(
     ({Chapter? first, Chapter? second})? Function(
-            GetPreviousAndNextChaptersRef provider)
+            GetNextAndPreviousChaptersRef provider)
         create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: GetPreviousAndNextChaptersProvider._internal(
-        (ref) => create(ref as GetPreviousAndNextChaptersRef),
+      override: GetNextAndPreviousChaptersProvider._internal(
+        (ref) => create(ref as GetNextAndPreviousChaptersRef),
         from: from,
         name: null,
         dependencies: null,
@@ -531,6 +539,7 @@ class GetPreviousAndNextChaptersProvider
         debugGetCreateSourceHash: null,
         mangaId: mangaId,
         chapterIndex: chapterIndex,
+        shouldAscSort: shouldAscSort,
       ),
     );
   }
@@ -538,14 +547,15 @@ class GetPreviousAndNextChaptersProvider
   @override
   AutoDisposeProviderElement<({Chapter? first, Chapter? second})?>
       createElement() {
-    return _GetPreviousAndNextChaptersProviderElement(this);
+    return _GetNextAndPreviousChaptersProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetPreviousAndNextChaptersProvider &&
+    return other is GetNextAndPreviousChaptersProvider &&
         other.mangaId == mangaId &&
-        other.chapterIndex == chapterIndex;
+        other.chapterIndex == chapterIndex &&
+        other.shouldAscSort == shouldAscSort;
   }
 
   @override
@@ -553,30 +563,37 @@ class GetPreviousAndNextChaptersProvider
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, mangaId.hashCode);
     hash = _SystemHash.combine(hash, chapterIndex.hashCode);
+    hash = _SystemHash.combine(hash, shouldAscSort.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin GetPreviousAndNextChaptersRef
+mixin GetNextAndPreviousChaptersRef
     on AutoDisposeProviderRef<({Chapter? first, Chapter? second})?> {
   /// The parameter `mangaId` of this provider.
   int get mangaId;
 
   /// The parameter `chapterIndex` of this provider.
   String get chapterIndex;
+
+  /// The parameter `shouldAscSort` of this provider.
+  bool get shouldAscSort;
 }
 
-class _GetPreviousAndNextChaptersProviderElement
+class _GetNextAndPreviousChaptersProviderElement
     extends AutoDisposeProviderElement<({Chapter? first, Chapter? second})?>
-    with GetPreviousAndNextChaptersRef {
-  _GetPreviousAndNextChaptersProviderElement(super.provider);
+    with GetNextAndPreviousChaptersRef {
+  _GetNextAndPreviousChaptersProviderElement(super.provider);
 
   @override
-  int get mangaId => (origin as GetPreviousAndNextChaptersProvider).mangaId;
+  int get mangaId => (origin as GetNextAndPreviousChaptersProvider).mangaId;
   @override
   String get chapterIndex =>
-      (origin as GetPreviousAndNextChaptersProvider).chapterIndex;
+      (origin as GetNextAndPreviousChaptersProvider).chapterIndex;
+  @override
+  bool get shouldAscSort =>
+      (origin as GetNextAndPreviousChaptersProvider).shouldAscSort;
 }
 
 String _$mangaWithIdHash() => r'aea36ab8126c57f1c73a24b1f8dc6ecbd03f25c1';
@@ -1243,4 +1260,4 @@ class _MangaCategoryListProviderElement
   int get mangaId => (origin as MangaCategoryListProvider).mangaId;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

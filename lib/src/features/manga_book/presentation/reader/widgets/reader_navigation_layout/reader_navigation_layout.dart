@@ -24,19 +24,23 @@ class ReaderNavigationLayoutWidget extends HookConsumerWidget {
     this.navigationLayout,
     required this.onPrevious,
     required this.onNext,
+    this.showReaderLayoutAnimation = false,
   });
   final ReaderNavigationLayout? navigationLayout;
   final VoidCallback? onPrevious;
   final VoidCallback? onNext;
+  final bool showReaderLayoutAnimation;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final animationController = useAnimationController(duration: kLongDuration);
     useAnimation(animationController);
-    final nextColorTween =
-        ColorTween(begin: Colors.green).animate(animationController).value;
+    final nextColorTween = ColorTween(
+      begin: showReaderLayoutAnimation ? Colors.green : Colors.transparent,
+    ).animate(animationController).value;
 
-    final prevColorTween =
-        ColorTween(begin: Colors.blue).animate(animationController).value;
+    final prevColorTween = ColorTween(
+      begin: showReaderLayoutAnimation ? Colors.blue : Colors.transparent,
+    ).animate(animationController).value;
     useEffect(() {
       animationController.forward();
       return;

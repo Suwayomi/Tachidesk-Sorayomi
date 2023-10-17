@@ -43,7 +43,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
     SourceRepository repository,
     PagingController<int, Manga> controller,
     int pageKey, {
-    String? query,
+    ValueNotifier<String?>? query,
     List<Map<String, dynamic>>? filter,
   }) {
     AsyncValue.guard(
@@ -51,7 +51,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
         sourceId: sourceId,
         sourceType: sourceType,
         pageNum: pageKey,
-        query: query,
+        query: query?.value,
         filter: filter,
       ),
     ).then(
@@ -125,13 +125,12 @@ class SourceMangaListScreen extends HookConsumerWidget {
           sourceRepository,
           controller,
           pageKey,
-          query: query.value,
+          query: query,
           filter: ref.read(filtersProvider.notifier).getAppliedFilter,
         ),
       );
       return;
     }, []);
-
     return source.showUiWhenData(
       context,
       (data) => Scaffold(
@@ -142,7 +141,13 @@ class SourceMangaListScreen extends HookConsumerWidget {
               onPressed: () => showSearch.value = true,
               icon: const Icon(Icons.search_rounded),
             ),
-            const SourceMangaDisplayIconPopup()
+            const SourceMangaDisplayIconPopup(),
+            if ((data?.isConfigurable).ifNull())
+              IconButton(
+                onPressed: () =>
+                    SourcePreferenceRoute(sourceId: sourceId).push(context),
+                icon: const Icon(Icons.settings_rounded),
+              ),
           ],
           bottom: PreferredSize(
             preferredSize: kCalculateAppBarBottomSize([true, showSearch.value]),
@@ -201,10 +206,10 @@ class SourceMangaListScreen extends HookConsumerWidget {
                     alignment: Alignment.centerRight,
                     child: SearchField(
                       initialText: query.value,
-                      onClose: () => showSearch.value = false,
+                      onClose: () => showSearch.value = (false),
                       onSubmitted: (val) {
                         if (sourceType == SourceType.filter) {
-                          query.value = val;
+                          query.value = (val);
                           controller.refresh();
                         } else {
                           if (val == null) return;

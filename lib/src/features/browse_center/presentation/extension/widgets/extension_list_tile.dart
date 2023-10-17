@@ -15,6 +15,7 @@ import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../data/extension_repository/extension_repository.dart';
 import '../../../domain/extension/extension_model.dart';
+import '../../source/controller/source_controller.dart';
 
 class ExtensionListTile extends HookConsumerWidget {
   const ExtensionListTile({
@@ -68,88 +69,128 @@ class ExtensionListTile extends HookConsumerWidget {
           ],
         ),
       ),
-      trailing: extension.obsolete.ifNull()
-          ? OutlinedButton(
-              onPressed: extension.installed.ifNull()
-                  ? () => repository.uninstallExtension(extension.pkgName!)
-                  : null,
-              child: Text(
-                context.l10n!.obsolete,
-                style: const TextStyle(color: Colors.redAccent),
-              ),
-            )
-          : extension.installed.ifNull()
-              ? TextButton(
-                  onPressed: isLoading.value
-                      ? null
-                      : () async {
-                          try {
-                            isLoading.value = true;
-                            final result = (await AsyncValue.guard(
-                              () async {
-                                if (extension.pkgName.isBlank) {
-                                  throw context.l10n!.errorExtension;
-                                }
-                                if (extension.hasUpdate.ifNull()) {
-                                  await repository
-                                      .updateExtension(extension.pkgName!);
-                                } else {
-                                  await repository
-                                      .uninstallExtension(extension.pkgName!);
-                                }
-
-                                await refresh();
-                              },
-                            ));
-                            if (context.mounted) {
-                              result.showToastOnError(
-                                  ref.read(toastProvider(context)));
-                            }
-                            isLoading.value = false;
-                          } catch (e) {
-                            //
-                          }
-                        },
-                  child: Text(
-                    extension.hasUpdate.ifNull()
-                        ? isLoading.value
-                            ? context.l10n!.updating
-                            : context.l10n!.update
-                        : isLoading.value
-                            ? context.l10n!.uninstalling
-                            : context.l10n!.uninstall,
-                  ),
-                )
-              : TextButton(
-                  onPressed: isLoading.value
-                      ? null
-                      : () async {
-                          try {
-                            isLoading.value = true;
-                            final result = await AsyncValue.guard(() async {
-                              if (extension.pkgName.isBlank) {
-                                throw context.l10n!.errorExtension;
-                              }
-                              await repository
-                                  .installExtension(extension.pkgName!);
-                              await refresh();
-                            });
-                            if (context.mounted) {
-                              result.showToastOnError(
-                                ref.read(toastProvider(context)),
-                              );
-                            }
-                            isLoading.value = false;
-                          } catch (e) {
-                            //
-                          }
-                        },
-                  child: Text(
-                    isLoading.value
-                        ? context.l10n!.installing
-                        : context.l10n!.install,
-                  ),
-                ),
+      trailing: ExtensionListTileTailing(
+        extension: extension,
+        repository: repository,
+        isLoading: isLoading,
+        ref: ref,
+        refresh: refresh,
+      ),
     );
+  }
+}
+
+class ExtensionListTileTailing extends StatelessWidget {
+  const ExtensionListTileTailing({
+    Key? key,
+    required this.extension,
+    required this.repository,
+    required this.isLoading,
+    required this.ref,
+    required this.refresh,
+  }) : super(key: key);
+
+  final Extension extension;
+  final ExtensionRepository repository;
+  final ValueNotifier<bool> isLoading;
+  final WidgetRef ref;
+  final AsyncCallback refresh;
+
+  @override
+  Widget build(BuildContext context) {
+    if (extension.obsolete.ifNull()) {
+      return OutlinedButton(
+        onPressed: extension.installed.ifNull()
+            ? () => repository.uninstallExtension(extension.pkgName!)
+            : null,
+        child: Text(
+          context.l10n!.obsolete,
+          style: const TextStyle(color: Colors.redAccent),
+        ),
+      );
+    } else {
+      if (extension.installed.ifNull()) {
+        return TextButton(
+          onPressed: (!isLoading.value)
+              ? () async {
+                  try {
+                    isLoading.value = (true);
+                    final result = (await AsyncValue.guard(
+                      () async {
+                        if (extension.pkgName.isBlank) {
+                          throw context.l10n!.errorExtension;
+                        }
+                        if (extension.hasUpdate.ifNull()) {
+                          await repository.updateExtension(extension.pkgName!);
+                        } else {
+                          await repository
+                              .uninstallExtension(extension.pkgName!);
+                        }
+
+                        await refresh();
+                      },
+                    ));
+                    if (context.mounted) {
+                      result.showToastOnError(ref.read(toastProvider(context)));
+                    }
+                    isLoading.value = (false);
+                  } catch (e) {
+                    //
+                  }
+                }
+              : null,
+          child: Text(
+            extension.hasUpdate.ifNull()
+                ? isLoading.value
+                    ? context.l10n!.updating
+                    : context.l10n!.update
+                : isLoading.value
+                    ? context.l10n!.uninstalling
+                    : context.l10n!.uninstall,
+          ),
+        );
+      } else {
+        return TextButton(
+          onPressed: !isLoading.value
+              ? () async {
+                  try {
+                    isLoading.value = (true);
+                    final result = await AsyncValue.guard(() async {
+                      if (extension.pkgName.isBlank) {
+                        throw context.l10n!.errorExtension;
+                      }
+                      await repository.installExtension(extension.pkgName!);
+                      if ((extension.lang?.code).isNotBlank) {
+                        final code = extension.lang!.code!;
+                        final enabledLanguages =
+                            ref.read(sourceLanguageFilterProvider);
+                        if (enabledLanguages.isNotBlank &&
+                            !enabledLanguages!.contains(code)) {
+                          ref
+                              .read(sourceLanguageFilterProvider.notifier)
+                              .update(
+                                {...enabledLanguages, code}.toList(),
+                              );
+                        }
+                      }
+                      await refresh();
+                    });
+                    if (context.mounted) {
+                      result.showToastOnError(
+                        ref.read(toastProvider(context)),
+                      );
+                    }
+                    isLoading.value = (false);
+                  } catch (e) {
+                    //
+                  }
+                }
+              : null,
+          child: Text(
+            isLoading.value ? context.l10n!.installing : context.l10n!.install,
+          ),
+        );
+      }
+    }
   }
 }

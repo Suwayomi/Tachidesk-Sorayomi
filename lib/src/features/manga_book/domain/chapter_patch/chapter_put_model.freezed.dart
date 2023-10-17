@@ -81,11 +81,11 @@ class _$ChapterPutCopyWithImpl<$Res, $Val extends ChapterPut>
 }
 
 /// @nodoc
-abstract class _$$_ChapterPutCopyWith<$Res>
+abstract class _$$ChapterPutImplCopyWith<$Res>
     implements $ChapterPutCopyWith<$Res> {
-  factory _$$_ChapterPutCopyWith(
-          _$_ChapterPut value, $Res Function(_$_ChapterPut) then) =
-      __$$_ChapterPutCopyWithImpl<$Res>;
+  factory _$$ChapterPutImplCopyWith(
+          _$ChapterPutImpl value, $Res Function(_$ChapterPutImpl) then) =
+      __$$ChapterPutImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -93,11 +93,11 @@ abstract class _$$_ChapterPutCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChapterPutCopyWithImpl<$Res>
-    extends _$ChapterPutCopyWithImpl<$Res, _$_ChapterPut>
-    implements _$$_ChapterPutCopyWith<$Res> {
-  __$$_ChapterPutCopyWithImpl(
-      _$_ChapterPut _value, $Res Function(_$_ChapterPut) _then)
+class __$$ChapterPutImplCopyWithImpl<$Res>
+    extends _$ChapterPutCopyWithImpl<$Res, _$ChapterPutImpl>
+    implements _$$ChapterPutImplCopyWith<$Res> {
+  __$$ChapterPutImplCopyWithImpl(
+      _$ChapterPutImpl _value, $Res Function(_$ChapterPutImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +108,7 @@ class __$$_ChapterPutCopyWithImpl<$Res>
     Object? markPrevRead = freezed,
     Object? lastPageRead = freezed,
   }) {
-    return _then(_$_ChapterPut(
+    return _then(_$ChapterPutImpl(
       read: freezed == read
           ? _value.read
           : read // ignore: cast_nullable_to_non_nullable
@@ -131,12 +131,12 @@ class __$$_ChapterPutCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChapterPut implements _ChapterPut {
-  _$_ChapterPut(
+class _$ChapterPutImpl implements _ChapterPut {
+  _$ChapterPutImpl(
       {this.read, this.bookmarked, this.markPrevRead, this.lastPageRead});
 
-  factory _$_ChapterPut.fromJson(Map<String, dynamic> json) =>
-      _$$_ChapterPutFromJson(json);
+  factory _$ChapterPutImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChapterPutImplFromJson(json);
 
   @override
   final bool? read;
@@ -156,7 +156,7 @@ class _$_ChapterPut implements _ChapterPut {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChapterPut &&
+            other is _$ChapterPutImpl &&
             (identical(other.read, read) || other.read == read) &&
             (identical(other.bookmarked, bookmarked) ||
                 other.bookmarked == bookmarked) &&
@@ -174,12 +174,12 @@ class _$_ChapterPut implements _ChapterPut {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChapterPutCopyWith<_$_ChapterPut> get copyWith =>
-      __$$_ChapterPutCopyWithImpl<_$_ChapterPut>(this, _$identity);
+  _$$ChapterPutImplCopyWith<_$ChapterPutImpl> get copyWith =>
+      __$$ChapterPutImplCopyWithImpl<_$ChapterPutImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChapterPutToJson(
+    return _$$ChapterPutImplToJson(
       this,
     );
   }
@@ -190,10 +190,10 @@ abstract class _ChapterPut implements ChapterPut {
       {final bool? read,
       final bool? bookmarked,
       final bool? markPrevRead,
-      final int? lastPageRead}) = _$_ChapterPut;
+      final int? lastPageRead}) = _$ChapterPutImpl;
 
   factory _ChapterPut.fromJson(Map<String, dynamic> json) =
-      _$_ChapterPut.fromJson;
+      _$ChapterPutImpl.fromJson;
 
   @override
   bool? get read;
@@ -205,6 +205,6 @@ abstract class _ChapterPut implements ChapterPut {
   int? get lastPageRead;
   @override
   @JsonKey(ignore: true)
-  _$$_ChapterPutCopyWith<_$_ChapterPut> get copyWith =>
+  _$$ChapterPutImplCopyWith<_$ChapterPutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

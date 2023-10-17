@@ -6,7 +6,8 @@ part of 'extension_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Extension _$$_ExtensionFromJson(Map<String, dynamic> json) => _$_Extension(
+_$ExtensionImpl _$$ExtensionImplFromJson(Map<String, dynamic> json) =>
+    _$ExtensionImpl(
       apkName: json['apkName'] as String?,
       hasUpdate: json['hasUpdate'] as bool?,
       iconUrl: json['iconUrl'] as String?,
@@ -20,7 +21,7 @@ _$_Extension _$$_ExtensionFromJson(Map<String, dynamic> json) => _$_Extension(
       versionName: json['versionName'] as String?,
     );
 
-Map<String, dynamic> _$$_ExtensionToJson(_$_Extension instance) =>
+Map<String, dynamic> _$$ExtensionImplToJson(_$ExtensionImpl instance) =>
     <String, dynamic>{
       'apkName': instance.apkName,
       'hasUpdate': instance.hasUpdate,

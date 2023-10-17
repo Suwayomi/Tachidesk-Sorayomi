@@ -7,7 +7,7 @@ part of 'source_quick_search_controller.dart';
 // **************************************************************************
 
 String _$sourceQuickSearchMangaListHash() =>
-    r'7197c98a64f075ecffb1c416576ad64d1127c385';
+    r'f282b4a1ec9b9c46a8ef72aceffac1130b8a6cf7';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -316,4 +316,4 @@ class _QuickSearchResultsProviderElement extends AutoDisposeProviderElement<
   String? get query => (origin as QuickSearchResultsProvider).query;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

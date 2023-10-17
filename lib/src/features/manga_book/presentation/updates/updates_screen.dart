@@ -12,6 +12,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
 import '../../../../utils/misc/toast/toast.dart';
+import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/updates/updates_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
@@ -74,7 +75,7 @@ class UpdatesScreen extends HookConsumerWidget {
     useEffect(() {
       if (!isUpdatesChecking) {
         try {
-          selectedChapters.value = <int, Chapter>{};
+          selectedChapters.value = ({});
           controller.refresh();
         } catch (e) {
           //
@@ -83,11 +84,12 @@ class UpdatesScreen extends HookConsumerWidget {
       return null;
     }, [isUpdatesChecking]);
     return Scaffold(
-      floatingActionButton: const UpdateStatusFab(),
+      floatingActionButton:
+          selectedChapters.value.isEmpty ? const UpdateStatusFab() : null,
       appBar: selectedChapters.value.isNotEmpty
           ? AppBar(
               leading: IconButton(
-                onPressed: () => selectedChapters.value = <int, Chapter>{},
+                onPressed: () => selectedChapters.value = ({}),
                 icon: const Icon(Icons.close_rounded),
               ),
               title: Text(
@@ -107,12 +109,14 @@ class UpdatesScreen extends HookConsumerWidget {
           : null,
       body: RefreshIndicator(
         onRefresh: () async {
-          selectedChapters.value = <int, Chapter>{};
+          selectedChapters.value = ({});
           controller.refresh();
         },
         child: PagedListView(
           pagingController: controller,
           builderDelegate: PagedChildBuilderDelegate<ChapterMangaPair>(
+            firstPageProgressIndicatorBuilder: (context) =>
+                const CenterSorayomiShimmerIndicator(),
             firstPageErrorIndicatorBuilder: (context) => Emoticons(
               text: controller.error.toString(),
               button: TextButton(
@@ -165,7 +169,7 @@ class UpdatesScreen extends HookConsumerWidget {
                 toggleSelect: (Chapter val) {
                   if ((val.id).isNull) return;
                   selectedChapters.value =
-                      selectedChapters.value.toggleKey(val.id!, val);
+                      (selectedChapters.value.toggleKey(val.id!, val));
                 },
               );
               if ((item.chapter?.fetchedAt).isSameDayAs(previousDate)) {

@@ -4,6 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,6 +16,7 @@ import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/endpoints.dart';
 import '../../../../../../utils/extensions/cache_manager_extensions.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
@@ -28,6 +32,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
     this.onPageChanged,
     this.reverse = false,
     this.scrollDirection = Axis.horizontal,
+    this.showReaderLayoutAnimation = false,
   });
 
   final Manga manga;
@@ -35,12 +40,14 @@ class SinglePageReaderMode extends HookConsumerWidget {
   final ValueSetter<int>? onPageChanged;
   final bool reverse;
   final Axis scrollDirection;
+  final bool showReaderLayoutAnimation;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cacheManager = useMemoized(() => DefaultCacheManager());
     final scrollController = usePageController(
-      initialPage:
-          chapter.read.ifNull() ? 0 : chapter.lastPageRead.ifNullOrNegative(),
+      initialPage: chapter.read.ifNull()
+          ? 0
+          : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
     final currentIndex = useState(scrollController.initialPage);
     useEffect(() {
@@ -58,7 +65,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       // Next page
-      if (currentPage < (chapter.pageCount.ifNullOrNegative() - 1)) {
+      if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 1)) {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
@@ -69,7 +76,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       // 2nd next page
-      if (currentPage < (chapter.pageCount.ifNullOrNegative() - 2)) {
+      if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 2)) {
         cacheManager.getServerFile(
           ref,
           MangaUrl.chapterPageWithIndex(
@@ -80,11 +87,11 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       return null;
-    }, [currentIndex.value]);
+    }, [currentIndex]);
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
-        if (currentPage != null) currentIndex.value = currentPage.toInt();
+        if (currentPage != null) currentIndex.value = (currentPage.toInt());
       }
 
       scrollController.addListener(listener);
@@ -98,6 +105,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
       manga: manga,
       currentIndex: currentIndex.value,
       onChanged: (index) => scrollController.jumpToPage(index),
+      showReaderLayoutAnimation: showReaderLayoutAnimation,
       onPrevious: () => scrollController.previousPage(
         duration: isAnimationEnabled ? kDuration : kInstantDuration,
         curve: kCurve,
@@ -112,6 +120,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         controller: scrollController,
         itemBuilder: (BuildContext context, int index) {
           final image = ServerImage(
+            showReloadButton: true,
             fit: BoxFit.contain,
             size: Size.fromHeight(context.height),
             appendApiToUrl: true,
@@ -121,13 +130,18 @@ class SinglePageReaderMode extends HookConsumerWidget {
               pageIndex: index,
             ),
             progressIndicatorBuilder: (context, url, downloadProgress) =>
-                CenterCircularProgressIndicator(
+                CenterSorayomiShimmerIndicator(
               value: downloadProgress.progress,
             ),
           );
-          return image;
+          return AppUtils.wrapIf(
+            !kIsWeb && (Platform.isAndroid || Platform.isIOS)
+                ? (child) => InteractiveViewer(maxScale: 5, child: child)
+                : null,
+            image,
+          );
         },
-        itemCount: chapter.pageCount.ifNullOrNegative(),
+        itemCount: chapter.pageCount.getValueOnNullOrNegative(),
       ),
     );
   }

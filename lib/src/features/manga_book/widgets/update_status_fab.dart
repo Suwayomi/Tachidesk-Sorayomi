@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../data/updates/updates_repository.dart';
-import 'update_status_summary_sheet.dart';
 
 class UpdateStatusFab extends ConsumerWidget {
   const UpdateStatusFab({super.key});
@@ -22,7 +22,7 @@ class UpdateStatusFab extends ConsumerWidget {
     return FloatingActionButton.extended(
       icon: showStatus ? null : const Icon(Icons.refresh),
       onPressed: () => showStatus
-          ? showUpdateStatusSummaryBottomSheet(context)
+          ? const UpdateStatusRoute().push(context)
           : ref.read(updatesRepositoryProvider).fetchUpdates(),
       label: showStatus
           ? Text("${updateStatus.valueOrNull?.updateChecked.padLeft()}"

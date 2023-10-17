@@ -47,8 +47,8 @@ class LibraryScreen extends HookConsumerWidget {
             )
           : DefaultTabController(
               length: data!.length,
-              initialIndex:
-                  min(initialCategoryOrder.ifNullOrNegative(), data.length - 1),
+              initialIndex: min(initialCategoryOrder.getValueOnNullOrNegative(),
+                  data.length - 1),
               child: Scaffold(
                 appBar: AppBar(
                   title: Text(context.l10n!.library),
@@ -75,7 +75,7 @@ class LibraryScreen extends HookConsumerWidget {
                               onChanged: (val) => ref
                                   .read(libraryQueryProvider.notifier)
                                   .update(val),
-                              onClose: () => showSearch.value = false,
+                              onClose: () => showSearch.value = (false),
                             ),
                           ),
                       ],
@@ -83,7 +83,7 @@ class LibraryScreen extends HookConsumerWidget {
                   ),
                   actions: [
                     IconButton(
-                      onPressed: () => showSearch.value = true,
+                      onPressed: () => showSearch.value = (true),
                       icon: const Icon(Icons.search_rounded),
                     ),
                     Builder(
@@ -135,7 +135,7 @@ class LibraryScreen extends HookConsumerWidget {
                         child: TabBarView(
                           children: data
                               .map((e) => CategoryMangaList(
-                                  categoryId: e.id.ifNullOrNegative()))
+                                  categoryId: e.id.getValueOnNullOrNegative()))
                               .toList(),
                         ),
                       ),

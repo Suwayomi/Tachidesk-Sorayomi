@@ -6,7 +6,7 @@ part of 'manga_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Manga _$$_MangaFromJson(Map<String, dynamic> json) => _$_Manga(
+_$MangaImpl _$$MangaImplFromJson(Map<String, dynamic> json) => _$MangaImpl(
       artist: json['artist'] as String?,
       author: json['author'] as String?,
       description: json['description'] as String?,
@@ -41,7 +41,8 @@ _$_Manga _$$_MangaFromJson(Map<String, dynamic> json) => _$_Manga(
           : MangaMeta.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
+Map<String, dynamic> _$$MangaImplToJson(_$MangaImpl instance) =>
+    <String, dynamic>{
       'artist': instance.artist,
       'author': instance.author,
       'description': instance.description,
@@ -69,7 +70,8 @@ Map<String, dynamic> _$$_MangaToJson(_$_Manga instance) => <String, dynamic>{
       'meta': instance.meta?.toJson(),
     };
 
-_$_MangaMeta _$$_MangaMetaFromJson(Map<String, dynamic> json) => _$_MangaMeta(
+_$MangaMetaImpl _$$MangaMetaImplFromJson(Map<String, dynamic> json) =>
+    _$MangaMetaImpl(
       invertTap: MangaMeta.fromJsonToBool(
           json['flutter_readerNavigationLayoutInvert']),
       readerNavigationLayout: $enumDecodeNullable(
@@ -83,7 +85,7 @@ _$_MangaMeta _$$_MangaMetaFromJson(Map<String, dynamic> json) => _$_MangaMeta(
       scanlator: json['flutter_scanlator'] as String?,
     );
 
-Map<String, dynamic> _$$_MangaMetaToJson(_$_MangaMeta instance) =>
+Map<String, dynamic> _$$MangaMetaImplToJson(_$MangaMetaImpl instance) =>
     <String, dynamic>{
       'flutter_readerNavigationLayoutInvert': instance.invertTap,
       'flutter_readerNavigationLayout':

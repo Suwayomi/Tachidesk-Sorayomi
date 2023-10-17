@@ -23,11 +23,15 @@ class AsyncCheckboxListTile extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final localValue = useState(value);
+    useEffect(() {
+      localValue.value = value;
+      return null;
+    }, [value]);
     return CheckboxListTile(
       value: localValue.value,
       onChanged: onChanged != null
           ? (val) {
-              localValue.value = val.ifNull();
+              localValue.value = (val.ifNull());
               onChanged!(val.ifNull());
             }
           : null,

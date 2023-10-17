@@ -6,8 +6,8 @@ part of 'downloads_queue_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DownloadsQueue _$$_DownloadsQueueFromJson(Map<String, dynamic> json) =>
-    _$_DownloadsQueue(
+_$DownloadsQueueImpl _$$DownloadsQueueImplFromJson(Map<String, dynamic> json) =>
+    _$DownloadsQueueImpl(
       chapter: json['chapter'] == null
           ? null
           : Chapter.fromJson(json['chapter'] as Map<String, dynamic>),
@@ -21,7 +21,8 @@ _$_DownloadsQueue _$$_DownloadsQueueFromJson(Map<String, dynamic> json) =>
       tries: json['tries'] as int?,
     );
 
-Map<String, dynamic> _$$_DownloadsQueueToJson(_$_DownloadsQueue instance) =>
+Map<String, dynamic> _$$DownloadsQueueImplToJson(
+        _$DownloadsQueueImpl instance) =>
     <String, dynamic>{
       'chapter': instance.chapter?.toJson(),
       'chapterIndex': instance.chapterIndex,

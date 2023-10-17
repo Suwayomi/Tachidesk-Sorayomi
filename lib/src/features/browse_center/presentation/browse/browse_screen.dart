@@ -35,7 +35,7 @@ class BrowseScreen extends HookConsumerWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => showSearch.value = true,
+            onPressed: () => showSearch.value = (true),
             icon: Icon(
               tabController.index == 0
                   ? Icons.travel_explore_rounded
@@ -79,7 +79,7 @@ class BrowseScreen extends HookConsumerWidget {
                               GlobalSearchRoute(query: value).push(context);
                             }
                           },
-                          onClose: () => showSearch.value = false,
+                          onClose: () => showSearch.value = (false),
                         )
                       : SearchField(
                           key: const ValueKey(1),
@@ -87,7 +87,7 @@ class BrowseScreen extends HookConsumerWidget {
                           onChanged: (val) => ref
                               .read(extensionQueryProvider.notifier)
                               .update(val),
-                          onClose: () => showSearch.value = false,
+                          onClose: () => showSearch.value = (false),
                         ),
                 ),
             ],
