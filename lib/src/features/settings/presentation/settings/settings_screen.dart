@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../../../routes/router_config.dart';
@@ -41,10 +43,16 @@ class SettingsScreen extends StatelessWidget {
             onTap: () => const ReaderSettingsRoute().push(context),
           ),
           ListTile(
-            title: Text(context.l10n!.browse),
-            leading: const Icon(Icons.explore_rounded),
-            onTap: () => const BrowseSettingsRoute().push(context),
+            title: Text(context.l10n!.tracking),
+            leading: const Icon(Icons.sync_rounded),
+            onTap: () => const TrackerSettingsRoute().push(context),
           ),
+          if (Platform.isAndroid || Platform.isIOS)
+            ListTile(
+              title: Text(context.l10n!.browse),
+              leading: const Icon(Icons.explore_rounded),
+              onTap: () => const BrowseSettingsRoute().push(context),
+            ),
           ListTile(
             title: Text(context.l10n!.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
