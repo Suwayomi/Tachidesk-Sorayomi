@@ -87,7 +87,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
         );
       }
       return null;
-    }, [currentIndex]);
+    }, [currentIndex.value]);
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
@@ -96,7 +96,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
 
       scrollController.addListener(listener);
       return () => scrollController.removeListener(listener);
-    }, []);
+    }, [scrollController]);
     final isAnimationEnabled =
         ref.read(readerScrollAnimationProvider).ifNull(true);
     return ReaderWrapper(
