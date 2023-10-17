@@ -508,6 +508,9 @@
     "@readerOverlay": {
         "description": "Toggle tile text for Initial Reader Overlay"
     },
+    "@readerOverlay": {
+        "description": "Toggle subtile text for Initial Reader Overlay"
+    },
     "@reddit": {
         "description": "Reddit app title"
     },
@@ -552,6 +555,15 @@
     },
     "@searchingForUpdates": {
         "description": "Toast Text for searching for updates of the App/Server"
+    },
+    "@selectUnread": {
+        "description": "Popup Text for selecting unread chapters"
+    },
+    "@selectInBetween": {
+        "description": "Toast Text for selecting chapters in between first and last Chapters"
+    },
+    "@selectNext10": {
+        "description": "Toast Text for selecting next 10 chapters"
     },
     "@server": {
         "description": "Text title for the server in About screen"
@@ -820,6 +832,7 @@
     "readerNavigationLayoutLShaped": "L Shaped",
     "readerNavigationLayoutRightAndLeft": "Right And Left",
     "readerOverlay": "Reader initial overlay",
+    "readerOverlaySubtitle": "Shows title and quick settings when opening a chapter",
     "readerPadding": "Reader Padding",
     "readerMagnifierSize": "Magnifier Size",
     "reddit": "Reddit",
@@ -837,6 +850,9 @@
     "scanlators": "Scanlators",
     "search": "Search",
     "searchingForUpdates": "Searching for updates",
+    "selectNext10": "Select next 10",
+    "selectUnread": "Select Unread",
+    "selectInBetween": "Select in between",
     "server": "Server",
     "serverUrl": "Server URL",
     "serverUrlHintText": "Server url",

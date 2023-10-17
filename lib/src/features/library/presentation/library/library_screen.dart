@@ -33,7 +33,7 @@ class LibraryScreen extends HookConsumerWidget {
     useEffect(() {
       categoryList.showToastOnError(toast, withMicrotask: true);
       return;
-    }, [categoryList]);
+    }, [categoryList.value]);
 
     return categoryList.showUiWhenData(
       context,

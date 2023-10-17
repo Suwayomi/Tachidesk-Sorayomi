@@ -53,9 +53,11 @@ class ContinuousReaderMode extends HookConsumerWidget {
           : (chapter.lastPageRead).getValueOnNullOrNegative(),
     );
     useEffect(() {
-      if (onPageChanged != null) onPageChanged!(currentIndex.value);
+      if (onPageChanged != null) {
+        onPageChanged!(currentIndex.value);
+      }
       return;
-    }, [currentIndex]);
+    }, [currentIndex.value]);
     useEffect(() {
       listener() {
         final positions = positionsListener.itemPositions.value.toList();
