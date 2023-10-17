@@ -850,5 +850,21 @@
         "type": "String"
       }
     }
+  },
+  "readerOverlay": "閱讀器起始覆蓋層",
+  "@readerOverlay": {
+    "description": "Toggle tile text for Initial Reader Overlay"
+  },
+  "reload": "重新整理",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "previousChapter": "上章：{chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "nextChapter": "下章：{chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
   }
 }
