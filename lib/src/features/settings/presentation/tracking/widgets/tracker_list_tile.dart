@@ -103,7 +103,7 @@ class TrackerListTile extends ConsumerWidget {
                 .showToastOnError(toast);
           } catch (e) {
             if (kDebugMode) {
-              print("auth err $e");
+              debugPrint("auth err $e");
             }
           }
         }
