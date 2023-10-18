@@ -20,7 +20,7 @@ final trackerListProvider = AutoDisposeFutureProvider<List<Tracker>?>.internal(
 );
 
 typedef TrackerListRef = AutoDisposeFutureProviderRef<List<Tracker>?>;
-String _$trackSearchWithIdHash() => r'4baa081fc037fdd64707efa5fdead370bea83257';
+String _$trackSearchWithIdHash() => r'c8559e75a1da010162f87068ce44fa16d6cfdc9b';
 
 /// Copied from Dart SDK
 class _SystemHash {

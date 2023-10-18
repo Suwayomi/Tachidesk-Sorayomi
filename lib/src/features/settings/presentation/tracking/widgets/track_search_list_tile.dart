@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../constants/app_sizes.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
@@ -27,7 +28,7 @@ class TrackSearchListTile extends ConsumerWidget {
     final toast = ref.watch(toastProvider(context));
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+      padding: KEdgeInsets.h16v8.size,
       child: InkWell(
         onTap: () async {
           toast.show(context.l10n!.processing);
@@ -78,7 +79,7 @@ class TrackSearchListTile extends ConsumerWidget {
                     Row(
                       children: [
                         Text(
-                          "Type : ",
+                          "${context.l10n!.trackingType} : ",
                           style: Theme.of(context)
                               .textTheme
                               .labelLarge
@@ -86,20 +87,20 @@ class TrackSearchListTile extends ConsumerWidget {
                         ),
                         Text(
                           trackSearch.publishingType ?? "",
-                          style: Theme.of(context).textTheme.labelLarge,
+                          style: context.textTheme.labelLarge,
                         ),
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Status : ",
+                        Text("${context.l10n!.trackingStatus} : ",
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge
                                 ?.copyWith(fontWeight: FontWeight.bold)),
                         Text(
                           trackSearch.publishingStatus ?? "",
-                          style: Theme.of(context).textTheme.labelLarge,
+                          style: context.textTheme.labelLarge,
                         ),
                       ],
                     ),

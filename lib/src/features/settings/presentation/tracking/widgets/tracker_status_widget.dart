@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 import '../../../../../constants/app_sizes.dart';
+import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
@@ -17,8 +18,6 @@ import '../../../../../widgets/server_image.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../data/tracking/tracking_repository.dart';
 import '../../../domain/tracking/tracking_model.dart';
-
-
 
 class TrackerStatusWidget extends ConsumerWidget {
   const TrackerStatusWidget(
@@ -43,7 +42,7 @@ class TrackerStatusWidget extends ConsumerWidget {
             children: [
               // tracker icon
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                padding: KEdgeInsets.a8.size,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: ServerImage(
@@ -55,10 +54,10 @@ class TrackerStatusWidget extends ConsumerWidget {
               // manga title
               Expanded(
                   child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: KEdgeInsets.a8.size,
                 child: Text(
                   record.title ?? "",
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  style: context.textTheme.labelLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       overflow: TextOverflow.ellipsis),
                   maxLines: 2,
@@ -100,14 +99,16 @@ class TrackerStatusWidget extends ConsumerWidget {
                   // status
                   Expanded(
                     child: TrackButtonWidget(
-                      text: statusTextToLocale(
-                          tracker.statusTextMap?[record.status], context),
+                      text: TrackingStatus.fromText(
+                              tracker.statusTextMap?[record.status])
+                          .toLocale(context),
                       onPressed: () => showDialog(
                         context: context,
                         builder: (context) => RadioListConfirmPopup<int>(
                           optionList: tracker.statusList ?? [],
-                          optionDisplayName: (value) => statusTextToLocale(
-                              tracker.statusTextMap?[value], context),
+                          optionDisplayName: (value) => TrackingStatus.fromText(
+                                  tracker.statusTextMap?[value])
+                              .toLocale(context),
                           title: context.l10n!.trackingStatus,
                           value: record.status ?? 0,
                           onConfirm: (value) async {
@@ -286,7 +287,7 @@ class TrackButtonWidget extends ConsumerWidget {
                   color: Theme.of(context).iconTheme.color!.withOpacity(0.1)),
               borderRadius: borderRadius ?? BorderRadius.circular(0))),
       onPressed: onPressed,
-      child: Text(text, style: Theme.of(context).textTheme.bodyMedium),
+      child: Text(text, style: context.textTheme.bodyMedium),
     );
   }
 }

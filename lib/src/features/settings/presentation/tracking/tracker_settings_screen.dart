@@ -48,11 +48,15 @@ class TrackerSettingsScreen extends HookConsumerWidget {
             );
           }
           return RefreshIndicator(
-              onRefresh: refresh,
-              child: ListView.builder(
-                  itemCount: data?.length ?? 0,
-                  itemBuilder: (context, index) =>
-                      TrackerListTile(tracker: data![index], refresh: refresh,)));
+            onRefresh: refresh,
+            child: ListView.builder(
+              itemCount: data?.length ?? 0,
+              itemBuilder: (context, index) => TrackerListTile(
+                tracker: data![index],
+                refresh: refresh,
+              ),
+            ),
+          );
         },
         refresh: refresh,
       ),

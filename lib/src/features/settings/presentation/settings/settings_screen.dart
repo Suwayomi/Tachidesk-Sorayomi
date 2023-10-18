@@ -6,6 +6,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../routes/router_config.dart';
@@ -47,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
             leading: const Icon(Icons.sync_rounded),
             onTap: () => const TrackerSettingsRoute().push(context),
           ),
-          if (Platform.isAndroid || Platform.isIOS)
+          if (!kIsWeb && (Platform.isAndroid || Platform.isIOS))
             ListTile(
               title: Text(context.l10n!.browse),
               leading: const Icon(Icons.explore_rounded),

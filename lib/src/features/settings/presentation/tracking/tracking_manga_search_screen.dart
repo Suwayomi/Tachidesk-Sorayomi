@@ -63,12 +63,14 @@ class TrackingMangaSearchScreen extends HookConsumerWidget {
             );
           }
           return RefreshIndicator(
-              onRefresh: refresh,
-              child: ListView.builder(
-                  itemCount: data?.length ?? 0,
-                  itemBuilder: (context, index) => TrackSearchListTile(
-                        trackSearch: data![index].copyWith(mangaId: mangaId),
-                      )));
+            onRefresh: refresh,
+            child: ListView.builder(
+              itemCount: data?.length ?? 0,
+              itemBuilder: (context, index) => TrackSearchListTile(
+                trackSearch: data![index].copyWith(mangaId: mangaId),
+              ),
+            ),
+          );
         },
         refresh: refresh,
       ),

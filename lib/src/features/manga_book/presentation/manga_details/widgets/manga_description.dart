@@ -36,7 +36,11 @@ class MangaDescription extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isExpanded = useState(context.isTablet);
     final trackerAvailable = manga.trackers?.isNotEmpty == true;
-    final trackerCount = manga.trackers?.where((t) => t.record != null).length;
+    final trackerCount = useState(0);
+    useEffect(() {
+      trackerCount.value =
+          manga.trackers?.where((t) => t.record != null).length ?? 0;
+    }, [manga]);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -87,18 +91,18 @@ class MangaDescription extends HookConsumerWidget {
                             mangaId: manga.id ?? 0, refresh: refresh),
                       );
                     },
-                    icon: trackerCount != null && trackerCount > 0
+                    icon: trackerCount.value > 0
                         ? const Icon(Icons.done_rounded)
                         : const Icon(Icons.sync_outlined),
-                    style: trackerCount != null && trackerCount > 0
+                    style: trackerCount.value > 0
                         ? TextButton.styleFrom(padding: EdgeInsets.zero)
                         : TextButton.styleFrom(
                             foregroundColor: Colors.grey,
                             padding: EdgeInsets.zero),
-                    label: trackerCount != null && trackerCount > 0
-                        ? (trackerCount == 1
+                    label: trackerCount.value > 0
+                        ? (trackerCount.value == 1
                             ? Text(context.l10n!.oneTracker)
-                            : Text(context.l10n!.nTracker(trackerCount)))
+                            : Text(context.l10n!.nTracker(trackerCount.value)))
                         : Text(context.l10n!.tracking),
                   ),
                 ),

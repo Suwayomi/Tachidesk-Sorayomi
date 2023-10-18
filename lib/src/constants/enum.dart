@@ -166,3 +166,32 @@ enum SourceType {
         SourceType.filter => context.l10n!.sourceTypeFilter
       };
 }
+
+enum TrackingStatus {
+  reading("reading"),
+  planToRead("plan_to_read"),
+  completed("completed"),
+  onHold("on_hold"),
+  dropped("dropped"),
+  repeating("repeating"),
+  unknown(""),
+  ;
+
+  final String text;
+  const TrackingStatus(this.text);
+  static final _statusMap = <String, TrackingStatus>{
+    for (TrackingStatus status in TrackingStatus.values) status.text: status
+  };
+  static TrackingStatus fromText(String? status) =>
+      _statusMap[status ?? ""] ?? TrackingStatus.unknown;
+
+  String toLocale(BuildContext context) => switch (this) {
+        TrackingStatus.reading => context.l10n!.trackingStatusReading,
+        TrackingStatus.planToRead => context.l10n!.trackingStatusPlanToRead,
+        TrackingStatus.completed => context.l10n!.trackingStatusCompleted,
+        TrackingStatus.onHold => context.l10n!.trackingStatusOnHold,
+        TrackingStatus.dropped => context.l10n!.trackingStatusDropped,
+        TrackingStatus.repeating => context.l10n!.trackingStatusRereading,
+        TrackingStatus.unknown => "",
+      };
+}

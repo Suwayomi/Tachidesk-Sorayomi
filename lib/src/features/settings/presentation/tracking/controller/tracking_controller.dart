@@ -29,9 +29,6 @@ Future<List<TrackSearch>?> trackSearchWithId(
    TrackSearchWithIdRef ref, {
   required int trackerId,
 }) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-
   final title = ref.watch(trackSearchQueryProvider);
   final result =
       await ref.watch(trackingRepositoryProvider).search(trackerId, title);
