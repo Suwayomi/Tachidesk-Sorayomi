@@ -30,7 +30,7 @@ class QuickSearchBar extends HookConsumerWidget {
           ref.read(quickSearchQueryProvider.notifier).update(controller.text);
       controller.addListener(updateOnChange);
       return () => controller.removeListener(updateOnChange);
-    }, []);
+    }, [controller]);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: KBorderRadius.r16.radius),
       child: TextField(

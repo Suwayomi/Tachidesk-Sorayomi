@@ -79,7 +79,8 @@ class ReaderWrapper extends HookConsumerWidget {
         ref.watch(readerMagnifierSizeKeyProvider) ??
             DBKeys.readerMagnifierSize.initial;
 
-    final visibility = ref.watch(readerInitialOverlayProvider).ifNull();
+    final visibility =
+        useState(ref.read(readerInitialOverlayProvider).ifNull());
     final mangaReaderPadding =
         useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
     final mangaReaderMagnifierSize = useState(
@@ -141,11 +142,11 @@ class ReaderWrapper extends HookConsumerWidget {
     );
 
     useEffect(() {
-      if (!visibility) {
+      if (!visibility.value) {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
       }
       return null;
-    }, [visibility]);
+    }, [visibility.value]);
 
     return Theme(
       data: context.theme.copyWith(
@@ -155,7 +156,7 @@ class ReaderWrapper extends HookConsumerWidget {
         ),
       ),
       child: Scaffold(
-        appBar: visibility
+        appBar: visibility.value
             ? AppBar(
                 title: ListTile(
                   title: (manga.title).isNotBlank
@@ -249,7 +250,7 @@ class ReaderWrapper extends HookConsumerWidget {
             ],
           ),
         ),
-        bottomSheet: visibility
+        bottomSheet: visibility.value
             ? ExcludeFocus(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -388,9 +389,7 @@ class ReaderWrapper extends HookConsumerWidget {
               ),
               HideQuickOpenIntent: CallbackAction<HideQuickOpenIntent>(
                 onInvoke: (HideQuickOpenIntent intent) {
-                  ref
-                      .read(readerInitialOverlayProvider.notifier)
-                      .update(!visibility);
+                  visibility.value = !visibility.value;
                   return null;
                 },
               ),
@@ -399,9 +398,7 @@ class ReaderWrapper extends HookConsumerWidget {
               autofocus: true,
               child: RepaintBoundary(
                 child: ReaderView(
-                  toggleVisibility: () => ref
-                      .read(readerInitialOverlayProvider.notifier)
-                      .update(!visibility),
+                  toggleVisibility: () => visibility.value = !visibility.value,
                   scrollDirection: scrollDirection,
                   mangaReaderPadding: mangaReaderPadding.value,
                   mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,

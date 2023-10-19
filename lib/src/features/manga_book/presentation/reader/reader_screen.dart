@@ -67,7 +67,7 @@ class ReaderScreen extends HookConsumerWidget {
               ),
             ),
       );
-    }, [chapter]);
+    }, [chapter.value]);
 
     final onPageChanged = useCallback<AsyncValueSetter<int>>(
       (int index) async {

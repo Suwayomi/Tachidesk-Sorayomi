@@ -9,7 +9,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'constants/app_themes/color_schemas/default_theme.dart';
-import 'features/quick_open/presentation/search_stack/search_stack_screen.dart';
 import 'features/settings/widgets/theme_mode_tile/theme_mode_tile.dart';
 import 'global_providers/global_providers.dart';
 import 'routes/router_config.dart';
@@ -32,16 +31,7 @@ class Sorayomi extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: appLocale,
-      routeInformationProvider: routes.routeInformationProvider,
-      routeInformationParser: routes.routeInformationParser,
-      routerDelegate: routes.routerDelegate,
-      builder: (context, child) => Overlay(
-        initialEntries: [
-          OverlayEntry(
-            builder: (context) => SearchStackScreen(child: child),
-          ),
-        ],
-      ),
+      routerConfig: routes,
     );
   }
 }

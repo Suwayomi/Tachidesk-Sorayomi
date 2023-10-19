@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../constants/quick_open_help_text.dart';
+import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/mixin/state_provider_mixin.dart';
 import '../../../../browse_center/presentation/source/controller/source_controller.dart';
@@ -30,10 +31,9 @@ List<QuickSearchResult>? processesQuickSearch(
   ProcessesQuickSearchRef ref, {
   required BuildContext context,
 }) {
-  final query = ref.watch(quickSearchQueryProvider);
-  if (query.isBlank) return null;
+  String query = ref.watch(quickSearchQueryProvider) ?? "";
 
-  if (query!.startsWith('?')) return getQuickShowHintTextList(context);
+  if (query.startsWith('?')) return getQuickShowHintTextList(context);
 
   // Source Search
   if (query.startsWith('@')) {
@@ -118,8 +118,24 @@ List<QuickSearchResult>? processesQuickSearch(
   }
 
   // Manga Search
-  if (query.startsWith('#')) {
+  if (query.startsWith('#') ||
+      (context.location.contains(Routes.library)).ifNull()) {
     return mangaSearch(query);
+  }
+
+  // Manga Description context aware Search
+  if ((context.location.startsWith(Routes.mangaRoute)).ifNull()) {
+    final id = int.tryParse(context.location
+            .substring(Routes.mangaRoute.length)
+            .split('/')
+            .firstOrNull
+            ?.split('?')
+            .firstOrNull ??
+        '');
+    if (id != null) {
+      final manga = ref.watch(MangaWithIdProvider(mangaId: id)).valueOrNull;
+      if (manga != null) return chapterSearch(manga, query: query);
+    }
   }
   return mangaSearch(query);
 }

@@ -40,7 +40,7 @@ class SourceScreen extends HookConsumerWidget {
         withMicrotask: true,
       );
       return;
-    }, [sourceMapData]);
+    }, [sourceMapData.value]);
 
     return sourceMapData.showUiWhenData(
       context,

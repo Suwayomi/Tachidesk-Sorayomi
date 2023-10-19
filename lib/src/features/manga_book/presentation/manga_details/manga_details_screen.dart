@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -78,7 +80,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
               );
         }
       }
-    }, []);
+    }, [context, mangaRefresh, chapterListRefresh]);
 
     useEffect(() {
       if (filteredChapterList.isNotLoading && manga.isNotLoading) refresh();
@@ -107,10 +109,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   actions: [
                     IconButton(
                       onPressed: () {
+                        final chapterList = [
+                          ...?filteredChapterList.valueOrNull
+                        ];
                         selectedChapters.value = ({
-                          for (Chapter i in [
-                            ...?filteredChapterList.valueOrNull
-                          ])
+                          for (Chapter i in chapterList)
                             if (i.id != null) i.id!: i
                         });
                       },
@@ -118,16 +121,21 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     ),
                     IconButton(
                       onPressed: () {
+                        final chapterList = [
+                          ...?filteredChapterList.valueOrNull
+                        ];
                         selectedChapters.value = ({
-                          for (Chapter i in [
-                            ...?filteredChapterList.valueOrNull
-                          ])
+                          for (Chapter i in chapterList)
                             if (i.id != null &&
                                 !selectedChapters.value.containsKey(i.id))
                               i.id!: i
                         });
                       },
                       icon: const Icon(Icons.flip_to_back_rounded),
+                    ),
+                    MultiSelectPopupButton(
+                      filteredChapterList: filteredChapterList,
+                      selectedChapters: selectedChapters,
                     ),
                   ],
                 )
@@ -249,6 +257,76 @@ class MangaDetailsScreen extends HookConsumerWidget {
           body: body,
         ),
       ),
+    );
+  }
+}
+
+class MultiSelectPopupButton extends StatelessWidget {
+  const MultiSelectPopupButton({
+    super.key,
+    required this.filteredChapterList,
+    required this.selectedChapters,
+  });
+
+  final AsyncValue<List<Chapter>?> filteredChapterList;
+  final ValueNotifier<Map<int, Chapter>> selectedChapters;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: KBorderRadius.r16.radius,
+      ),
+      icon: const Icon(Icons.more_vert_rounded),
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          onTap: () {
+            List<Chapter> chapterList = [...?filteredChapterList.valueOrNull];
+            final lastId = selectedChapters.value.keys.last;
+            final lastIndex =
+                chapterList.lastIndexWhere((chapter) => chapter.id == lastId);
+            final maxIndex = min(chapterList.length, lastIndex + 10);
+            selectedChapters.value = ({
+              ...selectedChapters.value,
+              for (int i = lastIndex + 1; i < maxIndex; i++)
+                if (chapterList[i].id != null)
+                  chapterList[i].id!: chapterList[i]
+            });
+          },
+          child: Text(context.l10n!.selectNext10),
+        ),
+        PopupMenuItem(
+          onTap: () {
+            final chapterList = [...?filteredChapterList.valueOrNull];
+
+            selectedChapters.value = ({
+              for (Chapter i in chapterList)
+                if (i.id != null && !i.read.ifNull()) i.id!: i
+            });
+          },
+          child: Text(context.l10n!.selectUnread),
+        ),
+        PopupMenuItem(
+          onTap: () {
+            final chapterList = [...?filteredChapterList.valueOrNull];
+            final selectedChapterIds =
+                selectedChapters.value.keys.toList(growable: false);
+            final firstSelectedIndex = chapterList.indexWhere(
+                (chapter) => chapter.id == selectedChapterIds.firstOrNull);
+            final lastSelectedIndex = chapterList.indexWhere(
+                (chapter) => chapter.id == selectedChapterIds.lastOrNull);
+            final firstIndex = min(firstSelectedIndex, lastSelectedIndex);
+            final lastIndex = max(firstSelectedIndex, lastSelectedIndex);
+
+            selectedChapters.value = ({
+              for (int i = firstIndex; i <= lastIndex; i++)
+                if (chapterList[i].id != null)
+                  chapterList[i].id!: chapterList[i]
+            });
+          },
+          child: Text(context.l10n!.selectInBetween),
+        ),
+      ],
     );
   }
 }
