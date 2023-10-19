@@ -43,17 +43,17 @@ class SettingsScreen extends StatelessWidget {
             leading: const Icon(Icons.chrome_reader_mode_rounded),
             onTap: () => const ReaderSettingsRoute().push(context),
           ),
-          ListTile(
-            title: Text(context.l10n!.tracking),
-            leading: const Icon(Icons.sync_rounded),
-            onTap: () => const TrackerSettingsRoute().push(context),
-          ),
           if (!kIsWeb && (Platform.isAndroid || Platform.isIOS))
             ListTile(
-              title: Text(context.l10n!.browse),
-              leading: const Icon(Icons.explore_rounded),
-              onTap: () => const BrowseSettingsRoute().push(context),
+              title: Text(context.l10n!.tracking),
+              leading: const Icon(Icons.sync_rounded),
+              onTap: () => const TrackerSettingsRoute().push(context),
             ),
+          ListTile(
+            title: Text(context.l10n!.browse),
+            leading: const Icon(Icons.explore_rounded),
+            onTap: () => const BrowseSettingsRoute().push(context),
+          ),
           ListTile(
             title: Text(context.l10n!.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
