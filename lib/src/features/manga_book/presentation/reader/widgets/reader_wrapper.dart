@@ -4,8 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_android_volume_keydown/flutter_android_volume_keydown.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,7 +17,6 @@ import '../../../../../constants/app_constants.dart';
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-
 import '../../../../../constants/reader_keyboard_shortcuts.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
@@ -26,6 +28,8 @@ import '../../../../settings/presentation/reader/widgets/reader_invert_tap_tile/
 import '../../../../settings/presentation/reader/widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import '../../../../settings/presentation/reader/widgets/reader_padding_slider/reader_padding_slider.dart';
 import '../../../../settings/presentation/reader/widgets/reader_swipe_toggle_tile/reader_swipe_chapter_toggle_tile.dart';
+import '../../../../settings/presentation/reader/widgets/reader_volume_tap_invert_tile/reader_volume_tap_invert_tile.dart';
+import '../../../../settings/presentation/reader/widgets/reader_volume_tap_tile/reader_volume_tap_tile.dart';
 import '../../../data/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
 import '../../../domain/chapter_patch/chapter_put_model.dart';
@@ -47,6 +51,7 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.onNext,
     required this.onPrevious,
     required this.scrollDirection,
+    required this.touchPoints,
     this.showReaderLayoutAnimation = false,
   });
   final Widget child;
@@ -58,6 +63,7 @@ class ReaderWrapper extends HookConsumerWidget {
   final int currentIndex;
   final Axis scrollDirection;
   final bool showReaderLayoutAnimation;
+  final ValueNotifier<int> touchPoints;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,6 +74,9 @@ class ReaderWrapper extends HookConsumerWidget {
       ),
     );
     final invertTap = ref.watch(invertTapProvider).ifNull();
+
+    final bool volumeTap = ref.watch(volumeTapProvider).ifNull();
+    final bool volumeTapInvert = ref.watch(volumeTapInvertProvider).ifNull();
 
     final double localMangaReaderPadding =
         ref.watch(readerPaddingKeyProvider) ?? DBKeys.readerPadding.initial;
@@ -147,6 +156,21 @@ class ReaderWrapper extends HookConsumerWidget {
       }
       return null;
     }, [visibility.value]);
+
+    useEffect(() {
+      StreamSubscription<HardwareButton>? subscription;
+      if (volumeTap) {
+        subscription = FlutterAndroidVolumeKeydown.stream.listen(
+          (event) => (switch (event) {
+            HardwareButton.volume_up =>
+              volumeTapInvert ? onNext() : onPrevious(),
+            HardwareButton.volume_down =>
+              volumeTapInvert ? onPrevious() : onNext(),
+          }),
+        );
+      }
+      return () => subscription?.cancel();
+    }, [volumeTap, volumeTapInvert]);
 
     return Theme(
       data: context.theme.copyWith(
@@ -396,19 +420,28 @@ class ReaderWrapper extends HookConsumerWidget {
             },
             child: Focus(
               autofocus: true,
-              child: RepaintBoundary(
-                child: ReaderView(
-                  toggleVisibility: () => visibility.value = !visibility.value,
-                  scrollDirection: scrollDirection,
-                  mangaReaderPadding: mangaReaderPadding.value,
-                  mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
-                  onNext: onNext,
-                  onPrevious: onPrevious,
-                  mangaReaderNavigationLayout: mangaReaderNavigationLayout,
-                  prevNextChapterPair: nextPrevChapterPair,
-                  readerSwipeChapterToggle: readerSwipeChapterToggle,
-                  showReaderLayoutAnimation: showReaderLayoutAnimation,
-                  child: child,
+              child: Listener(
+                onPointerDown: (_) => touchPoints.value += 1,
+                onPointerUp: (_) => touchPoints.value -= 1,
+                onPointerCancel: (_) => touchPoints.value -= 1,
+                child: RepaintBoundary(
+                  child: ReaderView(
+                    touchPoints: touchPoints,
+                    toggleVisibility: () {
+                      if (touchPoints.value >= 2) return;
+                      visibility.value = !visibility.value;
+                    },
+                    scrollDirection: scrollDirection,
+                    mangaReaderPadding: mangaReaderPadding.value,
+                    mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
+                    onNext: onNext,
+                    onPrevious: onPrevious,
+                    mangaReaderNavigationLayout: mangaReaderNavigationLayout,
+                    prevNextChapterPair: nextPrevChapterPair,
+                    readerSwipeChapterToggle: readerSwipeChapterToggle,
+                    showReaderLayoutAnimation: showReaderLayoutAnimation,
+                    child: child,
+                  ),
                 ),
               ),
             ),
@@ -420,19 +453,21 @@ class ReaderWrapper extends HookConsumerWidget {
 }
 
 class ReaderView extends HookWidget {
-  const ReaderView(
-      {super.key,
-      required this.toggleVisibility,
-      required this.scrollDirection,
-      required this.mangaReaderPadding,
-      required this.mangaReaderMagnifierSize,
-      required this.onNext,
-      required this.onPrevious,
-      required this.prevNextChapterPair,
-      required this.mangaReaderNavigationLayout,
-      required this.readerSwipeChapterToggle,
-      required this.child,
-      this.showReaderLayoutAnimation = false});
+  const ReaderView({
+    super.key,
+    required this.toggleVisibility,
+    required this.scrollDirection,
+    required this.mangaReaderPadding,
+    required this.mangaReaderMagnifierSize,
+    required this.onNext,
+    required this.onPrevious,
+    required this.prevNextChapterPair,
+    required this.mangaReaderNavigationLayout,
+    required this.readerSwipeChapterToggle,
+    required this.child,
+    required this.touchPoints,
+    this.showReaderLayoutAnimation = false,
+  });
 
   final VoidCallback toggleVisibility;
   final Axis scrollDirection;
@@ -445,6 +480,7 @@ class ReaderView extends HookWidget {
   final bool readerSwipeChapterToggle;
   final bool showReaderLayoutAnimation;
   final Widget child;
+  final ValueNotifier<int> touchPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -486,6 +522,7 @@ class ReaderView extends HookWidget {
           onTap: toggleVisibility,
           behavior: HitTestBehavior.translucent,
           onHorizontalDragEnd: (details) {
+            if (touchPoints.value >= 2) return;
             if (scrollDirection == Axis.vertical && readerSwipeChapterToggle) {
               if (details.primaryVelocity == null) {
                 return;
@@ -497,6 +534,7 @@ class ReaderView extends HookWidget {
             }
           },
           onVerticalDragEnd: (details) {
+            if (touchPoints.value >= 2) return;
             if (scrollDirection == Axis.horizontal &&
                 readerSwipeChapterToggle) {
               if (details.primaryVelocity == null) {

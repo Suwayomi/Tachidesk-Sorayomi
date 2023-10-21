@@ -32,12 +32,10 @@ class MangaDetailsScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Providers as Class for this screen
-    final mangaProvider =
-        useMemoized(() => mangaWithIdProvider(mangaId: mangaId), []);
-    final chapterListProvider =
-        useMemoized(() => mangaChapterListProvider(mangaId: mangaId), []);
-    final chapterListFilteredProvider = useMemoized(
-        () => mangaChapterListWithFilterProvider(mangaId: mangaId), []);
+    final mangaProvider = mangaWithIdProvider(mangaId: mangaId);
+    final chapterListProvider = mangaChapterListProvider(mangaId: mangaId);
+    final chapterListFilteredProvider =
+        mangaChapterListWithFilterProvider(mangaId: mangaId);
 
     final manga = ref.watch(mangaProvider);
     final filteredChapterList = ref.watch(chapterListFilteredProvider);
