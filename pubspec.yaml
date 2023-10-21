@@ -2,7 +2,7 @@ name: tachidesk_sorayomi
 description: A new Flutter frontend for Tachidesk.
 
 publish_to: "none"
-version: 0.5.16+1
+version: 0.5.17+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -50,14 +50,14 @@ dev_dependencies:
   # flutter_flavorizr: ^2.1.5
   flutter_gen_runner: ^5.1.0+1
   flutter_launcher_icons: ^0.13.0
-  flutter_lints: ^2.0.1
+  flutter_lints: ^3.0.0
   flutter_native_splash: ^2.2.14
   flutter_test:
     sdk: flutter
   freezed: ^2.2.1
   go_router_builder: ^2.0.0
   json_serializable: ^6.5.4
-  lints: ^2.0.1
+  lints: ^3.0.0
   riverpod_generator: ^2.0.0
 
 flutter:

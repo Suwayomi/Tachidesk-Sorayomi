@@ -137,11 +137,9 @@ class MangaDescription extends HookConsumerWidget {
               runSpacing: 8,
               // alignment: WrapAlignment.spaceBetween,
               children: [
-                ...?manga.genre
-                    ?.map<Widget>(
-                      (e) => Chip(label: Text(e)),
-                    )
-                    .toList()
+                ...?manga.genre?.map<Widget>(
+                  (e) => Chip(label: Text(e)),
+                )
               ],
             ),
           )
@@ -152,14 +150,12 @@ class MangaDescription extends HookConsumerWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  ...?manga.genre
-                      ?.map<Widget>(
-                        (e) => Padding(
-                          padding: KEdgeInsets.h4.size,
-                          child: Chip(label: Text(e)),
-                        ),
-                      )
-                      .toList()
+                  ...?manga.genre?.map<Widget>(
+                    (e) => Padding(
+                      padding: KEdgeInsets.h4.size,
+                      child: Chip(label: Text(e)),
+                    ),
+                  )
                 ],
               ),
             ),
