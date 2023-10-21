@@ -350,6 +350,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_android_volume_keydown:
+    dependency: "direct main"
+    description:
+      name: flutter_android_volume_keydown
+      sha256: f07fa3e4362262ccf32be6522c8445cbac5a046c18f82c8bd7ba11391d057e9a
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter_cache_manager:
     dependency: "direct main"
     description:

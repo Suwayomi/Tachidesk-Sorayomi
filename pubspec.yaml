@@ -17,6 +17,7 @@ dependencies:
   file_picker: ^6.0.0
   flutter:
     sdk: flutter
+  flutter_android_volume_keydown: ^1.0.0
   flutter_cache_manager: ^3.3.0
   flutter_hooks: ^0.20.0
   flutter_localizations:
