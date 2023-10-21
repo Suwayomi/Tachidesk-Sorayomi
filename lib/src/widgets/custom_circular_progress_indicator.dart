@@ -26,7 +26,7 @@ class CenterSorayomiShimmerIndicator extends StatelessWidget {
 }
 
 class SorayomiShimmerIndicator extends StatelessWidget {
-  const SorayomiShimmerIndicator({Key? key}) : super(key: key);
+  const SorayomiShimmerIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {

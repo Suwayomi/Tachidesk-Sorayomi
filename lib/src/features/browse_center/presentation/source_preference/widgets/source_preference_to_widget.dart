@@ -16,10 +16,10 @@ import '../../../domain/source_preference_prop/source_preference_prop.dart';
 
 class SourcePreferenceToWidget extends StatelessWidget {
   const SourcePreferenceToWidget({
-    Key? key,
+    super.key,
     required this.sourcePreference,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   final SourcePreference sourcePreference;
   final ValueChanged<SourcePreference> onChanged;
