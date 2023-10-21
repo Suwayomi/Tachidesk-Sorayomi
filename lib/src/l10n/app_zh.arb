@@ -850,5 +850,39 @@
   "readerSwipeChapterToggleDescription": "滑动切换章节",
   "@readerSwipeChapterToggleDescription": {
     "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "readerOverlay": "阅读器初始覆盖层",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "selectInBetween": "选取区间",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "readerOverlaySubtitle": "打开章节时显示标题和设置",
+  "@readerOverlaySubtitle": {},
+  "quickSearchShowAllCommandTip": "提示：输入 '?' 查看所有指令",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "reload": "刷新",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "previousChapter": "上章：{chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "nextChapter": "下章：{chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "selectNext10": "选取下 10 个",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "选取未读",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
   }
 }
