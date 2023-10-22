@@ -56,11 +56,16 @@ class TrackingRepository {
       ))
           .data;
 
-  Future<void> bind(TrackSearch trackSearch) => dioClient.post(TrackingUrl.bind,
-      data: jsonEncode(trackSearch.toJson()));
+  Future<void> bind(int mangaId, TrackSearch trackSearch) => dioClient.post(
+        TrackingUrl.bind,
+        queryParameters: {
+          "mangaId": mangaId,
+        },
+        data: jsonEncode(trackSearch.toJson()),
+      );
 
-  Future<void> update(TrackUpdate trackUpdate) => dioClient.post(TrackingUrl.update,
-      data: jsonEncode(trackUpdate.toJson()));
+  Future<void> update(TrackUpdate trackUpdate) => dioClient
+      .post(TrackingUrl.update, data: jsonEncode(trackUpdate.toJson()));
 }
 
 @riverpod

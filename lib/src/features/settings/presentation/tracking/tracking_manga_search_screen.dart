@@ -67,7 +67,8 @@ class TrackingMangaSearchScreen extends HookConsumerWidget {
             child: ListView.builder(
               itemCount: data?.length ?? 0,
               itemBuilder: (context, index) => TrackSearchListTile(
-                trackSearch: data![index].copyWith(mangaId: mangaId),
+                mangaId: mangaId,
+                trackSearch: data![index],
               ),
             ),
           );

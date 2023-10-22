@@ -56,18 +56,10 @@ class TrackRecord with _$TrackRecord {
 @freezed
 class TrackSearch with _$TrackSearch {
   factory TrackSearch({
-    int? id,
-    int? mangaId,
     int? syncId,
     int? mediaId,
-    int? libraryId,
     String? title,
-    double? lastChapterRead,
     int? totalChapters,
-    double? score,
-    int? status,
-    int? startedReadingDate,
-    int? finishedReadingDate,
     String? trackingUrl,
     String? coverUrl,
     String? summary,

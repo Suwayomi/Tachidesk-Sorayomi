@@ -18,9 +18,11 @@ import '../../../domain/tracking/tracking_model.dart';
 class TrackSearchListTile extends ConsumerWidget {
   const TrackSearchListTile({
     super.key,
+    required this.mangaId,
     required this.trackSearch,
   });
 
+  final int mangaId;
   final TrackSearch trackSearch;
 
   @override
@@ -34,7 +36,7 @@ class TrackSearchListTile extends ConsumerWidget {
           toast.show(context.l10n!.processing);
           (await AsyncValue.guard(
             () async {
-              await ref.read(trackingRepositoryProvider).bind(trackSearch);
+              await ref.read(trackingRepositoryProvider).bind(mangaId, trackSearch);
               toast.close();
               if (context.mounted) {
                 context.pop();
