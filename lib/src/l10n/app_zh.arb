@@ -884,5 +884,17 @@
   "selectUnread": "选取未读",
   "@selectUnread": {
     "description": "Popup Text for selecting unread chapters"
+  },
+  "readerVolumeTapInvert": "反转音量键",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTap": "音量键",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapSubtitle": "使用音量键操作",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
   }
 }
