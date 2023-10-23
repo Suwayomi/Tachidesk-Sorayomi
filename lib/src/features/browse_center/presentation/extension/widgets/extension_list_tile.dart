@@ -82,13 +82,13 @@ class ExtensionListTile extends HookConsumerWidget {
 
 class ExtensionListTileTailing extends StatelessWidget {
   const ExtensionListTileTailing({
-    Key? key,
+    super.key,
     required this.extension,
     required this.repository,
     required this.isLoading,
     required this.ref,
     required this.refresh,
-  }) : super(key: key);
+  });
 
   final Extension extension;
   final ExtensionRepository repository;

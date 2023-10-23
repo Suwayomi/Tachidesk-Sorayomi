@@ -502,6 +502,15 @@
     "@readerMagnifierSize": {
         "description": "Slider title text for Reader Magnifier Size"
     },
+    "@readerVolumeTap": {
+        "description": "Switch button text for Reader Page Navigation with Volume Tap"
+    },
+    "@readerVolumeTapSubtitle": {
+        "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+    },
+    "@readerVolumeTapInvert": {
+        "description": "Switch button text to invert Volume Tap "
+    },
     "@readerPadding": {
         "description": "Slider title text for Reader Padding"
     },
@@ -835,6 +844,9 @@
     "readerOverlaySubtitle": "Shows title and quick settings when opening a chapter",
     "readerPadding": "Reader Padding",
     "readerMagnifierSize": "Magnifier Size",
+    "readerVolumeTap": "Volume Keys",
+    "readerVolumeTapSubtitle": "Navigate with Volume Keys",
+    "readerVolumeTapInvert": "Invert Volume Keys",
     "reddit": "Reddit",
     "refresh": "Refresh",
     "reload": "Reload",

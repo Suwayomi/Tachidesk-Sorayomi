@@ -44,6 +44,8 @@ enum DBKeys {
   sourceDisplayMode(DisplayMode.grid),
   gridMangaCoverWidth(192.0),
   readerOverlay(true),
+  volumeTap(false),
+  volumeTapInvert(false),
   ;
 
   const DBKeys(this.initial);
