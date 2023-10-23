@@ -485,5 +485,17 @@
   "selectUnread": "Seleccionar los no leídos",
   "@selectUnread": {
     "description": "Popup Text for selecting unread chapters"
+  },
+  "readerVolumeTapInvert": "Invertir los botones de volumen",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTap": "Botones de volumen",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapSubtitle": "Navegar con los botones de volumen",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
   }
 }
