@@ -26,7 +26,7 @@ dependencies:
   fluttertoast: ^8.1.1
   font_awesome_flutter: ^10.2.1
   freezed_annotation: ^2.2.0
-  go_router: ^11.0.0
+  go_router: ^12.0.0
   hooks_riverpod: ^2.1.1
   infinite_scroll_pagination: ^4.0.0
   intl: ^0.18.0
