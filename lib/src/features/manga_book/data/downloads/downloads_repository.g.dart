@@ -188,7 +188,7 @@ class _DownloadsFromIdProviderElement
   int get chapterId => (origin as DownloadsFromIdProvider).chapterId;
 }
 
-String _$downloadsSocketHash() => r'0fffb672640ebb3ba41893c1f362e7479f391471';
+String _$downloadsSocketHash() => r'ee5f9b56575b716ba8051e1e1d2b65e8bfb222e8';
 
 /// See also [DownloadsSocket].
 @ProviderFor(DownloadsSocket)

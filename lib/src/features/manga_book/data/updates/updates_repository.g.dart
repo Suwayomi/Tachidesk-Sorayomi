@@ -37,7 +37,7 @@ final updateSummaryProvider = AutoDisposeFutureProvider<UpdateStatus?>.internal(
 );
 
 typedef UpdateSummaryRef = AutoDisposeFutureProviderRef<UpdateStatus?>;
-String _$updatesSocketHash() => r'4284c10c51624f48c77e1227bb03ce0b52b49664';
+String _$updatesSocketHash() => r'714e545daee4dc279babf3b72e9c1c5a4f8934e5';
 
 /// See also [UpdatesSocket].
 @ProviderFor(UpdatesSocket)

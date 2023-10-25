@@ -39,7 +39,7 @@ class MangaBadgesRow extends ConsumerWidget {
             ClipRRect(
               borderRadius: KBorderRadius.r8.radius,
               child: MangaBadge(
-                text: context.l10n!.inLibrary,
+                icon: Icons.collections_bookmark_rounded,
                 color: context.theme.colorScheme.primary,
                 textColor: context.theme.colorScheme.onPrimary,
               ),
@@ -85,11 +85,13 @@ class MangaBadgesRow extends ConsumerWidget {
 class MangaBadge extends StatelessWidget {
   const MangaBadge({
     super.key,
-    required this.text,
+    this.text,
+    this.icon,
     required this.color,
     required this.textColor,
-  });
-  final String text;
+  }) : assert(text != null || icon != null);
+  final String? text;
+  final IconData? icon;
   final Color color;
   final Color textColor;
   @override
@@ -99,8 +101,10 @@ class MangaBadge extends StatelessWidget {
       color: color,
       shape: const RoundedRectangleBorder(),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 4.0),
-        child: Text(text, style: TextStyle(color: textColor)),
+        padding: KEdgeInsets.a4.size,
+        child: text.isNotBlank
+            ? Text(text!, style: TextStyle(color: textColor))
+            : Icon(icon, color: textColor, size: 16),
       ),
     );
   }

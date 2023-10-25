@@ -7,6 +7,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/server_image.dart';
@@ -19,21 +20,22 @@ class MangaThumbnailViewer extends StatelessWidget {
   final String imageUrl;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return GestureDetector(
+      onTap: () => context.pop(),
+      child: Scaffold(
+        appBar: AppBar(backgroundColor: Colors.transparent),
         backgroundColor: Colors.transparent,
-      ),
-      backgroundColor: Colors.transparent,
-      body: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: context.colorScheme.background.withOpacity(0.1),
-          ),
-          child: InteractiveViewer(
-            maxScale: 4,
-            child: Center(
-              child: ServerImage(imageUrl: imageUrl),
+        body: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: context.colorScheme.background.withOpacity(0.1),
+            ),
+            child: InteractiveViewer(
+              maxScale: 4,
+              child: Center(
+                child: ServerImage(imageUrl: imageUrl),
+              ),
             ),
           ),
         ),

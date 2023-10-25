@@ -49,8 +49,9 @@ Offset kMagnifierOffset(Offset position, Size size, double multiplier) {
 
 /// Constant sizes to be used in the app (paddings, gaps, rounded corners etc.)
 enum KEdgeInsets {
-  a8(EdgeInsets.all(8)),
+  a2(EdgeInsets.all(2)),
   a4(EdgeInsets.all(4)),
+  a8(EdgeInsets.all(8)),
   a16(EdgeInsets.all(16)),
   h8v4(EdgeInsets.symmetric(horizontal: 8, vertical: 4)),
   h8v16(EdgeInsets.symmetric(horizontal: 8, vertical: 16)),

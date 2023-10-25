@@ -32,6 +32,10 @@ class AsyncTextButtonIcon extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final isLocalPrimary = useState(isPrimary);
+    useEffect(() {
+      isLocalPrimary.value = isPrimary;
+      return null;
+    }, [isPrimary]);
     return TextButton.icon(
       style: isLocalPrimary.value ? primaryStyle : secondaryStyle,
       onPressed: onPressed != null
