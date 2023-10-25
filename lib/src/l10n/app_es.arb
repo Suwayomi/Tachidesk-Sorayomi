@@ -467,5 +467,35 @@
   "nextChapter": "Siguiente: {chapterTitle}",
   "@nextChapter": {
     "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "selectInBetween": "Seleccionar entre",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "readerOverlaySubtitle": "Muestra el título y los ajustes rápidos al abrir un capítulo",
+  "@readerOverlaySubtitle": {},
+  "quickSearchShowAllCommandTip": "Consejo: Introduzca '?' para ver todos los comandos",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "selectNext10": "Seleccionar los 10 siguientes",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "Seleccionar los no leídos",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "readerVolumeTapInvert": "Invertir los botones de volumen",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTap": "Botones de volumen",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapSubtitle": "Navegar con los botones de volumen",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
   }
 }
