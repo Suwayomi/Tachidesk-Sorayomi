@@ -9,12 +9,16 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../../../../constants/db_keys.dart';
 import '../../../../constants/endpoints.dart';
+import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
+import '../../../settings/presentation/server/widget/credential_popup/credentials_popup.dart';
 import '../../domain/downloads/downloads_model.dart';
 import '../../domain/downloads_queue/downloads_queue_model.dart';
 
@@ -44,10 +48,17 @@ class DownloadsRepository {
         DownloaderUrl.reorderDownload(mangaId, chapterIndex, to),
       );
 
-  ({Stream<Downloads> stream, AsyncCallback closeStream}) socketDownloads() {
+  ({Stream<Downloads> stream, AsyncCallback closeStream}) socketDownloads(
+      {required AuthType authType, String? credentials}) {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
-    final channel =
-        WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads));
+    final channel = kIsWeb
+        ? WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads))
+        : IOWebSocketChannel.connect(
+            Uri.parse(url + DownloaderUrl.downloads),
+            headers: {
+              if (authType == AuthType.basic) "Authorization": credentials
+            },
+          );
 
     return (
       stream: channel.stream.asyncMap<Downloads>(
@@ -69,7 +80,10 @@ DownloadsRepository downloadsRepository(DownloadsRepositoryRef ref) =>
 class DownloadsSocket extends _$DownloadsSocket {
   @override
   Stream<Downloads> build() {
-    final socket = ref.watch(downloadsRepositoryProvider).socketDownloads();
+    final socket = ref.watch(downloadsRepositoryProvider).socketDownloads(
+          authType: ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial,
+          credentials: ref.watch(credentialsProvider),
+        );
     ref.onDispose(socket.closeStream);
     return socket.stream;
   }
