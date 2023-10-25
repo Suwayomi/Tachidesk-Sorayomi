@@ -20,9 +20,16 @@ import '../../../../settings/presentation/appearance/widgets/grid_cover_min_widt
 import '../../../domain/source/source_model.dart';
 
 class SourceMangaGridView extends ConsumerWidget {
-  const SourceMangaGridView({super.key, required this.controller, this.source});
+  const SourceMangaGridView({
+    super.key,
+    required this.toggleFavorite,
+    required this.controller,
+    this.source,
+  });
+  final Future<AsyncValue?> Function(Manga) toggleFavorite;
   final PagingController<int, Manga> controller;
   final Source? source;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return PagedGridView(
@@ -49,6 +56,15 @@ class SourceMangaGridView extends ConsumerWidget {
         itemBuilder: (context, item, index) => MangaCoverGridTile(
           manga: item.copyWith(source: source),
           showDarkOverlay: item.inLibrary.ifNull(),
+          onLongPress: () async {
+            final value = await toggleFavorite(item);
+            if (value == null) return;
+            if (value is! AsyncError) {
+              final items = [...?controller.itemList];
+              items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
+              controller.itemList = items;
+            }
+          },
           onPressed: () {
             if (item.id != null) {
               MangaRoute(mangaId: item.id!).push(context);

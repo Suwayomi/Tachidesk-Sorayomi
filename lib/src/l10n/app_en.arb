@@ -529,6 +529,12 @@
     "@reload": {
         "description": "Reload button text"
     },
+    "@remove": {
+        "description": "Remove Button text"
+    },
+    "@removeFromLibrary": {
+        "description": "Remove From Library Popup text"
+    },
     "@reset": {
         "description": "Button text of reset button in source filters"
     },
@@ -850,6 +856,8 @@
     "reddit": "Reddit",
     "refresh": "Refresh",
     "reload": "Reload",
+    "remove": "Remove",
+    "removeFromLibrary": "Remove from Library?",
     "reset": "Reset",
     "restoreBackupDescription": "Restore Tachidesk from backup",
     "restoreBackupTitle": "Restore Backup",
