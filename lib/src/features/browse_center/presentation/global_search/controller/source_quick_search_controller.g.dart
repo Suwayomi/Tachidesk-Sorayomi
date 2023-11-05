@@ -186,8 +186,8 @@ String _$quickSearchResultsHash() =>
 const quickSearchResultsProvider = QuickSearchResultsFamily();
 
 /// See also [quickSearchResults].
-class QuickSearchResultsFamily extends Family<
-    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
+class QuickSearchResultsFamily
+    extends Family<AsyncValue<List<QuickSearchResults>>> {
   /// See also [quickSearchResults].
   const QuickSearchResultsFamily();
 
@@ -225,8 +225,8 @@ class QuickSearchResultsFamily extends Family<
 }
 
 /// See also [quickSearchResults].
-class QuickSearchResultsProvider extends AutoDisposeProvider<
-    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
+class QuickSearchResultsProvider
+    extends AutoDisposeProvider<AsyncValue<List<QuickSearchResults>>> {
   /// See also [quickSearchResults].
   QuickSearchResultsProvider({
     String? query,
@@ -261,8 +261,8 @@ class QuickSearchResultsProvider extends AutoDisposeProvider<
 
   @override
   Override overrideWith(
-    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>
-            Function(QuickSearchResultsRef provider)
+    AsyncValue<List<QuickSearchResults>> Function(
+            QuickSearchResultsRef provider)
         create,
   ) {
     return ProviderOverride(
@@ -280,9 +280,7 @@ class QuickSearchResultsProvider extends AutoDisposeProvider<
   }
 
   @override
-  AutoDisposeProviderElement<
-          AsyncValue<
-              List<({AsyncValue<List<Manga>> mangaList, Source source})>>>
+  AutoDisposeProviderElement<AsyncValue<List<QuickSearchResults>>>
       createElement() {
     return _QuickSearchResultsProviderElement(this);
   }
@@ -301,14 +299,14 @@ class QuickSearchResultsProvider extends AutoDisposeProvider<
   }
 }
 
-mixin QuickSearchResultsRef on AutoDisposeProviderRef<
-    AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>> {
+mixin QuickSearchResultsRef
+    on AutoDisposeProviderRef<AsyncValue<List<QuickSearchResults>>> {
   /// The parameter `query` of this provider.
   String? get query;
 }
 
-class _QuickSearchResultsProviderElement extends AutoDisposeProviderElement<
-        AsyncValue<List<({AsyncValue<List<Manga>> mangaList, Source source})>>>
+class _QuickSearchResultsProviderElement
+    extends AutoDisposeProviderElement<AsyncValue<List<QuickSearchResults>>>
     with QuickSearchResultsRef {
   _QuickSearchResultsProviderElement(super.provider);
 

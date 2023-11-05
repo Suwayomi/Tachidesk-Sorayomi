@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -17,12 +18,19 @@ import '../../../../../widgets/manga_cover/list/manga_cover_list_tile.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../domain/source/source_model.dart';
 
-class SourceMangaListView extends StatelessWidget {
-  const SourceMangaListView({super.key, required this.controller, this.source});
+class SourceMangaListView extends ConsumerWidget {
+  const SourceMangaListView({
+    super.key,
+    required this.toggleFavorite,
+    required this.controller,
+    this.source,
+  });
+  final Future<AsyncValue?> Function(Manga) toggleFavorite;
   final PagingController<int, Manga> controller;
   final Source? source;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PagedListView(
       pagingController: controller,
       builderDelegate: PagedChildBuilderDelegate<Manga>(
@@ -72,6 +80,15 @@ class SourceMangaListView extends StatelessWidget {
         ),
         itemBuilder: (context, item, index) => MangaCoverListTile(
           manga: item.copyWith(source: source),
+          onLongPress: () async {
+            final value = await toggleFavorite(item);
+            if (value == null) return;
+            if (value is! AsyncError) {
+              final items = [...?controller.itemList];
+              items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
+              controller.itemList = items;
+            }
+          },
           onPressed: () {
             if (item.id != null) {
               MangaRoute(mangaId: item.id!).push(context);

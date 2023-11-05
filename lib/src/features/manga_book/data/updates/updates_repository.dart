@@ -9,12 +9,16 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../../../../constants/db_keys.dart';
 import '../../../../constants/endpoints.dart';
+import '../../../../constants/enum.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
+import '../../../settings/presentation/server/widget/credential_popup/credentials_popup.dart';
 import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../domain/update_status/update_status_model.dart';
 
@@ -68,9 +72,17 @@ class UpdatesRepository {
       ))
           .data;
 
-  ({Stream<UpdateStatus> stream, AsyncCallback closeStream}) socketUpdates() {
+  ({Stream<UpdateStatus> stream, AsyncCallback closeStream}) socketUpdates(
+      {required AuthType authType, String? credentials}) {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
-    final channel = WebSocketChannel.connect(Uri.parse(url + UpdateUrl.update));
+    final channel = kIsWeb
+        ? WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads))
+        : IOWebSocketChannel.connect(
+            Uri.parse(url + DownloaderUrl.downloads),
+            headers: {
+              if (authType == AuthType.basic) "Authorization": credentials
+            },
+          );
     return (
       stream: channel.stream.asyncMap<UpdateStatus>((event) =>
           compute<String, UpdateStatus>(
@@ -99,7 +111,10 @@ Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
 class UpdatesSocket extends _$UpdatesSocket {
   @override
   Stream<UpdateStatus> build() {
-    final stream = ref.watch(updatesRepositoryProvider).socketUpdates();
+    final stream = ref.watch(updatesRepositoryProvider).socketUpdates(
+          authType: ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial,
+          credentials: ref.watch(credentialsProvider),
+        );
     ref.onDispose(stream.closeStream);
     return stream.stream;
   }
