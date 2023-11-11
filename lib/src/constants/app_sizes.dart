@@ -84,6 +84,7 @@ enum KSizedBox {
   w64(SizedBox(width: 64)),
   h96(SizedBox(height: 96)),
   w96(SizedBox(width: 96)),
+  h104(SizedBox(height: 104)),
   ;
 
   static SizedBox scale(

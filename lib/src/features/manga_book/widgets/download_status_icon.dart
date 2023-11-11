@@ -72,9 +72,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
     final isLoading = useState(false);
 
     final toast = ref.watch(toastProvider(context));
-    final download = chapter.id != null
-        ? ref.watch(downloadsFromIdProvider(chapter.id!))
-        : null;
+    final download = ref.watch(downloadsFromIdProvider(chapter.id ?? -1));
     useEffect(() {
       if (download?.state == "Finished") {
         Future.microtask(

@@ -49,6 +49,7 @@ class CategoryMangaList extends HookConsumerWidget {
         }
         final Widget mangaList = switch (displayMode) {
           DisplayMode.list || null => ListView.builder(
+              itemExtent: 96,
               itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverListTile(
                 manga: data![index],
@@ -106,6 +107,7 @@ class CategoryMangaList extends HookConsumerWidget {
               ),
             ),
           DisplayMode.descriptiveList => ListView.builder(
+              itemExtent: 176,
               itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverDescriptiveListTile(
                 manga: data![index],

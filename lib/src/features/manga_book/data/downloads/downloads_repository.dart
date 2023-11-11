@@ -100,4 +100,24 @@ Map<int, DownloadsQueue> downloadsMap(DownloadsMapRef ref) {
 
 @riverpod
 DownloadsQueue? downloadsFromId(DownloadsFromIdRef ref, int chapterId) =>
-    ref.watch(downloadsMapProvider.select((value) => value[chapterId]));
+    ref.watch(downloadsMapProvider.select((map) => map[chapterId]));
+
+@riverpod
+List<int> downloadsChapterIds(DownloadsChapterIdsRef ref) {
+  return ref.watch(downloadsMapProvider).keys.toList();
+}
+
+@riverpod
+AsyncValue<String?> downloadsStatus(DownloadsStatusRef ref) {
+  return ref.watch(downloadsSocketProvider
+      .select((value) => value.copyWithData((data) => data.status)));
+}
+
+@riverpod
+bool showDownloadsFAB(ShowDownloadsFABRef ref) {
+  final downloads = ref.watch(downloadsSocketProvider);
+  return (downloads.valueOrNull?.queue).isNotBlank &&
+      downloads.valueOrNull!.queue!.any(
+        (element) => element.state != "Error" || element.tries != 3,
+      );
+}

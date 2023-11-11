@@ -135,7 +135,8 @@ class LibraryScreen extends HookConsumerWidget {
                         child: TabBarView(
                           children: data
                               .map((e) => CategoryMangaList(
-                                  categoryId: e.id.getValueOnNullOrNegative()))
+                                    categoryId: e.id.getValueOnNullOrNegative(),
+                                  ))
                               .toList(),
                         ),
                       ),
