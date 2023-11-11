@@ -33,7 +33,7 @@ class LibraryScreen extends HookConsumerWidget {
     useEffect(() {
       categoryList.showToastOnError(toast, withMicrotask: true);
       return;
-    }, [categoryList.value]);
+    }, [categoryList.valueOrNull]);
 
     return categoryList.showUiWhenData(
       context,
@@ -135,7 +135,8 @@ class LibraryScreen extends HookConsumerWidget {
                         child: TabBarView(
                           children: data
                               .map((e) => CategoryMangaList(
-                                  categoryId: e.id.getValueOnNullOrNegative()))
+                                    categoryId: e.id.getValueOnNullOrNegative(),
+                                  ))
                               .toList(),
                         ),
                       ),

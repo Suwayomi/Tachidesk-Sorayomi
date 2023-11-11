@@ -9,7 +9,8 @@ import '../../features/browse_center/domain/language/language_model.dart';
 
 class LanguageJsonConverter {
   static Language? fromJson(String? langCode) => langCode != null
-      ? languageMap[langCode] ?? Language(code: langCode)
+      ? languageMap[langCode.toLowerCase()] ??
+          Language(code: langCode.toLowerCase())
       : null;
   static String? toJson(Language? lang) => lang?.code;
 }

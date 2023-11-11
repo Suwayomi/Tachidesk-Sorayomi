@@ -114,7 +114,7 @@ class AboutScreen extends HookConsumerWidget {
     useEffect(() {
       aboutAsync.showToastOnError(toast, withMicrotask: true);
       return;
-    }, [aboutAsync.value]);
+    }, [aboutAsync.valueOrNull]);
 
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n!.about)),

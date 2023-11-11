@@ -13,28 +13,23 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/downloads/downloads_repository.dart';
-import '../../domain/downloads/downloads_model.dart';
 import 'widgets/download_progress_list_tile.dart';
 import 'widgets/downloads_fab.dart';
 
 class DownloadsScreen extends ConsumerWidget {
   const DownloadsScreen({super.key});
 
-  bool showFab(AsyncValue<Downloads> downloads) =>
-      (downloads.valueOrNull?.queue).isNotBlank &&
-      downloads.valueOrNull!.queue!.any(
-        (element) => element.state != "Error" || element.tries != 3,
-      );
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider(context));
-    final downloads = ref.watch(downloadsSocketProvider);
+    final downloadsChapterIds = ref.watch(downloadsChapterIdsProvider);
+    final downloadsGlobalStatus = ref.watch(downloadsStatusProvider);
+    final showDownloadsFAB = ref.watch(showDownloadsFABProvider);
     return Scaffold(
       appBar: AppBar(
         title: Text(context.l10n!.downloads),
         actions: [
-          if ((downloads.valueOrNull?.queue).isNotBlank)
+          if ((downloadsChapterIds).isNotBlank)
             IconButton(
               onPressed: () => AsyncValue.guard(
                 ref.read(downloadsRepositoryProvider).clearDownloads,
@@ -43,32 +38,29 @@ class DownloadsScreen extends ConsumerWidget {
             ),
         ],
       ),
-      floatingActionButton: showFab(downloads)
-          ? DownloadsFab(status: downloads.valueOrNull?.status ?? "")
+      floatingActionButton: showDownloadsFAB
+          ? DownloadsFab(status: downloadsGlobalStatus.valueOrNull ?? "")
           : null,
-      body: downloads.showUiWhenData(
+      body: downloadsGlobalStatus.showUiWhenData(
         context,
         (data) {
-          if (data.queue == null) {
+          if (data == null) {
             return Emoticons(text: context.l10n!.errorSomethingWentWrong);
-          } else if (data.queue!.isEmpty) {
-            return Emoticons(
-              text: context.l10n!.noDownloads,
-            );
+          } else if (downloadsChapterIds.isBlank) {
+            return Emoticons(text: context.l10n!.noDownloads);
           } else {
             final downloadsCount =
-                (data.queue?.length).getValueOnNullOrNegative();
+                (downloadsChapterIds.length).getValueOnNullOrNegative();
             return ListView.builder(
+              itemExtent: 104,
               itemBuilder: (context, index) {
-                if (index == downloadsCount) return KSizedBox.h96.size;
-                final download = data.queue![index];
+                if (index == downloadsCount) return KSizedBox.h104.size;
+                final chapterId = downloadsChapterIds[index];
                 return DownloadProgressListTile(
-                  key: ValueKey(
-                    "${download.mangaId}${download.chapterIndex}",
-                  ),
+                  key: ValueKey("$chapterId"),
                   index: index,
                   downloadsCount: downloadsCount,
-                  download: download,
+                  chapterId: chapterId,
                   toast: toast,
                 );
               },

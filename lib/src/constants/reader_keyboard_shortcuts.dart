@@ -19,6 +19,9 @@ class HideQuickOpenIntent extends Intent {}
 
 ShortcutManager readerShortcutManager(Axis scrollDirection) => ShortcutManager(
       shortcuts: {
+        const SingleActivator(LogicalKeyboardKey.space): NextScrollIntent(),
+        const SingleActivator(LogicalKeyboardKey.space, shift: true):
+            PreviousScrollIntent(),
         const SingleActivator(LogicalKeyboardKey.arrowLeft):
             scrollDirection == Axis.horizontal
                 ? PreviousScrollIntent()

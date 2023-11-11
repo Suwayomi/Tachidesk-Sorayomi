@@ -36,23 +36,7 @@ final sourceMapProvider =
 
 typedef SourceMapRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Source>>>>;
-String _$sourceFilterLangListHash() =>
-    r'89e544ca3fb3ee2546240cb3a7a3e2085213393e';
-
-/// See also [sourceFilterLangList].
-@ProviderFor(sourceFilterLangList)
-final sourceFilterLangListProvider = AutoDisposeProvider<List<String>>.internal(
-  sourceFilterLangList,
-  name: r'sourceFilterLangListProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$sourceFilterLangListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef SourceFilterLangListRef = AutoDisposeProviderRef<List<String>>;
-String _$sourceMapFilteredHash() => r'61d31082533cfd32f73664fd5f16c5eba09c54b8';
+String _$sourceMapFilteredHash() => r'0154413eb0639738378258287e318c3fa3e92ecc';
 
 /// See also [sourceMapFiltered].
 @ProviderFor(sourceMapFiltered)
@@ -218,6 +202,23 @@ class _SourceQueryProviderElement
   String? get query => (origin as SourceQueryProvider).query;
 }
 
+String _$sourceFilterLangMapHash() =>
+    r'acd7c06834be607eeba22b9fd2fcaacd6685660b';
+
+/// See also [SourceFilterLangMap].
+@ProviderFor(SourceFilterLangMap)
+final sourceFilterLangMapProvider = AutoDisposeNotifierProvider<
+    SourceFilterLangMap, Map<String, bool>>.internal(
+  SourceFilterLangMap.new,
+  name: r'sourceFilterLangMapProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$sourceFilterLangMapHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$SourceFilterLangMap = AutoDisposeNotifier<Map<String, bool>>;
 String _$sourceLanguageFilterHash() =>
     r'a5a8701a5d14b4c784744131113eb56cf1979dbc';
 
