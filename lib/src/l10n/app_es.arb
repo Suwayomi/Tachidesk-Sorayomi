@@ -268,7 +268,7 @@
   "@readerNavigationLayoutRightAndLeft": {},
   "reddit": "Reddit",
   "@reddit": {},
-  "refresh": "Actualizar",
+  "refresh": "Refrescar",
   "@refresh": {},
   "reset": "Restablecer",
   "@reset": {},
@@ -497,5 +497,13 @@
   "readerVolumeTapSubtitle": "Navegar con los botones de volumen",
   "@readerVolumeTapSubtitle": {
     "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "removeFromLibrary": "¿Quitar de la biblioteca?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "remove": "Quitar",
+  "@remove": {
+    "description": "Remove Button text"
   }
 }

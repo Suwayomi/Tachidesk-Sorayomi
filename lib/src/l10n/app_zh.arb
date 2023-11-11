@@ -896,5 +896,13 @@
   "readerVolumeTapSubtitle": "使用音量键操作",
   "@readerVolumeTapSubtitle": {
     "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "removeFromLibrary": "从书架中删除?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "remove": "删除",
+  "@remove": {
+    "description": "Remove Button text"
   }
 }
