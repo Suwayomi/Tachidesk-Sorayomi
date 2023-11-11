@@ -39,7 +39,7 @@ class SourceListTile extends ConsumerWidget {
           size: const Size.square(48),
         ),
       ),
-      title: Text(source.displayName ?? source.name ?? ""),
+      title: Text(source.name ?? ""),
       subtitle: (source.lang?.displayName).isNotBlank
           ? Text(source.lang?.displayName ?? "")
           : null,

@@ -26,6 +26,7 @@ mixin SharedPreferenceClientMixin<T extends Object> {
   late final SharedPreferences _client;
   late final T? _initial;
   set state(T? newState);
+  T? get state;
   late final dynamic Function(T)? _toJson;
   late final T? Function(dynamic)? _fromJson;
 
@@ -46,6 +47,9 @@ mixin SharedPreferenceClientMixin<T extends Object> {
   }
 
   void update(T? value) => state = value;
+
+  void updateWithPreviousState(T? Function(T?) operation) =>
+      state = operation(state);
 
   T? get _get {
     final value = _client.get(_key);
