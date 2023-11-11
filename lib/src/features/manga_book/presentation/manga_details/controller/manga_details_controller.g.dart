@@ -601,7 +601,7 @@ String _$mangaWithIdHash() => r'aea36ab8126c57f1c73a24b1f8dc6ecbd03f25c1';
 abstract class _$MangaWithId extends BuildlessAutoDisposeAsyncNotifier<Manga?> {
   late final int mangaId;
 
-  Future<Manga?> build({
+  FutureOr<Manga?> build({
     required int mangaId,
   });
 }
@@ -681,7 +681,7 @@ class MangaWithIdProvider
   final int mangaId;
 
   @override
-  Future<Manga?> runNotifierBuild(
+  FutureOr<Manga?> runNotifierBuild(
     covariant MangaWithId notifier,
   ) {
     return notifier.build(
@@ -744,7 +744,7 @@ abstract class _$MangaChapterList
     extends BuildlessAutoDisposeAsyncNotifier<List<Chapter>?> {
   late final int mangaId;
 
-  Future<List<Chapter>?> build({
+  FutureOr<List<Chapter>?> build({
     required int mangaId,
   });
 }
@@ -824,7 +824,7 @@ class MangaChapterListProvider extends AutoDisposeAsyncNotifierProviderImpl<
   final int mangaId;
 
   @override
-  Future<List<Chapter>?> runNotifierBuild(
+  FutureOr<List<Chapter>?> runNotifierBuild(
     covariant MangaChapterList notifier,
   ) {
     return notifier.build(

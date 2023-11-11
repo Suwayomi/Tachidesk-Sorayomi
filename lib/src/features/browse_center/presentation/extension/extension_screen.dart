@@ -69,7 +69,7 @@ class ExtensionScreen extends HookConsumerWidget {
         withMicrotask: true,
       );
       return;
-    }, [extensionMapData.value]);
+    }, [extensionMapData.valueOrNull]);
 
     return extensionMapData.showUiWhenData(
       context,
