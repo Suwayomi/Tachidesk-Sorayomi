@@ -38,7 +38,7 @@ final downloadsMapProvider =
 );
 
 typedef DownloadsMapRef = AutoDisposeProviderRef<Map<int, DownloadsQueue>>;
-String _$downloadsFromIdHash() => r'da4ab5797ab7eeb647433cc50c56d2e8b827218b';
+String _$downloadsFromIdHash() => r'ebec2d8410a8aa34a66a72061acfe62582f955dd';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -188,6 +188,53 @@ class _DownloadsFromIdProviderElement
   int get chapterId => (origin as DownloadsFromIdProvider).chapterId;
 }
 
+String _$downloadsChapterIdsHash() =>
+    r'3c490718de46a5ffd3009b398c3c61441421d958';
+
+/// See also [downloadsChapterIds].
+@ProviderFor(downloadsChapterIds)
+final downloadsChapterIdsProvider = AutoDisposeProvider<List<int>>.internal(
+  downloadsChapterIds,
+  name: r'downloadsChapterIdsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$downloadsChapterIdsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DownloadsChapterIdsRef = AutoDisposeProviderRef<List<int>>;
+String _$downloadsStatusHash() => r'e1f120563dfc9a83a2e3459680f56168bbf21637';
+
+/// See also [downloadsStatus].
+@ProviderFor(downloadsStatus)
+final downloadsStatusProvider =
+    AutoDisposeProvider<AsyncValue<String?>>.internal(
+  downloadsStatus,
+  name: r'downloadsStatusProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$downloadsStatusHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef DownloadsStatusRef = AutoDisposeProviderRef<AsyncValue<String?>>;
+String _$showDownloadsFABHash() => r'4c00b8fa136dc475476fed61a807a4901cc7cdb8';
+
+/// See also [showDownloadsFAB].
+@ProviderFor(showDownloadsFAB)
+final showDownloadsFABProvider = AutoDisposeProvider<bool>.internal(
+  showDownloadsFAB,
+  name: r'showDownloadsFABProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$showDownloadsFABHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ShowDownloadsFABRef = AutoDisposeProviderRef<bool>;
 String _$downloadsSocketHash() => r'ee5f9b56575b716ba8051e1e1d2b65e8bfb222e8';
 
 /// See also [DownloadsSocket].

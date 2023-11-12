@@ -150,7 +150,8 @@ class LibraryRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
       NoTransitionPage(
-          child: LibraryScreen(initialCategoryOrder: initialCategoryOrder));
+        child: LibraryScreen(initialCategoryOrder: initialCategoryOrder),
+      );
 }
 
 class UpdatesRoute extends GoRouteData {

@@ -43,11 +43,29 @@ AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
 }
 
 @riverpod
-List<String> sourceFilterLangList(SourceFilterLangListRef ref) {
-  final sourceMap = {...?ref.watch(sourceMapProvider).valueOrNull};
-  sourceMap.remove("lastUsed");
-  sourceMap.remove("localsourcelang");
-  return [...sourceMap.keys]..sort();
+class SourceFilterLangMap extends _$SourceFilterLangMap {
+  @override
+  Map<String, bool> build() {
+    final sourceMap = {...?ref.watch(sourceMapProvider).valueOrNull};
+    final enabledLanguages = ref.watch(sourceLanguageFilterProvider);
+    sourceMap.remove("lastUsed");
+    sourceMap.remove("localsourcelang");
+    return Map.fromIterable(
+      [...sourceMap.keys],
+      value: (element) => (enabledLanguages?.contains(element)).ifNull(),
+    );
+  }
+
+  void toggleLang(String langCode, bool value) {
+    if (!value) {
+      ref.read(sourceLanguageFilterProvider.notifier).updateWithPreviousState(
+          (enabledLanguages) => [...?enabledLanguages]..remove(langCode));
+    } else {
+      ref.read(sourceLanguageFilterProvider.notifier).updateWithPreviousState(
+            (enabledLanguages) => {...?enabledLanguages, langCode}.toList(),
+          );
+    }
+  }
 }
 
 @riverpod
@@ -56,7 +74,7 @@ AsyncValue<Map<String, List<Source>>?> sourceMapFiltered(
   final sourceMapFiltered = <String, List<Source>>{};
   final sourceMapData = ref.watch(sourceMapProvider);
   final sourceMap = {...?sourceMapData.valueOrNull};
-  final enabledLangList = [...?ref.watch(sourceLanguageFilterProvider)];
+  final enabledLangList = [...?ref.watch(sourceLanguageFilterProvider)]..sort();
   for (final e in enabledLangList) {
     if (sourceMap.containsKey(e)) sourceMapFiltered[e] = sourceMap[e]!;
   }
