@@ -119,6 +119,7 @@ class LibraryScreen extends HookConsumerWidget {
                 endDrawerEnableOpenDragGesture: false,
                 endDrawer: const Drawer(
                   width: kDrawerWidth,
+                  shape: RoundedRectangleBorder(),
                   child: LibraryMangaOrganizer(),
                 ),
                 body: data.isBlank
