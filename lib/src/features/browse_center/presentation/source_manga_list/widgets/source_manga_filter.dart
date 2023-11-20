@@ -51,22 +51,25 @@ class SourceMangaFilter extends HookWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final filter = filters.value[index];
-          return FilterToWidget(
-            key: ValueKey("Filter-${filter.filterState?.name}"),
-            filter: filter,
-            onChanged: (value) {
-              filters.value = ([...initialFilters]..replaceRange(
-                  index,
-                  index + 1,
-                  [value],
-                ));
-            },
-          );
-        },
-        itemCount: filters.value.length,
+      body: ScrollConfiguration(
+        behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            final filter = filters.value[index];
+            return FilterToWidget(
+              key: ValueKey("Filter-${filter.filterState?.name}"),
+              filter: filter,
+              onChanged: (value) {
+                filters.value = ([...initialFilters]..replaceRange(
+                    index,
+                    index + 1,
+                    [value],
+                  ));
+              },
+            );
+          },
+          itemCount: filters.value.length,
+        ),
       ),
     );
   }

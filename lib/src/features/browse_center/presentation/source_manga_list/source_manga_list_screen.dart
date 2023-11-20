@@ -228,6 +228,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
         ),
         endDrawer: Drawer(
           width: kDrawerWidth,
+          shape: const RoundedRectangleBorder(),
           child: Builder(
             builder: (context) => filterWidget(
               ref,
