@@ -191,6 +191,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   ],
                 ),
           endDrawer: Drawer(
+            shape: const RoundedRectangleBorder(),
             width: kDrawerWidth,
             child: MangaChapterOrganizer(mangaId: mangaId),
           ),

@@ -43,7 +43,6 @@ class SinglePageReaderMode extends HookConsumerWidget {
   final bool showReaderLayoutAnimation;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final touchPoints = useState(0);
     final cacheManager = useMemoized(() => DefaultCacheManager());
     final scrollController = usePageController(
       initialPage: chapter.read.ifNull()
@@ -101,7 +100,6 @@ class SinglePageReaderMode extends HookConsumerWidget {
     final isAnimationEnabled =
         ref.read(readerScrollAnimationProvider).ifNull(true);
     return ReaderWrapper(
-      touchPoints: touchPoints,
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
@@ -117,12 +115,10 @@ class SinglePageReaderMode extends HookConsumerWidget {
         curve: kCurve,
       ),
       child: PageView.builder(
-        physics: touchPoints.value >= 2
-            ? const NeverScrollableScrollPhysics()
-            : null,
         scrollDirection: scrollDirection,
         reverse: reverse,
         controller: scrollController,
+        allowImplicitScrolling: true,
         itemBuilder: (BuildContext context, int index) {
           final image = ServerImage(
             showReloadButton: true,

@@ -51,7 +51,6 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.onNext,
     required this.onPrevious,
     required this.scrollDirection,
-    required this.touchPoints,
     this.showReaderLayoutAnimation = false,
   });
   final Widget child;
@@ -63,7 +62,6 @@ class ReaderWrapper extends HookConsumerWidget {
   final int currentIndex;
   final Axis scrollDirection;
   final bool showReaderLayoutAnimation;
-  final ValueNotifier<int> touchPoints;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -219,13 +217,11 @@ class ReaderWrapper extends HookConsumerWidget {
         endDrawer: Drawer(
           width: kDrawerWidth,
           shape: const RoundedRectangleBorder(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
             children: [
-              AppBar(
-                backgroundColor: Colors.transparent,
-                actions: const [SizedBox.shrink()],
+              ListTile(
+                leading: const Icon(Icons.close_rounded),
+                onTap: context.pop,
               ),
               ListTile(
                 leading: const Icon(Icons.app_settings_alt_outlined),
@@ -421,16 +417,10 @@ class ReaderWrapper extends HookConsumerWidget {
             child: Focus(
               autofocus: true,
               child: Listener(
-                onPointerDown: (_) => touchPoints.value += 1,
-                onPointerUp: (_) => touchPoints.value -= 1,
-                onPointerCancel: (_) => touchPoints.value -= 1,
                 child: RepaintBoundary(
                   child: ReaderView(
-                    touchPoints: touchPoints,
-                    toggleVisibility: () {
-                      if (touchPoints.value >= 2) return;
-                      visibility.value = !visibility.value;
-                    },
+                    toggleVisibility: () =>
+                        visibility.value = !visibility.value,
                     scrollDirection: scrollDirection,
                     mangaReaderPadding: mangaReaderPadding.value,
                     mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
@@ -465,7 +455,6 @@ class ReaderView extends HookWidget {
     required this.mangaReaderNavigationLayout,
     required this.readerSwipeChapterToggle,
     required this.child,
-    required this.touchPoints,
     this.showReaderLayoutAnimation = false,
   });
 
@@ -480,7 +469,6 @@ class ReaderView extends HookWidget {
   final bool readerSwipeChapterToggle;
   final bool showReaderLayoutAnimation;
   final Widget child;
-  final ValueNotifier<int> touchPoints;
 
   @override
   Widget build(BuildContext context) {
@@ -522,7 +510,6 @@ class ReaderView extends HookWidget {
           onTap: toggleVisibility,
           behavior: HitTestBehavior.translucent,
           onHorizontalDragEnd: (details) {
-            if (touchPoints.value >= 2) return;
             if (scrollDirection == Axis.vertical && readerSwipeChapterToggle) {
               if (details.primaryVelocity == null) {
                 return;
@@ -534,7 +521,6 @@ class ReaderView extends HookWidget {
             }
           },
           onVerticalDragEnd: (details) {
-            if (touchPoints.value >= 2) return;
             if (scrollDirection == Axis.horizontal &&
                 readerSwipeChapterToggle) {
               if (details.primaryVelocity == null) {

@@ -76,9 +76,9 @@ class UpdatesRepository {
       {required AuthType authType, String? credentials}) {
     final url = (dioClient.dio.options.baseUrl.toWebSocket!);
     final channel = kIsWeb
-        ? WebSocketChannel.connect(Uri.parse(url + DownloaderUrl.downloads))
+        ? WebSocketChannel.connect(Uri.parse(url + UpdateUrl.update))
         : IOWebSocketChannel.connect(
-            Uri.parse(url + DownloaderUrl.downloads),
+            Uri.parse(url + UpdateUrl.update),
             headers: {
               if (authType == AuthType.basic) "Authorization": credentials
             },

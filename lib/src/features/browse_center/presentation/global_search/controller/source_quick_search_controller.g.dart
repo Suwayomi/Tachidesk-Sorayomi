@@ -7,7 +7,7 @@ part of 'source_quick_search_controller.dart';
 // **************************************************************************
 
 String _$sourceQuickSearchMangaListHash() =>
-    r'f282b4a1ec9b9c46a8ef72aceffac1130b8a6cf7';
+    r'5bdff0092cc32d1ced8fa590a4146cfdba0d108f';
 
 /// Copied from Dart SDK
 class _SystemHash {

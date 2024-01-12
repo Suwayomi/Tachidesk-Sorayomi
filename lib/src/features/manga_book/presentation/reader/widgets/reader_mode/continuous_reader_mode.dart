@@ -45,7 +45,6 @@ class ContinuousReaderMode extends HookConsumerWidget {
   final bool showReaderLayoutAnimation;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final touchPoints = useState(0);
     final scrollController = useMemoized(() => ItemScrollController());
     final positionsListener = useMemoized(() => ItemPositionsListener.create());
     final currentIndex = useState(
@@ -83,7 +82,6 @@ class ContinuousReaderMode extends HookConsumerWidget {
     final isAnimationEnabled =
         ref.read(readerScrollAnimationProvider).ifNull(true);
     return ReaderWrapper(
-      touchPoints: touchPoints,
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
@@ -133,9 +131,6 @@ class ContinuousReaderMode extends HookConsumerWidget {
             ? (child) => InteractiveViewer(maxScale: 5, child: child)
             : null,
         ScrollablePositionedList.separated(
-          physics: touchPoints.value >= 2
-              ? const NeverScrollableScrollPhysics()
-              : null,
           itemScrollController: scrollController,
           itemPositionsListener: positionsListener,
           initialScrollIndex: chapter.read.ifNull()

@@ -84,7 +84,13 @@ HiveCacheStore hiveCacheStore(HiveCacheStoreRef ref) =>
     HiveCacheStore(ref.watch(appDirectoryProvider)?.path);
 
 @riverpod
-Queue rateLimitQueue(ref) => Queue(
-      parallel: 3,
-      delay: const Duration(milliseconds: 500),
-    );
+Queue rateLimitQueue(RateLimitQueueRef ref, [String? query]) {
+  final queue = Queue(
+    parallel: 3,
+    delay: const Duration(milliseconds: 500),
+  );
+  ref.onDispose(() {
+    queue.cancel();
+  });
+  return queue;
+}

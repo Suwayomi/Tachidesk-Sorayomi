@@ -27,7 +27,7 @@ Future<List<Manga>> sourceQuickSearchMangaList(
   String sourceId, {
   String? query,
 }) async {
-  final rateLimiterQueue = ref.watch(rateLimitQueueProvider);
+  final rateLimiterQueue = ref.watch(rateLimitQueueProvider(query));
   final mangaPage = await rateLimiterQueue
       .add(() => ref.watch(sourceRepositoryProvider).getMangaList(
             pageNum: 1,
