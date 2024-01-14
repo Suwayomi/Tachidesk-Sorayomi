@@ -422,6 +422,7 @@ class ReaderWrapper extends HookConsumerWidget {
                     toggleVisibility: () =>
                         visibility.value = !visibility.value,
                     scrollDirection: scrollDirection,
+                    mangaId: manga.id!,
                     mangaReaderPadding: mangaReaderPadding.value,
                     mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
                     onNext: onNext,
@@ -447,6 +448,7 @@ class ReaderView extends HookWidget {
     super.key,
     required this.toggleVisibility,
     required this.scrollDirection,
+    required this.mangaId,
     required this.mangaReaderPadding,
     required this.mangaReaderMagnifierSize,
     required this.onNext,
@@ -460,6 +462,7 @@ class ReaderView extends HookWidget {
 
   final VoidCallback toggleVisibility;
   final Axis scrollDirection;
+  final int mangaId;
   final double mangaReaderPadding;
   final double mangaReaderMagnifierSize;
   final VoidCallback onNext;
@@ -481,19 +484,19 @@ class ReaderView extends HookWidget {
     );
     nextChapter() => prevNextChapterPair?.first != null
         ? ReaderRoute(
-            mangaId: prevNextChapterPair!.first!.mangaId!,
+            mangaId: mangaId,
             chapterIndex: prevNextChapterPair!.first!.index!,
             transVertical: scrollDirection != Axis.vertical,
           ).pushReplacement(context)
         : null;
     prevChapter() => prevNextChapterPair?.second != null
         ? ReaderRoute(
-            mangaId: prevNextChapterPair!.second!.mangaId!,
+            mangaId: mangaId,
             chapterIndex: prevNextChapterPair!.second!.index!,
             toPrev: true,
             transVertical: scrollDirection != Axis.vertical,
           ).pushReplacement(context)
-        : null;
+        : MangaRoute(mangaId: mangaId).pushReplacement(context);
     return Stack(
       children: [
         GestureDetector(
