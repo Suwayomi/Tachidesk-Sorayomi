@@ -342,7 +342,7 @@ final libraryQueryProvider =
 
 typedef _$LibraryQuery = AutoDisposeNotifier<String?>;
 String _$libraryMangaFilterDownloadedHash() =>
-    r'4b5c2ca8b1f0321d704f8676676f62eb3eb21888';
+    r'85e6dc002b8d627d09f88aef898a1810a5830ce5';
 
 /// See also [LibraryMangaFilterDownloaded].
 @ProviderFor(LibraryMangaFilterDownloaded)
@@ -359,7 +359,7 @@ final libraryMangaFilterDownloadedProvider =
 
 typedef _$LibraryMangaFilterDownloaded = AutoDisposeNotifier<bool?>;
 String _$libraryMangaFilterUnreadHash() =>
-    r'26994046eb38ff69b5ea7efc5b1878e59308eddb';
+    r'fc473316bce2fa425ace19baeda74758258dd769';
 
 /// See also [LibraryMangaFilterUnread].
 @ProviderFor(LibraryMangaFilterUnread)
@@ -376,7 +376,7 @@ final libraryMangaFilterUnreadProvider =
 
 typedef _$LibraryMangaFilterUnread = AutoDisposeNotifier<bool?>;
 String _$libraryMangaFilterCompletedHash() =>
-    r'286c538b222f4212f1c1b1d25c6205db9e1ef092';
+    r'ac96c775a5fdbda052991140af86dc5d6e72887d';
 
 /// See also [LibraryMangaFilterCompleted].
 @ProviderFor(LibraryMangaFilterCompleted)
@@ -392,7 +392,7 @@ final libraryMangaFilterCompletedProvider =
 );
 
 typedef _$LibraryMangaFilterCompleted = AutoDisposeNotifier<bool?>;
-String _$libraryMangaSortHash() => r'0442be97843a0ef97ead6592820af33162ecc11e';
+String _$libraryMangaSortHash() => r'aac0d1c0b08c67dc4c74e2969869faf6e1c6c25a';
 
 /// See also [LibraryMangaSort].
 @ProviderFor(LibraryMangaSort)
@@ -409,7 +409,7 @@ final libraryMangaSortProvider =
 
 typedef _$LibraryMangaSort = AutoDisposeNotifier<MangaSort?>;
 String _$libraryMangaSortDirectionHash() =>
-    r'70819ff0294ca866e94d229cce3bf75d7ed614a0';
+    r'f61359ba47215f496a0cce9fd33f392fad2281f0';
 
 /// See also [LibraryMangaSortDirection].
 @ProviderFor(LibraryMangaSortDirection)
@@ -426,7 +426,7 @@ final libraryMangaSortDirectionProvider =
 
 typedef _$LibraryMangaSortDirection = AutoDisposeNotifier<bool?>;
 String _$libraryDisplayModeHash() =>
-    r'59e6744684315ec99998bb19f91c6c85c6659161';
+    r'dc791f4883cf9e8b283f56ed486fd6f3545a42af';
 
 /// See also [LibraryDisplayMode].
 @ProviderFor(LibraryDisplayMode)

@@ -6,7 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 
 import '../constants/app_sizes.dart';
 import '../utils/extensions/custom_extensions.dart';
@@ -48,7 +47,7 @@ class TextFieldPopup extends HookWidget {
                 autofocus: true,
                 onSubmitted: (value) {
                   onChange(value);
-                  context.pop();
+                  Navigator.pop(context);
                 },
                 controller: textEditingController,
                 decoration: InputDecoration(

@@ -6,6 +6,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../../constants/app_sizes.dart';
 import '../../../../../routes/router_config.dart';
@@ -42,7 +43,7 @@ class ChapterMangaListTile extends StatelessWidget {
           children: [
             if ((pair.chapter?.bookmarked).ifNull()) ...[
               const Icon(Icons.bookmark, size: 20),
-              KSizedBox.w4.size,
+              const Gap(4),
             ],
             Expanded(
               child: Text(

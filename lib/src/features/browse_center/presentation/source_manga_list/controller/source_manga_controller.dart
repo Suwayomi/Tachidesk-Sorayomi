@@ -78,9 +78,7 @@ class SourceDisplayMode extends _$SourceDisplayMode
     with SharedPreferenceEnumClientMixin<DisplayMode> {
   @override
   DisplayMode? build() => initialize(
-        ref,
-        key: DBKeys.sourceDisplayMode.name,
-        initial: DBKeys.sourceDisplayMode.initial,
+        DBKeys.sourceDisplayMode,
         enumList: DisplayMode.sourceDisplayList,
       );
 }

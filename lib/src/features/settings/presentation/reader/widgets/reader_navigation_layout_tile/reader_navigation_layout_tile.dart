@@ -5,13 +5,11 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../../widgets/radio_list_popup.dart';
@@ -23,9 +21,7 @@ class ReaderNavigationLayoutKey extends _$ReaderNavigationLayoutKey
     with SharedPreferenceEnumClientMixin<ReaderNavigationLayout> {
   @override
   ReaderNavigationLayout? build() => initialize(
-        ref,
-        initial: DBKeys.readerNavigationLayout.initial,
-        key: DBKeys.readerNavigationLayout.name,
+        DBKeys.readerNavigationLayout,
         enumList: ReaderNavigationLayout.values,
       );
 }
@@ -53,7 +49,7 @@ class ReaderNavigationLayoutTile extends ConsumerWidget {
             ref
                 .read(readerNavigationLayoutKeyProvider.notifier)
                 .update(enumValue);
-            if (context.mounted) context.pop();
+            if (context.mounted) Navigator.pop(context);
           },
         ),
       ),

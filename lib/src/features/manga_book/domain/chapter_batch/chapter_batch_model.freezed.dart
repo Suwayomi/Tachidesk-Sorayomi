@@ -150,7 +150,7 @@ class _$ChapterBatchImpl implements _ChapterBatch {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterBatchImpl &&
@@ -335,7 +335,7 @@ class _$ChapterChangeImpl implements _ChapterChange {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterChangeImpl &&

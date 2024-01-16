@@ -13,7 +13,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/db_keys.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/slider_setting_tile/slider_setting_tile.dart';
@@ -24,11 +23,7 @@ part 'reader_padding_slider.g.dart';
 class ReaderPaddingKey extends _$ReaderPaddingKey
     with SharedPreferenceClientMixin<double> {
   @override
-  double? build() => initialize(
-        ref,
-        initial: DBKeys.readerPadding.initial,
-        key: DBKeys.readerPadding.name,
-      );
+  double? build() => initialize(DBKeys.readerPadding);
 }
 
 class ReaderPaddingSlider extends ConsumerWidget {

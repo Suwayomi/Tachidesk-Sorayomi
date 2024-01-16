@@ -5,11 +5,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
@@ -89,7 +88,7 @@ class CategoryTile extends HookConsumerWidget {
                             ref
                                 .read(categoryControllerProvider.notifier)
                                 .deleteCategory(category);
-                            context.pop();
+                            Navigator.pop(context);
                           },
                           child: Text(context.l10n!.delete),
                         ),
@@ -101,7 +100,7 @@ class CategoryTile extends HookConsumerWidget {
                 ),
               ],
             ),
-            KSizedBox.h8.size,
+            const Gap(8),
           ],
         ),
       ),

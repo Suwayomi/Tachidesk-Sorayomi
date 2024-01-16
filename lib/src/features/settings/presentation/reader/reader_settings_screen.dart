@@ -8,6 +8,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
@@ -17,6 +18,7 @@ import 'widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import 'widgets/reader_mode_tile/reader_mode_tile.dart';
 import 'widgets/reader_navigation_layout_tile/reader_navigation_layout_tile.dart';
 import 'widgets/reader_padding_slider/reader_padding_slider.dart';
+import 'widgets/reader_pinch_to_zoom/reader_pinch_to_zoom.dart';
 import 'widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import 'widgets/reader_swipe_toggle_tile/reader_swipe_chapter_toggle_tile.dart';
 import 'widgets/reader_volume_tap_invert_tile/reader_volume_tap_invert_tile.dart';
@@ -40,10 +42,15 @@ class ReaderSettingsScreen extends ConsumerWidget {
           const ReaderScrollAnimationTile(),
           const ReaderPaddingSlider(),
           const ReaderMagnifierSizeSlider(),
-          if (!kIsWeb && Platform.isAndroid) ...[
-            const ReaderVolumeTapTile(),
-            if (isVolumeTapEnabled) const ReaderVolumeTapInvertTile(),
-          ]
+          if (!kIsWeb) ...[
+            if (Platform.isAndroid || Platform.isIOS) const ReaderPinchToZoom(),
+            if (Platform.isAndroid) ...[
+              const ReaderVolumeTapTile(),
+              if (isVolumeTapEnabled) const ReaderVolumeTapInvertTile(),
+              const ReaderPinchToZoom(),
+            ],
+          ],
+          const Gap(128),
         ],
       ),
     );

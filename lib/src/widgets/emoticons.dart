@@ -5,8 +5,8 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 
 import '../constants/app_sizes.dart';
 import '../utils/extensions/custom_extensions.dart';
@@ -48,7 +48,7 @@ class Emoticons extends HookWidget {
                     textAlign: TextAlign.center,
                     style: context.textTheme.displayMedium,
                   ),
-            KSizedBox.h16.size,
+            const Gap(16),
             if (text.isNotBlank)
               Text(
                 text!,

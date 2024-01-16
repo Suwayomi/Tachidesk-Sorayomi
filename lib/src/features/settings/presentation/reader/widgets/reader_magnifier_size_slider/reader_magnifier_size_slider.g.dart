@@ -7,7 +7,7 @@ part of 'reader_magnifier_size_slider.dart';
 // **************************************************************************
 
 String _$readerMagnifierSizeKeyHash() =>
-    r'c8e05f6d26e6853042d03b2fff6cc31f7a0950be';
+    r'3f954620173149ee83f7bdab0b13bc78c06bd796';
 
 /// See also [ReaderMagnifierSizeKey].
 @ProviderFor(ReaderMagnifierSizeKey)

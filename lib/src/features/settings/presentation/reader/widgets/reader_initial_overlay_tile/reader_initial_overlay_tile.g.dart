@@ -7,7 +7,7 @@ part of 'reader_initial_overlay_tile.dart';
 // **************************************************************************
 
 String _$readerInitialOverlayHash() =>
-    r'0cdf556eafc512165da2ba3b955544a187f03aad';
+    r'fd033c1b69ab9437600a762c7bd8c759198fe4d7';
 
 /// See also [ReaderInitialOverlay].
 @ProviderFor(ReaderInitialOverlay)

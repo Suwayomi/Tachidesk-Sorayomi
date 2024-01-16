@@ -156,7 +156,7 @@ class _$ChapterMangaPairImpl implements _ChapterMangaPair {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterMangaPairImpl &&
@@ -318,7 +318,7 @@ class _$ChapterPageImpl implements _ChapterPage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterPageImpl &&

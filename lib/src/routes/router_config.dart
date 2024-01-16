@@ -4,7 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -125,7 +127,15 @@ class QuickSearchRoute extends ShellRouteData {
 
   @override
   Widget builder(context, state, navigator) =>
-      SearchStackScreen(child: navigator);
+      AnnotatedRegion<SystemUiOverlayStyle>(
+        value: FlexColorScheme.themedSystemNavigationBar(
+          context,
+          systemNavBarStyle: FlexSystemNavBarStyle.background,
+          useDivider: false,
+          opacity: 0.60,
+        ),
+        child: SearchStackScreen(child: navigator),
+      );
 }
 
 // Shell Routes

@@ -112,33 +112,21 @@ class LibraryQuery extends _$LibraryQuery with StateProviderMixin<String?> {
 class LibraryMangaFilterDownloaded extends _$LibraryMangaFilterDownloaded
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.mangaFilterDownloaded.name,
-        initial: DBKeys.mangaFilterDownloaded.initial,
-      );
+  bool? build() => initialize(DBKeys.mangaFilterDownloaded);
 }
 
 @riverpod
 class LibraryMangaFilterUnread extends _$LibraryMangaFilterUnread
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.mangaFilterUnread.name,
-        initial: DBKeys.mangaFilterUnread.initial,
-      );
+  bool? build() => initialize(DBKeys.mangaFilterUnread);
 }
 
 @riverpod
 class LibraryMangaFilterCompleted extends _$LibraryMangaFilterCompleted
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.mangaFilterCompleted.name,
-        initial: DBKeys.mangaFilterCompleted.initial,
-      );
+  bool? build() => initialize(DBKeys.mangaFilterCompleted);
 }
 
 @riverpod
@@ -146,9 +134,7 @@ class LibraryMangaSort extends _$LibraryMangaSort
     with SharedPreferenceEnumClientMixin<MangaSort> {
   @override
   MangaSort? build() => initialize(
-        ref,
-        key: DBKeys.mangaSort.name,
-        initial: DBKeys.mangaSort.initial,
+        DBKeys.mangaSort,
         enumList: MangaSort.values,
       );
 }
@@ -157,11 +143,7 @@ class LibraryMangaSort extends _$LibraryMangaSort
 class LibraryMangaSortDirection extends _$LibraryMangaSortDirection
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.mangaSortDirection.name,
-        initial: DBKeys.mangaSortDirection.initial,
-      );
+  bool? build() => initialize(DBKeys.mangaSortDirection);
 }
 
 @riverpod
@@ -169,9 +151,7 @@ class LibraryDisplayMode extends _$LibraryDisplayMode
     with SharedPreferenceEnumClientMixin<DisplayMode> {
   @override
   DisplayMode? build() => initialize(
-        ref,
-        key: DBKeys.libraryDisplayMode.name,
-        initial: DBKeys.libraryDisplayMode.initial,
+        DBKeys.libraryDisplayMode,
         enumList: DisplayMode.values,
       );
 }

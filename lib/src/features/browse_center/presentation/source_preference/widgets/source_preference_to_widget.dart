@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/multi_select_popup.dart';
@@ -27,7 +26,7 @@ class SourcePreferenceToWidget extends StatelessWidget {
   void onChangedPreferenceCopyWith<T extends SourcePreferenceProp>(T prop,
       [BuildContext? context]) {
     onChanged(sourcePreference.copyWith(sourcePreferenceProp: prop));
-    if (context != null) context.pop();
+    if (context != null) Navigator.pop(context);
   }
 
   @override

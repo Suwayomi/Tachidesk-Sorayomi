@@ -557,7 +557,7 @@ class _$MangaImpl extends _Manga {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MangaImpl &&
@@ -963,7 +963,7 @@ class _$MangaMetaImpl implements _MangaMeta {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MangaMetaImpl &&

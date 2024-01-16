@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 
 import 'enum.dart';
@@ -16,6 +17,7 @@ enum DBKeys {
   extensionLanguageFilter(["installed", "update", "en", "all"]),
   sourceLastUsed(null),
   themeMode(ThemeMode.system),
+  isTrueBlack(false),
   authType(AuthType.none),
   basicCredentials(null),
   readerMode(ReaderMode.webtoon),
@@ -46,6 +48,8 @@ enum DBKeys {
   readerOverlay(true),
   volumeTap(false),
   volumeTapInvert(false),
+  pinchToZoom(true),
+  flexScheme(FlexScheme.material),
   ;
 
   const DBKeys(this.initial);

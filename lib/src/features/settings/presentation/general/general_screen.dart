@@ -7,7 +7,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/language_list.dart';
@@ -37,7 +36,7 @@ class GeneralScreen extends ConsumerWidget {
                 value: context.currentLocale,
                 onChange: (locale) {
                   ref.read(l10nProvider.notifier).update(locale);
-                  context.pop();
+                  Navigator.pop(context);
                 },
                 getOptionTitle: getLanguageNameFormLocale,
                 getOptionSubtitle: getLanguageNameInEnFormLocale,

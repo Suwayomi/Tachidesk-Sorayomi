@@ -41,9 +41,7 @@ class AuthTypeKey extends _$AuthTypeKey
     with SharedPreferenceEnumClientMixin<AuthType> {
   @override
   AuthType? build() => initialize(
-        ref,
-        initial: DBKeys.authType.initial,
-        key: DBKeys.authType.name,
+        DBKeys.authType,
         enumList: AuthType.values,
       );
 }
@@ -65,9 +63,7 @@ class L10n extends _$L10n with SharedPreferenceClientMixin<Locale> {
             );
   @override
   Locale? build() => initialize(
-        ref,
-        key: DBKeys.l10n.name,
-        initial: DBKeys.l10n.initial,
+        DBKeys.l10n,
         fromJson: fromJson,
         toJson: toJson,
       );

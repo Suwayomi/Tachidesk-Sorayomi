@@ -6,7 +6,7 @@ part of 'show_nsfw_switch.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$showNSFWHash() => r'a88757282270337527e28828b83e3a36189a424c';
+String _$showNSFWHash() => r'666d246997c11dc67d88f95a2264aa728fc307f4';
 
 /// See also [ShowNSFW].
 @ProviderFor(ShowNSFW)

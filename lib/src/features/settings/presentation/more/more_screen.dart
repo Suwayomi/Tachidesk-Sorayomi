@@ -9,13 +9,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/gen/assets.gen.dart';
 import '../../../../constants/urls.dart';
-
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
+import '../../widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
 import '../../widgets/server_url_tile/server_url_tile.dart';
-import '../../widgets/theme_mode_tile/theme_mode_tile.dart';
 
 class MoreScreen extends ConsumerWidget {
   const MoreScreen({super.key});
@@ -39,7 +38,7 @@ class MoreScreen extends ConsumerWidget {
             leading: const Icon(Icons.label_rounded),
             onTap: () => const EditCategoriesRoute().push(context),
           ),
-          const AppThemeTile(),
+          const AppThemeModeTile(),
           ListTile(
             title: Text(context.l10n!.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),

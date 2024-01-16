@@ -190,7 +190,7 @@ class _$HelpTextQuickSearchResultImpl implements HelpTextQuickSearchResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HelpTextQuickSearchResultImpl &&
@@ -397,7 +397,7 @@ class _$SourceQuickSearchResultImpl implements SourceQuickSearchResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SourceQuickSearchResultImpl &&
@@ -607,7 +607,7 @@ class _$SourceSearchQuickSearchResultImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SourceSearchQuickSearchResultImpl &&
@@ -813,7 +813,7 @@ class _$CategoryQuickSearchResultImpl implements CategoryQuickSearchResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryQuickSearchResultImpl &&
@@ -1033,7 +1033,7 @@ class _$CategoryMangaQuickSearchResultImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryMangaQuickSearchResultImpl &&
@@ -1278,7 +1278,7 @@ class _$CategoryMangaChapterQuickSearchResultImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryMangaChapterQuickSearchResultImpl &&
@@ -1509,7 +1509,7 @@ class _$MangaQuickSearchResultImpl implements MangaQuickSearchResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MangaQuickSearchResultImpl &&
@@ -1750,7 +1750,7 @@ class _$ChapterQuickSearchResultImpl implements ChapterQuickSearchResult {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterQuickSearchResultImpl &&
@@ -1930,7 +1930,7 @@ class _$GlobalSearchQuickSearchResultImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GlobalSearchQuickSearchResultImpl);

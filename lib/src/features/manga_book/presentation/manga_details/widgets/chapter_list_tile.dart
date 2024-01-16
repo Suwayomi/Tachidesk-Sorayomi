@@ -6,8 +6,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../constants/app_sizes.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
@@ -46,7 +45,7 @@ class ChapterListTile extends StatelessWidget {
                 color: chapter.read.ifNull() ? Colors.grey : context.iconColor,
                 size: 20,
               ),
-              KSizedBox.w4.size,
+              const Gap(4),
             ],
             Expanded(
               child: Text(

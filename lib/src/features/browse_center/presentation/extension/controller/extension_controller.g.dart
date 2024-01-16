@@ -90,7 +90,7 @@ final extensionMapFilteredAndQueriedProvider =
 typedef ExtensionMapFilteredAndQueriedRef
     = AutoDisposeProviderRef<AsyncValue<Map<String, List<Extension>>>>;
 String _$extensionLanguageFilterHash() =>
-    r'88d38cadc3c1d8ac110d8f0e6150bae813c204f4';
+    r'6a687d8f842a353a9d5ed7f4333f99b8557a2e0c';
 
 /// See also [ExtensionLanguageFilter].
 @ProviderFor(ExtensionLanguageFilter)
