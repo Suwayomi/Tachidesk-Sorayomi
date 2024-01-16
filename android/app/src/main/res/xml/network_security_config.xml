@@ -6,7 +6,6 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 -->
 
-<?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <base-config cleartextTrafficPermitted="true">
         <trust-anchors>
