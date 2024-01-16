@@ -6,7 +6,7 @@ part of 'grid_cover_min_width.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gridMinWidthHash() => r'8cd39a48857bc29905fc40604feaa224976d287c';
+String _$gridMinWidthHash() => r'ad72f8c6aa95e47acf6470e2766525ce64880193';
 
 /// See also [GridMinWidth].
 @ProviderFor(GridMinWidth)

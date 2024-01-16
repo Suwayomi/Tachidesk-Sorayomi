@@ -13,7 +13,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../constants/db_keys.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/slider_setting_tile/slider_setting_tile.dart';
@@ -24,11 +23,7 @@ part 'reader_magnifier_size_slider.g.dart';
 class ReaderMagnifierSizeKey extends _$ReaderMagnifierSizeKey
     with SharedPreferenceClientMixin<double> {
   @override
-  double? build() => initialize(
-        ref,
-        initial: DBKeys.readerMagnifierSize.initial,
-        key: DBKeys.readerMagnifierSize.name,
-      );
+  double? build() => initialize(DBKeys.readerMagnifierSize);
 }
 
 class ReaderMagnifierSizeSlider extends ConsumerWidget {

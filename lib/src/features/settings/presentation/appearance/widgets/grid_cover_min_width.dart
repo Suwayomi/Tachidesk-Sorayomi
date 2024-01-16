@@ -19,11 +19,7 @@ part 'grid_cover_min_width.g.dart';
 class GridMinWidth extends _$GridMinWidth
     with SharedPreferenceClientMixin<double> {
   @override
-  double? build() => initialize(
-        ref,
-        key: DBKeys.gridMangaCoverWidth.name,
-        initial: DBKeys.gridMangaCoverWidth.initial,
-      );
+  double? build() => initialize(DBKeys.gridMangaCoverWidth);
 }
 
 class GridCoverMinWidth extends ConsumerWidget {

@@ -5,13 +5,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
-
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/radio_list_popup.dart';
 import '../controller/source_manga_controller.dart';
@@ -34,7 +31,7 @@ class SourceMangaDisplayIconPopup extends ConsumerWidget {
           value: displayMode,
           onChange: (enumValue) async {
             ref.read(sourceDisplayModeProvider.notifier).update(enumValue);
-            if (context.mounted) context.pop();
+            if (context.mounted) Navigator.pop(context);
           },
         ),
       ),

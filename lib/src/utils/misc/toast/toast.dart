@@ -5,8 +5,8 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gap/gap.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/app_sizes.dart';
@@ -79,7 +79,7 @@ class ToastWidget extends StatelessWidget {
           ? Row(
               children: [
                 icon!,
-                KSizedBox.w16.size,
+                const Gap(16),
                 textWidget,
               ],
             )

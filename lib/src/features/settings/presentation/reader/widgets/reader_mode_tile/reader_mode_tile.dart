@@ -5,13 +5,11 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
 import '../../../../../../constants/enum.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../../widgets/radio_list_popup.dart';
@@ -22,12 +20,8 @@ part 'reader_mode_tile.g.dart';
 class ReaderModeKey extends _$ReaderModeKey
     with SharedPreferenceEnumClientMixin<ReaderMode> {
   @override
-  ReaderMode? build() => initialize(
-        ref,
-        initial: DBKeys.readerMode.initial,
-        key: DBKeys.readerMode.name,
-        enumList: ReaderMode.values,
-      );
+  ReaderMode? build() =>
+      initialize(DBKeys.readerMode, enumList: ReaderMode.values);
 }
 
 class ReaderModeTile extends ConsumerWidget {
@@ -49,7 +43,7 @@ class ReaderModeTile extends ConsumerWidget {
           value: readerMode ?? ReaderMode.webtoon,
           onChange: (enumValue) async {
             ref.read(readerModeKeyProvider.notifier).update(enumValue);
-            if (context.mounted) context.pop();
+            if (context.mounted) Navigator.pop(context);
           },
         ),
       ),

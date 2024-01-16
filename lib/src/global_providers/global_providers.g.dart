@@ -80,7 +80,7 @@ final rateLimitQueueProvider = AutoDisposeProvider<Queue>.internal(
 );
 
 typedef RateLimitQueueRef = AutoDisposeProviderRef<Queue>;
-String _$authTypeKeyHash() => r'8264b20583c2d0e3c9da5073ff1c13fda7e7fc34';
+String _$authTypeKeyHash() => r'357e6f44cc8ac94656f8491ed9f6d1775ac52ec6';
 
 /// See also [AuthTypeKey].
 @ProviderFor(AuthTypeKey)
@@ -95,7 +95,7 @@ final authTypeKeyProvider =
 );
 
 typedef _$AuthTypeKey = AutoDisposeNotifier<AuthType?>;
-String _$l10nHash() => r'6a874a9412c7619bba907eebafcb828e7de350cf';
+String _$l10nHash() => r'1d15ba851371130f70b37ec77cbdc62ac6d9a7b8';
 
 /// See also [L10n].
 @ProviderFor(L10n)

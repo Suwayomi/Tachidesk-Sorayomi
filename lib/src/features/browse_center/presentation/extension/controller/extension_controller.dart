@@ -73,11 +73,7 @@ List<String> extensionFilterLangList(ExtensionFilterLangListRef ref) {
 class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
     with SharedPreferenceClientMixin<List<String>> {
   @override
-  List<String>? build() => initialize(
-        ref,
-        key: DBKeys.extensionLanguageFilter.name,
-        initial: DBKeys.extensionLanguageFilter.initial,
-      );
+  List<String>? build() => initialize(DBKeys.extensionLanguageFilter);
 }
 
 @riverpod

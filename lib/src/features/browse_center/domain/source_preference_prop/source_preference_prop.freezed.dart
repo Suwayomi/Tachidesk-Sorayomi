@@ -293,7 +293,7 @@ class _$FallbackImpl implements Fallback {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FallbackImpl &&
@@ -620,7 +620,7 @@ class _$CheckBoxPreferenceImpl implements CheckBoxPreference {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CheckBoxPreferenceImpl &&
@@ -969,7 +969,7 @@ class _$SwitchPreferenceCompatImpl implements SwitchPreferenceCompat {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwitchPreferenceCompatImpl &&
@@ -1332,7 +1332,7 @@ class _$ListPreferenceImpl implements ListPreference {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ListPreferenceImpl &&
@@ -1726,7 +1726,7 @@ class _$MultiSelectListPreferenceImpl implements MultiSelectListPreference {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MultiSelectListPreferenceImpl &&
@@ -2109,7 +2109,7 @@ class _$EditTextPreferenceImpl implements EditTextPreference {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditTextPreferenceImpl &&

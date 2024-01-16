@@ -11,7 +11,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
-
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -85,12 +84,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
       return;
     }, []);
 
-    return WillPopScope(
-      onWillPop: () async {
-        if (categoryId != null) {
+    return PopScope(
+      onPopInvoked: (didPop) async {
+        if (didPop && categoryId != null) {
           ref.invalidate(categoryMangaListProvider(categoryId!));
         }
-        return true;
       },
       child: manga.showUiWhenData(
         context,
@@ -140,11 +138,20 @@ class MangaDetailsScreen extends HookConsumerWidget {
               : AppBar(
                   title: Text(data?.title ?? context.l10n!.manga),
                   actions: [
-                    if (context.isTablet)
+                    if (context.isTablet) ...[
                       IconButton(
                         onPressed: () => refresh(true),
                         icon: const Icon(Icons.refresh_rounded),
                       ),
+                      IconButton(
+                        onPressed: () => showDialog(
+                          context: context,
+                          builder: (context) =>
+                              EditMangaCategoryDialog(mangaId: mangaId),
+                        ),
+                        icon: const Icon(Icons.category_rounded),
+                      )
+                    ],
                     Builder(
                       builder: (context) => IconButton(
                         onPressed: () {
@@ -165,29 +172,29 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         icon: const Icon(Icons.filter_list_rounded),
                       ),
                     ),
-                    PopupMenuButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: KBorderRadius.r16.radius,
-                      ),
-                      icon: const Icon(Icons.more_vert_rounded),
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          onTap: () => Future.microtask(
-                            () => showDialog(
-                              context: context,
-                              builder: (context) =>
-                                  EditMangaCategoryDialog(mangaId: mangaId),
-                            ),
-                          ),
-                          child: Text(context.l10n!.editCategory),
+                    if (!context.isTablet)
+                      PopupMenuButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: KBorderRadius.r16.radius,
                         ),
-                        if (!context.isTablet)
+                        icon: const Icon(Icons.more_vert_rounded),
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            onTap: () => Future.microtask(
+                              () => showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    EditMangaCategoryDialog(mangaId: mangaId),
+                              ),
+                            ),
+                            child: Text(context.l10n!.editCategory),
+                          ),
                           PopupMenuItem(
                             onTap: () => refresh(true),
                             child: Text(context.l10n!.refresh),
                           ),
-                      ],
-                    )
+                        ],
+                      )
                   ],
                 ),
           endDrawer: Drawer(

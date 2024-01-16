@@ -255,7 +255,7 @@ class _$SourceImpl implements _Source {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SourceImpl &&

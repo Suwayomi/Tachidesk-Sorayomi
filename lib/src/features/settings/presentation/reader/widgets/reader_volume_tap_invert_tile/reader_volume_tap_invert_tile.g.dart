@@ -6,7 +6,7 @@ part of 'reader_volume_tap_invert_tile.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$volumeTapInvertHash() => r'1d598d8e98e6f885720edc3c3e4d72589efe3880';
+String _$volumeTapInvertHash() => r'2bcbb177dc5776d0fba12704a83f6973743342d6';
 
 /// See also [VolumeTapInvert].
 @ProviderFor(VolumeTapInvert)

@@ -8,7 +8,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,11 +21,7 @@ part 'server_port_tile.g.dart';
 @riverpod
 class ServerPort extends _$ServerPort with SharedPreferenceClientMixin<int> {
   @override
-  int? build() => initialize(
-        ref,
-        key: DBKeys.serverPort.name,
-        initial: DBKeys.serverPort.initial,
-      );
+  int? build() => initialize(DBKeys.serverPort);
 }
 
 @riverpod
@@ -34,8 +29,7 @@ class ServerPortToggle extends _$ServerPortToggle
     with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(
-        ref,
-        key: DBKeys.serverPortToggle.name,
+        DBKeys.serverPortToggle,
         initial: kIsWeb ? false : DBKeys.serverPortToggle.initial,
       );
 }
@@ -92,7 +86,7 @@ class ServerPortField extends HookConsumerWidget {
         controller: controller,
         onSubmitted: (value) {
           _update(int.tryParse(controller.text), ref);
-          context.pop();
+          Navigator.pop(context);
         },
         keyboardType: TextInputType.number,
         maxLength: 5,
@@ -108,7 +102,7 @@ class ServerPortField extends HookConsumerWidget {
         ElevatedButton(
           onPressed: () {
             _update(int.tryParse(controller.text), ref);
-            context.pop();
+            Navigator.pop(context);
           },
           child: Text(context.l10n!.save),
         ),
