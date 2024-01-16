@@ -7,7 +7,7 @@ part of 'reader_scroll_animation_tile.dart';
 // **************************************************************************
 
 String _$readerScrollAnimationHash() =>
-    r'5795593f5a067596e2bcbd198ae9bf79e584e4e8';
+    r'141994b8a881442624c91141d3148cd8bdd8aad7';
 
 /// See also [ReaderScrollAnimation].
 @ProviderFor(ReaderScrollAnimation)

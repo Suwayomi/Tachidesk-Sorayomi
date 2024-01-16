@@ -6,7 +6,7 @@ part of 'reader_invert_tap_tile.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$invertTapHash() => r'8885890ec1184098ce4769b2488f02078502937b';
+String _$invertTapHash() => r'c4bde6eb87d0f7ede8eff109d63056af85a2fdc7';
 
 /// See also [InvertTap].
 @ProviderFor(InvertTap)

@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../constants/db_keys.dart';
 import '../../global_providers/global_providers.dart';
 import '../extensions/custom_extensions.dart';
 
@@ -29,17 +30,17 @@ mixin SharedPreferenceClientMixin<T extends Object> {
   T? get state;
   late final dynamic Function(T)? _toJson;
   late final T? Function(dynamic)? _fromJson;
+  AutoDisposeNotifierProviderRef<T?> get ref;
 
   T? initialize(
-    AutoDisposeNotifierProviderRef<T?> ref, {
-    required key,
+    DBKeys key, {
     T? initial,
     dynamic Function(T)? toJson,
     T? Function(dynamic)? fromJson,
   }) {
     _client = ref.watch(sharedPreferencesProvider);
-    _key = key;
-    _initial = initial;
+    _key = key.name;
+    _initial = initial ?? key.initial;
     _toJson = toJson;
     _fromJson = fromJson;
     _persistenceRefreshLogic(ref);
@@ -100,16 +101,12 @@ mixin SharedPreferenceEnumClientMixin<T extends Enum> {
   T? _initial;
   late List<T> _enumList;
   set state(T? newState);
+  AutoDisposeNotifierProviderRef<T?> get ref;
 
-  T? initialize(
-    AutoDisposeNotifierProviderRef<T?> ref, {
-    required key,
-    required List<T> enumList,
-    T? initial,
-  }) {
+  T? initialize(DBKeys key, {required List<T> enumList}) {
     _client = ref.watch(sharedPreferencesProvider);
-    _key = key;
-    _initial = initial;
+    _key = key.name;
+    _initial = key.initial;
     _enumList = enumList;
     _persistenceRefreshLogic(ref);
     return _get;

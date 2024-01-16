@@ -6,7 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
@@ -61,7 +60,7 @@ class EditCategoryDialog extends HookConsumerWidget {
                       categoryName.text,
                       defaultCategory.value,
                     );
-                    context.pop();
+                    Navigator.pop(context);
                   }
                 : null,
           ),
@@ -89,7 +88,7 @@ class EditCategoryDialog extends HookConsumerWidget {
               return;
             }
             submitEditCategory(categoryName.text, defaultCategory.value);
-            context.pop();
+            Navigator.pop(context);
           },
           child: Text(context.l10n!.save),
         ),

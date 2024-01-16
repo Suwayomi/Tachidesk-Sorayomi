@@ -6,7 +6,7 @@ part of 'manga_cover_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$downloadedBadgeHash() => r'afa3d2e9bd56dcb3bcb89c5811f653ea2b1bb934';
+String _$downloadedBadgeHash() => r'c85ad3fe5957c545c2af94e393a463c7ed15a6b3';
 
 /// See also [DownloadedBadge].
 @ProviderFor(DownloadedBadge)
@@ -22,7 +22,7 @@ final downloadedBadgeProvider =
 );
 
 typedef _$DownloadedBadge = AutoDisposeNotifier<bool?>;
-String _$unreadBadgeHash() => r'cdb245781af0083f949d8584063609220b41c790';
+String _$unreadBadgeHash() => r'e69869b4f8a68affd21a3bffccbb7d0577a83043';
 
 /// See also [UnreadBadge].
 @ProviderFor(UnreadBadge)

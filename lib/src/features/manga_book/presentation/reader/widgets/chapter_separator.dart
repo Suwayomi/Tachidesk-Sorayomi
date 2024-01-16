@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
@@ -47,7 +48,7 @@ class ChapterSeparator extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            KSizedBox.h16.size,
+            const Gap(16),
             if (showPrevNextButtons &&
                 nextPrevChapterPair?.second != null &&
                 isPreviousChapterSeparator)
@@ -97,7 +98,7 @@ class ChapterSeparator extends ConsumerWidget {
                   ),
                 ),
               ),
-            KSizedBox.h16.size,
+            const Gap(16),
           ],
         ),
       ),

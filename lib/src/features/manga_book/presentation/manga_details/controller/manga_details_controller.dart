@@ -246,9 +246,7 @@ class MangaChapterSort extends _$MangaChapterSort
     with SharedPreferenceEnumClientMixin<ChapterSort> {
   @override
   ChapterSort? build() => initialize(
-        ref,
-        key: DBKeys.chapterSort.name,
-        initial: DBKeys.chapterSort.initial,
+        DBKeys.chapterSort,
         enumList: ChapterSort.values,
       );
 }
@@ -257,44 +255,28 @@ class MangaChapterSort extends _$MangaChapterSort
 class MangaChapterSortDirection extends _$MangaChapterSortDirection
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.chapterSortDirection.name,
-        initial: DBKeys.chapterSortDirection.initial,
-      );
+  bool? build() => initialize(DBKeys.chapterSortDirection);
 }
 
 @riverpod
 class MangaChapterFilterDownloaded extends _$MangaChapterFilterDownloaded
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.chapterFilterDownloaded.name,
-        initial: DBKeys.chapterFilterDownloaded.initial,
-      );
+  bool? build() => initialize(DBKeys.chapterFilterDownloaded);
 }
 
 @riverpod
 class MangaChapterFilterUnread extends _$MangaChapterFilterUnread
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.chapterFilterUnread.name,
-        initial: DBKeys.chapterFilterUnread.initial,
-      );
+  bool? build() => initialize(DBKeys.chapterFilterUnread);
 }
 
 @riverpod
 class MangaChapterFilterBookmarked extends _$MangaChapterFilterBookmarked
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.chapterFilterBookmarked.name,
-        initial: DBKeys.chapterFilterBookmarked.initial,
-      );
+  bool? build() => initialize(DBKeys.chapterFilterBookmarked);
 }
 
 @riverpod

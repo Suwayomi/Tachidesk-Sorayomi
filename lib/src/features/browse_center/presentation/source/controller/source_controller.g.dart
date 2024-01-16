@@ -220,7 +220,7 @@ final sourceFilterLangMapProvider = AutoDisposeNotifierProvider<
 
 typedef _$SourceFilterLangMap = AutoDisposeNotifier<Map<String, bool>>;
 String _$sourceLanguageFilterHash() =>
-    r'a5a8701a5d14b4c784744131113eb56cf1979dbc';
+    r'8b8f9811770558706a1a9da80a51dc59ac541afa';
 
 /// See also [SourceLanguageFilter].
 @ProviderFor(SourceLanguageFilter)
@@ -236,7 +236,7 @@ final sourceLanguageFilterProvider =
 );
 
 typedef _$SourceLanguageFilter = AutoDisposeNotifier<List<String>?>;
-String _$sourceLastUsedHash() => r'afe764b063f80d11ed033dd6386ad8133b2c0fcd';
+String _$sourceLastUsedHash() => r'd7e60ae5aec05d5ae9bf07ed32c57c7d9fc9ccf8';
 
 /// See also [SourceLastUsed].
 @ProviderFor(SourceLastUsed)

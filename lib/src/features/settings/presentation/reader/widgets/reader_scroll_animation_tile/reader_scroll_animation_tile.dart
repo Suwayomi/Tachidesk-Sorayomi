@@ -9,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 
@@ -19,11 +18,7 @@ part 'reader_scroll_animation_tile.g.dart';
 class ReaderScrollAnimation extends _$ReaderScrollAnimation
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.scrollAnimation.name,
-        initial: DBKeys.scrollAnimation.initial,
-      );
+  bool? build() => initialize(DBKeys.scrollAnimation);
 }
 
 class ReaderScrollAnimationTile extends HookConsumerWidget {

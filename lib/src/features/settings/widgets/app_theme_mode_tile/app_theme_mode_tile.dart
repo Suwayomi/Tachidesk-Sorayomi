@@ -5,26 +5,22 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/db_keys.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/radio_list_popup.dart';
 
-part 'theme_mode_tile.g.dart';
+part 'app_theme_mode_tile.g.dart';
 
 @riverpod
-class ThemeModeKey extends _$ThemeModeKey
+class AppThemeMode extends _$AppThemeMode
     with SharedPreferenceEnumClientMixin<ThemeMode> {
   @override
   ThemeMode? build() => initialize(
-        ref,
-        initial: DBKeys.themeMode.initial,
-        key: DBKeys.themeMode.name,
+        DBKeys.themeMode,
         enumList: ThemeMode.values,
       );
 }
@@ -37,12 +33,12 @@ extension ThemeModeExtension on ThemeMode {
       };
 }
 
-class AppThemeTile extends ConsumerWidget {
-  const AppThemeTile({super.key});
+class AppThemeModeTile extends ConsumerWidget {
+  const AppThemeModeTile({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeModeKeyProvider);
+    final themeMode = ref.watch(appThemeModeProvider);
     return ListTile(
       leading: Icon(
         context.isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
@@ -57,8 +53,8 @@ class AppThemeTile extends ConsumerWidget {
           value: themeMode ?? ThemeMode.system,
           getOptionTitle: (value) => value.toLocale(context),
           onChange: (enumValue) async {
-            ref.read(themeModeKeyProvider.notifier).update(enumValue);
-            if (context.mounted) context.pop();
+            ref.read(appThemeModeProvider.notifier).update(enumValue);
+            if (context.mounted) Navigator.pop(context);
           },
         ),
       ),

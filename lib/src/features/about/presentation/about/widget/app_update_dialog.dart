@@ -6,10 +6,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../constants/urls.dart';
-
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
@@ -29,14 +27,14 @@ void appUpdateDialog({
           content: Text(context.l10n!.versionAvailable(title, newRelease)),
           actions: [
             TextButton(
-              onPressed: () => context.pop(),
+              onPressed: () => Navigator.pop(context),
               child: Text(context.l10n!.close),
             ),
             ElevatedButton.icon(
               onPressed: () {
                 launchUrlInWeb(context,
                     url ?? AppUrls.sorayomiLatestReleaseUrl.url, toast);
-                context.pop();
+                Navigator.pop(context);
               },
               icon: const Icon(FontAwesomeIcons.github),
               label: Text(context.l10n!.gitHub),

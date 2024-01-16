@@ -9,6 +9,7 @@ import 'package:cached_network_image_platform_interface/cached_network_image_pla
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/app_sizes.dart';
@@ -93,7 +94,7 @@ class ServerImage extends HookConsumerWidget {
                     Icons.broken_image_rounded,
                     color: Colors.grey,
                   ),
-                  KSizedBox.h32.size,
+                  const Gap(32),
                   TextButton(
                     onPressed: () {
                       key.value = (UniqueKey());

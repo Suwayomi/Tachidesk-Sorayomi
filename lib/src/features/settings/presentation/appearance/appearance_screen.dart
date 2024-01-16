@@ -5,22 +5,28 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../widgets/theme_mode_tile/theme_mode_tile.dart';
+import '../../widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
+import 'widgets/app_theme_selector/app_theme_selector.dart';
 import 'widgets/grid_cover_min_width.dart';
+import 'widgets/is_true_black/is_true_black_tile.dart';
 
-class AppearanceScreen extends StatelessWidget {
+class AppearanceScreen extends ConsumerWidget {
   const AppearanceScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context, ref) {
+    final themeMode = ref.watch(appThemeModeProvider);
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n!.appearance)),
       body: ListView(
-        children: const [
-          AppThemeTile(),
-          GridCoverMinWidth(),
+        children: [
+          const AppThemeModeTile(),
+          if (themeMode != ThemeMode.light) const IsTrueBlackTile(),
+          const AppThemeSelector(),
+          const GridCoverMinWidth(),
         ],
       ),
     );

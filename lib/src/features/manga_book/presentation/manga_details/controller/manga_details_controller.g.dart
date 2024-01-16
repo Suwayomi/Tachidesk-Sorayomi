@@ -1030,7 +1030,7 @@ class _MangaChapterFilterScanlatorProviderElement
   int get mangaId => (origin as MangaChapterFilterScanlatorProvider).mangaId;
 }
 
-String _$mangaChapterSortHash() => r'c8c1ab8e5211e62f7690f359ffd74d9bb134dcdd';
+String _$mangaChapterSortHash() => r'65cfa4018101913a9afb73cfe0f1dc8e7e9051c6';
 
 /// See also [MangaChapterSort].
 @ProviderFor(MangaChapterSort)
@@ -1047,7 +1047,7 @@ final mangaChapterSortProvider =
 
 typedef _$MangaChapterSort = AutoDisposeNotifier<ChapterSort?>;
 String _$mangaChapterSortDirectionHash() =>
-    r'2028754952ec76ed4fabae6acea36692526c6aef';
+    r'178008eb77e4c802bde58a23b3b288b33fbbcbfd';
 
 /// See also [MangaChapterSortDirection].
 @ProviderFor(MangaChapterSortDirection)
@@ -1064,7 +1064,7 @@ final mangaChapterSortDirectionProvider =
 
 typedef _$MangaChapterSortDirection = AutoDisposeNotifier<bool?>;
 String _$mangaChapterFilterDownloadedHash() =>
-    r'79ecc5ba5a1222c45b3fe90d4ab3af5d5ef45862';
+    r'f22afc19cbdca59e0a9f73c875ef02640d414bc7';
 
 /// See also [MangaChapterFilterDownloaded].
 @ProviderFor(MangaChapterFilterDownloaded)
@@ -1081,7 +1081,7 @@ final mangaChapterFilterDownloadedProvider =
 
 typedef _$MangaChapterFilterDownloaded = AutoDisposeNotifier<bool?>;
 String _$mangaChapterFilterUnreadHash() =>
-    r'3ee19d85422eb771c4c2ce3a49e32732c56b7e02';
+    r'75a99006c8f2ed6c2b52da3f7c9ffdecef0ac4fe';
 
 /// See also [MangaChapterFilterUnread].
 @ProviderFor(MangaChapterFilterUnread)
@@ -1098,7 +1098,7 @@ final mangaChapterFilterUnreadProvider =
 
 typedef _$MangaChapterFilterUnread = AutoDisposeNotifier<bool?>;
 String _$mangaChapterFilterBookmarkedHash() =>
-    r'ce62d26fc7f1be1807028b15499f370dc2872ad2';
+    r'5d99f8a20682b1c278652ea51463fbfc5b0f676b';
 
 /// See also [MangaChapterFilterBookmarked].
 @ProviderFor(MangaChapterFilterBookmarked)

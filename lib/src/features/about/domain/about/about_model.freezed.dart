@@ -207,7 +207,7 @@ class _$AboutImpl implements _About {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AboutImpl &&

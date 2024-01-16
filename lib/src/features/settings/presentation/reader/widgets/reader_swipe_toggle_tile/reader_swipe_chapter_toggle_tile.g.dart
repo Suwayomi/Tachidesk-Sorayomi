@@ -7,7 +7,7 @@ part of 'reader_swipe_chapter_toggle_tile.dart';
 // **************************************************************************
 
 String _$swipeChapterToggleHash() =>
-    r'5434750ad1b77a70b2b3647d8f0eeb69bb681003';
+    r'9695f972659a8b2213796d23f5d84342d292340f';
 
 /// See also [SwipeChapterToggle].
 @ProviderFor(SwipeChapterToggle)

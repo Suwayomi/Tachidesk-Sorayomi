@@ -9,16 +9,16 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../../constants/app_constants.dart';
-import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/endpoints.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../widgets/server_image.dart';
+import '../../../../../settings/presentation/reader/widgets/reader_pinch_to_zoom/reader_pinch_to_zoom.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
 import '../../../../domain/manga/manga_model.dart';
@@ -81,6 +81,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
     }, []);
     final isAnimationEnabled =
         ref.read(readerScrollAnimationProvider).ifNull(true);
+    final isPinchToZoomEnabled = ref.read(pinchToZoomProvider).ifNull(true);
     return ReaderWrapper(
       scrollDirection: scrollDirection,
       chapter: chapter,
@@ -127,7 +128,9 @@ class ContinuousReaderMode extends HookConsumerWidget {
               );
       },
       child: AppUtils.wrapIf(
-        !kIsWeb && (Platform.isAndroid || Platform.isIOS)
+        !kIsWeb &&
+                (Platform.isAndroid || Platform.isIOS) &&
+                isPinchToZoomEnabled
             ? (child) => InteractiveViewer(maxScale: 5, child: child)
             : null,
         ScrollablePositionedList.separated(
@@ -143,7 +146,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
               ? context.height * 2
               : context.width * 2,
           separatorBuilder: (BuildContext context, int index) =>
-              showSeparator ? KSizedBox.h16.size : const SizedBox.shrink(),
+              showSeparator ? const Gap(16) : const SizedBox.shrink(),
           itemBuilder: (BuildContext context, int index) {
             final image = ServerImage(
               showReloadButton: true,
