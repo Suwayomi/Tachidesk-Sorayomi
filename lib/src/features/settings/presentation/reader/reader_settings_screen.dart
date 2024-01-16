@@ -47,7 +47,6 @@ class ReaderSettingsScreen extends ConsumerWidget {
             if (Platform.isAndroid) ...[
               const ReaderVolumeTapTile(),
               if (isVolumeTapEnabled) const ReaderVolumeTapInvertTile(),
-              const ReaderPinchToZoom(),
             ],
           ],
           const Gap(128),
