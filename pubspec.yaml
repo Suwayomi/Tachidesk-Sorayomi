@@ -91,6 +91,7 @@ flutter_launcher_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "assets/icons/launcher/sorayomi_icon.png"
+  image_path_ios: "assets/icons/launcher/ios_sorayomi_icon.png"
   web:
     generate: true
     image_path: "assets/icons/launcher/sorayomi_icon.png"
@@ -101,4 +102,4 @@ flutter_launcher_icons:
     image_path: "assets/icons/launcher/sorayomi_icon.png"
   macos:
     generate: true
-    image_path: "assets/icons/launcher/sorayomi_icon.png"
+    image_path: "assets/icons/launcher/ios_sorayomi_icon.png"
