@@ -14,6 +14,7 @@ import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/radio_list_popup.dart';
+import 'quick_search_toggle/quick_search_toggle_tile.dart';
 
 class GeneralScreen extends ConsumerWidget {
   const GeneralScreen({super.key});
@@ -56,6 +57,7 @@ class GeneralScreen extends ConsumerWidget {
               }
             },
           ),
+          const QuickSearchToggleTile(),
         ],
       ),
     );

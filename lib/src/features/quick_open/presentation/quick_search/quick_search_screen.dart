@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import 'widgets/quick_query_result.dart';
@@ -38,6 +39,7 @@ class QuickSearchScreen extends HookWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const Gap(32),
               QuickSearchBar(controller: controller),
               Flexible(
                 child: QuickQueryResult(

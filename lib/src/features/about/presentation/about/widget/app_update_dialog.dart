@@ -21,7 +21,7 @@ void appUpdateDialog({
 }) =>
     showDialog(
       context: context,
-      builder: (_) {
+      builder: (context) {
         return AlertDialog(
           title: Text(context.l10n!.newUpdateAvailable),
           content: Text(context.l10n!.versionAvailable(title, newRelease)),
