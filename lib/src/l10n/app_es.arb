@@ -8,7 +8,7 @@
   "@addToLibrary": {},
   "appLanguage": "Idioma de la aplicación",
   "@appLanguage": {},
-  "appTheme": "Tema de la aplicación",
+  "appTheme": "Modo tema de la aplicación",
   "@appTheme": {},
   "appTitle": "Tachidesk Sorayomi",
   "@appTitle": {},
@@ -505,5 +505,17 @@
   "remove": "Quitar",
   "@remove": {
     "description": "Remove Button text"
+  },
+  "pinchToZoom": "Pellizcar para hacer zoom",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "Búsqueda rápida",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "isTrueBlack": "Negro verdadero",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
   }
 }
