@@ -9,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
-
 import '../../../utils/extensions/custom_extensions.dart';
 import '../providers/manga_cover_providers.dart';
 
@@ -43,8 +42,8 @@ class MangaChipsRow extends ConsumerWidget {
                 if (manga.unreadCount.isGreaterThan(0) && unreadBadge)
                   MangaChip(
                     text: context.l10n!.nameCountDisplay(
-                      context.l10n!.unread,
                       manga.unreadCount.getValueOnNullOrNegative(),
+                      context.l10n!.unread,
                     ),
                     color: context.theme.colorScheme.primary,
                     textColor: context.theme.colorScheme.onPrimary,
@@ -52,8 +51,8 @@ class MangaChipsRow extends ConsumerWidget {
                 if (manga.downloadCount.isGreaterThan(0) && downloadedBadge)
                   MangaChip(
                     text: context.l10n!.nameCountDisplay(
-                      context.l10n!.downloaded,
                       manga.downloadCount.getValueOnNullOrNegative(),
+                      context.l10n!.downloaded,
                     ),
                     color: context.theme.colorScheme.tertiary,
                     textColor: context.theme.colorScheme.onTertiary,

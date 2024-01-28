@@ -6,7 +6,7 @@ part of 'server_port_tile.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$serverPortHash() => r'3cc6aeb1ff31120ea0f590de35389013914693bc';
+String _$serverPortHash() => r'604731733e9855577fdc9a40b98a917eca77d242';
 
 /// See also [ServerPort].
 @ProviderFor(ServerPort)
@@ -21,7 +21,7 @@ final serverPortProvider =
 );
 
 typedef _$ServerPort = AutoDisposeNotifier<int?>;
-String _$serverPortToggleHash() => r'1cfe71a5d9ab5585525f5b1869a82c8e7ba41722';
+String _$serverPortToggleHash() => r'c7b68d8ce2c77e5af9ba26fc97a3feebfbe9e8cd';
 
 /// See also [ServerPortToggle].
 @ProviderFor(ServerPortToggle)

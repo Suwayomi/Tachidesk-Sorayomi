@@ -96,11 +96,12 @@ class ReaderScreen extends HookConsumerWidget {
           );
     }, []);
 
-    return WillPopScope(
-      onWillPop: () async {
-        ref.invalidate(chapterProviderWithIndex);
-        ref.invalidate(mangaChapterListProvider(mangaId: mangaId));
-        return true;
+    return PopScope(
+      onPopInvoked: (didPop) async {
+        if (didPop) {
+          ref.invalidate(chapterProviderWithIndex);
+          ref.invalidate(mangaChapterListProvider(mangaId: mangaId));
+        }
       },
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),

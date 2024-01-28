@@ -99,20 +99,12 @@ List<Source>? sourceQuery(SourceQueryRef ref, {String? query}) {
 class SourceLanguageFilter extends _$SourceLanguageFilter
     with SharedPreferenceClientMixin<List<String>> {
   @override
-  List<String>? build() => initialize(
-        ref,
-        key: DBKeys.sourceLanguageFilter.name,
-        initial: DBKeys.sourceLanguageFilter.initial,
-      );
+  List<String>? build() => initialize(DBKeys.sourceLanguageFilter);
 }
 
 @riverpod
 class SourceLastUsed extends _$SourceLastUsed
     with SharedPreferenceClientMixin<String> {
   @override
-  String? build() => initialize(
-        ref,
-        key: DBKeys.sourceLastUsed.name,
-        initial: DBKeys.sourceLastUsed.initial,
-      );
+  String? build() => initialize(DBKeys.sourceLastUsed);
 }

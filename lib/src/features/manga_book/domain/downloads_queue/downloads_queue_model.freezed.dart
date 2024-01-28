@@ -242,7 +242,7 @@ class _$DownloadsQueueImpl implements _DownloadsQueue {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DownloadsQueueImpl &&

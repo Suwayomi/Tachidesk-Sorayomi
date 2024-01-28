@@ -15,21 +15,13 @@ part 'manga_cover_providers.g.dart';
 class DownloadedBadge extends _$DownloadedBadge
     with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.downloadedBadge.name,
-        initial: DBKeys.downloadedBadge.initial,
-      );
+  bool? build() => initialize(DBKeys.downloadedBadge);
 }
 
 @riverpod
 class UnreadBadge extends _$UnreadBadge with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.unreadBadge.name,
-        initial: DBKeys.unreadBadge.initial,
-      );
+  bool? build() => initialize(DBKeys.unreadBadge);
 }
 
 // @riverpod

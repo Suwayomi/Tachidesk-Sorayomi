@@ -8,13 +8,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../../constants/app_sizes.dart';
 import '../../../../../../constants/db_keys.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../../widgets/pop_button.dart';
@@ -25,11 +23,7 @@ part 'credentials_popup.g.dart';
 class Credentials extends _$Credentials
     with SharedPreferenceClientMixin<String> {
   @override
-  String? build() => initialize(
-        ref,
-        key: DBKeys.basicCredentials.name,
-        initial: DBKeys.basicCredentials.initial,
-      );
+  String? build() => initialize(DBKeys.basicCredentials);
 }
 
 final formKey = GlobalKey<FormState>();
@@ -65,7 +59,7 @@ class CredentialsPopup extends HookConsumerWidget {
                 border: const OutlineInputBorder(),
               ),
             ),
-            KSizedBox.h4.size,
+            const Gap(4),
             TextFormField(
               controller: password,
               validator: (value) =>
@@ -90,7 +84,7 @@ class CredentialsPopup extends HookConsumerWidget {
                       password: password.text,
                     ),
                   );
-              context.pop();
+              Navigator.pop(context);
             }
           },
           child: Text(context.l10n!.save),

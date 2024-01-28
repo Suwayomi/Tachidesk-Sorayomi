@@ -9,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 
@@ -18,11 +17,7 @@ part 'reader_invert_tap_tile.g.dart';
 @riverpod
 class InvertTap extends _$InvertTap with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.invertTap.name,
-        initial: DBKeys.invertTap.initial,
-      );
+  bool? build() => initialize(DBKeys.invertTap);
 }
 
 class ReaderInvertTapTile extends HookConsumerWidget {

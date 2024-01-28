@@ -8,7 +8,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../utils/extensions/custom_extensions.dart';
 import 'app_constants.dart';
 import 'db_keys.dart';
 
@@ -70,39 +69,6 @@ enum KEdgeInsets {
   const KEdgeInsets(this.size);
 
   final EdgeInsets size;
-}
-
-enum KSizedBox {
-  h4(SizedBox(height: 4)),
-  h8(SizedBox(height: 8)),
-  w4(SizedBox(width: 4)),
-  h16(SizedBox(height: 16)),
-  w16(SizedBox(width: 16)),
-  h32(SizedBox(height: 32)),
-  w32(SizedBox(width: 32)),
-  h64(SizedBox(height: 64)),
-  w64(SizedBox(width: 64)),
-  h96(SizedBox(height: 96)),
-  w96(SizedBox(width: 96)),
-  h104(SizedBox(height: 104)),
-  ;
-
-  static SizedBox scale(
-    BuildContext context, {
-    double? height,
-    double? width,
-    Widget? child,
-  }) {
-    return SizedBox(
-      height: height != null ? context.height * height : null,
-      width: width != null ? context.width * width : null,
-      child: child,
-    );
-  }
-
-  const KSizedBox(this.size);
-
-  final SizedBox size;
 }
 
 enum KBorderRadius {

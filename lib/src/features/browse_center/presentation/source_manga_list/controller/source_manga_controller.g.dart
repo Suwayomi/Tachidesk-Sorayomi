@@ -458,7 +458,7 @@ class _SourceMangaFilterListProviderElement
   List<Filter>? get filter => (origin as SourceMangaFilterListProvider).filter;
 }
 
-String _$sourceDisplayModeHash() => r'363b2f9b0683cd1abea761e244ae9362260f4c5e';
+String _$sourceDisplayModeHash() => r'f386ba15fdc6025e0471b7ffc8066162d83ea083';
 
 /// See also [SourceDisplayMode].
 @ProviderFor(SourceDisplayMode)

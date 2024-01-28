@@ -4,12 +4,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'constants/app_themes/color_schemas/default_theme.dart';
-import 'features/settings/widgets/theme_mode_tile/theme_mode_tile.dart';
+import 'features/settings/presentation/appearance/widgets/app_theme_selector/app_theme_selector.dart';
+import 'features/settings/presentation/appearance/widgets/is_true_black/is_true_black_tile.dart';
+import 'features/settings/widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
 import 'global_providers/global_providers.dart';
 import 'routes/router_config.dart';
 import 'utils/extensions/custom_extensions.dart';
@@ -20,13 +23,29 @@ class Sorayomi extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final routes = ref.watch(routerConfigProvider);
-    final themeMode = ref.watch(themeModeKeyProvider);
+    final themeMode = ref.watch(appThemeModeProvider);
     final appLocale = ref.watch(l10nProvider);
+    final appScheme = ref.watch(appSchemeProvider);
+    final isTrueBlack = ref.watch(isTrueBlackProvider);
     return MaterialApp.router(
+      builder: FToastBuilder(),
       onGenerateTitle: (context) => context.l10n!.appTitle,
       debugShowCheckedModeBanner: false,
-      theme: defaultTheme.light,
-      darkTheme: defaultTheme.dark,
+      theme: FlexThemeData.light(
+        scheme: appScheme,
+        useMaterial3: true,
+        useMaterial3ErrorColors: true,
+      ).copyWith(
+        tabBarTheme: const TabBarTheme(tabAlignment: TabAlignment.center),
+      ),
+      darkTheme: FlexThemeData.dark(
+        scheme: appScheme,
+        useMaterial3: true,
+        useMaterial3ErrorColors: true,
+        darkIsTrueBlack: isTrueBlack.ifNull(),
+      ).copyWith(
+        tabBarTheme: const TabBarTheme(tabAlignment: TabAlignment.center),
+      ),
       themeMode: themeMode ?? ThemeMode.system,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

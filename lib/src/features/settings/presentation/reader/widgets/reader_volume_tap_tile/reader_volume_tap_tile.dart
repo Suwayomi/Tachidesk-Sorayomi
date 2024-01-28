@@ -4,12 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../../constants/db_keys.dart';
-
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 
@@ -18,11 +18,7 @@ part 'reader_volume_tap_tile.g.dart';
 @riverpod
 class VolumeTap extends _$VolumeTap with SharedPreferenceClientMixin<bool> {
   @override
-  bool? build() => initialize(
-        ref,
-        key: DBKeys.volumeTap.name,
-        initial: DBKeys.volumeTap.initial,
-      );
+  bool? build() => initialize(DBKeys.volumeTap);
 }
 
 class ReaderVolumeTapTile extends HookConsumerWidget {

@@ -222,7 +222,7 @@ class _$FilterHeaderImpl implements FilterHeader {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterHeaderImpl &&
@@ -432,7 +432,7 @@ class _$FilterSeparatorImpl implements FilterSeparator {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterSeparatorImpl &&
@@ -643,7 +643,7 @@ class _$FilterTextImpl implements FilterText {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterTextImpl &&
@@ -853,7 +853,7 @@ class _$FilterCheckBoxImpl implements FilterCheckBox {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterCheckBoxImpl &&
@@ -1064,7 +1064,7 @@ class _$FilterTriStateImpl implements FilterTriState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterTriStateImpl &&
@@ -1305,7 +1305,7 @@ class _$FilterSortImpl implements FilterSort {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterSortImpl &&
@@ -1539,7 +1539,7 @@ class _$FilterSelectImpl implements FilterSelect {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterSelectImpl &&
@@ -1765,7 +1765,7 @@ class _$FilterGroupImpl implements FilterGroup {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterGroupImpl &&
@@ -2024,7 +2024,7 @@ class _$SortStateImpl implements _SortState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SortStateImpl &&
@@ -2178,7 +2178,7 @@ class _$SelectValuesImpl implements _SelectValues {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectValuesImpl &&

@@ -7,12 +7,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/db_keys.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../widgets/pop_button.dart';
@@ -24,8 +22,7 @@ part 'server_url_tile.g.dart';
 class ServerUrl extends _$ServerUrl with SharedPreferenceClientMixin<String> {
   @override
   String? build() => initialize(
-        ref,
-        key: DBKeys.serverUrl.name,
+        DBKeys.serverUrl,
         initial: kIsWeb ? Uri.base.origin : DBKeys.serverUrl.initial,
       );
 }
@@ -71,7 +68,7 @@ class ServerUrlField extends HookConsumerWidget {
         controller: controller,
         onSubmitted: (value) {
           _update(controller.text, ref);
-          context.pop();
+          Navigator.pop(context);
         },
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
@@ -83,7 +80,7 @@ class ServerUrlField extends HookConsumerWidget {
         ElevatedButton(
           onPressed: () {
             _update(controller.text, ref);
-            context.pop();
+            Navigator.pop(context);
           },
           child: Text(context.l10n!.save),
         ),

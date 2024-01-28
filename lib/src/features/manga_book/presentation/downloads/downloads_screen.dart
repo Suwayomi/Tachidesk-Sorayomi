@@ -5,9 +5,8 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import '../../../../constants/app_sizes.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -54,7 +53,7 @@ class DownloadsScreen extends ConsumerWidget {
             return ListView.builder(
               itemExtent: 104,
               itemBuilder: (context, index) {
-                if (index == downloadsCount) return KSizedBox.h104.size;
+                if (index == downloadsCount) return const Gap(104);
                 final chapterId = downloadsChapterIds[index];
                 return DownloadProgressListTile(
                   key: ValueKey("$chapterId"),

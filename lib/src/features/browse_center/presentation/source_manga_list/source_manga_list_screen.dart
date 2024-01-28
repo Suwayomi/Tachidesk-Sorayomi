@@ -6,13 +6,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/enum.dart';
-
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
@@ -92,7 +90,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
             onReset: () => ref.read(provider.notifier).reset(),
             onSubmitted: (value) {
               if (sourceType == SourceType.filter) {
-                context.pop();
+                Navigator.pop(context);
                 ref.read(provider.notifier).updateFilter(value);
                 controller.refresh();
               } else {
