@@ -60,7 +60,7 @@ class ChapterSeparator extends ConsumerWidget {
                     chapterIndex: nextPrevChapterPair.second!.index!,
                   ).pushReplacement(context),
                   child: Text(
-                    context.l10n!.previousChapter(
+                    context.l10n.previousChapter(
                       nextPrevChapterPair?.second?.getDisplayName(context) ??
                           "",
                     ),
@@ -69,8 +69,8 @@ class ChapterSeparator extends ConsumerWidget {
               ),
             Text(
               isPreviousChapterSeparator
-                  ? context.l10n!.start
-                  : context.l10n!.finished,
+                  ? context.l10n.start
+                  : context.l10n.finished,
               style: context.textTheme.titleMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,
@@ -92,7 +92,7 @@ class ChapterSeparator extends ConsumerWidget {
                     chapterIndex: nextPrevChapterPair.first!.index!,
                   ).pushReplacement(context),
                   child: Text(
-                    context.l10n!.nextChapter(
+                    context.l10n.nextChapter(
                       nextPrevChapterPair?.first?.getDisplayName(context) ?? "",
                     ),
                   ),

@@ -14,7 +14,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../constants/db_keys.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../widgets/pop_button.dart';
+import '../../../../widgets/popup_widgets/pop_button.dart';
 
 part 'server_port_tile.g.dart';
 
@@ -43,7 +43,7 @@ class ServerPortTile extends ConsumerWidget {
     final serverToggle = ref.watch(serverPortToggleProvider).ifNull();
     return ListTile(
       leading: const Icon(Icons.dns_rounded),
-      title: Text(context.l10n!.serverPort),
+      title: Text(context.l10n.serverPort),
       subtitle: (serverToggle && serverPort != null)
           ? (Text(serverPort.toString()))
           : null,
@@ -80,7 +80,7 @@ class ServerPortField extends HookConsumerWidget {
       text: (initialPort ?? '').toString(),
     );
     return AlertDialog(
-      title: Text(context.l10n!.serverPort),
+      title: Text(context.l10n.serverPort),
       content: TextField(
         autofocus: true,
         controller: controller,
@@ -94,7 +94,7 @@ class ServerPortField extends HookConsumerWidget {
         decoration: InputDecoration(
           counter: const SizedBox.shrink(),
           border: const OutlineInputBorder(),
-          hintText: (context.l10n!.serverPortHintText),
+          hintText: (context.l10n.serverPortHintText),
         ),
       ),
       actions: [
@@ -104,7 +104,7 @@ class ServerPortField extends HookConsumerWidget {
             _update(int.tryParse(controller.text), ref);
             Navigator.pop(context);
           },
-          child: Text(context.l10n!.save),
+          child: Text(context.l10n.save),
         ),
       ],
     );

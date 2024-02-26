@@ -78,10 +78,10 @@ class ExtensionScreen extends HookConsumerWidget {
               update.isBlank &&
               all.isBlank)
           ? Emoticons(
-              text: context.l10n!.extensionListEmpty,
+              text: context.l10n.extensionListEmpty,
               button: TextButton(
                 onPressed: refresh,
-                child: Text(context.l10n!.refresh),
+                child: Text(context.l10n.refresh),
               ),
             )
           : RefreshIndicator(

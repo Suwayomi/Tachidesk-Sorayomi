@@ -70,7 +70,7 @@ class ChapterListTile extends StatelessWidget {
                   if (!chapter.read.ifNull() &&
                       (chapter.lastPageRead).getValueOnNullOrNegative() != 0)
                     Text(
-                      " • ${context.l10n!.page(chapter.lastPageRead.getValueOnNullOrNegative() + 1)}",
+                      " • ${context.l10n.page(chapter.lastPageRead.getValueOnNullOrNegative() + 1)}",
                       style: const TextStyle(color: Colors.grey),
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -1,0 +1,19 @@
+query About {
+  aboutServer {
+    name
+    version
+    revision
+    buildType
+    buildTime
+    discord
+    github
+  }
+}
+
+query ServerUpdate {
+  checkForServerUpdates {
+    channel
+    tag
+    url
+  }
+}

@@ -40,10 +40,10 @@ class CategoryMangaList extends HookConsumerWidget {
       (data) {
         if (data.isBlank) {
           return Emoticons(
-            text: context.l10n!.noCategoryMangaFound,
+            text: context.l10n.noCategoryMangaFound,
             button: TextButton(
               onPressed: refresh,
-              child: Text(context.l10n!.refresh),
+              child: Text(context.l10n.refresh),
             ),
           );
         }

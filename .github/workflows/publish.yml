@@ -42,30 +42,37 @@ jobs:
     steps:
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
+      # Install Linux dependencies
       - name: Install Linux dependencies
         if: matrix.target == 'linux'
         run: |
           sudo apt-get update -y
           sudo apt-get install -y libgtk-3-dev libx11-dev pkg-config cmake ninja-build libblkid-dev
+
+      # Install Android dependencies
       - name: Install Android dependencies
         if: matrix.target == 'android'
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
+          distribution: "zulu"
           java-version: "12.x"
 
+      # Enable desktop support
       - name: Enable desktop support
         if: matrix.target != 'android' && matrix.target != 'ios' && matrix.target != 'web'
         run: |
           flutter config --enable-linux-desktop
           flutter config --enable-macos-desktop
           flutter config --enable-windows-desktop
+
+      # Recreating the project
       - run: flutter doctor -v
       - uses: actions/checkout@v3
       # - run: flutter create .
       - run: flutter pub get
 
+      # Configure Keystore for Android
       - name: Configure Keystore for Android
         if: matrix.target == 'android'
         working-directory: android
@@ -76,15 +83,19 @@ jobs:
           echo "storePassword=${{ secrets.KEYSTORE_STORE_PASSWORD }}" >> key.properties
           echo "keyPassword=${{ secrets.KEYSTORE_KEY_PASSWORD }}" >> key.properties
 
+      # Build the project for the target platform
       - if: matrix.target != 'android' && matrix.target != 'ios'
         run: flutter build ${{ matrix.target }} --release
+
       - if: matrix.target == 'android'
         run: |
           flutter build apk --release
           flutter build apk --split-per-abi --release
+
       - if: matrix.target == 'ios'
         run: flutter build ios --release --no-codesign
 
+      # Windows packaging
       - name: Copy VC redistributables to release directory for Windows
         if: matrix.target == 'windows'
         working-directory: ${{ matrix.build_path }}
@@ -92,6 +103,8 @@ jobs:
           Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\msvcp140.dll') .
           Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140.dll') .
           Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140_1.dll') .
+
+      # Android packaging
       - name: Rename build for Android
         if: matrix.target == 'android'
         working-directory: ${{ matrix.build_path }}
@@ -126,6 +139,7 @@ jobs:
           cp "$GITHUB_WORKSPACE/assets/icons/launcher/sorayomi_icon.png" "./${{ env.pkg_name }}.png"
           GZIP=-9 tar czf "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.tar.gz" *
 
+      # Debian packaging
       - name: Build deb package
         if: matrix.target == 'linux'
         run: |
@@ -143,14 +157,18 @@ jobs:
           debuild --no-lintian -us -uc
           cp "../${{ env.pkg_name }}_${{ github.ref_name }}-1_amd64.deb" "$GITHUB_WORKSPACE/"
 
+      # macOS packaging
       - name: Compress build for macOS
         if: matrix.target == 'macos'
         working-directory: ${{ matrix.build_path }}
         run: ditto -c -k --sequesterRsrc --keepParent "Tachidesk Sorayomi.app" "$GITHUB_WORKSPACE/${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip"
+
+      # Windows packaging
       - name: Compress build for Windows
         if: matrix.target == 'windows'
         working-directory: ${{ matrix.build_path }}
         run: compress-archive -Path * -DestinationPath "${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip"
+
       - name: Create MSI Package
         if: matrix.target == 'windows' && startsWith(github.ref, 'refs/tags/')
         working-directory: ${{ matrix.build_path }}

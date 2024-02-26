@@ -127,7 +127,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
                 alignment: alignment,
               );
       },
-      child: AppUtils.wrapIf(
+      child: AppUtils.wrapOn(
         !kIsWeb &&
                 (Platform.isAndroid || Platform.isIOS) &&
                 isPinchToZoomEnabled

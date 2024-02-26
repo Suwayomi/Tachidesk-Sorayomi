@@ -55,7 +55,7 @@ class SearchField extends HookWidget {
           decoration: InputDecoration(
             isDense: true,
             border: const OutlineInputBorder(),
-            labelText: hintText ?? context.l10n!.search,
+            labelText: hintText ?? context.l10n.search,
             suffixIcon: closeIcon,
           ),
         ),

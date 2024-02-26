@@ -45,7 +45,7 @@ class Chapter with _$Chapter {
 
   String getDisplayName(BuildContext context) {
     return name ??
-        context.l10n!.chapterNumber(
+        context.l10n.chapterNumber(
           chapterNumber ?? index?.toDouble() ?? 0,
         );
   }

@@ -6,14 +6,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 import '../../features/about/data/about_repository.dart';
 import '../../features/about/presentation/about/controllers/about_controller.dart';
 import '../../features/about/presentation/about/widget/app_update_dialog.dart';
-
 import '../../utils/extensions/custom_extensions.dart';
 import '../../utils/misc/toast/toast.dart';
 import 'big_screen_navigation_bar.dart';
@@ -34,21 +32,19 @@ class ShellScreen extends HookConsumerWidget {
   }) async {
     final AsyncValue<Version?> versionResult = await updateCallback();
     toast.close();
-    if (context.mounted) {
-      versionResult.whenOrNull(
-        data: (version) {
-          if (version != null) {
-            appUpdateDialog(
-              title: title ?? context.l10n!.appTitle,
-              newRelease: "v${version.canonicalizedVersion}",
-              context: context,
-              toast: toast,
-            );
-          }
-        },
-      );
-    }
-    return;
+    if (!context.mounted) return;
+    versionResult.whenOrNull(
+      data: (version) {
+        if (version != null) {
+          appUpdateDialog(
+            title: title ?? context.l10n.appTitle,
+            newRelease: "v${version.canonicalizedVersion}",
+            context: context,
+            toast: toast,
+          );
+        }
+      },
+    );
   }
 
   @override

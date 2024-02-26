@@ -27,7 +27,7 @@ class IsTrueBlackTile extends HookConsumerWidget {
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.circle, color: Colors.black),
-      title: Text(context.l10n!.isTrueBlack),
+      title: Text(context.l10n.isTrueBlack),
       onChanged: ref.read(isTrueBlackProvider.notifier).update,
       value: ref.watch(isTrueBlackProvider).ifNull(),
     );

@@ -6,11 +6,11 @@ part of 'about_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aboutHash() => r'71e0d6115e3d5baeb6cd30cea233be2cba2142bb';
+String _$aboutHash() => r'b095c8ac883226d5e0282b5d019cc97405b02042';
 
 /// See also [about].
 @ProviderFor(about)
-final aboutProvider = AutoDisposeFutureProvider<About?>.internal(
+final aboutProvider = AutoDisposeStreamProvider<AboutDto?>.internal(
   about,
   name: r'aboutProvider',
   debugGetCreateSourceHash:
@@ -19,7 +19,7 @@ final aboutProvider = AutoDisposeFutureProvider<About?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AboutRef = AutoDisposeFutureProviderRef<About?>;
+typedef AboutRef = AutoDisposeStreamProviderRef<AboutDto?>;
 String _$packageInfoHash() => r'a5025c8498b8f2eacf55450228619ff1477adc05';
 
 /// See also [packageInfo].

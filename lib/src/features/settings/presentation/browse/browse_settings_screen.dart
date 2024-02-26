@@ -15,12 +15,12 @@ class BrowseSettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n!.browse)),
+      appBar: AppBar(title: Text(context.l10n.browse)),
       body: ListView(
         children: [
           const ShowNSFWTile(),
           ListTile(
-            subtitle: Text(context.l10n!.nsfwInfo),
+            subtitle: Text(context.l10n.nsfwInfo),
             leading: const Icon(Icons.info_rounded),
             dense: true,
           ),

@@ -24,7 +24,7 @@ class InstallExtensionFile extends ConsumerWidget {
     );
     if ((file?.files).isNotBlank) {
       if (context.mounted) {
-        toast.show(context.l10n!.installingExtension);
+        toast.show(context.l10n.installingExtension);
       }
     }
     AsyncValue.guard(() => ref
@@ -34,7 +34,7 @@ class InstallExtensionFile extends ConsumerWidget {
         error: (error, stackTrace) => result.showToastOnError(toast),
         data: (data) {
           ref.invalidate(extensionProvider);
-          toast.instantShow(context.l10n!.extensionInstalled);
+          toast.show(context.l10n.extensionInstalled, instantShow: true);
         },
       ),
     );

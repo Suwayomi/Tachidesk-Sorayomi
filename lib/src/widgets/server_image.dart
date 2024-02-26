@@ -73,7 +73,7 @@ class ServerImage extends HookConsumerWidget {
 
     finalProgressIndicatorBuilder(
             BuildContext context, String url, DownloadProgress progress) =>
-        AppUtils.wrapIf(
+        AppUtils.wrapOn(
           wrapper,
           progressIndicatorBuilder?.call(context, url, progress) ??
               const CenterSorayomiShimmerIndicator(),
@@ -81,7 +81,7 @@ class ServerImage extends HookConsumerWidget {
 
     Widget errorWidget(BuildContext context, String error, stackTrace) {
       if (showReloadButton) {
-        return AppUtils.wrapIf(
+        return AppUtils.wrapOn(
           wrapper,
           Padding(
             padding: KEdgeInsets.a8.size,
@@ -99,7 +99,7 @@ class ServerImage extends HookConsumerWidget {
                     onPressed: () {
                       key.value = (UniqueKey());
                     },
-                    child: Text(context.l10n!.reload),
+                    child: Text(context.l10n.reload),
                   ),
                 ],
               ),
@@ -107,7 +107,7 @@ class ServerImage extends HookConsumerWidget {
           ),
         );
       } else {
-        return AppUtils.wrapIf(
+        return AppUtils.wrapOn(
           wrapper,
           const Icon(
             Icons.broken_image_rounded,

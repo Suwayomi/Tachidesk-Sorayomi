@@ -38,10 +38,10 @@ class LibraryScreen extends HookConsumerWidget {
       context,
       (data) => data.isBlank
           ? Emoticons(
-              text: context.l10n!.noCategoriesFound,
+              text: context.l10n.noCategoriesFound,
               button: TextButton(
                 onPressed: () => ref.refresh(categoryControllerProvider),
-                child: Text(context.l10n!.refresh),
+                child: Text(context.l10n.refresh),
               ),
             )
           : DefaultTabController(
@@ -50,7 +50,7 @@ class LibraryScreen extends HookConsumerWidget {
                   data.length - 1),
               child: Scaffold(
                 appBar: AppBar(
-                  title: Text(context.l10n!.library),
+                  title: Text(context.l10n.library),
                   centerTitle: true,
                   bottom: PreferredSize(
                     preferredSize: kCalculateAppBarBottomSize(
@@ -123,11 +123,11 @@ class LibraryScreen extends HookConsumerWidget {
                 ),
                 body: data.isBlank
                     ? Emoticons(
-                        text: context.l10n!.noCategoriesFound,
+                        text: context.l10n.noCategoriesFound,
                         button: TextButton(
                           onPressed: () =>
                               ref.refresh(categoryControllerProvider),
-                          child: Text(context.l10n!.refresh),
+                          child: Text(context.l10n.refresh),
                         ),
                       )
                     : Padding(
@@ -145,7 +145,7 @@ class LibraryScreen extends HookConsumerWidget {
       refresh: () => ref.refresh(categoryControllerProvider),
       wrapper: (body) => Scaffold(
         appBar: AppBar(
-          title: Text(context.l10n!.library),
+          title: Text(context.l10n.library),
           centerTitle: true,
         ),
         body: body,

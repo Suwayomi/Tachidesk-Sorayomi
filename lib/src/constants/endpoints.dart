@@ -13,10 +13,18 @@ abstract class Endpoints {
     int? port,
     bool addPort = true,
     bool appendApiToUrl = true,
-  }) =>
-      "${baseUrl ?? DBKeys.serverUrl.initial}"
-      "${port != null && addPort ? ":$port" : ''}"
-      "${appendApiToUrl ? '/api/v1' : ''}";
+    bool isGraphQl = false,
+  }) {
+    String url = "${baseUrl ?? DBKeys.serverUrl.initial}";
+    if (port != null && addPort) {
+      url += ":$port";
+    }
+    if (appendApiToUrl) {
+      final api = isGraphQl ? '/api/graphql' : '/api/v1';
+      url += api;
+    }
+    return url;
+  }
 
   // receiveTimeout
   static const Duration receiveTimeout = Duration(minutes: 1);

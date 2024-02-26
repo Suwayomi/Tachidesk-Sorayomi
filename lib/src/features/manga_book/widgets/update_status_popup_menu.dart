@@ -32,20 +32,20 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
         return [
           if (category != null && category.id != null && category.id != 0)
             PopupMenuItem(
-              child: Text(context.l10n!.categoryUpdate),
+              child: Text(context.l10n.categoryUpdate),
               onTap: () => ref
                   .read(updatesRepositoryProvider)
                   .fetchUpdates(categoryId: category.id),
             ),
           PopupMenuItem(
             onTap: () => ref.read(updatesRepositoryProvider).fetchUpdates(),
-            child: Text(context.l10n!.globalUpdate),
+            child: Text(context.l10n.globalUpdate),
           ),
           if (showSummaryButton)
             PopupMenuItem(
               onTap: () => const UpdateStatusRoute().push(context),
               child: Text(
-                context.l10n!.updatesSummary,
+                context.l10n.updatesSummary,
               ),
             ),
         ];

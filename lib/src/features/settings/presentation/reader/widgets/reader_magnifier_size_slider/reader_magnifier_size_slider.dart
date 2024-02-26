@@ -36,7 +36,7 @@ class ReaderMagnifierSizeSlider extends ConsumerWidget {
             DBKeys.readerMagnifierSize.initial;
     return SliderSettingTile(
       icon: Icons.search,
-      title: context.l10n!.readerMagnifierSize,
+      title: context.l10n.readerMagnifierSize,
       value: readerMagnifierSize,
       getSliderLabel: (val) => val.toStringAsFixed(2),
       onChanged: ref.read(readerMagnifierSizeKeyProvider.notifier).update,
@@ -78,7 +78,7 @@ class AsyncReaderMagnifierSizeSlider extends HookConsumerWidget {
     );
     return SliderSettingTile(
       icon: Icons.search,
-      title: context.l10n!.readerMagnifierSize,
+      title: context.l10n.readerMagnifierSize,
       value: readerMagnifierSize.value,
       getSliderLabel: (val) => val.toStringAsFixed(2),
       onChanged: onDebounceChanged,

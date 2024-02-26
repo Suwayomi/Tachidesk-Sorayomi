@@ -20,7 +20,7 @@ class AppearanceScreen extends ConsumerWidget {
   Widget build(context, ref) {
     final themeMode = ref.watch(appThemeModeProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n!.appearance)),
+      appBar: AppBar(title: Text(context.l10n.appearance)),
       body: ListView(
         children: [
           const AppThemeModeTile(),

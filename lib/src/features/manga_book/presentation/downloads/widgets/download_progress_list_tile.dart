@@ -168,18 +168,18 @@ class DownloadProgressListTile extends HookConsumerWidget {
               itemBuilder: (context) => [
                 if (download.state == "Error")
                   PopupMenuItem(
-                    child: Text(context.l10n!.retry),
+                    child: Text(context.l10n.retry),
                     onTap: () => toggleChapterToQueue(toast, ref, true,
                         download.mangaId!, download.chapterIndex!),
                   ),
                 PopupMenuItem(
-                  child: Text(context.l10n!.delete),
+                  child: Text(context.l10n.delete),
                   onTap: () => toggleChapterToQueue(toast, ref, false,
                       download.mangaId!, download.chapterIndex!),
                 ),
                 if (!index.isZero)
                   PopupMenuItem(
-                    child: Text(context.l10n!.moveToTop),
+                    child: Text(context.l10n.moveToTop),
                     onTap: () =>
                         ref.read(downloadsRepositoryProvider).reorderDownload(
                               download.mangaId!,
@@ -189,7 +189,7 @@ class DownloadProgressListTile extends HookConsumerWidget {
                   ),
                 if (index < downloadsCount - 1)
                   PopupMenuItem(
-                    child: Text(context.l10n!.moveToBottom),
+                    child: Text(context.l10n.moveToBottom),
                     onTap: () =>
                         ref.read(downloadsRepositoryProvider).reorderDownload(
                               download.mangaId!,

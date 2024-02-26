@@ -67,8 +67,8 @@ class MangaDescription extends HookConsumerWidget {
                 secondaryIcon: const Icon(Icons.favorite_border_outlined),
                 secondaryStyle:
                     TextButton.styleFrom(foregroundColor: Colors.grey),
-                primaryLabel: Text(context.l10n!.inLibrary),
-                secondaryLabel: Text(context.l10n!.addToLibrary),
+                primaryLabel: Text(context.l10n.inLibrary),
+                secondaryLabel: Text(context.l10n.addToLibrary),
               ),
               if (manga.realUrl.isNotBlank)
                 TextButton.icon(
@@ -81,7 +81,7 @@ class MangaDescription extends HookConsumerWidget {
                   },
                   icon: const Icon(Icons.public),
                   style: TextButton.styleFrom(foregroundColor: Colors.grey),
-                  label: Text(context.l10n!.webView),
+                  label: Text(context.l10n.webView),
                 ),
             ],
           ),

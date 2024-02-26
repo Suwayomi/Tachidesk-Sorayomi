@@ -23,7 +23,7 @@ class MoreScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.more),
+        title: Text(context.l10n.more),
       ),
       body: ListView(
         children: [
@@ -34,29 +34,29 @@ class MoreScreen extends ConsumerWidget {
           const Divider(),
           const ServerUrlTile(),
           ListTile(
-            title: Text(context.l10n!.categories),
+            title: Text(context.l10n.categories),
             leading: const Icon(Icons.label_rounded),
             onTap: () => const EditCategoriesRoute().push(context),
           ),
           const AppThemeModeTile(),
           ListTile(
-            title: Text(context.l10n!.backup),
+            title: Text(context.l10n.backup),
             leading: const Icon(Icons.settings_backup_restore_rounded),
             onTap: () => const BackupRoute().push(context),
           ),
           const Divider(),
           ListTile(
-            title: Text(context.l10n!.settings),
+            title: Text(context.l10n.settings),
             leading: const Icon(Icons.settings_rounded),
             onTap: () => const SettingsRoute().push(context),
           ),
           ListTile(
-            title: Text(context.l10n!.about),
+            title: Text(context.l10n.about),
             leading: const Icon(Icons.info_rounded),
             onTap: () => const AboutRoute().push(context),
           ),
           ListTile(
-            title: Text(context.l10n!.help),
+            title: Text(context.l10n.help),
             leading: const Icon(Icons.help_rounded),
             onTap: () => launchUrlInWeb(
               context,

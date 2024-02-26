@@ -24,7 +24,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(downloadsRepositoryProvider).startDownloads))
               .showToastOnError(toast);
         },
-        label: Text(context.l10n!.resume),
+        label: Text(context.l10n.resume),
         isExtended: context.isTablet,
         icon: const Icon(Icons.play_arrow),
       );
@@ -35,7 +35,7 @@ class DownloadsFab extends ConsumerWidget {
                   ref.read(downloadsRepositoryProvider).stopDownloads))
               .showToastOnError(toast);
         },
-        label: Text(context.l10n!.pause),
+        label: Text(context.l10n.pause),
         isExtended: context.isTablet,
         icon: const Icon(Icons.pause_rounded),
       );
