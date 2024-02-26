@@ -40,20 +40,20 @@ class SourceMangaDisplayView extends ConsumerWidget {
           builder: (context) => AlertDialog(
             title: item.title.isNotBlank ? Text(item.title!) : null,
             content: Text(
-              context.l10n!.removeFromLibrary,
+              context.l10n.removeFromLibrary,
               style: context.textTheme.bodyLarge,
             ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text(context.l10n!.cancel),
+                child: Text(context.l10n.cancel),
               ),
               ElevatedButton(
                 onPressed: () async {
                   Navigator.pop(context);
                   removeManga = true;
                 },
-                child: Text(context.l10n!.remove),
+                child: Text(context.l10n.remove),
               ),
             ],
           ),

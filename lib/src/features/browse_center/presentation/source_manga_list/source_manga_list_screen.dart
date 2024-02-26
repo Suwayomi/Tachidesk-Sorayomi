@@ -133,7 +133,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
       context,
       (data) => Scaffold(
         appBar: AppBar(
-          title: Text(data?.displayName ?? context.l10n!.source),
+          title: Text(data?.displayName ?? context.l10n.source),
           actions: [
             IconButton(
               onPressed: () => showSearch.value = true,
@@ -245,7 +245,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
       refresh: () => ref.refresh(sourceProvider(sourceId)),
       wrapper: (body) => Scaffold(
         appBar: AppBar(
-          title: Text(context.l10n!.source),
+          title: Text(context.l10n.source),
         ),
         body: body,
       ),

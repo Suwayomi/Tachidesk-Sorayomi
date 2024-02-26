@@ -16,12 +16,12 @@ class LibrarySettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.library),
+        title: Text(context.l10n.library),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text(context.l10n!.categories),
+            title: Text(context.l10n.categories),
             leading: const Icon(Icons.label_rounded),
             onTap: () => const EditCategoriesRoute().push(context),
           ),

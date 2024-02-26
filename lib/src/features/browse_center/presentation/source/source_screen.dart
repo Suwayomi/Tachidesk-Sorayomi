@@ -47,10 +47,10 @@ class SourceScreen extends HookConsumerWidget {
       (data) {
         if ((sourceMap.isEmpty && localSource.isBlank && lastUsed.isBlank)) {
           return Emoticons(
-            text: context.l10n!.noSourcesFound,
+            text: context.l10n.noSourcesFound,
             button: TextButton(
               onPressed: refresh,
-              child: Text(context.l10n!.refresh),
+              child: Text(context.l10n.refresh),
             ),
           );
         }

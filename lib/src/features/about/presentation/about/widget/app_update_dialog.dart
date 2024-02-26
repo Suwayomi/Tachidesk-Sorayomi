@@ -23,12 +23,12 @@ void appUpdateDialog({
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(context.l10n!.newUpdateAvailable),
-          content: Text(context.l10n!.versionAvailable(title, newRelease)),
+          title: Text(context.l10n.newUpdateAvailable),
+          content: Text(context.l10n.versionAvailable(title, newRelease)),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(context.l10n!.close),
+              child: Text(context.l10n.close),
             ),
             ElevatedButton.icon(
               onPressed: () {
@@ -37,7 +37,7 @@ void appUpdateDialog({
                 Navigator.pop(context);
               },
               icon: const Icon(FontAwesomeIcons.github),
-              label: Text(context.l10n!.gitHub),
+              label: Text(context.l10n.gitHub),
             ),
           ],
         );

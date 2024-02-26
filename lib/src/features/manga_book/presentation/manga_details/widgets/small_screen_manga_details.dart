@@ -59,7 +59,7 @@ class SmallScreenMangaDetails extends ConsumerWidget {
           SliverToBoxAdapter(
             child: ListTile(
               title: Text(
-                context.l10n!.noOfChapters(filteredChapterList?.length ?? 0),
+                context.l10n.noOfChapters(filteredChapterList?.length ?? 0),
               ),
             ),
           ),
@@ -89,10 +89,10 @@ class SmallScreenMangaDetails extends ConsumerWidget {
               } else {
                 return SliverToBoxAdapter(
                   child: Emoticons(
-                    text: context.l10n!.noChaptersFound,
+                    text: context.l10n.noChaptersFound,
                     button: TextButton(
                       onPressed: () => onDescriptionRefresh(true),
-                      child: Text(context.l10n!.refresh),
+                      child: Text(context.l10n.refresh),
                     ),
                   ),
                 );

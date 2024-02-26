@@ -6,10 +6,12 @@
 
 import 'dart:io';
 
+import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path/path.dart' as path;
@@ -24,7 +26,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final packageInfo = await PackageInfo.fromPlatform();
   final sharedPreferences = await SharedPreferences.getInstance();
+  await Hive.initFlutter('Sorayomi');
+  final box = await Hive.openBox("graphql");
+  final store = HiveStore(box);
 
+  //TODO remove
   final Directory? appDirectory;
   if (!kIsWeb) {
     final appDocDirectory = await getApplicationDocumentsDirectory();
@@ -55,6 +61,7 @@ Future<void> main() async {
         packageInfoProvider.overrideWithValue(packageInfo),
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
         appDirectoryProvider.overrideWithValue(appDirectory),
+        hiveStoreProvider.overrideWithValue(store)
       ],
       child: const Sorayomi(),
     ),

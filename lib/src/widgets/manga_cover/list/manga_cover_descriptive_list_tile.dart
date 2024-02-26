@@ -33,7 +33,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sourceName =
-        " • ${manga.source?.displayName ?? context.l10n!.unknownSource}";
+        " • ${manga.source?.displayName ?? context.l10n.unknownSource}";
     return InkWell(
       onTap: onPressed,
       onLongPress: onLongPress,
@@ -65,7 +65,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                           ? () => onTitleClicked!(manga.title)
                           : null,
                       child: Text(
-                        (manga.title ?? context.l10n!.unknownManga),
+                        (manga.title ?? context.l10n.unknownManga),
                         style: context.textTheme.titleLarge,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -75,7 +75,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2.0),
                       child: Text(
-                        manga.author ?? context.l10n!.unknownAuthor,
+                        manga.author ?? context.l10n.unknownAuthor,
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodySmall,
                       ),

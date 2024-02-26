@@ -19,6 +19,15 @@ extension StringExtensions on String? {
 
   double? get tryParseInt => isNull ? null : double.tryParse(this!);
 
+  String ifNull([String value = '']) => isNull ? value : this!;
+
+  String ifBlank([String value = '']) => isBlank ? value : this!;
+
+  String? wrap({String? prefix = " (", String? suffix = ")"}) {
+    if (isBlank) return null;
+    return "${prefix.ifNull()}$this${suffix.ifNull()}";
+  }
+
   bool hasMatch(String pattern) =>
       (isNull) ? false : RegExp(pattern).hasMatch(this!);
 
@@ -99,5 +108,14 @@ extension StringExtensions on String? {
   String? get toWebSocket {
     if (isBlank) return null;
     return this!.replaceFirst(RegExp('http', caseSensitive: false), 'ws');
+  }
+
+  TimeOfDay? get toTimeOfDay {
+    if (isBlank) return null;
+    final timeList = this!.split(':').map(int.tryParse).filterOutNulls!;
+    if (timeList.length != 2) {
+      return null;
+    }
+    return TimeOfDay(hour: timeList.first!, minute: timeList.last!);
   }
 }

@@ -23,7 +23,7 @@ import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../../../../settings/presentation/reader/widgets/reader_initial_overlay_tile/reader_initial_overlay_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
@@ -106,7 +106,7 @@ class ReaderWrapper extends HookConsumerWidget {
           optionList: ReaderMode.values,
           getOptionTitle: (value) => value.toLocale(context),
           value: mangaReaderMode,
-          title: context.l10n!.readerMode,
+          title: context.l10n.readerMode,
           onChange: (enumValue) async {
             if (context.mounted) Navigator.pop(context);
             await AsyncValue.guard(
@@ -129,7 +129,7 @@ class ReaderWrapper extends HookConsumerWidget {
         builder: (context) => RadioListPopup<ReaderNavigationLayout>(
           optionList: ReaderNavigationLayout.values,
           getOptionTitle: (value) => value.toLocale(context),
-          title: context.l10n!.readerNavigationLayout,
+          title: context.l10n.readerNavigationLayout,
           value: mangaReaderNavigationLayout,
           onChange: (enumValue) async {
             if (context.mounted) Navigator.pop(context);
@@ -225,7 +225,7 @@ class ReaderWrapper extends HookConsumerWidget {
               ListTile(
                 style: ListTileStyle.drawer,
                 leading: const Icon(Icons.app_settings_alt_outlined),
-                title: Text(context.l10n!.readerMode),
+                title: Text(context.l10n.readerMode),
                 subtitle: Text(mangaReaderMode.toLocale(context)),
                 onTap: () {
                   context.pop();
@@ -235,7 +235,7 @@ class ReaderWrapper extends HookConsumerWidget {
               ListTile(
                 style: ListTileStyle.drawer,
                 leading: const Icon(Icons.touch_app_rounded),
-                title: Text(context.l10n!.readerNavigationLayout),
+                title: Text(context.l10n.readerNavigationLayout),
                 subtitle: Text(mangaReaderNavigationLayout.toLocale(context)),
                 onTap: () {
                   context.pop();

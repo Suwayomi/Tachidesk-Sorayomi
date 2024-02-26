@@ -43,14 +43,14 @@ class SourceMangaGridView extends ConsumerWidget {
           text: controller.error.toString(),
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.retry),
+            child: Text(context.l10n.retry),
           ),
         ),
         noItemsFoundIndicatorBuilder: (context) => Emoticons(
-          text: context.l10n!.noMangaFound,
+          text: context.l10n.noMangaFound,
           button: TextButton(
             onPressed: () => controller.refresh(),
-            child: Text(context.l10n!.refresh),
+            child: Text(context.l10n.refresh),
           ),
         ),
         itemBuilder: (context, item, index) => MangaCoverGridTile(

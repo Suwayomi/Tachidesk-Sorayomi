@@ -52,7 +52,7 @@ class SourceListTile extends ConsumerWidget {
                   sourceType: SourceType.latest,
                 ).push(context);
               },
-              child: Text(context.l10n!.latest),
+              child: Text(context.l10n.latest),
             )
           : null,
     );

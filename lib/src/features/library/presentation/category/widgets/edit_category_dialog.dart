@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../../../widgets/pop_button.dart';
+import '../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
 
 class EditCategoryDialog extends HookConsumerWidget {
@@ -38,9 +38,7 @@ class EditCategoryDialog extends HookConsumerWidget {
     final defaultCategory = useState((category?.defaultCategory).ifNull());
     return AlertDialog(
       title: Text(
-        category == null
-            ? context.l10n!.addCategory
-            : context.l10n!.editCategory,
+        category == null ? context.l10n.addCategory : context.l10n.editCategory,
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -50,8 +48,8 @@ class EditCategoryDialog extends HookConsumerWidget {
             autofocus: true,
             decoration: InputDecoration(
               hintText: category == null
-                  ? context.l10n!.addCategory
-                  : context.l10n!.editCategory,
+                  ? context.l10n.addCategory
+                  : context.l10n.editCategory,
               border: const OutlineInputBorder(),
             ),
             onSubmitted: (categoryName.text).isNotBlank
@@ -73,7 +71,7 @@ class EditCategoryDialog extends HookConsumerWidget {
                 defaultCategory.value = (value);
               }
             },
-            title: Text(context.l10n!.defaultCategory),
+            title: Text(context.l10n.defaultCategory),
           )
         ],
       ),
@@ -82,15 +80,13 @@ class EditCategoryDialog extends HookConsumerWidget {
         ElevatedButton(
           onPressed: () {
             if ((categoryName.text).isBlank) {
-              ref
-                  .read(toastProvider(context))
-                  .show(context.l10n!.emptyCategory);
+              ref.read(toastProvider(context)).show(context.l10n.emptyCategory);
               return;
             }
             submitEditCategory(categoryName.text, defaultCategory.value);
             Navigator.pop(context);
           },
-          child: Text(context.l10n!.save),
+          child: Text(context.l10n.save),
         ),
       ],
     );

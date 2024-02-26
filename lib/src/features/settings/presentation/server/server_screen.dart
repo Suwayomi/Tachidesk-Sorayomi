@@ -27,7 +27,7 @@ class ServerScreen extends ConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.server),
+        title: Text(context.l10n.server),
       ),
       body: ListView(
         children: [
@@ -37,7 +37,7 @@ class ServerScreen extends ConsumerWidget {
           if (authType != null && authType != AuthType.none)
             ListTile(
               leading: const Icon(Icons.password_rounded),
-              title: Text(context.l10n!.credentials),
+              title: Text(context.l10n.credentials),
               onTap: () {
                 showDialog(
                   context: context,
@@ -48,7 +48,7 @@ class ServerScreen extends ConsumerWidget {
           if (!kIsWeb)
             ListTile(
               leading: const Icon(Icons.web_rounded),
-              title: Text(context.l10n!.webUI),
+              title: Text(context.l10n.webUI),
               onTap: () {
                 final url = Endpoints.baseApi(
                   baseUrl: ref.read(serverUrlProvider),

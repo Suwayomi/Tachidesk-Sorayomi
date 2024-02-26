@@ -13,7 +13,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../constants/db_keys.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../widgets/pop_button.dart';
+import '../../../../widgets/popup_widgets/pop_button.dart';
 import 'server_search_button.dart';
 
 part 'server_url_tile.g.dart';
@@ -35,7 +35,7 @@ class ServerUrlTile extends ConsumerWidget {
     final serverUrl = ref.watch(serverUrlProvider);
     return ListTile(
       leading: const Icon(Icons.computer_rounded),
-      title: Text(context.l10n!.serverUrl),
+      title: Text(context.l10n.serverUrl),
       subtitle: (serverUrl.isNotBlank) ? Text(serverUrl!) : null,
       trailing: !kIsWeb ? (const ServerSearchButton()) : null,
       onTap: () => showDialog(
@@ -62,7 +62,7 @@ class ServerUrlField extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = useTextEditingController(text: initialUrl);
     return AlertDialog(
-      title: Text(context.l10n!.serverUrl),
+      title: Text(context.l10n.serverUrl),
       content: TextField(
         autofocus: true,
         controller: controller,
@@ -72,7 +72,7 @@ class ServerUrlField extends HookConsumerWidget {
         },
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          hintText: (context.l10n!.serverUrlHintText),
+          hintText: (context.l10n.serverUrlHintText),
         ),
       ),
       actions: [
@@ -82,7 +82,7 @@ class ServerUrlField extends HookConsumerWidget {
             _update(controller.text, ref);
             Navigator.pop(context);
           },
-          child: Text(context.l10n!.save),
+          child: Text(context.l10n.save),
         ),
       ],
     );

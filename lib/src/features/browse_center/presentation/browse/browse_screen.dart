@@ -30,7 +30,7 @@ class BrowseScreen extends HookConsumerWidget {
     final showSearch = useState(false);
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.browse),
+        title: Text(context.l10n.browse),
         centerTitle: true,
         actions: [
           IconButton(
@@ -63,8 +63,8 @@ class BrowseScreen extends HookConsumerWidget {
                 isScrollable: context.isTablet,
                 controller: tabController,
                 tabs: [
-                  Tab(text: context.l10n!.sources),
-                  Tab(text: context.l10n!.extensions),
+                  Tab(text: context.l10n.sources),
+                  Tab(text: context.l10n.extensions),
                 ],
               ),
               if (showSearch.value)

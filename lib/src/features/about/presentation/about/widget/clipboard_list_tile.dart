@@ -32,7 +32,7 @@ class ClipboardListTile extends ConsumerWidget {
               );
               ref
                   .read(toastProvider(context))
-                  .instantShow(context.l10n!.copyMsg(msg));
+                  .show(context.l10n.copyMsg(msg), instantShow: true);
             }
           : null,
     );

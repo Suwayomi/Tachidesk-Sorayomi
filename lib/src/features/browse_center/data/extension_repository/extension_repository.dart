@@ -30,10 +30,10 @@ class ExtensionRepository {
     CancelToken? cancelToken,
   }) async {
     if ((file?.path).isBlank) {
-      throw context.l10n!.errorFilePick;
+      throw context.l10n.errorFilePick;
     }
     if (!(file!.name.endsWith('.apk'))) {
-      throw context.l10n!.errorFilePickUnknownExtension(".apk");
+      throw context.l10n.errorFilePickUnknownExtension(".apk");
     }
     return (file.path).isNotBlank
         ? (await dioClient.post(

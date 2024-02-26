@@ -32,7 +32,7 @@ class EditCategoryScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.editCategory),
+        title: Text(context.l10n.editCategory),
       ),
       floatingActionButton: categoryList.asError?.error != null
           ? null
@@ -43,10 +43,10 @@ class EditCategoryScreen extends HookConsumerWidget {
           if (data.isBlank ||
               (data.isSingletonList && data?.firstOrNull?.id == 0)) {
             return Emoticons(
-              text: context.l10n!.noCategoriesFound,
+              text: context.l10n.noCategoriesFound,
               button: TextButton(
                 onPressed: () => ref.refresh(categoryControllerProvider.future),
-                child: Text(context.l10n!.refresh),
+                child: Text(context.l10n.refresh),
               ),
             );
           } else {

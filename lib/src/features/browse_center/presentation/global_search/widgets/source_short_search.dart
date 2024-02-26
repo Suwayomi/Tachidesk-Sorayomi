@@ -47,7 +47,7 @@ class SourceShortSearch extends StatelessWidget {
           (data) => data.isEmpty
               ? Padding(
                   padding: KEdgeInsets.h16v4.size,
-                  child: Text(context.l10n!.noResultFound),
+                  child: Text(context.l10n.noResultFound),
                 )
               : SingleChildScrollView(
                   scrollDirection: Axis.horizontal,

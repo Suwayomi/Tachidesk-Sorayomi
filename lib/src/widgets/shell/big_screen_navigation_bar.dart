@@ -35,7 +35,7 @@ class BigScreenNavigationBar extends StatelessWidget {
           AssetImage(Assets.icons.darkIcon.path),
           size: 48,
         ),
-        label: Text(context.l10n!.appTitle),
+        label: Text(context.l10n.appTitle),
         style: TextButton.styleFrom(
           foregroundColor: context.textTheme.bodyLarge?.color,
         ),

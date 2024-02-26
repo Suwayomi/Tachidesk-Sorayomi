@@ -59,7 +59,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final refresh = useCallback(([onlineFetch = false]) async {
       if (context.mounted && onlineFetch) {
         ref.read(toastProvider(context)).show(
-              context.l10n!.updating,
+              context.l10n.updating,
               withMicrotask: true,
             );
       }
@@ -68,11 +68,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
       if (context.mounted && onlineFetch) {
         if (manga.hasError) {
           ref.read(toastProvider(context)).showError(
-                context.l10n!.errorSomethingWentWrong,
+                context.l10n.errorSomethingWentWrong,
               );
         } else {
           ref.read(toastProvider(context)).show(
-                context.l10n!.updateCompleted,
+                context.l10n.updateCompleted,
                 withMicrotask: true,
               );
         }
@@ -100,7 +100,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                     icon: const Icon(Icons.close_rounded),
                   ),
                   title: Text(
-                    context.l10n!.numSelected(selectedChapters.value.length),
+                    context.l10n.numSelected(selectedChapters.value.length),
                   ),
                   actions: [
                     IconButton(
@@ -136,7 +136,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   ],
                 )
               : AppBar(
-                  title: Text(data?.title ?? context.l10n!.manga),
+                  title: Text(data?.title ?? context.l10n.manga),
                   actions: [
                     if (context.isTablet) ...[
                       IconButton(
@@ -187,11 +187,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
                                     EditMangaCategoryDialog(mangaId: mangaId),
                               ),
                             ),
-                            child: Text(context.l10n!.editCategory),
+                            child: Text(context.l10n.editCategory),
                           ),
                           PopupMenuItem(
                             onTap: () => refresh(true),
-                            child: Text(context.l10n!.refresh),
+                            child: Text(context.l10n.refresh),
                           ),
                         ],
                       )
@@ -214,8 +214,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       isExtended: context.isTablet,
                       label: Text(
                         data?.lastChapterRead?.index != null
-                            ? context.l10n!.resume
-                            : context.l10n!.start,
+                            ? context.l10n.resume
+                            : context.l10n.start,
                       ),
                       icon: const Icon(Icons.play_arrow_rounded),
                       onPressed: () {
@@ -248,17 +248,17 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       selectedChapters: selectedChapters,
                     )
               : Emoticons(
-                  text: context.l10n!.noMangaFound,
+                  text: context.l10n.noMangaFound,
                   button: TextButton(
                     onPressed: refresh,
-                    child: Text(context.l10n!.refresh),
+                    child: Text(context.l10n.refresh),
                   ),
                 ),
         ),
         refresh: refresh,
         wrapper: (body) => Scaffold(
           appBar: AppBar(
-            title: Text(context.l10n!.manga),
+            title: Text(context.l10n.manga),
           ),
           body: body,
         ),
@@ -299,7 +299,7 @@ class MultiSelectPopupButton extends StatelessWidget {
                   chapterList[i].id!: chapterList[i]
             });
           },
-          child: Text(context.l10n!.selectNext10),
+          child: Text(context.l10n.selectNext10),
         ),
         PopupMenuItem(
           onTap: () {
@@ -310,7 +310,7 @@ class MultiSelectPopupButton extends StatelessWidget {
                 if (i.id != null && !i.read.ifNull()) i.id!: i
             });
           },
-          child: Text(context.l10n!.selectUnread),
+          child: Text(context.l10n.selectUnread),
         ),
         PopupMenuItem(
           onTap: () {
@@ -330,7 +330,7 @@ class MultiSelectPopupButton extends StatelessWidget {
                   chapterList[i].id!: chapterList[i]
             });
           },
-          child: Text(context.l10n!.selectInBetween),
+          child: Text(context.l10n.selectInBetween),
         ),
       ],
     );

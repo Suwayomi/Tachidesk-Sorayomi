@@ -78,12 +78,12 @@ class ServerSearchButton extends ConsumerWidget {
                 if (context.mounted) {
                   ref
                       .watch(toastProvider(context))
-                      .showError(context.l10n!.noServerFound);
+                      .showError(context.l10n.noServerFound);
                 }
               }
             }
           : null,
-      child: Text(context.l10n!.findServer),
+      child: Text(context.l10n.findServer),
     );
   }
 }

@@ -135,7 +135,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
               value: downloadProgress.progress,
             ),
           );
-          return AppUtils.wrapIf(
+          return AppUtils.wrapOn(
             !kIsWeb && (Platform.isAndroid || Platform.isIOS)
                 ? (child) => InteractiveViewer(maxScale: 5, child: child)
                 : null,

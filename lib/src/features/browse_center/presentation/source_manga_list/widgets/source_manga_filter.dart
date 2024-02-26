@@ -40,12 +40,12 @@ class SourceMangaFilter extends HookWidget {
                   onReset();
                   filters.value = (initialFilters);
                 },
-                child: Text(context.l10n!.reset),
+                child: Text(context.l10n.reset),
               ),
               const Spacer(),
               FilledButton(
                 onPressed: () => onSubmitted(filters.value),
-                child: Text(context.l10n!.filter),
+                child: Text(context.l10n.filter),
               ),
             ],
           ),

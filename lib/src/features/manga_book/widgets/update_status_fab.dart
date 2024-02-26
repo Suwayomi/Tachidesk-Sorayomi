@@ -26,7 +26,7 @@ class UpdateStatusFab extends ConsumerWidget {
       label: showStatus
           ? Text("${updateStatus.valueOrNull?.updateChecked.padLeft()}"
               "/${updateStatus.valueOrNull?.total.padLeft()}")
-          : Text(context.l10n!.update),
+          : Text(context.l10n.update),
     );
   }
 }

@@ -60,7 +60,7 @@ class ExtensionListTile extends HookConsumerWidget {
               ),
             if (extension.isNsfw.ifNull())
               TextSpan(
-                text: context.l10n!.nsfw18,
+                text: context.l10n.nsfw18,
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Colors.redAccent,
@@ -104,7 +104,7 @@ class ExtensionListTileTailing extends StatelessWidget {
             ? () => repository.uninstallExtension(extension.pkgName!)
             : null,
         child: Text(
-          context.l10n!.obsolete,
+          context.l10n.obsolete,
           style: const TextStyle(color: Colors.redAccent),
         ),
       );
@@ -118,7 +118,7 @@ class ExtensionListTileTailing extends StatelessWidget {
                     final result = (await AsyncValue.guard(
                       () async {
                         if (extension.pkgName.isBlank) {
-                          throw context.l10n!.errorExtension;
+                          throw context.l10n.errorExtension;
                         }
                         if (extension.hasUpdate.ifNull()) {
                           await repository.updateExtension(extension.pkgName!);
@@ -142,11 +142,11 @@ class ExtensionListTileTailing extends StatelessWidget {
           child: Text(
             extension.hasUpdate.ifNull()
                 ? isLoading.value
-                    ? context.l10n!.updating
-                    : context.l10n!.update
+                    ? context.l10n.updating
+                    : context.l10n.update
                 : isLoading.value
-                    ? context.l10n!.uninstalling
-                    : context.l10n!.uninstall,
+                    ? context.l10n.uninstalling
+                    : context.l10n.uninstall,
           ),
         );
       } else {
@@ -157,7 +157,7 @@ class ExtensionListTileTailing extends StatelessWidget {
                     isLoading.value = (true);
                     final result = await AsyncValue.guard(() async {
                       if (extension.pkgName.isBlank) {
-                        throw context.l10n!.errorExtension;
+                        throw context.l10n.errorExtension;
                       }
                       await repository.installExtension(extension.pkgName!);
                       if ((extension.lang?.code).isNotBlank) {
@@ -187,7 +187,7 @@ class ExtensionListTileTailing extends StatelessWidget {
                 }
               : null,
           child: Text(
-            isLoading.value ? context.l10n!.installing : context.l10n!.install,
+            isLoading.value ? context.l10n.installing : context.l10n.install,
           ),
         );
       }

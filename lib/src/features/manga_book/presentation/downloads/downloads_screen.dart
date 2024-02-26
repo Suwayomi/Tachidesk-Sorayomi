@@ -26,7 +26,7 @@ class DownloadsScreen extends ConsumerWidget {
     final showDownloadsFAB = ref.watch(showDownloadsFABProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text(context.l10n!.downloads),
+        title: Text(context.l10n.downloads),
         actions: [
           if ((downloadsChapterIds).isNotBlank)
             IconButton(
@@ -44,9 +44,9 @@ class DownloadsScreen extends ConsumerWidget {
         context,
         (data) {
           if (data == null) {
-            return Emoticons(text: context.l10n!.errorSomethingWentWrong);
+            return Emoticons(text: context.l10n.errorSomethingWentWrong);
           } else if (downloadsChapterIds.isBlank) {
-            return Emoticons(text: context.l10n!.noDownloads);
+            return Emoticons(text: context.l10n.noDownloads);
           } else {
             final downloadsCount =
                 (downloadsChapterIds.length).getValueOnNullOrNegative();

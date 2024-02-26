@@ -93,11 +93,11 @@ class UpdatesScreen extends HookConsumerWidget {
                 icon: const Icon(Icons.close_rounded),
               ),
               title: Text(
-                context.l10n!.numSelected(selectedChapters.value.length),
+                context.l10n.numSelected(selectedChapters.value.length),
               ),
             )
           : AppBar(
-              title: Text(context.l10n!.updates),
+              title: Text(context.l10n.updates),
               actions: const [UpdateStatusPopupMenu()],
             ),
       bottomSheet: selectedChapters.value.isNotEmpty
@@ -121,14 +121,14 @@ class UpdatesScreen extends HookConsumerWidget {
               text: controller.error.toString(),
               button: TextButton(
                 onPressed: () => controller.refresh(),
-                child: Text(context.l10n!.retry),
+                child: Text(context.l10n.retry),
               ),
             ),
             noItemsFoundIndicatorBuilder: (context) => Emoticons(
-              text: context.l10n!.noUpdatesFound,
+              text: context.l10n.noUpdatesFound,
               button: TextButton(
                 onPressed: () => controller.refresh(),
-                child: Text(context.l10n!.refresh),
+                child: Text(context.l10n.refresh),
               ),
             ),
             itemBuilder: (context, item, index) {

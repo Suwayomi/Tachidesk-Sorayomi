@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
 
 class AuthTypeTile extends ConsumerWidget {
   const AuthTypeTile({super.key});
@@ -22,11 +22,11 @@ class AuthTypeTile extends ConsumerWidget {
     return ListTile(
       leading: const Icon(Icons.security_rounded),
       subtitle: authType != null ? Text(authType.toLocale(context)) : null,
-      title: Text(context.l10n!.authType),
+      title: Text(context.l10n.authType),
       onTap: () => showDialog(
         context: context,
         builder: (context) => RadioListPopup<AuthType>(
-          title: context.l10n!.authType,
+          title: context.l10n.authType,
           optionList: AuthType.values,
           getOptionTitle: (value) => value.toLocale(context),
           value: authType ?? AuthType.none,

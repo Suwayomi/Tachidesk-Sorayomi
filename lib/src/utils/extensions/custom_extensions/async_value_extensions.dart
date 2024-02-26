@@ -45,21 +45,21 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     return when(
       data: data,
       skipError: true,
-      error: (error, trace) => AppUtils.wrapIf(
+      error: (error, trace) => AppUtils.wrapOn(
           wrapper,
           Emoticons(
             text: showGenericError
-                ? context.l10n!.errorSomethingWentWrong
+                ? context.l10n.errorSomethingWentWrong
                 : error.toString(),
             button: refresh != null
                 ? TextButton(
                     onPressed: refresh,
-                    child: Text(context.l10n!.refresh),
+                    child: Text(context.l10n.refresh),
                   )
                 : null,
           )),
       loading: () =>
-          AppUtils.wrapIf(wrapper, const CenterSorayomiShimmerIndicator()),
+          AppUtils.wrapOn(wrapper, const CenterSorayomiShimmerIndicator()),
     );
   }
 
