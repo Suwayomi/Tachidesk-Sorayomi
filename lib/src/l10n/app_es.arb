@@ -350,7 +350,7 @@
   "@userName": {},
   "versionAvailable": "¡¡La versión {version} está disponible para {app}!!",
   "@versionAvailable": {},
-  "webUI": "Abrir en el navegador",
+  "webUI": "Abrir en Internet",
   "@webUI": {},
   "webView": "WebView",
   "@webView": {},
