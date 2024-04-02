@@ -90,7 +90,7 @@ class UpdateStatusExpansionTile extends StatelessWidget {
           .map((e) => MangaCoverListTile(
                 manga: e,
                 showCountBadges: true,
-                onPressed: () => MangaRoute(mangaId: e.id!).push(context),
+                onPressed: () => MangaRoute(mangaId: e.id).push(context),
               ))
           .toList(),
     );

@@ -12,6 +12,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
+import '../../../domain/category/graphql/__generated__/fragment.data.gql.dart';
 
 class EditCategoryDialog extends HookConsumerWidget {
   const EditCategoryDialog({
@@ -26,10 +27,13 @@ class EditCategoryDialog extends HookConsumerWidget {
     String categoryName,
     bool defaultCategory,
   ) async {
-    return editCategory((category ?? Category()).copyWith(
-      name: categoryName,
-      defaultCategory: defaultCategory,
-    ));
+    //TODO: Implement editCategory
+
+    // return editCategory((category ?? Category()).copyWith(
+    //   name: categoryName,
+    //   defaultCategory: defaultCategory,
+    // ));
+    return editCategory(GCategoryFragmentData());
   }
 
   @override
@@ -80,7 +84,7 @@ class EditCategoryDialog extends HookConsumerWidget {
         ElevatedButton(
           onPressed: () {
             if ((categoryName.text).isBlank) {
-              ref.read(toastProvider(context)).show(context.l10n.emptyCategory);
+              ref.read(toastProvider)?.showError(context.l10n.emptyCategory);
               return;
             }
             submitEditCategory(categoryName.text, defaultCategory.value);

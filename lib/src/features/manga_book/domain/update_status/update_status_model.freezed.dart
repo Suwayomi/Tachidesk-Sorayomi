@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-UpdateStatus _$UpdateStatusFromJson(Map<String, dynamic> json) {
-  return _UpdateStatus.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UpdateStatus {
   @JsonKey(name: "PENDING")
@@ -29,7 +25,6 @@ mixin _$UpdateStatus {
   @JsonKey(name: "FAILED")
   List<Manga>? get failed => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UpdateStatusCopyWith<UpdateStatus> get copyWith =>
       throw _privateConstructorUsedError;
@@ -140,7 +135,7 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$UpdateStatusImpl extends _UpdateStatus {
   _$UpdateStatusImpl(
       {@JsonKey(name: "PENDING") final List<Manga>? pending,
@@ -152,9 +147,6 @@ class _$UpdateStatusImpl extends _UpdateStatus {
         _completed = completed,
         _failed = failed,
         super._();
-
-  factory _$UpdateStatusImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UpdateStatusImplFromJson(json);
 
   final List<Manga>? _pending;
   @override
@@ -217,7 +209,6 @@ class _$UpdateStatusImpl extends _UpdateStatus {
             const DeepCollectionEquality().equals(other._failed, _failed));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -231,13 +222,6 @@ class _$UpdateStatusImpl extends _UpdateStatus {
   @pragma('vm:prefer-inline')
   _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
       __$$UpdateStatusImplCopyWithImpl<_$UpdateStatusImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UpdateStatusImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UpdateStatus extends UpdateStatus {
@@ -247,9 +231,6 @@ abstract class _UpdateStatus extends UpdateStatus {
       @JsonKey(name: "COMPLETE") final List<Manga>? completed,
       @JsonKey(name: "FAILED") final List<Manga>? failed}) = _$UpdateStatusImpl;
   _UpdateStatus._() : super._();
-
-  factory _UpdateStatus.fromJson(Map<String, dynamic> json) =
-      _$UpdateStatusImpl.fromJson;
 
   @override
   @JsonKey(name: "PENDING")

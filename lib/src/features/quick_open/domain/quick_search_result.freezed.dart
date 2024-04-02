@@ -348,8 +348,6 @@ abstract class _$$SourceQuickSearchResultImplCopyWith<$Res> {
       __$$SourceQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source source});
-
-  $SourceCopyWith<$Res> get source;
 }
 
 /// @nodoc
@@ -364,22 +362,14 @@ class __$$SourceQuickSearchResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? source = null,
+    Object? source = freezed,
   }) {
     return _then(_$SourceQuickSearchResultImpl(
-      source: null == source
+      source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as Source,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SourceCopyWith<$Res> get source {
-    return $SourceCopyWith<$Res>(_value.source, (value) {
-      return _then(_value.copyWith(source: value));
-    });
   }
 }
 
@@ -401,11 +391,12 @@ class _$SourceQuickSearchResultImpl implements SourceQuickSearchResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SourceQuickSearchResultImpl &&
-            (identical(other.source, source) || other.source == source));
+            const DeepCollectionEquality().equals(other.source, source));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, source);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
 
   @JsonKey(ignore: true)
   @override
@@ -548,8 +539,6 @@ abstract class _$$SourceSearchQuickSearchResultImplCopyWith<$Res> {
       __$$SourceSearchQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source source, String query});
-
-  $SourceCopyWith<$Res> get source;
 }
 
 /// @nodoc
@@ -565,11 +554,11 @@ class __$$SourceSearchQuickSearchResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? source = null,
+    Object? source = freezed,
     Object? query = null,
   }) {
     return _then(_$SourceSearchQuickSearchResultImpl(
-      source: null == source
+      source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as Source,
@@ -578,14 +567,6 @@ class __$$SourceSearchQuickSearchResultImplCopyWithImpl<$Res>
           : query // ignore: cast_nullable_to_non_nullable
               as String,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SourceCopyWith<$Res> get source {
-    return $SourceCopyWith<$Res>(_value.source, (value) {
-      return _then(_value.copyWith(source: value));
-    });
   }
 }
 
@@ -611,12 +592,13 @@ class _$SourceSearchQuickSearchResultImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SourceSearchQuickSearchResultImpl &&
-            (identical(other.source, source) || other.source == source) &&
+            const DeepCollectionEquality().equals(other.source, source) &&
             (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, source, query);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(source), query);
 
   @JsonKey(ignore: true)
   @override
@@ -763,8 +745,6 @@ abstract class _$$CategoryQuickSearchResultImplCopyWith<$Res> {
       __$$CategoryQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Category category});
-
-  $CategoryCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -780,22 +760,14 @@ class __$$CategoryQuickSearchResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? category = null,
+    Object? category = freezed,
   }) {
     return _then(_$CategoryQuickSearchResultImpl(
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res> get category {
-    return $CategoryCopyWith<$Res>(_value.category, (value) {
-      return _then(_value.copyWith(category: value));
-    });
   }
 }
 
@@ -817,12 +789,12 @@ class _$CategoryQuickSearchResultImpl implements CategoryQuickSearchResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryQuickSearchResultImpl &&
-            (identical(other.category, category) ||
-                other.category == category));
+            const DeepCollectionEquality().equals(other.category, category));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(category));
 
   @JsonKey(ignore: true)
   @override
@@ -965,9 +937,6 @@ abstract class _$$CategoryMangaQuickSearchResultImplCopyWith<$Res> {
       __$$CategoryMangaQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Category category, Manga manga});
-
-  $CategoryCopyWith<$Res> get category;
-  $MangaCopyWith<$Res> get manga;
 }
 
 /// @nodoc
@@ -983,35 +952,19 @@ class __$$CategoryMangaQuickSearchResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? category = null,
-    Object? manga = null,
+    Object? category = freezed,
+    Object? manga = freezed,
   }) {
     return _then(_$CategoryMangaQuickSearchResultImpl(
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category,
-      manga: null == manga
+      manga: freezed == manga
           ? _value.manga
           : manga // ignore: cast_nullable_to_non_nullable
               as Manga,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res> get category {
-    return $CategoryCopyWith<$Res>(_value.category, (value) {
-      return _then(_value.copyWith(category: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MangaCopyWith<$Res> get manga {
-    return $MangaCopyWith<$Res>(_value.manga, (value) {
-      return _then(_value.copyWith(manga: value));
-    });
   }
 }
 
@@ -1037,13 +990,15 @@ class _$CategoryMangaQuickSearchResultImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryMangaQuickSearchResultImpl &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.manga, manga) || other.manga == manga));
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(other.manga, manga));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category, manga);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(manga));
 
   @JsonKey(ignore: true)
   @override
@@ -1190,10 +1145,6 @@ abstract class _$$CategoryMangaChapterQuickSearchResultImplCopyWith<$Res> {
       __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Category? category, Manga manga, Chapter chapter});
-
-  $CategoryCopyWith<$Res>? get category;
-  $MangaCopyWith<$Res> get manga;
-  $ChapterCopyWith<$Res> get chapter;
 }
 
 /// @nodoc
@@ -1210,51 +1161,23 @@ class __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? category = freezed,
-    Object? manga = null,
-    Object? chapter = null,
+    Object? manga = freezed,
+    Object? chapter = freezed,
   }) {
     return _then(_$CategoryMangaChapterQuickSearchResultImpl(
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as Category?,
-      manga: null == manga
+      manga: freezed == manga
           ? _value.manga
           : manga // ignore: cast_nullable_to_non_nullable
               as Manga,
-      chapter: null == chapter
+      chapter: freezed == chapter
           ? _value.chapter
           : chapter // ignore: cast_nullable_to_non_nullable
               as Chapter,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res>? get category {
-    if (_value.category == null) {
-      return null;
-    }
-
-    return $CategoryCopyWith<$Res>(_value.category!, (value) {
-      return _then(_value.copyWith(category: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MangaCopyWith<$Res> get manga {
-    return $MangaCopyWith<$Res>(_value.manga, (value) {
-      return _then(_value.copyWith(manga: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ChapterCopyWith<$Res> get chapter {
-    return $ChapterCopyWith<$Res>(_value.chapter, (value) {
-      return _then(_value.copyWith(chapter: value));
-    });
   }
 }
 
@@ -1282,14 +1205,17 @@ class _$CategoryMangaChapterQuickSearchResultImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CategoryMangaChapterQuickSearchResultImpl &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.manga, manga) || other.manga == manga) &&
-            (identical(other.chapter, chapter) || other.chapter == chapter));
+            const DeepCollectionEquality().equals(other.category, category) &&
+            const DeepCollectionEquality().equals(other.manga, manga) &&
+            const DeepCollectionEquality().equals(other.chapter, chapter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, category, manga, chapter);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(category),
+      const DeepCollectionEquality().hash(manga),
+      const DeepCollectionEquality().hash(chapter));
 
   @JsonKey(ignore: true)
   @override
@@ -1440,9 +1366,6 @@ abstract class _$$MangaQuickSearchResultImplCopyWith<$Res> {
       __$$MangaQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source? source, Manga manga});
-
-  $SourceCopyWith<$Res>? get source;
-  $MangaCopyWith<$Res> get manga;
 }
 
 /// @nodoc
@@ -1458,38 +1381,18 @@ class __$$MangaQuickSearchResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? source = freezed,
-    Object? manga = null,
+    Object? manga = freezed,
   }) {
     return _then(_$MangaQuickSearchResultImpl(
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as Source?,
-      manga: null == manga
+      manga: freezed == manga
           ? _value.manga
           : manga // ignore: cast_nullable_to_non_nullable
               as Manga,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SourceCopyWith<$Res>? get source {
-    if (_value.source == null) {
-      return null;
-    }
-
-    return $SourceCopyWith<$Res>(_value.source!, (value) {
-      return _then(_value.copyWith(source: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MangaCopyWith<$Res> get manga {
-    return $MangaCopyWith<$Res>(_value.manga, (value) {
-      return _then(_value.copyWith(manga: value));
-    });
   }
 }
 
@@ -1513,12 +1416,15 @@ class _$MangaQuickSearchResultImpl implements MangaQuickSearchResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MangaQuickSearchResultImpl &&
-            (identical(other.source, source) || other.source == source) &&
-            (identical(other.manga, manga) || other.manga == manga));
+            const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality().equals(other.manga, manga));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, source, manga);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(manga));
 
   @JsonKey(ignore: true)
   @override
@@ -1663,10 +1569,6 @@ abstract class _$$ChapterQuickSearchResultImplCopyWith<$Res> {
       __$$ChapterQuickSearchResultImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Source? source, Manga manga, Chapter chapter});
-
-  $SourceCopyWith<$Res>? get source;
-  $MangaCopyWith<$Res> get manga;
-  $ChapterCopyWith<$Res> get chapter;
 }
 
 /// @nodoc
@@ -1683,51 +1585,23 @@ class __$$ChapterQuickSearchResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? source = freezed,
-    Object? manga = null,
-    Object? chapter = null,
+    Object? manga = freezed,
+    Object? chapter = freezed,
   }) {
     return _then(_$ChapterQuickSearchResultImpl(
       source: freezed == source
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
               as Source?,
-      manga: null == manga
+      manga: freezed == manga
           ? _value.manga
           : manga // ignore: cast_nullable_to_non_nullable
               as Manga,
-      chapter: null == chapter
+      chapter: freezed == chapter
           ? _value.chapter
           : chapter // ignore: cast_nullable_to_non_nullable
               as Chapter,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SourceCopyWith<$Res>? get source {
-    if (_value.source == null) {
-      return null;
-    }
-
-    return $SourceCopyWith<$Res>(_value.source!, (value) {
-      return _then(_value.copyWith(source: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MangaCopyWith<$Res> get manga {
-    return $MangaCopyWith<$Res>(_value.manga, (value) {
-      return _then(_value.copyWith(manga: value));
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ChapterCopyWith<$Res> get chapter {
-    return $ChapterCopyWith<$Res>(_value.chapter, (value) {
-      return _then(_value.copyWith(chapter: value));
-    });
   }
 }
 
@@ -1754,13 +1628,17 @@ class _$ChapterQuickSearchResultImpl implements ChapterQuickSearchResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChapterQuickSearchResultImpl &&
-            (identical(other.source, source) || other.source == source) &&
-            (identical(other.manga, manga) || other.manga == manga) &&
-            (identical(other.chapter, chapter) || other.chapter == chapter));
+            const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality().equals(other.manga, manga) &&
+            const DeepCollectionEquality().equals(other.chapter, chapter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, source, manga, chapter);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(manga),
+      const DeepCollectionEquality().hash(chapter));
 
   @JsonKey(ignore: true)
   @override

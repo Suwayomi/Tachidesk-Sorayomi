@@ -43,8 +43,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  network_info_plus: f4fbc7877ab7b3294500d9441dfa53cd54972d05
-  package_info_plus: 02d7a575e80f194102bef286361c6c326e4c29ce
+  network_info_plus: aeb9c4ed699cae128bc94b9d0f04f2389a414cbb
+  package_info_plus: fa739dd842b393193c5ca93c26798dff6e3d0e0c
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   shared_preferences_foundation: b4c3b4cddf1c21f02770737f147a3f5da9d39695
   sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec

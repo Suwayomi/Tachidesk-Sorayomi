@@ -5,17 +5,16 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:dio/dio.dart';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../constants/endpoints.dart';
 import '../../../../global_providers/global_providers.dart';
-
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/extension/extension_model.dart';
+import '../../domain/extension/graphql/__generated__/fragment.data.gql.dart';
 
 part 'extension_repository.g.dart';
 
@@ -80,8 +79,7 @@ class ExtensionRepository {
   Future<List<Extension>?> getExtensionList({CancelToken? cancelToken}) async =>
       (await dioClient.get<List<Extension>, Extension>(
         ExtensionUrl.list,
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Extension.fromJson(e) : Extension(),
+        decoder: (e) => GExtensionFragmentData(),
         cancelToken: cancelToken,
       ))
           .data;

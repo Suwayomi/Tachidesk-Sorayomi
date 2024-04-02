@@ -125,7 +125,7 @@ class FilterToWidget extends StatelessWidget {
                 child: Padding(
                   padding: KEdgeInsets.h16.size,
                   child: DropdownButton(
-                    icon: const Icon(Icons.keyboard_arrow_down),
+                    icon: const Icon(Icons.keyboard_arrow_down_rounded),
                     isExpanded: true,
                     value: state,
                     hint: Text(name ?? ""),

@@ -18,10 +18,166 @@ import 'package:tachidesk_sorayomi/src/features/about/data/graphql/__generated__
     show GAboutReq, GServerUpdateReq;
 import 'package:tachidesk_sorayomi/src/features/about/data/graphql/__generated__/about_query.var.gql.dart'
     show GAboutVars, GServerUpdateVars;
+import 'package:tachidesk_sorayomi/src/features/about/domain/about/graphql/__generated__/fragment.data.gql.dart'
+    show GAboutFragmentData;
+import 'package:tachidesk_sorayomi/src/features/about/domain/about/graphql/__generated__/fragment.req.gql.dart'
+    show GAboutFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/about/domain/about/graphql/__generated__/fragment.var.gql.dart'
+    show GAboutFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/about/domain/server_update/graphql/__generated__/fragment.data.gql.dart'
+    show GServerUpdateFragmentData;
+import 'package:tachidesk_sorayomi/src/features/about/domain/server_update/graphql/__generated__/fragment.req.gql.dart'
+    show GServerUpdateFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/about/domain/server_update/graphql/__generated__/fragment.var.gql.dart'
+    show GServerUpdateFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/extension/graphql/__generated__/fragment.data.gql.dart'
+    show GExtensionFragmentData;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/extension/graphql/__generated__/fragment.req.gql.dart'
+    show GExtensionFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/extension/graphql/__generated__/fragment.var.gql.dart'
+    show GExtensionFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/source/graphql/__generated__/fragment.data.gql.dart'
+    show
+        GFullSourceFragmentData_filters,
+        GFullSourceFragmentData_filters__asGroupFilter_filters,
+        GFullSourceFragmentData,
+        GFullSourceFragmentData_extension,
+        GFullSourceFragmentData_filters__asCheckBoxFilter,
+        GFullSourceFragmentData_filters__asGroupFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter,
+        GFullSourceFragmentData_filters__asGroupFilter_filters__base,
+        GFullSourceFragmentData_filters__asHeaderFilter,
+        GFullSourceFragmentData_filters__asSelectFilter,
+        GFullSourceFragmentData_filters__asSeparatorFilter,
+        GFullSourceFragmentData_filters__asSortFilter,
+        GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault,
+        GFullSourceFragmentData_filters__asTextFilter,
+        GFullSourceFragmentData_filters__asTriStateFilter,
+        GFullSourceFragmentData_filters__base,
+        GSourceFragmentData,
+        GSourceFragmentData_extension;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/source/graphql/__generated__/fragment.req.gql.dart'
+    show GFullSourceFragmentReq, GSourceFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/source/graphql/__generated__/fragment.var.gql.dart'
+    show GFullSourceFragmentVars, GSourceFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/source_preference/graphql/__generated__/fragment.data.gql.dart'
+    show
+        GSourcePreferenceFragmentData,
+        GSourcePreferenceFragmentData__asCheckBoxPreference,
+        GSourcePreferenceFragmentData__asEditTextPreference,
+        GSourcePreferenceFragmentData__asListPreference,
+        GSourcePreferenceFragmentData__asMultiSelectListPreference,
+        GSourcePreferenceFragmentData__asSwitchPreference,
+        GSourcePreferenceFragmentData__base;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/source_preference/graphql/__generated__/fragment.req.gql.dart'
+    show GSourcePreferenceFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/browse_center/domain/source_preference/graphql/__generated__/fragment.var.gql.dart'
+    show GSourcePreferenceFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/library/data/graphql/__generated__/category_query.data.gql.dart'
+    show
+        GAllCategoriesData,
+        GAllCategoriesData_categories,
+        GAllCategoriesData_categories_nodes,
+        GAllCategoriesData_categories_nodes_mangas,
+        GAllCategoriesData_categories_nodes_meta,
+        GAllCategoriesData_categories_pageInfo;
+import 'package:tachidesk_sorayomi/src/features/library/data/graphql/__generated__/category_query.req.gql.dart'
+    show GAllCategoriesReq;
+import 'package:tachidesk_sorayomi/src/features/library/data/graphql/__generated__/category_query.var.gql.dart'
+    show GAllCategoriesVars;
+import 'package:tachidesk_sorayomi/src/features/library/domain/category/graphql/__generated__/fragment.data.gql.dart'
+    show
+        GCategoryFragmentData,
+        GCategoryFragmentData_mangas,
+        GCategoryFragmentData_meta;
+import 'package:tachidesk_sorayomi/src/features/library/domain/category/graphql/__generated__/fragment.req.gql.dart'
+    show GCategoryFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/library/domain/category/graphql/__generated__/fragment.var.gql.dart'
+    show GCategoryFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/manga_book/domain/chapter/graphql/__generated__/fragment.data.gql.dart'
+    show GChapterFragmentData, GChapterFragmentData_meta;
+import 'package:tachidesk_sorayomi/src/features/manga_book/domain/chapter/graphql/__generated__/fragment.req.gql.dart'
+    show GChapterFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/manga_book/domain/chapter/graphql/__generated__/fragment.var.gql.dart'
+    show GChapterFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/manga_book/domain/manga/graphql/__generated__/fragment.data.gql.dart'
+    show
+        GMangaFragmentData,
+        GMangaFragmentData_lastReadChapter,
+        GMangaFragmentData_lastReadChapter_meta,
+        GMangaFragmentData_latestFetchedChapter,
+        GMangaFragmentData_latestFetchedChapter_meta,
+        GMangaFragmentData_latestReadChapter,
+        GMangaFragmentData_latestReadChapter_meta,
+        GMangaFragmentData_latestUploadedChapter,
+        GMangaFragmentData_latestUploadedChapter_meta,
+        GMangaFragmentData_meta,
+        GMangaFragmentData_source,
+        GMangaFragmentData_source_extension;
+import 'package:tachidesk_sorayomi/src/features/manga_book/domain/manga/graphql/__generated__/fragment.req.gql.dart'
+    show GMangaFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/manga_book/domain/manga/graphql/__generated__/fragment.var.gql.dart'
+    show GMangaFragmentVars;
 import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generated__/settings_query.data.gql.dart'
     show
-        GAutomaticBackupSettingsData,
-        GAutomaticBackupSettingsData_settings,
+        GServerSettingsData,
+        GServerSettingsData_settings,
+        GSettingsFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generated__/settings_query.req.gql.dart'
+    show GServerSettingsReq, GSettingsFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generated__/settings_query.var.gql.dart'
+    show GServerSettingsVars, GSettingsFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/automatic_backup_settings/graphql/__generated__/fragment.data.gql.dart'
+    show GAutomaticBackupSettingsFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/automatic_backup_settings/graphql/__generated__/fragment.req.gql.dart'
+    show GAutomaticBackupSettingsFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/automatic_backup_settings/graphql/__generated__/fragment.var.gql.dart'
+    show GAutomaticBackupSettingsFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/browse/graphql/__generated__/fragment.data.gql.dart'
+    show GBrowserSettingsFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/browse/graphql/__generated__/fragment.req.gql.dart'
+    show GBrowserSettingsFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/browse/graphql/__generated__/fragment.var.gql.dart'
+    show GBrowserSettingsFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/graphql/__generated__/fragment.data.gql.dart'
+    show GCloudFlareBypassFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/graphql/__generated__/fragment.req.gql.dart'
+    show GCloudFlareBypassFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/graphql/__generated__/fragment.var.gql.dart'
+    show GCloudFlareBypassFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.data.gql.dart'
+    show GMiscSettingsFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.req.gql.dart'
+    show GMiscSettingsFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.var.gql.dart'
+    show GMiscSettingsFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/restore_status/graphql/__generated__/fragment.data.gql.dart'
+    show GRestoreStatusFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/restore_status/graphql/__generated__/fragment.req.gql.dart'
+    show GRestoreStatusFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/restore_status/graphql/__generated__/fragment.var.gql.dart'
+    show GRestoreStatusFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/server_binding/graphql/__generated__/fragment.data.gql.dart'
+    show GServerBindingFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/server_binding/graphql/__generated__/fragment.req.gql.dart'
+    show GServerBindingFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/server_binding/graphql/__generated__/fragment.var.gql.dart'
+    show GServerBindingFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/socks_proxy/graphql/__generated__/fragment.data.gql.dart'
+    show GSocksProxyFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/socks_proxy/graphql/__generated__/fragment.req.gql.dart'
+    show GSocksProxyFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/socks_proxy/graphql/__generated__/fragment.var.gql.dart'
+    show GSocksProxyFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/backup/data/graphql/__generated__/backup_settings_query.data.gql.dart'
+    show
         GCreateBackupData,
         GCreateBackupData_createBackup,
         GRestoreBackupData,
@@ -44,9 +200,8 @@ import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generate
         GValidateBackupData,
         GValidateBackupData_validateBackup,
         GValidateBackupData_validateBackup_missingSources;
-import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generated__/settings_query.req.gql.dart'
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/backup/data/graphql/__generated__/backup_settings_query.req.gql.dart'
     show
-        GAutomaticBackupSettingsReq,
         GCreateBackupReq,
         GRestoreBackupReq,
         GRestoreStatusReq,
@@ -55,9 +210,8 @@ import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generate
         GUpdateBackupTTLReq,
         GUpdateBackupTimeReq,
         GValidateBackupReq;
-import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generated__/settings_query.var.gql.dart'
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/backup/data/graphql/__generated__/backup_settings_query.var.gql.dart'
     show
-        GAutomaticBackupSettingsVars,
         GCreateBackupVars,
         GRestoreBackupVars,
         GRestoreStatusVars,
@@ -66,6 +220,119 @@ import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generate
         GUpdateBackupTTLVars,
         GUpdateBackupTimeVars,
         GValidateBackupVars;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/data/graphql/__generated__/browse_settings_query.data.gql.dart'
+    show
+        GUpdateExtensionReposData,
+        GUpdateExtensionReposData_setSettings,
+        GUpdateExtensionReposData_setSettings_settings,
+        GUpdateLocalSourcePathData,
+        GUpdateLocalSourcePathData_setSettings,
+        GUpdateLocalSourcePathData_setSettings_settings,
+        GUpdateSourceInParallelData,
+        GUpdateSourceInParallelData_setSettings,
+        GUpdateSourceInParallelData_setSettings_settings;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/data/graphql/__generated__/browse_settings_query.req.gql.dart'
+    show
+        GUpdateExtensionReposReq,
+        GUpdateLocalSourcePathReq,
+        GUpdateSourceInParallelReq;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/data/graphql/__generated__/browse_settings_query.var.gql.dart'
+    show
+        GUpdateExtensionReposVars,
+        GUpdateLocalSourcePathVars,
+        GUpdateSourceInParallelVars;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/data/graphql/__generated__/server_settings_query.data.gql.dart'
+    show
+        GToggleDebugLogsData,
+        GToggleDebugLogsData_setSettings,
+        GToggleDebugLogsData_setSettings_settings,
+        GToggleFlareSolverrData,
+        GToggleFlareSolverrData_setSettings,
+        GToggleFlareSolverrData_setSettings_settings,
+        GToggleGqlDebugLogsData,
+        GToggleGqlDebugLogsData_setSettings,
+        GToggleGqlDebugLogsData_setSettings_settings,
+        GToggleSocksProxyData,
+        GToggleSocksProxyData_setSettings,
+        GToggleSocksProxyData_setSettings_settings,
+        GToggleSystemTrayEnabledData,
+        GToggleSystemTrayEnabledData_setSettings,
+        GToggleSystemTrayEnabledData_setSettings_settings,
+        GUpdateFlareSolverrSessionNameData,
+        GUpdateFlareSolverrSessionNameData_setSettings,
+        GUpdateFlareSolverrSessionNameData_setSettings_settings,
+        GUpdateFlareSolverrSessionTtlData,
+        GUpdateFlareSolverrSessionTtlData_setSettings,
+        GUpdateFlareSolverrSessionTtlData_setSettings_settings,
+        GUpdateFlareSolverrTimeoutData,
+        GUpdateFlareSolverrTimeoutData_setSettings,
+        GUpdateFlareSolverrTimeoutData_setSettings_settings,
+        GUpdateFlareSolverrUrlData,
+        GUpdateFlareSolverrUrlData_setSettings,
+        GUpdateFlareSolverrUrlData_setSettings_settings,
+        GUpdatePortData,
+        GUpdatePortData_setSettings,
+        GUpdatePortData_setSettings_settings,
+        GUpdateServerIpData,
+        GUpdateServerIpData_setSettings,
+        GUpdateServerIpData_setSettings_settings,
+        GUpdateSocksHostData,
+        GUpdateSocksHostData_setSettings,
+        GUpdateSocksHostData_setSettings_settings,
+        GUpdateSocksPasswordData,
+        GUpdateSocksPasswordData_setSettings,
+        GUpdateSocksPasswordData_setSettings_settings,
+        GUpdateSocksPortData,
+        GUpdateSocksPortData_setSettings,
+        GUpdateSocksPortData_setSettings_settings,
+        GUpdateSocksUserNameData,
+        GUpdateSocksUserNameData_setSettings,
+        GUpdateSocksUserNameData_setSettings_settings,
+        GUpdateSocksVersionData,
+        GUpdateSocksVersionData_setSettings,
+        GUpdateSocksVersionData_setSettings_settings;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/data/graphql/__generated__/server_settings_query.req.gql.dart'
+    show
+        GToggleDebugLogsReq,
+        GToggleFlareSolverrReq,
+        GToggleGqlDebugLogsReq,
+        GToggleSocksProxyReq,
+        GToggleSystemTrayEnabledReq,
+        GUpdateFlareSolverrSessionNameReq,
+        GUpdateFlareSolverrSessionTtlReq,
+        GUpdateFlareSolverrTimeoutReq,
+        GUpdateFlareSolverrUrlReq,
+        GUpdatePortReq,
+        GUpdateServerIpReq,
+        GUpdateSocksHostReq,
+        GUpdateSocksPasswordReq,
+        GUpdateSocksPortReq,
+        GUpdateSocksUserNameReq,
+        GUpdateSocksVersionReq;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/data/graphql/__generated__/server_settings_query.var.gql.dart'
+    show
+        GToggleDebugLogsVars,
+        GToggleFlareSolverrVars,
+        GToggleGqlDebugLogsVars,
+        GToggleSocksProxyVars,
+        GToggleSystemTrayEnabledVars,
+        GUpdateFlareSolverrSessionNameVars,
+        GUpdateFlareSolverrSessionTtlVars,
+        GUpdateFlareSolverrTimeoutVars,
+        GUpdateFlareSolverrUrlVars,
+        GUpdatePortVars,
+        GUpdateServerIpVars,
+        GUpdateSocksHostVars,
+        GUpdateSocksPasswordVars,
+        GUpdateSocksPortVars,
+        GUpdateSocksUserNameVars,
+        GUpdateSocksVersionVars;
+import 'package:tachidesk_sorayomi/src/graphql/__generated__/fragments.data.gql.dart'
+    show GPageInfoFragmentData;
+import 'package:tachidesk_sorayomi/src/graphql/__generated__/fragments.req.gql.dart'
+    show GPageInfoFragmentReq;
+import 'package:tachidesk_sorayomi/src/graphql/__generated__/fragments.var.gql.dart'
+    show GPageInfoFragmentVars;
 import 'package:tachidesk_sorayomi/src/graphql/__generated__/schema.schema.gql.dart'
     show
         GBackupRestoreState,
@@ -191,29 +458,57 @@ part 'serializers.gql.g.dart';
 final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..add(UploadSerializer())
+  ..add(GFullSourceFragmentData_filters.serializer)
+  ..add(GFullSourceFragmentData_filters__asGroupFilter_filters.serializer)
+  ..add(GSourcePreferenceFragmentData.serializer)
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GAboutData,
   GAboutData_aboutServer,
+  GAboutFragmentData,
+  GAboutFragmentReq,
+  GAboutFragmentVars,
   GAboutReq,
   GAboutVars,
-  GAutomaticBackupSettingsData,
-  GAutomaticBackupSettingsData_settings,
-  GAutomaticBackupSettingsReq,
-  GAutomaticBackupSettingsVars,
+  GAllCategoriesData,
+  GAllCategoriesData_categories,
+  GAllCategoriesData_categories_nodes,
+  GAllCategoriesData_categories_nodes_mangas,
+  GAllCategoriesData_categories_nodes_meta,
+  GAllCategoriesData_categories_pageInfo,
+  GAllCategoriesReq,
+  GAllCategoriesVars,
+  GAutomaticBackupSettingsFragmentData,
+  GAutomaticBackupSettingsFragmentReq,
+  GAutomaticBackupSettingsFragmentVars,
   GBackupRestoreState,
   GBindTrackInput,
   GBooleanFilterInput,
+  GBrowserSettingsFragmentData,
+  GBrowserSettingsFragmentReq,
+  GBrowserSettingsFragmentVars,
   GCategoryConditionInput,
   GCategoryFilterInput,
+  GCategoryFragmentData,
+  GCategoryFragmentData_mangas,
+  GCategoryFragmentData_meta,
+  GCategoryFragmentReq,
+  GCategoryFragmentVars,
   GCategoryMetaTypeInput,
   GCategoryOrderBy,
   GChapterConditionInput,
   GChapterFilterInput,
+  GChapterFragmentData,
+  GChapterFragmentData_meta,
+  GChapterFragmentReq,
+  GChapterFragmentVars,
   GChapterMetaTypeInput,
   GChapterOrderBy,
   GClearCachedImagesInput,
   GClearDownloaderInput,
+  GCloudFlareBypassFragmentData,
+  GCloudFlareBypassFragmentReq,
+  GCloudFlareBypassFragmentVars,
   GCreateBackupData,
   GCreateBackupData_createBackup,
   GCreateBackupInput,
@@ -238,6 +533,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GEnqueueChapterDownloadsInput,
   GExtensionConditionInput,
   GExtensionFilterInput,
+  GExtensionFragmentData,
+  GExtensionFragmentReq,
+  GExtensionFragmentVars,
   GExtensionOrderBy,
   GFetchChapterPagesInput,
   GFetchChaptersInput,
@@ -247,6 +545,29 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GFetchSourceMangaType,
   GFilterChangeInput,
   GFloatFilterInput,
+  GFullSourceFragmentData,
+  GFullSourceFragmentData_extension,
+  GFullSourceFragmentData_filters__asCheckBoxFilter,
+  GFullSourceFragmentData_filters__asGroupFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter,
+  GFullSourceFragmentData_filters__asGroupFilter_filters__base,
+  GFullSourceFragmentData_filters__asHeaderFilter,
+  GFullSourceFragmentData_filters__asSelectFilter,
+  GFullSourceFragmentData_filters__asSeparatorFilter,
+  GFullSourceFragmentData_filters__asSortFilter,
+  GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault,
+  GFullSourceFragmentData_filters__asTextFilter,
+  GFullSourceFragmentData_filters__asTriStateFilter,
+  GFullSourceFragmentData_filters__base,
+  GFullSourceFragmentReq,
+  GFullSourceFragmentVars,
   GGlobalMetaTypeInput,
   GIncludeOrExclude,
   GInstallExternalExtensionInput,
@@ -258,6 +579,20 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GLongString,
   GMangaConditionInput,
   GMangaFilterInput,
+  GMangaFragmentData,
+  GMangaFragmentData_lastReadChapter,
+  GMangaFragmentData_lastReadChapter_meta,
+  GMangaFragmentData_latestFetchedChapter,
+  GMangaFragmentData_latestFetchedChapter_meta,
+  GMangaFragmentData_latestReadChapter,
+  GMangaFragmentData_latestReadChapter_meta,
+  GMangaFragmentData_latestUploadedChapter,
+  GMangaFragmentData_latestUploadedChapter_meta,
+  GMangaFragmentData_meta,
+  GMangaFragmentData_source,
+  GMangaFragmentData_source_extension,
+  GMangaFragmentReq,
+  GMangaFragmentVars,
   GMangaMetaTypeInput,
   GMangaOrderBy,
   GMangaStatus,
@@ -265,6 +600,12 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GMetaConditionInput,
   GMetaFilterInput,
   GMetaOrderBy,
+  GMiscSettingsFragmentData,
+  GMiscSettingsFragmentReq,
+  GMiscSettingsFragmentVars,
+  GPageInfoFragmentData,
+  GPageInfoFragmentReq,
+  GPageInfoFragmentVars,
   GPartialSettingsTypeInput,
   GReorderChapterDownloadInput,
   GResetSettingsInput,
@@ -276,11 +617,24 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GRestoreBackupVars,
   GRestoreStatusData,
   GRestoreStatusData_restoreStatus,
+  GRestoreStatusFragmentData,
+  GRestoreStatusFragmentReq,
+  GRestoreStatusFragmentVars,
   GRestoreStatusReq,
   GRestoreStatusVars,
   GSearchTrackerInput,
+  GServerBindingFragmentData,
+  GServerBindingFragmentReq,
+  GServerBindingFragmentVars,
+  GServerSettingsData,
+  GServerSettingsData_settings,
+  GServerSettingsReq,
+  GServerSettingsVars,
   GServerUpdateData,
   GServerUpdateData_checkForServerUpdates,
+  GServerUpdateFragmentData,
+  GServerUpdateFragmentReq,
+  GServerUpdateFragmentVars,
   GServerUpdateReq,
   GServerUpdateVars,
   GSetCategoryMetaInput,
@@ -289,16 +643,59 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GSetMangaMetaInput,
   GSetSettingsInput,
   GSetSourceMetaInput,
+  GSettingsFragmentData,
+  GSettingsFragmentReq,
+  GSettingsFragmentVars,
+  GSocksProxyFragmentData,
+  GSocksProxyFragmentReq,
+  GSocksProxyFragmentVars,
   GSortOrder,
   GSortSelectionInput,
   GSourceConditionInput,
   GSourceFilterInput,
+  GSourceFragmentData,
+  GSourceFragmentData_extension,
+  GSourceFragmentReq,
+  GSourceFragmentVars,
   GSourceMetaTypeInput,
   GSourceOrderBy,
   GSourcePreferenceChangeInput,
+  GSourcePreferenceFragmentData__asCheckBoxPreference,
+  GSourcePreferenceFragmentData__asEditTextPreference,
+  GSourcePreferenceFragmentData__asListPreference,
+  GSourcePreferenceFragmentData__asMultiSelectListPreference,
+  GSourcePreferenceFragmentData__asSwitchPreference,
+  GSourcePreferenceFragmentData__base,
+  GSourcePreferenceFragmentReq,
+  GSourcePreferenceFragmentVars,
   GStartDownloaderInput,
   GStopDownloaderInput,
   GStringFilterInput,
+  GToggleDebugLogsData,
+  GToggleDebugLogsData_setSettings,
+  GToggleDebugLogsData_setSettings_settings,
+  GToggleDebugLogsReq,
+  GToggleDebugLogsVars,
+  GToggleFlareSolverrData,
+  GToggleFlareSolverrData_setSettings,
+  GToggleFlareSolverrData_setSettings_settings,
+  GToggleFlareSolverrReq,
+  GToggleFlareSolverrVars,
+  GToggleGqlDebugLogsData,
+  GToggleGqlDebugLogsData_setSettings,
+  GToggleGqlDebugLogsData_setSettings_settings,
+  GToggleGqlDebugLogsReq,
+  GToggleGqlDebugLogsVars,
+  GToggleSocksProxyData,
+  GToggleSocksProxyData_setSettings,
+  GToggleSocksProxyData_setSettings_settings,
+  GToggleSocksProxyReq,
+  GToggleSocksProxyVars,
+  GToggleSystemTrayEnabledData,
+  GToggleSystemTrayEnabledData_setSettings,
+  GToggleSystemTrayEnabledData_setSettings_settings,
+  GToggleSystemTrayEnabledReq,
+  GToggleSystemTrayEnabledVars,
   GTrackRecordConditionInput,
   GTrackRecordFilterInput,
   GTrackRecordOrderBy,
@@ -335,14 +732,84 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpdateChaptersInput,
   GUpdateExtensionInput,
   GUpdateExtensionPatchInput,
+  GUpdateExtensionReposData,
+  GUpdateExtensionReposData_setSettings,
+  GUpdateExtensionReposData_setSettings_settings,
+  GUpdateExtensionReposReq,
+  GUpdateExtensionReposVars,
   GUpdateExtensionsInput,
+  GUpdateFlareSolverrSessionNameData,
+  GUpdateFlareSolverrSessionNameData_setSettings,
+  GUpdateFlareSolverrSessionNameData_setSettings_settings,
+  GUpdateFlareSolverrSessionNameReq,
+  GUpdateFlareSolverrSessionNameVars,
+  GUpdateFlareSolverrSessionTtlData,
+  GUpdateFlareSolverrSessionTtlData_setSettings,
+  GUpdateFlareSolverrSessionTtlData_setSettings_settings,
+  GUpdateFlareSolverrSessionTtlReq,
+  GUpdateFlareSolverrSessionTtlVars,
+  GUpdateFlareSolverrTimeoutData,
+  GUpdateFlareSolverrTimeoutData_setSettings,
+  GUpdateFlareSolverrTimeoutData_setSettings_settings,
+  GUpdateFlareSolverrTimeoutReq,
+  GUpdateFlareSolverrTimeoutVars,
+  GUpdateFlareSolverrUrlData,
+  GUpdateFlareSolverrUrlData_setSettings,
+  GUpdateFlareSolverrUrlData_setSettings_settings,
+  GUpdateFlareSolverrUrlReq,
+  GUpdateFlareSolverrUrlVars,
   GUpdateLibraryMangaInput,
+  GUpdateLocalSourcePathData,
+  GUpdateLocalSourcePathData_setSettings,
+  GUpdateLocalSourcePathData_setSettings_settings,
+  GUpdateLocalSourcePathReq,
+  GUpdateLocalSourcePathVars,
   GUpdateMangaCategoriesInput,
   GUpdateMangaCategoriesPatchInput,
   GUpdateMangaInput,
   GUpdateMangaPatchInput,
   GUpdateMangasCategoriesInput,
   GUpdateMangasInput,
+  GUpdatePortData,
+  GUpdatePortData_setSettings,
+  GUpdatePortData_setSettings_settings,
+  GUpdatePortReq,
+  GUpdatePortVars,
+  GUpdateServerIpData,
+  GUpdateServerIpData_setSettings,
+  GUpdateServerIpData_setSettings_settings,
+  GUpdateServerIpReq,
+  GUpdateServerIpVars,
+  GUpdateSocksHostData,
+  GUpdateSocksHostData_setSettings,
+  GUpdateSocksHostData_setSettings_settings,
+  GUpdateSocksHostReq,
+  GUpdateSocksHostVars,
+  GUpdateSocksPasswordData,
+  GUpdateSocksPasswordData_setSettings,
+  GUpdateSocksPasswordData_setSettings_settings,
+  GUpdateSocksPasswordReq,
+  GUpdateSocksPasswordVars,
+  GUpdateSocksPortData,
+  GUpdateSocksPortData_setSettings,
+  GUpdateSocksPortData_setSettings_settings,
+  GUpdateSocksPortReq,
+  GUpdateSocksPortVars,
+  GUpdateSocksUserNameData,
+  GUpdateSocksUserNameData_setSettings,
+  GUpdateSocksUserNameData_setSettings_settings,
+  GUpdateSocksUserNameReq,
+  GUpdateSocksUserNameVars,
+  GUpdateSocksVersionData,
+  GUpdateSocksVersionData_setSettings,
+  GUpdateSocksVersionData_setSettings_settings,
+  GUpdateSocksVersionReq,
+  GUpdateSocksVersionVars,
+  GUpdateSourceInParallelData,
+  GUpdateSourceInParallelData_setSettings,
+  GUpdateSourceInParallelData_setSettings_settings,
+  GUpdateSourceInParallelReq,
+  GUpdateSourceInParallelVars,
   GUpdateSourcePreferenceInput,
   GUpdateState,
   GUpdateStopInput,

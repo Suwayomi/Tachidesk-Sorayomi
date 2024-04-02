@@ -5,7 +5,9 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../abstracts/value_enum.dart';
 import '../utils/extensions/custom_extensions.dart';
 
 enum AuthType {
@@ -71,14 +73,12 @@ enum ReaderNavigationLayout {
 enum MangaSort {
   alphabetical,
   dateAdded,
-  unread,
-  lastRead;
+  unread;
 
   String toLocale(BuildContext context) => switch (this) {
         MangaSort.alphabetical => context.l10n.mangaSortAlphabetical,
         MangaSort.dateAdded => context.l10n.mangaSortDateAdded,
         MangaSort.unread => context.l10n.mangaSortUnread,
-        MangaSort.lastRead => context.l10n.mangaSortLastRead
       };
 }
 
@@ -165,4 +165,16 @@ enum SourceType {
         SourceType.popular => context.l10n.sourceTypePopular,
         SourceType.filter => context.l10n.sourceTypeFilter
       };
+}
+
+@JsonEnum(valueField: 'value')
+enum IncludeOrExclude implements ValueEnum {
+  include("INCLUDE"),
+  exclude("EXCLUDE"),
+  unset("UNSET");
+
+  const IncludeOrExclude(this.value);
+
+  @override
+  final String value;
 }

@@ -10,6 +10,7 @@ import 'package:gap/gap.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../../../routes/router_config.dart';
 import '../../extensions/custom_extensions.dart';
 
 part 'toast.g.dart';
@@ -110,4 +111,10 @@ class ToastWidget extends StatelessWidget {
 }
 
 @riverpod
-Toast toast(ToastRef ref, BuildContext context) => Toast(context);
+Toast? toast(ToastRef ref) {
+  final context = rootNavigatorKey.currentContext;
+  if (context == null) {
+    return null;
+  }
+  return Toast(context);
+}

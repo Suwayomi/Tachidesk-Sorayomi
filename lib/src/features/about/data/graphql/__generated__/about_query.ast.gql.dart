@@ -3,6 +3,10 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:gql/ast.dart' as _i1;
+import 'package:tachidesk_sorayomi/src/features/about/domain/about/graphql/__generated__/fragment.ast.gql.dart'
+    as _i2;
+import 'package:tachidesk_sorayomi/src/features/about/domain/server_update/graphql/__generated__/fragment.ast.gql.dart'
+    as _i3;
 
 const About = _i1.OperationDefinitionNode(
   type: _i1.OperationType.query,
@@ -16,55 +20,10 @@ const About = _i1.OperationDefinitionNode(
       arguments: [],
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'name'),
-          alias: null,
-          arguments: [],
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'AboutFragment'),
           directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'version'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'revision'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'buildType'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'buildTime'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'discord'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'github'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
+        )
       ]),
     )
   ]),
@@ -81,27 +40,10 @@ const ServerUpdate = _i1.OperationDefinitionNode(
       arguments: [],
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'channel'),
-          alias: null,
-          arguments: [],
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ServerUpdateFragment'),
           directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'tag'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'url'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
+        )
       ]),
     )
   ]),
@@ -109,4 +51,6 @@ const ServerUpdate = _i1.OperationDefinitionNode(
 const document = _i1.DocumentNode(definitions: [
   About,
   ServerUpdate,
+  _i2.AboutFragment,
+  _i3.ServerUpdateFragment,
 ]);

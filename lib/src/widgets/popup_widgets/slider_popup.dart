@@ -31,51 +31,20 @@ class SliderPopup extends HookWidget {
     return AlertDialog(
       contentPadding: KEdgeInsets.a16.size,
       title: Text(title),
-      content: Padding(
-        padding: KEdgeInsets.h8.size,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (subtitle.isNotBlank) ...[
-              Padding(padding: KEdgeInsets.v4.size, child: Text(subtitle!)),
-              const Gap(8),
-            ],
-            Text(
-              slideValue.value.compact(returnNullOnZero: false).ifNull('0'),
-              style: const TextStyle(fontSize: 22),
-            ),
-            Padding(
-              padding: KEdgeInsets.v8.size,
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => slideValue.value -= 1,
-                    icon: const Icon(Icons.remove),
-                  ),
-                  Expanded(
-                    child: SliderTheme(
-                      data: const SliderThemeData(
-                        showValueIndicator: ShowValueIndicator.always,
-                      ),
-                      child: Slider(
-                        value: slideValue.value.toDouble(),
-                        onChanged: (value) => slideValue.value = value.toInt(),
-                        min: min.toDouble(),
-                        max: max.toDouble(),
-                        label: slideValue.value.compact(),
-                        secondaryTrackValue: slideValue.value.toDouble(),
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () => slideValue.value += 1,
-                    icon: const Icon(Icons.add),
-                  ),
-                ],
-              ),
-            ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (subtitle.isNotBlank) ...[
+            Padding(padding: KEdgeInsets.v4.size, child: Text(subtitle!)),
+            const Gap(8),
           ],
-        ),
+          NumberSlider(
+            value: slideValue.value,
+            onChanged: (value) => slideValue.value = value,
+            min: min,
+            max: max,
+          ),
+        ],
       ),
       actions: [
         const PopButton(),
@@ -84,6 +53,67 @@ class SliderPopup extends HookWidget {
           child: Text(context.l10n.save),
         )
       ],
+    );
+  }
+}
+
+class NumberSlider extends StatelessWidget {
+  const NumberSlider({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.min,
+    required this.max,
+  });
+
+  final int value;
+  final ValueChanged<int> onChanged;
+  final int min;
+  final int max;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: KEdgeInsets.h8.size,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            value.compact(returnNullOnZero: false).ifNull('0'),
+            style: const TextStyle(fontSize: 22),
+          ),
+          Padding(
+            padding: KEdgeInsets.v8.size,
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () => onChanged(value - 1),
+                  icon: const Icon(Icons.remove_rounded),
+                ),
+                Expanded(
+                  child: SliderTheme(
+                    data: const SliderThemeData(
+                      showValueIndicator: ShowValueIndicator.always,
+                    ),
+                    child: Slider(
+                      value: value.toDouble(),
+                      onChanged: (value) => onChanged(value.toInt()),
+                      min: min.toDouble(),
+                      max: max.toDouble(),
+                      label: value.compact(),
+                      secondaryTrackValue: value.toDouble(),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => onChanged(value + 1),
+                  icon: const Icon(Icons.add_rounded),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

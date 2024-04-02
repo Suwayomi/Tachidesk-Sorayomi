@@ -81,25 +81,25 @@ class _$GAboutData_aboutServerSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'version',
-      serializers.serialize(object.version,
-          specifiedType: const FullType(String)),
-      'revision',
-      serializers.serialize(object.revision,
-          specifiedType: const FullType(String)),
+      'buildTime',
+      serializers.serialize(object.buildTime,
+          specifiedType: const FullType(_i3.GLongString)),
       'buildType',
       serializers.serialize(object.buildType,
           specifiedType: const FullType(String)),
-      'buildTime',
-      serializers.serialize(object.buildTime,
-          specifiedType: const FullType(_i2.GLongString)),
       'discord',
       serializers.serialize(object.discord,
           specifiedType: const FullType(String)),
       'github',
       serializers.serialize(object.github,
+          specifiedType: const FullType(String)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'revision',
+      serializers.serialize(object.revision,
+          specifiedType: const FullType(String)),
+      'version',
+      serializers.serialize(object.version,
           specifiedType: const FullType(String)),
     ];
 
@@ -122,26 +122,14 @@ class _$GAboutData_aboutServerSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'version':
-          result.version = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'revision':
-          result.revision = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+        case 'buildTime':
+          result.buildTime.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GLongString))!
+              as _i3.GLongString);
           break;
         case 'buildType':
           result.buildType = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
-          break;
-        case 'buildTime':
-          result.buildTime.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GLongString))!
-              as _i2.GLongString);
           break;
         case 'discord':
           result.discord = serializers.deserialize(value,
@@ -149,6 +137,18 @@ class _$GAboutData_aboutServerSerializer
           break;
         case 'github':
           result.github = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'revision':
+          result.revision = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'version':
+          result.version = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -394,19 +394,19 @@ class _$GAboutData_aboutServer extends GAboutData_aboutServer {
   @override
   final String G__typename;
   @override
-  final String name;
-  @override
-  final String version;
-  @override
-  final String revision;
+  final _i3.GLongString buildTime;
   @override
   final String buildType;
-  @override
-  final _i2.GLongString buildTime;
   @override
   final String discord;
   @override
   final String github;
+  @override
+  final String name;
+  @override
+  final String revision;
+  @override
+  final String version;
 
   factory _$GAboutData_aboutServer(
           [void Function(GAboutData_aboutServerBuilder)? updates]) =>
@@ -414,30 +414,30 @@ class _$GAboutData_aboutServer extends GAboutData_aboutServer {
 
   _$GAboutData_aboutServer._(
       {required this.G__typename,
-      required this.name,
-      required this.version,
-      required this.revision,
-      required this.buildType,
       required this.buildTime,
+      required this.buildType,
       required this.discord,
-      required this.github})
+      required this.github,
+      required this.name,
+      required this.revision,
+      required this.version})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GAboutData_aboutServer', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GAboutData_aboutServer', 'name');
-    BuiltValueNullFieldError.checkNotNull(
-        version, r'GAboutData_aboutServer', 'version');
-    BuiltValueNullFieldError.checkNotNull(
-        revision, r'GAboutData_aboutServer', 'revision');
+        buildTime, r'GAboutData_aboutServer', 'buildTime');
     BuiltValueNullFieldError.checkNotNull(
         buildType, r'GAboutData_aboutServer', 'buildType');
-    BuiltValueNullFieldError.checkNotNull(
-        buildTime, r'GAboutData_aboutServer', 'buildTime');
     BuiltValueNullFieldError.checkNotNull(
         discord, r'GAboutData_aboutServer', 'discord');
     BuiltValueNullFieldError.checkNotNull(
         github, r'GAboutData_aboutServer', 'github');
+    BuiltValueNullFieldError.checkNotNull(
+        name, r'GAboutData_aboutServer', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        revision, r'GAboutData_aboutServer', 'revision');
+    BuiltValueNullFieldError.checkNotNull(
+        version, r'GAboutData_aboutServer', 'version');
   }
 
   @override
@@ -454,26 +454,26 @@ class _$GAboutData_aboutServer extends GAboutData_aboutServer {
     if (identical(other, this)) return true;
     return other is GAboutData_aboutServer &&
         G__typename == other.G__typename &&
-        name == other.name &&
-        version == other.version &&
-        revision == other.revision &&
-        buildType == other.buildType &&
         buildTime == other.buildTime &&
+        buildType == other.buildType &&
         discord == other.discord &&
-        github == other.github;
+        github == other.github &&
+        name == other.name &&
+        revision == other.revision &&
+        version == other.version;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, version.hashCode);
-    _$hash = $jc(_$hash, revision.hashCode);
-    _$hash = $jc(_$hash, buildType.hashCode);
     _$hash = $jc(_$hash, buildTime.hashCode);
+    _$hash = $jc(_$hash, buildType.hashCode);
     _$hash = $jc(_$hash, discord.hashCode);
     _$hash = $jc(_$hash, github.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, revision.hashCode);
+    _$hash = $jc(_$hash, version.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -482,13 +482,13 @@ class _$GAboutData_aboutServer extends GAboutData_aboutServer {
   String toString() {
     return (newBuiltValueToStringHelper(r'GAboutData_aboutServer')
           ..add('G__typename', G__typename)
-          ..add('name', name)
-          ..add('version', version)
-          ..add('revision', revision)
-          ..add('buildType', buildType)
           ..add('buildTime', buildTime)
+          ..add('buildType', buildType)
           ..add('discord', discord)
-          ..add('github', github))
+          ..add('github', github)
+          ..add('name', name)
+          ..add('revision', revision)
+          ..add('version', version))
         .toString();
   }
 }
@@ -501,27 +501,15 @@ class GAboutData_aboutServerBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _version;
-  String? get version => _$this._version;
-  set version(String? version) => _$this._version = version;
-
-  String? _revision;
-  String? get revision => _$this._revision;
-  set revision(String? revision) => _$this._revision = revision;
+  _i3.GLongStringBuilder? _buildTime;
+  _i3.GLongStringBuilder get buildTime =>
+      _$this._buildTime ??= new _i3.GLongStringBuilder();
+  set buildTime(_i3.GLongStringBuilder? buildTime) =>
+      _$this._buildTime = buildTime;
 
   String? _buildType;
   String? get buildType => _$this._buildType;
   set buildType(String? buildType) => _$this._buildType = buildType;
-
-  _i2.GLongStringBuilder? _buildTime;
-  _i2.GLongStringBuilder get buildTime =>
-      _$this._buildTime ??= new _i2.GLongStringBuilder();
-  set buildTime(_i2.GLongStringBuilder? buildTime) =>
-      _$this._buildTime = buildTime;
 
   String? _discord;
   String? get discord => _$this._discord;
@@ -531,6 +519,18 @@ class GAboutData_aboutServerBuilder
   String? get github => _$this._github;
   set github(String? github) => _$this._github = github;
 
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _revision;
+  String? get revision => _$this._revision;
+  set revision(String? revision) => _$this._revision = revision;
+
+  String? _version;
+  String? get version => _$this._version;
+  set version(String? version) => _$this._version = version;
+
   GAboutData_aboutServerBuilder() {
     GAboutData_aboutServer._initializeBuilder(this);
   }
@@ -539,13 +539,13 @@ class GAboutData_aboutServerBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _name = $v.name;
-      _version = $v.version;
-      _revision = $v.revision;
-      _buildType = $v.buildType;
       _buildTime = $v.buildTime.toBuilder();
+      _buildType = $v.buildType;
       _discord = $v.discord;
       _github = $v.github;
+      _name = $v.name;
+      _revision = $v.revision;
+      _version = $v.version;
       _$v = null;
     }
     return this;
@@ -572,19 +572,19 @@ class GAboutData_aboutServerBuilder
           new _$GAboutData_aboutServer._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GAboutData_aboutServer', 'G__typename'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GAboutData_aboutServer', 'name'),
-              version: BuiltValueNullFieldError.checkNotNull(
-                  version, r'GAboutData_aboutServer', 'version'),
-              revision: BuiltValueNullFieldError.checkNotNull(
-                  revision, r'GAboutData_aboutServer', 'revision'),
+              buildTime: buildTime.build(),
               buildType: BuiltValueNullFieldError.checkNotNull(
                   buildType, r'GAboutData_aboutServer', 'buildType'),
-              buildTime: buildTime.build(),
               discord: BuiltValueNullFieldError.checkNotNull(
                   discord, r'GAboutData_aboutServer', 'discord'),
               github: BuiltValueNullFieldError.checkNotNull(
-                  github, r'GAboutData_aboutServer', 'github'));
+                  github, r'GAboutData_aboutServer', 'github'),
+              name: BuiltValueNullFieldError.checkNotNull(
+                  name, r'GAboutData_aboutServer', 'name'),
+              revision: BuiltValueNullFieldError.checkNotNull(
+                  revision, r'GAboutData_aboutServer', 'revision'),
+              version: BuiltValueNullFieldError.checkNotNull(
+                  version, r'GAboutData_aboutServer', 'version'));
     } catch (_) {
       late String _$failedField;
       try {

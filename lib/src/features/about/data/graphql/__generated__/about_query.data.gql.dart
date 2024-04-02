@@ -5,8 +5,12 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:tachidesk_sorayomi/src/graphql/__generated__/schema.schema.gql.dart'
+import 'package:tachidesk_sorayomi/src/features/about/domain/about/graphql/__generated__/fragment.data.gql.dart'
     as _i2;
+import 'package:tachidesk_sorayomi/src/features/about/domain/server_update/graphql/__generated__/fragment.data.gql.dart'
+    as _i4;
+import 'package:tachidesk_sorayomi/src/graphql/__generated__/schema.schema.gql.dart'
+    as _i3;
 import 'package:tachidesk_sorayomi/src/graphql/__generated__/serializers.gql.dart'
     as _i1;
 
@@ -39,7 +43,9 @@ abstract class GAboutData implements Built<GAboutData, GAboutDataBuilder> {
 }
 
 abstract class GAboutData_aboutServer
-    implements Built<GAboutData_aboutServer, GAboutData_aboutServerBuilder> {
+    implements
+        Built<GAboutData_aboutServer, GAboutData_aboutServerBuilder>,
+        _i2.GAboutFragment {
   GAboutData_aboutServer._();
 
   factory GAboutData_aboutServer(
@@ -49,18 +55,27 @@ abstract class GAboutData_aboutServer
   static void _initializeBuilder(GAboutData_aboutServerBuilder b) =>
       b..G__typename = 'AboutServerPayload';
 
+  @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String get name;
-  String get version;
-  String get revision;
+  @override
+  _i3.GLongString get buildTime;
+  @override
   String get buildType;
-  _i2.GLongString get buildTime;
+  @override
   String get discord;
+  @override
   String get github;
+  @override
+  String get name;
+  @override
+  String get revision;
+  @override
+  String get version;
   static Serializer<GAboutData_aboutServer> get serializer =>
       _$gAboutDataAboutServerSerializer;
 
+  @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GAboutData_aboutServer.serializer,
         this,
@@ -105,7 +120,8 @@ abstract class GServerUpdateData
 abstract class GServerUpdateData_checkForServerUpdates
     implements
         Built<GServerUpdateData_checkForServerUpdates,
-            GServerUpdateData_checkForServerUpdatesBuilder> {
+            GServerUpdateData_checkForServerUpdatesBuilder>,
+        _i4.GServerUpdateFragment {
   GServerUpdateData_checkForServerUpdates._();
 
   factory GServerUpdateData_checkForServerUpdates(
@@ -116,14 +132,19 @@ abstract class GServerUpdateData_checkForServerUpdates
           GServerUpdateData_checkForServerUpdatesBuilder b) =>
       b..G__typename = 'CheckForServerUpdatesPayload';
 
+  @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  @override
   String get channel;
+  @override
   String get tag;
+  @override
   String get url;
   static Serializer<GServerUpdateData_checkForServerUpdates> get serializer =>
       _$gServerUpdateDataCheckForServerUpdatesSerializer;
 
+  @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
         GServerUpdateData_checkForServerUpdates.serializer,
         this,

@@ -20,7 +20,7 @@ final sourceListProvider = AutoDisposeFutureProvider<List<Source>?>.internal(
 );
 
 typedef SourceListRef = AutoDisposeFutureProviderRef<List<Source>?>;
-String _$sourceMapHash() => r'13682cd8c100d4d7ef007793b2c5ab9f97bad438';
+String _$sourceMapHash() => r'ff42ed197cb681cc99f0c5b3da2a0989a1acd378';
 
 /// See also [sourceMap].
 @ProviderFor(sourceMap)

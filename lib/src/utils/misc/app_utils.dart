@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../extensions/custom_extensions.dart';
+import 'toast/toast.dart';
 
 abstract class AppUtils {
   static String? getPanFromGst(String gst) {
@@ -61,4 +63,11 @@ abstract class AppUtils {
     }
     return resultParam;
   }
+
+  static Future<T?> guard<T>(
+    Future<T> Function() future,
+    Toast? toast, [
+    bool Function(Object)? test,
+  ]) async =>
+      (await AsyncValue.guard(future, test)).valueOrToast(toast);
 }

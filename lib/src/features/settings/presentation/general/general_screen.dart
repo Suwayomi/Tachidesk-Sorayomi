@@ -51,9 +51,7 @@ class GeneralScreen extends ConsumerWidget {
               await ref.watch(hiveCacheStoreProvider).clean();
               DefaultCacheManager().emptyCache();
               if (context.mounted) {
-                ref
-                    .read(toastProvider(context))
-                    .show(context.l10n.cacheCleared);
+                ref.read(toastProvider)?.show(context.l10n.cacheCleared);
               }
             },
           ),

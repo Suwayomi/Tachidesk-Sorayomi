@@ -75,6 +75,12 @@ extension StringExtensions on String? {
         r'^(([^<>[\]\\.,;:\s@\"]+(\.[^<>[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   }
 
+  bool get isUrl {
+    if (isNull) return false;
+    return this!.hasMatch(
+        r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)');
+  }
+
   bool query([String? query]) {
     if (isNull) return false;
     if (query.isBlank) return true;
@@ -118,4 +124,7 @@ extension StringExtensions on String? {
     }
     return TimeOfDay(hour: timeList.first!, minute: timeList.last!);
   }
+
+  int getValueOnNullOrNegative([int i = 0]) =>
+      int.tryParse(this ?? '')?.getValueOnNullOrNegative(i) ?? i;
 }

@@ -20,7 +20,8 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     }
   }
 
-  void showToastOnError(Toast toast, {bool withMicrotask = false}) {
+  void showToastOnError(Toast? toast, {bool withMicrotask = false}) {
+    if (toast == null) return;
     if (withMicrotask) {
       Future.microtask(() => (this._showToastOnError(toast)));
     } else {
@@ -28,7 +29,7 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
     }
   }
 
-  T? valueOrToast(Toast toast, {bool withMicrotask = false}) =>
+  T? valueOrToast(Toast? toast, {bool withMicrotask = false}) =>
       (this..showToastOnError(toast, withMicrotask: withMicrotask)).valueOrNull;
 
   Widget showUiWhenData(
@@ -48,7 +49,7 @@ extension AsyncValueExtensions<T> on AsyncValue<T> {
       error: (error, trace) => AppUtils.wrapOn(
           wrapper,
           Emoticons(
-            text: showGenericError
+            title: showGenericError
                 ? context.l10n.errorSomethingWentWrong
                 : error.toString(),
             button: refresh != null

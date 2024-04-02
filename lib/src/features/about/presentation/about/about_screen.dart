@@ -33,12 +33,12 @@ class AboutScreen extends HookConsumerWidget {
     required String serverVer,
     required AboutDto about,
     required Future<List<ServerUpdate>?> Function() updateCallback,
-    required Toast toast,
+    required Toast? toast,
   }) {
-    toast.show(context.l10n.searchingForUpdates);
+    toast?.show(context.l10n.searchingForUpdates);
     AsyncValue.guard(updateCallback).then(
       (value) {
-        toast.close();
+        toast?.close();
         try {
           value.whenOrNull(
             data: (data) {
@@ -51,7 +51,7 @@ class AboutScreen extends HookConsumerWidget {
               final newVer = Version.parse(newUpdate.tag?.substring(1) ?? "");
               if ((newVer.compareTo(currentVer)).isGreaterThan(0)) {
                 appUpdateDialog(
-                  title: about.name ?? context.l10n.server,
+                  title: about.name,
                   newRelease: "${newVer.canonicalizedVersion}"
                       " (${newUpdate.channel})",
                   context: context,
@@ -59,13 +59,17 @@ class AboutScreen extends HookConsumerWidget {
                   url: newUpdate.url,
                 );
               } else {
-                toast.show(context.l10n.noUpdatesAvailable);
+                toast?.show(context.l10n.noUpdatesAvailable);
               }
             },
-            error: (error, stackTrace) => value.showToastOnError(toast),
+            error: (error, stackTrace) {
+              if (toast != null) {
+                value.showToastOnError(toast);
+              }
+            },
           );
         } catch (e) {
-          toast.showError(
+          toast?.showError(
             kDebugMode ? e.toString() : context.l10n.errorSomethingWentWrong,
           );
         }
@@ -77,12 +81,12 @@ class AboutScreen extends HookConsumerWidget {
     required String? title,
     required BuildContext context,
     required Future<AsyncValue<Version?>> Function() updateCallback,
-    required Toast toast,
+    required Toast? toast,
   }) async {
-    toast.show(context.l10n.searchingForUpdates);
+    toast?.show(context.l10n.searchingForUpdates);
     final result = await updateCallback();
     if (!context.mounted) return;
-    toast.close();
+    toast?.close();
     result.whenOrNull(
       data: (version) {
         if (version != null) {
@@ -93,16 +97,20 @@ class AboutScreen extends HookConsumerWidget {
             toast: toast,
           );
         } else {
-          toast.show(context.l10n.noUpdatesAvailable);
+          toast?.show(context.l10n.noUpdatesAvailable);
         }
       },
-      error: (error, stackTrace) => result.showToastOnError(toast),
+      error: (error, stackTrace) {
+        if (toast != null) {
+          result.showToastOnError(toast);
+        }
+      },
     );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final toast = ref.watch(toastProvider(context));
+    final toast = ref.watch(toastProvider);
     final aboutAsync = ref.watch(aboutProvider);
     final about = aboutAsync.valueOrNull;
     final serverVer = about?.buildType == "Stable"
@@ -111,7 +119,9 @@ class AboutScreen extends HookConsumerWidget {
     final packageInfo = ref.watch(packageInfoProvider);
 
     useEffect(() {
-      aboutAsync.showToastOnError(toast, withMicrotask: true);
+      if (toast != null) {
+        aboutAsync.showToastOnError(toast, withMicrotask: true);
+      }
       return;
     }, [aboutAsync.valueOrNull]);
 
@@ -167,10 +177,12 @@ class AboutScreen extends HookConsumerWidget {
                 ),
               ClipboardListTile(
                 title: context.l10n.buildTime,
-                value: (about.buildTime).isNull
+                value: (about.buildTime.value).isNull
                     ? null
                     : DateTime.fromMillisecondsSinceEpoch(
-                        (about.buildTime.getValueOnNullOrNegative()) * 1000,
+                        (int.tryParse(about.buildTime.value)
+                                .getValueOnNullOrNegative()) *
+                            1000,
                       ).toDateString,
               ),
               if (serverVer.isNotBlank)
@@ -201,7 +213,7 @@ class AboutScreen extends HookConsumerWidget {
                     MediaLaunchButton(
                       title: context.l10n.discord,
                       iconData: FontAwesomeIcons.discord,
-                      url: about!.discord!,
+                      url: about!.discord,
                       toast: toast,
                     ),
                   MediaLaunchButton(

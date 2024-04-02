@@ -1,0 +1,104 @@
+
+fragment SourceFragment on SourceType {
+  displayName
+  iconUrl
+  id
+  isConfigurable
+  isNsfw
+  lang
+  name
+  supportsLatest
+  extension {
+        pkgName
+        repo
+    }
+}
+
+fragment FullSourceFragment on SourceType {
+    ...SourceFragment
+    filters {
+        ... on CheckBoxFilter {
+            type: __typename
+            CheckBoxFilterDefault: default
+            name
+        }
+        ... on HeaderFilter {
+            type: __typename
+            name
+        }
+        ... on SelectFilter {
+            type: __typename
+            SelectFilterDefault: default
+            name
+            values
+        }
+        ... on TriStateFilter {
+            type: __typename
+            TriStateFilterDefault: default
+            name
+        }
+        ... on TextFilter {
+            type: __typename
+            TextFilterDefault: default
+            name
+        }
+        ... on SortFilter {
+            type: __typename
+            SortFilterDefault: default {
+                ascending
+                index
+            }
+            name
+            values
+        }
+        ... on SeparatorFilter {
+            type: __typename
+            name
+        }
+        ... on GroupFilter {
+            type: __typename
+            name
+            filters {
+                ... on CheckBoxFilter {
+                    type: __typename
+                    CheckBoxFilterDefault: default
+                    name
+                }
+                ... on HeaderFilter {
+                    type: __typename
+                    name
+                }
+                ... on SelectFilter {
+                    type: __typename
+                    SelectFilterDefault: default
+                    name
+                    values
+                }
+                ... on TriStateFilter {
+                    type: __typename
+                    TriStateFilterDefault: default
+                    name
+                }
+                ... on TextFilter {
+                    type: __typename
+                    TextFilterDefault: default
+                    name
+                }
+                ... on SortFilter {
+                    type: __typename
+                    SortFilterDefault: default {
+                        ascending
+                        index
+                    }
+                    name
+                    values
+                }
+                ... on SeparatorFilter {
+                    type: __typename
+                    name
+                }
+            }
+        }
+    }
+}
+

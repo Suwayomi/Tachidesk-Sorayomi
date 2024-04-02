@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-MangaPage _$MangaPageFromJson(Map<String, dynamic> json) {
-  return _MangaPage.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MangaPage {
   List<Manga>? get mangaList => throw _privateConstructorUsedError;
   bool? get hasNextPage => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MangaPageCopyWith<MangaPage> get copyWith =>
       throw _privateConstructorUsedError;
@@ -105,13 +100,10 @@ class __$$MangaPageImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$MangaPageImpl implements _MangaPage {
   _$MangaPageImpl({final List<Manga>? mangaList, this.hasNextPage})
       : _mangaList = mangaList;
-
-  factory _$MangaPageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MangaPageImplFromJson(json);
 
   final List<Manga>? _mangaList;
   @override
@@ -142,7 +134,6 @@ class _$MangaPageImpl implements _MangaPage {
                 other.hasNextPage == hasNextPage));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_mangaList), hasNextPage);
@@ -152,21 +143,11 @@ class _$MangaPageImpl implements _MangaPage {
   @pragma('vm:prefer-inline')
   _$$MangaPageImplCopyWith<_$MangaPageImpl> get copyWith =>
       __$$MangaPageImplCopyWithImpl<_$MangaPageImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MangaPageImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _MangaPage implements MangaPage {
   factory _MangaPage({final List<Manga>? mangaList, final bool? hasNextPage}) =
       _$MangaPageImpl;
-
-  factory _MangaPage.fromJson(Map<String, dynamic> json) =
-      _$MangaPageImpl.fromJson;
 
   @override
   List<Manga>? get mangaList;

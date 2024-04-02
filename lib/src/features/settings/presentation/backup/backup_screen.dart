@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../controller/settings_controller.dart';
-import 'automatic_backup/automatic_backup_section.dart';
-import 'backup_and_restore/backup_and_restore_section.dart';
+import '../../controller/server_controller.dart';
+import 'widgets/automatic_backup/automatic_backup_section.dart';
+import 'widgets/backup_and_restore/backup_and_restore_section.dart';
 
 class BackupScreen extends ConsumerWidget {
   const BackupScreen({super.key});
@@ -20,7 +20,7 @@ class BackupScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.backup)),
       body: RefreshIndicator(
-        onRefresh: () => ref.refresh(automaticBackupSettingsProvider.future),
+        onRefresh: () => ref.refresh(settingsProvider.future),
         child: ListView(
           children: const [
             BackupAndRestoreSection(),

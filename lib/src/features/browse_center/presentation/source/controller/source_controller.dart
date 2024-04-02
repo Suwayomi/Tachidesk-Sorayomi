@@ -33,11 +33,11 @@ AsyncValue<Map<String, List<Source>>> sourceMap(SourceMapRef ref) {
   final sourceLastUsed = ref.watch(sourceLastUsedProvider);
   for (final e in [...?sourceListData.valueOrNull]) {
     sourceMap.update(
-      e.lang?.code ?? "other",
+      e.language?.code ?? "other",
       (value) => [...value, e],
       ifAbsent: () => [e],
     );
-    if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
+    if (e.id.value == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
   return sourceListData.copyWithData((e) => sourceMap);
 }

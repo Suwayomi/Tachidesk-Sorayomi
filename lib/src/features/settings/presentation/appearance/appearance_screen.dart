@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
 import 'widgets/app_theme_selector/app_theme_selector.dart';
-import 'widgets/grid_cover_min_width.dart';
+import 'widgets/grid_cover_width_slider/grid_cover_width_slider.dart';
 import 'widgets/is_true_black/is_true_black_tile.dart';
 
 class AppearanceScreen extends ConsumerWidget {
@@ -26,7 +26,7 @@ class AppearanceScreen extends ConsumerWidget {
           const AppThemeModeTile(),
           if (themeMode != ThemeMode.light) const IsTrueBlackTile(),
           const AppThemeSelector(),
-          const GridCoverMinWidth(),
+          const GridCoverWidthSlider(),
         ],
       ),
     );

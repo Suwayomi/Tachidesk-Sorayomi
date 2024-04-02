@@ -10,6 +10,10 @@ extension FerryExtensions on Client {
         TData? data = event.data;
         if (event.hasErrors) {
           if (event.linkException != null) {
+            if (event.linkException! is ServerException) {
+              throw ServerMessageException(
+                  event.linkException! as ServerException);
+            }
             throw event.linkException!;
           } else {
             throw GraphQlException(event.graphqlErrors!);
@@ -25,5 +29,14 @@ class GraphQlException implements Exception {
   GraphQlException(this.errors);
 
   @override
-  String toString() => "GraphQlExceptions(errors: $errors)";
+  String toString() => errors.map((e) => e.message).join(", ");
+}
+
+class ServerMessageException implements Exception {
+  final ServerException serverException;
+
+  ServerMessageException(this.serverException);
+
+  @override
+  String toString() => (serverException.parsedResponse?.response).toToastString;
 }

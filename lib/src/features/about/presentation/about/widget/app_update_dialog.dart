@@ -16,7 +16,7 @@ void appUpdateDialog({
   required String title,
   required String newRelease,
   required BuildContext context,
-  required Toast toast,
+  required Toast? toast,
   String? url,
 }) =>
     showDialog(

@@ -13,6 +13,7 @@ import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/storage/dio/dio_client.dart';
 import '../../domain/filter/filter_model.dart';
 import '../../domain/manga_page/manga_page.dart';
+import '../../domain/source/graphql/__generated__/fragment.data.gql.dart';
 import '../../domain/source/source_model.dart';
 import '../../domain/source_preference/source_preference.dart';
 
@@ -26,8 +27,7 @@ class SourceRepository {
   Future<List<Source>?> getSourceList({CancelToken? cancelToken}) async =>
       (await dioClient.get<List<Source>, Source>(
         SourceUrl.sourceList,
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
+        decoder: (e) => GSourceFragmentData(),
         cancelToken: cancelToken,
       ))
           .data;
@@ -43,8 +43,7 @@ class SourceRepository {
     if (sourceType != SourceType.filter) {
       return (await dioClient.get<MangaPage, MangaPage?>(
         SourceUrl.getMangaList(sourceId, sourceType.name, pageNum),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
+        decoder: (e) => null, //TODO: Implement decoder
         cancelToken: cancelToken,
       ))
           .data;
@@ -58,8 +57,7 @@ class SourceRepository {
           "searchTerm": query ?? "",
           "filter": [...?filter],
         },
-        decoder: (e) =>
-            e is Map<String, dynamic> ? MangaPage.fromJson(e) : null,
+        decoder: (e) => null,
         cancelToken: cancelToken,
       ))
           .data;
@@ -82,8 +80,7 @@ class SourceRepository {
           {required String sourceId, CancelToken? cancelToken}) async =>
       (await dioClient.get<Source, Source>(
         SourceUrl.withId(sourceId),
-        decoder: (e) =>
-            e is Map<String, dynamic> ? Source.fromJson(e) : Source(),
+        decoder: (e) => GSourceFragmentData(),
         cancelToken: cancelToken,
       ))
           .data;
@@ -96,7 +93,7 @@ class SourceRepository {
         SourceUrl.preferences(sourceId),
         decoder: (e) => e is Map<String, dynamic>
             ? SourcePreference.fromJson(e)
-            : SourcePreference(),
+            : const SourcePreference.fallback(),
         cancelToken: cancelToken,
       ))
           .data;

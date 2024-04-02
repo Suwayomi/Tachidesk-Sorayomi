@@ -23,7 +23,7 @@ class LibrarySettingsScreen extends StatelessWidget {
           ListTile(
             title: Text(context.l10n.categories),
             leading: const Icon(Icons.label_rounded),
-            onTap: () => const EditCategoriesRoute().push(context),
+            onTap: () => const EditCategoriesRoute().go(context),
           ),
         ],
       ),

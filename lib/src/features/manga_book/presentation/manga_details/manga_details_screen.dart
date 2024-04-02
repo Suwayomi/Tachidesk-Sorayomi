@@ -58,7 +58,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
 
     final refresh = useCallback(([onlineFetch = false]) async {
       if (context.mounted && onlineFetch) {
-        ref.read(toastProvider(context)).show(
+        ref.read(toastProvider)?.show(
               context.l10n.updating,
               withMicrotask: true,
             );
@@ -67,11 +67,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
       await chapterListRefresh(onlineFetch);
       if (context.mounted && onlineFetch) {
         if (manga.hasError) {
-          ref.read(toastProvider(context)).showError(
+          ref.read(toastProvider)?.showError(
                 context.l10n.errorSomethingWentWrong,
               );
         } else {
-          ref.read(toastProvider(context)).show(
+          ref.read(toastProvider)?.show(
                 context.l10n.updateCompleted,
                 withMicrotask: true,
               );
@@ -108,10 +108,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         final chapterList = [
                           ...?filteredChapterList.valueOrNull
                         ];
-                        selectedChapters.value = ({
-                          for (Chapter i in chapterList)
-                            if (i.id != null) i.id!: i
-                        });
+                        selectedChapters.value =
+                            ({for (Chapter i in chapterList) i.id: i});
                       },
                       icon: const Icon(Icons.select_all_rounded),
                     ),
@@ -122,9 +120,8 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         ];
                         selectedChapters.value = ({
                           for (Chapter i in chapterList)
-                            if (i.id != null &&
-                                !selectedChapters.value.containsKey(i.id))
-                              i.id!: i
+                            if (!selectedChapters.value.containsKey(i.id))
+                              i.id: i
                         });
                       },
                       icon: const Icon(Icons.flip_to_back_rounded),
@@ -213,15 +210,15 @@ class MangaDetailsScreen extends HookConsumerWidget {
                   ? FloatingActionButton.extended(
                       isExtended: context.isTablet,
                       label: Text(
-                        data?.lastChapterRead?.index != null
+                        data?.lastReadChapter?.index != null
                             ? context.l10n.resume
                             : context.l10n.start,
                       ),
                       icon: const Icon(Icons.play_arrow_rounded),
                       onPressed: () {
                         ReaderRoute(
-                          mangaId: firstUnreadChapter.mangaId ?? mangaId,
-                          chapterIndex: firstUnreadChapter.index ?? 0,
+                          mangaId: firstUnreadChapter.mangaId,
+                          chapterIndex: firstUnreadChapter.index,
                           showReaderLayoutAnimation: true,
                         ).push(context);
                       },
@@ -248,7 +245,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       selectedChapters: selectedChapters,
                     )
               : Emoticons(
-                  text: context.l10n.noMangaFound,
+                  title: context.l10n.noMangaFound,
                   button: TextButton(
                     onPressed: refresh,
                     child: Text(context.l10n.refresh),
@@ -295,8 +292,7 @@ class MultiSelectPopupButton extends StatelessWidget {
             selectedChapters.value = ({
               ...selectedChapters.value,
               for (int i = lastIndex + 1; i < maxIndex; i++)
-                if (chapterList[i].id != null)
-                  chapterList[i].id!: chapterList[i]
+                chapterList[i].id: chapterList[i]
             });
           },
           child: Text(context.l10n.selectNext10),
@@ -307,7 +303,7 @@ class MultiSelectPopupButton extends StatelessWidget {
 
             selectedChapters.value = ({
               for (Chapter i in chapterList)
-                if (i.id != null && !i.read.ifNull()) i.id!: i
+                if (!i.isRead.ifNull()) i.id: i
             });
           },
           child: Text(context.l10n.selectUnread),
@@ -326,8 +322,7 @@ class MultiSelectPopupButton extends StatelessWidget {
 
             selectedChapters.value = ({
               for (int i = firstIndex; i <= lastIndex; i++)
-                if (chapterList[i].id != null)
-                  chapterList[i].id!: chapterList[i]
+                chapterList[i].id: chapterList[i]
             });
           },
           child: Text(context.l10n.selectInBetween),

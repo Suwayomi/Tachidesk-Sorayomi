@@ -15,11 +15,8 @@ import '../../../domain/about/about_dto.dart';
 part 'about_controller.g.dart';
 
 @riverpod
-Stream<AboutDto?> about(AboutRef ref) {
-  final result = ref.watch(aboutRepositoryProvider).getAbout();
-  ref.keepAlive();
-  return result;
-}
+Stream<AboutDto?> about(AboutRef ref) =>
+    ref.watch(aboutRepositoryProvider).getAbout();
 
 @riverpod
 PackageInfo packageInfo(ref) => throw UnimplementedError();

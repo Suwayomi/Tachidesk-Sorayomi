@@ -64,10 +64,13 @@ class ExtensionScreen extends HookConsumerWidget {
     }, []);
 
     useEffect(() {
-      extensionMapData.showToastOnError(
-        ref.read(toastProvider(context)),
-        withMicrotask: true,
-      );
+      final toast = ref.read(toastProvider);
+      if (toast != null) {
+        extensionMapData.showToastOnError(
+          toast,
+          withMicrotask: true,
+        );
+      }
       return;
     }, [extensionMapData.valueOrNull]);
 
@@ -78,7 +81,7 @@ class ExtensionScreen extends HookConsumerWidget {
               update.isBlank &&
               all.isBlank)
           ? Emoticons(
-              text: context.l10n.extensionListEmpty,
+              title: context.l10n.extensionListEmpty,
               button: TextButton(
                 onPressed: refresh,
                 child: Text(context.l10n.refresh),

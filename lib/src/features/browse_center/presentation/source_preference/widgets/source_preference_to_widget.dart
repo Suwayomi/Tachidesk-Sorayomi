@@ -11,7 +11,6 @@ import '../../../../../widgets/popup_widgets/multi_select_popup.dart';
 import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../../../../../widgets/popup_widgets/text_field_popup.dart';
 import '../../../domain/source_preference/source_preference.dart';
-import '../../../domain/source_preference_prop/source_preference_prop.dart';
 
 class SourcePreferenceToWidget extends StatelessWidget {
   const SourcePreferenceToWidget({
@@ -23,15 +22,15 @@ class SourcePreferenceToWidget extends StatelessWidget {
   final SourcePreference sourcePreference;
   final ValueChanged<SourcePreference> onChanged;
 
-  void onChangedPreferenceCopyWith<T extends SourcePreferenceProp>(T prop,
+  void onChangedPreferenceCopyWith<T extends SourcePreference>(T prop,
       [BuildContext? context]) {
-    onChanged(sourcePreference.copyWith(sourcePreferenceProp: prop));
+    onChanged(prop);
     if (context != null) Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    SourcePreferenceProp? prop = sourcePreference.sourcePreferenceProp;
+    SourcePreference? prop = sourcePreference;
     return switch (prop) {
       CheckBoxPreference(
         key: String? key,
@@ -136,7 +135,7 @@ class SourcePreferenceToWidget extends StatelessWidget {
             ),
           ),
         ),
-      null || Fallback() => const SizedBox.shrink(),
+      Fallback() => const SizedBox.shrink(),
     };
   }
 }

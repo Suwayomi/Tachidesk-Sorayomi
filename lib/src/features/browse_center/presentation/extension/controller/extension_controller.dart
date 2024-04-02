@@ -36,7 +36,7 @@ AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
   final showNsfw = ref.watch(showNSFWProvider).ifNull(true);
   for (final e in extensionList) {
     if (!showNsfw && (e.isNsfw.ifNull())) continue;
-    if (e.installed.ifNull()) {
+    if (e.isInstalled.ifNull()) {
       if (e.hasUpdate.ifNull()) {
         extensionMap.update(
           "update",
@@ -52,7 +52,7 @@ AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
       }
     } else {
       extensionMap.update(
-        e.lang?.code?.toLowerCase() ?? "other",
+        e.language?.code?.toLowerCase() ?? "other",
         (value) => [...value, e],
         ifAbsent: () => [e],
       );

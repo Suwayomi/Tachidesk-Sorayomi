@@ -9,6 +9,10 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: KEdgeInsets.h16.size + KEdgeInsets.v4.size,
-        child: Text(title, style: TextStyle(color: context.theme.primaryColor)),
+        child: Text(
+          title,
+          style: context.textTheme.titleSmall
+              ?.copyWith(color: context.theme.primaryColor),
+        ),
       );
 }

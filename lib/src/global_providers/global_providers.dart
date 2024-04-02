@@ -16,9 +16,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/db_keys.dart';
 import '../constants/enum.dart';
+import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
+import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
-import '../features/settings/widgets/server_port_tile/server_port_tile.dart';
-import '../features/settings/widgets/server_url_tile/server_url_tile.dart';
 import '../utils/extensions/custom_extensions.dart';
 import '../utils/mixin/shared_preferences_client_mixin.dart';
 import '../utils/storage/dio/dio_client.dart';

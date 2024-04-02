@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:ferry/ferry.dart';
 import 'package:ferry_hive_store/ferry_hive_store.dart';
@@ -15,8 +16,14 @@ part 'network_module.g.dart';
 
 // Must be top-level function
 FutureOr<Map<String, dynamic>> httpResponseDecoder(
-        http.Response httpResponse) async =>
-    await compute(jsonDecode, httpResponse.body) as Map<String, dynamic>;
+    http.Response httpResponse) async {
+  try {
+    log(httpResponse.body);
+    return await compute(jsonDecode, httpResponse.body) as Map<String, dynamic>;
+  } catch (e) {
+    return <String, dynamic>{"response": httpResponse.body};
+  }
+}
 
 class FerryNetworkModule {
   Client provideFerry({

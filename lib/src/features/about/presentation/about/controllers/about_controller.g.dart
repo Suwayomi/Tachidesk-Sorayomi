@@ -6,7 +6,7 @@ part of 'about_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aboutHash() => r'b095c8ac883226d5e0282b5d019cc97405b02042';
+String _$aboutHash() => r'22aff615621e72e774553fe544e58c7eb13e7f0b';
 
 /// See also [about].
 @ProviderFor(about)

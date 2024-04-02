@@ -46,7 +46,7 @@ class GlobalSearchScreen extends HookConsumerWidget {
         context,
         (data) => data.isBlank
             ? Emoticons(
-                text: context.l10n.noSourcesFound,
+                title: context.l10n.noSourcesFound,
                 button: TextButton(
                   onPressed: () => ref.invalidate(sourceListProvider),
                   child: Text(context.l10n.refresh),
@@ -54,15 +54,11 @@ class GlobalSearchScreen extends HookConsumerWidget {
               )
             : ListView.builder(
                 itemBuilder: (context, index) {
-                  if (data[index].source.id == null) {
-                    return const SizedBox.shrink();
-                  } else {
-                    return SourceShortSearch(
-                      source: data[index].source,
-                      mangaList: data[index].mangaList,
-                      query: query.value,
-                    );
-                  }
+                  return SourceShortSearch(
+                    source: data[index].source,
+                    mangaList: data[index].mangaList,
+                    query: query.value,
+                  );
                 },
                 itemCount: data.length,
               ),

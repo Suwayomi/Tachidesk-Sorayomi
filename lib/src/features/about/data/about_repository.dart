@@ -17,8 +17,10 @@ import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../domain/about/about_dto.dart';
+import '../domain/server_update/graphql/fragment.dart';
 import '../domain/server_update/server_update.dart';
 import '../presentation/about/controllers/about_controller.dart';
+import 'graphql/__generated__/about_query.data.gql.dart';
 import 'graphql/about_query.dart';
 
 part 'about_repository.g.dart';
@@ -33,27 +35,14 @@ class AboutRepository {
 
   Stream<AboutDto?> getAbout() => ferryClient.fetch(
         AboutQuery.getAboutQuery,
-        (data) => AboutDto(
-          name: data.aboutServer.name,
-          version: data.aboutServer.version,
-          revision: data.aboutServer.revision,
-          buildType: data.aboutServer.buildType,
-          buildTime: int.tryParse(data.aboutServer.buildTime.value),
-          github: data.aboutServer.github,
-          discord: data.aboutServer.discord,
-        ),
+        (GAboutData data) => data.aboutServer,
       );
 
   Future<List<ServerUpdate>?> checkServerUpdate() => ferryClient
       .fetch(
         AboutQuery.serverUpdateQuery,
-        (data) => data.checkForServerUpdates
-            .map((data) => ServerUpdate(
-                  channel: data.channel,
-                  tag: data.tag,
-                  url: data.url,
-                ))
-            .toList(),
+        (data) =>
+            data.checkForServerUpdates.map((update) => update.toDto).toList(),
       )
       .first;
 

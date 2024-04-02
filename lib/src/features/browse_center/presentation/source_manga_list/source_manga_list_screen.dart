@@ -94,11 +94,11 @@ class SourceMangaListScreen extends HookConsumerWidget {
                 ref.read(provider.notifier).updateFilter(value);
                 controller.refresh();
               } else {
-                SourceMangaRoute(
+                SourceTypeRoute(
                   sourceId: sourceId,
                   sourceType: SourceType.filter,
                   $extra: value,
-                ).pushReplacement(context);
+                ).go(context);
               }
             },
           );
@@ -142,8 +142,9 @@ class SourceMangaListScreen extends HookConsumerWidget {
             const SourceMangaDisplayIconPopup(),
             if ((data?.isConfigurable).ifNull())
               IconButton(
-                onPressed: () =>
-                    SourcePreferenceRoute(sourceId: sourceId).push(context),
+                onPressed: () => SourcePreferenceRoute(
+                  sourceId: sourceId,
+                ).go(context),
                 icon: const Icon(Icons.settings_rounded),
               ),
           ],
@@ -158,10 +159,10 @@ class SourceMangaListScreen extends HookConsumerWidget {
                       groupValue: sourceType,
                       onSelected: (val) {
                         if (sourceType == SourceType.popular) return;
-                        SourceMangaRoute(
+                        SourceTypeRoute(
                           sourceId: sourceId,
                           sourceType: SourceType.popular,
-                        ).pushReplacement(context);
+                        ).go(context);
                       },
                     ),
                     if ((data?.supportsLatest).ifNull())
@@ -170,10 +171,10 @@ class SourceMangaListScreen extends HookConsumerWidget {
                         groupValue: sourceType,
                         onSelected: (val) {
                           if (sourceType == SourceType.latest) return;
-                          SourceMangaRoute(
+                          SourceTypeRoute(
                             sourceId: sourceId,
                             sourceType: SourceType.latest,
-                          ).pushReplacement(context);
+                          ).go(context);
                         },
                       ),
                     Builder(
@@ -211,11 +212,11 @@ class SourceMangaListScreen extends HookConsumerWidget {
                           controller.refresh();
                         } else {
                           if (val == null) return;
-                          SourceMangaRoute(
+                          SourceTypeRoute(
                             sourceId: sourceId,
                             sourceType: SourceType.filter,
                             query: val,
-                          ).pushReplacement(context);
+                          ).go(context);
                         }
                       },
                     ),
@@ -239,7 +240,12 @@ class SourceMangaListScreen extends HookConsumerWidget {
         ),
         body: RefreshIndicator(
           onRefresh: () async => controller.refresh(),
-          child: SourceMangaDisplayView(controller: controller, source: data),
+          child: SourceMangaDisplayView(
+            sourceId: sourceId,
+            sourceType: sourceType,
+            controller: controller,
+            source: data,
+          ),
         ),
       ),
       refresh: () => ref.refresh(sourceProvider(sourceId)),

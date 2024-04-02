@@ -54,7 +54,6 @@ Future<void> main() async {
 
   SystemChrome.setPreferredOrientations(DeviceOrientation.values);
   GoRouter.optionURLReflectsImperativeAPIs = true;
-
   runApp(
     ProviderScope(
       overrides: [

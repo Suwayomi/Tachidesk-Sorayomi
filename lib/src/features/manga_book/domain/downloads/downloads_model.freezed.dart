@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Downloads _$DownloadsFromJson(Map<String, dynamic> json) {
-  return _Downloads.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Downloads {
   List<DownloadsQueue>? get queue => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DownloadsCopyWith<Downloads> get copyWith =>
       throw _privateConstructorUsedError;
@@ -105,13 +100,10 @@ class __$$DownloadsImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$DownloadsImpl implements _Downloads {
   _$DownloadsImpl({final List<DownloadsQueue>? queue, this.status})
       : _queue = queue;
-
-  factory _$DownloadsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DownloadsImplFromJson(json);
 
   final List<DownloadsQueue>? _queue;
   @override
@@ -140,7 +132,6 @@ class _$DownloadsImpl implements _Downloads {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_queue), status);
@@ -150,22 +141,12 @@ class _$DownloadsImpl implements _Downloads {
   @pragma('vm:prefer-inline')
   _$$DownloadsImplCopyWith<_$DownloadsImpl> get copyWith =>
       __$$DownloadsImplCopyWithImpl<_$DownloadsImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DownloadsImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Downloads implements Downloads {
   factory _Downloads(
       {final List<DownloadsQueue>? queue,
       final String? status}) = _$DownloadsImpl;
-
-  factory _Downloads.fromJson(Map<String, dynamic> json) =
-      _$DownloadsImpl.fromJson;
 
   @override
   List<DownloadsQueue>? get queue;
