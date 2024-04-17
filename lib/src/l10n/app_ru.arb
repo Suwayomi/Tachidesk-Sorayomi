@@ -1,1 +1,400 @@
-{}
+{
+  "about": "О приложении",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "Добавить категорию",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "Добавить в библиотеку",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "allScanlators": "Все сканлейты",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "appLanguage": "Язык приложения",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Тема приложения",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "appearance": "Оформление",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Тип аутентификации",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeNone": "Без аутентификации",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "authTypeBasic": "Базовая аутентификация",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "backup": "Бэкап и восстановление",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "badges": "Значки",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Добавлено в закладки",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "Поисковики",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "buildTime": "Дата сборки",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cacheCleared": "Кэш очищен",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "cancel": "Отменить",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categories": "Категории",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "categoryUpdate": "Обновление категорий",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "channel": "Канал",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "Глава {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortFetchedDate": "По дате получения",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "chapterSortSource": "По источнику",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "По дате загрузки",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "checkForServerUpdates": "Проверка обновлений сервера",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "Проверка обновлений",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "Очистить кэш",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "client": "Программа",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "Версия программы",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "Закрыть",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "Завершено",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "copyMsg": "'{msg}' Скопировано!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Tachidesk Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupDescription": "Резервная копия библиотеки как резервная копия Tachidesk",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "createBackupTitle": "Создать резервную копию",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "credentials": "Учетные данные",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "current": "Текущий",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "daysAgo": "{days} дней назад",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "delete": "Удалить",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "Вся манга из этой Категории будет перемещена в По умолчанию!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "display": "Отображение",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "displayMode": "Режим отображения",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeDescriptiveList": "Информативный список",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "displayModeGrid": "Сетка",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "displayModeList": "Список",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "downloads": "Загрузка",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "edit": "Редактировать",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "editCategory": "Отредактировать категорию",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "Название категории не может быть пустым",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "errorExtension": "Не удается найти выбранное расширение",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "Файл не выбран!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorFilePickUnknownExtension": "Выберите файл с расширением {extensionName}",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorSomethingWentWrong": "Что-то пошло не так!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "errorUserName": "Имя пользователя не может быть пустым",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "extensionInstalled": "Расширение установлено!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "Список расширений пуст",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "extensions": "Расширения",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "failed": "Не удалось",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "filter": "Фильтр",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "finished": "Завершенная",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "general": "Общий",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "install": "Установить",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installing": "Установка",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "installingExtension": "Установка расширения",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "isTrueBlack": "Истинно черный",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "Языки",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "latest": "Последний",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "library": "Библиотека",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "manga": "Манга",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaGridSize": "Размер сетки манги",
+  "@mangaGridSize": {
+    "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "mangaMissingSources": "Отсутствующие источники манги",
+  "@mangaMissingSources": {
+    "description": "Group title to show the Manga Missing Sources when restoring Backup"
+  },
+  "mangaSortAlphabetical": "По алфавиту",
+  "@mangaSortAlphabetical": {
+    "description": "Radio button text for Manga sort Type - Alphabetical"
+  },
+  "mangaSortDateAdded": "По дате добавления",
+  "@mangaSortDateAdded": {
+    "description": "Radio button text for Manga sort Type - Date Added"
+  },
+  "mangaSortLastRead": "По последнему прочтению",
+  "@mangaSortLastRead": {
+    "description": "Radio button text for Manga sort Type - Last Read"
+  },
+  "mangaSortUnread": "Непрочитанная",
+  "@mangaSortUnread": {
+    "description": "Radio button text for Manga sort Type - Unread"
+  },
+  "mangaStatusCancelled": "Отменено",
+  "@mangaStatusCancelled": {
+    "description": "Text to show Manga Status Cancelled in Manga details screen"
+  },
+  "mangaStatusCompleted": "Завершено",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusLicensed": "Лицензировано",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaStatusOngoing": "Выходит",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "Публикация завершена",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "mangaStatusUnknown": "Неизвестно",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "defaultCategory": "Категория по умолчанию при добавлении новой манги в библиотеку",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "deleteCategoryTitle": "Вы уверены?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "downloaded": "Загружено",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "errorLaunchURL": "Не удалось открыть!\nКопирование \"{url}\" в буфер обмена",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorPassword": "Пароль не может быть пустым",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "findServer": "Найти",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "gitHub": "GitHub",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "globalSearch": "Глобальный поиск",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "globalUpdate": "Глобальное обновление",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "help": "Помощь",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "inLibrary": "В библиотеке",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "mangaStatusOnHiatus": "Приостановлено",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "missingExtension": "Отсутствующие расширения",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  }
+}
