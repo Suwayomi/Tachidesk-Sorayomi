@@ -6,9 +6,9 @@
   "@addCategory": {},
   "addToLibrary": "Adicionar à biblioteca",
   "@addToLibrary": {},
-  "appLanguage": "Idioma da aplicação",
+  "appLanguage": "Idioma do aplicativo",
   "@appLanguage": {},
-  "appTheme": "Tema da Aplicação",
+  "appTheme": "Tema do aplicativo",
   "@appTheme": {},
   "appTitle": "Tachidesk Sorayomi",
   "@appTitle": {},
@@ -431,5 +431,91 @@
   "mangaGridSize": "Tamanho da tela do mangá",
   "@mangaGridSize": {
     "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "daysAgo": "{days} dias atrás",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "today": "Hoje",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "yesterday": "Ontem",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
+  },
+  "readerSwipeChapterToggle": "Deslize para alternar",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggleDescription": "Deslize para mudar o capítulo no leitor",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "previousChapter": "Anterior: {chapterTitle}",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "reload": "Recarregar",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "readerOverlay": "Sobreposição inicial do leitor",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "quickSearchShowAllCommandTip": "Dica: clique em '?' para ver todos os comandos",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "isTrueBlack": "Preto puro",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "nextChapter": "Próximo: {chapterTitle}",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "pinchToZoom": "Aperte para ampliar",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "quickSearch": "Pesquisa rápida",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "remove": "Remover",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "selectInBetween": "Selecione entre",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "readerOverlaySubtitle": "Mostra título e configurações rápidas ao abrir um capítulo",
+  "@readerOverlaySubtitle": {},
+  "readerVolumeTap": "Botões de volume",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapSubtitle": "Navegue com botões de volume",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapInvert": "inverter botões de volume",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "removeFromLibrary": "Remover da Biblioteca?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "selectUnread": "Selecione os não lidos",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "selectNext10": "Selecione os próximos 10",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
   }
 }
