@@ -16,7 +16,7 @@ extension ContextExtensions on BuildContext {
     final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
         ? lastMatch.matches
         : router.routerDelegate.currentConfiguration;
-    return matchList.uri.toString();
+    return matchList.uri.path;
   }
 
   ///

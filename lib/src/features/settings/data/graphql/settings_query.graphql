@@ -2,6 +2,8 @@
 # import '/src/features/settings/domain/server_binding/graphql/fragment.graphql'
 # import '/src/features/settings/domain/socks_proxy/graphql/fragment.graphql'
 # import '/src/features/settings/domain/cloud_flare/graphql/fragment.graphql'
+# import '/src/features/settings/domain/library_settings/graphql/fragment.graphql'
+# import '/src/features/settings/domain/downloads_settings/graphql/fragment.graphql'
 # import '/src/features/settings/domain/misc_settings/graphql/fragment.graphql'
 # import '/src/features/settings/domain/browse/graphql/fragment.graphql'
 
@@ -17,5 +19,7 @@ fragment SettingsFragment on SettingsType {
     ...SocksProxyFragment
     ...CloudFlareBypassFragment
     ...MiscSettingsFragment
-    ...BrowserSettingsFragment,
+    ...BrowserSettingsFragment
+    ...LibrarySettingsFragment
+    ...DownloadsSettingsFragment
 }

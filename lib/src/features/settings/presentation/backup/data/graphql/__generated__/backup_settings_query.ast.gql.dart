@@ -8,11 +8,15 @@ import 'package:tachidesk_sorayomi/src/features/settings/data/graphql/__generate
 import 'package:tachidesk_sorayomi/src/features/settings/domain/automatic_backup_settings/graphql/__generated__/fragment.ast.gql.dart'
     as _i3;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/browse/graphql/__generated__/fragment.ast.gql.dart'
-    as _i9;
+    as _i11;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/graphql/__generated__/fragment.ast.gql.dart'
     as _i7;
-import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.ast.gql.dart'
+import 'package:tachidesk_sorayomi/src/features/settings/domain/downloads_settings/graphql/__generated__/fragment.ast.gql.dart'
+    as _i9;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/library_settings/graphql/__generated__/fragment.ast.gql.dart'
     as _i8;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.ast.gql.dart'
+    as _i10;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/restore_status/graphql/__generated__/fragment.ast.gql.dart'
     as _i2;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/server_binding/graphql/__generated__/fragment.ast.gql.dart'
@@ -476,6 +480,8 @@ const document = _i1.DocumentNode(definitions: [
   _i5.ServerBindingFragment,
   _i6.SocksProxyFragment,
   _i7.CloudFlareBypassFragment,
-  _i8.MiscSettingsFragment,
-  _i9.BrowserSettingsFragment,
+  _i8.LibrarySettingsFragment,
+  _i9.DownloadsSettingsFragment,
+  _i10.MiscSettingsFragment,
+  _i11.BrowserSettingsFragment,
 ]);

@@ -15,15 +15,16 @@ abstract class Endpoints {
     bool appendApiToUrl = true,
     bool isGraphQl = false,
   }) {
-    String url = "${baseUrl ?? DBKeys.serverUrl.initial}";
+    Uri url = Uri.tryParse(baseUrl ?? DBKeys.serverUrl.initial) ??
+        Uri.parse(DBKeys.serverUrl.initial);
     if (port != null && addPort) {
-      url += ":$port";
+      url = url.replace(port: port);
     }
     if (appendApiToUrl) {
-      final api = isGraphQl ? '/api/graphql' : '/api/v1';
-      url += api;
+      final api = ['api', isGraphQl ? 'graphql' : 'v1'];
+      url = url.replace(pathSegments: [...url.pathSegments, ...api]);
     }
-    return url;
+    return url.toString();
   }
 
   // receiveTimeout

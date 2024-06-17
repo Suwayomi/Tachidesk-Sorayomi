@@ -142,6 +142,10 @@ RouteBase get $quickSearchRoute => ShellRouteData.$route(
                           path: 'backup',
                           factory: $BackupRouteExtension._fromState,
                         ),
+                        GoRouteData.$route(
+                          path: 'downloads',
+                          factory: $DownloadsSettingsRouteExtension._fromState,
+                        ),
                       ],
                     ),
                   ],
@@ -544,6 +548,24 @@ extension $BackupRouteExtension on BackupRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+extension $DownloadsSettingsRouteExtension on DownloadsSettingsRoute {
+  static DownloadsSettingsRoute _fromState(GoRouterState state) =>
+      const DownloadsSettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/more/settings/downloads',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 extension $MangaRouteExtension on MangaRoute {
   static MangaRoute _fromState(GoRouterState state) => MangaRoute(
         mangaId: int.parse(state.pathParameters['mangaId']!),
@@ -674,7 +696,7 @@ bool _$boolConverter(String value) {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerConfigHash() => r'3a0231101ce98d6c94836b9846853185ecab9ef2';
+String _$routerConfigHash() => r'62354ffd617219baa83dd617b0859114170f3bec';
 
 /// See also [routerConfig].
 @ProviderFor(routerConfig)

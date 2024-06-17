@@ -32,7 +32,7 @@ class SmallScreenNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigationBarTheme(
       data: NavigationBarThemeData(
-        labelTextStyle: MaterialStateProperty.all(
+        labelTextStyle: WidgetStateProperty.all(
           const TextStyle(overflow: TextOverflow.ellipsis),
         ),
       ),

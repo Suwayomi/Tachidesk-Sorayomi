@@ -59,7 +59,7 @@ class Emoticons extends HookWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
-            if (title.isNotBlank)
+            if (subTitle.isNotBlank)
               Text(
                 subTitle!,
                 textAlign: TextAlign.center,

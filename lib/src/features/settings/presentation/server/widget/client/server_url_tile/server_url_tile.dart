@@ -12,8 +12,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../../constants/db_keys.dart';
 import '../../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../../../../widgets/input_popup/domain/input_popup_type.dart';
-import '../../../../../../../widgets/input_popup/input_popup.dart';
+import '../../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
+import '../../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import 'server_search_button.dart';
 
 part 'server_url_tile.g.dart';
@@ -33,18 +33,22 @@ class ServerUrlTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final serverUrl = ref.watch(serverUrlProvider);
-    return InputPopup(
+    return SettingsPropTile(
       title: context.l10n.serverUrl,
       subtitle: serverUrl,
       leading: const Icon(Icons.computer_rounded),
       trailing: !kIsWeb ? const ServerSearchButton() : null,
-      type: InputPopupType.textField(hintText: context.l10n.serverUrlHintText),
-      value: serverUrl,
-      onChange: (value) {
-        final tempUrl =
-            value.endsWith('/') ? value.substring(0, value.length - 1) : value;
-        ref.read(serverUrlProvider.notifier).update(tempUrl);
-      },
+      type: SettingsPropType<void>.textField(
+        hintText: context.l10n.serverUrlHintText,
+        value: serverUrl,
+        onChanged: (value) async {
+          final tempUrl = value.endsWith('/')
+              ? value.substring(0, value.length - 1)
+              : value;
+          ref.read(serverUrlProvider.notifier).update(tempUrl);
+          return;
+        },
+      ),
     );
   }
 }

@@ -8,7 +8,7 @@ part of 'filter_state_model.dart';
 
 _$FilterHeaderImpl _$$FilterHeaderImplFromJson(Map<String, dynamic> json) =>
     _$FilterHeaderImpl(
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
       name: json['name'] as String?,
       $type: json['type'] as String?,
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$FilterHeaderImplToJson(_$FilterHeaderImpl instance) =>
 _$FilterSeparatorImpl _$$FilterSeparatorImplFromJson(
         Map<String, dynamic> json) =>
     _$FilterSeparatorImpl(
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
       name: json['name'] as String?,
       $type: json['type'] as String?,
     );
@@ -67,7 +67,7 @@ Map<String, dynamic> _$$FilterCheckBoxImplToJson(
 
 _$FilterTriStateImpl _$$FilterTriStateImplFromJson(Map<String, dynamic> json) =>
     _$FilterTriStateImpl(
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
       name: json['name'] as String?,
       $type: json['type'] as String?,
     );
@@ -101,7 +101,7 @@ Map<String, dynamic> _$$FilterSortImplToJson(_$FilterSortImpl instance) =>
 
 _$FilterSelectImpl _$$FilterSelectImplFromJson(Map<String, dynamic> json) =>
     _$FilterSelectImpl(
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
       name: json['name'] as String?,
       displayValues: (json['displayValues'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -135,7 +135,7 @@ Map<String, dynamic> _$$FilterGroupImplToJson(_$FilterGroupImpl instance) =>
 
 _$SortStateImpl _$$SortStateImplFromJson(Map<String, dynamic> json) =>
     _$SortStateImpl(
-      index: json['index'] as int?,
+      index: (json['index'] as num?)?.toInt(),
       ascending: json['ascending'] as bool?,
     );
 

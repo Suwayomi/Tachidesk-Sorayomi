@@ -335,6 +335,36 @@ class _$GUpdateServerIpData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -449,6 +479,46 @@ class _$GUpdateServerIpData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -648,6 +718,36 @@ class _$GUpdatePortData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -762,6 +862,46 @@ class _$GUpdatePortData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -968,6 +1108,36 @@ class _$GToggleSocksProxyData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -1082,6 +1252,46 @@ class _$GToggleSocksProxyData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1288,6 +1498,36 @@ class _$GUpdateSocksVersionData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -1402,6 +1642,46 @@ class _$GUpdateSocksVersionData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1607,6 +1887,36 @@ class _$GUpdateSocksHostData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -1721,6 +2031,46 @@ class _$GUpdateSocksHostData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1927,6 +2277,36 @@ class _$GUpdateSocksUserNameData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -2041,6 +2421,46 @@ class _$GUpdateSocksUserNameData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2247,6 +2667,36 @@ class _$GUpdateSocksPasswordData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -2361,6 +2811,46 @@ class _$GUpdateSocksPasswordData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2566,6 +3056,36 @@ class _$GUpdateSocksPortData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -2680,6 +3200,46 @@ class _$GUpdateSocksPortData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2886,6 +3446,36 @@ class _$GToggleFlareSolverrData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -3000,6 +3590,46 @@ class _$GToggleFlareSolverrData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3210,6 +3840,36 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -3325,6 +3985,46 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3535,6 +4235,36 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -3650,6 +4380,46 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3859,6 +4629,36 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -3974,6 +4774,46 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4181,6 +5021,36 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -4295,6 +5165,46 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4500,6 +5410,36 @@ class _$GToggleDebugLogsData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -4614,6 +5554,46 @@ class _$GToggleDebugLogsData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4820,6 +5800,36 @@ class _$GToggleGqlDebugLogsData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -4934,6 +5944,46 @@ class _$GToggleGqlDebugLogsData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -5142,6 +6192,36 @@ class _$GToggleSystemTrayEnabledData_setSettings_settingsSerializer
       'localSourcePath',
       serializers.serialize(object.localSourcePath,
           specifiedType: const FullType(String)),
+      'globalUpdateInterval',
+      serializers.serialize(object.globalUpdateInterval,
+          specifiedType: const FullType(double)),
+      'updateMangas',
+      serializers.serialize(object.updateMangas,
+          specifiedType: const FullType(bool)),
+      'excludeCompleted',
+      serializers.serialize(object.excludeCompleted,
+          specifiedType: const FullType(bool)),
+      'excludeNotStarted',
+      serializers.serialize(object.excludeNotStarted,
+          specifiedType: const FullType(bool)),
+      'excludeUnreadChapters',
+      serializers.serialize(object.excludeUnreadChapters,
+          specifiedType: const FullType(bool)),
+      'downloadAsCbz',
+      serializers.serialize(object.downloadAsCbz,
+          specifiedType: const FullType(bool)),
+      'downloadsPath',
+      serializers.serialize(object.downloadsPath,
+          specifiedType: const FullType(String)),
+      'autoDownloadNewChapters',
+      serializers.serialize(object.autoDownloadNewChapters,
+          specifiedType: const FullType(bool)),
+      'autoDownloadNewChaptersLimit',
+      serializers.serialize(object.autoDownloadNewChaptersLimit,
+          specifiedType: const FullType(int)),
+      'excludeEntryWithUnreadChapters',
+      serializers.serialize(object.excludeEntryWithUnreadChapters,
+          specifiedType: const FullType(bool)),
     ];
 
     return result;
@@ -5257,6 +6337,46 @@ class _$GToggleSystemTrayEnabledData_setSettings_settingsSerializer
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'globalUpdateInterval':
+          result.globalUpdateInterval = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'updateMangas':
+          result.updateMangas = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeCompleted':
+          result.excludeCompleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeNotStarted':
+          result.excludeNotStarted = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'excludeUnreadChapters':
+          result.excludeUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadAsCbz':
+          result.downloadAsCbz = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'downloadsPath':
+          result.downloadsPath = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'autoDownloadNewChapters':
+          result.autoDownloadNewChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'autoDownloadNewChaptersLimit':
+          result.autoDownloadNewChaptersLimit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'excludeEntryWithUnreadChapters':
+          result.excludeEntryWithUnreadChapters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -5559,6 +6679,26 @@ class _$GUpdateServerIpData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateServerIpData_setSettings_settings(
           [void Function(GUpdateServerIpData_setSettings_settingsBuilder)?
@@ -5590,7 +6730,17 @@ class _$GUpdateServerIpData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateServerIpData_setSettings_settings', 'G__typename');
@@ -5640,6 +6790,30 @@ class _$GUpdateServerIpData_setSettings_settings
         r'GUpdateServerIpData_setSettings_settings', 'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateServerIpData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(globalUpdateInterval,
+        r'GUpdateServerIpData_setSettings_settings', 'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateServerIpData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateServerIpData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdateServerIpData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters,
+        r'GUpdateServerIpData_setSettings_settings', 'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateServerIpData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateServerIpData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters,
+        r'GUpdateServerIpData_setSettings_settings', 'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateServerIpData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateServerIpData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -5679,7 +6853,17 @@ class _$GUpdateServerIpData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -5709,6 +6893,16 @@ class _$GUpdateServerIpData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -5740,7 +6934,18 @@ class _$GUpdateServerIpData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -5866,6 +7071,56 @@ class GUpdateServerIpData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateServerIpData_setSettings_settingsBuilder() {
     GUpdateServerIpData_setSettings_settings._initializeBuilder(this);
   }
@@ -5897,6 +7152,16 @@ class GUpdateServerIpData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -5953,7 +7218,17 @@ class GUpdateServerIpData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateServerIpData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateServerIpData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateServerIpData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateServerIpData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateServerIpData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateServerIpData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateServerIpData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateServerIpData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateServerIpData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateServerIpData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateServerIpData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateServerIpData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateServerIpData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateServerIpData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -6261,6 +7536,26 @@ class _$GUpdatePortData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdatePortData_setSettings_settings(
           [void Function(GUpdatePortData_setSettings_settingsBuilder)?
@@ -6292,7 +7587,17 @@ class _$GUpdatePortData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GUpdatePortData_setSettings_settings', 'G__typename');
@@ -6342,6 +7647,30 @@ class _$GUpdatePortData_setSettings_settings
         r'GUpdatePortData_setSettings_settings', 'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdatePortData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(globalUpdateInterval,
+        r'GUpdatePortData_setSettings_settings', 'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(
+        updateMangas, r'GUpdatePortData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdatePortData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdatePortData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters,
+        r'GUpdatePortData_setSettings_settings', 'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdatePortData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdatePortData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters,
+        r'GUpdatePortData_setSettings_settings', 'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdatePortData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdatePortData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -6380,7 +7709,17 @@ class _$GUpdatePortData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -6410,6 +7749,16 @@ class _$GUpdatePortData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -6440,7 +7789,18 @@ class _$GUpdatePortData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -6566,6 +7926,56 @@ class GUpdatePortData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdatePortData_setSettings_settingsBuilder() {
     GUpdatePortData_setSettings_settings._initializeBuilder(this);
   }
@@ -6597,6 +8007,16 @@ class GUpdatePortData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -6653,7 +8073,17 @@ class GUpdatePortData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdatePortData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdatePortData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdatePortData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdatePortData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdatePortData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdatePortData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdatePortData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdatePortData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdatePortData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdatePortData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdatePortData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdatePortData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdatePortData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdatePortData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -6968,6 +8398,26 @@ class _$GToggleSocksProxyData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GToggleSocksProxyData_setSettings_settings(
           [void Function(GToggleSocksProxyData_setSettings_settingsBuilder)?
@@ -6999,7 +8449,17 @@ class _$GToggleSocksProxyData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GToggleSocksProxyData_setSettings_settings', 'G__typename');
@@ -7053,6 +8513,32 @@ class _$GToggleSocksProxyData_setSettings_settings
         r'GToggleSocksProxyData_setSettings_settings', 'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GToggleSocksProxyData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(globalUpdateInterval,
+        r'GToggleSocksProxyData_setSettings_settings', 'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GToggleSocksProxyData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GToggleSocksProxyData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GToggleSocksProxyData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters,
+        r'GToggleSocksProxyData_setSettings_settings', 'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GToggleSocksProxyData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GToggleSocksProxyData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GToggleSocksProxyData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GToggleSocksProxyData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GToggleSocksProxyData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -7092,7 +8578,17 @@ class _$GToggleSocksProxyData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -7122,6 +8618,16 @@ class _$GToggleSocksProxyData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -7153,7 +8659,18 @@ class _$GToggleSocksProxyData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -7279,6 +8796,56 @@ class GToggleSocksProxyData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GToggleSocksProxyData_setSettings_settingsBuilder() {
     GToggleSocksProxyData_setSettings_settings._initializeBuilder(this);
   }
@@ -7310,6 +8877,16 @@ class GToggleSocksProxyData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -7367,7 +8944,17 @@ class GToggleSocksProxyData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GToggleSocksProxyData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GToggleSocksProxyData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleSocksProxyData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleSocksProxyData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GToggleSocksProxyData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GToggleSocksProxyData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GToggleSocksProxyData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GToggleSocksProxyData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GToggleSocksProxyData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GToggleSocksProxyData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GToggleSocksProxyData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GToggleSocksProxyData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GToggleSocksProxyData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GToggleSocksProxyData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -7686,6 +9273,26 @@ class _$GUpdateSocksVersionData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateSocksVersionData_setSettings_settings(
           [void Function(GUpdateSocksVersionData_setSettings_settingsBuilder)?
@@ -7718,7 +9325,17 @@ class _$GUpdateSocksVersionData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateSocksVersionData_setSettings_settings', 'G__typename');
@@ -7774,6 +9391,36 @@ class _$GUpdateSocksVersionData_setSettings_settings
         'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateSocksVersionData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateSocksVersionData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateSocksVersionData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateSocksVersionData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdateSocksVersionData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateSocksVersionData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateSocksVersionData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateSocksVersionData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateSocksVersionData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateSocksVersionData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateSocksVersionData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -7813,7 +9460,17 @@ class _$GUpdateSocksVersionData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -7843,6 +9500,16 @@ class _$GUpdateSocksVersionData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -7874,7 +9541,18 @@ class _$GUpdateSocksVersionData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -8000,6 +9678,56 @@ class GUpdateSocksVersionData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateSocksVersionData_setSettings_settingsBuilder() {
     GUpdateSocksVersionData_setSettings_settings._initializeBuilder(this);
   }
@@ -8031,6 +9759,16 @@ class GUpdateSocksVersionData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -8088,7 +9826,17 @@ class GUpdateSocksVersionData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateSocksVersionData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateSocksVersionData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksVersionData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksVersionData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateSocksVersionData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateSocksVersionData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateSocksVersionData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateSocksVersionData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateSocksVersionData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateSocksVersionData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateSocksVersionData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateSocksVersionData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateSocksVersionData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateSocksVersionData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -8401,6 +10149,26 @@ class _$GUpdateSocksHostData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateSocksHostData_setSettings_settings(
           [void Function(GUpdateSocksHostData_setSettings_settingsBuilder)?
@@ -8432,7 +10200,17 @@ class _$GUpdateSocksHostData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateSocksHostData_setSettings_settings', 'G__typename');
@@ -8484,6 +10262,32 @@ class _$GUpdateSocksHostData_setSettings_settings
         r'GUpdateSocksHostData_setSettings_settings', 'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateSocksHostData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(globalUpdateInterval,
+        r'GUpdateSocksHostData_setSettings_settings', 'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateSocksHostData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateSocksHostData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdateSocksHostData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters,
+        r'GUpdateSocksHostData_setSettings_settings', 'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateSocksHostData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateSocksHostData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateSocksHostData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateSocksHostData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateSocksHostData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -8523,7 +10327,17 @@ class _$GUpdateSocksHostData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -8553,6 +10367,16 @@ class _$GUpdateSocksHostData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -8584,7 +10408,18 @@ class _$GUpdateSocksHostData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -8710,6 +10545,56 @@ class GUpdateSocksHostData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateSocksHostData_setSettings_settingsBuilder() {
     GUpdateSocksHostData_setSettings_settings._initializeBuilder(this);
   }
@@ -8741,6 +10626,16 @@ class GUpdateSocksHostData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -8798,7 +10693,17 @@ class GUpdateSocksHostData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateSocksHostData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateSocksHostData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksHostData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksHostData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateSocksHostData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateSocksHostData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateSocksHostData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateSocksHostData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateSocksHostData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateSocksHostData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateSocksHostData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateSocksHostData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateSocksHostData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateSocksHostData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -9118,6 +11023,26 @@ class _$GUpdateSocksUserNameData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateSocksUserNameData_setSettings_settings(
           [void Function(GUpdateSocksUserNameData_setSettings_settingsBuilder)?
@@ -9150,7 +11075,17 @@ class _$GUpdateSocksUserNameData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateSocksUserNameData_setSettings_settings', 'G__typename');
@@ -9212,6 +11147,36 @@ class _$GUpdateSocksUserNameData_setSettings_settings
         'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateSocksUserNameData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateSocksUserNameData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateSocksUserNameData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateSocksUserNameData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdateSocksUserNameData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateSocksUserNameData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateSocksUserNameData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateSocksUserNameData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateSocksUserNameData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateSocksUserNameData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateSocksUserNameData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -9251,7 +11216,17 @@ class _$GUpdateSocksUserNameData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -9281,6 +11256,16 @@ class _$GUpdateSocksUserNameData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -9312,7 +11297,18 @@ class _$GUpdateSocksUserNameData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -9438,6 +11434,56 @@ class GUpdateSocksUserNameData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateSocksUserNameData_setSettings_settingsBuilder() {
     GUpdateSocksUserNameData_setSettings_settings._initializeBuilder(this);
   }
@@ -9469,6 +11515,16 @@ class GUpdateSocksUserNameData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -9526,7 +11582,17 @@ class GUpdateSocksUserNameData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateSocksUserNameData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateSocksUserNameData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksUserNameData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksUserNameData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateSocksUserNameData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateSocksUserNameData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateSocksUserNameData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateSocksUserNameData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateSocksUserNameData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateSocksUserNameData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateSocksUserNameData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateSocksUserNameData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateSocksUserNameData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateSocksUserNameData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -9846,6 +11912,26 @@ class _$GUpdateSocksPasswordData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateSocksPasswordData_setSettings_settings(
           [void Function(GUpdateSocksPasswordData_setSettings_settingsBuilder)?
@@ -9878,7 +11964,17 @@ class _$GUpdateSocksPasswordData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateSocksPasswordData_setSettings_settings', 'G__typename');
@@ -9940,6 +12036,36 @@ class _$GUpdateSocksPasswordData_setSettings_settings
         'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateSocksPasswordData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateSocksPasswordData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateSocksPasswordData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateSocksPasswordData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdateSocksPasswordData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateSocksPasswordData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateSocksPasswordData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateSocksPasswordData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateSocksPasswordData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateSocksPasswordData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateSocksPasswordData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -9979,7 +12105,17 @@ class _$GUpdateSocksPasswordData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -10009,6 +12145,16 @@ class _$GUpdateSocksPasswordData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -10040,7 +12186,18 @@ class _$GUpdateSocksPasswordData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -10166,6 +12323,56 @@ class GUpdateSocksPasswordData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateSocksPasswordData_setSettings_settingsBuilder() {
     GUpdateSocksPasswordData_setSettings_settings._initializeBuilder(this);
   }
@@ -10197,6 +12404,16 @@ class GUpdateSocksPasswordData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -10254,7 +12471,17 @@ class GUpdateSocksPasswordData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateSocksPasswordData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateSocksPasswordData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksPasswordData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksPasswordData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateSocksPasswordData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateSocksPasswordData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateSocksPasswordData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateSocksPasswordData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateSocksPasswordData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateSocksPasswordData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateSocksPasswordData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateSocksPasswordData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateSocksPasswordData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateSocksPasswordData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -10567,6 +12794,26 @@ class _$GUpdateSocksPortData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateSocksPortData_setSettings_settings(
           [void Function(GUpdateSocksPortData_setSettings_settingsBuilder)?
@@ -10598,7 +12845,17 @@ class _$GUpdateSocksPortData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateSocksPortData_setSettings_settings', 'G__typename');
@@ -10650,6 +12907,32 @@ class _$GUpdateSocksPortData_setSettings_settings
         r'GUpdateSocksPortData_setSettings_settings', 'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateSocksPortData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(globalUpdateInterval,
+        r'GUpdateSocksPortData_setSettings_settings', 'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateSocksPortData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateSocksPortData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GUpdateSocksPortData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters,
+        r'GUpdateSocksPortData_setSettings_settings', 'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateSocksPortData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateSocksPortData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateSocksPortData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateSocksPortData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateSocksPortData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -10689,7 +12972,17 @@ class _$GUpdateSocksPortData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -10719,6 +13012,16 @@ class _$GUpdateSocksPortData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -10750,7 +13053,18 @@ class _$GUpdateSocksPortData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -10876,6 +13190,56 @@ class GUpdateSocksPortData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateSocksPortData_setSettings_settingsBuilder() {
     GUpdateSocksPortData_setSettings_settings._initializeBuilder(this);
   }
@@ -10907,6 +13271,16 @@ class GUpdateSocksPortData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -10964,7 +13338,17 @@ class GUpdateSocksPortData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateSocksPortData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateSocksPortData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksPortData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateSocksPortData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateSocksPortData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateSocksPortData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateSocksPortData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateSocksPortData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateSocksPortData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateSocksPortData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateSocksPortData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateSocksPortData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateSocksPortData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateSocksPortData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -11283,6 +13667,26 @@ class _$GToggleFlareSolverrData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GToggleFlareSolverrData_setSettings_settings(
           [void Function(GToggleFlareSolverrData_setSettings_settingsBuilder)?
@@ -11315,7 +13719,17 @@ class _$GToggleFlareSolverrData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GToggleFlareSolverrData_setSettings_settings', 'G__typename');
@@ -11371,6 +13785,36 @@ class _$GToggleFlareSolverrData_setSettings_settings
         'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GToggleFlareSolverrData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GToggleFlareSolverrData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GToggleFlareSolverrData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GToggleFlareSolverrData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GToggleFlareSolverrData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GToggleFlareSolverrData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GToggleFlareSolverrData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GToggleFlareSolverrData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GToggleFlareSolverrData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GToggleFlareSolverrData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GToggleFlareSolverrData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -11410,7 +13854,17 @@ class _$GToggleFlareSolverrData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -11440,6 +13894,16 @@ class _$GToggleFlareSolverrData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -11471,7 +13935,18 @@ class _$GToggleFlareSolverrData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -11597,6 +14072,56 @@ class GToggleFlareSolverrData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GToggleFlareSolverrData_setSettings_settingsBuilder() {
     GToggleFlareSolverrData_setSettings_settings._initializeBuilder(this);
   }
@@ -11628,6 +14153,16 @@ class GToggleFlareSolverrData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -11685,7 +14220,17 @@ class GToggleFlareSolverrData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GToggleFlareSolverrData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GToggleFlareSolverrData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleFlareSolverrData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleFlareSolverrData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GToggleFlareSolverrData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GToggleFlareSolverrData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GToggleFlareSolverrData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GToggleFlareSolverrData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GToggleFlareSolverrData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GToggleFlareSolverrData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GToggleFlareSolverrData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GToggleFlareSolverrData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GToggleFlareSolverrData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GToggleFlareSolverrData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -12020,6 +14565,26 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateFlareSolverrSessionNameData_setSettings_settings(
           [void Function(
@@ -12053,7 +14618,17 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -12147,6 +14722,46 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settings
         localSourcePath,
         r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
         'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(
+        updateMangas,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeCompleted,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeNotStarted,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        downloadAsCbz,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(
+        downloadsPath,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateFlareSolverrSessionNameData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -12188,7 +14803,17 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -12218,6 +14843,16 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -12249,7 +14884,18 @@ class _$GUpdateFlareSolverrSessionNameData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -12375,6 +15021,56 @@ class GUpdateFlareSolverrSessionNameData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateFlareSolverrSessionNameData_setSettings_settingsBuilder() {
     GUpdateFlareSolverrSessionNameData_setSettings_settings._initializeBuilder(
         this);
@@ -12407,6 +15103,16 @@ class GUpdateFlareSolverrSessionNameData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -12468,7 +15174,17 @@ class GUpdateFlareSolverrSessionNameData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateFlareSolverrSessionNameData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -12801,6 +15517,26 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateFlareSolverrSessionTtlData_setSettings_settings(
           [void Function(
@@ -12834,7 +15570,17 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -12926,6 +15672,46 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settings
         localSourcePath,
         r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
         'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(
+        updateMangas,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeCompleted,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeNotStarted,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        downloadAsCbz,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(
+        downloadsPath,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateFlareSolverrSessionTtlData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -12967,7 +15753,17 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -12997,6 +15793,16 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -13028,7 +15834,18 @@ class _$GUpdateFlareSolverrSessionTtlData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -13154,6 +15971,56 @@ class GUpdateFlareSolverrSessionTtlData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateFlareSolverrSessionTtlData_setSettings_settingsBuilder() {
     GUpdateFlareSolverrSessionTtlData_setSettings_settings._initializeBuilder(
         this);
@@ -13186,6 +16053,16 @@ class GUpdateFlareSolverrSessionTtlData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -13247,7 +16124,17 @@ class GUpdateFlareSolverrSessionTtlData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateFlareSolverrSessionTtlData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -13574,6 +16461,26 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateFlareSolverrTimeoutData_setSettings_settings(
           [void Function(
@@ -13607,7 +16514,17 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'G__typename');
@@ -13693,6 +16610,44 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settings
         localSourcePath,
         r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
         'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeCompleted,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeNotStarted,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        downloadAsCbz,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(
+        downloadsPath,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateFlareSolverrTimeoutData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -13734,7 +16689,17 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -13764,6 +16729,16 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -13795,7 +16770,18 @@ class _$GUpdateFlareSolverrTimeoutData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -13921,6 +16907,56 @@ class GUpdateFlareSolverrTimeoutData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateFlareSolverrTimeoutData_setSettings_settingsBuilder() {
     GUpdateFlareSolverrTimeoutData_setSettings_settings._initializeBuilder(
         this);
@@ -13953,6 +16989,16 @@ class GUpdateFlareSolverrTimeoutData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -14013,7 +17059,17 @@ class GUpdateFlareSolverrTimeoutData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateFlareSolverrTimeoutData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -14336,6 +17392,26 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GUpdateFlareSolverrUrlData_setSettings_settings(
           [void Function(
@@ -14369,7 +17445,17 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GUpdateFlareSolverrUrlData_setSettings_settings', 'G__typename');
@@ -14441,6 +17527,38 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settings
         'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GUpdateFlareSolverrUrlData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeNotStarted,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings',
+        'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GUpdateFlareSolverrUrlData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -14481,7 +17599,17 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -14511,6 +17639,16 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14542,7 +17680,18 @@ class _$GUpdateFlareSolverrUrlData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -14668,6 +17817,56 @@ class GUpdateFlareSolverrUrlData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GUpdateFlareSolverrUrlData_setSettings_settingsBuilder() {
     GUpdateFlareSolverrUrlData_setSettings_settings._initializeBuilder(this);
   }
@@ -14699,6 +17898,16 @@ class GUpdateFlareSolverrUrlData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -14756,7 +17965,17 @@ class GUpdateFlareSolverrUrlData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GUpdateFlareSolverrUrlData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -15069,6 +18288,26 @@ class _$GToggleDebugLogsData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GToggleDebugLogsData_setSettings_settings(
           [void Function(GToggleDebugLogsData_setSettings_settingsBuilder)?
@@ -15100,7 +18339,17 @@ class _$GToggleDebugLogsData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GToggleDebugLogsData_setSettings_settings', 'G__typename');
@@ -15152,6 +18401,32 @@ class _$GToggleDebugLogsData_setSettings_settings
         r'GToggleDebugLogsData_setSettings_settings', 'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GToggleDebugLogsData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(globalUpdateInterval,
+        r'GToggleDebugLogsData_setSettings_settings', 'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GToggleDebugLogsData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GToggleDebugLogsData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GToggleDebugLogsData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters,
+        r'GToggleDebugLogsData_setSettings_settings', 'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GToggleDebugLogsData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GToggleDebugLogsData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GToggleDebugLogsData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GToggleDebugLogsData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GToggleDebugLogsData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -15191,7 +18466,17 @@ class _$GToggleDebugLogsData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -15221,6 +18506,16 @@ class _$GToggleDebugLogsData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -15252,7 +18547,18 @@ class _$GToggleDebugLogsData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -15378,6 +18684,56 @@ class GToggleDebugLogsData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GToggleDebugLogsData_setSettings_settingsBuilder() {
     GToggleDebugLogsData_setSettings_settings._initializeBuilder(this);
   }
@@ -15409,6 +18765,16 @@ class GToggleDebugLogsData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -15466,7 +18832,17 @@ class GToggleDebugLogsData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GToggleDebugLogsData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GToggleDebugLogsData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleDebugLogsData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleDebugLogsData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GToggleDebugLogsData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GToggleDebugLogsData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GToggleDebugLogsData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GToggleDebugLogsData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GToggleDebugLogsData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GToggleDebugLogsData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GToggleDebugLogsData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GToggleDebugLogsData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GToggleDebugLogsData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GToggleDebugLogsData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -15785,6 +19161,26 @@ class _$GToggleGqlDebugLogsData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GToggleGqlDebugLogsData_setSettings_settings(
           [void Function(GToggleGqlDebugLogsData_setSettings_settingsBuilder)?
@@ -15817,7 +19213,17 @@ class _$GToggleGqlDebugLogsData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GToggleGqlDebugLogsData_setSettings_settings', 'G__typename');
@@ -15873,6 +19279,36 @@ class _$GToggleGqlDebugLogsData_setSettings_settings
         'maxSourcesInParallel');
     BuiltValueNullFieldError.checkNotNull(localSourcePath,
         r'GToggleGqlDebugLogsData_setSettings_settings', 'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GToggleGqlDebugLogsData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GToggleGqlDebugLogsData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(excludeCompleted,
+        r'GToggleGqlDebugLogsData_setSettings_settings', 'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(excludeNotStarted,
+        r'GToggleGqlDebugLogsData_setSettings_settings', 'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GToggleGqlDebugLogsData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GToggleGqlDebugLogsData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GToggleGqlDebugLogsData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GToggleGqlDebugLogsData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GToggleGqlDebugLogsData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GToggleGqlDebugLogsData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -15912,7 +19348,17 @@ class _$GToggleGqlDebugLogsData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -15942,6 +19388,16 @@ class _$GToggleGqlDebugLogsData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -15973,7 +19429,18 @@ class _$GToggleGqlDebugLogsData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -16099,6 +19566,56 @@ class GToggleGqlDebugLogsData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GToggleGqlDebugLogsData_setSettings_settingsBuilder() {
     GToggleGqlDebugLogsData_setSettings_settings._initializeBuilder(this);
   }
@@ -16130,6 +19647,16 @@ class GToggleGqlDebugLogsData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -16187,7 +19714,17 @@ class GToggleGqlDebugLogsData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GToggleGqlDebugLogsData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GToggleGqlDebugLogsData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleGqlDebugLogsData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleGqlDebugLogsData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GToggleGqlDebugLogsData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GToggleGqlDebugLogsData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GToggleGqlDebugLogsData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GToggleGqlDebugLogsData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GToggleGqlDebugLogsData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GToggleGqlDebugLogsData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GToggleGqlDebugLogsData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GToggleGqlDebugLogsData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GToggleGqlDebugLogsData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GToggleGqlDebugLogsData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -16512,6 +20049,26 @@ class _$GToggleSystemTrayEnabledData_setSettings_settings
   final int maxSourcesInParallel;
   @override
   final String localSourcePath;
+  @override
+  final double globalUpdateInterval;
+  @override
+  final bool updateMangas;
+  @override
+  final bool excludeCompleted;
+  @override
+  final bool excludeNotStarted;
+  @override
+  final bool excludeUnreadChapters;
+  @override
+  final bool downloadAsCbz;
+  @override
+  final String downloadsPath;
+  @override
+  final bool autoDownloadNewChapters;
+  @override
+  final int autoDownloadNewChaptersLimit;
+  @override
+  final bool excludeEntryWithUnreadChapters;
 
   factory _$GToggleSystemTrayEnabledData_setSettings_settings(
           [void Function(
@@ -16545,7 +20102,17 @@ class _$GToggleSystemTrayEnabledData_setSettings_settings
       required this.gqlDebugLogsEnabled,
       required this.extensionRepos,
       required this.maxSourcesInParallel,
-      required this.localSourcePath})
+      required this.localSourcePath,
+      required this.globalUpdateInterval,
+      required this.updateMangas,
+      required this.excludeCompleted,
+      required this.excludeNotStarted,
+      required this.excludeUnreadChapters,
+      required this.downloadAsCbz,
+      required this.downloadsPath,
+      required this.autoDownloadNewChapters,
+      required this.autoDownloadNewChaptersLimit,
+      required this.excludeEntryWithUnreadChapters})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GToggleSystemTrayEnabledData_setSettings_settings', 'G__typename');
@@ -16623,6 +20190,40 @@ class _$GToggleSystemTrayEnabledData_setSettings_settings
         localSourcePath,
         r'GToggleSystemTrayEnabledData_setSettings_settings',
         'localSourcePath');
+    BuiltValueNullFieldError.checkNotNull(
+        globalUpdateInterval,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'globalUpdateInterval');
+    BuiltValueNullFieldError.checkNotNull(updateMangas,
+        r'GToggleSystemTrayEnabledData_setSettings_settings', 'updateMangas');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeCompleted,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'excludeCompleted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeNotStarted,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'excludeNotStarted');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeUnreadChapters,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'excludeUnreadChapters');
+    BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+        r'GToggleSystemTrayEnabledData_setSettings_settings', 'downloadAsCbz');
+    BuiltValueNullFieldError.checkNotNull(downloadsPath,
+        r'GToggleSystemTrayEnabledData_setSettings_settings', 'downloadsPath');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChapters,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'autoDownloadNewChapters');
+    BuiltValueNullFieldError.checkNotNull(
+        autoDownloadNewChaptersLimit,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'autoDownloadNewChaptersLimit');
+    BuiltValueNullFieldError.checkNotNull(
+        excludeEntryWithUnreadChapters,
+        r'GToggleSystemTrayEnabledData_setSettings_settings',
+        'excludeEntryWithUnreadChapters');
   }
 
   @override
@@ -16664,7 +20265,17 @@ class _$GToggleSystemTrayEnabledData_setSettings_settings
         gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         extensionRepos == other.extensionRepos &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
-        localSourcePath == other.localSourcePath;
+        localSourcePath == other.localSourcePath &&
+        globalUpdateInterval == other.globalUpdateInterval &&
+        updateMangas == other.updateMangas &&
+        excludeCompleted == other.excludeCompleted &&
+        excludeNotStarted == other.excludeNotStarted &&
+        excludeUnreadChapters == other.excludeUnreadChapters &&
+        downloadAsCbz == other.downloadAsCbz &&
+        downloadsPath == other.downloadsPath &&
+        autoDownloadNewChapters == other.autoDownloadNewChapters &&
+        autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
+        excludeEntryWithUnreadChapters == other.excludeEntryWithUnreadChapters;
   }
 
   @override
@@ -16694,6 +20305,16 @@ class _$GToggleSystemTrayEnabledData_setSettings_settings
     _$hash = $jc(_$hash, extensionRepos.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
+    _$hash = $jc(_$hash, updateMangas.hashCode);
+    _$hash = $jc(_$hash, excludeCompleted.hashCode);
+    _$hash = $jc(_$hash, excludeNotStarted.hashCode);
+    _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
+    _$hash = $jc(_$hash, downloadAsCbz.hashCode);
+    _$hash = $jc(_$hash, downloadsPath.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
+    _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
+    _$hash = $jc(_$hash, excludeEntryWithUnreadChapters.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -16725,7 +20346,18 @@ class _$GToggleSystemTrayEnabledData_setSettings_settings
           ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('extensionRepos', extensionRepos)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
-          ..add('localSourcePath', localSourcePath))
+          ..add('localSourcePath', localSourcePath)
+          ..add('globalUpdateInterval', globalUpdateInterval)
+          ..add('updateMangas', updateMangas)
+          ..add('excludeCompleted', excludeCompleted)
+          ..add('excludeNotStarted', excludeNotStarted)
+          ..add('excludeUnreadChapters', excludeUnreadChapters)
+          ..add('downloadAsCbz', downloadAsCbz)
+          ..add('downloadsPath', downloadsPath)
+          ..add('autoDownloadNewChapters', autoDownloadNewChapters)
+          ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
+          ..add(
+              'excludeEntryWithUnreadChapters', excludeEntryWithUnreadChapters))
         .toString();
   }
 }
@@ -16851,6 +20483,56 @@ class GToggleSystemTrayEnabledData_setSettings_settingsBuilder
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
 
+  double? _globalUpdateInterval;
+  double? get globalUpdateInterval => _$this._globalUpdateInterval;
+  set globalUpdateInterval(double? globalUpdateInterval) =>
+      _$this._globalUpdateInterval = globalUpdateInterval;
+
+  bool? _updateMangas;
+  bool? get updateMangas => _$this._updateMangas;
+  set updateMangas(bool? updateMangas) => _$this._updateMangas = updateMangas;
+
+  bool? _excludeCompleted;
+  bool? get excludeCompleted => _$this._excludeCompleted;
+  set excludeCompleted(bool? excludeCompleted) =>
+      _$this._excludeCompleted = excludeCompleted;
+
+  bool? _excludeNotStarted;
+  bool? get excludeNotStarted => _$this._excludeNotStarted;
+  set excludeNotStarted(bool? excludeNotStarted) =>
+      _$this._excludeNotStarted = excludeNotStarted;
+
+  bool? _excludeUnreadChapters;
+  bool? get excludeUnreadChapters => _$this._excludeUnreadChapters;
+  set excludeUnreadChapters(bool? excludeUnreadChapters) =>
+      _$this._excludeUnreadChapters = excludeUnreadChapters;
+
+  bool? _downloadAsCbz;
+  bool? get downloadAsCbz => _$this._downloadAsCbz;
+  set downloadAsCbz(bool? downloadAsCbz) =>
+      _$this._downloadAsCbz = downloadAsCbz;
+
+  String? _downloadsPath;
+  String? get downloadsPath => _$this._downloadsPath;
+  set downloadsPath(String? downloadsPath) =>
+      _$this._downloadsPath = downloadsPath;
+
+  bool? _autoDownloadNewChapters;
+  bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
+  set autoDownloadNewChapters(bool? autoDownloadNewChapters) =>
+      _$this._autoDownloadNewChapters = autoDownloadNewChapters;
+
+  int? _autoDownloadNewChaptersLimit;
+  int? get autoDownloadNewChaptersLimit => _$this._autoDownloadNewChaptersLimit;
+  set autoDownloadNewChaptersLimit(int? autoDownloadNewChaptersLimit) =>
+      _$this._autoDownloadNewChaptersLimit = autoDownloadNewChaptersLimit;
+
+  bool? _excludeEntryWithUnreadChapters;
+  bool? get excludeEntryWithUnreadChapters =>
+      _$this._excludeEntryWithUnreadChapters;
+  set excludeEntryWithUnreadChapters(bool? excludeEntryWithUnreadChapters) =>
+      _$this._excludeEntryWithUnreadChapters = excludeEntryWithUnreadChapters;
+
   GToggleSystemTrayEnabledData_setSettings_settingsBuilder() {
     GToggleSystemTrayEnabledData_setSettings_settings._initializeBuilder(this);
   }
@@ -16882,6 +20564,16 @@ class GToggleSystemTrayEnabledData_setSettings_settingsBuilder
       _extensionRepos = $v.extensionRepos.toBuilder();
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _localSourcePath = $v.localSourcePath;
+      _globalUpdateInterval = $v.globalUpdateInterval;
+      _updateMangas = $v.updateMangas;
+      _excludeCompleted = $v.excludeCompleted;
+      _excludeNotStarted = $v.excludeNotStarted;
+      _excludeUnreadChapters = $v.excludeUnreadChapters;
+      _downloadAsCbz = $v.downloadAsCbz;
+      _downloadsPath = $v.downloadsPath;
+      _autoDownloadNewChapters = $v.autoDownloadNewChapters;
+      _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
+      _excludeEntryWithUnreadChapters = $v.excludeEntryWithUnreadChapters;
       _$v = null;
     }
     return this;
@@ -16939,7 +20631,17 @@ class GToggleSystemTrayEnabledData_setSettings_settingsBuilder
               gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(gqlDebugLogsEnabled, r'GToggleSystemTrayEnabledData_setSettings_settings', 'gqlDebugLogsEnabled'),
               extensionRepos: extensionRepos.build(),
               maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(maxSourcesInParallel, r'GToggleSystemTrayEnabledData_setSettings_settings', 'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleSystemTrayEnabledData_setSettings_settings', 'localSourcePath'));
+              localSourcePath: BuiltValueNullFieldError.checkNotNull(localSourcePath, r'GToggleSystemTrayEnabledData_setSettings_settings', 'localSourcePath'),
+              globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(globalUpdateInterval, r'GToggleSystemTrayEnabledData_setSettings_settings', 'globalUpdateInterval'),
+              updateMangas: BuiltValueNullFieldError.checkNotNull(updateMangas, r'GToggleSystemTrayEnabledData_setSettings_settings', 'updateMangas'),
+              excludeCompleted: BuiltValueNullFieldError.checkNotNull(excludeCompleted, r'GToggleSystemTrayEnabledData_setSettings_settings', 'excludeCompleted'),
+              excludeNotStarted: BuiltValueNullFieldError.checkNotNull(excludeNotStarted, r'GToggleSystemTrayEnabledData_setSettings_settings', 'excludeNotStarted'),
+              excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeUnreadChapters, r'GToggleSystemTrayEnabledData_setSettings_settings', 'excludeUnreadChapters'),
+              downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz, r'GToggleSystemTrayEnabledData_setSettings_settings', 'downloadAsCbz'),
+              downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath, r'GToggleSystemTrayEnabledData_setSettings_settings', 'downloadsPath'),
+              autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChapters, r'GToggleSystemTrayEnabledData_setSettings_settings', 'autoDownloadNewChapters'),
+              autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(autoDownloadNewChaptersLimit, r'GToggleSystemTrayEnabledData_setSettings_settings', 'autoDownloadNewChaptersLimit'),
+              excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(excludeEntryWithUnreadChapters, r'GToggleSystemTrayEnabledData_setSettings_settings', 'excludeEntryWithUnreadChapters'));
     } catch (_) {
       late String _$failedField;
       try {

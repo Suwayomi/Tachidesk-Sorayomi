@@ -69,9 +69,11 @@ class AboutScreen extends HookConsumerWidget {
             },
           );
         } catch (e) {
-          toast?.showError(
-            kDebugMode ? e.toString() : context.l10n.errorSomethingWentWrong,
-          );
+          if (context.mounted) {
+            toast?.showError(
+              kDebugMode ? e.toString() : context.l10n.errorSomethingWentWrong,
+            );
+          }
         }
       },
     );

@@ -152,6 +152,18 @@ import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/grap
     show GCloudFlareBypassFragmentReq;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/graphql/__generated__/fragment.var.gql.dart'
     show GCloudFlareBypassFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/downloads_settings/graphql/__generated__/fragment.data.gql.dart'
+    show GDownloadsSettingsFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/downloads_settings/graphql/__generated__/fragment.req.gql.dart'
+    show GDownloadsSettingsFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/downloads_settings/graphql/__generated__/fragment.var.gql.dart'
+    show GDownloadsSettingsFragmentVars;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/library_settings/graphql/__generated__/fragment.data.gql.dart'
+    show GLibrarySettingsFragmentData;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/library_settings/graphql/__generated__/fragment.req.gql.dart'
+    show GLibrarySettingsFragmentReq;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/library_settings/graphql/__generated__/fragment.var.gql.dart'
+    show GLibrarySettingsFragmentVars;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.data.gql.dart'
     show GMiscSettingsFragmentData;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.req.gql.dart'
@@ -241,6 +253,68 @@ import 'package:tachidesk_sorayomi/src/features/settings/presentation/browse/dat
         GUpdateExtensionReposVars,
         GUpdateLocalSourcePathVars,
         GUpdateSourceInParallelVars;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/downloads/data/graphql/__generated__/downloads_settings_query.data.gql.dart'
+    show
+        GToggleAutoDownloadNewChaptersData,
+        GToggleAutoDownloadNewChaptersData_setSettings,
+        GToggleAutoDownloadNewChaptersData_setSettings_settings,
+        GToggleExcludeEntryWithUnreadChaptersData,
+        GToggleExcludeEntryWithUnreadChaptersData_setSettings,
+        GToggleExcludeEntryWithUnreadChaptersData_setSettings_settings,
+        GUpdateAutoDownloadNewChaptersLimitData,
+        GUpdateAutoDownloadNewChaptersLimitData_setSettings,
+        GUpdateAutoDownloadNewChaptersLimitData_setSettings_settings,
+        GUpdateDownloadAsCbzData,
+        GUpdateDownloadAsCbzData_setSettings,
+        GUpdateDownloadAsCbzData_setSettings_settings,
+        GUpdateDownloadsLocationData,
+        GUpdateDownloadsLocationData_setSettings,
+        GUpdateDownloadsLocationData_setSettings_settings;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/downloads/data/graphql/__generated__/downloads_settings_query.req.gql.dart'
+    show
+        GToggleAutoDownloadNewChaptersReq,
+        GToggleExcludeEntryWithUnreadChaptersReq,
+        GUpdateAutoDownloadNewChaptersLimitReq,
+        GUpdateDownloadAsCbzReq,
+        GUpdateDownloadsLocationReq;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/downloads/data/graphql/__generated__/downloads_settings_query.var.gql.dart'
+    show
+        GToggleAutoDownloadNewChaptersVars,
+        GToggleExcludeEntryWithUnreadChaptersVars,
+        GUpdateAutoDownloadNewChaptersLimitVars,
+        GUpdateDownloadAsCbzVars,
+        GUpdateDownloadsLocationVars;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/library/data/graphql/__generated__/library_settings_query.data.gql.dart'
+    show
+        GToggleExcludeCompletedData,
+        GToggleExcludeCompletedData_setSettings,
+        GToggleExcludeCompletedData_setSettings_settings,
+        GToggleExcludeNotStartedData,
+        GToggleExcludeNotStartedData_setSettings,
+        GToggleExcludeNotStartedData_setSettings_settings,
+        GToggleExcludeUnreadChaptersData,
+        GToggleExcludeUnreadChaptersData_setSettings,
+        GToggleExcludeUnreadChaptersData_setSettings_settings,
+        GUpdateGlobalUpdateIntervalData,
+        GUpdateGlobalUpdateIntervalData_setSettings,
+        GUpdateGlobalUpdateIntervalData_setSettings_settings,
+        GUpdateMangaMetaDataData,
+        GUpdateMangaMetaDataData_setSettings,
+        GUpdateMangaMetaDataData_setSettings_settings;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/library/data/graphql/__generated__/library_settings_query.req.gql.dart'
+    show
+        GToggleExcludeCompletedReq,
+        GToggleExcludeNotStartedReq,
+        GToggleExcludeUnreadChaptersReq,
+        GUpdateGlobalUpdateIntervalReq,
+        GUpdateMangaMetaDataReq;
+import 'package:tachidesk_sorayomi/src/features/settings/presentation/library/data/graphql/__generated__/library_settings_query.var.gql.dart'
+    show
+        GToggleExcludeCompletedVars,
+        GToggleExcludeNotStartedVars,
+        GToggleExcludeUnreadChaptersVars,
+        GUpdateGlobalUpdateIntervalVars,
+        GUpdateMangaMetaDataVars;
 import 'package:tachidesk_sorayomi/src/features/settings/presentation/server/data/graphql/__generated__/server_settings_query.data.gql.dart'
     show
         GToggleDebugLogsData,
@@ -529,6 +603,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GDoubleFilterInput,
   GDownloadState,
   GDownloaderState,
+  GDownloadsSettingsFragmentData,
+  GDownloadsSettingsFragmentReq,
+  GDownloadsSettingsFragmentVars,
   GEnqueueChapterDownloadInput,
   GEnqueueChapterDownloadsInput,
   GExtensionConditionInput,
@@ -572,6 +649,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GIncludeOrExclude,
   GInstallExternalExtensionInput,
   GIntFilterInput,
+  GLibrarySettingsFragmentData,
+  GLibrarySettingsFragmentReq,
+  GLibrarySettingsFragmentVars,
   GLoginTrackerCredentialsInput,
   GLoginTrackerOAuthInput,
   GLogoutTrackerInput,
@@ -671,11 +751,36 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GStartDownloaderInput,
   GStopDownloaderInput,
   GStringFilterInput,
+  GToggleAutoDownloadNewChaptersData,
+  GToggleAutoDownloadNewChaptersData_setSettings,
+  GToggleAutoDownloadNewChaptersData_setSettings_settings,
+  GToggleAutoDownloadNewChaptersReq,
+  GToggleAutoDownloadNewChaptersVars,
   GToggleDebugLogsData,
   GToggleDebugLogsData_setSettings,
   GToggleDebugLogsData_setSettings_settings,
   GToggleDebugLogsReq,
   GToggleDebugLogsVars,
+  GToggleExcludeCompletedData,
+  GToggleExcludeCompletedData_setSettings,
+  GToggleExcludeCompletedData_setSettings_settings,
+  GToggleExcludeCompletedReq,
+  GToggleExcludeCompletedVars,
+  GToggleExcludeEntryWithUnreadChaptersData,
+  GToggleExcludeEntryWithUnreadChaptersData_setSettings,
+  GToggleExcludeEntryWithUnreadChaptersData_setSettings_settings,
+  GToggleExcludeEntryWithUnreadChaptersReq,
+  GToggleExcludeEntryWithUnreadChaptersVars,
+  GToggleExcludeNotStartedData,
+  GToggleExcludeNotStartedData_setSettings,
+  GToggleExcludeNotStartedData_setSettings_settings,
+  GToggleExcludeNotStartedReq,
+  GToggleExcludeNotStartedVars,
+  GToggleExcludeUnreadChaptersData,
+  GToggleExcludeUnreadChaptersData_setSettings,
+  GToggleExcludeUnreadChaptersData_setSettings_settings,
+  GToggleExcludeUnreadChaptersReq,
+  GToggleExcludeUnreadChaptersVars,
   GToggleFlareSolverrData,
   GToggleFlareSolverrData_setSettings,
   GToggleFlareSolverrData_setSettings_settings,
@@ -702,6 +807,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GTrackerConditionInput,
   GTrackerOrderBy,
   GTriState,
+  GUpdateAutoDownloadNewChaptersLimitData,
+  GUpdateAutoDownloadNewChaptersLimitData_setSettings,
+  GUpdateAutoDownloadNewChaptersLimitData_setSettings_settings,
+  GUpdateAutoDownloadNewChaptersLimitReq,
+  GUpdateAutoDownloadNewChaptersLimitVars,
   GUpdateBackupIntervalData,
   GUpdateBackupIntervalData_setSettings,
   GUpdateBackupIntervalData_setSettings_settings,
@@ -730,6 +840,16 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpdateChapterInput,
   GUpdateChapterPatchInput,
   GUpdateChaptersInput,
+  GUpdateDownloadAsCbzData,
+  GUpdateDownloadAsCbzData_setSettings,
+  GUpdateDownloadAsCbzData_setSettings_settings,
+  GUpdateDownloadAsCbzReq,
+  GUpdateDownloadAsCbzVars,
+  GUpdateDownloadsLocationData,
+  GUpdateDownloadsLocationData_setSettings,
+  GUpdateDownloadsLocationData_setSettings_settings,
+  GUpdateDownloadsLocationReq,
+  GUpdateDownloadsLocationVars,
   GUpdateExtensionInput,
   GUpdateExtensionPatchInput,
   GUpdateExtensionReposData,
@@ -758,6 +878,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpdateFlareSolverrUrlData_setSettings_settings,
   GUpdateFlareSolverrUrlReq,
   GUpdateFlareSolverrUrlVars,
+  GUpdateGlobalUpdateIntervalData,
+  GUpdateGlobalUpdateIntervalData_setSettings,
+  GUpdateGlobalUpdateIntervalData_setSettings_settings,
+  GUpdateGlobalUpdateIntervalReq,
+  GUpdateGlobalUpdateIntervalVars,
   GUpdateLibraryMangaInput,
   GUpdateLocalSourcePathData,
   GUpdateLocalSourcePathData_setSettings,
@@ -767,6 +892,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpdateMangaCategoriesInput,
   GUpdateMangaCategoriesPatchInput,
   GUpdateMangaInput,
+  GUpdateMangaMetaDataData,
+  GUpdateMangaMetaDataData_setSettings,
+  GUpdateMangaMetaDataData_setSettings_settings,
+  GUpdateMangaMetaDataReq,
+  GUpdateMangaMetaDataVars,
   GUpdateMangaPatchInput,
   GUpdateMangasCategoriesInput,
   GUpdateMangasInput,

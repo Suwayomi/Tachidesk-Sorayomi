@@ -471,6 +471,26 @@ abstract class GUpdateBackupPathData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateBackupPathData_setSettings_settings>
       get serializer => _$gUpdateBackupPathDataSetSettingsSettingsSerializer;
 
@@ -613,6 +633,26 @@ abstract class GUpdateBackupTimeData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateBackupTimeData_setSettings_settings>
       get serializer => _$gUpdateBackupTimeDataSetSettingsSettingsSerializer;
 
@@ -757,6 +797,26 @@ abstract class GUpdateBackupIntervalData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateBackupIntervalData_setSettings_settings>
       get serializer =>
           _$gUpdateBackupIntervalDataSetSettingsSettingsSerializer;
@@ -900,6 +960,26 @@ abstract class GUpdateBackupTTLData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateBackupTTLData_setSettings_settings> get serializer =>
       _$gUpdateBackupTTLDataSetSettingsSettingsSerializer;
 

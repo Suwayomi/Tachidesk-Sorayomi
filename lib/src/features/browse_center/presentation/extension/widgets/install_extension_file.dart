@@ -35,7 +35,9 @@ class InstallExtensionFile extends ConsumerWidget {
       toast,
     ).then((value) {
       ref.invalidate(extensionProvider);
-      toast?.show(context.l10n.extensionInstalled, instantShow: true);
+      if (context.mounted) {
+        toast?.show(context.l10n.extensionInstalled, instantShow: true);
+      }
     });
   }
 

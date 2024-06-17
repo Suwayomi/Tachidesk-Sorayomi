@@ -10,10 +10,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import '../../../../utils/misc/app_utils.dart';
-import '../../../../utils/misc/toast/toast.dart';
-import '../../../../widgets/input_popup/domain/input_popup_type.dart';
-import '../../../../widgets/input_popup/input_popup.dart';
+import '../../../../widgets/input_popup/domain/settings_prop_type.dart';
+import '../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../controller/server_controller.dart';
 import '../../domain/browse/browse_settings.dart';
 import 'data/browse_settings_repository.dart';
@@ -57,48 +55,29 @@ class BrowseSettingsScreen extends ConsumerWidget {
               ),
               const Divider(),
               if (serverSettings.valueOrNull != null) ...[
-                InputPopup(
+                SettingsPropTile(
                   leading: const Icon(Icons.swap_vert_rounded),
                   title: context.l10n.parallelSourceRequest,
-                  value: browseSettings?.maxSourcesInParallel.toString(),
                   subtitle: context.l10n.nSources(
                       (browseSettings?.maxSourcesInParallel).ifNull()),
-                  onChange: (value) async {
-                    final newValue = int.tryParse(value);
-                    if (newValue != null) {
-                      final result = await AppUtils.guard(
-                          () => repository.updateSourceInParallel(newValue),
-                          ref.read(toastProvider));
-                      if (result != null) {
-                        ref
-                            .watch(settingsProvider.notifier)
-                            .updateState(result);
-                      }
-                    } else {
-                      ref.read(toastProvider)?.show(context.l10n
-                          .invalidProp(context.l10n.parallelSourceRequest));
-                    }
-                  },
-                  type: const InputPopupType.numberSlider(min: 1, max: 20),
+                  type: SettingsPropType.numberSlider(
+                    min: 1,
+                    max: 20,
+                    value: browseSettings?.maxSourcesInParallel,
+                    onChanged: repository.updateSourceInParallel,
+                  ),
                 ),
-                InputPopup(
+                SettingsPropTile(
                   leading: const Icon(Icons.folder_rounded),
                   title: context.l10n.localSourceLocation,
-                  type: InputPopupType.textField(
-                      hintText: context.l10n
-                          .enterProp(context.l10n.localSourceLocation)),
-                  subtitle: (browseSettings?.localSourcePath).isBlank
-                      ? context.l10n.localSourceLocationDescription
-                      : browseSettings!.localSourcePath,
-                  value: browseSettings?.localSourcePath,
-                  onChange: (newValue) async {
-                    final result = await AppUtils.guard(
-                        () => repository.updateLocalSourcePath(newValue),
-                        ref.read(toastProvider));
-                    if (result != null) {
-                      ref.watch(settingsProvider.notifier).updateState(result);
-                    }
-                  },
+                  type: SettingsPropType.textField(
+                    hintText: context.l10n
+                        .enterProp(context.l10n.localSourceLocation),
+                    value: browseSettings?.localSourcePath,
+                    onChanged: repository.updateLocalSourcePath,
+                  ),
+                  description: context.l10n.localSourceLocationDescription,
+                  subtitle: browseSettings?.localSourcePath,
                 ),
                 ListTile(
                   leading: const Icon(Icons.extension_rounded),

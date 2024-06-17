@@ -87,7 +87,7 @@ class NumberSlider extends StatelessWidget {
             child: Row(
               children: [
                 IconButton(
-                  onPressed: () => onChanged(value - 1),
+                  onPressed: value != min ? () => onChanged(value - 1) : null,
                   icon: const Icon(Icons.remove_rounded),
                 ),
                 Expanded(
@@ -106,7 +106,7 @@ class NumberSlider extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => onChanged(value + 1),
+                  onPressed: value != max ? () => onChanged(value + 1) : null,
                   icon: const Icon(Icons.add_rounded),
                 ),
               ],

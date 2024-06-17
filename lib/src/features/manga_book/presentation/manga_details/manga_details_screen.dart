@@ -178,11 +178,14 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         itemBuilder: (context) => [
                           PopupMenuItem(
                             onTap: () => Future.microtask(
-                              () => showDialog(
-                                context: context,
-                                builder: (context) =>
-                                    EditMangaCategoryDialog(mangaId: mangaId),
-                              ),
+                              () {
+                                if (!context.mounted) return null;
+                                return showDialog(
+                                  context: context,
+                                  builder: (context) =>
+                                      EditMangaCategoryDialog(mangaId: mangaId),
+                                );
+                              },
                             ),
                             child: Text(context.l10n.editCategory),
                           ),

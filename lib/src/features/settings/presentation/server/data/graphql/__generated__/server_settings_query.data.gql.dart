@@ -136,6 +136,26 @@ abstract class GUpdateServerIpData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateServerIpData_setSettings_settings> get serializer =>
       _$gUpdateServerIpDataSetSettingsSettingsSerializer;
 
@@ -275,6 +295,26 @@ abstract class GUpdatePortData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdatePortData_setSettings_settings> get serializer =>
       _$gUpdatePortDataSetSettingsSettingsSerializer;
 
@@ -417,6 +457,26 @@ abstract class GToggleSocksProxyData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GToggleSocksProxyData_setSettings_settings>
       get serializer => _$gToggleSocksProxyDataSetSettingsSettingsSerializer;
 
@@ -560,6 +620,26 @@ abstract class GUpdateSocksVersionData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateSocksVersionData_setSettings_settings>
       get serializer => _$gUpdateSocksVersionDataSetSettingsSettingsSerializer;
 
@@ -702,6 +782,26 @@ abstract class GUpdateSocksHostData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateSocksHostData_setSettings_settings> get serializer =>
       _$gUpdateSocksHostDataSetSettingsSettingsSerializer;
 
@@ -846,6 +946,26 @@ abstract class GUpdateSocksUserNameData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateSocksUserNameData_setSettings_settings>
       get serializer => _$gUpdateSocksUserNameDataSetSettingsSettingsSerializer;
 
@@ -990,6 +1110,26 @@ abstract class GUpdateSocksPasswordData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateSocksPasswordData_setSettings_settings>
       get serializer => _$gUpdateSocksPasswordDataSetSettingsSettingsSerializer;
 
@@ -1132,6 +1272,26 @@ abstract class GUpdateSocksPortData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateSocksPortData_setSettings_settings> get serializer =>
       _$gUpdateSocksPortDataSetSettingsSettingsSerializer;
 
@@ -1275,6 +1435,26 @@ abstract class GToggleFlareSolverrData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GToggleFlareSolverrData_setSettings_settings>
       get serializer => _$gToggleFlareSolverrDataSetSettingsSettingsSerializer;
 
@@ -1423,6 +1603,26 @@ abstract class GUpdateFlareSolverrSessionNameData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateFlareSolverrSessionNameData_setSettings_settings>
       get serializer =>
           _$gUpdateFlareSolverrSessionNameDataSetSettingsSettingsSerializer;
@@ -1572,6 +1772,26 @@ abstract class GUpdateFlareSolverrSessionTtlData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateFlareSolverrSessionTtlData_setSettings_settings>
       get serializer =>
           _$gUpdateFlareSolverrSessionTtlDataSetSettingsSettingsSerializer;
@@ -1719,6 +1939,26 @@ abstract class GUpdateFlareSolverrTimeoutData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateFlareSolverrTimeoutData_setSettings_settings>
       get serializer =>
           _$gUpdateFlareSolverrTimeoutDataSetSettingsSettingsSerializer;
@@ -1864,6 +2104,26 @@ abstract class GUpdateFlareSolverrUrlData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GUpdateFlareSolverrUrlData_setSettings_settings>
       get serializer =>
           _$gUpdateFlareSolverrUrlDataSetSettingsSettingsSerializer;
@@ -2007,6 +2267,26 @@ abstract class GToggleDebugLogsData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GToggleDebugLogsData_setSettings_settings> get serializer =>
       _$gToggleDebugLogsDataSetSettingsSettingsSerializer;
 
@@ -2150,6 +2430,26 @@ abstract class GToggleGqlDebugLogsData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GToggleGqlDebugLogsData_setSettings_settings>
       get serializer => _$gToggleGqlDebugLogsDataSetSettingsSettingsSerializer;
 
@@ -2295,6 +2595,26 @@ abstract class GToggleSystemTrayEnabledData_setSettings_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GToggleSystemTrayEnabledData_setSettings_settings>
       get serializer =>
           _$gToggleSystemTrayEnabledDataSetSettingsSettingsSerializer;

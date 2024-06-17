@@ -26,6 +26,7 @@ import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
 import '../features/settings/presentation/browse/browse_settings_screen.dart';
 import '../features/settings/presentation/browse/widgets/extension_repository/extension_repository_screen.dart';
+import '../features/settings/presentation/downloads/downloads_settings_screen.dart';
 import '../features/settings/presentation/general/general_screen.dart';
 import '../features/settings/presentation/library/library_settings_screen.dart';
 import '../features/settings/presentation/more/more_screen.dart';
@@ -76,6 +77,7 @@ abstract class Routes {
   static const generalSettings = 'general';
   static const backup = 'backup';
   static const serverSettings = 'server';
+  static const downloadsSettings = 'downloads';
 
   // Commons
   static const mangaRoute = '/manga/:mangaId';
@@ -90,7 +92,7 @@ GoRouter routerConfig(ref) {
   return GoRouter(
     routes: $appRoutes,
     debugLogDiagnostics: true,
-    initialLocation: const LibraryRoute(categoryId: 0).location,
+    initialLocation: const UpdatesRoute().location,
     navigatorKey: rootNavigatorKey,
   );
 }
@@ -175,6 +177,8 @@ GoRouter routerConfig(ref) {
                       ],
                     ),
                     TypedGoRoute<BackupRoute>(path: Routes.backup),
+                    TypedGoRoute<DownloadsSettingsRoute>(
+                        path: Routes.downloadsSettings),
                   ],
                 ),
               ],

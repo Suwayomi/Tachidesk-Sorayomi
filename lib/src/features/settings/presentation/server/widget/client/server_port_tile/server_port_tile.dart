@@ -12,8 +12,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../../../../constants/db_keys.dart';
 import '../../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
-import '../../../../../../../widgets/input_popup/domain/input_popup_type.dart';
-import '../../../../../../../widgets/input_popup/input_popup.dart';
+import '../../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
+import '../../../../../../../widgets/input_popup/settings_prop_tile.dart';
 
 part 'server_port_tile.g.dart';
 
@@ -40,20 +40,25 @@ class ServerPortTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final serverPort = ref.watch(serverPortProvider);
     final serverToggle = ref.watch(serverPortToggleProvider).ifNull();
-    return InputPopup(
+    return SettingsPropTile(
       title: context.l10n.serverPort,
       subtitle: serverToggle ? serverPort.toString() : null,
       leading: const Icon(Icons.dns_rounded),
-      value: serverPort?.toString(),
       trailing: Switch(
         value: serverToggle,
         onChanged: ref.read(serverPortToggleProvider.notifier).update,
       ),
-      onChange: serverToggle
-          ? (port) =>
-              ref.read(serverPortProvider.notifier).update(int.tryParse(port))
-          : null,
-      type: const InputPopupType.numberPicker(min: 0, max: 65535),
+      type: SettingsPropType<void>.numberPicker(
+        min: 0,
+        max: 65535,
+        value: serverPort,
+        onChanged: serverToggle
+            ? (port) async {
+                ref.read(serverPortProvider.notifier).update(port);
+                return;
+              }
+            : null,
+      ),
     );
   }
 }

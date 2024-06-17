@@ -7,8 +7,7 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../utils/misc/toast/toast.dart';
 import '../../../../../../widgets/emoticons.dart';
-import '../../../../../../widgets/input_popup/domain/input_popup_type.dart';
-import '../../../../../../widgets/input_popup/input_popup.dart';
+import '../../../../../../widgets/input_popup/widgets/text_field_dialog.dart';
 import '../../../../controller/server_controller.dart';
 import '../../data/browse_settings_repository.dart';
 
@@ -26,20 +25,12 @@ class ExtensionRepositoryScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(context.l10n.extensionRepository)),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          String? newUrl;
-          bool hasChanged = false;
-          await showDialog(
+          String? newUrl = await showDialog<String?>(
             context: context,
-            builder: (context) => InputDialog(
+            builder: (context) => TextFieldDialog(
               title: context.l10n.extensionRepository,
-              onChange: (value) {
-                newUrl = value;
-                hasChanged = true;
-              },
-              type: InputPopupType.textField(
-                hintText:
-                    context.l10n.enterProp(context.l10n.extensionRepository),
-              ),
+              hintText:
+                  context.l10n.enterProp(context.l10n.extensionRepository),
             ),
           );
           if (newUrl.isNotBlank && newUrl.isUrl) {
@@ -50,7 +41,7 @@ class ExtensionRepositoryScreen extends ConsumerWidget {
             if (result != null) {
               ref.watch(settingsProvider.notifier).updateState(result);
             }
-          } else if (context.mounted && hasChanged) {
+          } else if (context.mounted) {
             ref.read(toastProvider)?.showError(
                 context.l10n.invalidProp(context.l10n.extensionRepository));
           }

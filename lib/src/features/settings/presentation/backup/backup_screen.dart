@@ -21,11 +21,16 @@ class BackupScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(context.l10n.backup)),
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(settingsProvider.future),
-        child: ListView(
-          children: const [
-            BackupAndRestoreSection(),
-            AutomaticBackupSection(),
-          ],
+        child: ListTileTheme(
+          data: const ListTileThemeData(
+            subtitleTextStyle: TextStyle(color: Colors.grey),
+          ),
+          child: ListView(
+            children: const [
+              BackupAndRestoreSection(),
+              AutomaticBackupSection(),
+            ],
+          ),
         ),
       ),
     );

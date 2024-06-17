@@ -97,6 +97,7 @@ class ServerSettingsRepository {
         (data) => data.setSettings.settings,
       )
       .first;
+
   Future<SettingsDto?> updateFlareSolverrUrl(String value) => ferryClient
       .fetch(
         ServerSettingsQuery.updateFlareSolverrUrl(value),

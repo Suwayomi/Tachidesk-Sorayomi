@@ -11,6 +11,10 @@ import 'package:tachidesk_sorayomi/src/features/settings/domain/browse/graphql/_
     as _i7;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/cloud_flare/graphql/__generated__/fragment.data.gql.dart'
     as _i5;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/downloads_settings/graphql/__generated__/fragment.data.gql.dart'
+    as _i9;
+import 'package:tachidesk_sorayomi/src/features/settings/domain/library_settings/graphql/__generated__/fragment.data.gql.dart'
+    as _i8;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/misc_settings/graphql/__generated__/fragment.data.gql.dart'
     as _i6;
 import 'package:tachidesk_sorayomi/src/features/settings/domain/server_binding/graphql/__generated__/fragment.data.gql.dart'
@@ -114,6 +118,26 @@ abstract class GServerSettingsData_settings
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GServerSettingsData_settings> get serializer =>
       _$gServerSettingsDataSettingsSerializer;
 
@@ -137,7 +161,9 @@ abstract class GSettingsFragment
         _i4.GSocksProxyFragment,
         _i5.GCloudFlareBypassFragment,
         _i6.GMiscSettingsFragment,
-        _i7.GBrowserSettingsFragment {
+        _i7.GBrowserSettingsFragment,
+        _i8.GLibrarySettingsFragment,
+        _i9.GDownloadsSettingsFragment {
   @override
   String get G__typename;
   @override
@@ -187,6 +213,26 @@ abstract class GSettingsFragment
   @override
   String get localSourcePath;
   @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
+  @override
   Map<String, dynamic> toJson();
 }
 
@@ -199,7 +245,9 @@ abstract class GSettingsFragmentData
         _i4.GSocksProxyFragment,
         _i5.GCloudFlareBypassFragment,
         _i6.GMiscSettingsFragment,
-        _i7.GBrowserSettingsFragment {
+        _i7.GBrowserSettingsFragment,
+        _i8.GLibrarySettingsFragment,
+        _i9.GDownloadsSettingsFragment {
   GSettingsFragmentData._();
 
   factory GSettingsFragmentData(
@@ -258,6 +306,26 @@ abstract class GSettingsFragmentData
   int get maxSourcesInParallel;
   @override
   String get localSourcePath;
+  @override
+  double get globalUpdateInterval;
+  @override
+  bool get updateMangas;
+  @override
+  bool get excludeCompleted;
+  @override
+  bool get excludeNotStarted;
+  @override
+  bool get excludeUnreadChapters;
+  @override
+  bool get downloadAsCbz;
+  @override
+  String get downloadsPath;
+  @override
+  bool get autoDownloadNewChapters;
+  @override
+  int get autoDownloadNewChaptersLimit;
+  @override
+  bool get excludeEntryWithUnreadChapters;
   static Serializer<GSettingsFragmentData> get serializer =>
       _$gSettingsFragmentDataSerializer;
 

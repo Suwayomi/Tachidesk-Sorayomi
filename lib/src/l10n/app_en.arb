@@ -9,6 +9,9 @@
     "@addToLibrary": {
         "description": "Button text to add Manga to Library in Manga Details Screen"
     },
+    "@advanced": {
+        "description": "Section title Text for Advanced Section"
+    },
     "@allScanlators": {
         "description": "Text for all Scanlators in manga description screen chapter filter"
     },
@@ -36,8 +39,23 @@
     "@authentication": {
         "description": "Section title for server authentication"
     },
+    "@autoDownload": {
+        "description": "Title for Auto-download Section in downloads settings"
+    },
+    "@autoDownloadNewChapters": {
+        "description": "Toggle's title to change Auto Download New Chapters settings"
+    },
     "@automaticBackup": {
         "description": "Settings group title for automatic backup settings"
+    },
+    "@automaticUpdate": {
+        "description": "Popup title and Settings text to update Automatic Global Update interval"
+    },
+    "@automaticallyRefreshMetadata": {
+        "description": "Settings text to update Automatically refresh metadata"
+    },
+    "@automaticallyRefreshMetadataSubtitle": {
+        "description": "Settings sub title text to update Automatically refresh metadata"
     },
     "@backup": {
         "description": "Screen title and Button text of Backup & Restore screen"
@@ -86,6 +104,12 @@
     },
     "@channel": {
         "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+    },
+    "@chapterDownloadLimit": {
+        "description": "Title Text for changing Chapter download limit settings"
+    },
+    "@chapterDownloadLimitDesc": {
+        "description": "Sub Title Text for changing Chapter download limit settings"
     },
     "@chapterNumber": {
         "description": "Text title for Chapter name in chapter list",
@@ -189,6 +213,12 @@
     "@displayModeList": {
         "description": "Radio button text for Manga Cover display mode - List"
     },
+    "@downloadLocation": {
+        "description": "Settings label Text to update Download location"
+    },
+    "@downloadLocationHint": {
+        "description": "Hint text for updating downloads location"
+    },
     "@downloaded": {
         "description": "Text to show downloaded chapters status in Filters  "
     },
@@ -242,6 +272,9 @@
     },
     "@errorUserName": {
         "description": "Error Description to show that UserName cannot be empty"
+    },
+    "@excludeEntryWithUnreadChapters": {
+        "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
     },
     "@extensionInstalled": {
         "description": "Toast text to show that the Extension Installed successfully"
@@ -411,8 +444,14 @@
     "@moveToTop": {
         "description": "Button text to move download/category to the top of list"
     },
+    "@nChapters": {
+        "description": "Text for showing N chapters"
+    },
     "@nDays": {
         "description": "to show Number of days with plural"
+    },
+    "@nHours": {
+        "description": "Text to represent 'n' hours"
     },
     "@nMinutes": {
         "description": "Text to represent 'n' Minutes"
@@ -489,6 +528,9 @@
     },
     "@noUpdatesFound": {
         "description": "Toast Text to show that there are no Updates available"
+    },
+    "@none": {
+        "description": "Text for None"
     },
     "@nsfw": {
         "description": "Switch text to show/hide the nsfw extensions"
@@ -694,6 +736,9 @@
     "@save": {
         "description": "Save Button Text"
     },
+    "@saveAsCBZArchive": {
+        "description": "Settings toggle label for Save as CBZ archive"
+    },
     "@scanlators": {
         "description": "Title text for Scanlators"
     },
@@ -736,6 +781,9 @@
     "@settings": {
         "description": "Screen title and Button text of Settings screen"
     },
+    "@skipUpdatingEntries": {
+        "description": "Settings Text to update skip Updating Entries"
+    },
     "@socksProxy": {
         "description": "Section title for SOCKS Proxy settings"
     },
@@ -765,6 +813,9 @@
     },
     "@systemTrayIcon": {
         "description": "Switch title to Show icon in system tray in settings"
+    },
+    "@thatHaventBeenStarted": {
+        "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
     },
     "@themeModeDark": {
         "description": "Radio button text for App theme - Dark"
@@ -842,12 +893,19 @@
     "@whatsNew": {
         "description": "Button text to open whats new page of app in web"
     },
+    "@withCompletedStatus": {
+        "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+    },
+    "@withUnreadChapter": {
+        "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+    },
     "@yesterday": {
         "description": "Yesterday Text to show the release date of manga"
     },
     "about": "About",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
+    "advanced": "Advanced",
     "allScanlators": "All Scanlators",
     "appLanguage": "App Language",
     "appTheme": "App Theme Mode",
@@ -857,7 +915,12 @@
     "authTypeBasic": "Basic Auth",
     "authTypeNone": "None",
     "authentication": "Authentication",
+    "autoDownload": "Auto-download",
+    "autoDownloadNewChapters": "Download new chapters",
     "automaticBackup": "Automatic Backup",
+    "automaticUpdate": "Automatic Update",
+    "automaticallyRefreshMetadata": "Automatically refresh metadata",
+    "automaticallyRefreshMetadataSubtitle": "Check for new cover and details when updating library",
     "backup": "Backup & Restore",
     "backupAndRestore": "Backup and Restore",
     "backupCleanup": "Backup Cleanup",
@@ -875,6 +938,8 @@
     "categories": "Categories",
     "categoryUpdate": "Category Update",
     "channel": "Channel",
+    "chapterDownloadLimit": "Chapter download limit",
+    "chapterDownloadLimitDesc": "Limit the amount of new chapters that are going to get downloaded.",
     "chapterNumber": "Chapter {number}",
     "chapterSortFetchedDate": "By Fetched Date",
     "chapterSortSource": "By Source",
@@ -905,6 +970,8 @@
     "displayModeDescriptiveList": "Descriptive List",
     "displayModeGrid": "Grid",
     "displayModeList": "List",
+    "downloadLocation": "Download location",
+    "downloadLocationHint": "The path to the directory on the server where downloaded files should get saved in",
     "downloaded": "Downloaded",
     "downloads": "Downloads",
     "edit": "Edit",
@@ -921,6 +988,7 @@
     "errorPassword": "Password can't be empty",
     "errorSomethingWentWrong": "Something went wrong!",
     "errorUserName": "UserName can't be empty",
+    "excludeEntryWithUnreadChapters": "Ignore automatic chapter downloads for entries with unread chapters",
     "extensionInstalled": "Extension Installed!",
     "extensionListEmpty": "Extension list is Empty",
     "extensionRepository": "Extension Repository",
@@ -978,7 +1046,9 @@
     "more": "More",
     "moveToBottom": "Move to Bottom",
     "moveToTop": "Move to top",
+    "nChapters": "{n, plural, =0{None} =1{1 Chapter} other{{n} Chapters}}",
     "nDays": "{count, select, 01{01 Day} other{{count} Days}}",
+    "nHours": "{n, plural, =1{1 hour} other{{n} hours}}",
     "nMinutes": "{n, plural, =1{1 Minute} other{{n} Minutes}}",
     "nRepo": "{n, plural, =1{1 Repo} other{{n} Repos}}",
     "nSeconds": "{n, plural, =1{1 second} other{{n} seconds}}",
@@ -999,6 +1069,7 @@
     "noSourcesFound": "No sources found",
     "noUpdatesAvailable": "You're using the latest version",
     "noUpdatesFound": "No updates found",
+    "none": "None",
     "nsfw": "Show NSFW extensions and sources",
     "nsfw18": "18+",
     "nsfwInfo": "This does not prevent unofficial or potentially incorrectly flagged extensions from surfacing NSFW(18+) content within app",
@@ -1064,6 +1135,7 @@
     "retry": "Retry",
     "running": "Running",
     "save": "Save",
+    "saveAsCBZArchive": "Save as CBZ archive",
     "scanlators": "Scanlators",
     "search": "Search",
     "searchingForUpdates": "Searching for updates",
@@ -1078,6 +1150,7 @@
     "serverUrlHintText": "Server url",
     "serverVersion": "Server version",
     "settings": "Settings",
+    "skipUpdatingEntries": "Skip updating entries",
     "socksHost": "SOCKS Host",
     "socksPassword": "SOCKS Password",
     "socksPort": "SOCKS Port",
@@ -1092,6 +1165,7 @@
     "sources": "Sources",
     "start": "Start",
     "systemTrayIcon": "Show icon in system tray",
+    "thatHaventBeenStarted": "That haven't been started",
     "themeModeDark": "Dark",
     "themeModeLight": "Light",
     "themeModeSystem": "System",
@@ -1114,5 +1188,7 @@
     "webUI": "Open in WEB",
     "webView": "Web View",
     "whatsNew": "What's New?",
+    "withCompletedStatus": "With Completed status",
+    "withUnreadChapter": "With unread chapter(s)",
     "yesterday": "Yesterday"
 }

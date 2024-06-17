@@ -49,7 +49,7 @@ class SourceMangaListView extends ConsumerWidget {
             Padding(
               padding: KEdgeInsets.h8.size,
               child: Shimmer.fromColors(
-                baseColor: context.colorScheme.background,
+                baseColor: context.colorScheme.surface,
                 highlightColor: context.theme.indicatorColor,
                 child: Container(
                   width: context.width * .3,

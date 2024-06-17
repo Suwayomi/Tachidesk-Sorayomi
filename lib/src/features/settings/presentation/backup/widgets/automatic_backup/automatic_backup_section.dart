@@ -5,8 +5,8 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../utils/misc/toast/toast.dart';
 import '../../../../../../widgets/emoticons.dart';
-import '../../../../../../widgets/input_popup/domain/input_popup_type.dart';
-import '../../../../../../widgets/input_popup/input_popup.dart';
+import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
+import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../controller/server_controller.dart';
 import '../../../../domain/automatic_backup_settings/automatic_backup_settings_dto.dart';
@@ -31,24 +31,16 @@ class AutomaticBackupSection extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SectionTitle(title: context.l10n.automaticBackup),
-            InputPopup(
+            SettingsPropTile(
               title: context.l10n.socksHost,
               leading: const Icon(Icons.folder_rounded),
-              type: InputPopupType.textField(
+              subtitle: data.backupPath,
+              description: context.l10n.backupLocationDescription,
+              type: SettingsPropType.textField(
                 hintText: context.l10n.enterProp(context.l10n.backupLocation),
+                value: data.backupPath,
+                onChanged: repository.updateBackupLocation,
               ),
-              subtitle: (data.backupPath).isNotBlank
-                  ? data.backupPath
-                  : context.l10n.backupLocationDescription,
-              value: data.backupPath,
-              onChange: (newValue) async {
-                final result = await AppUtils.guard(
-                    () => repository.updateBackupLocation(newValue),
-                    ref.read(toastProvider));
-                if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
-                }
-              },
             ),
             ListTile(
               leading: const Icon(Icons.access_alarm_rounded),
@@ -77,49 +69,29 @@ class AutomaticBackupSection extends ConsumerWidget {
                 }
               },
             ),
-            InputPopup(
+            SettingsPropTile(
               leading: const Icon(Icons.folder_rounded),
               title: context.l10n.backupInterval,
-              value: data.backupInterval.toString(),
               subtitle: context.l10n
                   .nDays(data.backupInterval.ifNullOrZero(1).compact()!),
-              onChange: (value) async {
-                final newValue = int.tryParse(value);
-                if (newValue != null) {
-                  final result = await AppUtils.guard(
-                      () => repository.updateBackupInterval(newValue),
-                      ref.read(toastProvider));
-                  if (result != null) {
-                    ref.watch(settingsProvider.notifier).updateState(result);
-                  }
-                } else {
-                  ref.read(toastProvider)?.showError(
-                      context.l10n.invalidProp(context.l10n.backupInterval));
-                }
-              },
-              type: const InputPopupType.numberSlider(min: 1, max: 31),
+              type: SettingsPropType.numberSlider(
+                min: 1,
+                max: 31,
+                value: data.backupInterval,
+                onChanged: repository.updateBackupInterval,
+              ),
             ),
-            InputPopup(
+            SettingsPropTile(
               leading: const Icon(Icons.cleaning_services_rounded),
               title: context.l10n.backupCleanup,
-              value: data.backupTTL.toString(),
               subtitle: context.l10n.backupCleanupDescription(
                   data.backupTTL.ifNull(14).compact()!),
-              onChange: (value) async {
-                final newValue = int.tryParse(value);
-                if (newValue != null) {
-                  final result = await AppUtils.guard(
-                      () => repository.updateBackupTTL(newValue),
-                      ref.read(toastProvider));
-                  if (result != null) {
-                    ref.watch(settingsProvider.notifier).updateState(result);
-                  }
-                } else {
-                  ref.read(toastProvider)?.showError(
-                      context.l10n.invalidProp(context.l10n.backupCleanup));
-                }
-              },
-              type: const InputPopupType.numberSlider(min: 0, max: 1000),
+              type: SettingsPropType.numberSlider(
+                min: 0,
+                max: 1000,
+                value: data.backupTTL,
+                onChanged: repository.updateBackupTTL,
+              ),
             ),
           ],
         );

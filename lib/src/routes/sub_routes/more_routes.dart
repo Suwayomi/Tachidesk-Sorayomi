@@ -86,3 +86,10 @@ class ServerSettingsRoute extends GoRouteData {
   @override
   Widget build(context, state) => const ServerScreen();
 }
+
+class DownloadsSettingsRoute extends GoRouteData {
+  const DownloadsSettingsRoute();
+
+  @override
+  Widget build(context, state) => const DownloadsSettingsScreen();
+}

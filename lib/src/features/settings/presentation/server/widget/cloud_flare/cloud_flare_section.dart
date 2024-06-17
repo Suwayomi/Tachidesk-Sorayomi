@@ -6,8 +6,8 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/launch_url_in_web.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../utils/misc/toast/toast.dart';
-import '../../../../../../widgets/input_popup/domain/input_popup_type.dart';
-import '../../../../../../widgets/input_popup/input_popup.dart';
+import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
+import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../controller/server_controller.dart';
 import '../../../../domain/cloud_flare/cloud_flare.dart';
@@ -24,8 +24,8 @@ class CloudFlareSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionTitle(title: context.l10n.cloudflareBypass),
-        SwitchListTile(
-          title: Row(children: [
+        SettingsPropTile(
+          titleWidget: Row(children: [
             Text(context.l10n.flareSolverr),
             IconButton(
                 iconSize: 18,
@@ -33,90 +33,60 @@ class CloudFlareSection extends ConsumerWidget {
                     context, AppUrls.flareSolverr.url, ref.read(toastProvider)),
                 icon: const Icon(Icons.open_in_new_rounded))
           ]),
-          value: cloudFlareDto.flareSolverrEnabled,
-          subtitle: Text(context.l10n.openFlareSolverr),
-          onChanged: (isEnabled) async {
-            final value = await AppUtils.guard(
-                () => repository.toggleFlareSolverr(isEnabled),
-                ref.read(toastProvider));
-            if (value != null) {
-              ref.read(settingsProvider.notifier).updateState(value);
-            }
-          },
+          subtitle: context.l10n.openFlareSolverr,
+          type: SettingsPropType.switchTile(
+            value: cloudFlareDto.flareSolverrEnabled,
+            onChanged: (isEnabled) async {
+              final value = await AppUtils.guard(
+                  () => repository.toggleFlareSolverr(isEnabled),
+                  ref.read(toastProvider));
+              if (value != null) {
+                ref.read(settingsProvider.notifier).updateState(value);
+              }
+            },
+          ),
         ),
         if (cloudFlareDto.flareSolverrEnabled) ...[
-          InputPopup(
+          SettingsPropTile(
             title: context.l10n.flareSolverrServerUrl,
-            type: InputPopupType.textField(
-                hintText:
-                    context.l10n.enterProp(context.l10n.flareSolverrServerUrl)),
+            type: SettingsPropType.textField(
+              hintText:
+                  context.l10n.enterProp(context.l10n.flareSolverrServerUrl),
+              value: cloudFlareDto.flareSolverrUrl,
+              onChanged: repository.updateFlareSolverrUrl,
+            ),
             subtitle: cloudFlareDto.flareSolverrUrl,
-            value: cloudFlareDto.flareSolverrUrl,
-            onChange: (newValue) async {
-              final result = await AppUtils.guard(
-                  () => repository.updateFlareSolverrUrl(newValue),
-                  ref.read(toastProvider));
-              if (result != null) {
-                ref.watch(settingsProvider.notifier).updateState(result);
-              }
-            },
           ),
-          InputPopup(
+          SettingsPropTile(
             title: context.l10n.flareSolverrRequestTimeout,
-            value: cloudFlareDto.flareSolverrTimeout.toString(),
             subtitle: context.l10n.nSeconds(cloudFlareDto.flareSolverrTimeout),
-            onChange: (value) async {
-              final newValue = int.tryParse(value);
-              if (newValue != null) {
-                final result = await AppUtils.guard(
-                    () => repository.updateFlareSolverrTimeout(newValue),
-                    ref.read(toastProvider));
-                if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
-                }
-              } else {
-                ref.read(toastProvider)?.showError(context.l10n
-                    .invalidProp(context.l10n.flareSolverrRequestTimeout));
-              }
-            },
-            type: const InputPopupType.numberSlider(min: 20, max: 300),
+            type: SettingsPropType.numberSlider(
+              min: 20,
+              max: 300,
+              value: cloudFlareDto.flareSolverrTimeout,
+              onChanged: repository.updateFlareSolverrTimeout,
+            ),
           ),
-          InputPopup(
+          SettingsPropTile(
             title: context.l10n.flareSolverrSessionName,
-            type: InputPopupType.textField(
-                hintText: context.l10n
-                    .enterProp(context.l10n.flareSolverrSessionName)),
+            type: SettingsPropType.textField(
+              hintText:
+                  context.l10n.enterProp(context.l10n.flareSolverrSessionName),
+              value: cloudFlareDto.flareSolverrSessionName,
+              onChanged: repository.updateFlareSolverrSessionName,
+            ),
             subtitle: cloudFlareDto.flareSolverrSessionName,
-            value: cloudFlareDto.flareSolverrSessionName,
-            onChange: (newValue) async {
-              final result = await AppUtils.guard(
-                  () => repository.updateFlareSolverrSessionName(newValue),
-                  ref.read(toastProvider));
-              if (result != null) {
-                ref.watch(settingsProvider.notifier).updateState(result);
-              }
-            },
           ),
-          InputPopup(
+          SettingsPropTile(
             title: context.l10n.flareSolverrSessionTTL,
-            value: cloudFlareDto.flareSolverrSessionTtl.toString(),
             subtitle:
                 context.l10n.nMinutes(cloudFlareDto.flareSolverrSessionTtl),
-            onChange: (value) async {
-              final newValue = int.tryParse(value);
-              if (newValue != null) {
-                final result = await AppUtils.guard(
-                    () => repository.updateFlareSolverrSessionTtl(newValue),
-                    ref.read(toastProvider));
-                if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
-                }
-              } else {
-                ref.read(toastProvider)?.showError(context.l10n
-                    .invalidProp(context.l10n.flareSolverrSessionTTL));
-              }
-            },
-            type: const InputPopupType.numberSlider(min: 1, max: 60),
+            type: SettingsPropType.numberSlider(
+              min: 1,
+              max: 60,
+              value: cloudFlareDto.flareSolverrSessionTtl,
+              onChanged: repository.updateFlareSolverrSessionTtl,
+            ),
           ),
         ],
       ],

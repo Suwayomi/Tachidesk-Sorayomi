@@ -51,7 +51,7 @@ abstract class AppUtils {
     if (condition.ifNull()) {
       return value;
     }
-    return null;
+    return elseValue;
   }
 
   static String stringCompose(
