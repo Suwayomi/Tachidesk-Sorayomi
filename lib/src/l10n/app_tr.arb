@@ -1,1 +1,92 @@
-{}
+{
+  "appTitle": "Tachidesk Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Tachidesk Sorayomi in native script)"
+  },
+  "appearance": "Görünüm",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Kimlik Doğrulama Tipi",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeNone": "Hiç",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "badges": "Rozetler",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "Yer imi eklendi",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "Araştır",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "buildTime": "Derleme zamanı",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cancel": "İptal",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "chapterSortSource": "Kaynağa göre",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "Yüklenme tarihine göre",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "client": "Client",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "close": "Kapat",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "completed": "Tamamlandı",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "createBackupTitle": "Yedek oluştur",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "about": "Hakkında",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "obsolete": "Kullanım dışı",
+  "@obsolete": {
+    "description": "Text to show that the extension has become Obsolete"
+  },
+  "addToLibrary": "Kütüphaneye ekle",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "channel": "Kanal",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "Bölüm {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "categories": "Kategoriler",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  }
+}
