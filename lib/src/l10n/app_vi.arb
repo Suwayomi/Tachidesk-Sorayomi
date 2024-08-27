@@ -1,1 +1,22 @@
-{}
+{
+  "about": "Giới thiệu",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "Thêm danh mục",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "Thêm vào thư viện",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "appLanguage": "Ngôn ngữ",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Chủ đề",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  }
+}
