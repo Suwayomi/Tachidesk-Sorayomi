@@ -210,5 +210,123 @@
   "display": "Tampilan",
   "@display": {
     "description": "Text for Display tab in Library screen drawer"
+  },
+  "errorFilePickUnknownExtension": "Silahkan pilih file dengan ekstensi {extensionName}",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorLaunchURL": "Kegagalan untuk membuka!\nMenyalin \"{url}\" ke clipboard",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorPassword": "Sandi tidak bisa kosong",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "errorSomethingWentWrong": "Sesuatu yang salah!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "globalUpdate": "Pembaruan Global",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "edit": "Login",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "editCategory": "Ubah kategori",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "Nama kategori tidak bisa kosong",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "errorExtension": "Tidak dapat menemukan ekstensi yang dipilih",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "Tidak dipilih!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorUserName": "UserName tidak bisa kosong",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "extensionInstalled": "Ekstensi Diinstal!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "Daftar ekstensi kosong",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "extensions": "Login",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "failed": "Gagal",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "filter": "Filter",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "findServer": "Cari",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "finished": "Selesai",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "general": "Umum",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "gitHub": "Github",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "globalSearch": "Pencarian Global",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "help": "Bantuan",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "inLibrary": "di Perpustakaan",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "install": "Pasang",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installing": "Sedang Memasang",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "installingExtension": "Menginstal Ekstensi",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "isTrueBlack": "Benar Hitam",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "Bahasa",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
   }
 }
