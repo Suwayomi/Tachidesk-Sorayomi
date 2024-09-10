@@ -544,5 +544,53 @@
   "previousChapter": "Önceki: {chapterTitle}",
   "@previousChapter": {
     "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "quickSearchContext": "X sorgusunu ara (Sonuçlar ekran bağlamına göre belirlenir)",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchShowAllCommandTip": "İpucu: Tüm komutları görmek için '?' tuşuna basın",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "readerNavigationLayoutEdge": "Edge",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "quickSearch": "Hızlı Arama",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "quickSearchCategory": "'C' Kategorisine Git",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchSource": "Kaynağa git 'S'",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "readerMagnifierSize": "Büyüteç Boyutu",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "readerMode": "Okuma Modu",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerModeDefaultReader": "Varsayılan",
+  "@readerModeDefaultReader": {
+    "description": "Radio button text for Reader Mode Type - Default"
+  },
+  "readerModeWebtoon": "Webtoon",
+  "@readerModeWebtoon": {
+    "description": "Radio button text for Reader Mode Type - Webtoon"
+  },
+  "readerNavigationLayoutDefault": "Varsayılan",
+  "@readerNavigationLayoutDefault": {
+    "description": "Radio button text for Reader Navigation Layout - Default"
+  },
+  "readerNavigationLayoutDisabled": "Devre Dışı",
+  "@readerNavigationLayoutDisabled": {
+    "description": "Radio button text for Reader Navigation Layout - Disabled"
   }
 }
