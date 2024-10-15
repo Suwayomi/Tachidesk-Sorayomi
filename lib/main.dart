@@ -35,19 +35,7 @@ Future<void> main() async {
   if (!kIsWeb) {
     final appDocDirectory = await getApplicationDocumentsDirectory();
     appDirectory = Directory(path.join(appDocDirectory.path, 'Sorayomi'));
-
     await appDirectory.create(recursive: true);
-
-    final cacheFiles = ['dio_cache.hive', 'dio_cache.lock'];
-    for (final cacheFile in cacheFiles) {
-      final oldCacheFilePath = path.join(appDocDirectory.path, cacheFile);
-      final newCacheFilePath = path.join(appDirectory.path, cacheFile);
-
-      if (!(await File(newCacheFilePath).exists()) &&
-          await File(oldCacheFilePath).exists()) {
-        await File(oldCacheFilePath).rename(newCacheFilePath);
-      }
-    }
   } else {
     appDirectory = null;
   }

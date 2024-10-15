@@ -23,8 +23,12 @@ mixin _$MetaData {
   String? get key => throw _privateConstructorUsedError;
   String? get value => throw _privateConstructorUsedError;
 
+  /// Serializes this MetaData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MetaData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MetaDataCopyWith<MetaData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$MetaDataCopyWithImpl<$Res, $Val extends MetaData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MetaData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$MetaDataImplCopyWithImpl<$Res>
       _$MetaDataImpl _value, $Res Function(_$MetaDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MetaData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,11 +139,13 @@ class _$MetaDataImpl implements _MetaData {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, key, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MetaData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MetaDataImplCopyWith<_$MetaDataImpl> get copyWith =>
@@ -159,8 +169,11 @@ abstract class _MetaData implements MetaData {
   String? get key;
   @override
   String? get value;
+
+  /// Create a copy of MetaData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MetaDataImplCopyWith<_$MetaDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

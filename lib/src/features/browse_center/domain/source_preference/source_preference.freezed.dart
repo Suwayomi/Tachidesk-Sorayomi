@@ -192,8 +192,13 @@ mixin _$SourcePreference {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this SourcePreference to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SourcePreferenceCopyWith<SourcePreference> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -217,6 +222,8 @@ class _$SourcePreferenceCopyWithImpl<$Res, $Val extends SourcePreference>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -250,6 +257,8 @@ class __$$FallbackImplCopyWithImpl<$Res>
       _$FallbackImpl _value, $Res Function(_$FallbackImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -301,12 +310,14 @@ class _$FallbackImpl implements Fallback {
                 .equals(other.currentValue, currentValue));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, key, const DeepCollectionEquality().hash(currentValue));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FallbackImplCopyWith<_$FallbackImpl> get copyWith =>
@@ -511,8 +522,11 @@ abstract class Fallback implements SourcePreference {
   String? get key;
   @override
   dynamic get currentValue;
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FallbackImplCopyWith<_$FallbackImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -542,6 +556,8 @@ class __$$CheckBoxPreferenceImplCopyWithImpl<$Res>
       $Res Function(_$CheckBoxPreferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -634,12 +650,14 @@ class _$CheckBoxPreferenceImpl implements CheckBoxPreference {
                 other.defaultValueType == defaultValueType));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, key, title, summary,
       defaultValue, currentValue, defaultValueType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CheckBoxPreferenceImplCopyWith<_$CheckBoxPreferenceImpl> get copyWith =>
@@ -857,8 +875,11 @@ abstract class CheckBoxPreference implements SourcePreference {
   @override
   bool? get currentValue;
   String? get defaultValueType;
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CheckBoxPreferenceImplCopyWith<_$CheckBoxPreferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -890,6 +911,8 @@ class __$$SwitchPreferenceCompatImplCopyWithImpl<$Res>
       $Res Function(_$SwitchPreferenceCompatImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -982,12 +1005,14 @@ class _$SwitchPreferenceCompatImpl implements SwitchPreferenceCompat {
                 other.defaultValueType == defaultValueType));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, key, title, summary,
       defaultValue, currentValue, defaultValueType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SwitchPreferenceCompatImplCopyWith<_$SwitchPreferenceCompatImpl>
@@ -1205,8 +1230,11 @@ abstract class SwitchPreferenceCompat implements SourcePreference {
   @override
   bool? get currentValue;
   String? get defaultValueType;
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SwitchPreferenceCompatImplCopyWith<_$SwitchPreferenceCompatImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1237,6 +1265,8 @@ class __$$ListPreferenceImplCopyWithImpl<$Res>
       _$ListPreferenceImpl _value, $Res Function(_$ListPreferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1346,7 +1376,7 @@ class _$ListPreferenceImpl implements ListPreference {
             const DeepCollectionEquality().equals(other._entries, _entries));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1358,7 +1388,9 @@ class _$ListPreferenceImpl implements ListPreference {
       defaultValueType,
       const DeepCollectionEquality().hash(_entries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ListPreferenceImplCopyWith<_$ListPreferenceImpl> get copyWith =>
@@ -1578,8 +1610,11 @@ abstract class ListPreference implements SourcePreference {
   String? get currentValue;
   String? get defaultValueType;
   Map<String, String>? get entries;
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ListPreferenceImplCopyWith<_$ListPreferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1613,6 +1648,8 @@ class __$$MultiSelectListPreferenceImplCopyWithImpl<$Res>
       $Res Function(_$MultiSelectListPreferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1740,7 +1777,7 @@ class _$MultiSelectListPreferenceImpl implements MultiSelectListPreference {
             const DeepCollectionEquality().equals(other._entries, _entries));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1752,7 +1789,9 @@ class _$MultiSelectListPreferenceImpl implements MultiSelectListPreference {
       defaultValueType,
       const DeepCollectionEquality().hash(_entries));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MultiSelectListPreferenceImplCopyWith<_$MultiSelectListPreferenceImpl>
@@ -1972,8 +2011,11 @@ abstract class MultiSelectListPreference implements SourcePreference {
   List<String>? get currentValue;
   String? get defaultValueType;
   Map<String, String>? get entries;
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MultiSelectListPreferenceImplCopyWith<_$MultiSelectListPreferenceImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2006,6 +2048,8 @@ class __$$EditTextPreferenceImplCopyWithImpl<$Res>
       $Res Function(_$EditTextPreferenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2127,7 +2171,7 @@ class _$EditTextPreferenceImpl implements EditTextPreference {
             (identical(other.text, text) || other.text == text));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2141,7 +2185,9 @@ class _$EditTextPreferenceImpl implements EditTextPreference {
       dialogMessage,
       text);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EditTextPreferenceImplCopyWith<_$EditTextPreferenceImpl> get copyWith =>
@@ -2365,8 +2411,11 @@ abstract class EditTextPreference implements SourcePreference {
   String? get dialogTitle;
   String? get dialogMessage;
   String? get text;
+
+  /// Create a copy of SourcePreference
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EditTextPreferenceImplCopyWith<_$EditTextPreferenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

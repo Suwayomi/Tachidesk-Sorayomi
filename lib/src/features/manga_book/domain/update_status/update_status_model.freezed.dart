@@ -25,7 +25,9 @@ mixin _$UpdateStatus {
   @JsonKey(name: "FAILED")
   List<Manga>? get failed => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UpdateStatusCopyWith<UpdateStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +55,8 @@ class _$UpdateStatusCopyWithImpl<$Res, $Val extends UpdateStatus>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,6 +109,8 @@ class __$$UpdateStatusImplCopyWithImpl<$Res>
       _$UpdateStatusImpl _value, $Res Function(_$UpdateStatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -217,7 +223,9 @@ class _$UpdateStatusImpl extends _UpdateStatus {
       const DeepCollectionEquality().hash(_completed),
       const DeepCollectionEquality().hash(_failed));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
@@ -244,8 +252,11 @@ abstract class _UpdateStatus extends UpdateStatus {
   @override
   @JsonKey(name: "FAILED")
   List<Manga>? get failed;
+
+  /// Create a copy of UpdateStatus
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateStatusImplCopyWith<_$UpdateStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

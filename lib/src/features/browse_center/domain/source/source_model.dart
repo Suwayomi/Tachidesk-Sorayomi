@@ -10,6 +10,8 @@ import 'graphql/__generated__/fragment.data.gql.dart';
 
 typedef Source = GSourceFragment;
 
+typedef FullSource = GFullSourceFragment;
+
 extension SourceExtensions on GSourceFragment {
   Language? get language => LanguageJsonConverter.fromJson(lang);
 }

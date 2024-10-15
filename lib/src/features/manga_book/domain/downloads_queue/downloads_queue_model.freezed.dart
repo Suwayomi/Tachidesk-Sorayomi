@@ -24,7 +24,9 @@ mixin _$DownloadsQueue {
   String? get state => throw _privateConstructorUsedError;
   int? get tries => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DownloadsQueueCopyWith<DownloadsQueue> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +57,8 @@ class _$DownloadsQueueCopyWithImpl<$Res, $Val extends DownloadsQueue>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,6 +129,8 @@ class __$$DownloadsQueueImplCopyWithImpl<$Res>
       _$DownloadsQueueImpl _value, $Res Function(_$DownloadsQueueImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -228,7 +234,9 @@ class _$DownloadsQueueImpl implements _DownloadsQueue {
       state,
       tries);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DownloadsQueueImplCopyWith<_$DownloadsQueueImpl> get copyWith =>
@@ -260,8 +268,11 @@ abstract class _DownloadsQueue implements DownloadsQueue {
   String? get state;
   @override
   int? get tries;
+
+  /// Create a copy of DownloadsQueue
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DownloadsQueueImplCopyWith<_$DownloadsQueueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -252,7 +252,7 @@ extension $SourceTypeRouteExtension on SourceTypeRoute {
         sourceType:
             _$SourceTypeEnumMap._$fromName(state.pathParameters['sourceType']!),
         query: state.uri.queryParameters['query'],
-        $extra: state.extra as List<Filter>?,
+        $extra: state.extra as List<InvalidType>?,
       );
 
   String get location => GoRouteData.$location(
@@ -696,7 +696,7 @@ bool _$boolConverter(String value) {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$routerConfigHash() => r'62354ffd617219baa83dd617b0859114170f3bec';
+String _$routerConfigHash() => r'542d13c256628ae8942029d7160095b088482a3f';
 
 /// See also [routerConfig].
 @ProviderFor(routerConfig)

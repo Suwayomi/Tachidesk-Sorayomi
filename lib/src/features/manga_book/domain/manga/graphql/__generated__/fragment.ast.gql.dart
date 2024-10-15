@@ -260,4 +260,7 @@ const document = _i1.DocumentNode(definitions: [
   _i2.ChapterFragment,
   _i3.SourceFragment,
   _i3.FullSourceFragment,
+  _i3.PreferenceFragment,
+  _i3.PrimitiveFilterFragment,
+  _i3.FilterFragment,
 ]);

@@ -3758,6 +3758,55 @@ const FetchSourceMangaType = _i1.EnumTypeDefinitionNode(
     ),
   ],
 );
+const FetchTrackInput = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'FetchTrackInput'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'clientMutationId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'recordId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
+const FetchTrackPayload = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'FetchTrackPayload'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'clientMutationId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'trackRecord'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'TrackRecordType'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const Filter = _i1.UnionTypeDefinitionNode(
   name: _i1.NameNode(value: 'Filter'),
   directives: [],
@@ -5592,6 +5641,15 @@ const MangaType = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'bookmarkCount'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'categories'),
       directives: [],
       args: [],
@@ -5625,6 +5683,15 @@ const MangaType = _i1.ObjectTypeDefinitionNode(
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'firstUnreadChapter'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'ChapterType'),
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6022,7 +6089,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'CreateCategoryPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6041,7 +6108,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteCategoryPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6060,7 +6127,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteCategoryMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6079,7 +6146,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'SetCategoryMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6098,7 +6165,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateCategoriesPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6117,7 +6184,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateCategoryPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6136,7 +6203,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateCategoryOrderPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6155,7 +6222,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateMangaCategoriesPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6174,7 +6241,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateMangasCategoriesPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6193,7 +6260,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteChapterMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6212,7 +6279,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'FetchChapterPagesPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6231,7 +6298,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'FetchChaptersPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6250,7 +6317,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'SetChapterMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6269,7 +6336,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateChapterPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6288,7 +6355,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateChaptersPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6307,7 +6374,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'ClearDownloaderPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6326,7 +6393,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteDownloadedChapterPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6345,7 +6412,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteDownloadedChaptersPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6364,7 +6431,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DequeueChapterDownloadPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6383,7 +6450,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DequeueChapterDownloadsPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6402,7 +6469,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'EnqueueChapterDownloadPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6421,7 +6488,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'EnqueueChapterDownloadsPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6440,7 +6507,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'ReorderChapterDownloadPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6459,7 +6526,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'StartDownloaderPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6478,7 +6545,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'StopDownloaderPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6497,7 +6564,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'FetchExtensionsPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6516,7 +6583,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'InstallExternalExtensionPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6535,7 +6602,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateExtensionPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6554,7 +6621,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateExtensionsPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6582,7 +6649,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'WebUIUpdateStatus'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6601,7 +6668,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'WebUIUpdatePayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6620,7 +6687,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteMangaMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6639,7 +6706,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'FetchMangaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6658,7 +6725,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'SetMangaMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6677,7 +6744,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateMangaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6696,7 +6763,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateMangasPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6715,7 +6782,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteGlobalMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6734,7 +6801,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'SetGlobalMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6791,7 +6858,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeleteSourceMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6810,7 +6877,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'FetchSourceMangaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6829,7 +6896,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'SetSourceMetaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6848,7 +6915,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateSourcePreferencePayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6867,6 +6934,25 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'BindTrackPayload'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'fetchTrack'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'input'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'FetchTrackInput'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'FetchTrackPayload'),
         isNonNull: true,
       ),
     ),
@@ -6928,6 +7014,44 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'trackProgress'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'input'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'TrackProgressInput'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'TrackProgressPayload'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'unbindTrack'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'input'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'UnbindTrackInput'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'UnbindTrackPayload'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'updateTrack'),
       directives: [],
       args: [
@@ -6962,7 +7086,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateCategoryMangaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -6981,7 +7105,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'UpdateLibraryMangaPayload'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -7193,6 +7317,15 @@ const PartialSettingsType = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'autoDownloadIgnoreReUploads'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
         isNonNull: false,
       ),
     ),
@@ -7583,6 +7716,15 @@ const PartialSettingsTypeInput = _i1.InputObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'PartialSettingsTypeInput'),
   directives: [],
   fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'autoDownloadIgnoreReUploads'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
     _i1.InputValueDefinitionNode(
       name: _i1.NameNode(value: 'autoDownloadNewChapters'),
       directives: [],
@@ -9586,6 +9728,15 @@ const Settings = _i1.InterfaceTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'autoDownloadIgnoreReUploads'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'autoDownloadNewChapters'),
       directives: [],
       args: [],
@@ -9999,6 +10150,15 @@ const SettingsType = _i1.ObjectTypeDefinitionNode(
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'autoDownloadIgnoreReUploads'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -11724,6 +11884,15 @@ const TrackerType = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'supportsTrackDeletion'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'isTokenExpired'),
       directives: [],
       args: [],
@@ -11762,6 +11931,58 @@ const TrackerType = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'TrackRecordNodeList'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const TrackProgressInput = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TrackProgressInput'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'clientMutationId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'mangaId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
+const TrackProgressPayload = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TrackProgressPayload'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'clientMutationId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'trackRecords'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'TrackRecordType'),
+          isNonNull: true,
+        ),
         isNonNull: true,
       ),
     ),
@@ -12506,6 +12727,64 @@ const TriStateFilter = _i1.ObjectTypeDefinitionNode(
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: true,
+      ),
+    ),
+  ],
+);
+const UnbindTrackInput = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'UnbindTrackInput'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'clientMutationId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'deleteRemoteTrack'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'recordId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
+const UnbindTrackPayload = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'UnbindTrackPayload'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'clientMutationId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'trackRecord'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'TrackRecordType'),
+        isNonNull: false,
       ),
     ),
   ],
@@ -13750,15 +14029,6 @@ const UpdateTrackInput = _i1.InputObjectTypeDefinitionNode(
       ),
       defaultValue: null,
     ),
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'unbind'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Boolean'),
-        isNonNull: false,
-      ),
-      defaultValue: null,
-    ),
   ],
 );
 const UpdateTrackPayload = _i1.ObjectTypeDefinitionNode(
@@ -13821,7 +14091,19 @@ const ValidateBackupResult = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    )
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'missingTrackers'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'ValidateBackupTracker'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const ValidateBackupSource = _i1.ObjectTypeDefinitionNode(
@@ -13847,6 +14129,22 @@ const ValidateBackupSource = _i1.ObjectTypeDefinitionNode(
         isNonNull: true,
       ),
     ),
+  ],
+);
+const ValidateBackupTracker = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ValidateBackupTracker'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'name'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    )
   ],
 );
 const WebUIChannel = _i1.EnumTypeDefinitionNode(
@@ -14119,6 +14417,8 @@ const document = _i1.DocumentNode(definitions: [
   FetchSourceMangaInput,
   FetchSourceMangaPayload,
   FetchSourceMangaType,
+  FetchTrackInput,
+  FetchTrackPayload,
   Filter,
   FilterChangeInput,
   FloatFilterInput,
@@ -14215,6 +14515,8 @@ const document = _i1.DocumentNode(definitions: [
   TrackerNodeList,
   TrackerOrderBy,
   TrackerType,
+  TrackProgressInput,
+  TrackProgressPayload,
   TrackRecordConditionInput,
   TrackRecordEdge,
   TrackRecordFilterInput,
@@ -14225,6 +14527,8 @@ const document = _i1.DocumentNode(definitions: [
   TrackStatusType,
   TriState,
   TriStateFilter,
+  UnbindTrackInput,
+  UnbindTrackPayload,
   UpdateCategoriesInput,
   UpdateCategoriesPayload,
   UpdateCategoryInput,
@@ -14271,6 +14575,7 @@ const document = _i1.DocumentNode(definitions: [
   ValidateBackupInput,
   ValidateBackupResult,
   ValidateBackupSource,
+  ValidateBackupTracker,
   WebUIChannel,
   WebUIFlavor,
   WebUIInterface,

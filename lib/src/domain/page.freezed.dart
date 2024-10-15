@@ -20,7 +20,9 @@ mixin _$Page<T> {
   PageInfo? get pageInfo => throw _privateConstructorUsedError;
   int? get totalCount => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageCopyWith<T, Page<T>> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -44,6 +46,8 @@ class _$PageCopyWithImpl<T, $Res, $Val extends Page<T>>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -67,6 +71,8 @@ class _$PageCopyWithImpl<T, $Res, $Val extends Page<T>>
     ) as $Val);
   }
 
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PageInfoCopyWith<$Res>? get pageInfo {
@@ -101,6 +107,8 @@ class __$$PageImplCopyWithImpl<T, $Res>
       _$PageImpl<T> _value, $Res Function(_$PageImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,7 +176,9 @@ class _$PageImpl<T> extends _Page<T> {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_nodes), pageInfo, totalCount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageImplCopyWith<T, _$PageImpl<T>> get copyWith =>
@@ -188,8 +198,11 @@ abstract class _Page<T> extends Page<T> {
   PageInfo? get pageInfo;
   @override
   int? get totalCount;
+
+  /// Create a copy of Page
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageImplCopyWith<T, _$PageImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

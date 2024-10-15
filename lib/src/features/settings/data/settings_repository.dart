@@ -3,12 +3,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions.dart';
-import 'graphql/__generated__/settings_query.data.gql.dart';
-import 'graphql/settings_query.dart';
+import '../domain/settings/settings.dart';
+import 'graphql/query.dart';
 
 part 'settings_repository.g.dart';
-
-typedef SettingsDto = GSettingsFragment;
 
 class SettingsRepository {
   const SettingsRepository(this.ferryClient);

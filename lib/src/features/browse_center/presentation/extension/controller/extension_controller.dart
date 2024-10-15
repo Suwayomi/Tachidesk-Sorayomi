@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -18,12 +17,9 @@ import '../../../domain/extension/extension_model.dart';
 part 'extension_controller.g.dart';
 
 @riverpod
-Future<List<Extension>?> extension(ExtensionRef ref) async {
-  final token = CancelToken();
-  ref.onDispose(token.cancel);
-  final result = await ref
-      .watch(extensionRepositoryProvider)
-      .getExtensionList(cancelToken: token);
+Stream<List<Extension>?> extension(ExtensionRef ref) {
+  final result =
+      ref.watch(extensionRepositoryProvider).getExtensionListStream();
   ref.keepAlive();
   return result;
 }

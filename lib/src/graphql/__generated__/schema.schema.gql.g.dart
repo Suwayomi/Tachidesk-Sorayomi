@@ -718,6 +718,8 @@ Serializer<GFetchSourceMangaInput> _$gFetchSourceMangaInputSerializer =
     new _$GFetchSourceMangaInputSerializer();
 Serializer<GFetchSourceMangaType> _$gFetchSourceMangaTypeSerializer =
     new _$GFetchSourceMangaTypeSerializer();
+Serializer<GFetchTrackInput> _$gFetchTrackInputSerializer =
+    new _$GFetchTrackInputSerializer();
 Serializer<GFilterChangeInput> _$gFilterChangeInputSerializer =
     new _$GFilterChangeInputSerializer();
 Serializer<GFloatFilterInput> _$gFloatFilterInputSerializer =
@@ -805,6 +807,8 @@ Serializer<GTrackerConditionInput> _$gTrackerConditionInputSerializer =
     new _$GTrackerConditionInputSerializer();
 Serializer<GTrackerOrderBy> _$gTrackerOrderBySerializer =
     new _$GTrackerOrderBySerializer();
+Serializer<GTrackProgressInput> _$gTrackProgressInputSerializer =
+    new _$GTrackProgressInputSerializer();
 Serializer<GTrackRecordConditionInput> _$gTrackRecordConditionInputSerializer =
     new _$GTrackRecordConditionInputSerializer();
 Serializer<GTrackRecordFilterInput> _$gTrackRecordFilterInputSerializer =
@@ -812,6 +816,8 @@ Serializer<GTrackRecordFilterInput> _$gTrackRecordFilterInputSerializer =
 Serializer<GTrackRecordOrderBy> _$gTrackRecordOrderBySerializer =
     new _$GTrackRecordOrderBySerializer();
 Serializer<GTriState> _$gTriStateSerializer = new _$GTriStateSerializer();
+Serializer<GUnbindTrackInput> _$gUnbindTrackInputSerializer =
+    new _$GUnbindTrackInputSerializer();
 Serializer<GUpdateCategoriesInput> _$gUpdateCategoriesInputSerializer =
     new _$GUpdateCategoriesInputSerializer();
 Serializer<GUpdateCategoryInput> _$gUpdateCategoryInputSerializer =
@@ -3920,6 +3926,59 @@ class _$GFetchSourceMangaTypeSerializer
       GFetchSourceMangaType.valueOf(serialized as String);
 }
 
+class _$GFetchTrackInputSerializer
+    implements StructuredSerializer<GFetchTrackInput> {
+  @override
+  final Iterable<Type> types = const [GFetchTrackInput, _$GFetchTrackInput];
+  @override
+  final String wireName = 'GFetchTrackInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GFetchTrackInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'recordId',
+      serializers.serialize(object.recordId,
+          specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.clientMutationId;
+    if (value != null) {
+      result
+        ..add('clientMutationId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GFetchTrackInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GFetchTrackInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'clientMutationId':
+          result.clientMutationId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'recordId':
+          result.recordId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GFilterChangeInputSerializer
     implements StructuredSerializer<GFilterChangeInput> {
   @override
@@ -5781,6 +5840,13 @@ class _$GPartialSettingsTypeInputSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
+    value = object.autoDownloadIgnoreReUploads;
+    if (value != null) {
+      result
+        ..add('autoDownloadIgnoreReUploads')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.autoDownloadNewChapters;
     if (value != null) {
       result
@@ -6083,6 +6149,10 @@ class _$GPartialSettingsTypeInputSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'autoDownloadIgnoreReUploads':
+          result.autoDownloadIgnoreReUploads = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
         case 'autoDownloadNewChapters':
           result.autoDownloadNewChapters = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -7910,6 +7980,62 @@ class _$GTrackerOrderBySerializer
       GTrackerOrderBy.valueOf(serialized as String);
 }
 
+class _$GTrackProgressInputSerializer
+    implements StructuredSerializer<GTrackProgressInput> {
+  @override
+  final Iterable<Type> types = const [
+    GTrackProgressInput,
+    _$GTrackProgressInput
+  ];
+  @override
+  final String wireName = 'GTrackProgressInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GTrackProgressInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'mangaId',
+      serializers.serialize(object.mangaId, specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.clientMutationId;
+    if (value != null) {
+      result
+        ..add('clientMutationId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GTrackProgressInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GTrackProgressInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'clientMutationId':
+          result.clientMutationId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'mangaId':
+          result.mangaId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GTrackRecordConditionInputSerializer
     implements StructuredSerializer<GTrackRecordConditionInput> {
   @override
@@ -8353,6 +8479,70 @@ class _$GTriStateSerializer implements PrimitiveSerializer<GTriState> {
   GTriState deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GTriState.valueOf(serialized as String);
+}
+
+class _$GUnbindTrackInputSerializer
+    implements StructuredSerializer<GUnbindTrackInput> {
+  @override
+  final Iterable<Type> types = const [GUnbindTrackInput, _$GUnbindTrackInput];
+  @override
+  final String wireName = 'GUnbindTrackInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GUnbindTrackInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'recordId',
+      serializers.serialize(object.recordId,
+          specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.clientMutationId;
+    if (value != null) {
+      result
+        ..add('clientMutationId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.deleteRemoteTrack;
+    if (value != null) {
+      result
+        ..add('deleteRemoteTrack')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    return result;
+  }
+
+  @override
+  GUnbindTrackInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GUnbindTrackInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'clientMutationId':
+          result.clientMutationId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'deleteRemoteTrack':
+          result.deleteRemoteTrack = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'recordId':
+          result.recordId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GUpdateCategoriesInputSerializer
@@ -9735,13 +9925,6 @@ class _$GUpdateTrackInputSerializer
         ..add('status')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.unbind;
-    if (value != null) {
-      result
-        ..add('unbind')
-        ..add(
-            serializers.serialize(value, specifiedType: const FullType(bool)));
-    }
     return result;
   }
 
@@ -9784,10 +9967,6 @@ class _$GUpdateTrackInputSerializer
         case 'status':
           result.status = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
-          break;
-        case 'unbind':
-          result.unbind = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -14740,6 +14919,106 @@ class GFetchSourceMangaInputBuilder
   }
 }
 
+class _$GFetchTrackInput extends GFetchTrackInput {
+  @override
+  final String? clientMutationId;
+  @override
+  final int recordId;
+
+  factory _$GFetchTrackInput(
+          [void Function(GFetchTrackInputBuilder)? updates]) =>
+      (new GFetchTrackInputBuilder()..update(updates))._build();
+
+  _$GFetchTrackInput._({this.clientMutationId, required this.recordId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        recordId, r'GFetchTrackInput', 'recordId');
+  }
+
+  @override
+  GFetchTrackInput rebuild(void Function(GFetchTrackInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GFetchTrackInputBuilder toBuilder() =>
+      new GFetchTrackInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GFetchTrackInput &&
+        clientMutationId == other.clientMutationId &&
+        recordId == other.recordId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, clientMutationId.hashCode);
+    _$hash = $jc(_$hash, recordId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GFetchTrackInput')
+          ..add('clientMutationId', clientMutationId)
+          ..add('recordId', recordId))
+        .toString();
+  }
+}
+
+class GFetchTrackInputBuilder
+    implements Builder<GFetchTrackInput, GFetchTrackInputBuilder> {
+  _$GFetchTrackInput? _$v;
+
+  String? _clientMutationId;
+  String? get clientMutationId => _$this._clientMutationId;
+  set clientMutationId(String? clientMutationId) =>
+      _$this._clientMutationId = clientMutationId;
+
+  int? _recordId;
+  int? get recordId => _$this._recordId;
+  set recordId(int? recordId) => _$this._recordId = recordId;
+
+  GFetchTrackInputBuilder();
+
+  GFetchTrackInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _clientMutationId = $v.clientMutationId;
+      _recordId = $v.recordId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GFetchTrackInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GFetchTrackInput;
+  }
+
+  @override
+  void update(void Function(GFetchTrackInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GFetchTrackInput build() => _build();
+
+  _$GFetchTrackInput _build() {
+    final _$result = _$v ??
+        new _$GFetchTrackInput._(
+            clientMutationId: clientMutationId,
+            recordId: BuiltValueNullFieldError.checkNotNull(
+                recordId, r'GFetchTrackInput', 'recordId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GFilterChangeInput extends GFilterChangeInput {
   @override
   final bool? checkBoxState;
@@ -17567,6 +17846,8 @@ class GMetaFilterInputBuilder
 
 class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
   @override
+  final bool? autoDownloadIgnoreReUploads;
+  @override
   final bool? autoDownloadNewChapters;
   @override
   final int? autoDownloadNewChaptersLimit;
@@ -17656,7 +17937,8 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
       (new GPartialSettingsTypeInputBuilder()..update(updates))._build();
 
   _$GPartialSettingsTypeInput._(
-      {this.autoDownloadNewChapters,
+      {this.autoDownloadIgnoreReUploads,
+      this.autoDownloadNewChapters,
       this.autoDownloadNewChaptersLimit,
       this.backupInterval,
       this.backupPath,
@@ -17713,6 +17995,7 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is GPartialSettingsTypeInput &&
+        autoDownloadIgnoreReUploads == other.autoDownloadIgnoreReUploads &&
         autoDownloadNewChapters == other.autoDownloadNewChapters &&
         autoDownloadNewChaptersLimit == other.autoDownloadNewChaptersLimit &&
         backupInterval == other.backupInterval &&
@@ -17761,6 +18044,7 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, autoDownloadIgnoreReUploads.hashCode);
     _$hash = $jc(_$hash, autoDownloadNewChapters.hashCode);
     _$hash = $jc(_$hash, autoDownloadNewChaptersLimit.hashCode);
     _$hash = $jc(_$hash, backupInterval.hashCode);
@@ -17810,6 +18094,7 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GPartialSettingsTypeInput')
+          ..add('autoDownloadIgnoreReUploads', autoDownloadIgnoreReUploads)
           ..add('autoDownloadNewChapters', autoDownloadNewChapters)
           ..add('autoDownloadNewChaptersLimit', autoDownloadNewChaptersLimit)
           ..add('backupInterval', backupInterval)
@@ -17861,6 +18146,11 @@ class GPartialSettingsTypeInputBuilder
     implements
         Builder<GPartialSettingsTypeInput, GPartialSettingsTypeInputBuilder> {
   _$GPartialSettingsTypeInput? _$v;
+
+  bool? _autoDownloadIgnoreReUploads;
+  bool? get autoDownloadIgnoreReUploads => _$this._autoDownloadIgnoreReUploads;
+  set autoDownloadIgnoreReUploads(bool? autoDownloadIgnoreReUploads) =>
+      _$this._autoDownloadIgnoreReUploads = autoDownloadIgnoreReUploads;
 
   bool? _autoDownloadNewChapters;
   bool? get autoDownloadNewChapters => _$this._autoDownloadNewChapters;
@@ -18072,6 +18362,7 @@ class GPartialSettingsTypeInputBuilder
   GPartialSettingsTypeInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _autoDownloadIgnoreReUploads = $v.autoDownloadIgnoreReUploads;
       _autoDownloadNewChapters = $v.autoDownloadNewChapters;
       _autoDownloadNewChaptersLimit = $v.autoDownloadNewChaptersLimit;
       _backupInterval = $v.backupInterval;
@@ -18138,6 +18429,7 @@ class GPartialSettingsTypeInputBuilder
     try {
       _$result = _$v ??
           new _$GPartialSettingsTypeInput._(
+              autoDownloadIgnoreReUploads: autoDownloadIgnoreReUploads,
               autoDownloadNewChapters: autoDownloadNewChapters,
               autoDownloadNewChaptersLimit: autoDownloadNewChaptersLimit,
               backupInterval: backupInterval,
@@ -20815,6 +21107,107 @@ class GTrackerConditionInputBuilder
   }
 }
 
+class _$GTrackProgressInput extends GTrackProgressInput {
+  @override
+  final String? clientMutationId;
+  @override
+  final int mangaId;
+
+  factory _$GTrackProgressInput(
+          [void Function(GTrackProgressInputBuilder)? updates]) =>
+      (new GTrackProgressInputBuilder()..update(updates))._build();
+
+  _$GTrackProgressInput._({this.clientMutationId, required this.mangaId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        mangaId, r'GTrackProgressInput', 'mangaId');
+  }
+
+  @override
+  GTrackProgressInput rebuild(
+          void Function(GTrackProgressInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GTrackProgressInputBuilder toBuilder() =>
+      new GTrackProgressInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GTrackProgressInput &&
+        clientMutationId == other.clientMutationId &&
+        mangaId == other.mangaId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, clientMutationId.hashCode);
+    _$hash = $jc(_$hash, mangaId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GTrackProgressInput')
+          ..add('clientMutationId', clientMutationId)
+          ..add('mangaId', mangaId))
+        .toString();
+  }
+}
+
+class GTrackProgressInputBuilder
+    implements Builder<GTrackProgressInput, GTrackProgressInputBuilder> {
+  _$GTrackProgressInput? _$v;
+
+  String? _clientMutationId;
+  String? get clientMutationId => _$this._clientMutationId;
+  set clientMutationId(String? clientMutationId) =>
+      _$this._clientMutationId = clientMutationId;
+
+  int? _mangaId;
+  int? get mangaId => _$this._mangaId;
+  set mangaId(int? mangaId) => _$this._mangaId = mangaId;
+
+  GTrackProgressInputBuilder();
+
+  GTrackProgressInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _clientMutationId = $v.clientMutationId;
+      _mangaId = $v.mangaId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GTrackProgressInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GTrackProgressInput;
+  }
+
+  @override
+  void update(void Function(GTrackProgressInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GTrackProgressInput build() => _build();
+
+  _$GTrackProgressInput _build() {
+    final _$result = _$v ??
+        new _$GTrackProgressInput._(
+            clientMutationId: clientMutationId,
+            mangaId: BuiltValueNullFieldError.checkNotNull(
+                mangaId, r'GTrackProgressInput', 'mangaId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GTrackRecordConditionInput extends GTrackRecordConditionInput {
   @override
   final GLongString? finishDate;
@@ -21403,6 +21796,119 @@ class GTrackRecordFilterInputBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUnbindTrackInput extends GUnbindTrackInput {
+  @override
+  final String? clientMutationId;
+  @override
+  final bool? deleteRemoteTrack;
+  @override
+  final int recordId;
+
+  factory _$GUnbindTrackInput(
+          [void Function(GUnbindTrackInputBuilder)? updates]) =>
+      (new GUnbindTrackInputBuilder()..update(updates))._build();
+
+  _$GUnbindTrackInput._(
+      {this.clientMutationId, this.deleteRemoteTrack, required this.recordId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        recordId, r'GUnbindTrackInput', 'recordId');
+  }
+
+  @override
+  GUnbindTrackInput rebuild(void Function(GUnbindTrackInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUnbindTrackInputBuilder toBuilder() =>
+      new GUnbindTrackInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUnbindTrackInput &&
+        clientMutationId == other.clientMutationId &&
+        deleteRemoteTrack == other.deleteRemoteTrack &&
+        recordId == other.recordId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, clientMutationId.hashCode);
+    _$hash = $jc(_$hash, deleteRemoteTrack.hashCode);
+    _$hash = $jc(_$hash, recordId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GUnbindTrackInput')
+          ..add('clientMutationId', clientMutationId)
+          ..add('deleteRemoteTrack', deleteRemoteTrack)
+          ..add('recordId', recordId))
+        .toString();
+  }
+}
+
+class GUnbindTrackInputBuilder
+    implements Builder<GUnbindTrackInput, GUnbindTrackInputBuilder> {
+  _$GUnbindTrackInput? _$v;
+
+  String? _clientMutationId;
+  String? get clientMutationId => _$this._clientMutationId;
+  set clientMutationId(String? clientMutationId) =>
+      _$this._clientMutationId = clientMutationId;
+
+  bool? _deleteRemoteTrack;
+  bool? get deleteRemoteTrack => _$this._deleteRemoteTrack;
+  set deleteRemoteTrack(bool? deleteRemoteTrack) =>
+      _$this._deleteRemoteTrack = deleteRemoteTrack;
+
+  int? _recordId;
+  int? get recordId => _$this._recordId;
+  set recordId(int? recordId) => _$this._recordId = recordId;
+
+  GUnbindTrackInputBuilder();
+
+  GUnbindTrackInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _clientMutationId = $v.clientMutationId;
+      _deleteRemoteTrack = $v.deleteRemoteTrack;
+      _recordId = $v.recordId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GUnbindTrackInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUnbindTrackInput;
+  }
+
+  @override
+  void update(void Function(GUnbindTrackInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GUnbindTrackInput build() => _build();
+
+  _$GUnbindTrackInput _build() {
+    final _$result = _$v ??
+        new _$GUnbindTrackInput._(
+            clientMutationId: clientMutationId,
+            deleteRemoteTrack: deleteRemoteTrack,
+            recordId: BuiltValueNullFieldError.checkNotNull(
+                recordId, r'GUnbindTrackInput', 'recordId'));
     replace(_$result);
     return _$result;
   }
@@ -23803,8 +24309,6 @@ class _$GUpdateTrackInput extends GUpdateTrackInput {
   final GLongString? startDate;
   @override
   final int? status;
-  @override
-  final bool? unbind;
 
   factory _$GUpdateTrackInput(
           [void Function(GUpdateTrackInputBuilder)? updates]) =>
@@ -23817,8 +24321,7 @@ class _$GUpdateTrackInput extends GUpdateTrackInput {
       required this.recordId,
       this.scoreString,
       this.startDate,
-      this.status,
-      this.unbind})
+      this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         recordId, r'GUpdateTrackInput', 'recordId');
@@ -23842,8 +24345,7 @@ class _$GUpdateTrackInput extends GUpdateTrackInput {
         recordId == other.recordId &&
         scoreString == other.scoreString &&
         startDate == other.startDate &&
-        status == other.status &&
-        unbind == other.unbind;
+        status == other.status;
   }
 
   @override
@@ -23856,7 +24358,6 @@ class _$GUpdateTrackInput extends GUpdateTrackInput {
     _$hash = $jc(_$hash, scoreString.hashCode);
     _$hash = $jc(_$hash, startDate.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
-    _$hash = $jc(_$hash, unbind.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -23870,8 +24371,7 @@ class _$GUpdateTrackInput extends GUpdateTrackInput {
           ..add('recordId', recordId)
           ..add('scoreString', scoreString)
           ..add('startDate', startDate)
-          ..add('status', status)
-          ..add('unbind', unbind))
+          ..add('status', status))
         .toString();
   }
 }
@@ -23913,10 +24413,6 @@ class GUpdateTrackInputBuilder
   int? get status => _$this._status;
   set status(int? status) => _$this._status = status;
 
-  bool? _unbind;
-  bool? get unbind => _$this._unbind;
-  set unbind(bool? unbind) => _$this._unbind = unbind;
-
   GUpdateTrackInputBuilder();
 
   GUpdateTrackInputBuilder get _$this {
@@ -23929,7 +24425,6 @@ class GUpdateTrackInputBuilder
       _scoreString = $v.scoreString;
       _startDate = $v.startDate?.toBuilder();
       _status = $v.status;
-      _unbind = $v.unbind;
       _$v = null;
     }
     return this;
@@ -23961,8 +24456,7 @@ class GUpdateTrackInputBuilder
                   recordId, r'GUpdateTrackInput', 'recordId'),
               scoreString: scoreString,
               startDate: _startDate?.build(),
-              status: status,
-              unbind: unbind);
+              status: status);
     } catch (_) {
       late String _$failedField;
       try {

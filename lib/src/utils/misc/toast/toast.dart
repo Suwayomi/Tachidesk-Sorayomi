@@ -32,6 +32,7 @@ class Toast {
       _fToast.showToast(
         child: ToastWidget(
           text: msg,
+          backgroundColor: Colors.black,
         ),
         gravity: ToastGravity.BOTTOM,
       );

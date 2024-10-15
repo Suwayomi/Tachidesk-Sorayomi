@@ -20,7 +20,9 @@ mixin _$ServerUpdate {
   String? get tag => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ServerUpdate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ServerUpdateCopyWith<ServerUpdate> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$ServerUpdateCopyWithImpl<$Res, $Val extends ServerUpdate>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ServerUpdate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$ServerUpdateImplCopyWithImpl<$Res>
       _$ServerUpdateImpl _value, $Res Function(_$ServerUpdateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ServerUpdate
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,7 +147,9 @@ class _$ServerUpdateImpl implements _ServerUpdate {
   @override
   int get hashCode => Object.hash(runtimeType, channel, tag, url);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ServerUpdate
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ServerUpdateImplCopyWith<_$ServerUpdateImpl> get copyWith =>
@@ -160,8 +168,11 @@ abstract class _ServerUpdate implements ServerUpdate {
   String? get tag;
   @override
   String? get url;
+
+  /// Create a copy of ServerUpdate
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ServerUpdateImplCopyWith<_$ServerUpdateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

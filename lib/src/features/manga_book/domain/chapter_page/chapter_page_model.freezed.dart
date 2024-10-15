@@ -19,7 +19,9 @@ mixin _$ChapterMangaPair {
   Chapter? get chapter => throw _privateConstructorUsedError;
   Manga? get manga => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterMangaPair
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChapterMangaPairCopyWith<ChapterMangaPair> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$ChapterMangaPairCopyWithImpl<$Res, $Val extends ChapterMangaPair>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChapterMangaPair
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$ChapterMangaPairImplCopyWithImpl<$Res>
       $Res Function(_$ChapterMangaPairImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChapterMangaPair
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,7 +136,9 @@ class _$ChapterMangaPairImpl implements _ChapterMangaPair {
       const DeepCollectionEquality().hash(chapter),
       const DeepCollectionEquality().hash(manga));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterMangaPair
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChapterMangaPairImplCopyWith<_$ChapterMangaPairImpl> get copyWith =>
@@ -146,8 +154,11 @@ abstract class _ChapterMangaPair implements ChapterMangaPair {
   Chapter? get chapter;
   @override
   Manga? get manga;
+
+  /// Create a copy of ChapterMangaPair
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChapterMangaPairImplCopyWith<_$ChapterMangaPairImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -157,7 +168,9 @@ mixin _$ChapterPage {
   bool? get hasNextPage => throw _privateConstructorUsedError;
   List<ChapterMangaPair>? get page => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterPage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChapterPageCopyWith<ChapterPage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -181,6 +194,8 @@ class _$ChapterPageCopyWithImpl<$Res, $Val extends ChapterPage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChapterPage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -219,6 +234,8 @@ class __$$ChapterPageImplCopyWithImpl<$Res>
       _$ChapterPageImpl _value, $Res Function(_$ChapterPageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChapterPage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -275,7 +292,9 @@ class _$ChapterPageImpl implements _ChapterPage {
   int get hashCode => Object.hash(
       runtimeType, hasNextPage, const DeepCollectionEquality().hash(_page));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChapterPage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChapterPageImplCopyWith<_$ChapterPageImpl> get copyWith =>
@@ -291,8 +310,11 @@ abstract class _ChapterPage implements ChapterPage {
   bool? get hasNextPage;
   @override
   List<ChapterMangaPair>? get page;
+
+  /// Create a copy of ChapterPage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChapterPageImplCopyWith<_$ChapterPageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

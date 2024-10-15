@@ -5,7 +5,7 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
-import '../../../../data/settings_repository.dart';
+import '../../../../domain/settings/settings.dart';
 import '../../../../domain/socks_proxy/socks_proxy.dart';
 import '../../data/server_settings_repository.dart';
 

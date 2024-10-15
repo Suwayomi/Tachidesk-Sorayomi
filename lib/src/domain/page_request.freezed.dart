@@ -19,7 +19,9 @@ mixin _$PageRequest {
   int get page => throw _privateConstructorUsedError;
   int get size => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageRequestCopyWith<PageRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$PageRequestCopyWithImpl<$Res, $Val extends PageRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class __$$PageRequestImplCopyWithImpl<$Res>
       _$PageRequestImpl _value, $Res Function(_$PageRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -128,7 +134,9 @@ class _$PageRequestImpl extends _PageRequest {
   @override
   int get hashCode => Object.hash(runtimeType, page, size);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageRequestImplCopyWith<_$PageRequestImpl> get copyWith =>
@@ -144,8 +152,11 @@ abstract class _PageRequest extends PageRequest {
   int get page;
   @override
   int get size;
+
+  /// Create a copy of PageRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageRequestImplCopyWith<_$PageRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

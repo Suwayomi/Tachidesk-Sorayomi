@@ -87,54 +87,45 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GExtensionOrderBy.serializer)
       ..add(GFetchChapterPagesInput.serializer)
       ..add(GFetchChaptersInput.serializer)
+      ..add(GFetchExtensionListData.serializer)
+      ..add(GFetchExtensionListData_fetchExtensions.serializer)
+      ..add(GFetchExtensionListData_fetchExtensions_extensions.serializer)
+      ..add(GFetchExtensionListReq.serializer)
+      ..add(GFetchExtensionListVars.serializer)
       ..add(GFetchExtensionsInput.serializer)
       ..add(GFetchMangaInput.serializer)
       ..add(GFetchSourceMangaInput.serializer)
       ..add(GFetchSourceMangaType.serializer)
+      ..add(GFetchTrackInput.serializer)
       ..add(GFilterChangeInput.serializer)
+      ..add(GFilterFragmentData__asGroupFilter.serializer)
+      ..add(GFilterFragmentData__asGroupFilter_filters.serializer)
+      ..add(GFilterFragmentData__base.serializer)
+      ..add(GFilterFragmentReq.serializer)
+      ..add(GFilterFragmentVars.serializer)
       ..add(GFloatFilterInput.serializer)
+      ..add(GFullSourceByIdData.serializer)
+      ..add(GFullSourceByIdData_source.serializer)
+      ..add(GFullSourceByIdData_source_extension.serializer)
+      ..add(GFullSourceByIdData_source_filters.serializer)
+      ..add(GFullSourceByIdData_source_preferences.serializer)
+      ..add(GFullSourceByIdReq.serializer)
+      ..add(GFullSourceByIdVars.serializer)
       ..add(GFullSourceFragmentData.serializer)
       ..add(GFullSourceFragmentData_extension.serializer)
-      ..add(GFullSourceFragmentData_filters__asCheckBoxFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__asGroupFilter.serializer)
-      ..add(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter
-              .serializer)
-      ..add(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter
-              .serializer)
-      ..add(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter
-              .serializer)
-      ..add(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter
-              .serializer)
-      ..add(GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter
-          .serializer)
-      ..add(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault
-              .serializer)
-      ..add(GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter
-          .serializer)
-      ..add(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter
-              .serializer)
-      ..add(GFullSourceFragmentData_filters__asGroupFilter_filters__base
-          .serializer)
-      ..add(GFullSourceFragmentData_filters__asHeaderFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__asSelectFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__asSeparatorFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__asSortFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault
-          .serializer)
-      ..add(GFullSourceFragmentData_filters__asTextFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__asTriStateFilter.serializer)
-      ..add(GFullSourceFragmentData_filters__base.serializer)
+      ..add(GFullSourceFragmentData_filters.serializer)
+      ..add(GFullSourceFragmentData_preferences.serializer)
       ..add(GFullSourceFragmentReq.serializer)
       ..add(GFullSourceFragmentVars.serializer)
       ..add(GGlobalMetaTypeInput.serializer)
       ..add(GIncludeOrExclude.serializer)
+      ..add(GInstallExternalExtensionData.serializer)
+      ..add(GInstallExternalExtensionData_installExternalExtension.serializer)
+      ..add(GInstallExternalExtensionData_installExternalExtension_extension
+          .serializer)
       ..add(GInstallExternalExtensionInput.serializer)
+      ..add(GInstallExternalExtensionReq.serializer)
+      ..add(GInstallExternalExtensionVars.serializer)
       ..add(GIntFilterInput.serializer)
       ..add(GLibrarySettingsFragmentData.serializer)
       ..add(GLibrarySettingsFragmentReq.serializer)
@@ -174,6 +165,26 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GPageInfoFragmentReq.serializer)
       ..add(GPageInfoFragmentVars.serializer)
       ..add(GPartialSettingsTypeInput.serializer)
+      ..add(GPreferenceFragmentData__asCheckBoxPreference.serializer)
+      ..add(GPreferenceFragmentData__asEditTextPreference.serializer)
+      ..add(GPreferenceFragmentData__asListPreference.serializer)
+      ..add(GPreferenceFragmentData__asMultiSelectListPreference.serializer)
+      ..add(GPreferenceFragmentData__asSwitchPreference.serializer)
+      ..add(GPreferenceFragmentData__base.serializer)
+      ..add(GPreferenceFragmentReq.serializer)
+      ..add(GPreferenceFragmentVars.serializer)
+      ..add(GPrimitiveFilterFragmentData__asCheckBoxFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__asHeaderFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__asSelectFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__asSeparatorFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__asSortFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault
+          .serializer)
+      ..add(GPrimitiveFilterFragmentData__asTextFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__asTriStateFilter.serializer)
+      ..add(GPrimitiveFilterFragmentData__base.serializer)
+      ..add(GPrimitiveFilterFragmentReq.serializer)
+      ..add(GPrimitiveFilterFragmentVars.serializer)
       ..add(GReorderChapterDownloadInput.serializer)
       ..add(GResetSettingsInput.serializer)
       ..add(GRestoreBackupData.serializer)
@@ -218,12 +229,23 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSocksProxyFragmentVars.serializer)
       ..add(GSortOrder.serializer)
       ..add(GSortSelectionInput.serializer)
+      ..add(GSourceByIdData.serializer)
+      ..add(GSourceByIdData_source.serializer)
+      ..add(GSourceByIdData_source_extension.serializer)
+      ..add(GSourceByIdReq.serializer)
+      ..add(GSourceByIdVars.serializer)
       ..add(GSourceConditionInput.serializer)
       ..add(GSourceFilterInput.serializer)
       ..add(GSourceFragmentData.serializer)
       ..add(GSourceFragmentData_extension.serializer)
       ..add(GSourceFragmentReq.serializer)
       ..add(GSourceFragmentVars.serializer)
+      ..add(GSourceListData.serializer)
+      ..add(GSourceListData_sources.serializer)
+      ..add(GSourceListData_sources_nodes.serializer)
+      ..add(GSourceListData_sources_nodes_extension.serializer)
+      ..add(GSourceListReq.serializer)
+      ..add(GSourceListVars.serializer)
       ..add(GSourceMetaTypeInput.serializer)
       ..add(GSourceOrderBy.serializer)
       ..add(GSourcePreferenceChangeInput.serializer)
@@ -290,12 +312,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GToggleSystemTrayEnabledData_setSettings_settings.serializer)
       ..add(GToggleSystemTrayEnabledReq.serializer)
       ..add(GToggleSystemTrayEnabledVars.serializer)
+      ..add(GTrackProgressInput.serializer)
       ..add(GTrackRecordConditionInput.serializer)
       ..add(GTrackRecordFilterInput.serializer)
       ..add(GTrackRecordOrderBy.serializer)
       ..add(GTrackerConditionInput.serializer)
       ..add(GTrackerOrderBy.serializer)
       ..add(GTriState.serializer)
+      ..add(GUnbindTrackInput.serializer)
       ..add(GUpdateAutoDownloadNewChaptersLimitData.serializer)
       ..add(GUpdateAutoDownloadNewChaptersLimitData_setSettings.serializer)
       ..add(GUpdateAutoDownloadNewChaptersLimitData_setSettings_settings
@@ -340,6 +364,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUpdateDownloadsLocationData_setSettings_settings.serializer)
       ..add(GUpdateDownloadsLocationReq.serializer)
       ..add(GUpdateDownloadsLocationVars.serializer)
+      ..add(GUpdateExtensionData.serializer)
+      ..add(GUpdateExtensionData_updateExtension.serializer)
+      ..add(GUpdateExtensionData_updateExtension_extension.serializer)
       ..add(GUpdateExtensionInput.serializer)
       ..add(GUpdateExtensionPatchInput.serializer)
       ..add(GUpdateExtensionReposData.serializer)
@@ -347,6 +374,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUpdateExtensionReposData_setSettings_settings.serializer)
       ..add(GUpdateExtensionReposReq.serializer)
       ..add(GUpdateExtensionReposVars.serializer)
+      ..add(GUpdateExtensionReq.serializer)
+      ..add(GUpdateExtensionVars.serializer)
       ..add(GUpdateExtensionsInput.serializer)
       ..add(GUpdateFlareSolverrSessionNameData.serializer)
       ..add(GUpdateFlareSolverrSessionNameData_setSettings.serializer)
@@ -486,19 +515,35 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(GExtensionFilterInput)]),
           () => new ListBuilder<GExtensionFilterInput>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GFetchExtensionListData_fetchExtensions_extensions)
+          ]),
+          () => new ListBuilder<
+              GFetchExtensionListData_fetchExtensions_extensions>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterChangeInput)]),
           () => new ListBuilder<GFilterChangeInput>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GFilterFragmentData__asGroupFilter_filters)
+          ]),
+          () => new ListBuilder<GFilterFragmentData__asGroupFilter_filters>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GFullSourceByIdData_source_preferences)]),
+          () => new ListBuilder<GFullSourceByIdData_source_preferences>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GFullSourceByIdData_source_filters)]),
+          () => new ListBuilder<GFullSourceByIdData_source_filters>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GFullSourceFragmentData_preferences)]),
+          () => new ListBuilder<GFullSourceFragmentData_preferences>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GFullSourceFragmentData_filters)]),
           () => new ListBuilder<GFullSourceFragmentData_filters>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(
-                GFullSourceFragmentData_filters__asGroupFilter_filters)
-          ]),
-          () => new ListBuilder<
-              GFullSourceFragmentData_filters__asGroupFilter_filters>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GLongString)]),
           () => new ListBuilder<GLongString>())
@@ -553,6 +598,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GSourceFilterInput)]),
           () => new ListBuilder<GSourceFilterInput>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GSourceListData_sources_nodes)]),
+          () => new ListBuilder<GSourceListData_sources_nodes>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GTrackRecordFilterInput)]),
@@ -697,15 +746,27 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GMangaFragmentData_meta)]),
           () => new ListBuilder<GMangaFragmentData_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

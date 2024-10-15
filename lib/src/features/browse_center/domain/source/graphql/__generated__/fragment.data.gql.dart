@@ -5,7 +5,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:gql_code_builder/src/serializers/inline_fragment_serializer.dart'
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
     as _i3;
 import 'package:tachidesk_sorayomi/src/graphql/__generated__/schema.schema.gql.dart'
     as _i1;
@@ -143,6 +143,7 @@ abstract class GFullSourceFragment implements GSourceFragment {
   bool get supportsLatest;
   @override
   GFullSourceFragment_extension get extension;
+  BuiltList<GFullSourceFragment_preferences> get preferences;
   BuiltList<GFullSourceFragment_filters> get filters;
   @override
   Map<String, dynamic> toJson();
@@ -160,207 +161,16 @@ abstract class GFullSourceFragment_extension
   Map<String, dynamic> toJson();
 }
 
-abstract class GFullSourceFragment_filters {
-  String get G__typename;
-}
-
-abstract class GFullSourceFragment_filters__base
-    implements GFullSourceFragment_filters {
+abstract class GFullSourceFragment_preferences implements GPreferenceFragment {
   @override
   String get G__typename;
   @override
   Map<String, dynamic> toJson();
 }
 
-abstract class GFullSourceFragment_filters__asCheckBoxFilter
-    implements GFullSourceFragment_filters {
+abstract class GFullSourceFragment_filters implements GFilterFragment {
   @override
   String get G__typename;
-  String get type;
-  bool get CheckBoxFilterDefault;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asHeaderFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asSelectFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  int get SelectFilterDefault;
-  String get name;
-  BuiltList<String> get Gvalues;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asTriStateFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  _i1.GTriState get TriStateFilterDefault;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asTextFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get TextFilterDefault;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asSortFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  GFullSourceFragment_filters__asSortFilter_SortFilterDefault?
-      get SortFilterDefault;
-  String get name;
-  BuiltList<String> get Gvalues;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asSortFilter_SortFilterDefault {
-  String get G__typename;
-  bool get ascending;
-  int get index;
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asSeparatorFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter
-    implements GFullSourceFragment_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get name;
-  BuiltList<GFullSourceFragment_filters__asGroupFilter_filters> get filters;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters {
-  String get G__typename;
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__base
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asCheckBoxFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  bool get CheckBoxFilterDefault;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asHeaderFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asSelectFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  int get SelectFilterDefault;
-  String get name;
-  BuiltList<String> get Gvalues;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asTriStateFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  _i1.GTriState get TriStateFilterDefault;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asTextFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get TextFilterDefault;
-  String get name;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asSortFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  GFullSourceFragment_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault?
-      get SortFilterDefault;
-  String get name;
-  BuiltList<String> get Gvalues;
-  @override
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault {
-  String get G__typename;
-  bool get ascending;
-  int get index;
-  Map<String, dynamic> toJson();
-}
-
-abstract class GFullSourceFragment_filters__asGroupFilter_filters__asSeparatorFilter
-    implements GFullSourceFragment_filters__asGroupFilter_filters {
-  @override
-  String get G__typename;
-  String get type;
-  String get name;
   @override
   Map<String, dynamic> toJson();
 }
@@ -400,6 +210,8 @@ abstract class GFullSourceFragmentData
   bool get supportsLatest;
   @override
   GFullSourceFragmentData_extension get extension;
+  @override
+  BuiltList<GFullSourceFragmentData_preferences> get preferences;
   @override
   BuiltList<GFullSourceFragmentData_filters> get filters;
   static Serializer<GFullSourceFragmentData> get serializer =>
@@ -457,27 +269,64 @@ abstract class GFullSourceFragmentData_extension
       );
 }
 
+abstract class GFullSourceFragmentData_preferences
+    implements
+        Built<GFullSourceFragmentData_preferences,
+            GFullSourceFragmentData_preferencesBuilder>,
+        GFullSourceFragment_preferences,
+        GPreferenceFragment {
+  GFullSourceFragmentData_preferences._();
+
+  factory GFullSourceFragmentData_preferences(
+      [void Function(GFullSourceFragmentData_preferencesBuilder b)
+          updates]) = _$GFullSourceFragmentData_preferences;
+
+  static void _initializeBuilder(
+          GFullSourceFragmentData_preferencesBuilder b) =>
+      b..G__typename = 'Preference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GFullSourceFragmentData_preferences> get serializer =>
+      _$gFullSourceFragmentDataPreferencesSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GFullSourceFragmentData_preferences.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFullSourceFragmentData_preferences? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GFullSourceFragmentData_preferences.serializer,
+        json,
+      );
+}
+
 abstract class GFullSourceFragmentData_filters
-    implements GFullSourceFragment_filters {
+    implements
+        Built<GFullSourceFragmentData_filters,
+            GFullSourceFragmentData_filtersBuilder>,
+        GFullSourceFragment_filters,
+        GFilterFragment {
+  GFullSourceFragmentData_filters._();
+
+  factory GFullSourceFragmentData_filters(
+          [void Function(GFullSourceFragmentData_filtersBuilder b) updates]) =
+      _$GFullSourceFragmentData_filters;
+
+  static void _initializeBuilder(GFullSourceFragmentData_filtersBuilder b) =>
+      b..G__typename = 'Filter';
+
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   static Serializer<GFullSourceFragmentData_filters> get serializer =>
-      _i3.InlineFragmentSerializer<GFullSourceFragmentData_filters>(
-        'GFullSourceFragmentData_filters',
-        GFullSourceFragmentData_filters__base,
-        {
-          'CheckBoxFilter': GFullSourceFragmentData_filters__asCheckBoxFilter,
-          'HeaderFilter': GFullSourceFragmentData_filters__asHeaderFilter,
-          'SelectFilter': GFullSourceFragmentData_filters__asSelectFilter,
-          'TriStateFilter': GFullSourceFragmentData_filters__asTriStateFilter,
-          'TextFilter': GFullSourceFragmentData_filters__asTextFilter,
-          'SortFilter': GFullSourceFragmentData_filters__asSortFilter,
-          'SeparatorFilter': GFullSourceFragmentData_filters__asSeparatorFilter,
-          'GroupFilter': GFullSourceFragmentData_filters__asGroupFilter,
-        },
-      );
+      _$gFullSourceFragmentDataFiltersSerializer;
 
+  @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
         GFullSourceFragmentData_filters.serializer,
         this,
@@ -490,54 +339,551 @@ abstract class GFullSourceFragmentData_filters
       );
 }
 
-abstract class GFullSourceFragmentData_filters__base
-    implements
-        Built<GFullSourceFragmentData_filters__base,
-            GFullSourceFragmentData_filters__baseBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__base._();
+abstract class GPreferenceFragment {
+  String get G__typename;
+}
 
-  factory GFullSourceFragmentData_filters__base(
-      [void Function(GFullSourceFragmentData_filters__baseBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__base;
+abstract class GPreferenceFragment__base implements GPreferenceFragment {
+  @override
+  String get G__typename;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPreferenceFragment__asCheckBoxPreference
+    implements GPreferenceFragment {
+  @override
+  String get G__typename;
+  String get type;
+  bool? get CheckBoxCheckBoxCurrentValue;
+  String? get summary;
+  bool get CheckBoxDefault;
+  String get key;
+  String get CheckBoxTitle;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPreferenceFragment__asEditTextPreference
+    implements GPreferenceFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String? get EditTextPreferenceCurrentValue;
+  String? get EditTextPreferenceDefault;
+  String? get EditTextPreferenceTitle;
+  String? get text;
+  String? get summary;
+  String get key;
+  String? get dialogTitle;
+  String? get dialogMessage;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPreferenceFragment__asSwitchPreference
+    implements GPreferenceFragment {
+  @override
+  String get G__typename;
+  String get type;
+  bool? get SwitchPreferenceCurrentValue;
+  String? get summary;
+  String get key;
+  bool get SwitchPreferenceDefault;
+  String get SwitchPreferenceTitle;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPreferenceFragment__asMultiSelectListPreference
+    implements GPreferenceFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String? get dialogMessage;
+  String? get dialogTitle;
+  String? get MultiSelectListPreferenceTitle;
+  String? get summary;
+  String get key;
+  BuiltList<String> get entryValues;
+  BuiltList<String> get entries;
+  BuiltList<String>? get MultiSelectListPreferenceDefault;
+  BuiltList<String>? get MultiSelectListPreferenceCurrentValue;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPreferenceFragment__asListPreference
+    implements GPreferenceFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String? get ListPreferenceCurrentValue;
+  String? get ListPreferenceDefault;
+  String? get ListPreferenceTitle;
+  String? get summary;
+  String get key;
+  BuiltList<String> get entryValues;
+  BuiltList<String> get entries;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPreferenceFragmentData implements GPreferenceFragment {
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GPreferenceFragmentData> get serializer =>
+      _i3.InlineFragmentSerializer<GPreferenceFragmentData>(
+        'GPreferenceFragmentData',
+        GPreferenceFragmentData__base,
+        {
+          'CheckBoxPreference': GPreferenceFragmentData__asCheckBoxPreference,
+          'EditTextPreference': GPreferenceFragmentData__asEditTextPreference,
+          'SwitchPreference': GPreferenceFragmentData__asSwitchPreference,
+          'MultiSelectListPreference':
+              GPreferenceFragmentData__asMultiSelectListPreference,
+          'ListPreference': GPreferenceFragmentData__asListPreference,
+        },
+      );
+
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData.serializer,
+        json,
+      );
+}
+
+abstract class GPreferenceFragmentData__base
+    implements
+        Built<GPreferenceFragmentData__base,
+            GPreferenceFragmentData__baseBuilder>,
+        GPreferenceFragmentData {
+  GPreferenceFragmentData__base._();
+
+  factory GPreferenceFragmentData__base(
+          [void Function(GPreferenceFragmentData__baseBuilder b) updates]) =
+      _$GPreferenceFragmentData__base;
+
+  static void _initializeBuilder(GPreferenceFragmentData__baseBuilder b) =>
+      b..G__typename = 'Preference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GPreferenceFragmentData__base> get serializer =>
+      _$gPreferenceFragmentDataBaseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData__base.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData__base? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData__base.serializer,
+        json,
+      );
+}
+
+abstract class GPreferenceFragmentData__asCheckBoxPreference
+    implements
+        Built<GPreferenceFragmentData__asCheckBoxPreference,
+            GPreferenceFragmentData__asCheckBoxPreferenceBuilder>,
+        GPreferenceFragmentData {
+  GPreferenceFragmentData__asCheckBoxPreference._();
+
+  factory GPreferenceFragmentData__asCheckBoxPreference(
+      [void Function(GPreferenceFragmentData__asCheckBoxPreferenceBuilder b)
+          updates]) = _$GPreferenceFragmentData__asCheckBoxPreference;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__baseBuilder b) =>
+          GPreferenceFragmentData__asCheckBoxPreferenceBuilder b) =>
+      b..G__typename = 'CheckBoxPreference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get type;
+  bool? get CheckBoxCheckBoxCurrentValue;
+  String? get summary;
+  bool get CheckBoxDefault;
+  String get key;
+  String get CheckBoxTitle;
+  static Serializer<GPreferenceFragmentData__asCheckBoxPreference>
+      get serializer => _$gPreferenceFragmentDataAsCheckBoxPreferenceSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData__asCheckBoxPreference.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData__asCheckBoxPreference? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData__asCheckBoxPreference.serializer,
+        json,
+      );
+}
+
+abstract class GPreferenceFragmentData__asEditTextPreference
+    implements
+        Built<GPreferenceFragmentData__asEditTextPreference,
+            GPreferenceFragmentData__asEditTextPreferenceBuilder>,
+        GPreferenceFragmentData {
+  GPreferenceFragmentData__asEditTextPreference._();
+
+  factory GPreferenceFragmentData__asEditTextPreference(
+      [void Function(GPreferenceFragmentData__asEditTextPreferenceBuilder b)
+          updates]) = _$GPreferenceFragmentData__asEditTextPreference;
+
+  static void _initializeBuilder(
+          GPreferenceFragmentData__asEditTextPreferenceBuilder b) =>
+      b..G__typename = 'EditTextPreference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get type;
+  String? get EditTextPreferenceCurrentValue;
+  String? get EditTextPreferenceDefault;
+  String? get EditTextPreferenceTitle;
+  String? get text;
+  String? get summary;
+  String get key;
+  String? get dialogTitle;
+  String? get dialogMessage;
+  static Serializer<GPreferenceFragmentData__asEditTextPreference>
+      get serializer => _$gPreferenceFragmentDataAsEditTextPreferenceSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData__asEditTextPreference.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData__asEditTextPreference? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData__asEditTextPreference.serializer,
+        json,
+      );
+}
+
+abstract class GPreferenceFragmentData__asSwitchPreference
+    implements
+        Built<GPreferenceFragmentData__asSwitchPreference,
+            GPreferenceFragmentData__asSwitchPreferenceBuilder>,
+        GPreferenceFragmentData {
+  GPreferenceFragmentData__asSwitchPreference._();
+
+  factory GPreferenceFragmentData__asSwitchPreference(
+      [void Function(GPreferenceFragmentData__asSwitchPreferenceBuilder b)
+          updates]) = _$GPreferenceFragmentData__asSwitchPreference;
+
+  static void _initializeBuilder(
+          GPreferenceFragmentData__asSwitchPreferenceBuilder b) =>
+      b..G__typename = 'SwitchPreference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get type;
+  bool? get SwitchPreferenceCurrentValue;
+  String? get summary;
+  String get key;
+  bool get SwitchPreferenceDefault;
+  String get SwitchPreferenceTitle;
+  static Serializer<GPreferenceFragmentData__asSwitchPreference>
+      get serializer => _$gPreferenceFragmentDataAsSwitchPreferenceSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData__asSwitchPreference.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData__asSwitchPreference? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData__asSwitchPreference.serializer,
+        json,
+      );
+}
+
+abstract class GPreferenceFragmentData__asMultiSelectListPreference
+    implements
+        Built<GPreferenceFragmentData__asMultiSelectListPreference,
+            GPreferenceFragmentData__asMultiSelectListPreferenceBuilder>,
+        GPreferenceFragmentData {
+  GPreferenceFragmentData__asMultiSelectListPreference._();
+
+  factory GPreferenceFragmentData__asMultiSelectListPreference(
+      [void Function(
+              GPreferenceFragmentData__asMultiSelectListPreferenceBuilder b)
+          updates]) = _$GPreferenceFragmentData__asMultiSelectListPreference;
+
+  static void _initializeBuilder(
+          GPreferenceFragmentData__asMultiSelectListPreferenceBuilder b) =>
+      b..G__typename = 'MultiSelectListPreference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get type;
+  String? get dialogMessage;
+  String? get dialogTitle;
+  String? get MultiSelectListPreferenceTitle;
+  String? get summary;
+  String get key;
+  BuiltList<String> get entryValues;
+  BuiltList<String> get entries;
+  BuiltList<String>? get MultiSelectListPreferenceDefault;
+  BuiltList<String>? get MultiSelectListPreferenceCurrentValue;
+  static Serializer<GPreferenceFragmentData__asMultiSelectListPreference>
+      get serializer =>
+          _$gPreferenceFragmentDataAsMultiSelectListPreferenceSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData__asMultiSelectListPreference.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData__asMultiSelectListPreference? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData__asMultiSelectListPreference.serializer,
+        json,
+      );
+}
+
+abstract class GPreferenceFragmentData__asListPreference
+    implements
+        Built<GPreferenceFragmentData__asListPreference,
+            GPreferenceFragmentData__asListPreferenceBuilder>,
+        GPreferenceFragmentData {
+  GPreferenceFragmentData__asListPreference._();
+
+  factory GPreferenceFragmentData__asListPreference(
+      [void Function(GPreferenceFragmentData__asListPreferenceBuilder b)
+          updates]) = _$GPreferenceFragmentData__asListPreference;
+
+  static void _initializeBuilder(
+          GPreferenceFragmentData__asListPreferenceBuilder b) =>
+      b..G__typename = 'ListPreference';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get type;
+  String? get ListPreferenceCurrentValue;
+  String? get ListPreferenceDefault;
+  String? get ListPreferenceTitle;
+  String? get summary;
+  String get key;
+  BuiltList<String> get entryValues;
+  BuiltList<String> get entries;
+  static Serializer<GPreferenceFragmentData__asListPreference> get serializer =>
+      _$gPreferenceFragmentDataAsListPreferenceSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPreferenceFragmentData__asListPreference.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentData__asListPreference? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPreferenceFragmentData__asListPreference.serializer,
+        json,
+      );
+}
+
+abstract class GPrimitiveFilterFragment {
+  String get G__typename;
+}
+
+abstract class GPrimitiveFilterFragment__base
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asCheckBoxFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  bool get CheckBoxFilterDefault;
+  String get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asHeaderFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asSelectFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  int get SelectFilterDefault;
+  String get name;
+  BuiltList<String> get Gvalues;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asTriStateFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  _i1.GTriState get TriStateFilterDefault;
+  String get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asTextFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String get TextFilterDefault;
+  String get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asSortFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  GPrimitiveFilterFragment__asSortFilter_SortFilterDefault?
+      get SortFilterDefault;
+  String get name;
+  BuiltList<String> get Gvalues;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asSortFilter_SortFilterDefault {
+  String get G__typename;
+  bool get ascending;
+  int get index;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragment__asSeparatorFilter
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GPrimitiveFilterFragmentData
+    implements GPrimitiveFilterFragment {
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GPrimitiveFilterFragmentData> get serializer =>
+      _i3.InlineFragmentSerializer<GPrimitiveFilterFragmentData>(
+        'GPrimitiveFilterFragmentData',
+        GPrimitiveFilterFragmentData__base,
+        {
+          'CheckBoxFilter': GPrimitiveFilterFragmentData__asCheckBoxFilter,
+          'HeaderFilter': GPrimitiveFilterFragmentData__asHeaderFilter,
+          'SelectFilter': GPrimitiveFilterFragmentData__asSelectFilter,
+          'TriStateFilter': GPrimitiveFilterFragmentData__asTriStateFilter,
+          'TextFilter': GPrimitiveFilterFragmentData__asTextFilter,
+          'SortFilter': GPrimitiveFilterFragmentData__asSortFilter,
+          'SeparatorFilter': GPrimitiveFilterFragmentData__asSeparatorFilter,
+        },
+      );
+
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GPrimitiveFilterFragmentData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPrimitiveFilterFragmentData? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPrimitiveFilterFragmentData.serializer,
+        json,
+      );
+}
+
+abstract class GPrimitiveFilterFragmentData__base
+    implements
+        Built<GPrimitiveFilterFragmentData__base,
+            GPrimitiveFilterFragmentData__baseBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__base._();
+
+  factory GPrimitiveFilterFragmentData__base(
+      [void Function(GPrimitiveFilterFragmentData__baseBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__base;
+
+  static void _initializeBuilder(GPrimitiveFilterFragmentData__baseBuilder b) =>
       b..G__typename = 'Filter';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  static Serializer<GFullSourceFragmentData_filters__base> get serializer =>
-      _$gFullSourceFragmentDataFiltersBaseSerializer;
+  static Serializer<GPrimitiveFilterFragmentData__base> get serializer =>
+      _$gPrimitiveFilterFragmentDataBaseSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__base.serializer,
+        GPrimitiveFilterFragmentData__base.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__base? fromJson(
+  static GPrimitiveFilterFragmentData__base? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__base.serializer,
+        GPrimitiveFilterFragmentData__base.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asCheckBoxFilter
+abstract class GPrimitiveFilterFragmentData__asCheckBoxFilter
     implements
-        Built<GFullSourceFragmentData_filters__asCheckBoxFilter,
-            GFullSourceFragmentData_filters__asCheckBoxFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asCheckBoxFilter._();
+        Built<GPrimitiveFilterFragmentData__asCheckBoxFilter,
+            GPrimitiveFilterFragmentData__asCheckBoxFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asCheckBoxFilter._();
 
-  factory GFullSourceFragmentData_filters__asCheckBoxFilter(
-      [void Function(GFullSourceFragmentData_filters__asCheckBoxFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asCheckBoxFilter;
+  factory GPrimitiveFilterFragmentData__asCheckBoxFilter(
+      [void Function(GPrimitiveFilterFragmentData__asCheckBoxFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asCheckBoxFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asCheckBoxFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asCheckBoxFilterBuilder b) =>
       b..G__typename = 'CheckBoxFilter';
 
   @override
@@ -546,37 +892,37 @@ abstract class GFullSourceFragmentData_filters__asCheckBoxFilter
   String get type;
   bool get CheckBoxFilterDefault;
   String get name;
-  static Serializer<GFullSourceFragmentData_filters__asCheckBoxFilter>
+  static Serializer<GPrimitiveFilterFragmentData__asCheckBoxFilter>
       get serializer =>
-          _$gFullSourceFragmentDataFiltersAsCheckBoxFilterSerializer;
+          _$gPrimitiveFilterFragmentDataAsCheckBoxFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asCheckBoxFilter.serializer,
+        GPrimitiveFilterFragmentData__asCheckBoxFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asCheckBoxFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asCheckBoxFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asCheckBoxFilter.serializer,
+        GPrimitiveFilterFragmentData__asCheckBoxFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asHeaderFilter
+abstract class GPrimitiveFilterFragmentData__asHeaderFilter
     implements
-        Built<GFullSourceFragmentData_filters__asHeaderFilter,
-            GFullSourceFragmentData_filters__asHeaderFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asHeaderFilter._();
+        Built<GPrimitiveFilterFragmentData__asHeaderFilter,
+            GPrimitiveFilterFragmentData__asHeaderFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asHeaderFilter._();
 
-  factory GFullSourceFragmentData_filters__asHeaderFilter(
-      [void Function(GFullSourceFragmentData_filters__asHeaderFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asHeaderFilter;
+  factory GPrimitiveFilterFragmentData__asHeaderFilter(
+      [void Function(GPrimitiveFilterFragmentData__asHeaderFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asHeaderFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asHeaderFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asHeaderFilterBuilder b) =>
       b..G__typename = 'HeaderFilter';
 
   @override
@@ -584,37 +930,36 @@ abstract class GFullSourceFragmentData_filters__asHeaderFilter
   String get G__typename;
   String get type;
   String get name;
-  static Serializer<GFullSourceFragmentData_filters__asHeaderFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsHeaderFilterSerializer;
+  static Serializer<GPrimitiveFilterFragmentData__asHeaderFilter>
+      get serializer => _$gPrimitiveFilterFragmentDataAsHeaderFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asHeaderFilter.serializer,
+        GPrimitiveFilterFragmentData__asHeaderFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asHeaderFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asHeaderFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asHeaderFilter.serializer,
+        GPrimitiveFilterFragmentData__asHeaderFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asSelectFilter
+abstract class GPrimitiveFilterFragmentData__asSelectFilter
     implements
-        Built<GFullSourceFragmentData_filters__asSelectFilter,
-            GFullSourceFragmentData_filters__asSelectFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asSelectFilter._();
+        Built<GPrimitiveFilterFragmentData__asSelectFilter,
+            GPrimitiveFilterFragmentData__asSelectFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asSelectFilter._();
 
-  factory GFullSourceFragmentData_filters__asSelectFilter(
-      [void Function(GFullSourceFragmentData_filters__asSelectFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asSelectFilter;
+  factory GPrimitiveFilterFragmentData__asSelectFilter(
+      [void Function(GPrimitiveFilterFragmentData__asSelectFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asSelectFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asSelectFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asSelectFilterBuilder b) =>
       b..G__typename = 'SelectFilter';
 
   @override
@@ -625,37 +970,36 @@ abstract class GFullSourceFragmentData_filters__asSelectFilter
   String get name;
   @BuiltValueField(wireName: 'values')
   BuiltList<String> get Gvalues;
-  static Serializer<GFullSourceFragmentData_filters__asSelectFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsSelectFilterSerializer;
+  static Serializer<GPrimitiveFilterFragmentData__asSelectFilter>
+      get serializer => _$gPrimitiveFilterFragmentDataAsSelectFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asSelectFilter.serializer,
+        GPrimitiveFilterFragmentData__asSelectFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asSelectFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asSelectFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asSelectFilter.serializer,
+        GPrimitiveFilterFragmentData__asSelectFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asTriStateFilter
+abstract class GPrimitiveFilterFragmentData__asTriStateFilter
     implements
-        Built<GFullSourceFragmentData_filters__asTriStateFilter,
-            GFullSourceFragmentData_filters__asTriStateFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asTriStateFilter._();
+        Built<GPrimitiveFilterFragmentData__asTriStateFilter,
+            GPrimitiveFilterFragmentData__asTriStateFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asTriStateFilter._();
 
-  factory GFullSourceFragmentData_filters__asTriStateFilter(
-      [void Function(GFullSourceFragmentData_filters__asTriStateFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asTriStateFilter;
+  factory GPrimitiveFilterFragmentData__asTriStateFilter(
+      [void Function(GPrimitiveFilterFragmentData__asTriStateFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asTriStateFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asTriStateFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asTriStateFilterBuilder b) =>
       b..G__typename = 'TriStateFilter';
 
   @override
@@ -664,37 +1008,37 @@ abstract class GFullSourceFragmentData_filters__asTriStateFilter
   String get type;
   _i1.GTriState get TriStateFilterDefault;
   String get name;
-  static Serializer<GFullSourceFragmentData_filters__asTriStateFilter>
+  static Serializer<GPrimitiveFilterFragmentData__asTriStateFilter>
       get serializer =>
-          _$gFullSourceFragmentDataFiltersAsTriStateFilterSerializer;
+          _$gPrimitiveFilterFragmentDataAsTriStateFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asTriStateFilter.serializer,
+        GPrimitiveFilterFragmentData__asTriStateFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asTriStateFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asTriStateFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asTriStateFilter.serializer,
+        GPrimitiveFilterFragmentData__asTriStateFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asTextFilter
+abstract class GPrimitiveFilterFragmentData__asTextFilter
     implements
-        Built<GFullSourceFragmentData_filters__asTextFilter,
-            GFullSourceFragmentData_filters__asTextFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asTextFilter._();
+        Built<GPrimitiveFilterFragmentData__asTextFilter,
+            GPrimitiveFilterFragmentData__asTextFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asTextFilter._();
 
-  factory GFullSourceFragmentData_filters__asTextFilter(
-      [void Function(GFullSourceFragmentData_filters__asTextFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asTextFilter;
+  factory GPrimitiveFilterFragmentData__asTextFilter(
+      [void Function(GPrimitiveFilterFragmentData__asTextFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asTextFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asTextFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asTextFilterBuilder b) =>
       b..G__typename = 'TextFilter';
 
   @override
@@ -703,79 +1047,79 @@ abstract class GFullSourceFragmentData_filters__asTextFilter
   String get type;
   String get TextFilterDefault;
   String get name;
-  static Serializer<GFullSourceFragmentData_filters__asTextFilter>
-      get serializer => _$gFullSourceFragmentDataFiltersAsTextFilterSerializer;
+  static Serializer<GPrimitiveFilterFragmentData__asTextFilter>
+      get serializer => _$gPrimitiveFilterFragmentDataAsTextFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asTextFilter.serializer,
+        GPrimitiveFilterFragmentData__asTextFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asTextFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asTextFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asTextFilter.serializer,
+        GPrimitiveFilterFragmentData__asTextFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asSortFilter
+abstract class GPrimitiveFilterFragmentData__asSortFilter
     implements
-        Built<GFullSourceFragmentData_filters__asSortFilter,
-            GFullSourceFragmentData_filters__asSortFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asSortFilter._();
+        Built<GPrimitiveFilterFragmentData__asSortFilter,
+            GPrimitiveFilterFragmentData__asSortFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asSortFilter._();
 
-  factory GFullSourceFragmentData_filters__asSortFilter(
-      [void Function(GFullSourceFragmentData_filters__asSortFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asSortFilter;
+  factory GPrimitiveFilterFragmentData__asSortFilter(
+      [void Function(GPrimitiveFilterFragmentData__asSortFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asSortFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asSortFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asSortFilterBuilder b) =>
       b..G__typename = 'SortFilter';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   String get type;
-  GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault?
+  GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault?
       get SortFilterDefault;
   String get name;
   @BuiltValueField(wireName: 'values')
   BuiltList<String> get Gvalues;
-  static Serializer<GFullSourceFragmentData_filters__asSortFilter>
-      get serializer => _$gFullSourceFragmentDataFiltersAsSortFilterSerializer;
+  static Serializer<GPrimitiveFilterFragmentData__asSortFilter>
+      get serializer => _$gPrimitiveFilterFragmentDataAsSortFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asSortFilter.serializer,
+        GPrimitiveFilterFragmentData__asSortFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asSortFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asSortFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asSortFilter.serializer,
+        GPrimitiveFilterFragmentData__asSortFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault
+abstract class GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault
     implements
-        Built<GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault,
-            GFullSourceFragmentData_filters__asSortFilter_SortFilterDefaultBuilder> {
-  GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault._();
+        Built<GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault,
+            GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefaultBuilder> {
+  GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault._();
 
-  factory GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault(
+  factory GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault(
           [void Function(
-                  GFullSourceFragmentData_filters__asSortFilter_SortFilterDefaultBuilder
+                  GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefaultBuilder
                       b)
               updates]) =
-      _$GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault;
+      _$GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asSortFilter_SortFilterDefaultBuilder
+          GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefaultBuilder
               b) =>
       b..G__typename = 'SortSelection';
 
@@ -784,38 +1128,36 @@ abstract class GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault
   bool get ascending;
   int get index;
   static Serializer<
-          GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault>
+          GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault>
       get serializer =>
-          _$gFullSourceFragmentDataFiltersAsSortFilterSortFilterDefaultSerializer;
+          _$gPrimitiveFilterFragmentDataAsSortFilterSortFilterDefaultSerializer;
 
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault
-            .serializer,
+        GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asSortFilter_SortFilterDefault
-                .serializer,
-            json,
-          );
+  static GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault? fromJson(
+          Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault.serializer,
+        json,
+      );
 }
 
-abstract class GFullSourceFragmentData_filters__asSeparatorFilter
+abstract class GPrimitiveFilterFragmentData__asSeparatorFilter
     implements
-        Built<GFullSourceFragmentData_filters__asSeparatorFilter,
-            GFullSourceFragmentData_filters__asSeparatorFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asSeparatorFilter._();
+        Built<GPrimitiveFilterFragmentData__asSeparatorFilter,
+            GPrimitiveFilterFragmentData__asSeparatorFilterBuilder>,
+        GPrimitiveFilterFragmentData {
+  GPrimitiveFilterFragmentData__asSeparatorFilter._();
 
-  factory GFullSourceFragmentData_filters__asSeparatorFilter(
-      [void Function(
-              GFullSourceFragmentData_filters__asSeparatorFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asSeparatorFilter;
+  factory GPrimitiveFilterFragmentData__asSeparatorFilter(
+      [void Function(GPrimitiveFilterFragmentData__asSeparatorFilterBuilder b)
+          updates]) = _$GPrimitiveFilterFragmentData__asSeparatorFilter;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asSeparatorFilterBuilder b) =>
+          GPrimitiveFilterFragmentData__asSeparatorFilterBuilder b) =>
       b..G__typename = 'SeparatorFilter';
 
   @override
@@ -823,37 +1165,126 @@ abstract class GFullSourceFragmentData_filters__asSeparatorFilter
   String get G__typename;
   String get type;
   String get name;
-  static Serializer<GFullSourceFragmentData_filters__asSeparatorFilter>
+  static Serializer<GPrimitiveFilterFragmentData__asSeparatorFilter>
       get serializer =>
-          _$gFullSourceFragmentDataFiltersAsSeparatorFilterSerializer;
+          _$gPrimitiveFilterFragmentDataAsSeparatorFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asSeparatorFilter.serializer,
+        GPrimitiveFilterFragmentData__asSeparatorFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asSeparatorFilter? fromJson(
+  static GPrimitiveFilterFragmentData__asSeparatorFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asSeparatorFilter.serializer,
+        GPrimitiveFilterFragmentData__asSeparatorFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asGroupFilter
+abstract class GFilterFragment implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+}
+
+abstract class GFilterFragment__base
+    implements GFilterFragment, GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GFilterFragment__asGroupFilter
+    implements GFilterFragment, GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  String get type;
+  String get name;
+  BuiltList<GFilterFragment__asGroupFilter_filters> get filters;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GFilterFragment__asGroupFilter_filters
+    implements GPrimitiveFilterFragment {
+  @override
+  String get G__typename;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GFilterFragmentData
+    implements GFilterFragment, GPrimitiveFilterFragment {
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GFilterFragmentData> get serializer =>
+      _i3.InlineFragmentSerializer<GFilterFragmentData>(
+        'GFilterFragmentData',
+        GFilterFragmentData__base,
+        {'GroupFilter': GFilterFragmentData__asGroupFilter},
+      );
+
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GFilterFragmentData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFilterFragmentData? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GFilterFragmentData.serializer,
+        json,
+      );
+}
+
+abstract class GFilterFragmentData__base
     implements
-        Built<GFullSourceFragmentData_filters__asGroupFilter,
-            GFullSourceFragmentData_filters__asGroupFilterBuilder>,
-        GFullSourceFragmentData_filters {
-  GFullSourceFragmentData_filters__asGroupFilter._();
+        Built<GFilterFragmentData__base, GFilterFragmentData__baseBuilder>,
+        GFilterFragmentData,
+        GPrimitiveFilterFragment {
+  GFilterFragmentData__base._();
 
-  factory GFullSourceFragmentData_filters__asGroupFilter(
-      [void Function(GFullSourceFragmentData_filters__asGroupFilterBuilder b)
-          updates]) = _$GFullSourceFragmentData_filters__asGroupFilter;
+  factory GFilterFragmentData__base(
+          [void Function(GFilterFragmentData__baseBuilder b) updates]) =
+      _$GFilterFragmentData__base;
 
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilterBuilder b) =>
+  static void _initializeBuilder(GFilterFragmentData__baseBuilder b) =>
+      b..G__typename = 'Filter';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GFilterFragmentData__base> get serializer =>
+      _$gFilterFragmentDataBaseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
+        GFilterFragmentData__base.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFilterFragmentData__base? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(
+        GFilterFragmentData__base.serializer,
+        json,
+      );
+}
+
+abstract class GFilterFragmentData__asGroupFilter
+    implements
+        Built<GFilterFragmentData__asGroupFilter,
+            GFilterFragmentData__asGroupFilterBuilder>,
+        GFilterFragmentData,
+        GPrimitiveFilterFragment {
+  GFilterFragmentData__asGroupFilter._();
+
+  factory GFilterFragmentData__asGroupFilter(
+      [void Function(GFilterFragmentData__asGroupFilterBuilder b)
+          updates]) = _$GFilterFragmentData__asGroupFilter;
+
+  static void _initializeBuilder(GFilterFragmentData__asGroupFilterBuilder b) =>
       b..G__typename = 'GroupFilter';
 
   @override
@@ -861,467 +1292,55 @@ abstract class GFullSourceFragmentData_filters__asGroupFilter
   String get G__typename;
   String get type;
   String get name;
-  BuiltList<GFullSourceFragmentData_filters__asGroupFilter_filters> get filters;
-  static Serializer<GFullSourceFragmentData_filters__asGroupFilter>
-      get serializer => _$gFullSourceFragmentDataFiltersAsGroupFilterSerializer;
+  BuiltList<GFilterFragmentData__asGroupFilter_filters> get filters;
+  static Serializer<GFilterFragmentData__asGroupFilter> get serializer =>
+      _$gFilterFragmentDataAsGroupFilterSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter.serializer,
+        GFilterFragmentData__asGroupFilter.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asGroupFilter? fromJson(
+  static GFilterFragmentData__asGroupFilter? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter.serializer,
+        GFilterFragmentData__asGroupFilter.serializer,
         json,
       );
 }
 
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters {
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  static Serializer<GFullSourceFragmentData_filters__asGroupFilter_filters>
-      get serializer => _i3.InlineFragmentSerializer<
-              GFullSourceFragmentData_filters__asGroupFilter_filters>(
-            'GFullSourceFragmentData_filters__asGroupFilter_filters',
-            GFullSourceFragmentData_filters__asGroupFilter_filters__base,
-            {
-              'CheckBoxFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter,
-              'HeaderFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter,
-              'SelectFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter,
-              'TriStateFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter,
-              'TextFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter,
-              'SortFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter,
-              'SeparatorFilter':
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter,
-            },
-          );
-
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters? fromJson(
-          Map<String, dynamic> json) =>
-      _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters.serializer,
-        json,
-      );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__base
+abstract class GFilterFragmentData__asGroupFilter_filters
     implements
-        Built<GFullSourceFragmentData_filters__asGroupFilter_filters__base,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__baseBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__base._();
+        Built<GFilterFragmentData__asGroupFilter_filters,
+            GFilterFragmentData__asGroupFilter_filtersBuilder>,
+        GPrimitiveFilterFragment {
+  GFilterFragmentData__asGroupFilter_filters._();
 
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__base(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__baseBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__base;
+  factory GFilterFragmentData__asGroupFilter_filters(
+      [void Function(GFilterFragmentData__asGroupFilter_filtersBuilder b)
+          updates]) = _$GFilterFragmentData__asGroupFilter_filters;
 
   static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__baseBuilder
-              b) =>
+          GFilterFragmentData__asGroupFilter_filtersBuilder b) =>
       b..G__typename = 'Filter';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__base>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersBaseSerializer;
+  static Serializer<GFilterFragmentData__asGroupFilter_filters>
+      get serializer => _$gFilterFragmentDataAsGroupFilterFiltersSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__base.serializer,
+        GFilterFragmentData__asGroupFilter_filters.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__base? fromJson(
+  static GFilterFragmentData__asGroupFilter_filters? fromJson(
           Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__base.serializer,
+        GFilterFragmentData__asGroupFilter_filters.serializer,
         json,
       );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilterBuilder
-              b) =>
-      b..G__typename = 'CheckBoxFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  bool get CheckBoxFilterDefault;
-  String get name;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsCheckBoxFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asCheckBoxFilter
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilterBuilder
-              b) =>
-      b..G__typename = 'HeaderFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  String get name;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsHeaderFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asHeaderFilter
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilterBuilder
-              b) =>
-      b..G__typename = 'SelectFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  int get SelectFilterDefault;
-  String get name;
-  @BuiltValueField(wireName: 'values')
-  BuiltList<String> get Gvalues;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsSelectFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSelectFilter
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilterBuilder
-              b) =>
-      b..G__typename = 'TriStateFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  _i1.GTriState get TriStateFilterDefault;
-  String get name;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsTriStateFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asTriStateFilter
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilterBuilder
-              b) =>
-      b..G__typename = 'TextFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  String get TextFilterDefault;
-  String get name;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsTextFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asTextFilter
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilterBuilder
-              b) =>
-      b..G__typename = 'SortFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault?
-      get SortFilterDefault;
-  String get name;
-  @BuiltValueField(wireName: 'values')
-  BuiltList<String> get Gvalues;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsSortFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefaultBuilder> {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefaultBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefaultBuilder
-              b) =>
-      b..G__typename = 'SortSelection';
-
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  bool get ascending;
-  int get index;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsSortFilterSortFilterDefaultSerializer;
-
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSortFilter_SortFilterDefault
-                .serializer,
-            json,
-          );
-}
-
-abstract class GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter
-    implements
-        Built<
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter,
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilterBuilder>,
-        GFullSourceFragmentData_filters__asGroupFilter_filters {
-  GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter._();
-
-  factory GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter(
-          [void Function(
-                  GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilterBuilder
-                      b)
-              updates]) =
-      _$GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter;
-
-  static void _initializeBuilder(
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilterBuilder
-              b) =>
-      b..G__typename = 'SeparatorFilter';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get type;
-  String get name;
-  static Serializer<
-          GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter>
-      get serializer =>
-          _$gFullSourceFragmentDataFiltersAsGroupFilterFiltersAsSeparatorFilterSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter
-            .serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter?
-      fromJson(Map<String, dynamic> json) => _i2.serializers.deserializeWith(
-            GFullSourceFragmentData_filters__asGroupFilter_filters__asSeparatorFilter
-                .serializer,
-            json,
-          );
 }

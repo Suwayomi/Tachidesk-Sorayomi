@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../features/settings/controller/server_controller.dart';
-import '../../features/settings/data/settings_repository.dart';
+import '../../features/settings/domain/settings/settings.dart';
 import '../../utils/misc/app_utils.dart';
 import '../../utils/misc/toast/toast.dart';
 import 'domain/settings_prop_type.dart';
@@ -26,11 +26,11 @@ class SettingsPropPopUp<T> extends ConsumerWidget {
 
   @override
   Widget build(context, ref) {
-    void settingsUpdateReq<R, V>(
+    Future<void> settingsUpdateReq<R, V>(
       V value,
       SettingsUpdateRequest<R, V>? onChange,
     ) async {
-      if (onChange == null) return null;
+      if (onChange == null) return;
       final result = await AppUtils.guard(
         () => onChange(value),
         ref.read(toastProvider),

@@ -37,8 +37,12 @@ mixin _$MangaMeta {
   @JsonKey(name: "flutter_scanlator")
   String? get scanlator => throw _privateConstructorUsedError;
 
+  /// Serializes this MangaMeta to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MangaMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MangaMetaCopyWith<MangaMeta> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +80,8 @@ class _$MangaMetaCopyWithImpl<$Res, $Val extends MangaMeta>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MangaMeta
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,6 +155,8 @@ class __$$MangaMetaImplCopyWithImpl<$Res>
       _$MangaMetaImpl _value, $Res Function(_$MangaMetaImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MangaMeta
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -257,7 +265,7 @@ class _$MangaMetaImpl implements _MangaMeta {
                 other.scanlator == scanlator));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -268,7 +276,9 @@ class _$MangaMetaImpl implements _MangaMeta {
       readerMagnifierSize,
       scanlator);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MangaMeta
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MangaMetaImplCopyWith<_$MangaMetaImpl> get copyWith =>
@@ -325,8 +335,11 @@ abstract class _MangaMeta implements MangaMeta {
   @override
   @JsonKey(name: "flutter_scanlator")
   String? get scanlator;
+
+  /// Create a copy of MangaMeta
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MangaMetaImplCopyWith<_$MangaMetaImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

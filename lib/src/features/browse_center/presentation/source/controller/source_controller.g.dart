@@ -6,11 +6,11 @@ part of 'source_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sourceListHash() => r'80d37bd602ce3e229ac64c39743cee84d94fd1f9';
+String _$sourceListHash() => r'6c1ca471ec06a1d17b06ca2e2be1cc9b5bb1364d';
 
 /// See also [sourceList].
 @ProviderFor(sourceList)
-final sourceListProvider = AutoDisposeFutureProvider<List<Source>?>.internal(
+final sourceListProvider = AutoDisposeStreamProvider<List<Source>?>.internal(
   sourceList,
   name: r'sourceListProvider',
   debugGetCreateSourceHash:
@@ -19,7 +19,7 @@ final sourceListProvider = AutoDisposeFutureProvider<List<Source>?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef SourceListRef = AutoDisposeFutureProviderRef<List<Source>?>;
+typedef SourceListRef = AutoDisposeStreamProviderRef<List<Source>?>;
 String _$sourceMapHash() => r'ff42ed197cb681cc99f0c5b3da2a0989a1acd378';
 
 /// See also [sourceMap].

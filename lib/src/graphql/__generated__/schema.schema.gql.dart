@@ -5,7 +5,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:gql_code_builder/src/serializers/default_scalar_serializer.dart'
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
     as _i2;
 import 'package:http/http.dart' as _i3;
 import 'package:tachidesk_sorayomi/src/graphql/__generated__/serializers.gql.dart'
@@ -1080,6 +1080,30 @@ class GFetchSourceMangaType extends EnumClass {
       _$gFetchSourceMangaTypeValueOf(name);
 }
 
+abstract class GFetchTrackInput
+    implements Built<GFetchTrackInput, GFetchTrackInputBuilder> {
+  GFetchTrackInput._();
+
+  factory GFetchTrackInput([void Function(GFetchTrackInputBuilder b) updates]) =
+      _$GFetchTrackInput;
+
+  String? get clientMutationId;
+  int get recordId;
+  static Serializer<GFetchTrackInput> get serializer =>
+      _$gFetchTrackInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GFetchTrackInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFetchTrackInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GFetchTrackInput.serializer,
+        json,
+      );
+}
+
 abstract class GFilterChangeInput
     implements Built<GFilterChangeInput, GFilterChangeInputBuilder> {
   GFilterChangeInput._();
@@ -1638,6 +1662,7 @@ abstract class GPartialSettingsTypeInput
           [void Function(GPartialSettingsTypeInputBuilder b) updates]) =
       _$GPartialSettingsTypeInput;
 
+  bool? get autoDownloadIgnoreReUploads;
   bool? get autoDownloadNewChapters;
   int? get autoDownloadNewChaptersLimit;
   int? get backupInterval;
@@ -2276,6 +2301,31 @@ class GTrackerOrderBy extends EnumClass {
   static GTrackerOrderBy valueOf(String name) => _$gTrackerOrderByValueOf(name);
 }
 
+abstract class GTrackProgressInput
+    implements Built<GTrackProgressInput, GTrackProgressInputBuilder> {
+  GTrackProgressInput._();
+
+  factory GTrackProgressInput(
+          [void Function(GTrackProgressInputBuilder b) updates]) =
+      _$GTrackProgressInput;
+
+  String? get clientMutationId;
+  int get mangaId;
+  static Serializer<GTrackProgressInput> get serializer =>
+      _$gTrackProgressInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GTrackProgressInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GTrackProgressInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GTrackProgressInput.serializer,
+        json,
+      );
+}
+
 abstract class GTrackRecordConditionInput
     implements
         Built<GTrackRecordConditionInput, GTrackRecordConditionInputBuilder> {
@@ -2402,6 +2452,32 @@ class GTriState extends EnumClass {
   static BuiltSet<GTriState> get values => _$gTriStateValues;
 
   static GTriState valueOf(String name) => _$gTriStateValueOf(name);
+}
+
+abstract class GUnbindTrackInput
+    implements Built<GUnbindTrackInput, GUnbindTrackInputBuilder> {
+  GUnbindTrackInput._();
+
+  factory GUnbindTrackInput(
+          [void Function(GUnbindTrackInputBuilder b) updates]) =
+      _$GUnbindTrackInput;
+
+  String? get clientMutationId;
+  bool? get deleteRemoteTrack;
+  int get recordId;
+  static Serializer<GUnbindTrackInput> get serializer =>
+      _$gUnbindTrackInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUnbindTrackInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GUnbindTrackInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUnbindTrackInput.serializer,
+        json,
+      );
 }
 
 abstract class GUpdateCategoriesInput
@@ -2982,7 +3058,6 @@ abstract class GUpdateTrackInput
   String? get scoreString;
   GLongString? get startDate;
   int? get status;
-  bool? get unbind;
   static Serializer<GUpdateTrackInput> get serializer =>
       _$gUpdateTrackInputSerializer;
 

@@ -3,8 +3,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../data/settings_repository.dart';
-import 'graphql/library_settings_query.dart';
+import '../../../domain/settings/settings.dart';
+import 'graphql/query.dart';
 
 part 'library_settings_repository.g.dart';
 

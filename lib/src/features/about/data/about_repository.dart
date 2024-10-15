@@ -20,8 +20,8 @@ import '../domain/about/about_dto.dart';
 import '../domain/server_update/graphql/fragment.dart';
 import '../domain/server_update/server_update.dart';
 import '../presentation/about/controllers/about_controller.dart';
-import 'graphql/__generated__/about_query.data.gql.dart';
-import 'graphql/about_query.dart';
+import 'graphql/__generated__/query.data.gql.dart';
+import 'graphql/query.dart';
 
 part 'about_repository.g.dart';
 

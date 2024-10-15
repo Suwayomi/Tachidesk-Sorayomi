@@ -21,7 +21,9 @@ mixin _$PageInfo {
   bool? get hasPreviousPage => throw _privateConstructorUsedError;
   String? get startCursor => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PageInfoCopyWith<PageInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +50,8 @@ class _$PageInfoCopyWithImpl<$Res, $Val extends PageInfo>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PageInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +104,8 @@ class __$$PageInfoImplCopyWithImpl<$Res>
       _$PageInfoImpl _value, $Res Function(_$PageInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PageInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -171,7 +177,9 @@ class _$PageInfoImpl implements _PageInfo {
   int get hashCode => Object.hash(
       runtimeType, endCursor, hasNextPage, hasPreviousPage, startCursor);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PageInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PageInfoImplCopyWith<_$PageInfoImpl> get copyWith =>
@@ -193,8 +201,11 @@ abstract class _PageInfo implements PageInfo {
   bool? get hasPreviousPage;
   @override
   String? get startCursor;
+
+  /// Create a copy of PageInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PageInfoImplCopyWith<_$PageInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

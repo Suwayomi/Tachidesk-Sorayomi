@@ -16,7 +16,6 @@ dependencies:
   dio_cache_interceptor: ^3.4.0
   dio_cache_interceptor_hive_store: ^3.2.1
   ferry: ^0.16.0+1
-  ferry_flutter: ^0.9.0-dev.2
   ferry_hive_store: ^0.5.2
   file_picker: ^8.0.0+1
   flex_color_scheme: ^7.3.1
@@ -40,8 +39,8 @@ dependencies:
   http: ^1.2.0
   infinite_scroll_pagination: ^4.0.0
   intl: ^0.19.0
-  json_annotation: ^4.8.1
-  network_info_plus: ^5.0.2
+  json_annotation: ^4.9.0
+  network_info_plus: ^6.0.0
   package_info_plus: ^8.0.0
   path: ^1.8.3
   path_provider: ^2.0.11
@@ -58,17 +57,17 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.3.2
   # flutter_flavorizr: ^2.1.5
-  ferry_generator: ^0.10.0
+  ferry_generator: ^0.12.0
   flutter_gen_runner: ^5.1.0+1
-  flutter_launcher_icons: ^0.13.0
-  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.1
+  flutter_lints: ^5.0.0
   flutter_native_splash: ^2.2.14
   flutter_test:
     sdk: flutter
   freezed: ^2.2.1
   go_router_builder: ^2.0.0
   json_serializable: ^6.5.4
-  lints: ^4.0.0
+  lints: ^5.0.0
   riverpod_generator: ^2.0.0
 
 flutter:

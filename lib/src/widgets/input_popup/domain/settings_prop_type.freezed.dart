@@ -109,6 +109,9 @@ class _$SettingsPropTypeCopyWithImpl<T, $Res, $Val extends SettingsPropType<T>>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -132,6 +135,8 @@ class __$$TextFieldPropImplCopyWithImpl<T, $Res>
       $Res Function(_$TextFieldPropImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -200,7 +205,9 @@ class _$TextFieldPropImpl<T> implements TextFieldProp<T> {
   int get hashCode =>
       Object.hash(runtimeType, hintText, value, onChanged, canObscure);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TextFieldPropImplCopyWith<T, _$TextFieldPropImpl<T>> get copyWith =>
@@ -317,7 +324,10 @@ abstract class TextFieldProp<T> implements SettingsPropType<T> {
   @override
   SettingsUpdateRequest<T, String>? get onChanged;
   bool get canObscure;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TextFieldPropImplCopyWith<T, _$TextFieldPropImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -340,6 +350,8 @@ class __$$NumberPickerPropImplCopyWithImpl<T, $Res>
       $Res Function(_$NumberPickerPropImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -404,7 +416,9 @@ class _$NumberPickerPropImpl<T> implements NumberPickerProp<T> {
   @override
   int get hashCode => Object.hash(runtimeType, min, max, value, onChanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NumberPickerPropImplCopyWith<T, _$NumberPickerPropImpl<T>> get copyWith =>
@@ -522,7 +536,10 @@ abstract class NumberPickerProp<T> implements SettingsPropType<T> {
   int? get value;
   @override
   SettingsUpdateRequest<T, int>? get onChanged;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NumberPickerPropImplCopyWith<T, _$NumberPickerPropImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -545,6 +562,8 @@ class __$$NumberSliderPropImplCopyWithImpl<T, $Res>
       $Res Function(_$NumberSliderPropImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -609,7 +628,9 @@ class _$NumberSliderPropImpl<T> implements NumberSliderProp<T> {
   @override
   int get hashCode => Object.hash(runtimeType, min, max, value, onChanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NumberSliderPropImplCopyWith<T, _$NumberSliderPropImpl<T>> get copyWith =>
@@ -727,7 +748,10 @@ abstract class NumberSliderProp<T> implements SettingsPropType<T> {
   int? get value;
   @override
   SettingsUpdateRequest<T, int>? get onChanged;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NumberSliderPropImplCopyWith<T, _$NumberSliderPropImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -749,6 +773,8 @@ class __$$SwitchPropImplCopyWithImpl<T, $Res>
       _$SwitchPropImpl<T> _value, $Res Function(_$SwitchPropImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -796,7 +822,9 @@ class _$SwitchPropImpl<T> implements SwitchProp<T> {
   @override
   int get hashCode => Object.hash(runtimeType, value, onChanged);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SwitchPropImplCopyWith<T, _$SwitchPropImpl<T>> get copyWith =>
@@ -908,7 +936,10 @@ abstract class SwitchProp<T> implements SettingsPropType<T> {
   bool? get value;
   @override
   SettingsUpdateRequest<T, bool>? get onChanged;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SettingsPropType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SwitchPropImplCopyWith<T, _$SwitchPropImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

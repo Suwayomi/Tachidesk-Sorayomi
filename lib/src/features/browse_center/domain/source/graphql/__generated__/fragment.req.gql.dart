@@ -113,3 +113,149 @@ abstract class GFullSourceFragmentReq
         json,
       );
 }
+
+abstract class GPreferenceFragmentReq
+    implements
+        Built<GPreferenceFragmentReq, GPreferenceFragmentReqBuilder>,
+        _i1.FragmentRequest<_i2.GPreferenceFragmentData,
+            _i3.GPreferenceFragmentVars> {
+  GPreferenceFragmentReq._();
+
+  factory GPreferenceFragmentReq(
+          [void Function(GPreferenceFragmentReqBuilder b) updates]) =
+      _$GPreferenceFragmentReq;
+
+  static void _initializeBuilder(GPreferenceFragmentReqBuilder b) => b
+    ..document = _i4.document
+    ..fragmentName = 'PreferenceFragment';
+
+  @override
+  _i3.GPreferenceFragmentVars get vars;
+  @override
+  _i5.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GPreferenceFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GPreferenceFragmentData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GPreferenceFragmentData data) =>
+      data.toJson();
+
+  static Serializer<GPreferenceFragmentReq> get serializer =>
+      _$gPreferenceFragmentReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GPreferenceFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GPreferenceFragmentReq.serializer,
+        json,
+      );
+}
+
+abstract class GPrimitiveFilterFragmentReq
+    implements
+        Built<GPrimitiveFilterFragmentReq, GPrimitiveFilterFragmentReqBuilder>,
+        _i1.FragmentRequest<_i2.GPrimitiveFilterFragmentData,
+            _i3.GPrimitiveFilterFragmentVars> {
+  GPrimitiveFilterFragmentReq._();
+
+  factory GPrimitiveFilterFragmentReq(
+          [void Function(GPrimitiveFilterFragmentReqBuilder b) updates]) =
+      _$GPrimitiveFilterFragmentReq;
+
+  static void _initializeBuilder(GPrimitiveFilterFragmentReqBuilder b) => b
+    ..document = _i4.document
+    ..fragmentName = 'PrimitiveFilterFragment';
+
+  @override
+  _i3.GPrimitiveFilterFragmentVars get vars;
+  @override
+  _i5.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GPrimitiveFilterFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GPrimitiveFilterFragmentData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GPrimitiveFilterFragmentData data) =>
+      data.toJson();
+
+  static Serializer<GPrimitiveFilterFragmentReq> get serializer =>
+      _$gPrimitiveFilterFragmentReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GPrimitiveFilterFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPrimitiveFilterFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GPrimitiveFilterFragmentReq.serializer,
+        json,
+      );
+}
+
+abstract class GFilterFragmentReq
+    implements
+        Built<GFilterFragmentReq, GFilterFragmentReqBuilder>,
+        _i1.FragmentRequest<_i2.GFilterFragmentData, _i3.GFilterFragmentVars> {
+  GFilterFragmentReq._();
+
+  factory GFilterFragmentReq(
+          [void Function(GFilterFragmentReqBuilder b) updates]) =
+      _$GFilterFragmentReq;
+
+  static void _initializeBuilder(GFilterFragmentReqBuilder b) => b
+    ..document = _i4.document
+    ..fragmentName = 'FilterFragment';
+
+  @override
+  _i3.GFilterFragmentVars get vars;
+  @override
+  _i5.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GFilterFragmentData? parseData(Map<String, dynamic> json) =>
+      _i2.GFilterFragmentData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GFilterFragmentData data) =>
+      data.toJson();
+
+  static Serializer<GFilterFragmentReq> get serializer =>
+      _$gFilterFragmentReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GFilterFragmentReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFilterFragmentReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GFilterFragmentReq.serializer,
+        json,
+      );
+}

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -23,7 +24,7 @@ class NumberPickerDialog extends HookWidget {
   final int min;
   final int max;
   final int? value;
-  final ValueChanged<int>? onChanged;
+  final AsyncValueSetter<int>? onChanged;
   final String? description;
   @override
   Widget build(BuildContext context) {
@@ -53,9 +54,9 @@ class NumberPickerDialog extends HookWidget {
           child: Text(context.l10n.cancel),
         ),
         TextButton(
-          onPressed: () {
-            onChanged?.call(valueState.value);
-            Navigator.pop(context);
+          onPressed: () async {
+            await onChanged?.call(valueState.value);
+            if (context.mounted) Navigator.pop(context);
           },
           child: Text(context.l10n.save),
         ),

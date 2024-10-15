@@ -6,11 +6,11 @@ part of 'extension_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$extensionHash() => r'7f4a60c97e38a62db718b504d572bd031b5b845d';
+String _$extensionHash() => r'370eec1f8665bd9dc1626e28bcc7dee44aa13d8c';
 
 /// See also [extension].
 @ProviderFor(extension)
-final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>.internal(
+final extensionProvider = AutoDisposeStreamProvider<List<Extension>?>.internal(
   extension,
   name: r'extensionProvider',
   debugGetCreateSourceHash:
@@ -19,7 +19,7 @@ final extensionProvider = AutoDisposeFutureProvider<List<Extension>?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef ExtensionRef = AutoDisposeFutureProviderRef<List<Extension>?>;
+typedef ExtensionRef = AutoDisposeStreamProviderRef<List<Extension>?>;
 String _$extensionMapHash() => r'86a54165a5f000fe7db96a1e81809735e9db98dd';
 
 /// See also [extensionMap].

@@ -7,6 +7,7 @@ extension FerryExtensions on Client {
     forward,
   ]) =>
       this.request(request, forward).map((event) {
+        if (kDebugMode) dev.log("${event.data}");
         TData? data = event.data;
         if (event.hasErrors) {
           if (event.linkException != null) {

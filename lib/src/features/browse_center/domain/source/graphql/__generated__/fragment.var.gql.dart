@@ -54,3 +54,74 @@ abstract class GFullSourceFragmentVars
         json,
       );
 }
+
+abstract class GPreferenceFragmentVars
+    implements Built<GPreferenceFragmentVars, GPreferenceFragmentVarsBuilder> {
+  GPreferenceFragmentVars._();
+
+  factory GPreferenceFragmentVars(
+          [void Function(GPreferenceFragmentVarsBuilder b) updates]) =
+      _$GPreferenceFragmentVars;
+
+  static Serializer<GPreferenceFragmentVars> get serializer =>
+      _$gPreferenceFragmentVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GPreferenceFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPreferenceFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GPreferenceFragmentVars.serializer,
+        json,
+      );
+}
+
+abstract class GPrimitiveFilterFragmentVars
+    implements
+        Built<GPrimitiveFilterFragmentVars,
+            GPrimitiveFilterFragmentVarsBuilder> {
+  GPrimitiveFilterFragmentVars._();
+
+  factory GPrimitiveFilterFragmentVars(
+          [void Function(GPrimitiveFilterFragmentVarsBuilder b) updates]) =
+      _$GPrimitiveFilterFragmentVars;
+
+  static Serializer<GPrimitiveFilterFragmentVars> get serializer =>
+      _$gPrimitiveFilterFragmentVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GPrimitiveFilterFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPrimitiveFilterFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GPrimitiveFilterFragmentVars.serializer,
+        json,
+      );
+}
+
+abstract class GFilterFragmentVars
+    implements Built<GFilterFragmentVars, GFilterFragmentVarsBuilder> {
+  GFilterFragmentVars._();
+
+  factory GFilterFragmentVars(
+          [void Function(GFilterFragmentVarsBuilder b) updates]) =
+      _$GFilterFragmentVars;
+
+  static Serializer<GFilterFragmentVars> get serializer =>
+      _$gFilterFragmentVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GFilterFragmentVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GFilterFragmentVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GFilterFragmentVars.serializer,
+        json,
+      );
+}

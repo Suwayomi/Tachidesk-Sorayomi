@@ -29,16 +29,17 @@ class InstallExtensionFile extends ConsumerWidget {
       }
     }
     AppUtils.guard(
-      () => ref
-          .read(extensionRepositoryProvider)
-          .installExtensionFile(context, file: file?.files.single),
+      () async {
+        await ref
+            .read(extensionRepositoryProvider)
+            .installExtensionFile(context, file: file?.files.single);
+        ref.invalidate(extensionProvider);
+        if (context.mounted) {
+          toast?.show(context.l10n.extensionInstalled, instantShow: true);
+        }
+      },
       toast,
-    ).then((value) {
-      ref.invalidate(extensionProvider);
-      if (context.mounted) {
-        toast?.show(context.l10n.extensionInstalled, instantShow: true);
-      }
-    });
+    );
   }
 
   @override

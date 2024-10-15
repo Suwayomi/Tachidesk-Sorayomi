@@ -125,6 +125,9 @@ class _$QuickSearchResultCopyWithImpl<$Res, $Val extends QuickSearchResult>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -147,6 +150,8 @@ class __$$HelpTextQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$HelpTextQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -203,7 +208,9 @@ class _$HelpTextQuickSearchResultImpl implements HelpTextQuickSearchResult {
   @override
   int get hashCode => Object.hash(runtimeType, prefill, pattern, hintText);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HelpTextQuickSearchResultImplCopyWith<_$HelpTextQuickSearchResultImpl>
@@ -335,7 +342,10 @@ abstract class HelpTextQuickSearchResult implements QuickSearchResult {
   String get prefill;
   String? get pattern;
   String get hintText;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HelpTextQuickSearchResultImplCopyWith<_$HelpTextQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -359,6 +369,8 @@ class __$$SourceQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$SourceQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -398,7 +410,9 @@ class _$SourceQuickSearchResultImpl implements SourceQuickSearchResult {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(source));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SourceQuickSearchResultImplCopyWith<_$SourceQuickSearchResultImpl>
@@ -526,7 +540,10 @@ abstract class SourceQuickSearchResult implements QuickSearchResult {
       _$SourceQuickSearchResultImpl;
 
   Source get source;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SourceQuickSearchResultImplCopyWith<_$SourceQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -551,6 +568,8 @@ class __$$SourceSearchQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$SourceSearchQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -600,7 +619,9 @@ class _$SourceSearchQuickSearchResultImpl
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(source), query);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SourceSearchQuickSearchResultImplCopyWith<
@@ -731,7 +752,10 @@ abstract class SourceSearchQuickSearchResult implements QuickSearchResult {
 
   Source get source;
   String get query;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SourceSearchQuickSearchResultImplCopyWith<
           _$SourceSearchQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -757,6 +781,8 @@ class __$$CategoryQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$CategoryQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -796,7 +822,9 @@ class _$CategoryQuickSearchResultImpl implements CategoryQuickSearchResult {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(category));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryQuickSearchResultImplCopyWith<_$CategoryQuickSearchResultImpl>
@@ -924,7 +952,10 @@ abstract class CategoryQuickSearchResult implements QuickSearchResult {
       _$CategoryQuickSearchResultImpl;
 
   Category get category;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryQuickSearchResultImplCopyWith<_$CategoryQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -949,6 +980,8 @@ class __$$CategoryMangaQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$CategoryMangaQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1000,7 +1033,9 @@ class _$CategoryMangaQuickSearchResultImpl
       const DeepCollectionEquality().hash(category),
       const DeepCollectionEquality().hash(manga));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryMangaQuickSearchResultImplCopyWith<
@@ -1131,7 +1166,10 @@ abstract class CategoryMangaQuickSearchResult implements QuickSearchResult {
 
   Category get category;
   Manga get manga;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryMangaQuickSearchResultImplCopyWith<
           _$CategoryMangaQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1157,6 +1195,8 @@ class __$$CategoryMangaChapterQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$CategoryMangaChapterQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1217,7 +1257,9 @@ class _$CategoryMangaChapterQuickSearchResultImpl
       const DeepCollectionEquality().hash(manga),
       const DeepCollectionEquality().hash(chapter));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryMangaChapterQuickSearchResultImplCopyWith<
@@ -1352,7 +1394,10 @@ abstract class CategoryMangaChapterQuickSearchResult
   Category? get category;
   Manga get manga;
   Chapter get chapter;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryMangaChapterQuickSearchResultImplCopyWith<
           _$CategoryMangaChapterQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -1377,6 +1422,8 @@ class __$$MangaQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$MangaQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1426,7 +1473,9 @@ class _$MangaQuickSearchResultImpl implements MangaQuickSearchResult {
       const DeepCollectionEquality().hash(source),
       const DeepCollectionEquality().hash(manga));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MangaQuickSearchResultImplCopyWith<_$MangaQuickSearchResultImpl>
@@ -1556,7 +1605,10 @@ abstract class MangaQuickSearchResult implements QuickSearchResult {
 
   Source? get source;
   Manga get manga;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MangaQuickSearchResultImplCopyWith<_$MangaQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1581,6 +1633,8 @@ class __$$ChapterQuickSearchResultImplCopyWithImpl<$Res>
       $Res Function(_$ChapterQuickSearchResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1640,7 +1694,9 @@ class _$ChapterQuickSearchResultImpl implements ChapterQuickSearchResult {
       const DeepCollectionEquality().hash(manga),
       const DeepCollectionEquality().hash(chapter));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChapterQuickSearchResultImplCopyWith<_$ChapterQuickSearchResultImpl>
@@ -1772,7 +1828,10 @@ abstract class ChapterQuickSearchResult implements QuickSearchResult {
   Source? get source;
   Manga get manga;
   Chapter get chapter;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChapterQuickSearchResultImplCopyWith<_$ChapterQuickSearchResultImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1794,6 +1853,9 @@ class __$$GlobalSearchQuickSearchResultImplCopyWithImpl<$Res>
       _$GlobalSearchQuickSearchResultImpl _value,
       $Res Function(_$GlobalSearchQuickSearchResultImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of QuickSearchResult
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

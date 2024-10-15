@@ -11,9 +11,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../data/settings_repository.dart';
 import '../../../domain/restore_status/restore_status.dart';
-import 'graphql/backup_settings_query.dart';
+import '../../../domain/settings/settings.dart';
+import 'graphql/query.dart';
 
 part 'backup_settings_repository.g.dart';
 

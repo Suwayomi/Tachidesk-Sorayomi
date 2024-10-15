@@ -92,7 +92,7 @@ GoRouter routerConfig(ref) {
   return GoRouter(
     routes: $appRoutes,
     debugLogDiagnostics: true,
-    initialLocation: const UpdatesRoute().location,
+    initialLocation: const BrowseSourceRoute().location,
     navigatorKey: rootNavigatorKey,
   );
 }

@@ -615,6 +615,16 @@ enum FetchSourceMangaType {
   LATEST
 }
 
+input FetchTrackInput {
+  clientMutationId: String
+  recordId: Int!
+}
+
+type FetchTrackPayload {
+  clientMutationId: String
+  trackRecord: TrackRecordType!
+}
+
 union Filter = CheckBoxFilter | GroupFilter | HeaderFilter | SelectFilter | SeparatorFilter | SortFilter | TextFilter | TriStateFilter
 
 input FilterChangeInput {
@@ -884,10 +894,12 @@ type MangaType {
   updateStrategy: UpdateStrategy!
   url: String!
   age: LongString
+  bookmarkCount: Int!
   categories: CategoryNodeList!
   chapters: ChapterNodeList!
   chaptersAge: LongString
   downloadCount: Int!
+  firstUnreadChapter: ChapterType
   lastReadChapter: ChapterType
   latestFetchedChapter: ChapterType
   latestReadChapter: ChapterType
@@ -942,58 +954,61 @@ type MultiSelectListPreference {
 type Mutation {
   createBackup(input: CreateBackupInput): CreateBackupPayload!
   restoreBackup(input: RestoreBackupInput!): RestoreBackupPayload!
-  createCategory(input: CreateCategoryInput!): CreateCategoryPayload!
-  deleteCategory(input: DeleteCategoryInput!): DeleteCategoryPayload!
-  deleteCategoryMeta(input: DeleteCategoryMetaInput!): DeleteCategoryMetaPayload!
-  setCategoryMeta(input: SetCategoryMetaInput!): SetCategoryMetaPayload!
-  updateCategories(input: UpdateCategoriesInput!): UpdateCategoriesPayload!
-  updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload!
-  updateCategoryOrder(input: UpdateCategoryOrderInput!): UpdateCategoryOrderPayload!
-  updateMangaCategories(input: UpdateMangaCategoriesInput!): UpdateMangaCategoriesPayload!
-  updateMangasCategories(input: UpdateMangasCategoriesInput!): UpdateMangasCategoriesPayload!
-  deleteChapterMeta(input: DeleteChapterMetaInput!): DeleteChapterMetaPayload!
-  fetchChapterPages(input: FetchChapterPagesInput!): FetchChapterPagesPayload!
-  fetchChapters(input: FetchChaptersInput!): FetchChaptersPayload!
-  setChapterMeta(input: SetChapterMetaInput!): SetChapterMetaPayload!
-  updateChapter(input: UpdateChapterInput!): UpdateChapterPayload!
-  updateChapters(input: UpdateChaptersInput!): UpdateChaptersPayload!
-  clearDownloader(input: ClearDownloaderInput!): ClearDownloaderPayload!
-  deleteDownloadedChapter(input: DeleteDownloadedChapterInput!): DeleteDownloadedChapterPayload!
-  deleteDownloadedChapters(input: DeleteDownloadedChaptersInput!): DeleteDownloadedChaptersPayload!
-  dequeueChapterDownload(input: DequeueChapterDownloadInput!): DequeueChapterDownloadPayload!
-  dequeueChapterDownloads(input: DequeueChapterDownloadsInput!): DequeueChapterDownloadsPayload!
-  enqueueChapterDownload(input: EnqueueChapterDownloadInput!): EnqueueChapterDownloadPayload!
-  enqueueChapterDownloads(input: EnqueueChapterDownloadsInput!): EnqueueChapterDownloadsPayload!
-  reorderChapterDownload(input: ReorderChapterDownloadInput!): ReorderChapterDownloadPayload!
-  startDownloader(input: StartDownloaderInput!): StartDownloaderPayload!
-  stopDownloader(input: StopDownloaderInput!): StopDownloaderPayload!
-  fetchExtensions(input: FetchExtensionsInput!): FetchExtensionsPayload!
-  installExternalExtension(input: InstallExternalExtensionInput!): InstallExternalExtensionPayload!
-  updateExtension(input: UpdateExtensionInput!): UpdateExtensionPayload!
-  updateExtensions(input: UpdateExtensionsInput!): UpdateExtensionsPayload!
+  createCategory(input: CreateCategoryInput!): CreateCategoryPayload
+  deleteCategory(input: DeleteCategoryInput!): DeleteCategoryPayload
+  deleteCategoryMeta(input: DeleteCategoryMetaInput!): DeleteCategoryMetaPayload
+  setCategoryMeta(input: SetCategoryMetaInput!): SetCategoryMetaPayload
+  updateCategories(input: UpdateCategoriesInput!): UpdateCategoriesPayload
+  updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload
+  updateCategoryOrder(input: UpdateCategoryOrderInput!): UpdateCategoryOrderPayload
+  updateMangaCategories(input: UpdateMangaCategoriesInput!): UpdateMangaCategoriesPayload
+  updateMangasCategories(input: UpdateMangasCategoriesInput!): UpdateMangasCategoriesPayload
+  deleteChapterMeta(input: DeleteChapterMetaInput!): DeleteChapterMetaPayload
+  fetchChapterPages(input: FetchChapterPagesInput!): FetchChapterPagesPayload
+  fetchChapters(input: FetchChaptersInput!): FetchChaptersPayload
+  setChapterMeta(input: SetChapterMetaInput!): SetChapterMetaPayload
+  updateChapter(input: UpdateChapterInput!): UpdateChapterPayload
+  updateChapters(input: UpdateChaptersInput!): UpdateChaptersPayload
+  clearDownloader(input: ClearDownloaderInput!): ClearDownloaderPayload
+  deleteDownloadedChapter(input: DeleteDownloadedChapterInput!): DeleteDownloadedChapterPayload
+  deleteDownloadedChapters(input: DeleteDownloadedChaptersInput!): DeleteDownloadedChaptersPayload
+  dequeueChapterDownload(input: DequeueChapterDownloadInput!): DequeueChapterDownloadPayload
+  dequeueChapterDownloads(input: DequeueChapterDownloadsInput!): DequeueChapterDownloadsPayload
+  enqueueChapterDownload(input: EnqueueChapterDownloadInput!): EnqueueChapterDownloadPayload
+  enqueueChapterDownloads(input: EnqueueChapterDownloadsInput!): EnqueueChapterDownloadsPayload
+  reorderChapterDownload(input: ReorderChapterDownloadInput!): ReorderChapterDownloadPayload
+  startDownloader(input: StartDownloaderInput!): StartDownloaderPayload
+  stopDownloader(input: StopDownloaderInput!): StopDownloaderPayload
+  fetchExtensions(input: FetchExtensionsInput!): FetchExtensionsPayload
+  installExternalExtension(input: InstallExternalExtensionInput!): InstallExternalExtensionPayload
+  updateExtension(input: UpdateExtensionInput!): UpdateExtensionPayload
+  updateExtensions(input: UpdateExtensionsInput!): UpdateExtensionsPayload
   clearCachedImages(input: ClearCachedImagesInput!): ClearCachedImagesPayload!
-  resetWebUIUpdateStatus: WebUIUpdateStatus!
-  updateWebUI(input: WebUIUpdateInput!): WebUIUpdatePayload!
-  deleteMangaMeta(input: DeleteMangaMetaInput!): DeleteMangaMetaPayload!
-  fetchManga(input: FetchMangaInput!): FetchMangaPayload!
-  setMangaMeta(input: SetMangaMetaInput!): SetMangaMetaPayload!
-  updateManga(input: UpdateMangaInput!): UpdateMangaPayload!
-  updateMangas(input: UpdateMangasInput!): UpdateMangasPayload!
-  deleteGlobalMeta(input: DeleteGlobalMetaInput!): DeleteGlobalMetaPayload!
-  setGlobalMeta(input: SetGlobalMetaInput!): SetGlobalMetaPayload!
+  resetWebUIUpdateStatus: WebUIUpdateStatus
+  updateWebUI(input: WebUIUpdateInput!): WebUIUpdatePayload
+  deleteMangaMeta(input: DeleteMangaMetaInput!): DeleteMangaMetaPayload
+  fetchManga(input: FetchMangaInput!): FetchMangaPayload
+  setMangaMeta(input: SetMangaMetaInput!): SetMangaMetaPayload
+  updateManga(input: UpdateMangaInput!): UpdateMangaPayload
+  updateMangas(input: UpdateMangasInput!): UpdateMangasPayload
+  deleteGlobalMeta(input: DeleteGlobalMetaInput!): DeleteGlobalMetaPayload
+  setGlobalMeta(input: SetGlobalMetaInput!): SetGlobalMetaPayload
   resetSettings(input: ResetSettingsInput!): ResetSettingsPayload!
   setSettings(input: SetSettingsInput!): SetSettingsPayload!
-  deleteSourceMeta(input: DeleteSourceMetaInput!): DeleteSourceMetaPayload!
-  fetchSourceManga(input: FetchSourceMangaInput!): FetchSourceMangaPayload!
-  setSourceMeta(input: SetSourceMetaInput!): SetSourceMetaPayload!
-  updateSourcePreference(input: UpdateSourcePreferenceInput!): UpdateSourcePreferencePayload!
+  deleteSourceMeta(input: DeleteSourceMetaInput!): DeleteSourceMetaPayload
+  fetchSourceManga(input: FetchSourceMangaInput!): FetchSourceMangaPayload
+  setSourceMeta(input: SetSourceMetaInput!): SetSourceMetaPayload
+  updateSourcePreference(input: UpdateSourcePreferenceInput!): UpdateSourcePreferencePayload
   bindTrack(input: BindTrackInput!): BindTrackPayload!
+  fetchTrack(input: FetchTrackInput!): FetchTrackPayload!
   loginTrackerCredentials(input: LoginTrackerCredentialsInput!): LoginTrackerCredentialsPayload!
   loginTrackerOAuth(input: LoginTrackerOAuthInput!): LoginTrackerOAuthPayload!
   logoutTracker(input: LogoutTrackerInput!): LogoutTrackerPayload!
+  trackProgress(input: TrackProgressInput!): TrackProgressPayload
+  unbindTrack(input: UnbindTrackInput!): UnbindTrackPayload!
   updateTrack(input: UpdateTrackInput!): UpdateTrackPayload!
-  updateCategoryManga(input: UpdateCategoryMangaInput!): UpdateCategoryMangaPayload!
-  updateLibraryManga(input: UpdateLibraryMangaInput!): UpdateLibraryMangaPayload!
+  updateCategoryManga(input: UpdateCategoryMangaInput!): UpdateCategoryMangaPayload
+  updateLibraryManga(input: UpdateLibraryMangaInput!): UpdateLibraryMangaPayload
   updateStop(input: UpdateStopInput!): UpdateStopPayload!
 }
 
@@ -1031,6 +1046,7 @@ type PageInfo {
 
 type PartialSettingsType implements Settings {
   autoDownloadAheadLimit: Int @deprecated(reason: "Replaced with autoDownloadNewChaptersLimit, replace with autoDownloadNewChaptersLimit")
+  autoDownloadIgnoreReUploads: Boolean
   autoDownloadNewChapters: Boolean
   autoDownloadNewChaptersLimit: Int
   backupInterval: Int
@@ -1076,6 +1092,7 @@ type PartialSettingsType implements Settings {
 }
 
 input PartialSettingsTypeInput {
+  autoDownloadIgnoreReUploads: Boolean
   autoDownloadNewChapters: Boolean
   autoDownloadNewChaptersLimit: Int
   backupInterval: Int
@@ -1265,6 +1282,7 @@ type SetSourceMetaPayload {
 
 interface Settings {
   autoDownloadAheadLimit: Int @deprecated(reason: "Replaced with autoDownloadNewChaptersLimit, replace with autoDownloadNewChaptersLimit")
+  autoDownloadIgnoreReUploads: Boolean
   autoDownloadNewChapters: Boolean
   autoDownloadNewChaptersLimit: Int
   backupInterval: Int
@@ -1311,6 +1329,7 @@ interface Settings {
 
 type SettingsType implements Settings {
   autoDownloadAheadLimit: Int! @deprecated(reason: "Replaced with autoDownloadNewChaptersLimit, replace with autoDownloadNewChaptersLimit")
+  autoDownloadIgnoreReUploads: Boolean
   autoDownloadNewChapters: Boolean!
   autoDownloadNewChaptersLimit: Int!
   backupInterval: Int!
@@ -1560,10 +1579,21 @@ type TrackerType {
   id: Int!
   isLoggedIn: Boolean!
   name: String!
+  supportsTrackDeletion: Boolean
   isTokenExpired: Boolean!
   scores: [String!]!
   statuses: [TrackStatusType!]!
   trackRecords: TrackRecordNodeList!
+}
+
+input TrackProgressInput {
+  clientMutationId: String
+  mangaId: Int!
+}
+
+type TrackProgressPayload {
+  clientMutationId: String
+  trackRecords: [TrackRecordType!]!
 }
 
 input TrackRecordConditionInput {
@@ -1674,6 +1704,21 @@ enum TriState {
 type TriStateFilter {
   default: TriState!
   name: String!
+}
+
+input UnbindTrackInput {
+  clientMutationId: String
+
+  """
+  This will only work if the tracker of the track record supports deleting tracks
+  """
+  deleteRemoteTrack: Boolean
+  recordId: Int!
+}
+
+type UnbindTrackPayload {
+  clientMutationId: String
+  trackRecord: TrackRecordType
 }
 
 input UpdateCategoriesInput {
@@ -1904,7 +1949,6 @@ input UpdateTrackInput {
   scoreString: String
   startDate: LongString
   status: Int
-  unbind: Boolean
 }
 
 type UpdateTrackPayload {
@@ -1921,10 +1965,15 @@ input ValidateBackupInput {
 
 type ValidateBackupResult {
   missingSources: [ValidateBackupSource!]!
+  missingTrackers: [ValidateBackupTracker!]!
 }
 
 type ValidateBackupSource {
   id: LongString!
+  name: String!
+}
+
+type ValidateBackupTracker {
   name: String!
 }
 
