@@ -328,5 +328,49 @@
   "languages": "Bahasa",
   "@languages": {
     "description": "Popup title to filter extensions based on language"
+  },
+  "mangaStatusOnHiatus": "Sedang Hiatus",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "mangaStatusOngoing": "Berjalan",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "Selesai Diterbitkan",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "latest": "Terakhir",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "library": "Perpustakaan",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "manga": "Manga",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaStatusCompleted": "Selesai",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusLicensed": "Berlisensi",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaStatusUnknown": "Tidak diketahui",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "missingExtension": "Ekstensi Hilang",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  },
+  "missingTrackers": "Trackers Hilang",
+  "@missingTrackers": {
+    "description": "Group title to show the Missing Trackers when restoring Backup"
   }
 }
