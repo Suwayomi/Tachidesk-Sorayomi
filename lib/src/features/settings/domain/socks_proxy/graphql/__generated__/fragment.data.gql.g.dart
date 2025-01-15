@@ -267,20 +267,29 @@ class GSocksProxyFragmentDataBuilder
   _$GSocksProxyFragmentData _build() {
     final _$result = _$v ??
         new _$GSocksProxyFragmentData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GSocksProxyFragmentData', 'G__typename'),
-            socksProxyEnabled: BuiltValueNullFieldError.checkNotNull(
-                socksProxyEnabled, r'GSocksProxyFragmentData', 'socksProxyEnabled'),
-            socksProxyHost: BuiltValueNullFieldError.checkNotNull(
-                socksProxyHost, r'GSocksProxyFragmentData', 'socksProxyHost'),
-            socksProxyPassword: BuiltValueNullFieldError.checkNotNull(
-                socksProxyPassword, r'GSocksProxyFragmentData', 'socksProxyPassword'),
-            socksProxyPort: BuiltValueNullFieldError.checkNotNull(
-                socksProxyPort, r'GSocksProxyFragmentData', 'socksProxyPort'),
-            socksProxyUsername: BuiltValueNullFieldError.checkNotNull(
-                socksProxyUsername, r'GSocksProxyFragmentData', 'socksProxyUsername'),
-            socksProxyVersion: BuiltValueNullFieldError.checkNotNull(
-                socksProxyVersion, r'GSocksProxyFragmentData', 'socksProxyVersion'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GSocksProxyFragmentData', 'G__typename'),
+          socksProxyEnabled: BuiltValueNullFieldError.checkNotNull(
+              socksProxyEnabled,
+              r'GSocksProxyFragmentData',
+              'socksProxyEnabled'),
+          socksProxyHost: BuiltValueNullFieldError.checkNotNull(
+              socksProxyHost, r'GSocksProxyFragmentData', 'socksProxyHost'),
+          socksProxyPassword: BuiltValueNullFieldError.checkNotNull(
+              socksProxyPassword,
+              r'GSocksProxyFragmentData',
+              'socksProxyPassword'),
+          socksProxyPort: BuiltValueNullFieldError.checkNotNull(
+              socksProxyPort, r'GSocksProxyFragmentData', 'socksProxyPort'),
+          socksProxyUsername: BuiltValueNullFieldError.checkNotNull(
+              socksProxyUsername,
+              r'GSocksProxyFragmentData',
+              'socksProxyUsername'),
+          socksProxyVersion: BuiltValueNullFieldError.checkNotNull(
+              socksProxyVersion,
+              r'GSocksProxyFragmentData',
+              'socksProxyVersion'),
+        );
     replace(_$result);
     return _$result;
   }

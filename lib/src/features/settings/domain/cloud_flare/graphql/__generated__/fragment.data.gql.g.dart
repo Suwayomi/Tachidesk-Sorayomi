@@ -248,22 +248,29 @@ class GCloudFlareBypassFragmentDataBuilder
   _$GCloudFlareBypassFragmentData _build() {
     final _$result = _$v ??
         new _$GCloudFlareBypassFragmentData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GCloudFlareBypassFragmentData', 'G__typename'),
-            flareSolverrEnabled: BuiltValueNullFieldError.checkNotNull(
-                flareSolverrEnabled, r'GCloudFlareBypassFragmentData', 'flareSolverrEnabled'),
-            flareSolverrSessionName: BuiltValueNullFieldError.checkNotNull(
-                flareSolverrSessionName,
-                r'GCloudFlareBypassFragmentData',
-                'flareSolverrSessionName'),
-            flareSolverrSessionTtl: BuiltValueNullFieldError.checkNotNull(
-                flareSolverrSessionTtl,
-                r'GCloudFlareBypassFragmentData',
-                'flareSolverrSessionTtl'),
-            flareSolverrTimeout: BuiltValueNullFieldError.checkNotNull(
-                flareSolverrTimeout, r'GCloudFlareBypassFragmentData', 'flareSolverrTimeout'),
-            flareSolverrUrl: BuiltValueNullFieldError.checkNotNull(
-                flareSolverrUrl, r'GCloudFlareBypassFragmentData', 'flareSolverrUrl'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GCloudFlareBypassFragmentData', 'G__typename'),
+          flareSolverrEnabled: BuiltValueNullFieldError.checkNotNull(
+              flareSolverrEnabled,
+              r'GCloudFlareBypassFragmentData',
+              'flareSolverrEnabled'),
+          flareSolverrSessionName: BuiltValueNullFieldError.checkNotNull(
+              flareSolverrSessionName,
+              r'GCloudFlareBypassFragmentData',
+              'flareSolverrSessionName'),
+          flareSolverrSessionTtl: BuiltValueNullFieldError.checkNotNull(
+              flareSolverrSessionTtl,
+              r'GCloudFlareBypassFragmentData',
+              'flareSolverrSessionTtl'),
+          flareSolverrTimeout: BuiltValueNullFieldError.checkNotNull(
+              flareSolverrTimeout,
+              r'GCloudFlareBypassFragmentData',
+              'flareSolverrTimeout'),
+          flareSolverrUrl: BuiltValueNullFieldError.checkNotNull(
+              flareSolverrUrl,
+              r'GCloudFlareBypassFragmentData',
+              'flareSolverrUrl'),
+        );
     replace(_$result);
     return _$result;
   }

@@ -211,12 +211,13 @@ class GSocksProxyFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GSocksProxyFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GSocksProxyFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GSocksProxyFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GSocksProxyFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GSocksProxyFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

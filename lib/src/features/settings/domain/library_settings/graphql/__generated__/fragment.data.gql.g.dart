@@ -247,22 +247,27 @@ class GLibrarySettingsFragmentDataBuilder
   _$GLibrarySettingsFragmentData _build() {
     final _$result = _$v ??
         new _$GLibrarySettingsFragmentData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GLibrarySettingsFragmentData', 'G__typename'),
-            globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(
-                globalUpdateInterval,
-                r'GLibrarySettingsFragmentData',
-                'globalUpdateInterval'),
-            updateMangas: BuiltValueNullFieldError.checkNotNull(
-                updateMangas, r'GLibrarySettingsFragmentData', 'updateMangas'),
-            excludeCompleted: BuiltValueNullFieldError.checkNotNull(
-                excludeCompleted, r'GLibrarySettingsFragmentData', 'excludeCompleted'),
-            excludeNotStarted: BuiltValueNullFieldError.checkNotNull(
-                excludeNotStarted, r'GLibrarySettingsFragmentData', 'excludeNotStarted'),
-            excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(
-                excludeUnreadChapters,
-                r'GLibrarySettingsFragmentData',
-                'excludeUnreadChapters'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GLibrarySettingsFragmentData', 'G__typename'),
+          globalUpdateInterval: BuiltValueNullFieldError.checkNotNull(
+              globalUpdateInterval,
+              r'GLibrarySettingsFragmentData',
+              'globalUpdateInterval'),
+          updateMangas: BuiltValueNullFieldError.checkNotNull(
+              updateMangas, r'GLibrarySettingsFragmentData', 'updateMangas'),
+          excludeCompleted: BuiltValueNullFieldError.checkNotNull(
+              excludeCompleted,
+              r'GLibrarySettingsFragmentData',
+              'excludeCompleted'),
+          excludeNotStarted: BuiltValueNullFieldError.checkNotNull(
+              excludeNotStarted,
+              r'GLibrarySettingsFragmentData',
+              'excludeNotStarted'),
+          excludeUnreadChapters: BuiltValueNullFieldError.checkNotNull(
+              excludeUnreadChapters,
+              r'GLibrarySettingsFragmentData',
+              'excludeUnreadChapters'),
+        );
     replace(_$result);
     return _$result;
   }

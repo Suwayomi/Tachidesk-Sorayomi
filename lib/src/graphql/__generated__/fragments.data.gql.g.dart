@@ -230,14 +230,15 @@ class GPageInfoFragmentDataBuilder
     try {
       _$result = _$v ??
           new _$GPageInfoFragmentData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GPageInfoFragmentData', 'G__typename'),
-              endCursor: _endCursor?.build(),
-              hasNextPage: BuiltValueNullFieldError.checkNotNull(
-                  hasNextPage, r'GPageInfoFragmentData', 'hasNextPage'),
-              hasPreviousPage: BuiltValueNullFieldError.checkNotNull(
-                  hasPreviousPage, r'GPageInfoFragmentData', 'hasPreviousPage'),
-              startCursor: _startCursor?.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GPageInfoFragmentData', 'G__typename'),
+            endCursor: _endCursor?.build(),
+            hasNextPage: BuiltValueNullFieldError.checkNotNull(
+                hasNextPage, r'GPageInfoFragmentData', 'hasNextPage'),
+            hasPreviousPage: BuiltValueNullFieldError.checkNotNull(
+                hasPreviousPage, r'GPageInfoFragmentData', 'hasPreviousPage'),
+            startCursor: _startCursor?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

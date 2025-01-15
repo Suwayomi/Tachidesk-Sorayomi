@@ -6,7 +6,7 @@ part of 'library_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoryMangaListHash() => r'9da0d48991ecde48dd144171ef5091fd2f597ef7';
+String _$categoryMangaListHash() => r'b39038bd33423265b01c4d823a1ed2821c1f6a6d';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -143,6 +143,8 @@ class CategoryMangaListProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CategoryMangaListRef on AutoDisposeFutureProviderRef<List<Manga>?> {
   /// The parameter `categoryId` of this provider.
   int get categoryId;
@@ -309,6 +311,8 @@ class CategoryMangaListWithQueryAndFilterProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CategoryMangaListWithQueryAndFilterRef
     on AutoDisposeNotifierProviderRef<AsyncValue<List<Manga>?>> {
   /// The parameter `categoryId` of this provider.
@@ -443,4 +447,4 @@ final libraryDisplayModeProvider =
 
 typedef _$LibraryDisplayMode = AutoDisposeNotifier<DisplayMode?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

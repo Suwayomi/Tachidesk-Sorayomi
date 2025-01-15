@@ -6,6 +6,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -87,11 +88,11 @@ class UpdatesRepository {
 }
 
 @riverpod
-UpdatesRepository updatesRepository(UpdatesRepositoryRef ref) =>
+UpdatesRepository updatesRepository(Ref ref) =>
     UpdatesRepository(ref.watch(dioClientKeyProvider));
 
 @riverpod
-Future<UpdateStatus?> updateSummary(UpdateSummaryRef ref) async {
+Future<UpdateStatus?> updateSummary(Ref ref) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
   final result = await ref

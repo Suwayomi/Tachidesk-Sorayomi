@@ -8,7 +8,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import 'graphql/__generated__/fragment.data.gql.dart';
+import 'graphql/__generated__/manga_fragment.data.gql.dart';
 
 part 'manga_model.freezed.dart';
 part 'manga_model.g.dart';

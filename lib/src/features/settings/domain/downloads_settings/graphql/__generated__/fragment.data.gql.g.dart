@@ -250,23 +250,25 @@ class GDownloadsSettingsFragmentDataBuilder
   _$GDownloadsSettingsFragmentData _build() {
     final _$result = _$v ??
         new _$GDownloadsSettingsFragmentData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GDownloadsSettingsFragmentData', 'G__typename'),
-            downloadAsCbz: BuiltValueNullFieldError.checkNotNull(
-                downloadAsCbz, r'GDownloadsSettingsFragmentData', 'downloadAsCbz'),
-            downloadsPath: BuiltValueNullFieldError.checkNotNull(
-                downloadsPath, r'GDownloadsSettingsFragmentData', 'downloadsPath'),
-            autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(
-                autoDownloadNewChapters, r'GDownloadsSettingsFragmentData', 'autoDownloadNewChapters'),
-            autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(
-                autoDownloadNewChaptersLimit,
-                r'GDownloadsSettingsFragmentData',
-                'autoDownloadNewChaptersLimit'),
-            excludeEntryWithUnreadChapters:
-                BuiltValueNullFieldError.checkNotNull(
-                    excludeEntryWithUnreadChapters,
-                    r'GDownloadsSettingsFragmentData',
-                    'excludeEntryWithUnreadChapters'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GDownloadsSettingsFragmentData', 'G__typename'),
+          downloadAsCbz: BuiltValueNullFieldError.checkNotNull(downloadAsCbz,
+              r'GDownloadsSettingsFragmentData', 'downloadAsCbz'),
+          downloadsPath: BuiltValueNullFieldError.checkNotNull(downloadsPath,
+              r'GDownloadsSettingsFragmentData', 'downloadsPath'),
+          autoDownloadNewChapters: BuiltValueNullFieldError.checkNotNull(
+              autoDownloadNewChapters,
+              r'GDownloadsSettingsFragmentData',
+              'autoDownloadNewChapters'),
+          autoDownloadNewChaptersLimit: BuiltValueNullFieldError.checkNotNull(
+              autoDownloadNewChaptersLimit,
+              r'GDownloadsSettingsFragmentData',
+              'autoDownloadNewChaptersLimit'),
+          excludeEntryWithUnreadChapters: BuiltValueNullFieldError.checkNotNull(
+              excludeEntryWithUnreadChapters,
+              r'GDownloadsSettingsFragmentData',
+              'excludeEntryWithUnreadChapters'),
+        );
     replace(_$result);
     return _$result;
   }

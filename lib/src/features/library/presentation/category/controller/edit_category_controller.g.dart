@@ -6,7 +6,7 @@ part of 'edit_category_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoryListQueryHash() => r'ee7ffd75f50ce565abffeb65feb24b83faedbfa0';
+String _$categoryListQueryHash() => r'cef50c54315bcf176a941d3b722138953bb8e0c0';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -142,6 +142,8 @@ class CategoryListQueryProvider extends AutoDisposeProvider<List<Category>?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CategoryListQueryRef on AutoDisposeProviderRef<List<Category>?> {
   /// The parameter `query` of this provider.
   String get query;
@@ -174,4 +176,4 @@ final categoryControllerProvider = AutoDisposeStreamNotifierProvider<
 
 typedef _$CategoryController = AutoDisposeStreamNotifier<List<Category>?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

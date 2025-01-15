@@ -4,72 +4,24 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../../../graphql/__generated__/schema.schema.gql.dart';
+import '../../data/source_repository/graphql/queries/__generated__/source_preferences_by_id.data.gql.dart';
 
-part 'source_preference.freezed.dart';
-part 'source_preference.g.dart';
+typedef SourcePreference = GSourcePreferenceByIdData_source_preferences;
 
-@Freezed(
-  unionKey: 'type',
-  unionValueCase: FreezedUnionCase.pascal,
-  fallbackUnion: 'fallback',
-)
-sealed class SourcePreference with _$SourcePreference {
-  const factory SourcePreference.fallback({
-    String? key,
-    dynamic currentValue,
-  }) = Fallback;
+typedef CheckBoxPreference
+    = GSourcePreferenceByIdData_source_preferences__asCheckBoxPreference;
 
-  const factory SourcePreference.checkBoxPreference({
-    String? key,
-    String? title,
-    String? summary,
-    bool? defaultValue,
-    bool? currentValue,
-    String? defaultValueType,
-  }) = CheckBoxPreference;
+typedef SwitchPreferenceCompat
+    = GSourcePreferenceByIdData_source_preferences__asSwitchPreference;
 
-  const factory SourcePreference.switchPreferenceCompat({
-    String? key,
-    String? title,
-    String? summary,
-    bool? defaultValue,
-    bool? currentValue,
-    String? defaultValueType,
-  }) = SwitchPreferenceCompat;
+typedef ListPreference
+    = GSourcePreferenceByIdData_source_preferences__asListPreference;
 
-  const factory SourcePreference.listPreference({
-    String? key,
-    String? title,
-    String? summary,
-    String? defaultValue,
-    String? currentValue,
-    String? defaultValueType,
-    Map<String, String>? entries,
-  }) = ListPreference;
+typedef MultiSelectListPreference
+    = GSourcePreferenceByIdData_source_preferences__asMultiSelectListPreference;
 
-  const factory SourcePreference.multiSelectListPreference({
-    String? key,
-    String? title,
-    String? summary,
-    List<String>? defaultValue,
-    List<String>? currentValue,
-    String? defaultValueType,
-    Map<String, String>? entries,
-  }) = MultiSelectListPreference;
+typedef EditTextPreference
+    = GSourcePreferenceByIdData_source_preferences__asEditTextPreference;
 
-  const factory SourcePreference.editTextPreference({
-    String? key,
-    String? title,
-    String? summary,
-    String? defaultValue,
-    String? currentValue,
-    String? defaultValueType,
-    String? dialogTitle,
-    String? dialogMessage,
-    String? text,
-  }) = EditTextPreference;
-
-  factory SourcePreference.fromJson(Map<String, dynamic> json) =>
-      _$SourcePreferenceFromJson(json);
-}
+typedef SourcePreferenceChange = GSourcePreferenceChangeInputBuilder;

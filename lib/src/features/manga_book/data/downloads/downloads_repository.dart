@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -71,7 +72,7 @@ class DownloadsRepository {
 }
 
 @riverpod
-DownloadsRepository downloadsRepository(DownloadsRepositoryRef ref) =>
+DownloadsRepository downloadsRepository(Ref ref) =>
     DownloadsRepository(ref.watch(dioClientKeyProvider));
 
 @riverpod
@@ -88,7 +89,7 @@ class DownloadsSocket extends _$DownloadsSocket {
 }
 
 @riverpod
-Map<int, DownloadsQueue> downloadsMap(DownloadsMapRef ref) {
+Map<int, DownloadsQueue> downloadsMap(Ref ref) {
   final downloads = ref.watch(downloadsSocketProvider);
   return {
     for (DownloadsQueue element in [...?downloads.valueOrNull?.queue])
@@ -97,22 +98,22 @@ Map<int, DownloadsQueue> downloadsMap(DownloadsMapRef ref) {
 }
 
 @riverpod
-DownloadsQueue? downloadsFromId(DownloadsFromIdRef ref, int chapterId) =>
+DownloadsQueue? downloadsFromId(Ref ref, int chapterId) =>
     ref.watch(downloadsMapProvider.select((map) => map[chapterId]));
 
 @riverpod
-List<int> downloadsChapterIds(DownloadsChapterIdsRef ref) {
+List<int> downloadsChapterIds(Ref ref) {
   return ref.watch(downloadsMapProvider).keys.toList();
 }
 
 @riverpod
-AsyncValue<String?> downloadsStatus(DownloadsStatusRef ref) {
+AsyncValue<String?> downloadsStatus(Ref ref) {
   return ref.watch(downloadsSocketProvider
       .select((value) => value.copyWithData((data) => data.status)));
 }
 
 @riverpod
-bool showDownloadsFAB(ShowDownloadsFABRef ref) {
+bool showDownloadsFAB(Ref ref) {
   final downloads = ref.watch(downloadsSocketProvider);
   return (downloads.valueOrNull?.queue).isNotBlank &&
       downloads.valueOrNull!.queue!.any(

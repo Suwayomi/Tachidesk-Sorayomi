@@ -7,6 +7,7 @@
 import 'package:ferry/ferry.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -57,5 +58,5 @@ class ExtensionRepository {
 }
 
 @riverpod
-ExtensionRepository extensionRepository(ExtensionRepositoryRef ref) =>
+ExtensionRepository extensionRepository(Ref ref) =>
     ExtensionRepository(ref.watch(ferryClientProvider));

@@ -150,23 +150,6 @@ enum MangaStatus {
       };
 }
 
-enum SourceType {
-  latest(Icons.new_releases_outlined, Icons.new_releases_rounded),
-  popular(Icons.favorite_border_rounded, Icons.favorite_rounded),
-  filter(Icons.filter_list_outlined, Icons.filter_list_rounded);
-
-  const SourceType(this.icon, this.selectedIcon);
-
-  final IconData icon;
-  final IconData selectedIcon;
-
-  String toLocale(BuildContext context) => switch (this) {
-        SourceType.latest => context.l10n.sourceTypeLatest,
-        SourceType.popular => context.l10n.sourceTypePopular,
-        SourceType.filter => context.l10n.sourceTypeFilter
-      };
-}
-
 @JsonEnum(valueField: 'value')
 enum IncludeOrExclude implements ValueEnum {
   include("INCLUDE"),

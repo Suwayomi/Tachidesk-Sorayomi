@@ -1,4 +1,5 @@
 import 'package:ferry/ferry.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../global_providers/global_providers.dart';
@@ -50,6 +51,5 @@ class LibrarySettingsRepository {
 }
 
 @riverpod
-LibrarySettingsRepository librarySettingsRepository(
-        LibrarySettingsRepositoryRef ref) =>
+LibrarySettingsRepository librarySettingsRepository(Ref ref) =>
     LibrarySettingsRepository(ref.watch(ferryClientProvider));

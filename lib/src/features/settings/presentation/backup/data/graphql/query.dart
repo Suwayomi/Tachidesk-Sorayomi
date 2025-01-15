@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '__generated__/query.req.gql.dart';
+import 'queries/__generated__/create_backup.req.gql.dart';
+import 'queries/__generated__/restore_backup.req.gql.dart';
+import 'queries/__generated__/restore_status.req.gql.dart';
+import 'queries/__generated__/update_backup_interval.req.gql.dart';
+import 'queries/__generated__/update_backup_path.req.gql.dart';
+import 'queries/__generated__/update_backup_time.req.gql.dart';
+import 'queries/__generated__/update_backup_ttl.req.gql.dart';
+import 'queries/__generated__/validate_backup.req.gql.dart';
 
 abstract class BackupSettingsQuery {
   static GRestoreBackupReq restoreBackup(MultipartFile? file) =>

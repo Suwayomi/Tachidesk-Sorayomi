@@ -1,4 +1,8 @@
-import '__generated__/query.req.gql.dart';
+import 'queries/__generated__/toggle_exclude_completed.req.gql.dart';
+import 'queries/__generated__/toggle_exclude_not_started.req.gql.dart';
+import 'queries/__generated__/toggle_exclude_unread_chapters.req.gql.dart';
+import 'queries/__generated__/update_global_update_interval.req.gql.dart';
+import 'queries/__generated__/update_manga_meta_data.req.gql.dart';
 
 abstract class LibrarySettingsQuery {
   static GUpdateGlobalUpdateIntervalReq updateGlobalUpdateInterval(

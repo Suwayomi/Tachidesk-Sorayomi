@@ -216,12 +216,13 @@ class GDownloadsSettingsFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GDownloadsSettingsFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GDownloadsSettingsFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GDownloadsSettingsFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GDownloadsSettingsFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GDownloadsSettingsFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

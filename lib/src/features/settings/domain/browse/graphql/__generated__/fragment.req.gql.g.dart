@@ -216,12 +216,13 @@ class GBrowserSettingsFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GBrowserSettingsFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GBrowserSettingsFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GBrowserSettingsFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GBrowserSettingsFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GBrowserSettingsFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../constants/app_sizes.dart';
@@ -112,7 +113,7 @@ class ToastWidget extends StatelessWidget {
 }
 
 @riverpod
-Toast? toast(ToastRef ref) {
+Toast? toast(Ref ref) {
   final context = rootNavigatorKey.currentContext;
   if (context == null) {
     return null;

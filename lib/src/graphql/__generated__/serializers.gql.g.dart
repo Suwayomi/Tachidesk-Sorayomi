@@ -41,6 +41,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GCategoryFragmentVars.serializer)
       ..add(GCategoryMetaTypeInput.serializer)
       ..add(GCategoryOrderBy.serializer)
+      ..add(GCategoryOrderInput.serializer)
       ..add(GChapterConditionInput.serializer)
       ..add(GChapterFilterInput.serializer)
       ..add(GChapterFragmentData.serializer)
@@ -49,6 +50,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GChapterFragmentVars.serializer)
       ..add(GChapterMetaTypeInput.serializer)
       ..add(GChapterOrderBy.serializer)
+      ..add(GChapterOrderInput.serializer)
       ..add(GClearCachedImagesInput.serializer)
       ..add(GClearDownloaderInput.serializer)
       ..add(GCloudFlareBypassFragmentData.serializer)
@@ -72,7 +74,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GDequeueChapterDownloadInput.serializer)
       ..add(GDequeueChapterDownloadsInput.serializer)
       ..add(GDoubleFilterInput.serializer)
+      ..add(GDownloadChangedInput.serializer)
       ..add(GDownloadState.serializer)
+      ..add(GDownloadUpdateType.serializer)
       ..add(GDownloaderState.serializer)
       ..add(GDownloadsSettingsFragmentData.serializer)
       ..add(GDownloadsSettingsFragmentReq.serializer)
@@ -85,6 +89,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GExtensionFragmentReq.serializer)
       ..add(GExtensionFragmentVars.serializer)
       ..add(GExtensionOrderBy.serializer)
+      ..add(GExtensionOrderInput.serializer)
       ..add(GFetchChapterPagesInput.serializer)
       ..add(GFetchChaptersInput.serializer)
       ..add(GFetchExtensionListData.serializer)
@@ -94,29 +99,43 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GFetchExtensionListVars.serializer)
       ..add(GFetchExtensionsInput.serializer)
       ..add(GFetchMangaInput.serializer)
+      ..add(GFetchSourceMangaData.serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga.serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas.serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_lastReadChapter
+          .serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_lastReadChapter_meta
+          .serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_latestFetchedChapter
+          .serializer)
+      ..add(
+          GFetchSourceMangaData_fetchSourceManga_mangas_latestFetchedChapter_meta
+              .serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_latestReadChapter
+          .serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_latestReadChapter_meta
+          .serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_latestUploadedChapter
+          .serializer)
+      ..add(
+          GFetchSourceMangaData_fetchSourceManga_mangas_latestUploadedChapter_meta
+              .serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_meta.serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_source.serializer)
+      ..add(GFetchSourceMangaData_fetchSourceManga_mangas_source_extension
+          .serializer)
       ..add(GFetchSourceMangaInput.serializer)
+      ..add(GFetchSourceMangaReq.serializer)
       ..add(GFetchSourceMangaType.serializer)
+      ..add(GFetchSourceMangaVars.serializer)
       ..add(GFetchTrackInput.serializer)
       ..add(GFilterChangeInput.serializer)
       ..add(GFilterFragmentData__asGroupFilter.serializer)
-      ..add(GFilterFragmentData__asGroupFilter_filters.serializer)
+      ..add(GFilterFragmentData__asGroupFilter_groupState.serializer)
       ..add(GFilterFragmentData__base.serializer)
       ..add(GFilterFragmentReq.serializer)
       ..add(GFilterFragmentVars.serializer)
       ..add(GFloatFilterInput.serializer)
-      ..add(GFullSourceByIdData.serializer)
-      ..add(GFullSourceByIdData_source.serializer)
-      ..add(GFullSourceByIdData_source_extension.serializer)
-      ..add(GFullSourceByIdData_source_filters.serializer)
-      ..add(GFullSourceByIdData_source_preferences.serializer)
-      ..add(GFullSourceByIdReq.serializer)
-      ..add(GFullSourceByIdVars.serializer)
-      ..add(GFullSourceFragmentData.serializer)
-      ..add(GFullSourceFragmentData_extension.serializer)
-      ..add(GFullSourceFragmentData_filters.serializer)
-      ..add(GFullSourceFragmentData_preferences.serializer)
-      ..add(GFullSourceFragmentReq.serializer)
-      ..add(GFullSourceFragmentVars.serializer)
       ..add(GGlobalMetaTypeInput.serializer)
       ..add(GIncludeOrExclude.serializer)
       ..add(GInstallExternalExtensionData.serializer)
@@ -153,11 +172,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GMangaFragmentVars.serializer)
       ..add(GMangaMetaTypeInput.serializer)
       ..add(GMangaOrderBy.serializer)
+      ..add(GMangaOrderInput.serializer)
       ..add(GMangaStatus.serializer)
       ..add(GMangaStatusFilterInput.serializer)
       ..add(GMetaConditionInput.serializer)
       ..add(GMetaFilterInput.serializer)
       ..add(GMetaOrderBy.serializer)
+      ..add(GMetaOrderInput.serializer)
       ..add(GMiscSettingsFragmentData.serializer)
       ..add(GMiscSettingsFragmentReq.serializer)
       ..add(GMiscSettingsFragmentVars.serializer)
@@ -165,21 +186,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GPageInfoFragmentReq.serializer)
       ..add(GPageInfoFragmentVars.serializer)
       ..add(GPartialSettingsTypeInput.serializer)
-      ..add(GPreferenceFragmentData__asCheckBoxPreference.serializer)
-      ..add(GPreferenceFragmentData__asEditTextPreference.serializer)
-      ..add(GPreferenceFragmentData__asListPreference.serializer)
-      ..add(GPreferenceFragmentData__asMultiSelectListPreference.serializer)
-      ..add(GPreferenceFragmentData__asSwitchPreference.serializer)
-      ..add(GPreferenceFragmentData__base.serializer)
-      ..add(GPreferenceFragmentReq.serializer)
-      ..add(GPreferenceFragmentVars.serializer)
       ..add(GPrimitiveFilterFragmentData__asCheckBoxFilter.serializer)
       ..add(GPrimitiveFilterFragmentData__asHeaderFilter.serializer)
       ..add(GPrimitiveFilterFragmentData__asSelectFilter.serializer)
       ..add(GPrimitiveFilterFragmentData__asSeparatorFilter.serializer)
       ..add(GPrimitiveFilterFragmentData__asSortFilter.serializer)
-      ..add(GPrimitiveFilterFragmentData__asSortFilter_SortFilterDefault
-          .serializer)
+      ..add(GPrimitiveFilterFragmentData__asSortFilter_sortState.serializer)
       ..add(GPrimitiveFilterFragmentData__asTextFilter.serializer)
       ..add(GPrimitiveFilterFragmentData__asTriStateFilter.serializer)
       ..add(GPrimitiveFilterFragmentData__base.serializer)
@@ -228,6 +240,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSocksProxyFragmentReq.serializer)
       ..add(GSocksProxyFragmentVars.serializer)
       ..add(GSortOrder.serializer)
+      ..add(GSortSelectionFragmentData.serializer)
+      ..add(GSortSelectionFragmentReq.serializer)
+      ..add(GSortSelectionFragmentVars.serializer)
       ..add(GSortSelectionInput.serializer)
       ..add(GSourceByIdData.serializer)
       ..add(GSourceByIdData_source.serializer)
@@ -235,6 +250,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSourceByIdReq.serializer)
       ..add(GSourceByIdVars.serializer)
       ..add(GSourceConditionInput.serializer)
+      ..add(GSourceFilterByIdData.serializer)
+      ..add(GSourceFilterByIdData_source.serializer)
+      ..add(GSourceFilterByIdData_source_filters.serializer)
+      ..add(GSourceFilterByIdReq.serializer)
+      ..add(GSourceFilterByIdVars.serializer)
       ..add(GSourceFilterInput.serializer)
       ..add(GSourceFragmentData.serializer)
       ..add(GSourceFragmentData_extension.serializer)
@@ -246,18 +266,41 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSourceListData_sources_nodes_extension.serializer)
       ..add(GSourceListReq.serializer)
       ..add(GSourceListVars.serializer)
+      ..add(GSourceMangaPageData.serializer)
+      ..add(GSourceMangaPageData_mangas.serializer)
+      ..add(GSourceMangaPageData_mangas_lastReadChapter.serializer)
+      ..add(GSourceMangaPageData_mangas_lastReadChapter_meta.serializer)
+      ..add(GSourceMangaPageData_mangas_latestFetchedChapter.serializer)
+      ..add(GSourceMangaPageData_mangas_latestFetchedChapter_meta.serializer)
+      ..add(GSourceMangaPageData_mangas_latestReadChapter.serializer)
+      ..add(GSourceMangaPageData_mangas_latestReadChapter_meta.serializer)
+      ..add(GSourceMangaPageData_mangas_latestUploadedChapter.serializer)
+      ..add(GSourceMangaPageData_mangas_latestUploadedChapter_meta.serializer)
+      ..add(GSourceMangaPageData_mangas_meta.serializer)
+      ..add(GSourceMangaPageData_mangas_source.serializer)
+      ..add(GSourceMangaPageData_mangas_source_extension.serializer)
+      ..add(GSourceMangaPageReq.serializer)
+      ..add(GSourceMangaPageVars.serializer)
       ..add(GSourceMetaTypeInput.serializer)
       ..add(GSourceOrderBy.serializer)
-      ..add(GSourcePreferenceChangeInput.serializer)
-      ..add(GSourcePreferenceFragmentData__asCheckBoxPreference.serializer)
-      ..add(GSourcePreferenceFragmentData__asEditTextPreference.serializer)
-      ..add(GSourcePreferenceFragmentData__asListPreference.serializer)
+      ..add(GSourceOrderInput.serializer)
+      ..add(GSourcePreferenceByIdData.serializer)
+      ..add(GSourcePreferenceByIdData_source.serializer)
+      ..add(GSourcePreferenceByIdData_source_preferences__asCheckBoxPreference
+          .serializer)
+      ..add(GSourcePreferenceByIdData_source_preferences__asEditTextPreference
+          .serializer)
+      ..add(GSourcePreferenceByIdData_source_preferences__asListPreference
+          .serializer)
       ..add(
-          GSourcePreferenceFragmentData__asMultiSelectListPreference.serializer)
-      ..add(GSourcePreferenceFragmentData__asSwitchPreference.serializer)
-      ..add(GSourcePreferenceFragmentData__base.serializer)
-      ..add(GSourcePreferenceFragmentReq.serializer)
-      ..add(GSourcePreferenceFragmentVars.serializer)
+          GSourcePreferenceByIdData_source_preferences__asMultiSelectListPreference
+              .serializer)
+      ..add(GSourcePreferenceByIdData_source_preferences__asSwitchPreference
+          .serializer)
+      ..add(GSourcePreferenceByIdData_source_preferences__base.serializer)
+      ..add(GSourcePreferenceByIdReq.serializer)
+      ..add(GSourcePreferenceByIdVars.serializer)
+      ..add(GSourcePreferenceChangeInput.serializer)
       ..add(GStartDownloaderInput.serializer)
       ..add(GStopDownloaderInput.serializer)
       ..add(GStringFilterInput.serializer)
@@ -316,8 +359,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GTrackRecordConditionInput.serializer)
       ..add(GTrackRecordFilterInput.serializer)
       ..add(GTrackRecordOrderBy.serializer)
+      ..add(GTrackRecordOrderInput.serializer)
       ..add(GTrackerConditionInput.serializer)
       ..add(GTrackerOrderBy.serializer)
+      ..add(GTrackerOrderInput.serializer)
       ..add(GTriState.serializer)
       ..add(GUnbindTrackInput.serializer)
       ..add(GUpdateAutoDownloadNewChaptersLimitData.serializer)
@@ -459,7 +504,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUpdateSourceInParallelData_setSettings_settings.serializer)
       ..add(GUpdateSourceInParallelReq.serializer)
       ..add(GUpdateSourceInParallelVars.serializer)
+      ..add(GUpdateSourcePreferenceData.serializer)
+      ..add(GUpdateSourcePreferenceData_updateSourcePreference.serializer)
       ..add(GUpdateSourcePreferenceInput.serializer)
+      ..add(GUpdateSourcePreferenceReq.serializer)
+      ..add(GUpdateSourcePreferenceVars.serializer)
       ..add(GUpdateState.serializer)
       ..add(GUpdateStopInput.serializer)
       ..add(GUpdateStrategy.serializer)
@@ -521,29 +570,60 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<
               GFetchExtensionListData_fetchExtensions_extensions>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GFetchSourceMangaData_fetchSourceManga_mangas)
+          ]),
+          () =>
+              new ListBuilder<GFetchSourceMangaData_fetchSourceManga_mangas>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GFetchSourceMangaData_fetchSourceManga_mangas_lastReadChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GFetchSourceMangaData_fetchSourceManga_mangas_lastReadChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GFetchSourceMangaData_fetchSourceManga_mangas_latestFetchedChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GFetchSourceMangaData_fetchSourceManga_mangas_latestFetchedChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GFetchSourceMangaData_fetchSourceManga_mangas_latestReadChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GFetchSourceMangaData_fetchSourceManga_mangas_latestReadChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GFetchSourceMangaData_fetchSourceManga_mangas_latestUploadedChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GFetchSourceMangaData_fetchSourceManga_mangas_latestUploadedChapter_meta>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GFilterChangeInput)]),
           () => new ListBuilder<GFilterChangeInput>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(GFilterFragmentData__asGroupFilter_filters)
+            const FullType(GFilterFragmentData__asGroupFilter_groupState)
           ]),
-          () => new ListBuilder<GFilterFragmentData__asGroupFilter_filters>())
+          () =>
+              new ListBuilder<GFilterFragmentData__asGroupFilter_groupState>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GFullSourceByIdData_source_preferences)]),
-          () => new ListBuilder<GFullSourceByIdData_source_preferences>())
+          const FullType(BuiltList, const [const FullType(GLongString)]),
+          () => new ListBuilder<GLongString>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GFullSourceByIdData_source_filters)]),
-          () => new ListBuilder<GFullSourceByIdData_source_filters>())
+          const FullType(BuiltList, const [const FullType(GLongString)]),
+          () => new ListBuilder<GLongString>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GFullSourceFragmentData_preferences)]),
-          () => new ListBuilder<GFullSourceFragmentData_preferences>())
+          const FullType(BuiltList, const [const FullType(GLongString)]),
+          () => new ListBuilder<GLongString>())
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GFullSourceFragmentData_filters)]),
-          () => new ListBuilder<GFullSourceFragmentData_filters>())
+          const FullType(BuiltList, const [const FullType(GLongString)]),
+          () => new ListBuilder<GLongString>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GLongString)]),
           () => new ListBuilder<GLongString>())
@@ -583,6 +663,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(GMangaStatus)]),
           () => new ListBuilder<GMangaStatus>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GMangaStatus)]),
+          () => new ListBuilder<GMangaStatus>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GMangaStatus)]),
+          () => new ListBuilder<GMangaStatus>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GMangaStatus)]),
+          () => new ListBuilder<GMangaStatus>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GMangaStatus)]),
+          () => new ListBuilder<GMangaStatus>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GMetaFilterInput)]),
           () => new ListBuilder<GMetaFilterInput>())
       ..addBuilderFactory(
@@ -593,6 +685,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(GServerUpdateData_checkForServerUpdates)]),
           () => new ListBuilder<GServerUpdateData_checkForServerUpdates>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GSourceFilterByIdData_source_filters)]),
+          () => new ListBuilder<GSourceFilterByIdData_source_filters>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GSourceFilterInput)]),
           () => new ListBuilder<GSourceFilterInput>())
       ..addBuilderFactory(
@@ -602,6 +698,41 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(GSourceListData_sources_nodes)]),
           () => new ListBuilder<GSourceListData_sources_nodes>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GSourceMangaPageData_mangas)]),
+          () => new ListBuilder<GSourceMangaPageData_mangas>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GSourceMangaPageData_mangas_lastReadChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GSourceMangaPageData_mangas_lastReadChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GSourceMangaPageData_mangas_latestFetchedChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GSourceMangaPageData_mangas_latestFetchedChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GSourceMangaPageData_mangas_latestReadChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GSourceMangaPageData_mangas_latestReadChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GSourceMangaPageData_mangas_latestUploadedChapter_meta)
+          ]),
+          () => new ListBuilder<
+              GSourceMangaPageData_mangas_latestUploadedChapter_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GSourcePreferenceByIdData_source_preferences)
+          ]),
+          () => new ListBuilder<GSourcePreferenceByIdData_source_preferences>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GTrackRecordFilterInput)]),
@@ -746,6 +877,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GFetchSourceMangaData_fetchSourceManga_mangas_meta)
+          ]),
+          () => new ListBuilder<
+              GFetchSourceMangaData_fetchSourceManga_mangas_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GMangaFragmentData_meta)]),
           () => new ListBuilder<GMangaFragmentData_meta>())
@@ -753,6 +893,109 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GSourceMangaPageData_mangas_meta)]),
+          () => new ListBuilder<GSourceMangaPageData_mangas_meta>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
@@ -804,6 +1047,42 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(bool)]),
           () => new ListBuilder<bool>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(bool)]),
+          () => new ListBuilder<bool>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(bool)]),
+          () => new ListBuilder<bool>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(bool)]),
+          () => new ListBuilder<bool>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(bool)]),
+          () => new ListBuilder<bool>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(double)]),
           () => new ListBuilder<double>())
       ..addBuilderFactory(
@@ -845,6 +1124,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())

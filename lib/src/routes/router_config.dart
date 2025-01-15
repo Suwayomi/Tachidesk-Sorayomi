@@ -5,9 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../constants/enum.dart';
 import '../features/about/presentation/about/about_screen.dart';
-import '../features/browse_center/domain/filter/filter_model.dart';
+import '../features/browse_center/domain/source/source_model.dart';
 import '../features/browse_center/presentation/browse/browse_screen.dart';
 import '../features/browse_center/presentation/extension/extension_screen.dart';
 import '../features/browse_center/presentation/global_search/global_search_screen.dart';
@@ -121,12 +120,12 @@ GoRouter routerConfig(ref) {
                     TypedGoRoute<BrowseSourceRoute>(
                       path: Routes.source,
                       routes: [
+                        TypedGoRoute<SourcePreferenceRoute>(
+                          path: Routes.sourcePreference,
+                        ),
                         TypedGoRoute<SourceTypeRoute>(
                           path: Routes.sourceMangaType,
                         ),
-                        TypedGoRoute<SourcePreferenceRoute>(
-                          path: Routes.sourcePreference,
-                        )
                       ],
                     ),
                   ],

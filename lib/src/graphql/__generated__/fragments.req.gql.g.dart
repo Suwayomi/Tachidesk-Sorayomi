@@ -211,12 +211,13 @@ class GPageInfoFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GPageInfoFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GPageInfoFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GPageInfoFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GPageInfoFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GPageInfoFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

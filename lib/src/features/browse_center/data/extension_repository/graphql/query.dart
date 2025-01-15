@@ -1,6 +1,8 @@
 import 'package:http/http.dart';
 
-import '__generated__/query.req.gql.dart';
+import 'queries/__generated__/fetch_extension_list.req.gql.dart';
+import 'queries/__generated__/install_external_extension.req.gql.dart';
+import 'queries/__generated__/update_extension.req.gql.dart';
 
 abstract class ExtensionQuery {
   static GFetchExtensionListReq extensionList() => GFetchExtensionListReq();

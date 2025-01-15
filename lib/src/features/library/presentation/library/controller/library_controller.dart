@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -19,8 +20,7 @@ import '../../../domain/category/category_model.dart';
 part 'library_controller.g.dart';
 
 @riverpod
-Future<List<Manga>?> categoryMangaList(
-    CategoryMangaListRef ref, int categoryId) async {
+Future<List<Manga>?> categoryMangaList(Ref ref, int categoryId) async {
   final token = CancelToken();
   ref.onDispose(token.cancel);
   final result = await ref

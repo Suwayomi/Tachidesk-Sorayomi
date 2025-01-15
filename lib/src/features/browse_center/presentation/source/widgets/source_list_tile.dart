@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../constants/enum.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/server_image.dart';
@@ -27,7 +26,7 @@ class SourceListTile extends ConsumerWidget {
         ref.read(sourceLastUsedProvider.notifier).update(source.id.value);
         SourceTypeRoute(
           sourceId: source.id.value,
-          sourceType: SourceType.popular,
+          sourceType: SourceType.POPULAR.name,
         ).go(context);
       }),
       leading: ClipRRect(
@@ -49,7 +48,7 @@ class SourceListTile extends ConsumerWidget {
                     .update(source.id.value);
                 SourceTypeRoute(
                   sourceId: source.id.value,
-                  sourceType: SourceType.latest,
+                  sourceType: SourceType.LATEST.name,
                 ).go(context);
               },
               child: Text(context.l10n.latest),

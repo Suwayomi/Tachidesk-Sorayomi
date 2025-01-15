@@ -166,6 +166,58 @@ final BuiltSet<GDownloadState> _$gDownloadStateValues =
   _$gDownloadStateERROR,
 ]);
 
+const GDownloadUpdateType _$gDownloadUpdateTypeQUEUED =
+    const GDownloadUpdateType._('QUEUED');
+const GDownloadUpdateType _$gDownloadUpdateTypeDEQUEUED =
+    const GDownloadUpdateType._('DEQUEUED');
+const GDownloadUpdateType _$gDownloadUpdateTypePAUSED =
+    const GDownloadUpdateType._('PAUSED');
+const GDownloadUpdateType _$gDownloadUpdateTypeSTOPPED =
+    const GDownloadUpdateType._('STOPPED');
+const GDownloadUpdateType _$gDownloadUpdateTypePROGRESS =
+    const GDownloadUpdateType._('PROGRESS');
+const GDownloadUpdateType _$gDownloadUpdateTypeFINISHED =
+    const GDownloadUpdateType._('FINISHED');
+const GDownloadUpdateType _$gDownloadUpdateTypeERROR =
+    const GDownloadUpdateType._('ERROR');
+const GDownloadUpdateType _$gDownloadUpdateTypePOSITION =
+    const GDownloadUpdateType._('POSITION');
+
+GDownloadUpdateType _$gDownloadUpdateTypeValueOf(String name) {
+  switch (name) {
+    case 'QUEUED':
+      return _$gDownloadUpdateTypeQUEUED;
+    case 'DEQUEUED':
+      return _$gDownloadUpdateTypeDEQUEUED;
+    case 'PAUSED':
+      return _$gDownloadUpdateTypePAUSED;
+    case 'STOPPED':
+      return _$gDownloadUpdateTypeSTOPPED;
+    case 'PROGRESS':
+      return _$gDownloadUpdateTypePROGRESS;
+    case 'FINISHED':
+      return _$gDownloadUpdateTypeFINISHED;
+    case 'ERROR':
+      return _$gDownloadUpdateTypeERROR;
+    case 'POSITION':
+      return _$gDownloadUpdateTypePOSITION;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<GDownloadUpdateType> _$gDownloadUpdateTypeValues =
+    new BuiltSet<GDownloadUpdateType>(const <GDownloadUpdateType>[
+  _$gDownloadUpdateTypeQUEUED,
+  _$gDownloadUpdateTypeDEQUEUED,
+  _$gDownloadUpdateTypePAUSED,
+  _$gDownloadUpdateTypeSTOPPED,
+  _$gDownloadUpdateTypePROGRESS,
+  _$gDownloadUpdateTypeFINISHED,
+  _$gDownloadUpdateTypeERROR,
+  _$gDownloadUpdateTypePOSITION,
+]);
+
 const GExtensionOrderBy _$gExtensionOrderByPKG_NAME =
     const GExtensionOrderBy._('PKG_NAME');
 const GExtensionOrderBy _$gExtensionOrderByNAME =
@@ -648,6 +700,8 @@ Serializer<GCategoryMetaTypeInput> _$gCategoryMetaTypeInputSerializer =
     new _$GCategoryMetaTypeInputSerializer();
 Serializer<GCategoryOrderBy> _$gCategoryOrderBySerializer =
     new _$GCategoryOrderBySerializer();
+Serializer<GCategoryOrderInput> _$gCategoryOrderInputSerializer =
+    new _$GCategoryOrderInputSerializer();
 Serializer<GChapterConditionInput> _$gChapterConditionInputSerializer =
     new _$GChapterConditionInputSerializer();
 Serializer<GChapterFilterInput> _$gChapterFilterInputSerializer =
@@ -656,6 +710,8 @@ Serializer<GChapterMetaTypeInput> _$gChapterMetaTypeInputSerializer =
     new _$GChapterMetaTypeInputSerializer();
 Serializer<GChapterOrderBy> _$gChapterOrderBySerializer =
     new _$GChapterOrderBySerializer();
+Serializer<GChapterOrderInput> _$gChapterOrderInputSerializer =
+    new _$GChapterOrderInputSerializer();
 Serializer<GClearCachedImagesInput> _$gClearCachedImagesInputSerializer =
     new _$GClearCachedImagesInputSerializer();
 Serializer<GClearDownloaderInput> _$gClearDownloaderInputSerializer =
@@ -690,10 +746,14 @@ Serializer<GDequeueChapterDownloadsInput>
     new _$GDequeueChapterDownloadsInputSerializer();
 Serializer<GDoubleFilterInput> _$gDoubleFilterInputSerializer =
     new _$GDoubleFilterInputSerializer();
+Serializer<GDownloadChangedInput> _$gDownloadChangedInputSerializer =
+    new _$GDownloadChangedInputSerializer();
 Serializer<GDownloaderState> _$gDownloaderStateSerializer =
     new _$GDownloaderStateSerializer();
 Serializer<GDownloadState> _$gDownloadStateSerializer =
     new _$GDownloadStateSerializer();
+Serializer<GDownloadUpdateType> _$gDownloadUpdateTypeSerializer =
+    new _$GDownloadUpdateTypeSerializer();
 Serializer<GEnqueueChapterDownloadInput>
     _$gEnqueueChapterDownloadInputSerializer =
     new _$GEnqueueChapterDownloadInputSerializer();
@@ -706,6 +766,8 @@ Serializer<GExtensionFilterInput> _$gExtensionFilterInputSerializer =
     new _$GExtensionFilterInputSerializer();
 Serializer<GExtensionOrderBy> _$gExtensionOrderBySerializer =
     new _$GExtensionOrderBySerializer();
+Serializer<GExtensionOrderInput> _$gExtensionOrderInputSerializer =
+    new _$GExtensionOrderInputSerializer();
 Serializer<GFetchChapterPagesInput> _$gFetchChapterPagesInputSerializer =
     new _$GFetchChapterPagesInputSerializer();
 Serializer<GFetchChaptersInput> _$gFetchChaptersInputSerializer =
@@ -750,6 +812,8 @@ Serializer<GMangaMetaTypeInput> _$gMangaMetaTypeInputSerializer =
     new _$GMangaMetaTypeInputSerializer();
 Serializer<GMangaOrderBy> _$gMangaOrderBySerializer =
     new _$GMangaOrderBySerializer();
+Serializer<GMangaOrderInput> _$gMangaOrderInputSerializer =
+    new _$GMangaOrderInputSerializer();
 Serializer<GMangaStatus> _$gMangaStatusSerializer =
     new _$GMangaStatusSerializer();
 Serializer<GMangaStatusFilterInput> _$gMangaStatusFilterInputSerializer =
@@ -760,6 +824,8 @@ Serializer<GMetaFilterInput> _$gMetaFilterInputSerializer =
     new _$GMetaFilterInputSerializer();
 Serializer<GMetaOrderBy> _$gMetaOrderBySerializer =
     new _$GMetaOrderBySerializer();
+Serializer<GMetaOrderInput> _$gMetaOrderInputSerializer =
+    new _$GMetaOrderInputSerializer();
 Serializer<GPartialSettingsTypeInput> _$gPartialSettingsTypeInputSerializer =
     new _$GPartialSettingsTypeInputSerializer();
 Serializer<GReorderChapterDownloadInput>
@@ -794,6 +860,8 @@ Serializer<GSourceMetaTypeInput> _$gSourceMetaTypeInputSerializer =
     new _$GSourceMetaTypeInputSerializer();
 Serializer<GSourceOrderBy> _$gSourceOrderBySerializer =
     new _$GSourceOrderBySerializer();
+Serializer<GSourceOrderInput> _$gSourceOrderInputSerializer =
+    new _$GSourceOrderInputSerializer();
 Serializer<GSourcePreferenceChangeInput>
     _$gSourcePreferenceChangeInputSerializer =
     new _$GSourcePreferenceChangeInputSerializer();
@@ -807,6 +875,8 @@ Serializer<GTrackerConditionInput> _$gTrackerConditionInputSerializer =
     new _$GTrackerConditionInputSerializer();
 Serializer<GTrackerOrderBy> _$gTrackerOrderBySerializer =
     new _$GTrackerOrderBySerializer();
+Serializer<GTrackerOrderInput> _$gTrackerOrderInputSerializer =
+    new _$GTrackerOrderInputSerializer();
 Serializer<GTrackProgressInput> _$gTrackProgressInputSerializer =
     new _$GTrackProgressInputSerializer();
 Serializer<GTrackRecordConditionInput> _$gTrackRecordConditionInputSerializer =
@@ -815,6 +885,8 @@ Serializer<GTrackRecordFilterInput> _$gTrackRecordFilterInputSerializer =
     new _$GTrackRecordFilterInputSerializer();
 Serializer<GTrackRecordOrderBy> _$gTrackRecordOrderBySerializer =
     new _$GTrackRecordOrderBySerializer();
+Serializer<GTrackRecordOrderInput> _$gTrackRecordOrderInputSerializer =
+    new _$GTrackRecordOrderInputSerializer();
 Serializer<GTriState> _$gTriStateSerializer = new _$GTriStateSerializer();
 Serializer<GUnbindTrackInput> _$gUnbindTrackInputSerializer =
     new _$GUnbindTrackInputSerializer();
@@ -986,6 +1058,22 @@ class _$GBooleanFilterInputSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(bool)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(bool)])));
+    }
     value = object.equalTo;
     if (value != null) {
       result
@@ -1050,6 +1138,22 @@ class _$GBooleanFilterInputSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(bool)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(bool)])));
+    }
     value = object.notIn;
     if (value != null) {
       result
@@ -1076,6 +1180,18 @@ class _$GBooleanFilterInputSerializer
         case 'distinctFrom':
           result.distinctFrom = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(bool)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(bool)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo = serializers.deserialize(value,
@@ -1114,6 +1230,18 @@ class _$GBooleanFilterInputSerializer
         case 'notEqualTo':
           result.notEqualTo = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(bool)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(bool)]))!
+              as BuiltList<Object?>);
           break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
@@ -1409,6 +1537,64 @@ class _$GCategoryOrderBySerializer
   GCategoryOrderBy deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GCategoryOrderBy.valueOf(serialized as String);
+}
+
+class _$GCategoryOrderInputSerializer
+    implements StructuredSerializer<GCategoryOrderInput> {
+  @override
+  final Iterable<Type> types = const [
+    GCategoryOrderInput,
+    _$GCategoryOrderInput
+  ];
+  @override
+  final String wireName = 'GCategoryOrderInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCategoryOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GCategoryOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GCategoryOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCategoryOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+                  specifiedType: const FullType(GCategoryOrderBy))!
+              as GCategoryOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GChapterConditionInputSerializer
@@ -1977,6 +2163,61 @@ class _$GChapterOrderBySerializer
   GChapterOrderBy deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GChapterOrderBy.valueOf(serialized as String);
+}
+
+class _$GChapterOrderInputSerializer
+    implements StructuredSerializer<GChapterOrderInput> {
+  @override
+  final Iterable<Type> types = const [GChapterOrderInput, _$GChapterOrderInput];
+  @override
+  final String wireName = 'GChapterOrderInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GChapterOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GChapterOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GChapterOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GChapterOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+                  specifiedType: const FullType(GChapterOrderBy))!
+              as GChapterOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GClearCachedImagesInputSerializer
@@ -2895,6 +3136,22 @@ class _$GDoubleFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
     value = object.equalTo;
     if (value != null) {
       result
@@ -2959,6 +3216,22 @@ class _$GDoubleFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
     value = object.notIn;
     if (value != null) {
       result
@@ -2985,6 +3258,18 @@ class _$GDoubleFilterInputSerializer
         case 'distinctFrom':
           result.distinctFrom = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double?;
+          break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo = serializers.deserialize(value,
@@ -3024,11 +3309,71 @@ class _$GDoubleFilterInputSerializer
           result.notEqualTo = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double?;
           break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
+          break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(double)]))!
               as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GDownloadChangedInputSerializer
+    implements StructuredSerializer<GDownloadChangedInput> {
+  @override
+  final Iterable<Type> types = const [
+    GDownloadChangedInput,
+    _$GDownloadChangedInput
+  ];
+  @override
+  final String wireName = 'GDownloadChangedInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GDownloadChangedInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[];
+    Object? value;
+    value = object.maxUpdates;
+    if (value != null) {
+      result
+        ..add('maxUpdates')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  GDownloadChangedInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GDownloadChangedInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'maxUpdates':
+          result.maxUpdates = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -3071,6 +3416,24 @@ class _$GDownloadStateSerializer
   GDownloadState deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GDownloadState.valueOf(serialized as String);
+}
+
+class _$GDownloadUpdateTypeSerializer
+    implements PrimitiveSerializer<GDownloadUpdateType> {
+  @override
+  final Iterable<Type> types = const <Type>[GDownloadUpdateType];
+  @override
+  final String wireName = 'GDownloadUpdateType';
+
+  @override
+  Object serialize(Serializers serializers, GDownloadUpdateType object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.name;
+
+  @override
+  GDownloadUpdateType deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      GDownloadUpdateType.valueOf(serialized as String);
 }
 
 class _$GEnqueueChapterDownloadInputSerializer
@@ -3598,6 +3961,64 @@ class _$GExtensionOrderBySerializer
       GExtensionOrderBy.valueOf(serialized as String);
 }
 
+class _$GExtensionOrderInputSerializer
+    implements StructuredSerializer<GExtensionOrderInput> {
+  @override
+  final Iterable<Type> types = const [
+    GExtensionOrderInput,
+    _$GExtensionOrderInput
+  ];
+  @override
+  final String wireName = 'GExtensionOrderInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExtensionOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GExtensionOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GExtensionOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExtensionOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+                  specifiedType: const FullType(GExtensionOrderBy))!
+              as GExtensionOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GFetchChapterPagesInputSerializer
     implements StructuredSerializer<GFetchChapterPagesInput> {
   @override
@@ -4108,6 +4529,22 @@ class _$GFloatFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
     value = object.equalTo;
     if (value != null) {
       result
@@ -4172,6 +4609,22 @@ class _$GFloatFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
     value = object.notIn;
     if (value != null) {
       result
@@ -4198,6 +4651,18 @@ class _$GFloatFilterInputSerializer
         case 'distinctFrom':
           result.distinctFrom = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double?;
+          break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo = serializers.deserialize(value,
@@ -4236,6 +4701,18 @@ class _$GFloatFilterInputSerializer
         case 'notEqualTo':
           result.notEqualTo = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double?;
+          break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
           break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
@@ -4396,6 +4873,22 @@ class _$GIntFilterInputSerializer
         ..add('distinctFrom')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(int)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(int)])));
+    }
     value = object.equalTo;
     if (value != null) {
       result
@@ -4453,6 +4946,22 @@ class _$GIntFilterInputSerializer
         ..add('notEqualTo')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(int)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(int)])));
+    }
     value = object.notIn;
     if (value != null) {
       result
@@ -4479,6 +4988,18 @@ class _$GIntFilterInputSerializer
         case 'distinctFrom':
           result.distinctFrom = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
+          break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo = serializers.deserialize(value,
@@ -4517,6 +5038,18 @@ class _$GIntFilterInputSerializer
         case 'notEqualTo':
           result.notEqualTo = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
+          break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))!
+              as BuiltList<Object?>);
           break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
@@ -4742,6 +5275,22 @@ class _$GLongFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GLongString)));
     }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GLongString)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GLongString)])));
+    }
     value = object.equalTo;
     if (value != null) {
       result
@@ -4806,6 +5355,22 @@ class _$GLongFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GLongString)));
     }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GLongString)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GLongString)])));
+    }
     value = object.notIn;
     if (value != null) {
       result
@@ -4832,6 +5397,18 @@ class _$GLongFilterInputSerializer
         case 'distinctFrom':
           result.distinctFrom.replace(serializers.deserialize(value,
               specifiedType: const FullType(GLongString))! as GLongString);
+          break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GLongString)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GLongString)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo.replace(serializers.deserialize(value,
@@ -4870,6 +5447,18 @@ class _$GLongFilterInputSerializer
         case 'notEqualTo':
           result.notEqualTo.replace(serializers.deserialize(value,
               specifiedType: const FullType(GLongString))! as GLongString);
+          break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GLongString)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GLongString)]))!
+              as BuiltList<Object?>);
           break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
@@ -5467,6 +6056,59 @@ class _$GMangaOrderBySerializer implements PrimitiveSerializer<GMangaOrderBy> {
       GMangaOrderBy.valueOf(serialized as String);
 }
 
+class _$GMangaOrderInputSerializer
+    implements StructuredSerializer<GMangaOrderInput> {
+  @override
+  final Iterable<Type> types = const [GMangaOrderInput, _$GMangaOrderInput];
+  @override
+  final String wireName = 'GMangaOrderInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GMangaOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GMangaOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GMangaOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GMangaOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+              specifiedType: const FullType(GMangaOrderBy))! as GMangaOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GMangaStatusSerializer implements PrimitiveSerializer<GMangaStatus> {
   @override
   final Iterable<Type> types = const <Type>[GMangaStatus];
@@ -5506,6 +6148,22 @@ class _$GMangaStatusFilterInputSerializer
         ..add('distinctFrom')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GMangaStatus)));
+    }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GMangaStatus)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GMangaStatus)])));
     }
     value = object.equalTo;
     if (value != null) {
@@ -5571,6 +6229,22 @@ class _$GMangaStatusFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GMangaStatus)));
     }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GMangaStatus)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GMangaStatus)])));
+    }
     value = object.notIn;
     if (value != null) {
       result
@@ -5597,6 +6271,18 @@ class _$GMangaStatusFilterInputSerializer
         case 'distinctFrom':
           result.distinctFrom = serializers.deserialize(value,
               specifiedType: const FullType(GMangaStatus)) as GMangaStatus?;
+          break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GMangaStatus)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GMangaStatus)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo = serializers.deserialize(value,
@@ -5635,6 +6321,18 @@ class _$GMangaStatusFilterInputSerializer
         case 'notEqualTo':
           result.notEqualTo = serializers.deserialize(value,
               specifiedType: const FullType(GMangaStatus)) as GMangaStatus?;
+          break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GMangaStatus)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GMangaStatus)]))!
+              as BuiltList<Object?>);
           break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
@@ -5824,6 +6522,59 @@ class _$GMetaOrderBySerializer implements PrimitiveSerializer<GMetaOrderBy> {
       GMetaOrderBy.valueOf(serialized as String);
 }
 
+class _$GMetaOrderInputSerializer
+    implements StructuredSerializer<GMetaOrderInput> {
+  @override
+  final Iterable<Type> types = const [GMetaOrderInput, _$GMetaOrderInput];
+  @override
+  final String wireName = 'GMetaOrderInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GMetaOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GMetaOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GMetaOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GMetaOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+              specifiedType: const FullType(GMetaOrderBy))! as GMetaOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GPartialSettingsTypeInputSerializer
     implements StructuredSerializer<GPartialSettingsTypeInput> {
   @override
@@ -5971,6 +6722,13 @@ class _$GPartialSettingsTypeInputSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.flareSolverrAsResponseFallback;
+    if (value != null) {
+      result
+        ..add('flareSolverrAsResponseFallback')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.flareSolverrEnabled;
     if (value != null) {
       result
@@ -6011,13 +6769,6 @@ class _$GPartialSettingsTypeInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
-    value = object.gqlDebugLogsEnabled;
-    if (value != null) {
-      result
-        ..add('gqlDebugLogsEnabled')
-        ..add(
-            serializers.serialize(value, specifiedType: const FullType(bool)));
-    }
     value = object.initialOpenInBrowserEnabled;
     if (value != null) {
       result
@@ -6036,6 +6787,26 @@ class _$GPartialSettingsTypeInputSerializer
     if (value != null) {
       result
         ..add('localSourcePath')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.maxLogFileSize;
+    if (value != null) {
+      result
+        ..add('maxLogFileSize')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.maxLogFiles;
+    if (value != null) {
+      result
+        ..add('maxLogFiles')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.maxLogFolderSize;
+    if (value != null) {
+      result
+        ..add('maxLogFolderSize')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -6227,6 +6998,10 @@ class _$GPartialSettingsTypeInputSerializer
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
+        case 'flareSolverrAsResponseFallback':
+          result.flareSolverrAsResponseFallback = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
         case 'flareSolverrEnabled':
           result.flareSolverrEnabled = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -6251,10 +7026,6 @@ class _$GPartialSettingsTypeInputSerializer
           result.globalUpdateInterval = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double?;
           break;
-        case 'gqlDebugLogsEnabled':
-          result.gqlDebugLogsEnabled = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool?;
-          break;
         case 'initialOpenInBrowserEnabled':
           result.initialOpenInBrowserEnabled = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -6265,6 +7036,18 @@ class _$GPartialSettingsTypeInputSerializer
           break;
         case 'localSourcePath':
           result.localSourcePath = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'maxLogFileSize':
+          result.maxLogFileSize = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'maxLogFiles':
+          result.maxLogFiles = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'maxLogFolderSize':
+          result.maxLogFolderSize = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'maxSourcesInParallel':
@@ -7246,6 +8029,59 @@ class _$GSourceOrderBySerializer
       GSourceOrderBy.valueOf(serialized as String);
 }
 
+class _$GSourceOrderInputSerializer
+    implements StructuredSerializer<GSourceOrderInput> {
+  @override
+  final Iterable<Type> types = const [GSourceOrderInput, _$GSourceOrderInput];
+  @override
+  final String wireName = 'GSourceOrderInput';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GSourceOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GSourceOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GSourceOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GSourceOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+              specifiedType: const FullType(GSourceOrderBy))! as GSourceOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GSourcePreferenceChangeInputSerializer
     implements StructuredSerializer<GSourcePreferenceChangeInput> {
   @override
@@ -7468,12 +8304,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.distinctFromAll;
+    if (value != null) {
+      result
+        ..add('distinctFromAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.distinctFromAny;
+    if (value != null) {
+      result
+        ..add('distinctFromAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.distinctFromInsensitive;
     if (value != null) {
       result
         ..add('distinctFromInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.distinctFromInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('distinctFromInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.distinctFromInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('distinctFromInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.endsWith;
     if (value != null) {
@@ -7482,12 +8350,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.endsWithAll;
+    if (value != null) {
+      result
+        ..add('endsWithAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.endsWithAny;
+    if (value != null) {
+      result
+        ..add('endsWithAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.endsWithInsensitive;
     if (value != null) {
       result
         ..add('endsWithInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.endsWithInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('endsWithInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.endsWithInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('endsWithInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.equalTo;
     if (value != null) {
@@ -7547,12 +8447,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.includesAll;
+    if (value != null) {
+      result
+        ..add('includesAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.includesAny;
+    if (value != null) {
+      result
+        ..add('includesAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.includesInsensitive;
     if (value != null) {
       result
         ..add('includesInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.includesInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('includesInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.includesInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('includesInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.isNull;
     if (value != null) {
@@ -7596,12 +8528,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.likeAll;
+    if (value != null) {
+      result
+        ..add('likeAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.likeAny;
+    if (value != null) {
+      result
+        ..add('likeAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.likeInsensitive;
     if (value != null) {
       result
         ..add('likeInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.likeInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('likeInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.likeInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('likeInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.notDistinctFrom;
     if (value != null) {
@@ -7624,6 +8588,22 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.notEndsWithAll;
+    if (value != null) {
+      result
+        ..add('notEndsWithAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notEndsWithAny;
+    if (value != null) {
+      result
+        ..add('notEndsWithAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.notEndsWithInsensitive;
     if (value != null) {
       result
@@ -7631,12 +8611,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.notEndsWithInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('notEndsWithInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notEndsWithInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('notEndsWithInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.notEqualTo;
     if (value != null) {
       result
         ..add('notEqualTo')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.notEqualToAll;
+    if (value != null) {
+      result
+        ..add('notEqualToAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notEqualToAny;
+    if (value != null) {
+      result
+        ..add('notEqualToAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.notIn;
     if (value != null) {
@@ -7661,12 +8673,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.notIncludesAll;
+    if (value != null) {
+      result
+        ..add('notIncludesAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notIncludesAny;
+    if (value != null) {
+      result
+        ..add('notIncludesAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.notIncludesInsensitive;
     if (value != null) {
       result
         ..add('notIncludesInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.notIncludesInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('notIncludesInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notIncludesInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('notIncludesInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.notLike;
     if (value != null) {
@@ -7675,12 +8719,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.notLikeAll;
+    if (value != null) {
+      result
+        ..add('notLikeAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notLikeAny;
+    if (value != null) {
+      result
+        ..add('notLikeAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.notLikeInsensitive;
     if (value != null) {
       result
         ..add('notLikeInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.notLikeInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('notLikeInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notLikeInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('notLikeInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.notStartsWith;
     if (value != null) {
@@ -7689,12 +8765,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.notStartsWithAll;
+    if (value != null) {
+      result
+        ..add('notStartsWithAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notStartsWithAny;
+    if (value != null) {
+      result
+        ..add('notStartsWithAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.notStartsWithInsensitive;
     if (value != null) {
       result
         ..add('notStartsWithInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.notStartsWithInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('notStartsWithInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.notStartsWithInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('notStartsWithInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.startsWith;
     if (value != null) {
@@ -7703,12 +8811,44 @@ class _$GStringFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.startsWithAll;
+    if (value != null) {
+      result
+        ..add('startsWithAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.startsWithAny;
+    if (value != null) {
+      result
+        ..add('startsWithAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.startsWithInsensitive;
     if (value != null) {
       result
         ..add('startsWithInsensitive')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.startsWithInsensitiveAll;
+    if (value != null) {
+      result
+        ..add('startsWithInsensitiveAll')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.startsWithInsensitiveAny;
+    if (value != null) {
+      result
+        ..add('startsWithInsensitiveAny')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     return result;
   }
@@ -7729,17 +8869,67 @@ class _$GStringFilterInputSerializer
           result.distinctFrom = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'distinctFromAll':
+          result.distinctFromAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromAny':
+          result.distinctFromAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'distinctFromInsensitive':
           result.distinctFromInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'distinctFromInsensitiveAll':
+          result.distinctFromInsensitiveAll.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'distinctFromInsensitiveAny':
+          result.distinctFromInsensitiveAny.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'endsWith':
           result.endsWith = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'endsWithAll':
+          result.endsWithAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'endsWithAny':
+          result.endsWithAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'endsWithInsensitive':
           result.endsWithInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'endsWithInsensitiveAll':
+          result.endsWithInsensitiveAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'endsWithInsensitiveAny':
+          result.endsWithInsensitiveAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'equalTo':
           result.equalTo = serializers.deserialize(value,
@@ -7778,9 +8968,33 @@ class _$GStringFilterInputSerializer
           result.includes = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'includesAll':
+          result.includesAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'includesAny':
+          result.includesAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'includesInsensitive':
           result.includesInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'includesInsensitiveAll':
+          result.includesInsensitiveAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'includesInsensitiveAny':
+          result.includesInsensitiveAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'isNull':
           result.isNull = serializers.deserialize(value,
@@ -7806,9 +9020,33 @@ class _$GStringFilterInputSerializer
           result.like = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'likeAll':
+          result.likeAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'likeAny':
+          result.likeAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'likeInsensitive':
           result.likeInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'likeInsensitiveAll':
+          result.likeInsensitiveAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'likeInsensitiveAny':
+          result.likeInsensitiveAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'notDistinctFrom':
           result.notDistinctFrom = serializers.deserialize(value,
@@ -7822,13 +9060,51 @@ class _$GStringFilterInputSerializer
           result.notEndsWith = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'notEndsWithAll':
+          result.notEndsWithAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEndsWithAny':
+          result.notEndsWithAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'notEndsWithInsensitive':
           result.notEndsWithInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'notEndsWithInsensitiveAll':
+          result.notEndsWithInsensitiveAll.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEndsWithInsensitiveAny':
+          result.notEndsWithInsensitiveAny.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'notEqualTo':
           result.notEqualTo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'notEqualToAll':
+          result.notEqualToAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notEqualToAny':
+          result.notEqualToAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'notIn':
           result.notIn.replace(serializers.deserialize(value,
@@ -7846,33 +9122,133 @@ class _$GStringFilterInputSerializer
           result.notIncludes = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'notIncludesAll':
+          result.notIncludesAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notIncludesAny':
+          result.notIncludesAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'notIncludesInsensitive':
           result.notIncludesInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'notIncludesInsensitiveAll':
+          result.notIncludesInsensitiveAll.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notIncludesInsensitiveAny':
+          result.notIncludesInsensitiveAny.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'notLike':
           result.notLike = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'notLikeAll':
+          result.notLikeAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notLikeAny':
+          result.notLikeAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'notLikeInsensitive':
           result.notLikeInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'notLikeInsensitiveAll':
+          result.notLikeInsensitiveAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notLikeInsensitiveAny':
+          result.notLikeInsensitiveAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'notStartsWith':
           result.notStartsWith = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'notStartsWithAll':
+          result.notStartsWithAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notStartsWithAny':
+          result.notStartsWithAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'notStartsWithInsensitive':
           result.notStartsWithInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'notStartsWithInsensitiveAll':
+          result.notStartsWithInsensitiveAll.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'notStartsWithInsensitiveAny':
+          result.notStartsWithInsensitiveAny.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'startsWith':
           result.startsWith = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'startsWithAll':
+          result.startsWithAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'startsWithAny':
+          result.startsWithAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'startsWithInsensitive':
           result.startsWithInsensitive = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'startsWithInsensitiveAll':
+          result.startsWithInsensitiveAll.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'startsWithInsensitiveAny':
+          result.startsWithInsensitiveAny.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -7978,6 +9354,61 @@ class _$GTrackerOrderBySerializer
   GTrackerOrderBy deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GTrackerOrderBy.valueOf(serialized as String);
+}
+
+class _$GTrackerOrderInputSerializer
+    implements StructuredSerializer<GTrackerOrderInput> {
+  @override
+  final Iterable<Type> types = const [GTrackerOrderInput, _$GTrackerOrderInput];
+  @override
+  final String wireName = 'GTrackerOrderInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GTrackerOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GTrackerOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GTrackerOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GTrackerOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+                  specifiedType: const FullType(GTrackerOrderBy))!
+              as GTrackerOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GTrackProgressInputSerializer
@@ -8462,6 +9893,64 @@ class _$GTrackRecordOrderBySerializer
   GTrackRecordOrderBy deserialize(Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       GTrackRecordOrderBy.valueOf(serialized as String);
+}
+
+class _$GTrackRecordOrderInputSerializer
+    implements StructuredSerializer<GTrackRecordOrderInput> {
+  @override
+  final Iterable<Type> types = const [
+    GTrackRecordOrderInput,
+    _$GTrackRecordOrderInput
+  ];
+  @override
+  final String wireName = 'GTrackRecordOrderInput';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GTrackRecordOrderInput object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'by',
+      serializers.serialize(object.by,
+          specifiedType: const FullType(GTrackRecordOrderBy)),
+    ];
+    Object? value;
+    value = object.byType;
+    if (value != null) {
+      result
+        ..add('byType')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GSortOrder)));
+    }
+    return result;
+  }
+
+  @override
+  GTrackRecordOrderInput deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GTrackRecordOrderInputBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'by':
+          result.by = serializers.deserialize(value,
+                  specifiedType: const FullType(GTrackRecordOrderBy))!
+              as GTrackRecordOrderBy;
+          break;
+        case 'byType':
+          result.byType = serializers.deserialize(value,
+              specifiedType: const FullType(GSortOrder)) as GSortOrder?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
 }
 
 class _$GTriStateSerializer implements PrimitiveSerializer<GTriState> {
@@ -10241,12 +11730,13 @@ class GBindTrackInputBuilder
     try {
       _$result = _$v ??
           new _$GBindTrackInput._(
-              clientMutationId: clientMutationId,
-              mangaId: BuiltValueNullFieldError.checkNotNull(
-                  mangaId, r'GBindTrackInput', 'mangaId'),
-              remoteId: remoteId.build(),
-              trackerId: BuiltValueNullFieldError.checkNotNull(
-                  trackerId, r'GBindTrackInput', 'trackerId'));
+            clientMutationId: clientMutationId,
+            mangaId: BuiltValueNullFieldError.checkNotNull(
+                mangaId, r'GBindTrackInput', 'mangaId'),
+            remoteId: remoteId.build(),
+            trackerId: BuiltValueNullFieldError.checkNotNull(
+                trackerId, r'GBindTrackInput', 'trackerId'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -10267,6 +11757,10 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
   @override
   final bool? distinctFrom;
   @override
+  final BuiltList<bool>? distinctFromAll;
+  @override
+  final BuiltList<bool>? distinctFromAny;
+  @override
   final bool? equalTo;
   @override
   final bool? greaterThan;
@@ -10285,6 +11779,10 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
   @override
   final bool? notEqualTo;
   @override
+  final BuiltList<bool>? notEqualToAll;
+  @override
+  final BuiltList<bool>? notEqualToAny;
+  @override
   final BuiltList<bool>? notIn;
 
   factory _$GBooleanFilterInput(
@@ -10293,6 +11791,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
 
   _$GBooleanFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanOrEqualTo,
@@ -10302,6 +11802,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
       this.lessThanOrEqualTo,
       this.notDistinctFrom,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn})
       : super._();
 
@@ -10319,6 +11821,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
     if (identical(other, this)) return true;
     return other is GBooleanFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanOrEqualTo == other.greaterThanOrEqualTo &&
@@ -10328,6 +11832,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         notDistinctFrom == other.notDistinctFrom &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn;
   }
 
@@ -10335,6 +11841,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanOrEqualTo.hashCode);
@@ -10344,6 +11852,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -10353,6 +11863,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GBooleanFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanOrEqualTo', greaterThanOrEqualTo)
@@ -10362,6 +11874,8 @@ class _$GBooleanFilterInput extends GBooleanFilterInput {
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn))
         .toString();
   }
@@ -10374,6 +11888,18 @@ class GBooleanFilterInputBuilder
   bool? _distinctFrom;
   bool? get distinctFrom => _$this._distinctFrom;
   set distinctFrom(bool? distinctFrom) => _$this._distinctFrom = distinctFrom;
+
+  ListBuilder<bool>? _distinctFromAll;
+  ListBuilder<bool> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<bool>();
+  set distinctFromAll(ListBuilder<bool>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<bool>? _distinctFromAny;
+  ListBuilder<bool> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<bool>();
+  set distinctFromAny(ListBuilder<bool>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
 
   bool? _equalTo;
   bool? get equalTo => _$this._equalTo;
@@ -10414,6 +11940,18 @@ class GBooleanFilterInputBuilder
   bool? get notEqualTo => _$this._notEqualTo;
   set notEqualTo(bool? notEqualTo) => _$this._notEqualTo = notEqualTo;
 
+  ListBuilder<bool>? _notEqualToAll;
+  ListBuilder<bool> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<bool>();
+  set notEqualToAll(ListBuilder<bool>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<bool>? _notEqualToAny;
+  ListBuilder<bool> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<bool>();
+  set notEqualToAny(ListBuilder<bool>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
+
   ListBuilder<bool>? _notIn;
   ListBuilder<bool> get notIn => _$this._notIn ??= new ListBuilder<bool>();
   set notIn(ListBuilder<bool>? notIn) => _$this._notIn = notIn;
@@ -10424,6 +11962,8 @@ class GBooleanFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom;
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _equalTo = $v.equalTo;
       _greaterThan = $v.greaterThan;
       _greaterThanOrEqualTo = $v.greaterThanOrEqualTo;
@@ -10433,6 +11973,8 @@ class GBooleanFilterInputBuilder
       _lessThanOrEqualTo = $v.lessThanOrEqualTo;
       _notDistinctFrom = $v.notDistinctFrom;
       _notEqualTo = $v.notEqualTo;
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _$v = null;
     }
@@ -10458,23 +12000,37 @@ class GBooleanFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GBooleanFilterInput._(
-              distinctFrom: distinctFrom,
-              equalTo: equalTo,
-              greaterThan: greaterThan,
-              greaterThanOrEqualTo: greaterThanOrEqualTo,
-              Gin: _Gin?.build(),
-              isNull: isNull,
-              lessThan: lessThan,
-              lessThanOrEqualTo: lessThanOrEqualTo,
-              notDistinctFrom: notDistinctFrom,
-              notEqualTo: notEqualTo,
-              notIn: _notIn?.build());
+            distinctFrom: distinctFrom,
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            equalTo: equalTo,
+            greaterThan: greaterThan,
+            greaterThanOrEqualTo: greaterThanOrEqualTo,
+            Gin: _Gin?.build(),
+            isNull: isNull,
+            lessThan: lessThan,
+            lessThanOrEqualTo: lessThanOrEqualTo,
+            notDistinctFrom: notDistinctFrom,
+            notEqualTo: notEqualTo,
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
+
         _$failedField = 'Gin';
         _Gin?.build();
 
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
       } catch (e) {
@@ -10598,7 +12154,11 @@ class GCategoryConditionInputBuilder
   _$GCategoryConditionInput _build() {
     final _$result = _$v ??
         new _$GCategoryConditionInput._(
-            Gdefault: Gdefault, id: id, name: name, order: order);
+          Gdefault: Gdefault,
+          id: id,
+          name: name,
+          order: order,
+        );
     replace(_$result);
     return _$result;
   }
@@ -10759,13 +12319,14 @@ class GCategoryFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GCategoryFilterInput._(
-              and: _and?.build(),
-              Gdefault: _Gdefault?.build(),
-              id: _id?.build(),
-              name: _name?.build(),
-              not: _not?.build(),
-              or: _or?.build(),
-              order: _order?.build());
+            and: _and?.build(),
+            Gdefault: _Gdefault?.build(),
+            id: _id?.build(),
+            name: _name?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+            order: _order?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -10901,12 +12462,112 @@ class GCategoryMetaTypeInputBuilder
   _$GCategoryMetaTypeInput _build() {
     final _$result = _$v ??
         new _$GCategoryMetaTypeInput._(
-            categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, r'GCategoryMetaTypeInput', 'categoryId'),
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GCategoryMetaTypeInput', 'key'),
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GCategoryMetaTypeInput', 'value'));
+          categoryId: BuiltValueNullFieldError.checkNotNull(
+              categoryId, r'GCategoryMetaTypeInput', 'categoryId'),
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GCategoryMetaTypeInput', 'key'),
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GCategoryMetaTypeInput', 'value'),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCategoryOrderInput extends GCategoryOrderInput {
+  @override
+  final GCategoryOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GCategoryOrderInput(
+          [void Function(GCategoryOrderInputBuilder)? updates]) =>
+      (new GCategoryOrderInputBuilder()..update(updates))._build();
+
+  _$GCategoryOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GCategoryOrderInput', 'by');
+  }
+
+  @override
+  GCategoryOrderInput rebuild(
+          void Function(GCategoryOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCategoryOrderInputBuilder toBuilder() =>
+      new GCategoryOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCategoryOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GCategoryOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GCategoryOrderInputBuilder
+    implements Builder<GCategoryOrderInput, GCategoryOrderInputBuilder> {
+  _$GCategoryOrderInput? _$v;
+
+  GCategoryOrderBy? _by;
+  GCategoryOrderBy? get by => _$this._by;
+  set by(GCategoryOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GCategoryOrderInputBuilder();
+
+  GCategoryOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCategoryOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCategoryOrderInput;
+  }
+
+  @override
+  void update(void Function(GCategoryOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GCategoryOrderInput build() => _build();
+
+  _$GCategoryOrderInput _build() {
+    final _$result = _$v ??
+        new _$GCategoryOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GCategoryOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -11165,22 +12826,23 @@ class GChapterConditionInputBuilder
     try {
       _$result = _$v ??
           new _$GChapterConditionInput._(
-              chapterNumber: chapterNumber,
-              fetchedAt: _fetchedAt?.build(),
-              id: id,
-              isBookmarked: isBookmarked,
-              isDownloaded: isDownloaded,
-              isRead: isRead,
-              lastPageRead: lastPageRead,
-              lastReadAt: _lastReadAt?.build(),
-              mangaId: mangaId,
-              name: name,
-              pageCount: pageCount,
-              realUrl: realUrl,
-              scanlator: scanlator,
-              sourceOrder: sourceOrder,
-              uploadDate: _uploadDate?.build(),
-              url: url);
+            chapterNumber: chapterNumber,
+            fetchedAt: _fetchedAt?.build(),
+            id: id,
+            isBookmarked: isBookmarked,
+            isDownloaded: isDownloaded,
+            isRead: isRead,
+            lastPageRead: lastPageRead,
+            lastReadAt: _lastReadAt?.build(),
+            mangaId: mangaId,
+            name: name,
+            pageCount: pageCount,
+            realUrl: realUrl,
+            scanlator: scanlator,
+            sourceOrder: sourceOrder,
+            uploadDate: _uploadDate?.build(),
+            url: url,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -11524,26 +13186,27 @@ class GChapterFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GChapterFilterInput._(
-              and: _and?.build(),
-              chapterNumber: _chapterNumber?.build(),
-              fetchedAt: _fetchedAt?.build(),
-              id: _id?.build(),
-              inLibrary: _inLibrary?.build(),
-              isBookmarked: _isBookmarked?.build(),
-              isDownloaded: _isDownloaded?.build(),
-              isRead: _isRead?.build(),
-              lastPageRead: _lastPageRead?.build(),
-              lastReadAt: _lastReadAt?.build(),
-              mangaId: _mangaId?.build(),
-              name: _name?.build(),
-              not: _not?.build(),
-              or: _or?.build(),
-              pageCount: _pageCount?.build(),
-              realUrl: _realUrl?.build(),
-              scanlator: _scanlator?.build(),
-              sourceOrder: _sourceOrder?.build(),
-              uploadDate: _uploadDate?.build(),
-              url: _url?.build());
+            and: _and?.build(),
+            chapterNumber: _chapterNumber?.build(),
+            fetchedAt: _fetchedAt?.build(),
+            id: _id?.build(),
+            inLibrary: _inLibrary?.build(),
+            isBookmarked: _isBookmarked?.build(),
+            isDownloaded: _isDownloaded?.build(),
+            isRead: _isRead?.build(),
+            lastPageRead: _lastPageRead?.build(),
+            lastReadAt: _lastReadAt?.build(),
+            mangaId: _mangaId?.build(),
+            name: _name?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+            pageCount: _pageCount?.build(),
+            realUrl: _realUrl?.build(),
+            scanlator: _scanlator?.build(),
+            sourceOrder: _sourceOrder?.build(),
+            uploadDate: _uploadDate?.build(),
+            url: _url?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -11704,12 +13367,112 @@ class GChapterMetaTypeInputBuilder
   _$GChapterMetaTypeInput _build() {
     final _$result = _$v ??
         new _$GChapterMetaTypeInput._(
-            chapterId: BuiltValueNullFieldError.checkNotNull(
-                chapterId, r'GChapterMetaTypeInput', 'chapterId'),
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GChapterMetaTypeInput', 'key'),
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GChapterMetaTypeInput', 'value'));
+          chapterId: BuiltValueNullFieldError.checkNotNull(
+              chapterId, r'GChapterMetaTypeInput', 'chapterId'),
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GChapterMetaTypeInput', 'key'),
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GChapterMetaTypeInput', 'value'),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GChapterOrderInput extends GChapterOrderInput {
+  @override
+  final GChapterOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GChapterOrderInput(
+          [void Function(GChapterOrderInputBuilder)? updates]) =>
+      (new GChapterOrderInputBuilder()..update(updates))._build();
+
+  _$GChapterOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GChapterOrderInput', 'by');
+  }
+
+  @override
+  GChapterOrderInput rebuild(
+          void Function(GChapterOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GChapterOrderInputBuilder toBuilder() =>
+      new GChapterOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GChapterOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GChapterOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GChapterOrderInputBuilder
+    implements Builder<GChapterOrderInput, GChapterOrderInputBuilder> {
+  _$GChapterOrderInput? _$v;
+
+  GChapterOrderBy? _by;
+  GChapterOrderBy? get by => _$this._by;
+  set by(GChapterOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GChapterOrderInputBuilder();
+
+  GChapterOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GChapterOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GChapterOrderInput;
+  }
+
+  @override
+  void update(void Function(GChapterOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GChapterOrderInput build() => _build();
+
+  _$GChapterOrderInput _build() {
+    final _$result = _$v ??
+        new _$GChapterOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GChapterOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -11832,10 +13595,11 @@ class GClearCachedImagesInputBuilder
   _$GClearCachedImagesInput _build() {
     final _$result = _$v ??
         new _$GClearCachedImagesInput._(
-            cachedPages: cachedPages,
-            cachedThumbnails: cachedThumbnails,
-            clientMutationId: clientMutationId,
-            downloadedThumbnails: downloadedThumbnails);
+          cachedPages: cachedPages,
+          cachedThumbnails: cachedThumbnails,
+          clientMutationId: clientMutationId,
+          downloadedThumbnails: downloadedThumbnails,
+        );
     replace(_$result);
     return _$result;
   }
@@ -11919,7 +13683,9 @@ class GClearDownloaderInputBuilder
 
   _$GClearDownloaderInput _build() {
     final _$result = _$v ??
-        new _$GClearDownloaderInput._(clientMutationId: clientMutationId);
+        new _$GClearDownloaderInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -12028,9 +13794,10 @@ class GCreateBackupInputBuilder
   _$GCreateBackupInput _build() {
     final _$result = _$v ??
         new _$GCreateBackupInput._(
-            clientMutationId: clientMutationId,
-            includeCategories: includeCategories,
-            includeChapters: includeChapters);
+          clientMutationId: clientMutationId,
+          includeCategories: includeCategories,
+          includeChapters: includeChapters,
+        );
     replace(_$result);
     return _$result;
   }
@@ -12177,13 +13944,14 @@ class GCreateCategoryInputBuilder
   _$GCreateCategoryInput _build() {
     final _$result = _$v ??
         new _$GCreateCategoryInput._(
-            clientMutationId: clientMutationId,
-            Gdefault: Gdefault,
-            includeInDownload: includeInDownload,
-            includeInUpdate: includeInUpdate,
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GCreateCategoryInput', 'name'),
-            order: order);
+          clientMutationId: clientMutationId,
+          Gdefault: Gdefault,
+          includeInDownload: includeInDownload,
+          includeInUpdate: includeInUpdate,
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'GCreateCategoryInput', 'name'),
+          order: order,
+        );
     replace(_$result);
     return _$result;
   }
@@ -12263,8 +14031,9 @@ class GCursorBuilder implements Builder<GCursor, GCursorBuilder> {
   _$GCursor _build() {
     final _$result = _$v ??
         new _$GCursor._(
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GCursor', 'value'));
+          value:
+              BuiltValueNullFieldError.checkNotNull(value, r'GCursor', 'value'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -12363,9 +14132,10 @@ class GDeleteCategoryInputBuilder
   _$GDeleteCategoryInput _build() {
     final _$result = _$v ??
         new _$GDeleteCategoryInput._(
-            categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, r'GDeleteCategoryInput', 'categoryId'),
-            clientMutationId: clientMutationId);
+          categoryId: BuiltValueNullFieldError.checkNotNull(
+              categoryId, r'GDeleteCategoryInput', 'categoryId'),
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -12478,11 +14248,12 @@ class GDeleteCategoryMetaInputBuilder
   _$GDeleteCategoryMetaInput _build() {
     final _$result = _$v ??
         new _$GDeleteCategoryMetaInput._(
-            categoryId: BuiltValueNullFieldError.checkNotNull(
-                categoryId, r'GDeleteCategoryMetaInput', 'categoryId'),
-            clientMutationId: clientMutationId,
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GDeleteCategoryMetaInput', 'key'));
+          categoryId: BuiltValueNullFieldError.checkNotNull(
+              categoryId, r'GDeleteCategoryMetaInput', 'categoryId'),
+          clientMutationId: clientMutationId,
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GDeleteCategoryMetaInput', 'key'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -12595,11 +14366,12 @@ class GDeleteChapterMetaInputBuilder
   _$GDeleteChapterMetaInput _build() {
     final _$result = _$v ??
         new _$GDeleteChapterMetaInput._(
-            chapterId: BuiltValueNullFieldError.checkNotNull(
-                chapterId, r'GDeleteChapterMetaInput', 'chapterId'),
-            clientMutationId: clientMutationId,
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GDeleteChapterMetaInput', 'key'));
+          chapterId: BuiltValueNullFieldError.checkNotNull(
+              chapterId, r'GDeleteChapterMetaInput', 'chapterId'),
+          clientMutationId: clientMutationId,
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GDeleteChapterMetaInput', 'key'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -12700,9 +14472,10 @@ class GDeleteDownloadedChapterInputBuilder
   _$GDeleteDownloadedChapterInput _build() {
     final _$result = _$v ??
         new _$GDeleteDownloadedChapterInput._(
-            clientMutationId: clientMutationId,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GDeleteDownloadedChapterInput', 'id'));
+          clientMutationId: clientMutationId,
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GDeleteDownloadedChapterInput', 'id'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -12805,7 +14578,9 @@ class GDeleteDownloadedChaptersInputBuilder
     try {
       _$result = _$v ??
           new _$GDeleteDownloadedChaptersInput._(
-              clientMutationId: clientMutationId, ids: ids.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -12915,9 +14690,10 @@ class GDeleteGlobalMetaInputBuilder
   _$GDeleteGlobalMetaInput _build() {
     final _$result = _$v ??
         new _$GDeleteGlobalMetaInput._(
-            clientMutationId: clientMutationId,
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GDeleteGlobalMetaInput', 'key'));
+          clientMutationId: clientMutationId,
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GDeleteGlobalMetaInput', 'key'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -13028,11 +14804,12 @@ class GDeleteMangaMetaInputBuilder
   _$GDeleteMangaMetaInput _build() {
     final _$result = _$v ??
         new _$GDeleteMangaMetaInput._(
-            clientMutationId: clientMutationId,
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GDeleteMangaMetaInput', 'key'),
-            mangaId: BuiltValueNullFieldError.checkNotNull(
-                mangaId, r'GDeleteMangaMetaInput', 'mangaId'));
+          clientMutationId: clientMutationId,
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GDeleteMangaMetaInput', 'key'),
+          mangaId: BuiltValueNullFieldError.checkNotNull(
+              mangaId, r'GDeleteMangaMetaInput', 'mangaId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -13147,10 +14924,11 @@ class GDeleteSourceMetaInputBuilder
     try {
       _$result = _$v ??
           new _$GDeleteSourceMetaInput._(
-              clientMutationId: clientMutationId,
-              key: BuiltValueNullFieldError.checkNotNull(
-                  key, r'GDeleteSourceMetaInput', 'key'),
-              sourceId: sourceId.build());
+            clientMutationId: clientMutationId,
+            key: BuiltValueNullFieldError.checkNotNull(
+                key, r'GDeleteSourceMetaInput', 'key'),
+            sourceId: sourceId.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -13262,9 +15040,10 @@ class GDequeueChapterDownloadInputBuilder
   _$GDequeueChapterDownloadInput _build() {
     final _$result = _$v ??
         new _$GDequeueChapterDownloadInput._(
-            clientMutationId: clientMutationId,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GDequeueChapterDownloadInput', 'id'));
+          clientMutationId: clientMutationId,
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GDequeueChapterDownloadInput', 'id'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -13367,7 +15146,9 @@ class GDequeueChapterDownloadsInputBuilder
     try {
       _$result = _$v ??
           new _$GDequeueChapterDownloadsInput._(
-              clientMutationId: clientMutationId, ids: ids.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -13388,6 +15169,10 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
   @override
   final double? distinctFrom;
   @override
+  final BuiltList<double>? distinctFromAll;
+  @override
+  final BuiltList<double>? distinctFromAny;
+  @override
   final double? equalTo;
   @override
   final double? greaterThan;
@@ -13406,6 +15191,10 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
   @override
   final double? notEqualTo;
   @override
+  final BuiltList<double>? notEqualToAll;
+  @override
+  final BuiltList<double>? notEqualToAny;
+  @override
   final BuiltList<double>? notIn;
 
   factory _$GDoubleFilterInput(
@@ -13414,6 +15203,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
 
   _$GDoubleFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanOrEqualTo,
@@ -13423,6 +15214,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
       this.lessThanOrEqualTo,
       this.notDistinctFrom,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn})
       : super._();
 
@@ -13440,6 +15233,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
     if (identical(other, this)) return true;
     return other is GDoubleFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanOrEqualTo == other.greaterThanOrEqualTo &&
@@ -13449,6 +15244,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         notDistinctFrom == other.notDistinctFrom &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn;
   }
 
@@ -13456,6 +15253,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanOrEqualTo.hashCode);
@@ -13465,6 +15264,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -13474,6 +15275,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GDoubleFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanOrEqualTo', greaterThanOrEqualTo)
@@ -13483,6 +15286,8 @@ class _$GDoubleFilterInput extends GDoubleFilterInput {
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn))
         .toString();
   }
@@ -13495,6 +15300,18 @@ class GDoubleFilterInputBuilder
   double? _distinctFrom;
   double? get distinctFrom => _$this._distinctFrom;
   set distinctFrom(double? distinctFrom) => _$this._distinctFrom = distinctFrom;
+
+  ListBuilder<double>? _distinctFromAll;
+  ListBuilder<double> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<double>();
+  set distinctFromAll(ListBuilder<double>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<double>? _distinctFromAny;
+  ListBuilder<double> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<double>();
+  set distinctFromAny(ListBuilder<double>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
 
   double? _equalTo;
   double? get equalTo => _$this._equalTo;
@@ -13535,6 +15352,18 @@ class GDoubleFilterInputBuilder
   double? get notEqualTo => _$this._notEqualTo;
   set notEqualTo(double? notEqualTo) => _$this._notEqualTo = notEqualTo;
 
+  ListBuilder<double>? _notEqualToAll;
+  ListBuilder<double> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<double>();
+  set notEqualToAll(ListBuilder<double>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<double>? _notEqualToAny;
+  ListBuilder<double> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<double>();
+  set notEqualToAny(ListBuilder<double>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
+
   ListBuilder<double>? _notIn;
   ListBuilder<double> get notIn => _$this._notIn ??= new ListBuilder<double>();
   set notIn(ListBuilder<double>? notIn) => _$this._notIn = notIn;
@@ -13545,6 +15374,8 @@ class GDoubleFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom;
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _equalTo = $v.equalTo;
       _greaterThan = $v.greaterThan;
       _greaterThanOrEqualTo = $v.greaterThanOrEqualTo;
@@ -13554,6 +15385,8 @@ class GDoubleFilterInputBuilder
       _lessThanOrEqualTo = $v.lessThanOrEqualTo;
       _notDistinctFrom = $v.notDistinctFrom;
       _notEqualTo = $v.notEqualTo;
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _$v = null;
     }
@@ -13579,23 +15412,37 @@ class GDoubleFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GDoubleFilterInput._(
-              distinctFrom: distinctFrom,
-              equalTo: equalTo,
-              greaterThan: greaterThan,
-              greaterThanOrEqualTo: greaterThanOrEqualTo,
-              Gin: _Gin?.build(),
-              isNull: isNull,
-              lessThan: lessThan,
-              lessThanOrEqualTo: lessThanOrEqualTo,
-              notDistinctFrom: notDistinctFrom,
-              notEqualTo: notEqualTo,
-              notIn: _notIn?.build());
+            distinctFrom: distinctFrom,
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            equalTo: equalTo,
+            greaterThan: greaterThan,
+            greaterThanOrEqualTo: greaterThanOrEqualTo,
+            Gin: _Gin?.build(),
+            isNull: isNull,
+            lessThan: lessThan,
+            lessThanOrEqualTo: lessThanOrEqualTo,
+            notDistinctFrom: notDistinctFrom,
+            notEqualTo: notEqualTo,
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
+
         _$failedField = 'Gin';
         _Gin?.build();
 
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
       } catch (e) {
@@ -13604,6 +15451,90 @@ class GDoubleFilterInputBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GDownloadChangedInput extends GDownloadChangedInput {
+  @override
+  final int? maxUpdates;
+
+  factory _$GDownloadChangedInput(
+          [void Function(GDownloadChangedInputBuilder)? updates]) =>
+      (new GDownloadChangedInputBuilder()..update(updates))._build();
+
+  _$GDownloadChangedInput._({this.maxUpdates}) : super._();
+
+  @override
+  GDownloadChangedInput rebuild(
+          void Function(GDownloadChangedInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GDownloadChangedInputBuilder toBuilder() =>
+      new GDownloadChangedInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GDownloadChangedInput && maxUpdates == other.maxUpdates;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, maxUpdates.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GDownloadChangedInput')
+          ..add('maxUpdates', maxUpdates))
+        .toString();
+  }
+}
+
+class GDownloadChangedInputBuilder
+    implements Builder<GDownloadChangedInput, GDownloadChangedInputBuilder> {
+  _$GDownloadChangedInput? _$v;
+
+  int? _maxUpdates;
+  int? get maxUpdates => _$this._maxUpdates;
+  set maxUpdates(int? maxUpdates) => _$this._maxUpdates = maxUpdates;
+
+  GDownloadChangedInputBuilder();
+
+  GDownloadChangedInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _maxUpdates = $v.maxUpdates;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GDownloadChangedInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GDownloadChangedInput;
+  }
+
+  @override
+  void update(void Function(GDownloadChangedInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GDownloadChangedInput build() => _build();
+
+  _$GDownloadChangedInput _build() {
+    final _$result = _$v ??
+        new _$GDownloadChangedInput._(
+          maxUpdates: maxUpdates,
+        );
     replace(_$result);
     return _$result;
   }
@@ -13704,9 +15635,10 @@ class GEnqueueChapterDownloadInputBuilder
   _$GEnqueueChapterDownloadInput _build() {
     final _$result = _$v ??
         new _$GEnqueueChapterDownloadInput._(
-            clientMutationId: clientMutationId,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GEnqueueChapterDownloadInput', 'id'));
+          clientMutationId: clientMutationId,
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GEnqueueChapterDownloadInput', 'id'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -13809,7 +15741,9 @@ class GEnqueueChapterDownloadsInputBuilder
     try {
       _$result = _$v ??
           new _$GEnqueueChapterDownloadsInput._(
-              clientMutationId: clientMutationId, ids: ids.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -14028,18 +15962,19 @@ class GExtensionConditionInputBuilder
   _$GExtensionConditionInput _build() {
     final _$result = _$v ??
         new _$GExtensionConditionInput._(
-            apkName: apkName,
-            hasUpdate: hasUpdate,
-            iconUrl: iconUrl,
-            isInstalled: isInstalled,
-            isNsfw: isNsfw,
-            isObsolete: isObsolete,
-            lang: lang,
-            name: name,
-            pkgName: pkgName,
-            repo: repo,
-            versionCode: versionCode,
-            versionName: versionName);
+          apkName: apkName,
+          hasUpdate: hasUpdate,
+          iconUrl: iconUrl,
+          isInstalled: isInstalled,
+          isNsfw: isNsfw,
+          isObsolete: isObsolete,
+          lang: lang,
+          name: name,
+          pkgName: pkgName,
+          repo: repo,
+          versionCode: versionCode,
+          versionName: versionName,
+        );
     replace(_$result);
     return _$result;
   }
@@ -14301,21 +16236,22 @@ class GExtensionFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GExtensionFilterInput._(
-              and: _and?.build(),
-              apkName: _apkName?.build(),
-              hasUpdate: _hasUpdate?.build(),
-              iconUrl: _iconUrl?.build(),
-              isInstalled: _isInstalled?.build(),
-              isNsfw: _isNsfw?.build(),
-              isObsolete: _isObsolete?.build(),
-              lang: _lang?.build(),
-              name: _name?.build(),
-              not: _not?.build(),
-              or: _or?.build(),
-              pkgName: _pkgName?.build(),
-              repo: _repo?.build(),
-              versionCode: _versionCode?.build(),
-              versionName: _versionName?.build());
+            and: _and?.build(),
+            apkName: _apkName?.build(),
+            hasUpdate: _hasUpdate?.build(),
+            iconUrl: _iconUrl?.build(),
+            isInstalled: _isInstalled?.build(),
+            isNsfw: _isNsfw?.build(),
+            isObsolete: _isObsolete?.build(),
+            lang: _lang?.build(),
+            name: _name?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+            pkgName: _pkgName?.build(),
+            repo: _repo?.build(),
+            versionCode: _versionCode?.build(),
+            versionName: _versionName?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -14355,6 +16291,105 @@ class GExtensionFilterInputBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExtensionOrderInput extends GExtensionOrderInput {
+  @override
+  final GExtensionOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GExtensionOrderInput(
+          [void Function(GExtensionOrderInputBuilder)? updates]) =>
+      (new GExtensionOrderInputBuilder()..update(updates))._build();
+
+  _$GExtensionOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GExtensionOrderInput', 'by');
+  }
+
+  @override
+  GExtensionOrderInput rebuild(
+          void Function(GExtensionOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExtensionOrderInputBuilder toBuilder() =>
+      new GExtensionOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExtensionOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GExtensionOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GExtensionOrderInputBuilder
+    implements Builder<GExtensionOrderInput, GExtensionOrderInputBuilder> {
+  _$GExtensionOrderInput? _$v;
+
+  GExtensionOrderBy? _by;
+  GExtensionOrderBy? get by => _$this._by;
+  set by(GExtensionOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GExtensionOrderInputBuilder();
+
+  GExtensionOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExtensionOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExtensionOrderInput;
+  }
+
+  @override
+  void update(void Function(GExtensionOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExtensionOrderInput build() => _build();
+
+  _$GExtensionOrderInput _build() {
+    final _$result = _$v ??
+        new _$GExtensionOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GExtensionOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -14454,9 +16489,10 @@ class GFetchChapterPagesInputBuilder
   _$GFetchChapterPagesInput _build() {
     final _$result = _$v ??
         new _$GFetchChapterPagesInput._(
-            chapterId: BuiltValueNullFieldError.checkNotNull(
-                chapterId, r'GFetchChapterPagesInput', 'chapterId'),
-            clientMutationId: clientMutationId);
+          chapterId: BuiltValueNullFieldError.checkNotNull(
+              chapterId, r'GFetchChapterPagesInput', 'chapterId'),
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -14555,9 +16591,10 @@ class GFetchChaptersInputBuilder
   _$GFetchChaptersInput _build() {
     final _$result = _$v ??
         new _$GFetchChaptersInput._(
-            clientMutationId: clientMutationId,
-            mangaId: BuiltValueNullFieldError.checkNotNull(
-                mangaId, r'GFetchChaptersInput', 'mangaId'));
+          clientMutationId: clientMutationId,
+          mangaId: BuiltValueNullFieldError.checkNotNull(
+              mangaId, r'GFetchChaptersInput', 'mangaId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -14641,7 +16678,9 @@ class GFetchExtensionsInputBuilder
 
   _$GFetchExtensionsInput _build() {
     final _$result = _$v ??
-        new _$GFetchExtensionsInput._(clientMutationId: clientMutationId);
+        new _$GFetchExtensionsInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -14737,9 +16776,10 @@ class GFetchMangaInputBuilder
   _$GFetchMangaInput _build() {
     final _$result = _$v ??
         new _$GFetchMangaInput._(
-            clientMutationId: clientMutationId,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GFetchMangaInput', 'id'));
+          clientMutationId: clientMutationId,
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GFetchMangaInput', 'id'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -14892,14 +16932,15 @@ class GFetchSourceMangaInputBuilder
     try {
       _$result = _$v ??
           new _$GFetchSourceMangaInput._(
-              clientMutationId: clientMutationId,
-              filters: _filters?.build(),
-              page: BuiltValueNullFieldError.checkNotNull(
-                  page, r'GFetchSourceMangaInput', 'page'),
-              query: query,
-              source: source.build(),
-              type: BuiltValueNullFieldError.checkNotNull(
-                  type, r'GFetchSourceMangaInput', 'type'));
+            clientMutationId: clientMutationId,
+            filters: _filters?.build(),
+            page: BuiltValueNullFieldError.checkNotNull(
+                page, r'GFetchSourceMangaInput', 'page'),
+            query: query,
+            source: source.build(),
+            type: BuiltValueNullFieldError.checkNotNull(
+                type, r'GFetchSourceMangaInput', 'type'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -15011,9 +17052,10 @@ class GFetchTrackInputBuilder
   _$GFetchTrackInput _build() {
     final _$result = _$v ??
         new _$GFetchTrackInput._(
-            clientMutationId: clientMutationId,
-            recordId: BuiltValueNullFieldError.checkNotNull(
-                recordId, r'GFetchTrackInput', 'recordId'));
+          clientMutationId: clientMutationId,
+          recordId: BuiltValueNullFieldError.checkNotNull(
+              recordId, r'GFetchTrackInput', 'recordId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -15175,14 +17217,15 @@ class GFilterChangeInputBuilder
     try {
       _$result = _$v ??
           new _$GFilterChangeInput._(
-              checkBoxState: checkBoxState,
-              groupChange: _groupChange?.build(),
-              position: BuiltValueNullFieldError.checkNotNull(
-                  position, r'GFilterChangeInput', 'position'),
-              selectState: selectState,
-              sortState: _sortState?.build(),
-              textState: textState,
-              triState: triState);
+            checkBoxState: checkBoxState,
+            groupChange: _groupChange?.build(),
+            position: BuiltValueNullFieldError.checkNotNull(
+                position, r'GFilterChangeInput', 'position'),
+            selectState: selectState,
+            sortState: _sortState?.build(),
+            textState: textState,
+            triState: triState,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -15206,6 +17249,10 @@ class _$GFloatFilterInput extends GFloatFilterInput {
   @override
   final double? distinctFrom;
   @override
+  final BuiltList<double>? distinctFromAll;
+  @override
+  final BuiltList<double>? distinctFromAny;
+  @override
   final double? equalTo;
   @override
   final double? greaterThan;
@@ -15224,6 +17271,10 @@ class _$GFloatFilterInput extends GFloatFilterInput {
   @override
   final double? notEqualTo;
   @override
+  final BuiltList<double>? notEqualToAll;
+  @override
+  final BuiltList<double>? notEqualToAny;
+  @override
   final BuiltList<double>? notIn;
 
   factory _$GFloatFilterInput(
@@ -15232,6 +17283,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
 
   _$GFloatFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanOrEqualTo,
@@ -15241,6 +17294,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
       this.lessThanOrEqualTo,
       this.notDistinctFrom,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn})
       : super._();
 
@@ -15257,6 +17312,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
     if (identical(other, this)) return true;
     return other is GFloatFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanOrEqualTo == other.greaterThanOrEqualTo &&
@@ -15266,6 +17323,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         notDistinctFrom == other.notDistinctFrom &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn;
   }
 
@@ -15273,6 +17332,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanOrEqualTo.hashCode);
@@ -15282,6 +17343,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -15291,6 +17354,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GFloatFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanOrEqualTo', greaterThanOrEqualTo)
@@ -15300,6 +17365,8 @@ class _$GFloatFilterInput extends GFloatFilterInput {
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn))
         .toString();
   }
@@ -15312,6 +17379,18 @@ class GFloatFilterInputBuilder
   double? _distinctFrom;
   double? get distinctFrom => _$this._distinctFrom;
   set distinctFrom(double? distinctFrom) => _$this._distinctFrom = distinctFrom;
+
+  ListBuilder<double>? _distinctFromAll;
+  ListBuilder<double> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<double>();
+  set distinctFromAll(ListBuilder<double>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<double>? _distinctFromAny;
+  ListBuilder<double> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<double>();
+  set distinctFromAny(ListBuilder<double>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
 
   double? _equalTo;
   double? get equalTo => _$this._equalTo;
@@ -15352,6 +17431,18 @@ class GFloatFilterInputBuilder
   double? get notEqualTo => _$this._notEqualTo;
   set notEqualTo(double? notEqualTo) => _$this._notEqualTo = notEqualTo;
 
+  ListBuilder<double>? _notEqualToAll;
+  ListBuilder<double> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<double>();
+  set notEqualToAll(ListBuilder<double>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<double>? _notEqualToAny;
+  ListBuilder<double> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<double>();
+  set notEqualToAny(ListBuilder<double>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
+
   ListBuilder<double>? _notIn;
   ListBuilder<double> get notIn => _$this._notIn ??= new ListBuilder<double>();
   set notIn(ListBuilder<double>? notIn) => _$this._notIn = notIn;
@@ -15362,6 +17453,8 @@ class GFloatFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom;
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _equalTo = $v.equalTo;
       _greaterThan = $v.greaterThan;
       _greaterThanOrEqualTo = $v.greaterThanOrEqualTo;
@@ -15371,6 +17464,8 @@ class GFloatFilterInputBuilder
       _lessThanOrEqualTo = $v.lessThanOrEqualTo;
       _notDistinctFrom = $v.notDistinctFrom;
       _notEqualTo = $v.notEqualTo;
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _$v = null;
     }
@@ -15396,23 +17491,37 @@ class GFloatFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GFloatFilterInput._(
-              distinctFrom: distinctFrom,
-              equalTo: equalTo,
-              greaterThan: greaterThan,
-              greaterThanOrEqualTo: greaterThanOrEqualTo,
-              Gin: _Gin?.build(),
-              isNull: isNull,
-              lessThan: lessThan,
-              lessThanOrEqualTo: lessThanOrEqualTo,
-              notDistinctFrom: notDistinctFrom,
-              notEqualTo: notEqualTo,
-              notIn: _notIn?.build());
+            distinctFrom: distinctFrom,
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            equalTo: equalTo,
+            greaterThan: greaterThan,
+            greaterThanOrEqualTo: greaterThanOrEqualTo,
+            Gin: _Gin?.build(),
+            isNull: isNull,
+            lessThan: lessThan,
+            lessThanOrEqualTo: lessThanOrEqualTo,
+            notDistinctFrom: notDistinctFrom,
+            notEqualTo: notEqualTo,
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
+
         _$failedField = 'Gin';
         _Gin?.build();
 
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
       } catch (e) {
@@ -15519,10 +17628,11 @@ class GGlobalMetaTypeInputBuilder
   _$GGlobalMetaTypeInput _build() {
     final _$result = _$v ??
         new _$GGlobalMetaTypeInput._(
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GGlobalMetaTypeInput', 'key'),
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GGlobalMetaTypeInput', 'value'));
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GGlobalMetaTypeInput', 'key'),
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GGlobalMetaTypeInput', 'value'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -15625,9 +17735,10 @@ class GInstallExternalExtensionInputBuilder
   _$GInstallExternalExtensionInput _build() {
     final _$result = _$v ??
         new _$GInstallExternalExtensionInput._(
-            clientMutationId: clientMutationId,
-            extensionFile: BuiltValueNullFieldError.checkNotNull(extensionFile,
-                r'GInstallExternalExtensionInput', 'extensionFile'));
+          clientMutationId: clientMutationId,
+          extensionFile: BuiltValueNullFieldError.checkNotNull(extensionFile,
+              r'GInstallExternalExtensionInput', 'extensionFile'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -15636,6 +17747,10 @@ class GInstallExternalExtensionInputBuilder
 class _$GIntFilterInput extends GIntFilterInput {
   @override
   final int? distinctFrom;
+  @override
+  final BuiltList<int>? distinctFromAll;
+  @override
+  final BuiltList<int>? distinctFromAny;
   @override
   final int? equalTo;
   @override
@@ -15655,6 +17770,10 @@ class _$GIntFilterInput extends GIntFilterInput {
   @override
   final int? notEqualTo;
   @override
+  final BuiltList<int>? notEqualToAll;
+  @override
+  final BuiltList<int>? notEqualToAny;
+  @override
   final BuiltList<int>? notIn;
 
   factory _$GIntFilterInput([void Function(GIntFilterInputBuilder)? updates]) =>
@@ -15662,6 +17781,8 @@ class _$GIntFilterInput extends GIntFilterInput {
 
   _$GIntFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanOrEqualTo,
@@ -15671,6 +17792,8 @@ class _$GIntFilterInput extends GIntFilterInput {
       this.lessThanOrEqualTo,
       this.notDistinctFrom,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn})
       : super._();
 
@@ -15687,6 +17810,8 @@ class _$GIntFilterInput extends GIntFilterInput {
     if (identical(other, this)) return true;
     return other is GIntFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanOrEqualTo == other.greaterThanOrEqualTo &&
@@ -15696,6 +17821,8 @@ class _$GIntFilterInput extends GIntFilterInput {
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         notDistinctFrom == other.notDistinctFrom &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn;
   }
 
@@ -15703,6 +17830,8 @@ class _$GIntFilterInput extends GIntFilterInput {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanOrEqualTo.hashCode);
@@ -15712,6 +17841,8 @@ class _$GIntFilterInput extends GIntFilterInput {
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -15721,6 +17852,8 @@ class _$GIntFilterInput extends GIntFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GIntFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanOrEqualTo', greaterThanOrEqualTo)
@@ -15730,6 +17863,8 @@ class _$GIntFilterInput extends GIntFilterInput {
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn))
         .toString();
   }
@@ -15742,6 +17877,18 @@ class GIntFilterInputBuilder
   int? _distinctFrom;
   int? get distinctFrom => _$this._distinctFrom;
   set distinctFrom(int? distinctFrom) => _$this._distinctFrom = distinctFrom;
+
+  ListBuilder<int>? _distinctFromAll;
+  ListBuilder<int> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<int>();
+  set distinctFromAll(ListBuilder<int>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<int>? _distinctFromAny;
+  ListBuilder<int> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<int>();
+  set distinctFromAny(ListBuilder<int>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
 
   int? _equalTo;
   int? get equalTo => _$this._equalTo;
@@ -15782,6 +17929,18 @@ class GIntFilterInputBuilder
   int? get notEqualTo => _$this._notEqualTo;
   set notEqualTo(int? notEqualTo) => _$this._notEqualTo = notEqualTo;
 
+  ListBuilder<int>? _notEqualToAll;
+  ListBuilder<int> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<int>();
+  set notEqualToAll(ListBuilder<int>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<int>? _notEqualToAny;
+  ListBuilder<int> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<int>();
+  set notEqualToAny(ListBuilder<int>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
+
   ListBuilder<int>? _notIn;
   ListBuilder<int> get notIn => _$this._notIn ??= new ListBuilder<int>();
   set notIn(ListBuilder<int>? notIn) => _$this._notIn = notIn;
@@ -15792,6 +17951,8 @@ class GIntFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom;
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _equalTo = $v.equalTo;
       _greaterThan = $v.greaterThan;
       _greaterThanOrEqualTo = $v.greaterThanOrEqualTo;
@@ -15801,6 +17962,8 @@ class GIntFilterInputBuilder
       _lessThanOrEqualTo = $v.lessThanOrEqualTo;
       _notDistinctFrom = $v.notDistinctFrom;
       _notEqualTo = $v.notEqualTo;
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _$v = null;
     }
@@ -15826,23 +17989,37 @@ class GIntFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GIntFilterInput._(
-              distinctFrom: distinctFrom,
-              equalTo: equalTo,
-              greaterThan: greaterThan,
-              greaterThanOrEqualTo: greaterThanOrEqualTo,
-              Gin: _Gin?.build(),
-              isNull: isNull,
-              lessThan: lessThan,
-              lessThanOrEqualTo: lessThanOrEqualTo,
-              notDistinctFrom: notDistinctFrom,
-              notEqualTo: notEqualTo,
-              notIn: _notIn?.build());
+            distinctFrom: distinctFrom,
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            equalTo: equalTo,
+            greaterThan: greaterThan,
+            greaterThanOrEqualTo: greaterThanOrEqualTo,
+            Gin: _Gin?.build(),
+            isNull: isNull,
+            lessThan: lessThan,
+            lessThanOrEqualTo: lessThanOrEqualTo,
+            notDistinctFrom: notDistinctFrom,
+            notEqualTo: notEqualTo,
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
+
         _$failedField = 'Gin';
         _Gin?.build();
 
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
       } catch (e) {
@@ -15979,13 +18156,14 @@ class GLoginTrackerCredentialsInputBuilder
   _$GLoginTrackerCredentialsInput _build() {
     final _$result = _$v ??
         new _$GLoginTrackerCredentialsInput._(
-            clientMutationId: clientMutationId,
-            password: BuiltValueNullFieldError.checkNotNull(
-                password, r'GLoginTrackerCredentialsInput', 'password'),
-            trackerId: BuiltValueNullFieldError.checkNotNull(
-                trackerId, r'GLoginTrackerCredentialsInput', 'trackerId'),
-            username: BuiltValueNullFieldError.checkNotNull(
-                username, r'GLoginTrackerCredentialsInput', 'username'));
+          clientMutationId: clientMutationId,
+          password: BuiltValueNullFieldError.checkNotNull(
+              password, r'GLoginTrackerCredentialsInput', 'password'),
+          trackerId: BuiltValueNullFieldError.checkNotNull(
+              trackerId, r'GLoginTrackerCredentialsInput', 'trackerId'),
+          username: BuiltValueNullFieldError.checkNotNull(
+              username, r'GLoginTrackerCredentialsInput', 'username'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -16100,11 +18278,12 @@ class GLoginTrackerOAuthInputBuilder
   _$GLoginTrackerOAuthInput _build() {
     final _$result = _$v ??
         new _$GLoginTrackerOAuthInput._(
-            callbackUrl: BuiltValueNullFieldError.checkNotNull(
-                callbackUrl, r'GLoginTrackerOAuthInput', 'callbackUrl'),
-            clientMutationId: clientMutationId,
-            trackerId: BuiltValueNullFieldError.checkNotNull(
-                trackerId, r'GLoginTrackerOAuthInput', 'trackerId'));
+          callbackUrl: BuiltValueNullFieldError.checkNotNull(
+              callbackUrl, r'GLoginTrackerOAuthInput', 'callbackUrl'),
+          clientMutationId: clientMutationId,
+          trackerId: BuiltValueNullFieldError.checkNotNull(
+              trackerId, r'GLoginTrackerOAuthInput', 'trackerId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -16203,9 +18382,10 @@ class GLogoutTrackerInputBuilder
   _$GLogoutTrackerInput _build() {
     final _$result = _$v ??
         new _$GLogoutTrackerInput._(
-            clientMutationId: clientMutationId,
-            trackerId: BuiltValueNullFieldError.checkNotNull(
-                trackerId, r'GLogoutTrackerInput', 'trackerId'));
+          clientMutationId: clientMutationId,
+          trackerId: BuiltValueNullFieldError.checkNotNull(
+              trackerId, r'GLogoutTrackerInput', 'trackerId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -16214,6 +18394,10 @@ class GLogoutTrackerInputBuilder
 class _$GLongFilterInput extends GLongFilterInput {
   @override
   final GLongString? distinctFrom;
+  @override
+  final BuiltList<GLongString>? distinctFromAll;
+  @override
+  final BuiltList<GLongString>? distinctFromAny;
   @override
   final GLongString? equalTo;
   @override
@@ -16233,6 +18417,10 @@ class _$GLongFilterInput extends GLongFilterInput {
   @override
   final GLongString? notEqualTo;
   @override
+  final BuiltList<GLongString>? notEqualToAll;
+  @override
+  final BuiltList<GLongString>? notEqualToAny;
+  @override
   final BuiltList<GLongString>? notIn;
 
   factory _$GLongFilterInput(
@@ -16241,6 +18429,8 @@ class _$GLongFilterInput extends GLongFilterInput {
 
   _$GLongFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanOrEqualTo,
@@ -16250,6 +18440,8 @@ class _$GLongFilterInput extends GLongFilterInput {
       this.lessThanOrEqualTo,
       this.notDistinctFrom,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn})
       : super._();
 
@@ -16266,6 +18458,8 @@ class _$GLongFilterInput extends GLongFilterInput {
     if (identical(other, this)) return true;
     return other is GLongFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanOrEqualTo == other.greaterThanOrEqualTo &&
@@ -16275,6 +18469,8 @@ class _$GLongFilterInput extends GLongFilterInput {
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         notDistinctFrom == other.notDistinctFrom &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn;
   }
 
@@ -16282,6 +18478,8 @@ class _$GLongFilterInput extends GLongFilterInput {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanOrEqualTo.hashCode);
@@ -16291,6 +18489,8 @@ class _$GLongFilterInput extends GLongFilterInput {
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -16300,6 +18500,8 @@ class _$GLongFilterInput extends GLongFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GLongFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanOrEqualTo', greaterThanOrEqualTo)
@@ -16309,6 +18511,8 @@ class _$GLongFilterInput extends GLongFilterInput {
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn))
         .toString();
   }
@@ -16323,6 +18527,18 @@ class GLongFilterInputBuilder
       _$this._distinctFrom ??= new GLongStringBuilder();
   set distinctFrom(GLongStringBuilder? distinctFrom) =>
       _$this._distinctFrom = distinctFrom;
+
+  ListBuilder<GLongString>? _distinctFromAll;
+  ListBuilder<GLongString> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<GLongString>();
+  set distinctFromAll(ListBuilder<GLongString>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<GLongString>? _distinctFromAny;
+  ListBuilder<GLongString> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<GLongString>();
+  set distinctFromAny(ListBuilder<GLongString>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
 
   GLongStringBuilder? _equalTo;
   GLongStringBuilder get equalTo =>
@@ -16373,6 +18589,18 @@ class GLongFilterInputBuilder
   set notEqualTo(GLongStringBuilder? notEqualTo) =>
       _$this._notEqualTo = notEqualTo;
 
+  ListBuilder<GLongString>? _notEqualToAll;
+  ListBuilder<GLongString> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<GLongString>();
+  set notEqualToAll(ListBuilder<GLongString>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<GLongString>? _notEqualToAny;
+  ListBuilder<GLongString> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<GLongString>();
+  set notEqualToAny(ListBuilder<GLongString>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
+
   ListBuilder<GLongString>? _notIn;
   ListBuilder<GLongString> get notIn =>
       _$this._notIn ??= new ListBuilder<GLongString>();
@@ -16384,6 +18612,8 @@ class GLongFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom?.toBuilder();
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _equalTo = $v.equalTo?.toBuilder();
       _greaterThan = $v.greaterThan?.toBuilder();
       _greaterThanOrEqualTo = $v.greaterThanOrEqualTo?.toBuilder();
@@ -16393,6 +18623,8 @@ class GLongFilterInputBuilder
       _lessThanOrEqualTo = $v.lessThanOrEqualTo?.toBuilder();
       _notDistinctFrom = $v.notDistinctFrom?.toBuilder();
       _notEqualTo = $v.notEqualTo?.toBuilder();
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _$v = null;
     }
@@ -16418,22 +18650,31 @@ class GLongFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GLongFilterInput._(
-              distinctFrom: _distinctFrom?.build(),
-              equalTo: _equalTo?.build(),
-              greaterThan: _greaterThan?.build(),
-              greaterThanOrEqualTo: _greaterThanOrEqualTo?.build(),
-              Gin: _Gin?.build(),
-              isNull: isNull,
-              lessThan: _lessThan?.build(),
-              lessThanOrEqualTo: _lessThanOrEqualTo?.build(),
-              notDistinctFrom: _notDistinctFrom?.build(),
-              notEqualTo: _notEqualTo?.build(),
-              notIn: _notIn?.build());
+            distinctFrom: _distinctFrom?.build(),
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            equalTo: _equalTo?.build(),
+            greaterThan: _greaterThan?.build(),
+            greaterThanOrEqualTo: _greaterThanOrEqualTo?.build(),
+            Gin: _Gin?.build(),
+            isNull: isNull,
+            lessThan: _lessThan?.build(),
+            lessThanOrEqualTo: _lessThanOrEqualTo?.build(),
+            notDistinctFrom: _notDistinctFrom?.build(),
+            notEqualTo: _notEqualTo?.build(),
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'distinctFrom';
         _distinctFrom?.build();
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
         _$failedField = 'equalTo';
         _equalTo?.build();
         _$failedField = 'greaterThan';
@@ -16451,6 +18692,10 @@ class GLongFilterInputBuilder
         _notDistinctFrom?.build();
         _$failedField = 'notEqualTo';
         _notEqualTo?.build();
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
       } catch (e) {
@@ -16538,8 +18783,9 @@ class GLongStringBuilder implements Builder<GLongString, GLongStringBuilder> {
   _$GLongString _build() {
     final _$result = _$v ??
         new _$GLongString._(
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GLongString', 'value'));
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GLongString', 'value'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -16812,23 +19058,24 @@ class GMangaConditionInputBuilder
     try {
       _$result = _$v ??
           new _$GMangaConditionInput._(
-              artist: artist,
-              author: author,
-              categoryIds: _categoryIds?.build(),
-              chaptersLastFetchedAt: _chaptersLastFetchedAt?.build(),
-              description: description,
-              genre: _genre?.build(),
-              id: id,
-              inLibrary: inLibrary,
-              inLibraryAt: _inLibraryAt?.build(),
-              initialized: initialized,
-              lastFetchedAt: _lastFetchedAt?.build(),
-              realUrl: realUrl,
-              sourceId: _sourceId?.build(),
-              status: status,
-              thumbnailUrl: thumbnailUrl,
-              title: title,
-              url: url);
+            artist: artist,
+            author: author,
+            categoryIds: _categoryIds?.build(),
+            chaptersLastFetchedAt: _chaptersLastFetchedAt?.build(),
+            description: description,
+            genre: _genre?.build(),
+            id: id,
+            inLibrary: inLibrary,
+            inLibraryAt: _inLibraryAt?.build(),
+            initialized: initialized,
+            lastFetchedAt: _lastFetchedAt?.build(),
+            realUrl: realUrl,
+            sourceId: _sourceId?.build(),
+            status: status,
+            thumbnailUrl: thumbnailUrl,
+            title: title,
+            url: url,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -17177,26 +19424,27 @@ class GMangaFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GMangaFilterInput._(
-              and: _and?.build(),
-              artist: _artist?.build(),
-              author: _author?.build(),
-              categoryId: _categoryId?.build(),
-              chaptersLastFetchedAt: _chaptersLastFetchedAt?.build(),
-              description: _description?.build(),
-              genre: _genre?.build(),
-              id: _id?.build(),
-              inLibrary: _inLibrary?.build(),
-              inLibraryAt: _inLibraryAt?.build(),
-              initialized: _initialized?.build(),
-              lastFetchedAt: _lastFetchedAt?.build(),
-              not: _not?.build(),
-              or: _or?.build(),
-              realUrl: _realUrl?.build(),
-              sourceId: _sourceId?.build(),
-              status: _status?.build(),
-              thumbnailUrl: _thumbnailUrl?.build(),
-              title: _title?.build(),
-              url: _url?.build());
+            and: _and?.build(),
+            artist: _artist?.build(),
+            author: _author?.build(),
+            categoryId: _categoryId?.build(),
+            chaptersLastFetchedAt: _chaptersLastFetchedAt?.build(),
+            description: _description?.build(),
+            genre: _genre?.build(),
+            id: _id?.build(),
+            inLibrary: _inLibrary?.build(),
+            inLibraryAt: _inLibraryAt?.build(),
+            initialized: _initialized?.build(),
+            lastFetchedAt: _lastFetchedAt?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+            realUrl: _realUrl?.build(),
+            sourceId: _sourceId?.build(),
+            status: _status?.build(),
+            thumbnailUrl: _thumbnailUrl?.build(),
+            title: _title?.build(),
+            url: _url?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -17357,12 +19605,111 @@ class GMangaMetaTypeInputBuilder
   _$GMangaMetaTypeInput _build() {
     final _$result = _$v ??
         new _$GMangaMetaTypeInput._(
-            key: BuiltValueNullFieldError.checkNotNull(
-                key, r'GMangaMetaTypeInput', 'key'),
-            mangaId: BuiltValueNullFieldError.checkNotNull(
-                mangaId, r'GMangaMetaTypeInput', 'mangaId'),
-            value: BuiltValueNullFieldError.checkNotNull(
-                value, r'GMangaMetaTypeInput', 'value'));
+          key: BuiltValueNullFieldError.checkNotNull(
+              key, r'GMangaMetaTypeInput', 'key'),
+          mangaId: BuiltValueNullFieldError.checkNotNull(
+              mangaId, r'GMangaMetaTypeInput', 'mangaId'),
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GMangaMetaTypeInput', 'value'),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GMangaOrderInput extends GMangaOrderInput {
+  @override
+  final GMangaOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GMangaOrderInput(
+          [void Function(GMangaOrderInputBuilder)? updates]) =>
+      (new GMangaOrderInputBuilder()..update(updates))._build();
+
+  _$GMangaOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GMangaOrderInput', 'by');
+  }
+
+  @override
+  GMangaOrderInput rebuild(void Function(GMangaOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GMangaOrderInputBuilder toBuilder() =>
+      new GMangaOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GMangaOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GMangaOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GMangaOrderInputBuilder
+    implements Builder<GMangaOrderInput, GMangaOrderInputBuilder> {
+  _$GMangaOrderInput? _$v;
+
+  GMangaOrderBy? _by;
+  GMangaOrderBy? get by => _$this._by;
+  set by(GMangaOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GMangaOrderInputBuilder();
+
+  GMangaOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GMangaOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GMangaOrderInput;
+  }
+
+  @override
+  void update(void Function(GMangaOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GMangaOrderInput build() => _build();
+
+  _$GMangaOrderInput _build() {
+    final _$result = _$v ??
+        new _$GMangaOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GMangaOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -17371,6 +19718,10 @@ class GMangaMetaTypeInputBuilder
 class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
   @override
   final GMangaStatus? distinctFrom;
+  @override
+  final BuiltList<GMangaStatus>? distinctFromAll;
+  @override
+  final BuiltList<GMangaStatus>? distinctFromAny;
   @override
   final GMangaStatus? equalTo;
   @override
@@ -17390,6 +19741,10 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
   @override
   final GMangaStatus? notEqualTo;
   @override
+  final BuiltList<GMangaStatus>? notEqualToAll;
+  @override
+  final BuiltList<GMangaStatus>? notEqualToAny;
+  @override
   final BuiltList<GMangaStatus>? notIn;
 
   factory _$GMangaStatusFilterInput(
@@ -17398,6 +19753,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
 
   _$GMangaStatusFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanOrEqualTo,
@@ -17407,6 +19764,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
       this.lessThanOrEqualTo,
       this.notDistinctFrom,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn})
       : super._();
 
@@ -17424,6 +19783,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
     if (identical(other, this)) return true;
     return other is GMangaStatusFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanOrEqualTo == other.greaterThanOrEqualTo &&
@@ -17433,6 +19794,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         notDistinctFrom == other.notDistinctFrom &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn;
   }
 
@@ -17440,6 +19803,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanOrEqualTo.hashCode);
@@ -17449,6 +19814,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -17458,6 +19825,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GMangaStatusFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanOrEqualTo', greaterThanOrEqualTo)
@@ -17467,6 +19836,8 @@ class _$GMangaStatusFilterInput extends GMangaStatusFilterInput {
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn))
         .toString();
   }
@@ -17481,6 +19852,18 @@ class GMangaStatusFilterInputBuilder
   GMangaStatus? get distinctFrom => _$this._distinctFrom;
   set distinctFrom(GMangaStatus? distinctFrom) =>
       _$this._distinctFrom = distinctFrom;
+
+  ListBuilder<GMangaStatus>? _distinctFromAll;
+  ListBuilder<GMangaStatus> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<GMangaStatus>();
+  set distinctFromAll(ListBuilder<GMangaStatus>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<GMangaStatus>? _distinctFromAny;
+  ListBuilder<GMangaStatus> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<GMangaStatus>();
+  set distinctFromAny(ListBuilder<GMangaStatus>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
 
   GMangaStatus? _equalTo;
   GMangaStatus? get equalTo => _$this._equalTo;
@@ -17523,6 +19906,18 @@ class GMangaStatusFilterInputBuilder
   GMangaStatus? get notEqualTo => _$this._notEqualTo;
   set notEqualTo(GMangaStatus? notEqualTo) => _$this._notEqualTo = notEqualTo;
 
+  ListBuilder<GMangaStatus>? _notEqualToAll;
+  ListBuilder<GMangaStatus> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<GMangaStatus>();
+  set notEqualToAll(ListBuilder<GMangaStatus>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<GMangaStatus>? _notEqualToAny;
+  ListBuilder<GMangaStatus> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<GMangaStatus>();
+  set notEqualToAny(ListBuilder<GMangaStatus>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
+
   ListBuilder<GMangaStatus>? _notIn;
   ListBuilder<GMangaStatus> get notIn =>
       _$this._notIn ??= new ListBuilder<GMangaStatus>();
@@ -17534,6 +19929,8 @@ class GMangaStatusFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom;
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _equalTo = $v.equalTo;
       _greaterThan = $v.greaterThan;
       _greaterThanOrEqualTo = $v.greaterThanOrEqualTo;
@@ -17543,6 +19940,8 @@ class GMangaStatusFilterInputBuilder
       _lessThanOrEqualTo = $v.lessThanOrEqualTo;
       _notDistinctFrom = $v.notDistinctFrom;
       _notEqualTo = $v.notEqualTo;
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _$v = null;
     }
@@ -17568,23 +19967,37 @@ class GMangaStatusFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GMangaStatusFilterInput._(
-              distinctFrom: distinctFrom,
-              equalTo: equalTo,
-              greaterThan: greaterThan,
-              greaterThanOrEqualTo: greaterThanOrEqualTo,
-              Gin: _Gin?.build(),
-              isNull: isNull,
-              lessThan: lessThan,
-              lessThanOrEqualTo: lessThanOrEqualTo,
-              notDistinctFrom: notDistinctFrom,
-              notEqualTo: notEqualTo,
-              notIn: _notIn?.build());
+            distinctFrom: distinctFrom,
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            equalTo: equalTo,
+            greaterThan: greaterThan,
+            greaterThanOrEqualTo: greaterThanOrEqualTo,
+            Gin: _Gin?.build(),
+            isNull: isNull,
+            lessThan: lessThan,
+            lessThanOrEqualTo: lessThanOrEqualTo,
+            notDistinctFrom: notDistinctFrom,
+            notEqualTo: notEqualTo,
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
+
         _$failedField = 'Gin';
         _Gin?.build();
 
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
       } catch (e) {
@@ -17684,7 +20097,11 @@ class GMetaConditionInputBuilder
   GMetaConditionInput build() => _build();
 
   _$GMetaConditionInput _build() {
-    final _$result = _$v ?? new _$GMetaConditionInput._(key: key, value: value);
+    final _$result = _$v ??
+        new _$GMetaConditionInput._(
+          key: key,
+          value: value,
+        );
     replace(_$result);
     return _$result;
   }
@@ -17815,11 +20232,12 @@ class GMetaFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GMetaFilterInput._(
-              and: _and?.build(),
-              key: _key?.build(),
-              not: _not?.build(),
-              or: _or?.build(),
-              value: _value?.build());
+            and: _and?.build(),
+            key: _key?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+            value: _value?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -17839,6 +20257,101 @@ class GMetaFilterInputBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GMetaOrderInput extends GMetaOrderInput {
+  @override
+  final GMetaOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GMetaOrderInput([void Function(GMetaOrderInputBuilder)? updates]) =>
+      (new GMetaOrderInputBuilder()..update(updates))._build();
+
+  _$GMetaOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GMetaOrderInput', 'by');
+  }
+
+  @override
+  GMetaOrderInput rebuild(void Function(GMetaOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GMetaOrderInputBuilder toBuilder() =>
+      new GMetaOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GMetaOrderInput && by == other.by && byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GMetaOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GMetaOrderInputBuilder
+    implements Builder<GMetaOrderInput, GMetaOrderInputBuilder> {
+  _$GMetaOrderInput? _$v;
+
+  GMetaOrderBy? _by;
+  GMetaOrderBy? get by => _$this._by;
+  set by(GMetaOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GMetaOrderInputBuilder();
+
+  GMetaOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GMetaOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GMetaOrderInput;
+  }
+
+  @override
+  void update(void Function(GMetaOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GMetaOrderInput build() => _build();
+
+  _$GMetaOrderInput _build() {
+    final _$result = _$v ??
+        new _$GMetaOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GMetaOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -17884,6 +20397,8 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
   @override
   final BuiltList<String>? extensionRepos;
   @override
+  final bool? flareSolverrAsResponseFallback;
+  @override
   final bool? flareSolverrEnabled;
   @override
   final String? flareSolverrSessionName;
@@ -17896,13 +20411,17 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
   @override
   final double? globalUpdateInterval;
   @override
-  final bool? gqlDebugLogsEnabled;
-  @override
   final bool? initialOpenInBrowserEnabled;
   @override
   final String? ip;
   @override
   final String? localSourcePath;
+  @override
+  final String? maxLogFileSize;
+  @override
+  final int? maxLogFiles;
+  @override
+  final String? maxLogFolderSize;
   @override
   final int? maxSourcesInParallel;
   @override
@@ -17956,16 +20475,19 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
       this.excludeNotStarted,
       this.excludeUnreadChapters,
       this.extensionRepos,
+      this.flareSolverrAsResponseFallback,
       this.flareSolverrEnabled,
       this.flareSolverrSessionName,
       this.flareSolverrSessionTtl,
       this.flareSolverrTimeout,
       this.flareSolverrUrl,
       this.globalUpdateInterval,
-      this.gqlDebugLogsEnabled,
       this.initialOpenInBrowserEnabled,
       this.ip,
       this.localSourcePath,
+      this.maxLogFileSize,
+      this.maxLogFiles,
+      this.maxLogFolderSize,
       this.maxSourcesInParallel,
       this.port,
       this.socksProxyEnabled,
@@ -18015,16 +20537,20 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
         excludeNotStarted == other.excludeNotStarted &&
         excludeUnreadChapters == other.excludeUnreadChapters &&
         extensionRepos == other.extensionRepos &&
+        flareSolverrAsResponseFallback ==
+            other.flareSolverrAsResponseFallback &&
         flareSolverrEnabled == other.flareSolverrEnabled &&
         flareSolverrSessionName == other.flareSolverrSessionName &&
         flareSolverrSessionTtl == other.flareSolverrSessionTtl &&
         flareSolverrTimeout == other.flareSolverrTimeout &&
         flareSolverrUrl == other.flareSolverrUrl &&
         globalUpdateInterval == other.globalUpdateInterval &&
-        gqlDebugLogsEnabled == other.gqlDebugLogsEnabled &&
         initialOpenInBrowserEnabled == other.initialOpenInBrowserEnabled &&
         ip == other.ip &&
         localSourcePath == other.localSourcePath &&
+        maxLogFileSize == other.maxLogFileSize &&
+        maxLogFiles == other.maxLogFiles &&
+        maxLogFolderSize == other.maxLogFolderSize &&
         maxSourcesInParallel == other.maxSourcesInParallel &&
         port == other.port &&
         socksProxyEnabled == other.socksProxyEnabled &&
@@ -18063,16 +20589,19 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
     _$hash = $jc(_$hash, excludeNotStarted.hashCode);
     _$hash = $jc(_$hash, excludeUnreadChapters.hashCode);
     _$hash = $jc(_$hash, extensionRepos.hashCode);
+    _$hash = $jc(_$hash, flareSolverrAsResponseFallback.hashCode);
     _$hash = $jc(_$hash, flareSolverrEnabled.hashCode);
     _$hash = $jc(_$hash, flareSolverrSessionName.hashCode);
     _$hash = $jc(_$hash, flareSolverrSessionTtl.hashCode);
     _$hash = $jc(_$hash, flareSolverrTimeout.hashCode);
     _$hash = $jc(_$hash, flareSolverrUrl.hashCode);
     _$hash = $jc(_$hash, globalUpdateInterval.hashCode);
-    _$hash = $jc(_$hash, gqlDebugLogsEnabled.hashCode);
     _$hash = $jc(_$hash, initialOpenInBrowserEnabled.hashCode);
     _$hash = $jc(_$hash, ip.hashCode);
     _$hash = $jc(_$hash, localSourcePath.hashCode);
+    _$hash = $jc(_$hash, maxLogFileSize.hashCode);
+    _$hash = $jc(_$hash, maxLogFiles.hashCode);
+    _$hash = $jc(_$hash, maxLogFolderSize.hashCode);
     _$hash = $jc(_$hash, maxSourcesInParallel.hashCode);
     _$hash = $jc(_$hash, port.hashCode);
     _$hash = $jc(_$hash, socksProxyEnabled.hashCode);
@@ -18114,16 +20643,20 @@ class _$GPartialSettingsTypeInput extends GPartialSettingsTypeInput {
           ..add('excludeNotStarted', excludeNotStarted)
           ..add('excludeUnreadChapters', excludeUnreadChapters)
           ..add('extensionRepos', extensionRepos)
+          ..add(
+              'flareSolverrAsResponseFallback', flareSolverrAsResponseFallback)
           ..add('flareSolverrEnabled', flareSolverrEnabled)
           ..add('flareSolverrSessionName', flareSolverrSessionName)
           ..add('flareSolverrSessionTtl', flareSolverrSessionTtl)
           ..add('flareSolverrTimeout', flareSolverrTimeout)
           ..add('flareSolverrUrl', flareSolverrUrl)
           ..add('globalUpdateInterval', globalUpdateInterval)
-          ..add('gqlDebugLogsEnabled', gqlDebugLogsEnabled)
           ..add('initialOpenInBrowserEnabled', initialOpenInBrowserEnabled)
           ..add('ip', ip)
           ..add('localSourcePath', localSourcePath)
+          ..add('maxLogFileSize', maxLogFileSize)
+          ..add('maxLogFiles', maxLogFiles)
+          ..add('maxLogFolderSize', maxLogFolderSize)
           ..add('maxSourcesInParallel', maxSourcesInParallel)
           ..add('port', port)
           ..add('socksProxyEnabled', socksProxyEnabled)
@@ -18240,6 +20773,12 @@ class GPartialSettingsTypeInputBuilder
   set extensionRepos(ListBuilder<String>? extensionRepos) =>
       _$this._extensionRepos = extensionRepos;
 
+  bool? _flareSolverrAsResponseFallback;
+  bool? get flareSolverrAsResponseFallback =>
+      _$this._flareSolverrAsResponseFallback;
+  set flareSolverrAsResponseFallback(bool? flareSolverrAsResponseFallback) =>
+      _$this._flareSolverrAsResponseFallback = flareSolverrAsResponseFallback;
+
   bool? _flareSolverrEnabled;
   bool? get flareSolverrEnabled => _$this._flareSolverrEnabled;
   set flareSolverrEnabled(bool? flareSolverrEnabled) =>
@@ -18270,11 +20809,6 @@ class GPartialSettingsTypeInputBuilder
   set globalUpdateInterval(double? globalUpdateInterval) =>
       _$this._globalUpdateInterval = globalUpdateInterval;
 
-  bool? _gqlDebugLogsEnabled;
-  bool? get gqlDebugLogsEnabled => _$this._gqlDebugLogsEnabled;
-  set gqlDebugLogsEnabled(bool? gqlDebugLogsEnabled) =>
-      _$this._gqlDebugLogsEnabled = gqlDebugLogsEnabled;
-
   bool? _initialOpenInBrowserEnabled;
   bool? get initialOpenInBrowserEnabled => _$this._initialOpenInBrowserEnabled;
   set initialOpenInBrowserEnabled(bool? initialOpenInBrowserEnabled) =>
@@ -18288,6 +20822,20 @@ class GPartialSettingsTypeInputBuilder
   String? get localSourcePath => _$this._localSourcePath;
   set localSourcePath(String? localSourcePath) =>
       _$this._localSourcePath = localSourcePath;
+
+  String? _maxLogFileSize;
+  String? get maxLogFileSize => _$this._maxLogFileSize;
+  set maxLogFileSize(String? maxLogFileSize) =>
+      _$this._maxLogFileSize = maxLogFileSize;
+
+  int? _maxLogFiles;
+  int? get maxLogFiles => _$this._maxLogFiles;
+  set maxLogFiles(int? maxLogFiles) => _$this._maxLogFiles = maxLogFiles;
+
+  String? _maxLogFolderSize;
+  String? get maxLogFolderSize => _$this._maxLogFolderSize;
+  set maxLogFolderSize(String? maxLogFolderSize) =>
+      _$this._maxLogFolderSize = maxLogFolderSize;
 
   int? _maxSourcesInParallel;
   int? get maxSourcesInParallel => _$this._maxSourcesInParallel;
@@ -18381,16 +20929,19 @@ class GPartialSettingsTypeInputBuilder
       _excludeNotStarted = $v.excludeNotStarted;
       _excludeUnreadChapters = $v.excludeUnreadChapters;
       _extensionRepos = $v.extensionRepos?.toBuilder();
+      _flareSolverrAsResponseFallback = $v.flareSolverrAsResponseFallback;
       _flareSolverrEnabled = $v.flareSolverrEnabled;
       _flareSolverrSessionName = $v.flareSolverrSessionName;
       _flareSolverrSessionTtl = $v.flareSolverrSessionTtl;
       _flareSolverrTimeout = $v.flareSolverrTimeout;
       _flareSolverrUrl = $v.flareSolverrUrl;
       _globalUpdateInterval = $v.globalUpdateInterval;
-      _gqlDebugLogsEnabled = $v.gqlDebugLogsEnabled;
       _initialOpenInBrowserEnabled = $v.initialOpenInBrowserEnabled;
       _ip = $v.ip;
       _localSourcePath = $v.localSourcePath;
+      _maxLogFileSize = $v.maxLogFileSize;
+      _maxLogFiles = $v.maxLogFiles;
+      _maxLogFolderSize = $v.maxLogFolderSize;
       _maxSourcesInParallel = $v.maxSourcesInParallel;
       _port = $v.port;
       _socksProxyEnabled = $v.socksProxyEnabled;
@@ -18429,49 +20980,53 @@ class GPartialSettingsTypeInputBuilder
     try {
       _$result = _$v ??
           new _$GPartialSettingsTypeInput._(
-              autoDownloadIgnoreReUploads: autoDownloadIgnoreReUploads,
-              autoDownloadNewChapters: autoDownloadNewChapters,
-              autoDownloadNewChaptersLimit: autoDownloadNewChaptersLimit,
-              backupInterval: backupInterval,
-              backupPath: backupPath,
-              backupTTL: backupTTL,
-              backupTime: backupTime,
-              basicAuthEnabled: basicAuthEnabled,
-              basicAuthPassword: basicAuthPassword,
-              basicAuthUsername: basicAuthUsername,
-              debugLogsEnabled: debugLogsEnabled,
-              downloadAsCbz: downloadAsCbz,
-              downloadsPath: downloadsPath,
-              electronPath: electronPath,
-              excludeCompleted: excludeCompleted,
-              excludeEntryWithUnreadChapters: excludeEntryWithUnreadChapters,
-              excludeNotStarted: excludeNotStarted,
-              excludeUnreadChapters: excludeUnreadChapters,
-              extensionRepos: _extensionRepos?.build(),
-              flareSolverrEnabled: flareSolverrEnabled,
-              flareSolverrSessionName: flareSolverrSessionName,
-              flareSolverrSessionTtl: flareSolverrSessionTtl,
-              flareSolverrTimeout: flareSolverrTimeout,
-              flareSolverrUrl: flareSolverrUrl,
-              globalUpdateInterval: globalUpdateInterval,
-              gqlDebugLogsEnabled: gqlDebugLogsEnabled,
-              initialOpenInBrowserEnabled: initialOpenInBrowserEnabled,
-              ip: ip,
-              localSourcePath: localSourcePath,
-              maxSourcesInParallel: maxSourcesInParallel,
-              port: port,
-              socksProxyEnabled: socksProxyEnabled,
-              socksProxyHost: socksProxyHost,
-              socksProxyPassword: socksProxyPassword,
-              socksProxyPort: socksProxyPort,
-              socksProxyUsername: socksProxyUsername,
-              socksProxyVersion: socksProxyVersion,
-              systemTrayEnabled: systemTrayEnabled,
-              updateMangas: updateMangas,
-              webUIChannel: webUIChannel,
-              webUIFlavor: webUIFlavor,
-              webUIInterface: webUIInterface,
-              webUIUpdateCheckInterval: webUIUpdateCheckInterval);
+            autoDownloadIgnoreReUploads: autoDownloadIgnoreReUploads,
+            autoDownloadNewChapters: autoDownloadNewChapters,
+            autoDownloadNewChaptersLimit: autoDownloadNewChaptersLimit,
+            backupInterval: backupInterval,
+            backupPath: backupPath,
+            backupTTL: backupTTL,
+            backupTime: backupTime,
+            basicAuthEnabled: basicAuthEnabled,
+            basicAuthPassword: basicAuthPassword,
+            basicAuthUsername: basicAuthUsername,
+            debugLogsEnabled: debugLogsEnabled,
+            downloadAsCbz: downloadAsCbz,
+            downloadsPath: downloadsPath,
+            electronPath: electronPath,
+            excludeCompleted: excludeCompleted,
+            excludeEntryWithUnreadChapters: excludeEntryWithUnreadChapters,
+            excludeNotStarted: excludeNotStarted,
+            excludeUnreadChapters: excludeUnreadChapters,
+            extensionRepos: _extensionRepos?.build(),
+            flareSolverrAsResponseFallback: flareSolverrAsResponseFallback,
+            flareSolverrEnabled: flareSolverrEnabled,
+            flareSolverrSessionName: flareSolverrSessionName,
+            flareSolverrSessionTtl: flareSolverrSessionTtl,
+            flareSolverrTimeout: flareSolverrTimeout,
+            flareSolverrUrl: flareSolverrUrl,
+            globalUpdateInterval: globalUpdateInterval,
+            initialOpenInBrowserEnabled: initialOpenInBrowserEnabled,
+            ip: ip,
+            localSourcePath: localSourcePath,
+            maxLogFileSize: maxLogFileSize,
+            maxLogFiles: maxLogFiles,
+            maxLogFolderSize: maxLogFolderSize,
+            maxSourcesInParallel: maxSourcesInParallel,
+            port: port,
+            socksProxyEnabled: socksProxyEnabled,
+            socksProxyHost: socksProxyHost,
+            socksProxyPassword: socksProxyPassword,
+            socksProxyPort: socksProxyPort,
+            socksProxyUsername: socksProxyUsername,
+            socksProxyVersion: socksProxyVersion,
+            systemTrayEnabled: systemTrayEnabled,
+            updateMangas: updateMangas,
+            webUIChannel: webUIChannel,
+            webUIFlavor: webUIFlavor,
+            webUIInterface: webUIInterface,
+            webUIUpdateCheckInterval: webUIUpdateCheckInterval,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -18596,11 +21151,12 @@ class GReorderChapterDownloadInputBuilder
   _$GReorderChapterDownloadInput _build() {
     final _$result = _$v ??
         new _$GReorderChapterDownloadInput._(
-            chapterId: BuiltValueNullFieldError.checkNotNull(
-                chapterId, r'GReorderChapterDownloadInput', 'chapterId'),
-            clientMutationId: clientMutationId,
-            to: BuiltValueNullFieldError.checkNotNull(
-                to, r'GReorderChapterDownloadInput', 'to'));
+          chapterId: BuiltValueNullFieldError.checkNotNull(
+              chapterId, r'GReorderChapterDownloadInput', 'chapterId'),
+          clientMutationId: clientMutationId,
+          to: BuiltValueNullFieldError.checkNotNull(
+              to, r'GReorderChapterDownloadInput', 'to'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -18683,8 +21239,10 @@ class GResetSettingsInputBuilder
   GResetSettingsInput build() => _build();
 
   _$GResetSettingsInput _build() {
-    final _$result =
-        _$v ?? new _$GResetSettingsInput._(clientMutationId: clientMutationId);
+    final _$result = _$v ??
+        new _$GResetSettingsInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -18783,9 +21341,10 @@ class GRestoreBackupInputBuilder
   _$GRestoreBackupInput _build() {
     final _$result = _$v ??
         new _$GRestoreBackupInput._(
-            backup: BuiltValueNullFieldError.checkNotNull(
-                backup, r'GRestoreBackupInput', 'backup'),
-            clientMutationId: clientMutationId);
+          backup: BuiltValueNullFieldError.checkNotNull(
+              backup, r'GRestoreBackupInput', 'backup'),
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -18885,10 +21444,11 @@ class GSearchTrackerInputBuilder
   _$GSearchTrackerInput _build() {
     final _$result = _$v ??
         new _$GSearchTrackerInput._(
-            query: BuiltValueNullFieldError.checkNotNull(
-                query, r'GSearchTrackerInput', 'query'),
-            trackerId: BuiltValueNullFieldError.checkNotNull(
-                trackerId, r'GSearchTrackerInput', 'trackerId'));
+          query: BuiltValueNullFieldError.checkNotNull(
+              query, r'GSearchTrackerInput', 'query'),
+          trackerId: BuiltValueNullFieldError.checkNotNull(
+              trackerId, r'GSearchTrackerInput', 'trackerId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -18990,7 +21550,9 @@ class GSetCategoryMetaInputBuilder
     try {
       _$result = _$v ??
           new _$GSetCategoryMetaInput._(
-              clientMutationId: clientMutationId, meta: meta.build());
+            clientMutationId: clientMutationId,
+            meta: meta.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19103,7 +21665,9 @@ class GSetChapterMetaInputBuilder
     try {
       _$result = _$v ??
           new _$GSetChapterMetaInput._(
-              clientMutationId: clientMutationId, meta: meta.build());
+            clientMutationId: clientMutationId,
+            meta: meta.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19215,7 +21779,9 @@ class GSetGlobalMetaInputBuilder
     try {
       _$result = _$v ??
           new _$GSetGlobalMetaInput._(
-              clientMutationId: clientMutationId, meta: meta.build());
+            clientMutationId: clientMutationId,
+            meta: meta.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19327,7 +21893,9 @@ class GSetMangaMetaInputBuilder
     try {
       _$result = _$v ??
           new _$GSetMangaMetaInput._(
-              clientMutationId: clientMutationId, meta: meta.build());
+            clientMutationId: clientMutationId,
+            meta: meta.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19440,7 +22008,9 @@ class GSetSettingsInputBuilder
     try {
       _$result = _$v ??
           new _$GSetSettingsInput._(
-              clientMutationId: clientMutationId, settings: settings.build());
+            clientMutationId: clientMutationId,
+            settings: settings.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19552,7 +22122,9 @@ class GSetSourceMetaInputBuilder
     try {
       _$result = _$v ??
           new _$GSetSourceMetaInput._(
-              clientMutationId: clientMutationId, meta: meta.build());
+            clientMutationId: clientMutationId,
+            meta: meta.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19663,10 +22235,11 @@ class GSortSelectionInputBuilder
   _$GSortSelectionInput _build() {
     final _$result = _$v ??
         new _$GSortSelectionInput._(
-            ascending: BuiltValueNullFieldError.checkNotNull(
-                ascending, r'GSortSelectionInput', 'ascending'),
-            index: BuiltValueNullFieldError.checkNotNull(
-                index, r'GSortSelectionInput', 'index'));
+          ascending: BuiltValueNullFieldError.checkNotNull(
+              ascending, r'GSortSelectionInput', 'ascending'),
+          index: BuiltValueNullFieldError.checkNotNull(
+              index, r'GSortSelectionInput', 'index'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -19783,7 +22356,11 @@ class GSourceConditionInputBuilder
     try {
       _$result = _$v ??
           new _$GSourceConditionInput._(
-              id: _id?.build(), isNsfw: isNsfw, lang: lang, name: name);
+            id: _id?.build(),
+            isNsfw: isNsfw,
+            lang: lang,
+            name: name,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -19949,13 +22526,14 @@ class GSourceFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GSourceFilterInput._(
-              and: _and?.build(),
-              id: _id?.build(),
-              isNsfw: _isNsfw?.build(),
-              lang: _lang?.build(),
-              name: _name?.build(),
-              not: _not?.build(),
-              or: _or?.build());
+            and: _and?.build(),
+            id: _id?.build(),
+            isNsfw: _isNsfw?.build(),
+            lang: _lang?.build(),
+            name: _name?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -20093,11 +22671,12 @@ class GSourceMetaTypeInputBuilder
     try {
       _$result = _$v ??
           new _$GSourceMetaTypeInput._(
-              key: BuiltValueNullFieldError.checkNotNull(
-                  key, r'GSourceMetaTypeInput', 'key'),
-              sourceId: sourceId.build(),
-              value: BuiltValueNullFieldError.checkNotNull(
-                  value, r'GSourceMetaTypeInput', 'value'));
+            key: BuiltValueNullFieldError.checkNotNull(
+                key, r'GSourceMetaTypeInput', 'key'),
+            sourceId: sourceId.build(),
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, r'GSourceMetaTypeInput', 'value'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -20109,6 +22688,104 @@ class GSourceMetaTypeInputBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GSourceOrderInput extends GSourceOrderInput {
+  @override
+  final GSourceOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GSourceOrderInput(
+          [void Function(GSourceOrderInputBuilder)? updates]) =>
+      (new GSourceOrderInputBuilder()..update(updates))._build();
+
+  _$GSourceOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GSourceOrderInput', 'by');
+  }
+
+  @override
+  GSourceOrderInput rebuild(void Function(GSourceOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GSourceOrderInputBuilder toBuilder() =>
+      new GSourceOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GSourceOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GSourceOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GSourceOrderInputBuilder
+    implements Builder<GSourceOrderInput, GSourceOrderInputBuilder> {
+  _$GSourceOrderInput? _$v;
+
+  GSourceOrderBy? _by;
+  GSourceOrderBy? get by => _$this._by;
+  set by(GSourceOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GSourceOrderInputBuilder();
+
+  GSourceOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GSourceOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GSourceOrderInput;
+  }
+
+  @override
+  void update(void Function(GSourceOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GSourceOrderInput build() => _build();
+
+  _$GSourceOrderInput _build() {
+    final _$result = _$v ??
+        new _$GSourceOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GSourceOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -20260,13 +22937,14 @@ class GSourcePreferenceChangeInputBuilder
     try {
       _$result = _$v ??
           new _$GSourcePreferenceChangeInput._(
-              checkBoxState: checkBoxState,
-              editTextState: editTextState,
-              listState: listState,
-              multiSelectState: _multiSelectState?.build(),
-              position: BuiltValueNullFieldError.checkNotNull(
-                  position, r'GSourcePreferenceChangeInput', 'position'),
-              switchState: switchState);
+            checkBoxState: checkBoxState,
+            editTextState: editTextState,
+            listState: listState,
+            multiSelectState: _multiSelectState?.build(),
+            position: BuiltValueNullFieldError.checkNotNull(
+                position, r'GSourcePreferenceChangeInput', 'position'),
+            switchState: switchState,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -20361,7 +23039,9 @@ class GStartDownloaderInputBuilder
 
   _$GStartDownloaderInput _build() {
     final _$result = _$v ??
-        new _$GStartDownloaderInput._(clientMutationId: clientMutationId);
+        new _$GStartDownloaderInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -20444,8 +23124,10 @@ class GStopDownloaderInputBuilder
   GStopDownloaderInput build() => _build();
 
   _$GStopDownloaderInput _build() {
-    final _$result =
-        _$v ?? new _$GStopDownloaderInput._(clientMutationId: clientMutationId);
+    final _$result = _$v ??
+        new _$GStopDownloaderInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -20455,11 +23137,27 @@ class _$GStringFilterInput extends GStringFilterInput {
   @override
   final String? distinctFrom;
   @override
+  final BuiltList<String>? distinctFromAll;
+  @override
+  final BuiltList<String>? distinctFromAny;
+  @override
   final String? distinctFromInsensitive;
+  @override
+  final BuiltList<String>? distinctFromInsensitiveAll;
+  @override
+  final BuiltList<String>? distinctFromInsensitiveAny;
   @override
   final String? endsWith;
   @override
+  final BuiltList<String>? endsWithAll;
+  @override
+  final BuiltList<String>? endsWithAny;
+  @override
   final String? endsWithInsensitive;
+  @override
+  final BuiltList<String>? endsWithInsensitiveAll;
+  @override
+  final BuiltList<String>? endsWithInsensitiveAny;
   @override
   final String? equalTo;
   @override
@@ -20477,7 +23175,15 @@ class _$GStringFilterInput extends GStringFilterInput {
   @override
   final String? includes;
   @override
+  final BuiltList<String>? includesAll;
+  @override
+  final BuiltList<String>? includesAny;
+  @override
   final String? includesInsensitive;
+  @override
+  final BuiltList<String>? includesInsensitiveAll;
+  @override
+  final BuiltList<String>? includesInsensitiveAny;
   @override
   final bool? isNull;
   @override
@@ -20491,7 +23197,15 @@ class _$GStringFilterInput extends GStringFilterInput {
   @override
   final String? like;
   @override
+  final BuiltList<String>? likeAll;
+  @override
+  final BuiltList<String>? likeAny;
+  @override
   final String? likeInsensitive;
+  @override
+  final BuiltList<String>? likeInsensitiveAll;
+  @override
+  final BuiltList<String>? likeInsensitiveAny;
   @override
   final String? notDistinctFrom;
   @override
@@ -20499,9 +23213,21 @@ class _$GStringFilterInput extends GStringFilterInput {
   @override
   final String? notEndsWith;
   @override
+  final BuiltList<String>? notEndsWithAll;
+  @override
+  final BuiltList<String>? notEndsWithAny;
+  @override
   final String? notEndsWithInsensitive;
   @override
+  final BuiltList<String>? notEndsWithInsensitiveAll;
+  @override
+  final BuiltList<String>? notEndsWithInsensitiveAny;
+  @override
   final String? notEqualTo;
+  @override
+  final BuiltList<String>? notEqualToAll;
+  @override
+  final BuiltList<String>? notEqualToAny;
   @override
   final BuiltList<String>? notIn;
   @override
@@ -20509,19 +23235,51 @@ class _$GStringFilterInput extends GStringFilterInput {
   @override
   final String? notIncludes;
   @override
+  final BuiltList<String>? notIncludesAll;
+  @override
+  final BuiltList<String>? notIncludesAny;
+  @override
   final String? notIncludesInsensitive;
+  @override
+  final BuiltList<String>? notIncludesInsensitiveAll;
+  @override
+  final BuiltList<String>? notIncludesInsensitiveAny;
   @override
   final String? notLike;
   @override
+  final BuiltList<String>? notLikeAll;
+  @override
+  final BuiltList<String>? notLikeAny;
+  @override
   final String? notLikeInsensitive;
+  @override
+  final BuiltList<String>? notLikeInsensitiveAll;
+  @override
+  final BuiltList<String>? notLikeInsensitiveAny;
   @override
   final String? notStartsWith;
   @override
+  final BuiltList<String>? notStartsWithAll;
+  @override
+  final BuiltList<String>? notStartsWithAny;
+  @override
   final String? notStartsWithInsensitive;
+  @override
+  final BuiltList<String>? notStartsWithInsensitiveAll;
+  @override
+  final BuiltList<String>? notStartsWithInsensitiveAny;
   @override
   final String? startsWith;
   @override
+  final BuiltList<String>? startsWithAll;
+  @override
+  final BuiltList<String>? startsWithAny;
+  @override
   final String? startsWithInsensitive;
+  @override
+  final BuiltList<String>? startsWithInsensitiveAll;
+  @override
+  final BuiltList<String>? startsWithInsensitiveAny;
 
   factory _$GStringFilterInput(
           [void Function(GStringFilterInputBuilder)? updates]) =>
@@ -20529,9 +23287,17 @@ class _$GStringFilterInput extends GStringFilterInput {
 
   _$GStringFilterInput._(
       {this.distinctFrom,
+      this.distinctFromAll,
+      this.distinctFromAny,
       this.distinctFromInsensitive,
+      this.distinctFromInsensitiveAll,
+      this.distinctFromInsensitiveAny,
       this.endsWith,
+      this.endsWithAll,
+      this.endsWithAny,
       this.endsWithInsensitive,
+      this.endsWithInsensitiveAll,
+      this.endsWithInsensitiveAny,
       this.equalTo,
       this.greaterThan,
       this.greaterThanInsensitive,
@@ -20540,29 +23306,59 @@ class _$GStringFilterInput extends GStringFilterInput {
       this.Gin,
       this.inInsensitive,
       this.includes,
+      this.includesAll,
+      this.includesAny,
       this.includesInsensitive,
+      this.includesInsensitiveAll,
+      this.includesInsensitiveAny,
       this.isNull,
       this.lessThan,
       this.lessThanInsensitive,
       this.lessThanOrEqualTo,
       this.lessThanOrEqualToInsensitive,
       this.like,
+      this.likeAll,
+      this.likeAny,
       this.likeInsensitive,
+      this.likeInsensitiveAll,
+      this.likeInsensitiveAny,
       this.notDistinctFrom,
       this.notDistinctFromInsensitive,
       this.notEndsWith,
+      this.notEndsWithAll,
+      this.notEndsWithAny,
       this.notEndsWithInsensitive,
+      this.notEndsWithInsensitiveAll,
+      this.notEndsWithInsensitiveAny,
       this.notEqualTo,
+      this.notEqualToAll,
+      this.notEqualToAny,
       this.notIn,
       this.notInInsensitive,
       this.notIncludes,
+      this.notIncludesAll,
+      this.notIncludesAny,
       this.notIncludesInsensitive,
+      this.notIncludesInsensitiveAll,
+      this.notIncludesInsensitiveAny,
       this.notLike,
+      this.notLikeAll,
+      this.notLikeAny,
       this.notLikeInsensitive,
+      this.notLikeInsensitiveAll,
+      this.notLikeInsensitiveAny,
       this.notStartsWith,
+      this.notStartsWithAll,
+      this.notStartsWithAny,
       this.notStartsWithInsensitive,
+      this.notStartsWithInsensitiveAll,
+      this.notStartsWithInsensitiveAny,
       this.startsWith,
-      this.startsWithInsensitive})
+      this.startsWithAll,
+      this.startsWithAny,
+      this.startsWithInsensitive,
+      this.startsWithInsensitiveAll,
+      this.startsWithInsensitiveAny})
       : super._();
 
   @override
@@ -20579,9 +23375,17 @@ class _$GStringFilterInput extends GStringFilterInput {
     if (identical(other, this)) return true;
     return other is GStringFilterInput &&
         distinctFrom == other.distinctFrom &&
+        distinctFromAll == other.distinctFromAll &&
+        distinctFromAny == other.distinctFromAny &&
         distinctFromInsensitive == other.distinctFromInsensitive &&
+        distinctFromInsensitiveAll == other.distinctFromInsensitiveAll &&
+        distinctFromInsensitiveAny == other.distinctFromInsensitiveAny &&
         endsWith == other.endsWith &&
+        endsWithAll == other.endsWithAll &&
+        endsWithAny == other.endsWithAny &&
         endsWithInsensitive == other.endsWithInsensitive &&
+        endsWithInsensitiveAll == other.endsWithInsensitiveAll &&
+        endsWithInsensitiveAny == other.endsWithInsensitiveAny &&
         equalTo == other.equalTo &&
         greaterThan == other.greaterThan &&
         greaterThanInsensitive == other.greaterThanInsensitive &&
@@ -20591,38 +23395,76 @@ class _$GStringFilterInput extends GStringFilterInput {
         Gin == other.Gin &&
         inInsensitive == other.inInsensitive &&
         includes == other.includes &&
+        includesAll == other.includesAll &&
+        includesAny == other.includesAny &&
         includesInsensitive == other.includesInsensitive &&
+        includesInsensitiveAll == other.includesInsensitiveAll &&
+        includesInsensitiveAny == other.includesInsensitiveAny &&
         isNull == other.isNull &&
         lessThan == other.lessThan &&
         lessThanInsensitive == other.lessThanInsensitive &&
         lessThanOrEqualTo == other.lessThanOrEqualTo &&
         lessThanOrEqualToInsensitive == other.lessThanOrEqualToInsensitive &&
         like == other.like &&
+        likeAll == other.likeAll &&
+        likeAny == other.likeAny &&
         likeInsensitive == other.likeInsensitive &&
+        likeInsensitiveAll == other.likeInsensitiveAll &&
+        likeInsensitiveAny == other.likeInsensitiveAny &&
         notDistinctFrom == other.notDistinctFrom &&
         notDistinctFromInsensitive == other.notDistinctFromInsensitive &&
         notEndsWith == other.notEndsWith &&
+        notEndsWithAll == other.notEndsWithAll &&
+        notEndsWithAny == other.notEndsWithAny &&
         notEndsWithInsensitive == other.notEndsWithInsensitive &&
+        notEndsWithInsensitiveAll == other.notEndsWithInsensitiveAll &&
+        notEndsWithInsensitiveAny == other.notEndsWithInsensitiveAny &&
         notEqualTo == other.notEqualTo &&
+        notEqualToAll == other.notEqualToAll &&
+        notEqualToAny == other.notEqualToAny &&
         notIn == other.notIn &&
         notInInsensitive == other.notInInsensitive &&
         notIncludes == other.notIncludes &&
+        notIncludesAll == other.notIncludesAll &&
+        notIncludesAny == other.notIncludesAny &&
         notIncludesInsensitive == other.notIncludesInsensitive &&
+        notIncludesInsensitiveAll == other.notIncludesInsensitiveAll &&
+        notIncludesInsensitiveAny == other.notIncludesInsensitiveAny &&
         notLike == other.notLike &&
+        notLikeAll == other.notLikeAll &&
+        notLikeAny == other.notLikeAny &&
         notLikeInsensitive == other.notLikeInsensitive &&
+        notLikeInsensitiveAll == other.notLikeInsensitiveAll &&
+        notLikeInsensitiveAny == other.notLikeInsensitiveAny &&
         notStartsWith == other.notStartsWith &&
+        notStartsWithAll == other.notStartsWithAll &&
+        notStartsWithAny == other.notStartsWithAny &&
         notStartsWithInsensitive == other.notStartsWithInsensitive &&
+        notStartsWithInsensitiveAll == other.notStartsWithInsensitiveAll &&
+        notStartsWithInsensitiveAny == other.notStartsWithInsensitiveAny &&
         startsWith == other.startsWith &&
-        startsWithInsensitive == other.startsWithInsensitive;
+        startsWithAll == other.startsWithAll &&
+        startsWithAny == other.startsWithAny &&
+        startsWithInsensitive == other.startsWithInsensitive &&
+        startsWithInsensitiveAll == other.startsWithInsensitiveAll &&
+        startsWithInsensitiveAny == other.startsWithInsensitiveAny;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, distinctFrom.hashCode);
+    _$hash = $jc(_$hash, distinctFromAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromAny.hashCode);
     _$hash = $jc(_$hash, distinctFromInsensitive.hashCode);
+    _$hash = $jc(_$hash, distinctFromInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, distinctFromInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, endsWith.hashCode);
+    _$hash = $jc(_$hash, endsWithAll.hashCode);
+    _$hash = $jc(_$hash, endsWithAny.hashCode);
     _$hash = $jc(_$hash, endsWithInsensitive.hashCode);
+    _$hash = $jc(_$hash, endsWithInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, endsWithInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, equalTo.hashCode);
     _$hash = $jc(_$hash, greaterThan.hashCode);
     _$hash = $jc(_$hash, greaterThanInsensitive.hashCode);
@@ -20631,29 +23473,59 @@ class _$GStringFilterInput extends GStringFilterInput {
     _$hash = $jc(_$hash, Gin.hashCode);
     _$hash = $jc(_$hash, inInsensitive.hashCode);
     _$hash = $jc(_$hash, includes.hashCode);
+    _$hash = $jc(_$hash, includesAll.hashCode);
+    _$hash = $jc(_$hash, includesAny.hashCode);
     _$hash = $jc(_$hash, includesInsensitive.hashCode);
+    _$hash = $jc(_$hash, includesInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, includesInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, isNull.hashCode);
     _$hash = $jc(_$hash, lessThan.hashCode);
     _$hash = $jc(_$hash, lessThanInsensitive.hashCode);
     _$hash = $jc(_$hash, lessThanOrEqualTo.hashCode);
     _$hash = $jc(_$hash, lessThanOrEqualToInsensitive.hashCode);
     _$hash = $jc(_$hash, like.hashCode);
+    _$hash = $jc(_$hash, likeAll.hashCode);
+    _$hash = $jc(_$hash, likeAny.hashCode);
     _$hash = $jc(_$hash, likeInsensitive.hashCode);
+    _$hash = $jc(_$hash, likeInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, likeInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, notDistinctFrom.hashCode);
     _$hash = $jc(_$hash, notDistinctFromInsensitive.hashCode);
     _$hash = $jc(_$hash, notEndsWith.hashCode);
+    _$hash = $jc(_$hash, notEndsWithAll.hashCode);
+    _$hash = $jc(_$hash, notEndsWithAny.hashCode);
     _$hash = $jc(_$hash, notEndsWithInsensitive.hashCode);
+    _$hash = $jc(_$hash, notEndsWithInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, notEndsWithInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, notEqualTo.hashCode);
+    _$hash = $jc(_$hash, notEqualToAll.hashCode);
+    _$hash = $jc(_$hash, notEqualToAny.hashCode);
     _$hash = $jc(_$hash, notIn.hashCode);
     _$hash = $jc(_$hash, notInInsensitive.hashCode);
     _$hash = $jc(_$hash, notIncludes.hashCode);
+    _$hash = $jc(_$hash, notIncludesAll.hashCode);
+    _$hash = $jc(_$hash, notIncludesAny.hashCode);
     _$hash = $jc(_$hash, notIncludesInsensitive.hashCode);
+    _$hash = $jc(_$hash, notIncludesInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, notIncludesInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, notLike.hashCode);
+    _$hash = $jc(_$hash, notLikeAll.hashCode);
+    _$hash = $jc(_$hash, notLikeAny.hashCode);
     _$hash = $jc(_$hash, notLikeInsensitive.hashCode);
+    _$hash = $jc(_$hash, notLikeInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, notLikeInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, notStartsWith.hashCode);
+    _$hash = $jc(_$hash, notStartsWithAll.hashCode);
+    _$hash = $jc(_$hash, notStartsWithAny.hashCode);
     _$hash = $jc(_$hash, notStartsWithInsensitive.hashCode);
+    _$hash = $jc(_$hash, notStartsWithInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, notStartsWithInsensitiveAny.hashCode);
     _$hash = $jc(_$hash, startsWith.hashCode);
+    _$hash = $jc(_$hash, startsWithAll.hashCode);
+    _$hash = $jc(_$hash, startsWithAny.hashCode);
     _$hash = $jc(_$hash, startsWithInsensitive.hashCode);
+    _$hash = $jc(_$hash, startsWithInsensitiveAll.hashCode);
+    _$hash = $jc(_$hash, startsWithInsensitiveAny.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -20662,9 +23534,17 @@ class _$GStringFilterInput extends GStringFilterInput {
   String toString() {
     return (newBuiltValueToStringHelper(r'GStringFilterInput')
           ..add('distinctFrom', distinctFrom)
+          ..add('distinctFromAll', distinctFromAll)
+          ..add('distinctFromAny', distinctFromAny)
           ..add('distinctFromInsensitive', distinctFromInsensitive)
+          ..add('distinctFromInsensitiveAll', distinctFromInsensitiveAll)
+          ..add('distinctFromInsensitiveAny', distinctFromInsensitiveAny)
           ..add('endsWith', endsWith)
+          ..add('endsWithAll', endsWithAll)
+          ..add('endsWithAny', endsWithAny)
           ..add('endsWithInsensitive', endsWithInsensitive)
+          ..add('endsWithInsensitiveAll', endsWithInsensitiveAll)
+          ..add('endsWithInsensitiveAny', endsWithInsensitiveAny)
           ..add('equalTo', equalTo)
           ..add('greaterThan', greaterThan)
           ..add('greaterThanInsensitive', greaterThanInsensitive)
@@ -20674,29 +23554,59 @@ class _$GStringFilterInput extends GStringFilterInput {
           ..add('Gin', Gin)
           ..add('inInsensitive', inInsensitive)
           ..add('includes', includes)
+          ..add('includesAll', includesAll)
+          ..add('includesAny', includesAny)
           ..add('includesInsensitive', includesInsensitive)
+          ..add('includesInsensitiveAll', includesInsensitiveAll)
+          ..add('includesInsensitiveAny', includesInsensitiveAny)
           ..add('isNull', isNull)
           ..add('lessThan', lessThan)
           ..add('lessThanInsensitive', lessThanInsensitive)
           ..add('lessThanOrEqualTo', lessThanOrEqualTo)
           ..add('lessThanOrEqualToInsensitive', lessThanOrEqualToInsensitive)
           ..add('like', like)
+          ..add('likeAll', likeAll)
+          ..add('likeAny', likeAny)
           ..add('likeInsensitive', likeInsensitive)
+          ..add('likeInsensitiveAll', likeInsensitiveAll)
+          ..add('likeInsensitiveAny', likeInsensitiveAny)
           ..add('notDistinctFrom', notDistinctFrom)
           ..add('notDistinctFromInsensitive', notDistinctFromInsensitive)
           ..add('notEndsWith', notEndsWith)
+          ..add('notEndsWithAll', notEndsWithAll)
+          ..add('notEndsWithAny', notEndsWithAny)
           ..add('notEndsWithInsensitive', notEndsWithInsensitive)
+          ..add('notEndsWithInsensitiveAll', notEndsWithInsensitiveAll)
+          ..add('notEndsWithInsensitiveAny', notEndsWithInsensitiveAny)
           ..add('notEqualTo', notEqualTo)
+          ..add('notEqualToAll', notEqualToAll)
+          ..add('notEqualToAny', notEqualToAny)
           ..add('notIn', notIn)
           ..add('notInInsensitive', notInInsensitive)
           ..add('notIncludes', notIncludes)
+          ..add('notIncludesAll', notIncludesAll)
+          ..add('notIncludesAny', notIncludesAny)
           ..add('notIncludesInsensitive', notIncludesInsensitive)
+          ..add('notIncludesInsensitiveAll', notIncludesInsensitiveAll)
+          ..add('notIncludesInsensitiveAny', notIncludesInsensitiveAny)
           ..add('notLike', notLike)
+          ..add('notLikeAll', notLikeAll)
+          ..add('notLikeAny', notLikeAny)
           ..add('notLikeInsensitive', notLikeInsensitive)
+          ..add('notLikeInsensitiveAll', notLikeInsensitiveAll)
+          ..add('notLikeInsensitiveAny', notLikeInsensitiveAny)
           ..add('notStartsWith', notStartsWith)
+          ..add('notStartsWithAll', notStartsWithAll)
+          ..add('notStartsWithAny', notStartsWithAny)
           ..add('notStartsWithInsensitive', notStartsWithInsensitive)
+          ..add('notStartsWithInsensitiveAll', notStartsWithInsensitiveAll)
+          ..add('notStartsWithInsensitiveAny', notStartsWithInsensitiveAny)
           ..add('startsWith', startsWith)
-          ..add('startsWithInsensitive', startsWithInsensitive))
+          ..add('startsWithAll', startsWithAll)
+          ..add('startsWithAny', startsWithAny)
+          ..add('startsWithInsensitive', startsWithInsensitive)
+          ..add('startsWithInsensitiveAll', startsWithInsensitiveAll)
+          ..add('startsWithInsensitiveAny', startsWithInsensitiveAny))
         .toString();
   }
 }
@@ -20709,19 +23619,69 @@ class GStringFilterInputBuilder
   String? get distinctFrom => _$this._distinctFrom;
   set distinctFrom(String? distinctFrom) => _$this._distinctFrom = distinctFrom;
 
+  ListBuilder<String>? _distinctFromAll;
+  ListBuilder<String> get distinctFromAll =>
+      _$this._distinctFromAll ??= new ListBuilder<String>();
+  set distinctFromAll(ListBuilder<String>? distinctFromAll) =>
+      _$this._distinctFromAll = distinctFromAll;
+
+  ListBuilder<String>? _distinctFromAny;
+  ListBuilder<String> get distinctFromAny =>
+      _$this._distinctFromAny ??= new ListBuilder<String>();
+  set distinctFromAny(ListBuilder<String>? distinctFromAny) =>
+      _$this._distinctFromAny = distinctFromAny;
+
   String? _distinctFromInsensitive;
   String? get distinctFromInsensitive => _$this._distinctFromInsensitive;
   set distinctFromInsensitive(String? distinctFromInsensitive) =>
       _$this._distinctFromInsensitive = distinctFromInsensitive;
 
+  ListBuilder<String>? _distinctFromInsensitiveAll;
+  ListBuilder<String> get distinctFromInsensitiveAll =>
+      _$this._distinctFromInsensitiveAll ??= new ListBuilder<String>();
+  set distinctFromInsensitiveAll(
+          ListBuilder<String>? distinctFromInsensitiveAll) =>
+      _$this._distinctFromInsensitiveAll = distinctFromInsensitiveAll;
+
+  ListBuilder<String>? _distinctFromInsensitiveAny;
+  ListBuilder<String> get distinctFromInsensitiveAny =>
+      _$this._distinctFromInsensitiveAny ??= new ListBuilder<String>();
+  set distinctFromInsensitiveAny(
+          ListBuilder<String>? distinctFromInsensitiveAny) =>
+      _$this._distinctFromInsensitiveAny = distinctFromInsensitiveAny;
+
   String? _endsWith;
   String? get endsWith => _$this._endsWith;
   set endsWith(String? endsWith) => _$this._endsWith = endsWith;
+
+  ListBuilder<String>? _endsWithAll;
+  ListBuilder<String> get endsWithAll =>
+      _$this._endsWithAll ??= new ListBuilder<String>();
+  set endsWithAll(ListBuilder<String>? endsWithAll) =>
+      _$this._endsWithAll = endsWithAll;
+
+  ListBuilder<String>? _endsWithAny;
+  ListBuilder<String> get endsWithAny =>
+      _$this._endsWithAny ??= new ListBuilder<String>();
+  set endsWithAny(ListBuilder<String>? endsWithAny) =>
+      _$this._endsWithAny = endsWithAny;
 
   String? _endsWithInsensitive;
   String? get endsWithInsensitive => _$this._endsWithInsensitive;
   set endsWithInsensitive(String? endsWithInsensitive) =>
       _$this._endsWithInsensitive = endsWithInsensitive;
+
+  ListBuilder<String>? _endsWithInsensitiveAll;
+  ListBuilder<String> get endsWithInsensitiveAll =>
+      _$this._endsWithInsensitiveAll ??= new ListBuilder<String>();
+  set endsWithInsensitiveAll(ListBuilder<String>? endsWithInsensitiveAll) =>
+      _$this._endsWithInsensitiveAll = endsWithInsensitiveAll;
+
+  ListBuilder<String>? _endsWithInsensitiveAny;
+  ListBuilder<String> get endsWithInsensitiveAny =>
+      _$this._endsWithInsensitiveAny ??= new ListBuilder<String>();
+  set endsWithInsensitiveAny(ListBuilder<String>? endsWithInsensitiveAny) =>
+      _$this._endsWithInsensitiveAny = endsWithInsensitiveAny;
 
   String? _equalTo;
   String? get equalTo => _$this._equalTo;
@@ -20762,10 +23722,34 @@ class GStringFilterInputBuilder
   String? get includes => _$this._includes;
   set includes(String? includes) => _$this._includes = includes;
 
+  ListBuilder<String>? _includesAll;
+  ListBuilder<String> get includesAll =>
+      _$this._includesAll ??= new ListBuilder<String>();
+  set includesAll(ListBuilder<String>? includesAll) =>
+      _$this._includesAll = includesAll;
+
+  ListBuilder<String>? _includesAny;
+  ListBuilder<String> get includesAny =>
+      _$this._includesAny ??= new ListBuilder<String>();
+  set includesAny(ListBuilder<String>? includesAny) =>
+      _$this._includesAny = includesAny;
+
   String? _includesInsensitive;
   String? get includesInsensitive => _$this._includesInsensitive;
   set includesInsensitive(String? includesInsensitive) =>
       _$this._includesInsensitive = includesInsensitive;
+
+  ListBuilder<String>? _includesInsensitiveAll;
+  ListBuilder<String> get includesInsensitiveAll =>
+      _$this._includesInsensitiveAll ??= new ListBuilder<String>();
+  set includesInsensitiveAll(ListBuilder<String>? includesInsensitiveAll) =>
+      _$this._includesInsensitiveAll = includesInsensitiveAll;
+
+  ListBuilder<String>? _includesInsensitiveAny;
+  ListBuilder<String> get includesInsensitiveAny =>
+      _$this._includesInsensitiveAny ??= new ListBuilder<String>();
+  set includesInsensitiveAny(ListBuilder<String>? includesInsensitiveAny) =>
+      _$this._includesInsensitiveAny = includesInsensitiveAny;
 
   bool? _isNull;
   bool? get isNull => _$this._isNull;
@@ -20795,10 +23779,32 @@ class GStringFilterInputBuilder
   String? get like => _$this._like;
   set like(String? like) => _$this._like = like;
 
+  ListBuilder<String>? _likeAll;
+  ListBuilder<String> get likeAll =>
+      _$this._likeAll ??= new ListBuilder<String>();
+  set likeAll(ListBuilder<String>? likeAll) => _$this._likeAll = likeAll;
+
+  ListBuilder<String>? _likeAny;
+  ListBuilder<String> get likeAny =>
+      _$this._likeAny ??= new ListBuilder<String>();
+  set likeAny(ListBuilder<String>? likeAny) => _$this._likeAny = likeAny;
+
   String? _likeInsensitive;
   String? get likeInsensitive => _$this._likeInsensitive;
   set likeInsensitive(String? likeInsensitive) =>
       _$this._likeInsensitive = likeInsensitive;
+
+  ListBuilder<String>? _likeInsensitiveAll;
+  ListBuilder<String> get likeInsensitiveAll =>
+      _$this._likeInsensitiveAll ??= new ListBuilder<String>();
+  set likeInsensitiveAll(ListBuilder<String>? likeInsensitiveAll) =>
+      _$this._likeInsensitiveAll = likeInsensitiveAll;
+
+  ListBuilder<String>? _likeInsensitiveAny;
+  ListBuilder<String> get likeInsensitiveAny =>
+      _$this._likeInsensitiveAny ??= new ListBuilder<String>();
+  set likeInsensitiveAny(ListBuilder<String>? likeInsensitiveAny) =>
+      _$this._likeInsensitiveAny = likeInsensitiveAny;
 
   String? _notDistinctFrom;
   String? get notDistinctFrom => _$this._notDistinctFrom;
@@ -20814,14 +23820,52 @@ class GStringFilterInputBuilder
   String? get notEndsWith => _$this._notEndsWith;
   set notEndsWith(String? notEndsWith) => _$this._notEndsWith = notEndsWith;
 
+  ListBuilder<String>? _notEndsWithAll;
+  ListBuilder<String> get notEndsWithAll =>
+      _$this._notEndsWithAll ??= new ListBuilder<String>();
+  set notEndsWithAll(ListBuilder<String>? notEndsWithAll) =>
+      _$this._notEndsWithAll = notEndsWithAll;
+
+  ListBuilder<String>? _notEndsWithAny;
+  ListBuilder<String> get notEndsWithAny =>
+      _$this._notEndsWithAny ??= new ListBuilder<String>();
+  set notEndsWithAny(ListBuilder<String>? notEndsWithAny) =>
+      _$this._notEndsWithAny = notEndsWithAny;
+
   String? _notEndsWithInsensitive;
   String? get notEndsWithInsensitive => _$this._notEndsWithInsensitive;
   set notEndsWithInsensitive(String? notEndsWithInsensitive) =>
       _$this._notEndsWithInsensitive = notEndsWithInsensitive;
 
+  ListBuilder<String>? _notEndsWithInsensitiveAll;
+  ListBuilder<String> get notEndsWithInsensitiveAll =>
+      _$this._notEndsWithInsensitiveAll ??= new ListBuilder<String>();
+  set notEndsWithInsensitiveAll(
+          ListBuilder<String>? notEndsWithInsensitiveAll) =>
+      _$this._notEndsWithInsensitiveAll = notEndsWithInsensitiveAll;
+
+  ListBuilder<String>? _notEndsWithInsensitiveAny;
+  ListBuilder<String> get notEndsWithInsensitiveAny =>
+      _$this._notEndsWithInsensitiveAny ??= new ListBuilder<String>();
+  set notEndsWithInsensitiveAny(
+          ListBuilder<String>? notEndsWithInsensitiveAny) =>
+      _$this._notEndsWithInsensitiveAny = notEndsWithInsensitiveAny;
+
   String? _notEqualTo;
   String? get notEqualTo => _$this._notEqualTo;
   set notEqualTo(String? notEqualTo) => _$this._notEqualTo = notEqualTo;
+
+  ListBuilder<String>? _notEqualToAll;
+  ListBuilder<String> get notEqualToAll =>
+      _$this._notEqualToAll ??= new ListBuilder<String>();
+  set notEqualToAll(ListBuilder<String>? notEqualToAll) =>
+      _$this._notEqualToAll = notEqualToAll;
+
+  ListBuilder<String>? _notEqualToAny;
+  ListBuilder<String> get notEqualToAny =>
+      _$this._notEqualToAny ??= new ListBuilder<String>();
+  set notEqualToAny(ListBuilder<String>? notEqualToAny) =>
+      _$this._notEqualToAny = notEqualToAny;
 
   ListBuilder<String>? _notIn;
   ListBuilder<String> get notIn => _$this._notIn ??= new ListBuilder<String>();
@@ -20837,38 +23881,138 @@ class GStringFilterInputBuilder
   String? get notIncludes => _$this._notIncludes;
   set notIncludes(String? notIncludes) => _$this._notIncludes = notIncludes;
 
+  ListBuilder<String>? _notIncludesAll;
+  ListBuilder<String> get notIncludesAll =>
+      _$this._notIncludesAll ??= new ListBuilder<String>();
+  set notIncludesAll(ListBuilder<String>? notIncludesAll) =>
+      _$this._notIncludesAll = notIncludesAll;
+
+  ListBuilder<String>? _notIncludesAny;
+  ListBuilder<String> get notIncludesAny =>
+      _$this._notIncludesAny ??= new ListBuilder<String>();
+  set notIncludesAny(ListBuilder<String>? notIncludesAny) =>
+      _$this._notIncludesAny = notIncludesAny;
+
   String? _notIncludesInsensitive;
   String? get notIncludesInsensitive => _$this._notIncludesInsensitive;
   set notIncludesInsensitive(String? notIncludesInsensitive) =>
       _$this._notIncludesInsensitive = notIncludesInsensitive;
 
+  ListBuilder<String>? _notIncludesInsensitiveAll;
+  ListBuilder<String> get notIncludesInsensitiveAll =>
+      _$this._notIncludesInsensitiveAll ??= new ListBuilder<String>();
+  set notIncludesInsensitiveAll(
+          ListBuilder<String>? notIncludesInsensitiveAll) =>
+      _$this._notIncludesInsensitiveAll = notIncludesInsensitiveAll;
+
+  ListBuilder<String>? _notIncludesInsensitiveAny;
+  ListBuilder<String> get notIncludesInsensitiveAny =>
+      _$this._notIncludesInsensitiveAny ??= new ListBuilder<String>();
+  set notIncludesInsensitiveAny(
+          ListBuilder<String>? notIncludesInsensitiveAny) =>
+      _$this._notIncludesInsensitiveAny = notIncludesInsensitiveAny;
+
   String? _notLike;
   String? get notLike => _$this._notLike;
   set notLike(String? notLike) => _$this._notLike = notLike;
+
+  ListBuilder<String>? _notLikeAll;
+  ListBuilder<String> get notLikeAll =>
+      _$this._notLikeAll ??= new ListBuilder<String>();
+  set notLikeAll(ListBuilder<String>? notLikeAll) =>
+      _$this._notLikeAll = notLikeAll;
+
+  ListBuilder<String>? _notLikeAny;
+  ListBuilder<String> get notLikeAny =>
+      _$this._notLikeAny ??= new ListBuilder<String>();
+  set notLikeAny(ListBuilder<String>? notLikeAny) =>
+      _$this._notLikeAny = notLikeAny;
 
   String? _notLikeInsensitive;
   String? get notLikeInsensitive => _$this._notLikeInsensitive;
   set notLikeInsensitive(String? notLikeInsensitive) =>
       _$this._notLikeInsensitive = notLikeInsensitive;
 
+  ListBuilder<String>? _notLikeInsensitiveAll;
+  ListBuilder<String> get notLikeInsensitiveAll =>
+      _$this._notLikeInsensitiveAll ??= new ListBuilder<String>();
+  set notLikeInsensitiveAll(ListBuilder<String>? notLikeInsensitiveAll) =>
+      _$this._notLikeInsensitiveAll = notLikeInsensitiveAll;
+
+  ListBuilder<String>? _notLikeInsensitiveAny;
+  ListBuilder<String> get notLikeInsensitiveAny =>
+      _$this._notLikeInsensitiveAny ??= new ListBuilder<String>();
+  set notLikeInsensitiveAny(ListBuilder<String>? notLikeInsensitiveAny) =>
+      _$this._notLikeInsensitiveAny = notLikeInsensitiveAny;
+
   String? _notStartsWith;
   String? get notStartsWith => _$this._notStartsWith;
   set notStartsWith(String? notStartsWith) =>
       _$this._notStartsWith = notStartsWith;
+
+  ListBuilder<String>? _notStartsWithAll;
+  ListBuilder<String> get notStartsWithAll =>
+      _$this._notStartsWithAll ??= new ListBuilder<String>();
+  set notStartsWithAll(ListBuilder<String>? notStartsWithAll) =>
+      _$this._notStartsWithAll = notStartsWithAll;
+
+  ListBuilder<String>? _notStartsWithAny;
+  ListBuilder<String> get notStartsWithAny =>
+      _$this._notStartsWithAny ??= new ListBuilder<String>();
+  set notStartsWithAny(ListBuilder<String>? notStartsWithAny) =>
+      _$this._notStartsWithAny = notStartsWithAny;
 
   String? _notStartsWithInsensitive;
   String? get notStartsWithInsensitive => _$this._notStartsWithInsensitive;
   set notStartsWithInsensitive(String? notStartsWithInsensitive) =>
       _$this._notStartsWithInsensitive = notStartsWithInsensitive;
 
+  ListBuilder<String>? _notStartsWithInsensitiveAll;
+  ListBuilder<String> get notStartsWithInsensitiveAll =>
+      _$this._notStartsWithInsensitiveAll ??= new ListBuilder<String>();
+  set notStartsWithInsensitiveAll(
+          ListBuilder<String>? notStartsWithInsensitiveAll) =>
+      _$this._notStartsWithInsensitiveAll = notStartsWithInsensitiveAll;
+
+  ListBuilder<String>? _notStartsWithInsensitiveAny;
+  ListBuilder<String> get notStartsWithInsensitiveAny =>
+      _$this._notStartsWithInsensitiveAny ??= new ListBuilder<String>();
+  set notStartsWithInsensitiveAny(
+          ListBuilder<String>? notStartsWithInsensitiveAny) =>
+      _$this._notStartsWithInsensitiveAny = notStartsWithInsensitiveAny;
+
   String? _startsWith;
   String? get startsWith => _$this._startsWith;
   set startsWith(String? startsWith) => _$this._startsWith = startsWith;
+
+  ListBuilder<String>? _startsWithAll;
+  ListBuilder<String> get startsWithAll =>
+      _$this._startsWithAll ??= new ListBuilder<String>();
+  set startsWithAll(ListBuilder<String>? startsWithAll) =>
+      _$this._startsWithAll = startsWithAll;
+
+  ListBuilder<String>? _startsWithAny;
+  ListBuilder<String> get startsWithAny =>
+      _$this._startsWithAny ??= new ListBuilder<String>();
+  set startsWithAny(ListBuilder<String>? startsWithAny) =>
+      _$this._startsWithAny = startsWithAny;
 
   String? _startsWithInsensitive;
   String? get startsWithInsensitive => _$this._startsWithInsensitive;
   set startsWithInsensitive(String? startsWithInsensitive) =>
       _$this._startsWithInsensitive = startsWithInsensitive;
+
+  ListBuilder<String>? _startsWithInsensitiveAll;
+  ListBuilder<String> get startsWithInsensitiveAll =>
+      _$this._startsWithInsensitiveAll ??= new ListBuilder<String>();
+  set startsWithInsensitiveAll(ListBuilder<String>? startsWithInsensitiveAll) =>
+      _$this._startsWithInsensitiveAll = startsWithInsensitiveAll;
+
+  ListBuilder<String>? _startsWithInsensitiveAny;
+  ListBuilder<String> get startsWithInsensitiveAny =>
+      _$this._startsWithInsensitiveAny ??= new ListBuilder<String>();
+  set startsWithInsensitiveAny(ListBuilder<String>? startsWithInsensitiveAny) =>
+      _$this._startsWithInsensitiveAny = startsWithInsensitiveAny;
 
   GStringFilterInputBuilder();
 
@@ -20876,9 +24020,17 @@ class GStringFilterInputBuilder
     final $v = _$v;
     if ($v != null) {
       _distinctFrom = $v.distinctFrom;
+      _distinctFromAll = $v.distinctFromAll?.toBuilder();
+      _distinctFromAny = $v.distinctFromAny?.toBuilder();
       _distinctFromInsensitive = $v.distinctFromInsensitive;
+      _distinctFromInsensitiveAll = $v.distinctFromInsensitiveAll?.toBuilder();
+      _distinctFromInsensitiveAny = $v.distinctFromInsensitiveAny?.toBuilder();
       _endsWith = $v.endsWith;
+      _endsWithAll = $v.endsWithAll?.toBuilder();
+      _endsWithAny = $v.endsWithAny?.toBuilder();
       _endsWithInsensitive = $v.endsWithInsensitive;
+      _endsWithInsensitiveAll = $v.endsWithInsensitiveAll?.toBuilder();
+      _endsWithInsensitiveAny = $v.endsWithInsensitiveAny?.toBuilder();
       _equalTo = $v.equalTo;
       _greaterThan = $v.greaterThan;
       _greaterThanInsensitive = $v.greaterThanInsensitive;
@@ -20887,29 +24039,61 @@ class GStringFilterInputBuilder
       _Gin = $v.Gin?.toBuilder();
       _inInsensitive = $v.inInsensitive?.toBuilder();
       _includes = $v.includes;
+      _includesAll = $v.includesAll?.toBuilder();
+      _includesAny = $v.includesAny?.toBuilder();
       _includesInsensitive = $v.includesInsensitive;
+      _includesInsensitiveAll = $v.includesInsensitiveAll?.toBuilder();
+      _includesInsensitiveAny = $v.includesInsensitiveAny?.toBuilder();
       _isNull = $v.isNull;
       _lessThan = $v.lessThan;
       _lessThanInsensitive = $v.lessThanInsensitive;
       _lessThanOrEqualTo = $v.lessThanOrEqualTo;
       _lessThanOrEqualToInsensitive = $v.lessThanOrEqualToInsensitive;
       _like = $v.like;
+      _likeAll = $v.likeAll?.toBuilder();
+      _likeAny = $v.likeAny?.toBuilder();
       _likeInsensitive = $v.likeInsensitive;
+      _likeInsensitiveAll = $v.likeInsensitiveAll?.toBuilder();
+      _likeInsensitiveAny = $v.likeInsensitiveAny?.toBuilder();
       _notDistinctFrom = $v.notDistinctFrom;
       _notDistinctFromInsensitive = $v.notDistinctFromInsensitive;
       _notEndsWith = $v.notEndsWith;
+      _notEndsWithAll = $v.notEndsWithAll?.toBuilder();
+      _notEndsWithAny = $v.notEndsWithAny?.toBuilder();
       _notEndsWithInsensitive = $v.notEndsWithInsensitive;
+      _notEndsWithInsensitiveAll = $v.notEndsWithInsensitiveAll?.toBuilder();
+      _notEndsWithInsensitiveAny = $v.notEndsWithInsensitiveAny?.toBuilder();
       _notEqualTo = $v.notEqualTo;
+      _notEqualToAll = $v.notEqualToAll?.toBuilder();
+      _notEqualToAny = $v.notEqualToAny?.toBuilder();
       _notIn = $v.notIn?.toBuilder();
       _notInInsensitive = $v.notInInsensitive?.toBuilder();
       _notIncludes = $v.notIncludes;
+      _notIncludesAll = $v.notIncludesAll?.toBuilder();
+      _notIncludesAny = $v.notIncludesAny?.toBuilder();
       _notIncludesInsensitive = $v.notIncludesInsensitive;
+      _notIncludesInsensitiveAll = $v.notIncludesInsensitiveAll?.toBuilder();
+      _notIncludesInsensitiveAny = $v.notIncludesInsensitiveAny?.toBuilder();
       _notLike = $v.notLike;
+      _notLikeAll = $v.notLikeAll?.toBuilder();
+      _notLikeAny = $v.notLikeAny?.toBuilder();
       _notLikeInsensitive = $v.notLikeInsensitive;
+      _notLikeInsensitiveAll = $v.notLikeInsensitiveAll?.toBuilder();
+      _notLikeInsensitiveAny = $v.notLikeInsensitiveAny?.toBuilder();
       _notStartsWith = $v.notStartsWith;
+      _notStartsWithAll = $v.notStartsWithAll?.toBuilder();
+      _notStartsWithAny = $v.notStartsWithAny?.toBuilder();
       _notStartsWithInsensitive = $v.notStartsWithInsensitive;
+      _notStartsWithInsensitiveAll =
+          $v.notStartsWithInsensitiveAll?.toBuilder();
+      _notStartsWithInsensitiveAny =
+          $v.notStartsWithInsensitiveAny?.toBuilder();
       _startsWith = $v.startsWith;
+      _startsWithAll = $v.startsWithAll?.toBuilder();
+      _startsWithAny = $v.startsWithAny?.toBuilder();
       _startsWithInsensitive = $v.startsWithInsensitive;
+      _startsWithInsensitiveAll = $v.startsWithInsensitiveAll?.toBuilder();
+      _startsWithInsensitiveAny = $v.startsWithInsensitiveAny?.toBuilder();
       _$v = null;
     }
     return this;
@@ -20934,53 +24118,186 @@ class GStringFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GStringFilterInput._(
-              distinctFrom: distinctFrom,
-              distinctFromInsensitive: distinctFromInsensitive,
-              endsWith: endsWith,
-              endsWithInsensitive: endsWithInsensitive,
-              equalTo: equalTo,
-              greaterThan: greaterThan,
-              greaterThanInsensitive: greaterThanInsensitive,
-              greaterThanOrEqualTo: greaterThanOrEqualTo,
-              greaterThanOrEqualToInsensitive: greaterThanOrEqualToInsensitive,
-              Gin: _Gin?.build(),
-              inInsensitive: _inInsensitive?.build(),
-              includes: includes,
-              includesInsensitive: includesInsensitive,
-              isNull: isNull,
-              lessThan: lessThan,
-              lessThanInsensitive: lessThanInsensitive,
-              lessThanOrEqualTo: lessThanOrEqualTo,
-              lessThanOrEqualToInsensitive: lessThanOrEqualToInsensitive,
-              like: like,
-              likeInsensitive: likeInsensitive,
-              notDistinctFrom: notDistinctFrom,
-              notDistinctFromInsensitive: notDistinctFromInsensitive,
-              notEndsWith: notEndsWith,
-              notEndsWithInsensitive: notEndsWithInsensitive,
-              notEqualTo: notEqualTo,
-              notIn: _notIn?.build(),
-              notInInsensitive: _notInInsensitive?.build(),
-              notIncludes: notIncludes,
-              notIncludesInsensitive: notIncludesInsensitive,
-              notLike: notLike,
-              notLikeInsensitive: notLikeInsensitive,
-              notStartsWith: notStartsWith,
-              notStartsWithInsensitive: notStartsWithInsensitive,
-              startsWith: startsWith,
-              startsWithInsensitive: startsWithInsensitive);
+            distinctFrom: distinctFrom,
+            distinctFromAll: _distinctFromAll?.build(),
+            distinctFromAny: _distinctFromAny?.build(),
+            distinctFromInsensitive: distinctFromInsensitive,
+            distinctFromInsensitiveAll: _distinctFromInsensitiveAll?.build(),
+            distinctFromInsensitiveAny: _distinctFromInsensitiveAny?.build(),
+            endsWith: endsWith,
+            endsWithAll: _endsWithAll?.build(),
+            endsWithAny: _endsWithAny?.build(),
+            endsWithInsensitive: endsWithInsensitive,
+            endsWithInsensitiveAll: _endsWithInsensitiveAll?.build(),
+            endsWithInsensitiveAny: _endsWithInsensitiveAny?.build(),
+            equalTo: equalTo,
+            greaterThan: greaterThan,
+            greaterThanInsensitive: greaterThanInsensitive,
+            greaterThanOrEqualTo: greaterThanOrEqualTo,
+            greaterThanOrEqualToInsensitive: greaterThanOrEqualToInsensitive,
+            Gin: _Gin?.build(),
+            inInsensitive: _inInsensitive?.build(),
+            includes: includes,
+            includesAll: _includesAll?.build(),
+            includesAny: _includesAny?.build(),
+            includesInsensitive: includesInsensitive,
+            includesInsensitiveAll: _includesInsensitiveAll?.build(),
+            includesInsensitiveAny: _includesInsensitiveAny?.build(),
+            isNull: isNull,
+            lessThan: lessThan,
+            lessThanInsensitive: lessThanInsensitive,
+            lessThanOrEqualTo: lessThanOrEqualTo,
+            lessThanOrEqualToInsensitive: lessThanOrEqualToInsensitive,
+            like: like,
+            likeAll: _likeAll?.build(),
+            likeAny: _likeAny?.build(),
+            likeInsensitive: likeInsensitive,
+            likeInsensitiveAll: _likeInsensitiveAll?.build(),
+            likeInsensitiveAny: _likeInsensitiveAny?.build(),
+            notDistinctFrom: notDistinctFrom,
+            notDistinctFromInsensitive: notDistinctFromInsensitive,
+            notEndsWith: notEndsWith,
+            notEndsWithAll: _notEndsWithAll?.build(),
+            notEndsWithAny: _notEndsWithAny?.build(),
+            notEndsWithInsensitive: notEndsWithInsensitive,
+            notEndsWithInsensitiveAll: _notEndsWithInsensitiveAll?.build(),
+            notEndsWithInsensitiveAny: _notEndsWithInsensitiveAny?.build(),
+            notEqualTo: notEqualTo,
+            notEqualToAll: _notEqualToAll?.build(),
+            notEqualToAny: _notEqualToAny?.build(),
+            notIn: _notIn?.build(),
+            notInInsensitive: _notInInsensitive?.build(),
+            notIncludes: notIncludes,
+            notIncludesAll: _notIncludesAll?.build(),
+            notIncludesAny: _notIncludesAny?.build(),
+            notIncludesInsensitive: notIncludesInsensitive,
+            notIncludesInsensitiveAll: _notIncludesInsensitiveAll?.build(),
+            notIncludesInsensitiveAny: _notIncludesInsensitiveAny?.build(),
+            notLike: notLike,
+            notLikeAll: _notLikeAll?.build(),
+            notLikeAny: _notLikeAny?.build(),
+            notLikeInsensitive: notLikeInsensitive,
+            notLikeInsensitiveAll: _notLikeInsensitiveAll?.build(),
+            notLikeInsensitiveAny: _notLikeInsensitiveAny?.build(),
+            notStartsWith: notStartsWith,
+            notStartsWithAll: _notStartsWithAll?.build(),
+            notStartsWithAny: _notStartsWithAny?.build(),
+            notStartsWithInsensitive: notStartsWithInsensitive,
+            notStartsWithInsensitiveAll: _notStartsWithInsensitiveAll?.build(),
+            notStartsWithInsensitiveAny: _notStartsWithInsensitiveAny?.build(),
+            startsWith: startsWith,
+            startsWithAll: _startsWithAll?.build(),
+            startsWithAny: _startsWithAny?.build(),
+            startsWithInsensitive: startsWithInsensitive,
+            startsWithInsensitiveAll: _startsWithInsensitiveAll?.build(),
+            startsWithInsensitiveAny: _startsWithInsensitiveAny?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'distinctFromAll';
+        _distinctFromAll?.build();
+        _$failedField = 'distinctFromAny';
+        _distinctFromAny?.build();
+
+        _$failedField = 'distinctFromInsensitiveAll';
+        _distinctFromInsensitiveAll?.build();
+        _$failedField = 'distinctFromInsensitiveAny';
+        _distinctFromInsensitiveAny?.build();
+
+        _$failedField = 'endsWithAll';
+        _endsWithAll?.build();
+        _$failedField = 'endsWithAny';
+        _endsWithAny?.build();
+
+        _$failedField = 'endsWithInsensitiveAll';
+        _endsWithInsensitiveAll?.build();
+        _$failedField = 'endsWithInsensitiveAny';
+        _endsWithInsensitiveAny?.build();
+
         _$failedField = 'Gin';
         _Gin?.build();
         _$failedField = 'inInsensitive';
         _inInsensitive?.build();
 
+        _$failedField = 'includesAll';
+        _includesAll?.build();
+        _$failedField = 'includesAny';
+        _includesAny?.build();
+
+        _$failedField = 'includesInsensitiveAll';
+        _includesInsensitiveAll?.build();
+        _$failedField = 'includesInsensitiveAny';
+        _includesInsensitiveAny?.build();
+
+        _$failedField = 'likeAll';
+        _likeAll?.build();
+        _$failedField = 'likeAny';
+        _likeAny?.build();
+
+        _$failedField = 'likeInsensitiveAll';
+        _likeInsensitiveAll?.build();
+        _$failedField = 'likeInsensitiveAny';
+        _likeInsensitiveAny?.build();
+
+        _$failedField = 'notEndsWithAll';
+        _notEndsWithAll?.build();
+        _$failedField = 'notEndsWithAny';
+        _notEndsWithAny?.build();
+
+        _$failedField = 'notEndsWithInsensitiveAll';
+        _notEndsWithInsensitiveAll?.build();
+        _$failedField = 'notEndsWithInsensitiveAny';
+        _notEndsWithInsensitiveAny?.build();
+
+        _$failedField = 'notEqualToAll';
+        _notEqualToAll?.build();
+        _$failedField = 'notEqualToAny';
+        _notEqualToAny?.build();
         _$failedField = 'notIn';
         _notIn?.build();
         _$failedField = 'notInInsensitive';
         _notInInsensitive?.build();
+
+        _$failedField = 'notIncludesAll';
+        _notIncludesAll?.build();
+        _$failedField = 'notIncludesAny';
+        _notIncludesAny?.build();
+
+        _$failedField = 'notIncludesInsensitiveAll';
+        _notIncludesInsensitiveAll?.build();
+        _$failedField = 'notIncludesInsensitiveAny';
+        _notIncludesInsensitiveAny?.build();
+
+        _$failedField = 'notLikeAll';
+        _notLikeAll?.build();
+        _$failedField = 'notLikeAny';
+        _notLikeAny?.build();
+
+        _$failedField = 'notLikeInsensitiveAll';
+        _notLikeInsensitiveAll?.build();
+        _$failedField = 'notLikeInsensitiveAny';
+        _notLikeInsensitiveAny?.build();
+
+        _$failedField = 'notStartsWithAll';
+        _notStartsWithAll?.build();
+        _$failedField = 'notStartsWithAny';
+        _notStartsWithAny?.build();
+
+        _$failedField = 'notStartsWithInsensitiveAll';
+        _notStartsWithInsensitiveAll?.build();
+        _$failedField = 'notStartsWithInsensitiveAny';
+        _notStartsWithInsensitiveAny?.build();
+
+        _$failedField = 'startsWithAll';
+        _startsWithAll?.build();
+        _$failedField = 'startsWithAny';
+        _startsWithAny?.build();
+
+        _$failedField = 'startsWithInsensitiveAll';
+        _startsWithInsensitiveAll?.build();
+        _$failedField = 'startsWithInsensitiveAny';
+        _startsWithInsensitiveAny?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GStringFilterInput', _$failedField, e.toString());
@@ -21101,7 +24418,110 @@ class GTrackerConditionInputBuilder
   _$GTrackerConditionInput _build() {
     final _$result = _$v ??
         new _$GTrackerConditionInput._(
-            icon: icon, id: id, isLoggedIn: isLoggedIn, name: name);
+          icon: icon,
+          id: id,
+          isLoggedIn: isLoggedIn,
+          name: name,
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GTrackerOrderInput extends GTrackerOrderInput {
+  @override
+  final GTrackerOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GTrackerOrderInput(
+          [void Function(GTrackerOrderInputBuilder)? updates]) =>
+      (new GTrackerOrderInputBuilder()..update(updates))._build();
+
+  _$GTrackerOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GTrackerOrderInput', 'by');
+  }
+
+  @override
+  GTrackerOrderInput rebuild(
+          void Function(GTrackerOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GTrackerOrderInputBuilder toBuilder() =>
+      new GTrackerOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GTrackerOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GTrackerOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GTrackerOrderInputBuilder
+    implements Builder<GTrackerOrderInput, GTrackerOrderInputBuilder> {
+  _$GTrackerOrderInput? _$v;
+
+  GTrackerOrderBy? _by;
+  GTrackerOrderBy? get by => _$this._by;
+  set by(GTrackerOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GTrackerOrderInputBuilder();
+
+  GTrackerOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GTrackerOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GTrackerOrderInput;
+  }
+
+  @override
+  void update(void Function(GTrackerOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GTrackerOrderInput build() => _build();
+
+  _$GTrackerOrderInput _build() {
+    final _$result = _$v ??
+        new _$GTrackerOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GTrackerOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -21200,9 +24620,10 @@ class GTrackProgressInputBuilder
   _$GTrackProgressInput _build() {
     final _$result = _$v ??
         new _$GTrackProgressInput._(
-            clientMutationId: clientMutationId,
-            mangaId: BuiltValueNullFieldError.checkNotNull(
-                mangaId, r'GTrackProgressInput', 'mangaId'));
+          clientMutationId: clientMutationId,
+          mangaId: BuiltValueNullFieldError.checkNotNull(
+              mangaId, r'GTrackProgressInput', 'mangaId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -21430,19 +24851,20 @@ class GTrackRecordConditionInputBuilder
     try {
       _$result = _$v ??
           new _$GTrackRecordConditionInput._(
-              finishDate: _finishDate?.build(),
-              id: id,
-              lastChapterRead: lastChapterRead,
-              libraryId: _libraryId?.build(),
-              mangaId: mangaId,
-              remoteId: _remoteId?.build(),
-              remoteUrl: remoteUrl,
-              score: score,
-              startDate: _startDate?.build(),
-              status: status,
-              title: title,
-              totalChapters: totalChapters,
-              trackerId: trackerId);
+            finishDate: _finishDate?.build(),
+            id: id,
+            lastChapterRead: lastChapterRead,
+            libraryId: _libraryId?.build(),
+            mangaId: mangaId,
+            remoteId: _remoteId?.build(),
+            remoteUrl: remoteUrl,
+            score: score,
+            startDate: _startDate?.build(),
+            status: status,
+            title: title,
+            totalChapters: totalChapters,
+            trackerId: trackerId,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -21739,22 +25161,23 @@ class GTrackRecordFilterInputBuilder
     try {
       _$result = _$v ??
           new _$GTrackRecordFilterInput._(
-              and: _and?.build(),
-              finishDate: _finishDate?.build(),
-              id: _id?.build(),
-              lastChapterRead: _lastChapterRead?.build(),
-              libraryId: _libraryId?.build(),
-              mangaId: _mangaId?.build(),
-              not: _not?.build(),
-              or: _or?.build(),
-              remoteId: _remoteId?.build(),
-              remoteUrl: _remoteUrl?.build(),
-              score: _score?.build(),
-              startDate: _startDate?.build(),
-              status: _status?.build(),
-              title: _title?.build(),
-              totalChapters: _totalChapters?.build(),
-              trackerId: _trackerId?.build());
+            and: _and?.build(),
+            finishDate: _finishDate?.build(),
+            id: _id?.build(),
+            lastChapterRead: _lastChapterRead?.build(),
+            libraryId: _libraryId?.build(),
+            mangaId: _mangaId?.build(),
+            not: _not?.build(),
+            or: _or?.build(),
+            remoteId: _remoteId?.build(),
+            remoteUrl: _remoteUrl?.build(),
+            score: _score?.build(),
+            startDate: _startDate?.build(),
+            status: _status?.build(),
+            title: _title?.build(),
+            totalChapters: _totalChapters?.build(),
+            trackerId: _trackerId?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -21796,6 +25219,105 @@ class GTrackRecordFilterInputBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GTrackRecordOrderInput extends GTrackRecordOrderInput {
+  @override
+  final GTrackRecordOrderBy by;
+  @override
+  final GSortOrder? byType;
+
+  factory _$GTrackRecordOrderInput(
+          [void Function(GTrackRecordOrderInputBuilder)? updates]) =>
+      (new GTrackRecordOrderInputBuilder()..update(updates))._build();
+
+  _$GTrackRecordOrderInput._({required this.by, this.byType}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(by, r'GTrackRecordOrderInput', 'by');
+  }
+
+  @override
+  GTrackRecordOrderInput rebuild(
+          void Function(GTrackRecordOrderInputBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GTrackRecordOrderInputBuilder toBuilder() =>
+      new GTrackRecordOrderInputBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GTrackRecordOrderInput &&
+        by == other.by &&
+        byType == other.byType;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, by.hashCode);
+    _$hash = $jc(_$hash, byType.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GTrackRecordOrderInput')
+          ..add('by', by)
+          ..add('byType', byType))
+        .toString();
+  }
+}
+
+class GTrackRecordOrderInputBuilder
+    implements Builder<GTrackRecordOrderInput, GTrackRecordOrderInputBuilder> {
+  _$GTrackRecordOrderInput? _$v;
+
+  GTrackRecordOrderBy? _by;
+  GTrackRecordOrderBy? get by => _$this._by;
+  set by(GTrackRecordOrderBy? by) => _$this._by = by;
+
+  GSortOrder? _byType;
+  GSortOrder? get byType => _$this._byType;
+  set byType(GSortOrder? byType) => _$this._byType = byType;
+
+  GTrackRecordOrderInputBuilder();
+
+  GTrackRecordOrderInputBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _by = $v.by;
+      _byType = $v.byType;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GTrackRecordOrderInput other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GTrackRecordOrderInput;
+  }
+
+  @override
+  void update(void Function(GTrackRecordOrderInputBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GTrackRecordOrderInput build() => _build();
+
+  _$GTrackRecordOrderInput _build() {
+    final _$result = _$v ??
+        new _$GTrackRecordOrderInput._(
+          by: BuiltValueNullFieldError.checkNotNull(
+              by, r'GTrackRecordOrderInput', 'by'),
+          byType: byType,
+        );
     replace(_$result);
     return _$result;
   }
@@ -21905,10 +25427,11 @@ class GUnbindTrackInputBuilder
   _$GUnbindTrackInput _build() {
     final _$result = _$v ??
         new _$GUnbindTrackInput._(
-            clientMutationId: clientMutationId,
-            deleteRemoteTrack: deleteRemoteTrack,
-            recordId: BuiltValueNullFieldError.checkNotNull(
-                recordId, r'GUnbindTrackInput', 'recordId'));
+          clientMutationId: clientMutationId,
+          deleteRemoteTrack: deleteRemoteTrack,
+          recordId: BuiltValueNullFieldError.checkNotNull(
+              recordId, r'GUnbindTrackInput', 'recordId'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -22023,9 +25546,10 @@ class GUpdateCategoriesInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateCategoriesInput._(
-              clientMutationId: clientMutationId,
-              ids: ids.build(),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -22152,10 +25676,11 @@ class GUpdateCategoryInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateCategoryInput._(
-              clientMutationId: clientMutationId,
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GUpdateCategoryInput', 'id'),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GUpdateCategoryInput', 'id'),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -22271,8 +25796,9 @@ class GUpdateCategoryMangaInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateCategoryMangaInput._(
-              categories: categories.build(),
-              clientMutationId: clientMutationId);
+            categories: categories.build(),
+            clientMutationId: clientMutationId,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -22396,11 +25922,12 @@ class GUpdateCategoryOrderInputBuilder
   _$GUpdateCategoryOrderInput _build() {
     final _$result = _$v ??
         new _$GUpdateCategoryOrderInput._(
-            clientMutationId: clientMutationId,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GUpdateCategoryOrderInput', 'id'),
-            position: BuiltValueNullFieldError.checkNotNull(
-                position, r'GUpdateCategoryOrderInput', 'position'));
+          clientMutationId: clientMutationId,
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GUpdateCategoryOrderInput', 'id'),
+          position: BuiltValueNullFieldError.checkNotNull(
+              position, r'GUpdateCategoryOrderInput', 'position'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -22519,10 +26046,11 @@ class GUpdateCategoryPatchInputBuilder
   _$GUpdateCategoryPatchInput _build() {
     final _$result = _$v ??
         new _$GUpdateCategoryPatchInput._(
-            Gdefault: Gdefault,
-            includeInDownload: includeInDownload,
-            includeInUpdate: includeInUpdate,
-            name: name);
+          Gdefault: Gdefault,
+          includeInDownload: includeInDownload,
+          includeInUpdate: includeInUpdate,
+          name: name,
+        );
     replace(_$result);
     return _$result;
   }
@@ -22636,10 +26164,11 @@ class GUpdateChapterInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateChapterInput._(
-              clientMutationId: clientMutationId,
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GUpdateChapterInput', 'id'),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GUpdateChapterInput', 'id'),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -22757,9 +26286,10 @@ class GUpdateChapterPatchInputBuilder
   _$GUpdateChapterPatchInput _build() {
     final _$result = _$v ??
         new _$GUpdateChapterPatchInput._(
-            isBookmarked: isBookmarked,
-            isRead: isRead,
-            lastPageRead: lastPageRead);
+          isBookmarked: isBookmarked,
+          isRead: isRead,
+          lastPageRead: lastPageRead,
+        );
     replace(_$result);
     return _$result;
   }
@@ -22873,9 +26403,10 @@ class GUpdateChaptersInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateChaptersInput._(
-              clientMutationId: clientMutationId,
-              ids: ids.build(),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -23002,10 +26533,11 @@ class GUpdateExtensionInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateExtensionInput._(
-              clientMutationId: clientMutationId,
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GUpdateExtensionInput', 'id'),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GUpdateExtensionInput', 'id'),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -23122,7 +26654,10 @@ class GUpdateExtensionPatchInputBuilder
   _$GUpdateExtensionPatchInput _build() {
     final _$result = _$v ??
         new _$GUpdateExtensionPatchInput._(
-            install: install, uninstall: uninstall, Gupdate: Gupdate);
+          install: install,
+          uninstall: uninstall,
+          Gupdate: Gupdate,
+        );
     replace(_$result);
     return _$result;
   }
@@ -23237,9 +26772,10 @@ class GUpdateExtensionsInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateExtensionsInput._(
-              clientMutationId: clientMutationId,
-              ids: ids.build(),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -23337,7 +26873,9 @@ class GUpdateLibraryMangaInputBuilder
 
   _$GUpdateLibraryMangaInput _build() {
     final _$result = _$v ??
-        new _$GUpdateLibraryMangaInput._(clientMutationId: clientMutationId);
+        new _$GUpdateLibraryMangaInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -23455,10 +26993,11 @@ class GUpdateMangaCategoriesInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateMangaCategoriesInput._(
-              clientMutationId: clientMutationId,
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GUpdateMangaCategoriesInput', 'id'),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GUpdateMangaCategoriesInput', 'id'),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -23585,9 +27124,10 @@ class GUpdateMangaCategoriesPatchInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateMangaCategoriesPatchInput._(
-              addToCategories: _addToCategories?.build(),
-              clearCategories: clearCategories,
-              removeFromCategories: _removeFromCategories?.build());
+            addToCategories: _addToCategories?.build(),
+            clearCategories: clearCategories,
+            removeFromCategories: _removeFromCategories?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -23713,10 +27253,11 @@ class GUpdateMangaInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateMangaInput._(
-              clientMutationId: clientMutationId,
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GUpdateMangaInput', 'id'),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GUpdateMangaInput', 'id'),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -23808,8 +27349,10 @@ class GUpdateMangaPatchInputBuilder
   GUpdateMangaPatchInput build() => _build();
 
   _$GUpdateMangaPatchInput _build() {
-    final _$result =
-        _$v ?? new _$GUpdateMangaPatchInput._(inLibrary: inLibrary);
+    final _$result = _$v ??
+        new _$GUpdateMangaPatchInput._(
+          inLibrary: inLibrary,
+        );
     replace(_$result);
     return _$result;
   }
@@ -23927,9 +27470,10 @@ class GUpdateMangasCategoriesInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateMangasCategoriesInput._(
-              clientMutationId: clientMutationId,
-              ids: ids.build(),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -24056,9 +27600,10 @@ class GUpdateMangasInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateMangasInput._(
-              clientMutationId: clientMutationId,
-              ids: ids.build(),
-              patch: patch.build());
+            clientMutationId: clientMutationId,
+            ids: ids.build(),
+            patch: patch.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -24189,9 +27734,10 @@ class GUpdateSourcePreferenceInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateSourcePreferenceInput._(
-              change: change.build(),
-              clientMutationId: clientMutationId,
-              source: source.build());
+            change: change.build(),
+            clientMutationId: clientMutationId,
+            source: source.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -24287,8 +27833,10 @@ class GUpdateStopInputBuilder
   GUpdateStopInput build() => _build();
 
   _$GUpdateStopInput _build() {
-    final _$result =
-        _$v ?? new _$GUpdateStopInput._(clientMutationId: clientMutationId);
+    final _$result = _$v ??
+        new _$GUpdateStopInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }
@@ -24449,14 +27997,15 @@ class GUpdateTrackInputBuilder
     try {
       _$result = _$v ??
           new _$GUpdateTrackInput._(
-              clientMutationId: clientMutationId,
-              finishDate: _finishDate?.build(),
-              lastChapterRead: lastChapterRead,
-              recordId: BuiltValueNullFieldError.checkNotNull(
-                  recordId, r'GUpdateTrackInput', 'recordId'),
-              scoreString: scoreString,
-              startDate: _startDate?.build(),
-              status: status);
+            clientMutationId: clientMutationId,
+            finishDate: _finishDate?.build(),
+            lastChapterRead: lastChapterRead,
+            recordId: BuiltValueNullFieldError.checkNotNull(
+                recordId, r'GUpdateTrackInput', 'recordId'),
+            scoreString: scoreString,
+            startDate: _startDate?.build(),
+            status: status,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -24556,8 +28105,9 @@ class GValidateBackupInputBuilder
   _$GValidateBackupInput _build() {
     final _$result = _$v ??
         new _$GValidateBackupInput._(
-            backup: BuiltValueNullFieldError.checkNotNull(
-                backup, r'GValidateBackupInput', 'backup'));
+          backup: BuiltValueNullFieldError.checkNotNull(
+              backup, r'GValidateBackupInput', 'backup'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -24639,8 +28189,10 @@ class GWebUIUpdateInputBuilder
   GWebUIUpdateInput build() => _build();
 
   _$GWebUIUpdateInput _build() {
-    final _$result =
-        _$v ?? new _$GWebUIUpdateInput._(clientMutationId: clientMutationId);
+    final _$result = _$v ??
+        new _$GWebUIUpdateInput._(
+          clientMutationId: clientMutationId,
+        );
     replace(_$result);
     return _$result;
   }

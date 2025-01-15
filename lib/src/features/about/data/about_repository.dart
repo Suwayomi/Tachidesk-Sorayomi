@@ -17,10 +17,8 @@ import '../../../constants/urls.dart';
 import '../../../global_providers/global_providers.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../domain/about/about_dto.dart';
-import '../domain/server_update/graphql/fragment.dart';
 import '../domain/server_update/server_update.dart';
 import '../presentation/about/controllers/about_controller.dart';
-import 'graphql/__generated__/query.data.gql.dart';
 import 'graphql/query.dart';
 
 part 'about_repository.g.dart';
@@ -35,7 +33,7 @@ class AboutRepository {
 
   Stream<AboutDto?> getAbout() => ferryClient.fetch(
         AboutQuery.getAboutQuery,
-        (GAboutData data) => data.aboutServer,
+        (data) => data.aboutServer,
       );
 
   Future<List<ServerUpdate>?> checkServerUpdate() => ferryClient

@@ -6,7 +6,7 @@ part of 'backup_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$restoreStatusHash() => r'029d9cd9d80cd51bc5ab53974f166ba9913c1649';
+String _$restoreStatusHash() => r'e92c2f84827483884e464b7c65052a757560eb50';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -142,6 +142,8 @@ class RestoreStatusProvider extends AutoDisposeStreamProvider<RestoreStatus?> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin RestoreStatusRef on AutoDisposeStreamProviderRef<RestoreStatus?> {
   /// The parameter `restoreId` of this provider.
   String get restoreId;
@@ -156,4 +158,4 @@ class _RestoreStatusProviderElement
   String get restoreId => (origin as RestoreStatusProvider).restoreId;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

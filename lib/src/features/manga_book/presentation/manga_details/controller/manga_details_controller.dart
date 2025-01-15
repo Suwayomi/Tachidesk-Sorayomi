@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -95,8 +96,7 @@ class MangaChapterList extends _$MangaChapterList {
 }
 
 @riverpod
-Set<String> mangaScanlatorList(MangaScanlatorListRef ref,
-    {required int mangaId}) {
+Set<String> mangaScanlatorList(Ref ref, {required int mangaId}) {
   final chapterList = ref.watch(mangaChapterListProvider(mangaId: mangaId));
   final scanlatorList = <String>{};
   chapterList.whenData((data) {
@@ -133,7 +133,7 @@ class MangaChapterFilterScanlator extends _$MangaChapterFilterScanlator {
 
 @riverpod
 AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
-  MangaChapterListWithFilterRef ref, {
+  Ref ref, {
   required int mangaId,
 }) {
   final chapterList = ref.watch(mangaChapterListProvider(mangaId: mangaId));
@@ -191,7 +191,7 @@ AsyncValue<List<Chapter>?> mangaChapterListWithFilter(
 
 @riverpod
 Chapter? firstUnreadInFilteredChapterList(
-  FirstUnreadInFilteredChapterListRef ref, {
+  Ref ref, {
   required int mangaId,
 }) {
   final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
@@ -214,7 +214,7 @@ Chapter? firstUnreadInFilteredChapterList(
 
 @riverpod
 ({Chapter? first, Chapter? second})? getNextAndPreviousChapters(
-  GetNextAndPreviousChaptersRef ref, {
+  Ref ref, {
   required int mangaId,
   required String chapterIndex,
   bool shouldAscSort = true,

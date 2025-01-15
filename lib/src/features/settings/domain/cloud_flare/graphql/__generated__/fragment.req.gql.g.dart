@@ -216,12 +216,13 @@ class GCloudFlareBypassFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GCloudFlareBypassFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GCloudFlareBypassFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GCloudFlareBypassFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GCloudFlareBypassFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GCloudFlareBypassFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

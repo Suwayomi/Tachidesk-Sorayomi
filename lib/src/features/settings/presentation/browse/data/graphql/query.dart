@@ -1,6 +1,8 @@
 import 'package:built_collection/built_collection.dart';
 
-import '__generated__/query.req.gql.dart';
+import 'queries/__generated__/update_extension_repos.req.gql.dart';
+import 'queries/__generated__/update_local_source_path.req.gql.dart';
+import 'queries/__generated__/update_source_in_parallel.req.gql.dart';
 
 abstract class BrowseSettingsQuery {
   static GUpdateSourceInParallelReq updateSourceInParallel(int value) =>

@@ -52,12 +52,15 @@ class NavigationShellScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
       Future.microtask(
-        () => checkForUpdate(
-          title: ref.read(packageInfoProvider).appName,
-          context: context,
-          updateCallback: ref.read(aboutRepositoryProvider).checkUpdate,
-          toast: ref.read(toastProvider),
-        ),
+        () async {
+          if (!context.mounted) return;
+          await checkForUpdate(
+            title: ref.read(packageInfoProvider).appName,
+            context: context,
+            updateCallback: ref.read(aboutRepositoryProvider).checkUpdate,
+            toast: ref.read(toastProvider),
+          );
+        },
       );
       return;
     }, []);

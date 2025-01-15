@@ -4,6 +4,9 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+"""Indicates an Input Object is a OneOf Input Object."""
+directive @oneOf on INPUT_OBJECT
+
 type AboutServerPayload {
   buildTime: LongString!
   buildType: String!
@@ -47,6 +50,8 @@ type BindTrackPayload {
 
 input BooleanFilterInput {
   distinctFrom: Boolean
+  distinctFromAll: [Boolean!]
+  distinctFromAny: [Boolean!]
   equalTo: Boolean
   greaterThan: Boolean
   greaterThanOrEqualTo: Boolean
@@ -56,6 +61,8 @@ input BooleanFilterInput {
   lessThanOrEqualTo: Boolean
   notDistinctFrom: Boolean
   notEqualTo: Boolean
+  notEqualToAll: [Boolean!]
+  notEqualToAny: [Boolean!]
   notIn: [Boolean!]
 }
 
@@ -105,6 +112,11 @@ enum CategoryOrderBy {
   ID
   NAME
   ORDER
+}
+
+input CategoryOrderInput {
+  by: CategoryOrderBy!
+  byType: SortOrder
 }
 
 type CategoryType {
@@ -193,6 +205,11 @@ enum ChapterOrderBy {
   CHAPTER_NUMBER
   LAST_READ_AT
   FETCHED_AT
+}
+
+input ChapterOrderInput {
+  by: ChapterOrderBy!
+  byType: SortOrder
 }
 
 type ChapterType {
@@ -398,6 +415,8 @@ type DequeueChapterDownloadsPayload {
 
 input DoubleFilterInput {
   distinctFrom: Float
+  distinctFromAll: [Float!]
+  distinctFromAny: [Float!]
   equalTo: Float
   greaterThan: Float
   greaterThanOrEqualTo: Float
@@ -407,7 +426,22 @@ input DoubleFilterInput {
   lessThanOrEqualTo: Float
   notDistinctFrom: Float
   notEqualTo: Float
+  notEqualToAll: [Float!]
+  notEqualToAny: [Float!]
   notIn: [Float!]
+}
+
+input DownloadChangedInput {
+  """
+  Sets a max number of updates that can be contained in a download update
+  message.Everything above this limit will be omitted and the "downloadStatus"
+  should be re-fetched via the corresponding query. Due to the graphql
+  subscription execution strategy not supporting batching for data loaders, the
+  data loaders run into the n+1 problem, which can cause the server to get
+  unresponsive until the status update has been handled. This is an issue e.g.
+  when mass en- or dequeuing downloads.
+  """
+  maxUpdates: Int
 }
 
 type DownloadEdge implements Edge {
@@ -440,11 +474,44 @@ type DownloadStatus {
 }
 
 type DownloadType {
+  position: Int!
   progress: Float!
   state: DownloadState!
   tries: Int!
   chapter: ChapterType!
   manga: MangaType!
+}
+
+type DownloadUpdate {
+  download: DownloadType!
+  type: DownloadUpdateType!
+}
+
+type DownloadUpdates {
+  """
+  The current download queue at the time of sending initial message. Is null for all following messages
+  """
+  initial: [DownloadType!]
+
+  """
+  Indicates whether updates have been omitted based on the "maxUpdates"
+  subscription variable. In case updates have been omitted, the "downloadStatus"
+  query should be re-fetched.
+  """
+  omittedUpdates: Boolean!
+  state: DownloaderState!
+  updates: [DownloadUpdate!]!
+}
+
+enum DownloadUpdateType {
+  QUEUED
+  DEQUEUED
+  PAUSED
+  STOPPED
+  PROGRESS
+  FINISHED
+  ERROR
+  POSITION
 }
 
 interface Edge {
@@ -536,6 +603,11 @@ enum ExtensionOrderBy {
   PKG_NAME
   NAME
   APK_NAME
+}
+
+input ExtensionOrderInput {
+  by: ExtensionOrderBy!
+  byType: SortOrder
 }
 
 type ExtensionType {
@@ -639,6 +711,8 @@ input FilterChangeInput {
 
 input FloatFilterInput {
   distinctFrom: Float
+  distinctFromAll: [Float!]
+  distinctFromAny: [Float!]
   equalTo: Float
   greaterThan: Float
   greaterThanOrEqualTo: Float
@@ -648,6 +722,8 @@ input FloatFilterInput {
   lessThanOrEqualTo: Float
   notDistinctFrom: Float
   notEqualTo: Float
+  notEqualToAll: [Float!]
+  notEqualToAny: [Float!]
   notIn: [Float!]
 }
 
@@ -695,6 +771,8 @@ type InstallExternalExtensionPayload {
 
 input IntFilterInput {
   distinctFrom: Int
+  distinctFromAll: [Int!]
+  distinctFromAny: [Int!]
   equalTo: Int
   greaterThan: Int
   greaterThanOrEqualTo: Int
@@ -704,6 +782,8 @@ input IntFilterInput {
   lessThanOrEqualTo: Int
   notDistinctFrom: Int
   notEqualTo: Int
+  notEqualToAll: [Int!]
+  notEqualToAny: [Int!]
   notIn: [Int!]
 }
 
@@ -760,6 +840,8 @@ type LogoutTrackerPayload {
 
 input LongFilterInput {
   distinctFrom: LongString
+  distinctFromAll: [LongString!]
+  distinctFromAny: [LongString!]
   equalTo: LongString
   greaterThan: LongString
   greaterThanOrEqualTo: LongString
@@ -769,6 +851,8 @@ input LongFilterInput {
   lessThanOrEqualTo: LongString
   notDistinctFrom: LongString
   notEqualTo: LongString
+  notEqualToAll: [LongString!]
+  notEqualToAny: [LongString!]
   notIn: [LongString!]
 }
 
@@ -850,6 +934,11 @@ enum MangaOrderBy {
   LAST_FETCHED_AT
 }
 
+input MangaOrderInput {
+  by: MangaOrderBy!
+  byType: SortOrder
+}
+
 enum MangaStatus {
   UNKNOWN
   ONGOING
@@ -862,6 +951,8 @@ enum MangaStatus {
 
 input MangaStatusFilterInput {
   distinctFrom: MangaStatus
+  distinctFromAll: [MangaStatus!]
+  distinctFromAny: [MangaStatus!]
   equalTo: MangaStatus
   greaterThan: MangaStatus
   greaterThanOrEqualTo: MangaStatus
@@ -871,6 +962,8 @@ input MangaStatusFilterInput {
   lessThanOrEqualTo: MangaStatus
   notDistinctFrom: MangaStatus
   notEqualTo: MangaStatus
+  notEqualToAll: [MangaStatus!]
+  notEqualToAny: [MangaStatus!]
   notIn: [MangaStatus!]
 }
 
@@ -900,6 +993,7 @@ type MangaType {
   chaptersAge: LongString
   downloadCount: Int!
   firstUnreadChapter: ChapterType
+  hasDuplicateChapters: Boolean!
   lastReadChapter: ChapterType
   latestFetchedChapter: ChapterType
   latestReadChapter: ChapterType
@@ -931,6 +1025,11 @@ input MetaFilterInput {
 enum MetaOrderBy {
   KEY
   VALUE
+}
+
+input MetaOrderInput {
+  by: MetaOrderBy!
+  byType: SortOrder
 }
 
 interface MetaType {
@@ -1012,7 +1111,7 @@ type Mutation {
   updateStop(input: UpdateStopInput!): UpdateStopPayload!
 }
 
-union Node = CategoryMetaType | CategoryType | ChapterMetaType | ChapterType | DownloadType | ExtensionType | GlobalMetaType | MangaMetaType | MangaType | PartialSettingsType | SettingsType | SourceMetaType | SourceType | TrackRecordType | TrackerType
+union Node = CategoryMetaType | CategoryType | ChapterMetaType | ChapterType | DownloadType | DownloadUpdate | ExtensionType | GlobalMetaType | MangaMetaType | MangaType | PartialSettingsType | SettingsType | SourceMetaType | SourceType | TrackRecordType | TrackerType
 
 interface NodeList {
   """
@@ -1065,16 +1164,20 @@ type PartialSettingsType implements Settings {
   excludeNotStarted: Boolean
   excludeUnreadChapters: Boolean
   extensionRepos: [String!]
+  flareSolverrAsResponseFallback: Boolean
   flareSolverrEnabled: Boolean
   flareSolverrSessionName: String
   flareSolverrSessionTtl: Int
   flareSolverrTimeout: Int
   flareSolverrUrl: String
   globalUpdateInterval: Float
-  gqlDebugLogsEnabled: Boolean
+  gqlDebugLogsEnabled: Boolean @deprecated(reason: "Removed - does not do anything")
   initialOpenInBrowserEnabled: Boolean
   ip: String
   localSourcePath: String
+  maxLogFileSize: String
+  maxLogFiles: Int
+  maxLogFolderSize: String
   maxSourcesInParallel: Int
   port: Int
   socksProxyEnabled: Boolean
@@ -1111,16 +1214,19 @@ input PartialSettingsTypeInput {
   excludeNotStarted: Boolean
   excludeUnreadChapters: Boolean
   extensionRepos: [String!]
+  flareSolverrAsResponseFallback: Boolean
   flareSolverrEnabled: Boolean
   flareSolverrSessionName: String
   flareSolverrSessionTtl: Int
   flareSolverrTimeout: Int
   flareSolverrUrl: String
   globalUpdateInterval: Float
-  gqlDebugLogsEnabled: Boolean
   initialOpenInBrowserEnabled: Boolean
   ip: String
   localSourcePath: String
+  maxLogFileSize: String
+  maxLogFiles: Int
+  maxLogFolderSize: String
   maxSourcesInParallel: Int
   port: Int
   socksProxyEnabled: Boolean
@@ -1142,30 +1248,30 @@ union Preference = CheckBoxPreference | EditTextPreference | ListPreference | Mu
 type Query {
   restoreStatus(id: String!): BackupRestoreStatus
   validateBackup(input: ValidateBackupInput!): ValidateBackupResult!
-  categories(condition: CategoryConditionInput, filter: CategoryFilterInput, orderBy: CategoryOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): CategoryNodeList!
+  categories(condition: CategoryConditionInput, filter: CategoryFilterInput, orderBy: CategoryOrderBy, orderByType: SortOrder, order: [CategoryOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): CategoryNodeList!
   category(id: Int!): CategoryType!
   chapter(id: Int!): ChapterType!
-  chapters(condition: ChapterConditionInput, filter: ChapterFilterInput, orderBy: ChapterOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): ChapterNodeList!
+  chapters(condition: ChapterConditionInput, filter: ChapterFilterInput, orderBy: ChapterOrderBy, orderByType: SortOrder, order: [ChapterOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): ChapterNodeList!
   downloadStatus: DownloadStatus!
   extension(pkgName: String!): ExtensionType!
-  extensions(condition: ExtensionConditionInput, filter: ExtensionFilterInput, orderBy: ExtensionOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): ExtensionNodeList!
+  extensions(condition: ExtensionConditionInput, filter: ExtensionFilterInput, orderBy: ExtensionOrderBy, orderByType: SortOrder, order: [ExtensionOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): ExtensionNodeList!
   aboutServer: AboutServerPayload!
   aboutWebUI: AboutWebUI!
   checkForServerUpdates: [CheckForServerUpdatesPayload!]!
   checkForWebUIUpdate: WebUIUpdateCheck!
   getWebUIUpdateStatus: WebUIUpdateStatus!
   manga(id: Int!): MangaType!
-  mangas(condition: MangaConditionInput, filter: MangaFilterInput, orderBy: MangaOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): MangaNodeList!
+  mangas(condition: MangaConditionInput, filter: MangaFilterInput, orderBy: MangaOrderBy, orderByType: SortOrder, order: [MangaOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): MangaNodeList!
   meta(key: String!): GlobalMetaType!
-  metas(condition: MetaConditionInput, filter: MetaFilterInput, orderBy: MetaOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): GlobalMetaNodeList!
+  metas(condition: MetaConditionInput, filter: MetaFilterInput, orderBy: MetaOrderBy, orderByType: SortOrder, order: [MetaOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): GlobalMetaNodeList!
   settings: SettingsType!
   source(id: LongString!): SourceType!
-  sources(condition: SourceConditionInput, filter: SourceFilterInput, orderBy: SourceOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): SourceNodeList!
+  sources(condition: SourceConditionInput, filter: SourceFilterInput, orderBy: SourceOrderBy, orderByType: SortOrder, order: [SourceOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): SourceNodeList!
   searchTracker(input: SearchTrackerInput!): SearchTrackerPayload!
   trackRecord(id: Int!): TrackRecordType!
-  trackRecords(condition: TrackRecordConditionInput, filter: TrackRecordFilterInput, orderBy: TrackRecordOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): TrackRecordNodeList!
+  trackRecords(condition: TrackRecordConditionInput, filter: TrackRecordFilterInput, orderBy: TrackRecordOrderBy, orderByType: SortOrder, order: [TrackRecordOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): TrackRecordNodeList!
   tracker(id: Int!): TrackerType!
-  trackers(condition: TrackerConditionInput, orderBy: TrackerOrderBy, orderByType: SortOrder, before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): TrackerNodeList!
+  trackers(condition: TrackerConditionInput, orderBy: TrackerOrderBy, orderByType: SortOrder, order: [TrackerOrderInput!], before: Cursor, after: Cursor, first: Int, last: Int, offset: Int): TrackerNodeList!
   lastUpdateTimestamp: LastUpdateTimestampPayload!
   updateStatus: UpdateStatus!
 }
@@ -1301,16 +1407,20 @@ interface Settings {
   excludeNotStarted: Boolean
   excludeUnreadChapters: Boolean
   extensionRepos: [String!]
+  flareSolverrAsResponseFallback: Boolean
   flareSolverrEnabled: Boolean
   flareSolverrSessionName: String
   flareSolverrSessionTtl: Int
   flareSolverrTimeout: Int
   flareSolverrUrl: String
   globalUpdateInterval: Float
-  gqlDebugLogsEnabled: Boolean
+  gqlDebugLogsEnabled: Boolean @deprecated(reason: "Removed - does not do anything")
   initialOpenInBrowserEnabled: Boolean
   ip: String
   localSourcePath: String
+  maxLogFileSize: String
+  maxLogFiles: Int
+  maxLogFolderSize: String
   maxSourcesInParallel: Int
   port: Int
   socksProxyEnabled: Boolean
@@ -1348,16 +1458,20 @@ type SettingsType implements Settings {
   excludeNotStarted: Boolean!
   excludeUnreadChapters: Boolean!
   extensionRepos: [String!]!
+  flareSolverrAsResponseFallback: Boolean!
   flareSolverrEnabled: Boolean!
   flareSolverrSessionName: String!
   flareSolverrSessionTtl: Int!
   flareSolverrTimeout: Int!
   flareSolverrUrl: String!
   globalUpdateInterval: Float!
-  gqlDebugLogsEnabled: Boolean!
+  gqlDebugLogsEnabled: Boolean! @deprecated(reason: "Removed - does not do anything")
   initialOpenInBrowserEnabled: Boolean!
   ip: String!
   localSourcePath: String!
+  maxLogFileSize: String!
+  maxLogFiles: Int!
+  maxLogFolderSize: String!
   maxSourcesInParallel: Int!
   port: Int!
   socksProxyEnabled: Boolean!
@@ -1447,6 +1561,11 @@ enum SourceOrderBy {
   LANG
 }
 
+input SourceOrderInput {
+  by: SourceOrderBy!
+  byType: SortOrder
+}
+
 input SourcePreferenceChangeInput {
   checkBoxState: Boolean
   editTextState: String
@@ -1492,9 +1611,17 @@ type StopDownloaderPayload {
 
 input StringFilterInput {
   distinctFrom: String
+  distinctFromAll: [String!]
+  distinctFromAny: [String!]
   distinctFromInsensitive: String
+  distinctFromInsensitiveAll: [String!]
+  distinctFromInsensitiveAny: [String!]
   endsWith: String
+  endsWithAll: [String!]
+  endsWithAny: [String!]
   endsWithInsensitive: String
+  endsWithInsensitiveAll: [String!]
+  endsWithInsensitiveAny: [String!]
   equalTo: String
   greaterThan: String
   greaterThanInsensitive: String
@@ -1503,33 +1630,64 @@ input StringFilterInput {
   in: [String!]
   inInsensitive: [String!]
   includes: String
+  includesAll: [String!]
+  includesAny: [String!]
   includesInsensitive: String
+  includesInsensitiveAll: [String!]
+  includesInsensitiveAny: [String!]
   isNull: Boolean
   lessThan: String
   lessThanInsensitive: String
   lessThanOrEqualTo: String
   lessThanOrEqualToInsensitive: String
   like: String
+  likeAll: [String!]
+  likeAny: [String!]
   likeInsensitive: String
+  likeInsensitiveAll: [String!]
+  likeInsensitiveAny: [String!]
   notDistinctFrom: String
   notDistinctFromInsensitive: String
   notEndsWith: String
+  notEndsWithAll: [String!]
+  notEndsWithAny: [String!]
   notEndsWithInsensitive: String
+  notEndsWithInsensitiveAll: [String!]
+  notEndsWithInsensitiveAny: [String!]
   notEqualTo: String
+  notEqualToAll: [String!]
+  notEqualToAny: [String!]
   notIn: [String!]
   notInInsensitive: [String!]
   notIncludes: String
+  notIncludesAll: [String!]
+  notIncludesAny: [String!]
   notIncludesInsensitive: String
+  notIncludesInsensitiveAll: [String!]
+  notIncludesInsensitiveAny: [String!]
   notLike: String
+  notLikeAll: [String!]
+  notLikeAny: [String!]
   notLikeInsensitive: String
+  notLikeInsensitiveAll: [String!]
+  notLikeInsensitiveAny: [String!]
   notStartsWith: String
+  notStartsWithAll: [String!]
+  notStartsWithAny: [String!]
   notStartsWithInsensitive: String
+  notStartsWithInsensitiveAll: [String!]
+  notStartsWithInsensitiveAny: [String!]
   startsWith: String
+  startsWithAll: [String!]
+  startsWithAny: [String!]
   startsWithInsensitive: String
+  startsWithInsensitiveAll: [String!]
+  startsWithInsensitiveAny: [String!]
 }
 
 type Subscription {
-  downloadChanged: DownloadStatus!
+  downloadChanged: DownloadStatus! @deprecated(reason: "Replaced width downloadStatusChanged, replace with downloadStatusChanged(input)")
+  downloadStatusChanged(input: DownloadChangedInput!): DownloadUpdates!
   webUIUpdateStatusChange: WebUIUpdateStatus!
   updateStatusChanged: UpdateStatus!
 }
@@ -1571,6 +1729,11 @@ enum TrackerOrderBy {
   ID
   NAME
   IS_LOGGED_IN
+}
+
+input TrackerOrderInput {
+  by: TrackerOrderBy!
+  byType: SortOrder
 }
 
 type TrackerType {
@@ -1654,6 +1817,11 @@ enum TrackRecordOrderBy {
   SCORE
   START_DATE
   FINISH_DATE
+}
+
+input TrackRecordOrderInput {
+  by: TrackRecordOrderBy!
+  byType: SortOrder
 }
 
 type TrackRecordType {

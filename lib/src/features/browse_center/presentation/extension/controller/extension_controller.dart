@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/db_keys.dart';
@@ -17,7 +18,7 @@ import '../../../domain/extension/extension_model.dart';
 part 'extension_controller.g.dart';
 
 @riverpod
-Stream<List<Extension>?> extension(ExtensionRef ref) {
+Stream<List<Extension>?> extension(Ref ref) {
   final result =
       ref.watch(extensionRepositoryProvider).getExtensionListStream();
   ref.keepAlive();
@@ -25,7 +26,7 @@ Stream<List<Extension>?> extension(ExtensionRef ref) {
 }
 
 @riverpod
-AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
+AsyncValue<Map<String, List<Extension>>> extensionMap(Ref ref) {
   final extensionMap = <String, List<Extension>>{};
   final extensionListData = ref.watch(extensionProvider);
   final extensionList = [...?extensionListData.valueOrNull];
@@ -58,7 +59,7 @@ AsyncValue<Map<String, List<Extension>>> extensionMap(ExtensionMapRef ref) {
 }
 
 @riverpod
-List<String> extensionFilterLangList(ExtensionFilterLangListRef ref) {
+List<String> extensionFilterLangList(Ref ref) {
   final extensionMap = {...?ref.watch(extensionMapProvider).valueOrNull};
   extensionMap.remove("installed");
   extensionMap.remove("update");
@@ -73,8 +74,7 @@ class ExtensionLanguageFilter extends _$ExtensionLanguageFilter
 }
 
 @riverpod
-AsyncValue<Map<String, List<Extension>>> extensionMapFiltered(
-    ExtensionMapFilteredRef ref) {
+AsyncValue<Map<String, List<Extension>>> extensionMapFiltered(Ref ref) {
   final extensionMapFiltered = <String, List<Extension>>{};
   final extensionMapData = ref.watch(extensionMapProvider);
   final extensionMap = {...?extensionMapData.valueOrNull};
@@ -87,7 +87,7 @@ AsyncValue<Map<String, List<Extension>>> extensionMapFiltered(
 
 @riverpod
 AsyncValue<Map<String, List<Extension>>> extensionMapFilteredAndQueried(
-  ExtensionMapFilteredAndQueriedRef ref,
+  Ref ref,
 ) {
   final extensionMapData = ref.watch(extensionMapFilteredProvider);
   final extensionMap = {...?extensionMapData.valueOrNull};

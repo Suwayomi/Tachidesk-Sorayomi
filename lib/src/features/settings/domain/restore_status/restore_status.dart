@@ -1,5 +1,5 @@
 import '../../../../graphql/__generated__/schema.schema.gql.dart';
-import 'graphql/__generated__/fragment.data.gql.dart';
+import 'graphql/__generated__/restore_status_fragment.data.gql.dart';
 
 typedef RestoreStatus = GRestoreStatusFragment;
 

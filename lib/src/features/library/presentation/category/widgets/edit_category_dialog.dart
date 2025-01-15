@@ -12,7 +12,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
-import '../../../domain/category/graphql/__generated__/fragment.data.gql.dart';
+import '../../../domain/category/graphql/__generated__/category_fragment.data.gql.dart';
 
 class EditCategoryDialog extends HookConsumerWidget {
   const EditCategoryDialog({

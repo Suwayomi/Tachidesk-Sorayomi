@@ -50,17 +50,17 @@ RouteBase get $quickSearchRoute => ShellRouteData.$route(
                           factory: $BrowseSourceRouteExtension._fromState,
                           routes: [
                             GoRouteData.$route(
-                              path: ':sourceId/:sourceType',
-                              parentNavigatorKey:
-                                  SourceTypeRoute.$parentNavigatorKey,
-                              factory: $SourceTypeRouteExtension._fromState,
-                            ),
-                            GoRouteData.$route(
                               path: ':sourceId/preference',
                               parentNavigatorKey:
                                   SourcePreferenceRoute.$parentNavigatorKey,
                               factory:
                                   $SourcePreferenceRouteExtension._fromState,
+                            ),
+                            GoRouteData.$route(
+                              path: ':sourceId/:sourceType',
+                              parentNavigatorKey:
+                                  SourceTypeRoute.$parentNavigatorKey,
+                              factory: $SourceTypeRouteExtension._fromState,
                             ),
                           ],
                         ),
@@ -246,40 +246,6 @@ extension $BrowseSourceRouteExtension on BrowseSourceRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $SourceTypeRouteExtension on SourceTypeRoute {
-  static SourceTypeRoute _fromState(GoRouterState state) => SourceTypeRoute(
-        sourceId: state.pathParameters['sourceId']!,
-        sourceType:
-            _$SourceTypeEnumMap._$fromName(state.pathParameters['sourceType']!),
-        query: state.uri.queryParameters['query'],
-        $extra: state.extra as List<InvalidType>?,
-      );
-
-  String get location => GoRouteData.$location(
-        '/source/${Uri.encodeComponent(sourceId)}/${Uri.encodeComponent(_$SourceTypeEnumMap[sourceType]!)}',
-        queryParams: {
-          if (query != null) 'query': query,
-        },
-      );
-
-  void go(BuildContext context) => context.go(location, extra: $extra);
-
-  Future<T?> push<T>(BuildContext context) =>
-      context.push<T>(location, extra: $extra);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location, extra: $extra);
-
-  void replace(BuildContext context) =>
-      context.replace(location, extra: $extra);
-}
-
-const _$SourceTypeEnumMap = {
-  SourceType.latest: 'latest',
-  SourceType.popular: 'popular',
-  SourceType.filter: 'filter',
-};
-
 extension $SourcePreferenceRouteExtension on SourcePreferenceRoute {
   static SourcePreferenceRoute _fromState(GoRouterState state) =>
       SourcePreferenceRoute(
@@ -288,6 +254,30 @@ extension $SourcePreferenceRouteExtension on SourcePreferenceRoute {
 
   String get location => GoRouteData.$location(
         '/source/${Uri.encodeComponent(sourceId)}/preference',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SourceTypeRouteExtension on SourceTypeRoute {
+  static SourceTypeRoute _fromState(GoRouterState state) => SourceTypeRoute(
+        sourceId: state.pathParameters['sourceId']!,
+        sourceType: state.pathParameters['sourceType']!,
+        query: state.uri.queryParameters['query'],
+      );
+
+  String get location => GoRouteData.$location(
+        '/source/${Uri.encodeComponent(sourceId)}/${Uri.encodeComponent(sourceType)}',
+        queryParams: {
+          if (query != null) 'query': query,
+        },
       );
 
   void go(BuildContext context) => context.go(location);
@@ -667,11 +657,6 @@ extension $GlobalSearchRouteExtension on GlobalSearchRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension<T extends Enum> on Map<T, String> {
-  T _$fromName(String value) =>
-      entries.singleWhere((element) => element.value == value).key;
-}
-
 T? _$convertMapValue<T>(
   String key,
   Map<String, String> map,
@@ -709,6 +694,8 @@ final routerConfigProvider = AutoDisposeProvider<GoRouter>.internal(
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef RouterConfigRef = AutoDisposeProviderRef<GoRouter>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

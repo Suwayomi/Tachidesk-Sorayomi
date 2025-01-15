@@ -204,20 +204,21 @@ class GMiscSettingsFragmentDataBuilder
   _$GMiscSettingsFragmentData _build() {
     final _$result = _$v ??
         new _$GMiscSettingsFragmentData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GMiscSettingsFragmentData', 'G__typename'),
-            debugLogsEnabled: BuiltValueNullFieldError.checkNotNull(
-                debugLogsEnabled,
-                r'GMiscSettingsFragmentData',
-                'debugLogsEnabled'),
-            systemTrayEnabled: BuiltValueNullFieldError.checkNotNull(
-                systemTrayEnabled,
-                r'GMiscSettingsFragmentData',
-                'systemTrayEnabled'),
-            gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(
-                gqlDebugLogsEnabled,
-                r'GMiscSettingsFragmentData',
-                'gqlDebugLogsEnabled'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GMiscSettingsFragmentData', 'G__typename'),
+          debugLogsEnabled: BuiltValueNullFieldError.checkNotNull(
+              debugLogsEnabled,
+              r'GMiscSettingsFragmentData',
+              'debugLogsEnabled'),
+          systemTrayEnabled: BuiltValueNullFieldError.checkNotNull(
+              systemTrayEnabled,
+              r'GMiscSettingsFragmentData',
+              'systemTrayEnabled'),
+          gqlDebugLogsEnabled: BuiltValueNullFieldError.checkNotNull(
+              gqlDebugLogsEnabled,
+              r'GMiscSettingsFragmentData',
+              'gqlDebugLogsEnabled'),
+        );
     replace(_$result);
     return _$result;
   }

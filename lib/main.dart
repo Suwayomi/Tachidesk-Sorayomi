@@ -27,7 +27,7 @@ Future<void> main() async {
   final packageInfo = await PackageInfo.fromPlatform();
   final sharedPreferences = await SharedPreferences.getInstance();
   await Hive.initFlutter('Sorayomi');
-  final box = await Hive.openBox("graphql");
+  final box = await Hive.openBox("graphql12");
   final store = HiveStore(box);
 
   //TODO remove

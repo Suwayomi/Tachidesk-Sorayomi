@@ -50,7 +50,7 @@ class FerryNetworkModule {
       },
     );
     return Client(link: link, cache: cache, defaultFetchPolicies: {
-      OperationType.query: FetchPolicy.CacheAndNetwork,
+      OperationType.query: FetchPolicy.NoCache,
       OperationType.mutation: FetchPolicy.NoCache,
       OperationType.subscription: FetchPolicy.NoCache,
     });

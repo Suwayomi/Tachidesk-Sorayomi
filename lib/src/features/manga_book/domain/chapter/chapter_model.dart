@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import 'graphql/__generated__/fragment.data.gql.dart';
+import 'graphql/__generated__/chapter_fragment.data.gql.dart';
 
 typedef Chapter = GChapterFragment;
 

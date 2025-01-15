@@ -98,7 +98,7 @@ class ReaderScreen extends HookConsumerWidget {
     }, []);
 
     return PopScope(
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, _) async {
         if (didPop) {
           ref.invalidate(chapterProviderWithIndex);
           ref.invalidate(mangaChapterListProvider(mangaId: mangaId));

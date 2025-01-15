@@ -212,17 +212,18 @@ class GBrowserSettingsFragmentDataBuilder
     try {
       _$result = _$v ??
           new _$GBrowserSettingsFragmentData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GBrowserSettingsFragmentData', 'G__typename'),
-              extensionRepos: extensionRepos.build(),
-              maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(
-                  maxSourcesInParallel,
-                  r'GBrowserSettingsFragmentData',
-                  'maxSourcesInParallel'),
-              localSourcePath: BuiltValueNullFieldError.checkNotNull(
-                  localSourcePath,
-                  r'GBrowserSettingsFragmentData',
-                  'localSourcePath'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GBrowserSettingsFragmentData', 'G__typename'),
+            extensionRepos: extensionRepos.build(),
+            maxSourcesInParallel: BuiltValueNullFieldError.checkNotNull(
+                maxSourcesInParallel,
+                r'GBrowserSettingsFragmentData',
+                'maxSourcesInParallel'),
+            localSourcePath: BuiltValueNullFieldError.checkNotNull(
+                localSourcePath,
+                r'GBrowserSettingsFragmentData',
+                'localSourcePath'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

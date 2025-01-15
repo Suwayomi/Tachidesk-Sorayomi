@@ -85,7 +85,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
     }, []);
 
     return PopScope(
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, _) async {
         if (didPop && categoryId != null) {
           ref.invalidate(categoryMangaListProvider(categoryId!));
         }

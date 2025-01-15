@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../constants/quick_open_help_text.dart';
@@ -31,7 +32,7 @@ class QuickSearchQuery extends _$QuickSearchQuery
 
 @riverpod
 List<QuickSearchResult>? processesQuickSearch(
-  ProcessesQuickSearchRef ref, {
+  Ref ref, {
   required BuildContext context,
 }) {
   String query = ref.watch(quickSearchQueryProvider) ?? "";

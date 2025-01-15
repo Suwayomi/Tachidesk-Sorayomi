@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../constants/enum.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
@@ -37,7 +36,7 @@ class SourceShortSearch extends StatelessWidget {
           trailing: const Icon(Icons.arrow_forward_rounded),
           onTap: () => SourceTypeRoute(
             sourceId: source.id.value,
-            sourceType: SourceType.filter,
+            sourceType: SourceType.SEARCH.name,
             query: query,
           ).push(context),
         ),

@@ -7,7 +7,7 @@ part of 'server_settings_repository.dart';
 // **************************************************************************
 
 String _$serverSettingsRepositoryHash() =>
-    r'50dde824bee83fac227e10c3f465aaf26b23faab';
+    r'b51134633a21a065f8deee86bfcaabb4c7a16533';
 
 /// See also [serverSettingsRepository].
 @ProviderFor(serverSettingsRepository)
@@ -22,7 +22,9 @@ final serverSettingsRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef ServerSettingsRepositoryRef
     = AutoDisposeProviderRef<ServerSettingsRepository>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

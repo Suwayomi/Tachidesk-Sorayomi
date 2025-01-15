@@ -6,6 +6,7 @@
 
 import 'package:ferry/ferry.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' show MultipartFile;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -74,6 +75,5 @@ class BackupSettingsRepository {
 }
 
 @riverpod
-BackupSettingsRepository backupSettingsRepository(
-        BackupSettingsRepositoryRef ref) =>
+BackupSettingsRepository backupSettingsRepository(Ref ref) =>
     BackupSettingsRepository(ref.watch(ferryClientProvider));

@@ -1,4 +1,8 @@
-import '__generated__/query.req.gql.dart';
+import 'queries/__generated__/toggle_auto_download_new_chapters.req.gql.dart';
+import 'queries/__generated__/toggle_exclude_entry_with_unread_chapters.req.gql.dart';
+import 'queries/__generated__/update_auto_download_new_chapters_limit.req.gql.dart';
+import 'queries/__generated__/update_download_as_cbz.req.gql.dart';
+import 'queries/__generated__/update_downloads_location.req.gql.dart';
 
 abstract class DownloadsSettingsQuery {
   static GUpdateDownloadsLocationReq updateDownloadsLocation(String value) =>

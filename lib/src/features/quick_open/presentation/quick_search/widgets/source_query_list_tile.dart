@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../constants/enum.dart';
 import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/server_image.dart';
@@ -33,7 +32,8 @@ class SourceQueryListTile extends ConsumerWidget {
         ref.read(sourceLastUsedProvider.notifier).update(source.id.value);
         SourceTypeRoute(
           sourceId: source.id.value,
-          sourceType: query.isBlank ? SourceType.popular : SourceType.filter,
+          sourceType:
+              (query.isBlank ? SourceType.POPULAR : SourceType.SEARCH).name,
           query: query,
         ).go(context);
         afterClick?.call();

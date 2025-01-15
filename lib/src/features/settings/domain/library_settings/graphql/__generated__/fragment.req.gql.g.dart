@@ -216,12 +216,13 @@ class GLibrarySettingsFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GLibrarySettingsFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GLibrarySettingsFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GLibrarySettingsFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GLibrarySettingsFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GLibrarySettingsFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

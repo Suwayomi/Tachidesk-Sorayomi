@@ -177,12 +177,13 @@ class GServerBindingFragmentDataBuilder
   _$GServerBindingFragmentData _build() {
     final _$result = _$v ??
         new _$GServerBindingFragmentData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GServerBindingFragmentData', 'G__typename'),
-            ip: BuiltValueNullFieldError.checkNotNull(
-                ip, r'GServerBindingFragmentData', 'ip'),
-            port: BuiltValueNullFieldError.checkNotNull(
-                port, r'GServerBindingFragmentData', 'port'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GServerBindingFragmentData', 'G__typename'),
+          ip: BuiltValueNullFieldError.checkNotNull(
+              ip, r'GServerBindingFragmentData', 'ip'),
+          port: BuiltValueNullFieldError.checkNotNull(
+              port, r'GServerBindingFragmentData', 'port'),
+        );
     replace(_$result);
     return _$result;
   }

@@ -7,7 +7,7 @@ part of 'browse_settings_repository.dart';
 // **************************************************************************
 
 String _$browseSettingsRepositoryHash() =>
-    r'6d70cff5b4f879915d756eb63a7669660dcd012e';
+    r'e0803b4abcdce99f64f28fcdce5626b08c069aaa';
 
 /// See also [browseSettingsRepository].
 @ProviderFor(browseSettingsRepository)
@@ -22,7 +22,9 @@ final browseSettingsRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef BrowseSettingsRepositoryRef
     = AutoDisposeProviderRef<BrowseSettingsRepository>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

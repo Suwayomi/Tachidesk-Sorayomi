@@ -212,12 +212,13 @@ class GMiscSettingsFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GMiscSettingsFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GMiscSettingsFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GMiscSettingsFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GMiscSettingsFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GMiscSettingsFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

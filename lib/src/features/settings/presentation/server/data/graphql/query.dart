@@ -1,4 +1,19 @@
-import '__generated__/query.req.gql.dart';
+import 'queries/__generated__/toggle_debug_logs.req.gql.dart';
+import 'queries/__generated__/toggle_flare_solverr.req.gql.dart';
+import 'queries/__generated__/toggle_gql_debug_logs.req.gql.dart';
+import 'queries/__generated__/toggle_socks_proxy.req.gql.dart';
+import 'queries/__generated__/toggle_system_tray_enabled.req.gql.dart';
+import 'queries/__generated__/update_flare_solverr_session_name.req.gql.dart';
+import 'queries/__generated__/update_flare_solverr_session_ttl.req.gql.dart';
+import 'queries/__generated__/update_flare_solverr_timeout.req.gql.dart';
+import 'queries/__generated__/update_flare_solverr_url.req.gql.dart';
+import 'queries/__generated__/update_port.req.gql.dart';
+import 'queries/__generated__/update_server_ip.req.gql.dart';
+import 'queries/__generated__/update_socks_host.req.gql.dart';
+import 'queries/__generated__/update_socks_password.req.gql.dart';
+import 'queries/__generated__/update_socks_port.req.gql.dart';
+import 'queries/__generated__/update_socks_user_name.req.gql.dart';
+import 'queries/__generated__/update_socks_version.req.gql.dart';
 
 abstract class ServerSettingsQuery {
   static GUpdateServerIpReq updateServerIp(String value) =>

@@ -6,7 +6,7 @@
 
 import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
-import 'graphql/__generated__/fragment.data.gql.dart';
+import 'graphql/__generated__/extension_fragment.data.gql.dart';
 
 typedef Extension = GExtensionFragment;
 

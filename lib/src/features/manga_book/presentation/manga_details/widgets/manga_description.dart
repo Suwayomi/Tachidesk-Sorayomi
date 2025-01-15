@@ -101,15 +101,16 @@ class MangaDescription extends HookConsumerWidget {
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: context.theme.canvasColor.withOpacity(.7),
+                          color:
+                              context.theme.canvasColor.withValues(alpha: .7),
                         ),
                       ],
                       gradient: LinearGradient(
                         colors: [
-                          context.theme.canvasColor.withOpacity(0),
-                          context.theme.canvasColor.withOpacity(.3),
-                          context.theme.canvasColor.withOpacity(.5),
-                          context.theme.canvasColor.withOpacity(.6),
+                          context.theme.canvasColor.withValues(alpha: 0),
+                          context.theme.canvasColor.withValues(alpha: .3),
+                          context.theme.canvasColor.withValues(alpha: .5),
+                          context.theme.canvasColor.withValues(alpha: .6),
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,

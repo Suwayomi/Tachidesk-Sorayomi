@@ -73,6 +73,8 @@ abstract class GBooleanFilterInput
       _$GBooleanFilterInput;
 
   bool? get distinctFrom;
+  BuiltList<bool>? get distinctFromAll;
+  BuiltList<bool>? get distinctFromAny;
   bool? get equalTo;
   bool? get greaterThan;
   bool? get greaterThanOrEqualTo;
@@ -83,6 +85,8 @@ abstract class GBooleanFilterInput
   bool? get lessThanOrEqualTo;
   bool? get notDistinctFrom;
   bool? get notEqualTo;
+  BuiltList<bool>? get notEqualToAll;
+  BuiltList<bool>? get notEqualToAny;
   BuiltList<bool>? get notIn;
   static Serializer<GBooleanFilterInput> get serializer =>
       _$gBooleanFilterInputSerializer;
@@ -200,6 +204,31 @@ class GCategoryOrderBy extends EnumClass {
 
   static GCategoryOrderBy valueOf(String name) =>
       _$gCategoryOrderByValueOf(name);
+}
+
+abstract class GCategoryOrderInput
+    implements Built<GCategoryOrderInput, GCategoryOrderInputBuilder> {
+  GCategoryOrderInput._();
+
+  factory GCategoryOrderInput(
+          [void Function(GCategoryOrderInputBuilder b) updates]) =
+      _$GCategoryOrderInput;
+
+  GCategoryOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GCategoryOrderInput> get serializer =>
+      _$gCategoryOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GCategoryOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCategoryOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GCategoryOrderInput.serializer,
+        json,
+      );
 }
 
 abstract class GChapterConditionInput
@@ -333,6 +362,31 @@ class GChapterOrderBy extends EnumClass {
   static BuiltSet<GChapterOrderBy> get values => _$gChapterOrderByValues;
 
   static GChapterOrderBy valueOf(String name) => _$gChapterOrderByValueOf(name);
+}
+
+abstract class GChapterOrderInput
+    implements Built<GChapterOrderInput, GChapterOrderInputBuilder> {
+  GChapterOrderInput._();
+
+  factory GChapterOrderInput(
+          [void Function(GChapterOrderInputBuilder b) updates]) =
+      _$GChapterOrderInput;
+
+  GChapterOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GChapterOrderInput> get serializer =>
+      _$gChapterOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GChapterOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GChapterOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GChapterOrderInput.serializer,
+        json,
+      );
 }
 
 abstract class GClearCachedImagesInput
@@ -727,6 +781,8 @@ abstract class GDoubleFilterInput
       _$GDoubleFilterInput;
 
   double? get distinctFrom;
+  BuiltList<double>? get distinctFromAll;
+  BuiltList<double>? get distinctFromAny;
   double? get equalTo;
   double? get greaterThan;
   double? get greaterThanOrEqualTo;
@@ -737,6 +793,8 @@ abstract class GDoubleFilterInput
   double? get lessThanOrEqualTo;
   double? get notDistinctFrom;
   double? get notEqualTo;
+  BuiltList<double>? get notEqualToAll;
+  BuiltList<double>? get notEqualToAny;
   BuiltList<double>? get notIn;
   static Serializer<GDoubleFilterInput> get serializer =>
       _$gDoubleFilterInputSerializer;
@@ -749,6 +807,30 @@ abstract class GDoubleFilterInput
   static GDoubleFilterInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GDoubleFilterInput.serializer,
+        json,
+      );
+}
+
+abstract class GDownloadChangedInput
+    implements Built<GDownloadChangedInput, GDownloadChangedInputBuilder> {
+  GDownloadChangedInput._();
+
+  factory GDownloadChangedInput(
+          [void Function(GDownloadChangedInputBuilder b) updates]) =
+      _$GDownloadChangedInput;
+
+  int? get maxUpdates;
+  static Serializer<GDownloadChangedInput> get serializer =>
+      _$gDownloadChangedInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDownloadChangedInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GDownloadChangedInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GDownloadChangedInput.serializer,
         json,
       );
 }
@@ -786,6 +868,35 @@ class GDownloadState extends EnumClass {
   static BuiltSet<GDownloadState> get values => _$gDownloadStateValues;
 
   static GDownloadState valueOf(String name) => _$gDownloadStateValueOf(name);
+}
+
+class GDownloadUpdateType extends EnumClass {
+  const GDownloadUpdateType._(String name) : super(name);
+
+  static const GDownloadUpdateType QUEUED = _$gDownloadUpdateTypeQUEUED;
+
+  static const GDownloadUpdateType DEQUEUED = _$gDownloadUpdateTypeDEQUEUED;
+
+  static const GDownloadUpdateType PAUSED = _$gDownloadUpdateTypePAUSED;
+
+  static const GDownloadUpdateType STOPPED = _$gDownloadUpdateTypeSTOPPED;
+
+  static const GDownloadUpdateType PROGRESS = _$gDownloadUpdateTypePROGRESS;
+
+  static const GDownloadUpdateType FINISHED = _$gDownloadUpdateTypeFINISHED;
+
+  static const GDownloadUpdateType ERROR = _$gDownloadUpdateTypeERROR;
+
+  static const GDownloadUpdateType POSITION = _$gDownloadUpdateTypePOSITION;
+
+  static Serializer<GDownloadUpdateType> get serializer =>
+      _$gDownloadUpdateTypeSerializer;
+
+  static BuiltSet<GDownloadUpdateType> get values =>
+      _$gDownloadUpdateTypeValues;
+
+  static GDownloadUpdateType valueOf(String name) =>
+      _$gDownloadUpdateTypeValueOf(name);
 }
 
 abstract class GEnqueueChapterDownloadInput
@@ -932,6 +1043,31 @@ class GExtensionOrderBy extends EnumClass {
 
   static GExtensionOrderBy valueOf(String name) =>
       _$gExtensionOrderByValueOf(name);
+}
+
+abstract class GExtensionOrderInput
+    implements Built<GExtensionOrderInput, GExtensionOrderInputBuilder> {
+  GExtensionOrderInput._();
+
+  factory GExtensionOrderInput(
+          [void Function(GExtensionOrderInputBuilder b) updates]) =
+      _$GExtensionOrderInput;
+
+  GExtensionOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GExtensionOrderInput> get serializer =>
+      _$gExtensionOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GExtensionOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GExtensionOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GExtensionOrderInput.serializer,
+        json,
+      );
 }
 
 abstract class GFetchChapterPagesInput
@@ -1143,6 +1279,8 @@ abstract class GFloatFilterInput
       _$GFloatFilterInput;
 
   double? get distinctFrom;
+  BuiltList<double>? get distinctFromAll;
+  BuiltList<double>? get distinctFromAny;
   double? get equalTo;
   double? get greaterThan;
   double? get greaterThanOrEqualTo;
@@ -1153,6 +1291,8 @@ abstract class GFloatFilterInput
   double? get lessThanOrEqualTo;
   double? get notDistinctFrom;
   double? get notEqualTo;
+  BuiltList<double>? get notEqualToAll;
+  BuiltList<double>? get notEqualToAny;
   BuiltList<double>? get notIn;
   static Serializer<GFloatFilterInput> get serializer =>
       _$gFloatFilterInputSerializer;
@@ -1247,6 +1387,8 @@ abstract class GIntFilterInput
       _$GIntFilterInput;
 
   int? get distinctFrom;
+  BuiltList<int>? get distinctFromAll;
+  BuiltList<int>? get distinctFromAny;
   int? get equalTo;
   int? get greaterThan;
   int? get greaterThanOrEqualTo;
@@ -1257,6 +1399,8 @@ abstract class GIntFilterInput
   int? get lessThanOrEqualTo;
   int? get notDistinctFrom;
   int? get notEqualTo;
+  BuiltList<int>? get notEqualToAll;
+  BuiltList<int>? get notEqualToAny;
   BuiltList<int>? get notIn;
   static Serializer<GIntFilterInput> get serializer =>
       _$gIntFilterInputSerializer;
@@ -1361,6 +1505,8 @@ abstract class GLongFilterInput
       _$GLongFilterInput;
 
   GLongString? get distinctFrom;
+  BuiltList<GLongString>? get distinctFromAll;
+  BuiltList<GLongString>? get distinctFromAny;
   GLongString? get equalTo;
   GLongString? get greaterThan;
   GLongString? get greaterThanOrEqualTo;
@@ -1371,6 +1517,8 @@ abstract class GLongFilterInput
   GLongString? get lessThanOrEqualTo;
   GLongString? get notDistinctFrom;
   GLongString? get notEqualTo;
+  BuiltList<GLongString>? get notEqualToAll;
+  BuiltList<GLongString>? get notEqualToAny;
   BuiltList<GLongString>? get notIn;
   static Serializer<GLongFilterInput> get serializer =>
       _$gLongFilterInputSerializer;
@@ -1527,6 +1675,30 @@ class GMangaOrderBy extends EnumClass {
   static GMangaOrderBy valueOf(String name) => _$gMangaOrderByValueOf(name);
 }
 
+abstract class GMangaOrderInput
+    implements Built<GMangaOrderInput, GMangaOrderInputBuilder> {
+  GMangaOrderInput._();
+
+  factory GMangaOrderInput([void Function(GMangaOrderInputBuilder b) updates]) =
+      _$GMangaOrderInput;
+
+  GMangaOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GMangaOrderInput> get serializer =>
+      _$gMangaOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GMangaOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GMangaOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GMangaOrderInput.serializer,
+        json,
+      );
+}
+
 class GMangaStatus extends EnumClass {
   const GMangaStatus._(String name) : super(name);
 
@@ -1561,6 +1733,8 @@ abstract class GMangaStatusFilterInput
       _$GMangaStatusFilterInput;
 
   GMangaStatus? get distinctFrom;
+  BuiltList<GMangaStatus>? get distinctFromAll;
+  BuiltList<GMangaStatus>? get distinctFromAny;
   GMangaStatus? get equalTo;
   GMangaStatus? get greaterThan;
   GMangaStatus? get greaterThanOrEqualTo;
@@ -1571,6 +1745,8 @@ abstract class GMangaStatusFilterInput
   GMangaStatus? get lessThanOrEqualTo;
   GMangaStatus? get notDistinctFrom;
   GMangaStatus? get notEqualTo;
+  BuiltList<GMangaStatus>? get notEqualToAll;
+  BuiltList<GMangaStatus>? get notEqualToAny;
   BuiltList<GMangaStatus>? get notIn;
   static Serializer<GMangaStatusFilterInput> get serializer =>
       _$gMangaStatusFilterInputSerializer;
@@ -1653,6 +1829,30 @@ class GMetaOrderBy extends EnumClass {
   static GMetaOrderBy valueOf(String name) => _$gMetaOrderByValueOf(name);
 }
 
+abstract class GMetaOrderInput
+    implements Built<GMetaOrderInput, GMetaOrderInputBuilder> {
+  GMetaOrderInput._();
+
+  factory GMetaOrderInput([void Function(GMetaOrderInputBuilder b) updates]) =
+      _$GMetaOrderInput;
+
+  GMetaOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GMetaOrderInput> get serializer =>
+      _$gMetaOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GMetaOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GMetaOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GMetaOrderInput.serializer,
+        json,
+      );
+}
+
 abstract class GPartialSettingsTypeInput
     implements
         Built<GPartialSettingsTypeInput, GPartialSettingsTypeInputBuilder> {
@@ -1681,16 +1881,19 @@ abstract class GPartialSettingsTypeInput
   bool? get excludeNotStarted;
   bool? get excludeUnreadChapters;
   BuiltList<String>? get extensionRepos;
+  bool? get flareSolverrAsResponseFallback;
   bool? get flareSolverrEnabled;
   String? get flareSolverrSessionName;
   int? get flareSolverrSessionTtl;
   int? get flareSolverrTimeout;
   String? get flareSolverrUrl;
   double? get globalUpdateInterval;
-  bool? get gqlDebugLogsEnabled;
   bool? get initialOpenInBrowserEnabled;
   String? get ip;
   String? get localSourcePath;
+  String? get maxLogFileSize;
+  int? get maxLogFiles;
+  String? get maxLogFolderSize;
   int? get maxSourcesInParallel;
   int? get port;
   bool? get socksProxyEnabled;
@@ -2119,6 +2322,31 @@ class GSourceOrderBy extends EnumClass {
   static GSourceOrderBy valueOf(String name) => _$gSourceOrderByValueOf(name);
 }
 
+abstract class GSourceOrderInput
+    implements Built<GSourceOrderInput, GSourceOrderInputBuilder> {
+  GSourceOrderInput._();
+
+  factory GSourceOrderInput(
+          [void Function(GSourceOrderInputBuilder b) updates]) =
+      _$GSourceOrderInput;
+
+  GSourceOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GSourceOrderInput> get serializer =>
+      _$gSourceOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSourceOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSourceOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSourceOrderInput.serializer,
+        json,
+      );
+}
+
 abstract class GSourcePreferenceChangeInput
     implements
         Built<GSourcePreferenceChangeInput,
@@ -2207,9 +2435,17 @@ abstract class GStringFilterInput
       _$GStringFilterInput;
 
   String? get distinctFrom;
+  BuiltList<String>? get distinctFromAll;
+  BuiltList<String>? get distinctFromAny;
   String? get distinctFromInsensitive;
+  BuiltList<String>? get distinctFromInsensitiveAll;
+  BuiltList<String>? get distinctFromInsensitiveAny;
   String? get endsWith;
+  BuiltList<String>? get endsWithAll;
+  BuiltList<String>? get endsWithAny;
   String? get endsWithInsensitive;
+  BuiltList<String>? get endsWithInsensitiveAll;
+  BuiltList<String>? get endsWithInsensitiveAny;
   String? get equalTo;
   String? get greaterThan;
   String? get greaterThanInsensitive;
@@ -2219,29 +2455,59 @@ abstract class GStringFilterInput
   BuiltList<String>? get Gin;
   BuiltList<String>? get inInsensitive;
   String? get includes;
+  BuiltList<String>? get includesAll;
+  BuiltList<String>? get includesAny;
   String? get includesInsensitive;
+  BuiltList<String>? get includesInsensitiveAll;
+  BuiltList<String>? get includesInsensitiveAny;
   bool? get isNull;
   String? get lessThan;
   String? get lessThanInsensitive;
   String? get lessThanOrEqualTo;
   String? get lessThanOrEqualToInsensitive;
   String? get like;
+  BuiltList<String>? get likeAll;
+  BuiltList<String>? get likeAny;
   String? get likeInsensitive;
+  BuiltList<String>? get likeInsensitiveAll;
+  BuiltList<String>? get likeInsensitiveAny;
   String? get notDistinctFrom;
   String? get notDistinctFromInsensitive;
   String? get notEndsWith;
+  BuiltList<String>? get notEndsWithAll;
+  BuiltList<String>? get notEndsWithAny;
   String? get notEndsWithInsensitive;
+  BuiltList<String>? get notEndsWithInsensitiveAll;
+  BuiltList<String>? get notEndsWithInsensitiveAny;
   String? get notEqualTo;
+  BuiltList<String>? get notEqualToAll;
+  BuiltList<String>? get notEqualToAny;
   BuiltList<String>? get notIn;
   BuiltList<String>? get notInInsensitive;
   String? get notIncludes;
+  BuiltList<String>? get notIncludesAll;
+  BuiltList<String>? get notIncludesAny;
   String? get notIncludesInsensitive;
+  BuiltList<String>? get notIncludesInsensitiveAll;
+  BuiltList<String>? get notIncludesInsensitiveAny;
   String? get notLike;
+  BuiltList<String>? get notLikeAll;
+  BuiltList<String>? get notLikeAny;
   String? get notLikeInsensitive;
+  BuiltList<String>? get notLikeInsensitiveAll;
+  BuiltList<String>? get notLikeInsensitiveAny;
   String? get notStartsWith;
+  BuiltList<String>? get notStartsWithAll;
+  BuiltList<String>? get notStartsWithAny;
   String? get notStartsWithInsensitive;
+  BuiltList<String>? get notStartsWithInsensitiveAll;
+  BuiltList<String>? get notStartsWithInsensitiveAny;
   String? get startsWith;
+  BuiltList<String>? get startsWithAll;
+  BuiltList<String>? get startsWithAny;
   String? get startsWithInsensitive;
+  BuiltList<String>? get startsWithInsensitiveAll;
+  BuiltList<String>? get startsWithInsensitiveAny;
   static Serializer<GStringFilterInput> get serializer =>
       _$gStringFilterInputSerializer;
 
@@ -2299,6 +2565,31 @@ class GTrackerOrderBy extends EnumClass {
   static BuiltSet<GTrackerOrderBy> get values => _$gTrackerOrderByValues;
 
   static GTrackerOrderBy valueOf(String name) => _$gTrackerOrderByValueOf(name);
+}
+
+abstract class GTrackerOrderInput
+    implements Built<GTrackerOrderInput, GTrackerOrderInputBuilder> {
+  GTrackerOrderInput._();
+
+  factory GTrackerOrderInput(
+          [void Function(GTrackerOrderInputBuilder b) updates]) =
+      _$GTrackerOrderInput;
+
+  GTrackerOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GTrackerOrderInput> get serializer =>
+      _$gTrackerOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GTrackerOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GTrackerOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GTrackerOrderInput.serializer,
+        json,
+      );
 }
 
 abstract class GTrackProgressInput
@@ -2436,6 +2727,31 @@ class GTrackRecordOrderBy extends EnumClass {
 
   static GTrackRecordOrderBy valueOf(String name) =>
       _$gTrackRecordOrderByValueOf(name);
+}
+
+abstract class GTrackRecordOrderInput
+    implements Built<GTrackRecordOrderInput, GTrackRecordOrderInputBuilder> {
+  GTrackRecordOrderInput._();
+
+  factory GTrackRecordOrderInput(
+          [void Function(GTrackRecordOrderInputBuilder b) updates]) =
+      _$GTrackRecordOrderInput;
+
+  GTrackRecordOrderBy get by;
+  GSortOrder? get byType;
+  static Serializer<GTrackRecordOrderInput> get serializer =>
+      _$gTrackRecordOrderInputSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GTrackRecordOrderInput.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GTrackRecordOrderInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GTrackRecordOrderInput.serializer,
+        json,
+      );
 }
 
 class GTriState extends EnumClass {
@@ -3214,6 +3530,7 @@ const Map<String, Set<String>> possibleTypesMap = {
     'ChapterMetaType',
     'ChapterType',
     'DownloadType',
+    'DownloadUpdate',
     'ExtensionType',
     'GlobalMetaType',
     'MangaMetaType',

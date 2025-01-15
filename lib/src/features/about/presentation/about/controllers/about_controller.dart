@@ -6,6 +6,7 @@
 
 import 'dart:async';
 
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -15,7 +16,7 @@ import '../../../domain/about/about_dto.dart';
 part 'about_controller.g.dart';
 
 @riverpod
-Stream<AboutDto?> about(AboutRef ref) =>
+Stream<AboutDto?> about(Ref ref) =>
     ref.watch(aboutRepositoryProvider).getAbout();
 
 @riverpod

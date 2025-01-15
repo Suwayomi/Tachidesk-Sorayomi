@@ -213,12 +213,13 @@ class GServerBindingFragmentReqBuilder
     try {
       _$result = _$v ??
           new _$GServerBindingFragmentReq._(
-              vars: vars.build(),
-              document: BuiltValueNullFieldError.checkNotNull(
-                  document, r'GServerBindingFragmentReq', 'document'),
-              fragmentName: fragmentName,
-              idFields: BuiltValueNullFieldError.checkNotNull(
-                  idFields, r'GServerBindingFragmentReq', 'idFields'));
+            vars: vars.build(),
+            document: BuiltValueNullFieldError.checkNotNull(
+                document, r'GServerBindingFragmentReq', 'document'),
+            fragmentName: fragmentName,
+            idFields: BuiltValueNullFieldError.checkNotNull(
+                idFields, r'GServerBindingFragmentReq', 'idFields'),
+          );
     } catch (_) {
       late String _$failedField;
       try {

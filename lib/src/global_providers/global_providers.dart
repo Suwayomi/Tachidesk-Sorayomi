@@ -10,6 +10,7 @@ import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_stor
 import 'package:ferry/ferry.dart';
 import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:queue/queue.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,7 +29,7 @@ import '../utils/storage/ferry/network_module.dart';
 part 'global_providers.g.dart';
 
 @riverpod
-Client ferryClient(FerryClientRef ref) =>
+Client ferryClient(Ref ref) =>
     ref.watch(ferryNetworkModuleProvider).provideFerry(
           baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
           port: ref.watch(serverPortProvider),
@@ -40,7 +41,7 @@ Client ferryClient(FerryClientRef ref) =>
 
 //TODO remove
 @riverpod
-DioClient dioClientKey(DioClientKeyRef ref) => DioClient(
+DioClient dioClientKey(Ref ref) => DioClient(
       dio: ref.watch(networkModuleProvider).provideDio(
             baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
             port: ref.watch(serverPortProvider),
@@ -93,14 +94,14 @@ Directory? appDirectory(ref) => throw UnimplementedError();
 
 //TODO remove
 @riverpod
-HiveCacheStore hiveCacheStore(HiveCacheStoreRef ref) =>
+HiveCacheStore hiveCacheStore(Ref ref) =>
     HiveCacheStore(ref.watch(appDirectoryProvider)?.path);
 
 @riverpod
-HiveStore hiveStore(HiveStoreRef ref) => throw UnimplementedError();
+HiveStore hiveStore(Ref ref) => throw UnimplementedError();
 
 @riverpod
-Queue rateLimitQueue(RateLimitQueueRef ref, [String? query]) {
+Queue rateLimitQueue(Ref ref, [String? query]) {
   final queue = Queue(
     parallel: 3,
     delay: const Duration(milliseconds: 500),

@@ -1,4 +1,4 @@
-import '__generated__/query.req.gql.dart';
+import '__generated__/all_categories_query.req.gql.dart';
 
 abstract class CategoryQuery {
   static GAllCategoriesReq getAllCategories() =>
