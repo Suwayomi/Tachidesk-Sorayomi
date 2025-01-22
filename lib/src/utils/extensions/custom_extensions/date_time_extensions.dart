@@ -115,3 +115,16 @@ extension DateTimeExtensions on DateTime {
     }
   }
 }
+
+extension TimeOfDayE on TimeOfDay {
+  String _addLeadingZeroIfNeeded(int value) {
+    if (value < 10) {
+      return '0$value';
+    }
+    return value.toString();
+  }
+
+  get hhmm {
+    return "${_addLeadingZeroIfNeeded(hour)}:${_addLeadingZeroIfNeeded(minute)}";
+  }
+}

@@ -14,6 +14,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../widgets/emoticons.dart';
 import '../../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
+import '../../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../../settings/presentation/appearance/widgets/grid_cover_width_slider/grid_cover_width_slider.dart';
 import '../../../domain/source/source_model.dart';
@@ -27,9 +28,9 @@ class SourceMangaGridView extends ConsumerWidget {
     required this.sourceType,
     this.source,
   });
-  final Future<AsyncValue?> Function(Manga) toggleFavorite;
-  final PagingController<int, Manga> controller;
-  final Source? source;
+  final Future<AsyncValue?> Function(MangaDto) toggleFavorite;
+  final PagingController<int, MangaDto> controller;
+  final SourceDto? source;
   final String sourceId;
   final SourceType sourceType;
 
@@ -37,7 +38,7 @@ class SourceMangaGridView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return PagedGridView(
       pagingController: controller,
-      builderDelegate: PagedChildBuilderDelegate<Manga>(
+      builderDelegate: PagedChildBuilderDelegate<MangaDto>(
         firstPageProgressIndicatorBuilder: (context) =>
             const CenterSorayomiShimmerIndicator(),
         newPageProgressIndicatorBuilder: (context) =>
@@ -64,14 +65,11 @@ class SourceMangaGridView extends ConsumerWidget {
             if (value == null) return;
             if (value is! AsyncError) {
               final items = [...?controller.itemList];
-              //TODO: Implement copyWith
-              // items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
+              items[index] = item.copyWith(inLibrary: !item.inLibrary.ifNull());
               controller.itemList = items;
             }
           },
-          onPressed: () {
-            MangaRoute(mangaId: item.id).push(context);
-          },
+          onPressed: () => MangaRoute(mangaId: item.id).push(context),
         ),
       ),
       gridDelegate: mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),

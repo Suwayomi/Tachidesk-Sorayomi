@@ -91,7 +91,7 @@ GoRouter routerConfig(ref) {
   return GoRouter(
     routes: $appRoutes,
     debugLogDiagnostics: true,
-    initialLocation: const BrowseSourceRoute().location,
+    initialLocation: const LibraryRoute(categoryId: 0).location,
     navigatorKey: rootNavigatorKey,
   );
 }

@@ -29,6 +29,7 @@ class CategoryMangaList extends HookConsumerWidget {
         categoryMangaListWithQueryAndFilterProvider(categoryId: categoryId);
     final mangaList = ref.watch(provider);
     final displayMode = ref.watch(libraryDisplayModeProvider);
+    final gridWidth = ref.watch(gridMinWidthProvider);
     refresh() => ref.invalidate(categoryMangaListProvider(categoryId));
     useEffect(() {
       if (mangaList.isNotLoading) refresh();
@@ -72,8 +73,7 @@ class CategoryMangaList extends HookConsumerWidget {
               ),
             ),
           DisplayMode.grid => GridView.builder(
-              gridDelegate:
-                  mangaCoverGridDelegate(ref.watch(gridMinWidthProvider)),
+              gridDelegate: mangaCoverGridDelegate(gridWidth),
               itemCount: (data?.length).getValueOnNullOrNegative(),
               itemBuilder: (context, index) => MangaCoverGridTile(
                 onLongPress: () async {

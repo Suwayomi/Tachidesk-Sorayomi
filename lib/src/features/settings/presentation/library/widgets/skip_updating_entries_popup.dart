@@ -6,7 +6,7 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/app_utils.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../controller/server_controller.dart';
-import '../../../domain/library_settings/library_settings.dart';
+import '../../../domain/settings/settings.dart';
 import '../data/library_settings_repository.dart';
 
 class SkipUpdatingEntriesPopup extends ConsumerWidget {
@@ -35,7 +35,7 @@ class SkipUpdatingEntriesPopup extends ConsumerWidget {
                   ref.read(toastProvider),
                 );
                 if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
+                  ref.read(settingsProvider.notifier).updateState(result);
                 }
               },
             ),
@@ -50,7 +50,7 @@ class SkipUpdatingEntriesPopup extends ConsumerWidget {
                   ref.read(toastProvider),
                 );
                 if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
+                  ref.read(settingsProvider.notifier).updateState(result);
                 }
               },
             ),
@@ -65,7 +65,7 @@ class SkipUpdatingEntriesPopup extends ConsumerWidget {
                   ref.read(toastProvider),
                 );
                 if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
+                  ref.read(settingsProvider.notifier).updateState(result);
                 }
               },
             ),

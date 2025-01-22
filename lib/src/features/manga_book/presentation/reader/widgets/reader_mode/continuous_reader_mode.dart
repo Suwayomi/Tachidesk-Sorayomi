@@ -36,8 +36,8 @@ class ContinuousReaderMode extends HookConsumerWidget {
     this.reverse = false,
     this.showReaderLayoutAnimation = false,
   });
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final bool showSeparator;
   final ValueSetter<int>? onPageChanged;
   final Axis scrollDirection;

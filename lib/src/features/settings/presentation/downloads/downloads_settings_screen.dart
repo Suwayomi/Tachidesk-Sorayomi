@@ -7,7 +7,7 @@ import '../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../widgets/section_title.dart';
 import '../../controller/server_controller.dart';
-import '../../domain/downloads_settings/downloads_settings.dart';
+import '../../domain/settings/settings.dart';
 import 'data/downloads_settings_repository.dart';
 
 class DownloadsSettingsScreen extends ConsumerWidget {

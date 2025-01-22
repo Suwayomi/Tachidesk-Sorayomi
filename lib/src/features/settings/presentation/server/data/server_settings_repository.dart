@@ -1,133 +1,121 @@
-import 'package:ferry/ferry.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../global_providers/global_providers.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../domain/settings/settings.dart';
-import 'graphql/query.dart';
+import 'graphql/__generated__/query.graphql.dart';
 
 part 'server_settings_repository.g.dart';
 
 class ServerSettingsRepository {
   const ServerSettingsRepository(this.ferryClient);
 
-  final Client ferryClient;
+  final GraphQLClient ferryClient;
 
   Future<SettingsDto?> updateIpAddress(String ipAddress) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateServerIp(ipAddress),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateServerIp(Options$Mutation$UpdateServerIp(
+          variables: Variables$Mutation$UpdateServerIp(ip: ipAddress)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updatePort(int port) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updatePort(port),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdatePort(Options$Mutation$UpdatePort(
+          variables: Variables$Mutation$UpdatePort(port: port)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> toggleSocksProxy(bool isEnabled) => ferryClient
-      .fetch(
-        ServerSettingsQuery.toggleSocksProxy(isEnabled),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$ToggleSocksProxy(Options$Mutation$ToggleSocksProxy(
+          variables: Variables$Mutation$ToggleSocksProxy(
+              socksProxyEnabled: isEnabled)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateSocksVersion(int newVersion) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateSocksVersion(newVersion),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateSocksVersion(Options$Mutation$UpdateSocksVersion(
+          variables: Variables$Mutation$UpdateSocksVersion(
+              socksProxyVersion: newVersion)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateSocksHost(String value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateSocksHost(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateSocksHost(Options$Mutation$UpdateSocksHost(
+          variables: Variables$Mutation$UpdateSocksHost(socksProxyHost: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateSocksUserName(String value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateSocksUserName(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateSocksUserName(Options$Mutation$UpdateSocksUserName(
+          variables: Variables$Mutation$UpdateSocksUserName(
+              socksProxyUsername: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateSocksPassword(String value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateSocksPassword(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateSocksPassword(Options$Mutation$UpdateSocksPassword(
+          variables: Variables$Mutation$UpdateSocksPassword(
+              socksProxyPassword: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateSocksPort(String value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateSocksPort(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateSocksPort(Options$Mutation$UpdateSocksPort(
+          variables: Variables$Mutation$UpdateSocksPort(socksProxyPort: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> toggleFlareSolverr(bool value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.toggleFlareSolverr(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$ToggleFlareSolverr(Options$Mutation$ToggleFlareSolverr(
+          variables: Variables$Mutation$ToggleFlareSolverr(
+              flareSolverrEnabled: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateFlareSolverrSessionName(String value) =>
       ferryClient
-          .fetch(
-            ServerSettingsQuery.updateFlareSolverrSessionName(value),
-            (data) => data.setSettings.settings,
-          )
-          .first;
+          .mutate$UpdateFlareSolverrSessionName(
+              Options$Mutation$UpdateFlareSolverrSessionName(
+                  variables: Variables$Mutation$UpdateFlareSolverrSessionName(
+                      flareSolverrSessionName: value)))
+          .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateFlareSolverrSessionTtl(int value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateFlareSolverrSessionTtl(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateFlareSolverrSessionTtl(
+          Options$Mutation$UpdateFlareSolverrSessionTtl(
+              variables: Variables$Mutation$UpdateFlareSolverrSessionTtl(
+                  flareSolverrSessionTtl: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateFlareSolverrTimeout(int value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateFlareSolverrTimeout(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .mutate$UpdateFlareSolverrTimeout(
+          Options$Mutation$UpdateFlareSolverrTimeout(
+              variables: Variables$Mutation$UpdateFlareSolverrTimeout(
+                  flareSolverrTimeout: value)))
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> updateFlareSolverrUrl(String value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.updateFlareSolverrUrl(value),
-        (data) => data.setSettings.settings,
+      .mutate$UpdateFlareSolverrUrl(
+        Options$Mutation$UpdateFlareSolverrUrl(
+          variables: Variables$Mutation$UpdateFlareSolverrUrl(
+            flareSolverrUrl: value,
+          ),
+        ),
       )
-      .first;
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> toggleDebugLogs(bool value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.toggleDebugLogs(value),
-        (data) => data.setSettings.settings,
+      .mutate$ToggleDebugLogs(
+        Options$Mutation$ToggleDebugLogs(
+          variables: Variables$Mutation$ToggleDebugLogs(
+            debugLogsEnabled: value,
+          ),
+        ),
       )
-      .first;
-
-  Future<SettingsDto?> toggleGqlDebugLogs(bool value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.toggleGqlDebugLogs(value),
-        (data) => data.setSettings.settings,
-      )
-      .first;
+      .getData((data) => data.setSettings.settings);
 
   Future<SettingsDto?> toggleSystemTrayEnabled(bool value) => ferryClient
-      .fetch(
-        ServerSettingsQuery.toggleSystemTrayEnabled(value),
-        (data) => data.setSettings.settings,
+      .mutate$ToggleSystemTrayEnabled(
+        Options$Mutation$ToggleSystemTrayEnabled(
+          variables: Variables$Mutation$ToggleSystemTrayEnabled(
+              systemTrayEnabled: value),
+        ),
       )
-      .first;
+      .getData((data) => data.setSettings.settings);
 }
 
 @riverpod
 ServerSettingsRepository serverSettingsRepository(Ref ref) =>
-    ServerSettingsRepository(ref.watch(ferryClientProvider));
+    ServerSettingsRepository(ref.watch(graphQlClientProvider));

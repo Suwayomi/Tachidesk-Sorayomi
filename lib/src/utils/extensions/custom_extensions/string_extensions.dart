@@ -125,6 +125,13 @@ extension StringExtensions on String? {
     return TimeOfDay(hour: timeList.first!, minute: timeList.last!);
   }
 
+  String get toDateString {
+    if (isBlank) return "";
+    return DateTime.fromMillisecondsSinceEpoch(
+      (int.tryParse(this!).getValueOnNullOrNegative()) * 1000,
+    ).toDateString;
+  }
+
   int getValueOnNullOrNegative([int i = 0]) =>
       int.tryParse(this ?? '')?.getValueOnNullOrNegative(i) ?? i;
 }

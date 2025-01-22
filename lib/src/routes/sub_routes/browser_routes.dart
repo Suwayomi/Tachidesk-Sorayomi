@@ -60,7 +60,7 @@ class SourceTypeRoute extends GoRouteData {
     this.query,
   });
   final String sourceId;
-  final String sourceType;
+  final SourceType sourceType;
   final String? query;
 
   static final $parentNavigatorKey = _quickOpenNavigatorKey;
@@ -69,7 +69,7 @@ class SourceTypeRoute extends GoRouteData {
   Widget build(context, state) => SourceMangaListScreen(
         key: ValueKey('$sourceId-$sourceType'),
         sourceId: sourceId,
-        sourceType: SourceType.valueOf(sourceType),
+        sourceType: sourceType,
         initialQuery: query,
       );
 }

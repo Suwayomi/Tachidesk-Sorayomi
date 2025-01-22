@@ -1,7 +1,0 @@
-# import '/src/features/about/domain/about/graphql/about_fragment.graphql'
-
-query About {
-  aboutServer {
-    ...AboutFragment
-  }
-}

@@ -16,7 +16,7 @@ import '../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../widgets/section_title.dart';
 import '../../controller/server_controller.dart';
-import '../../domain/library_settings/library_settings.dart';
+import '../../domain/settings/settings.dart';
 import 'data/library_settings_repository.dart';
 import 'widgets/skip_updating_entries_popup.dart';
 
@@ -61,7 +61,7 @@ class LibrarySettingsScreen extends ConsumerWidget {
                         repository.updateGlobalUpdateInterval(value.toDouble()),
                     ref.read(toastProvider));
                 if (result != null) {
-                  ref.watch(settingsProvider.notifier).updateState(result);
+                  ref.read(settingsProvider.notifier).updateState(result);
                 }
               }
 
@@ -110,7 +110,7 @@ class LibrarySettingsScreen extends ConsumerWidget {
                             ref.read(toastProvider));
                         if (result != null) {
                           ref
-                              .watch(settingsProvider.notifier)
+                              .read(settingsProvider.notifier)
                               .updateState(result);
                         }
                       },

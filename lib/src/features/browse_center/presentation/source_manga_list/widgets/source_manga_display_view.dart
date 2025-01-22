@@ -11,7 +11,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../../../../constants/db_keys.dart';
 import '../../../../../constants/enum.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../manga_book/data/manga_book_repository.dart';
+import '../../../../manga_book/data/manga_book/manga_book_repository.dart';
 import '../../../../manga_book/domain/manga/manga_model.dart';
 import '../../../domain/source/source_model.dart';
 import '../controller/source_manga_controller.dart';
@@ -27,15 +27,15 @@ class SourceMangaDisplayView extends ConsumerWidget {
     this.source,
   });
 
-  final PagingController<int, Manga> controller;
-  final Source? source;
+  final PagingController<int, MangaDto> controller;
+  final SourceDto? source;
   final String sourceId;
   final SourceType sourceType;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final DisplayMode displayMode = ref.watch(sourceDisplayModeProvider) ??
         DBKeys.sourceDisplayMode.initial;
-    toggleFavorite(Manga item) async {
+    toggleFavorite(MangaDto item) async {
       if (item.inLibrary.ifNull()) {
         bool removeManga = false;
         await showDialog(

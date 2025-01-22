@@ -4,24 +4,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import '../../../../graphql/__generated__/schema.schema.gql.dart';
-import '../../data/source_repository/graphql/queries/__generated__/source_preferences_by_id.data.gql.dart';
+import '../../../../graphql/__generated__/schema.graphql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-typedef SourcePreference = GSourcePreferenceByIdData_source_preferences;
+typedef SourcePreference = Fragment$SourcePreference;
 
-typedef CheckBoxPreference
-    = GSourcePreferenceByIdData_source_preferences__asCheckBoxPreference;
+typedef CheckBoxPreference = Fragment$SourcePreference$$CheckBoxPreference;
 
-typedef SwitchPreferenceCompat
-    = GSourcePreferenceByIdData_source_preferences__asSwitchPreference;
+typedef SwitchPreferenceCompat = Fragment$SourcePreference$$SwitchPreference;
 
-typedef ListPreference
-    = GSourcePreferenceByIdData_source_preferences__asListPreference;
+typedef ListPreference = Fragment$SourcePreference$$ListPreference;
 
 typedef MultiSelectListPreference
-    = GSourcePreferenceByIdData_source_preferences__asMultiSelectListPreference;
+    = Fragment$SourcePreference$$MultiSelectListPreference;
 
-typedef EditTextPreference
-    = GSourcePreferenceByIdData_source_preferences__asEditTextPreference;
+typedef EditTextPreference = Fragment$SourcePreference$$EditTextPreference;
 
-typedef SourcePreferenceChange = GSourcePreferenceChangeInputBuilder;
+typedef SourcePreferenceChange = Input$SourcePreferenceChangeInput;

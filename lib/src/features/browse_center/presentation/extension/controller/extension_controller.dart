@@ -18,7 +18,7 @@ import '../../../domain/extension/extension_model.dart';
 part 'extension_controller.g.dart';
 
 @riverpod
-Stream<List<Extension>?> extension(Ref ref) {
+Future<List<Extension>?> extension(Ref ref) {
   final result =
       ref.watch(extensionRepositoryProvider).getExtensionListStream();
   ref.keepAlive();

@@ -65,16 +65,17 @@ class SourceMangaFilter extends HookWidget {
           itemBuilder: (context, index) {
             final Filter filter = filters[index];
             return FilterToWidget(
-              key: ValueKey("Filter-${filter.G__typename}"),
+              key: ValueKey("BaseFilter-$index"),
               filter: filter,
               currentChanges: filterChangeMap.value[index] ?? [],
-              onChanged: (value) {
-                for (var filter in value) {
-                  filter.update((newFilter) => newFilter.position = index);
+              onChanged: (filters) {
+                final filterChanges = <FilterChange>[];
+                for (var filter in filters) {
+                  filterChanges.add(filter.copyWith(position: index));
                 }
                 final newFilterChangeMap = <int, List<FilterChange>>{
                   ...filterChangeMap.value,
-                  index: value,
+                  index: filterChanges,
                 };
                 filterChangeMap.value = newFilterChangeMap;
               },

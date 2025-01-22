@@ -6,7 +6,7 @@ import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../utils/misc/toast/toast.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../controller/server_controller.dart';
-import '../../../../domain/misc_settings/misc_settings.dart';
+import '../../../../domain/settings/settings.dart';
 import '../../data/server_settings_repository.dart';
 
 class MiscSettingsSection extends ConsumerWidget {
@@ -25,19 +25,6 @@ class MiscSettingsSection extends ConsumerWidget {
           onChanged: (isEnabled) async {
             final value = await AppUtils.guard(
                 () => repository.toggleDebugLogs(isEnabled),
-                ref.read(toastProvider));
-            if (value != null) {
-              ref.read(settingsProvider.notifier).updateState(value);
-            }
-          },
-        ),
-        SwitchListTile(
-          title: Text(context.l10n.gqlDebugLogs),
-          subtitle: Text(context.l10n.gqlDebugLogsHint),
-          value: miscSettingsDto.gqlDebugLogsEnabled,
-          onChanged: (isEnabled) async {
-            final value = await AppUtils.guard(
-                () => repository.toggleGqlDebugLogs(isEnabled),
                 ref.read(toastProvider));
             if (value != null) {
               ref.read(settingsProvider.notifier).updateState(value);

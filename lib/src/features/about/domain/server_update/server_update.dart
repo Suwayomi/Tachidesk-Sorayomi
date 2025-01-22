@@ -6,7 +6,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'graphql/__generated__/service_update_fragment.data.gql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
 part 'server_update.freezed.dart';
 
@@ -19,6 +19,6 @@ class ServerUpdate with _$ServerUpdate {
   }) = _ServerUpdate;
 }
 
-extension ServerUpdateConverter on GServerUpdateFragment {
+extension ServerUpdateConverter on Fragment$ServerUpdateDto {
   ServerUpdate get toDto => ServerUpdate(channel: channel, tag: tag, url: url);
 }

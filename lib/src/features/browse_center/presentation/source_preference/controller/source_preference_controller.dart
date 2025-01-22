@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:built_collection/built_collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -14,8 +13,6 @@ import '../../../domain/source_preference/source_preference.dart';
 part 'source_preference_controller.g.dart';
 
 @riverpod
-Future<BuiltList<SourcePreference>?> baseSourcePreferenceList(
-  Ref ref,
-  String sourceId,
-) =>
-    ref.read(sourceRepositoryProvider).getSourcePreference(sourceId).first;
+Future<List<SourcePreference>?> baseSourcePreferenceList(
+        Ref ref, String sourceId) =>
+    ref.read(sourceRepositoryProvider).getSourcePreference(sourceId);

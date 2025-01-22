@@ -31,9 +31,9 @@ import '../../../../settings/presentation/reader/widgets/reader_padding_slider/r
 import '../../../../settings/presentation/reader/widgets/reader_swipe_toggle_tile/reader_swipe_chapter_toggle_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_volume_tap_invert_tile/reader_volume_tap_invert_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_volume_tap_tile/reader_volume_tap_tile.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/manga_book/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
-import '../../../domain/chapter_patch/chapter_put_model.dart';
+import '../../../domain/chapter_batch/chapter_batch_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import '../../../widgets/chapter_actions/single_chapter_action_icon.dart';
 import '../../manga_details/controller/manga_details_controller.dart';
@@ -55,8 +55,8 @@ class ReaderWrapper extends HookConsumerWidget {
     this.showReaderLayoutAnimation = false,
   });
   final Widget child;
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final ValueChanged<int> onChanged;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
@@ -341,17 +341,13 @@ class ReaderWrapper extends HookConsumerWidget {
                               icon: chapter.isBookmarked
                                   ? Icons.bookmark_rounded
                                   : Icons.bookmark_outline_rounded,
-                              chapterIndex: chapter.index,
-                              mangaId: manga.id,
-                              chapterPut: ChapterPut(
-                                bookmarked: !chapter.isBookmarked,
-                              ),
-                              refresh: () async {
-                                return ref.refresh(chapterProvider(
-                                  mangaId: manga.id,
-                                  chapterIndex: chapter.index,
-                                ).future);
-                              },
+                              chapterId: chapter.id,
+                              change: ChapterChange(
+                                  isBookmarked: !chapter.isBookmarked),
+                              refresh: () => ref.refresh(chapterProvider(
+                                mangaId: manga.id,
+                                chapterIndex: chapter.index,
+                              ).future),
                             ),
                             IconButton(
                               icon: const Icon(Icons.app_settings_alt_outlined),
@@ -464,7 +460,7 @@ class ReaderView extends HookWidget {
   final double mangaReaderMagnifierSize;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
-  final ({Chapter? first, Chapter? second})? prevNextChapterPair;
+  final ({ChapterDto? first, ChapterDto? second})? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
   final bool readerSwipeChapterToggle;
   final bool showReaderLayoutAnimation;

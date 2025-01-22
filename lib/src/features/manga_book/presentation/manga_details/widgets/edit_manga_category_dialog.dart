@@ -13,7 +13,7 @@ import '../../../../../widgets/async_buttons/async_checkbox_list_tile.dart';
 import '../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../../library/domain/category/category_model.dart';
 import '../../../../library/presentation/category/controller/edit_category_controller.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/manga_book/manga_book_repository.dart';
 import '../controller/manga_details_controller.dart';
 
 class EditMangaCategoryDialog extends HookConsumerWidget {
@@ -59,7 +59,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                       context,
                       (selectedCategoryList) => Column(
                         children: [
-                          for (Category category in data!)
+                          for (CategoryDto category in data!)
                             if (category.id != 0)
                               AsyncCheckboxListTile(
                                 onChanged: (value) async {
@@ -68,17 +68,13 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                                         ? ref
                                             .read(mangaBookRepositoryProvider)
                                             .addMangaToCategory(
-                                              mangaId,
-                                              "${category.id}",
-                                            )
+                                                mangaId, category.id)
                                         : ref
                                             .read(mangaBookRepositoryProvider)
                                             .removeMangaFromCategory(
-                                              mangaId,
-                                              "${category.id}",
-                                            ),
+                                                mangaId, category.id),
                                   );
-                                  await ref.read(provider.notifier).refresh();
+                                  ref.read(provider.notifier).refresh();
                                 },
                                 value: selectedCategoryList?.containsKey(
                                       "${category.id}",

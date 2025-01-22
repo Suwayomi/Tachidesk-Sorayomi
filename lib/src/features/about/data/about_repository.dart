@@ -6,8 +6,7 @@
 
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
-import 'package:ferry/ferry.dart';
+import 'package:graphql/client.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pub_semver/pub_semver.dart';
@@ -19,32 +18,26 @@ import '../../../utils/extensions/custom_extensions.dart';
 import '../domain/about/about_dto.dart';
 import '../domain/server_update/server_update.dart';
 import '../presentation/about/controllers/about_controller.dart';
-import 'graphql/query.dart';
+import 'graphql/__generated__/query.graphql.dart';
 
 part 'about_repository.g.dart';
 
 class AboutRepository {
-  final Client ferryClient;
+  final GraphQLClient client;
   final PackageInfo packageInfo;
   AboutRepository({
-    required this.ferryClient,
+    required this.client,
     required this.packageInfo,
   });
 
-  Stream<AboutDto?> getAbout() => ferryClient.fetch(
-        AboutQuery.getAboutQuery,
-        (data) => data.aboutServer,
-      );
+  Future<AboutDto?> getAbout() =>
+      client.query$GetAbout().getData((a) => a.aboutServer);
 
-  Future<List<ServerUpdate>?> checkServerUpdate() => ferryClient
-      .fetch(
-        AboutQuery.serverUpdateQuery,
-        (data) =>
-            data.checkForServerUpdates.map((update) => update.toDto).toList(),
-      )
-      .first;
+  Future<List<ServerUpdate>?> checkServerUpdate() => client
+      .query$GetServerUpdate()
+      .getData((a) => a.checkForServerUpdates.map((e) => e.toDto).toList());
 
-  Future<AsyncValue<Version?>> checkUpdate({CancelToken? cancelToken}) async {
+  Future<AsyncValue<Version?>> checkUpdate() async {
     final gitResponse = await AsyncValue.guard<Map<String, dynamic>?>(
         () async => json.decode((await http.get(
               Uri.parse(AppUrls.sorayomiLatestReleaseApiUrl.url),
@@ -70,6 +63,6 @@ class AboutRepository {
 
 @riverpod
 AboutRepository aboutRepository(ref) => AboutRepository(
-      ferryClient: ref.watch(ferryClientProvider),
+      client: ref.watch(graphQlClientProvider),
       packageInfo: ref.watch(packageInfoProvider),
     );

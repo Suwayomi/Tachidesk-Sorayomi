@@ -60,8 +60,8 @@ List<QuickSearchResult>? processesQuickSearch(
     }
   }
   // Chapter Search with Manga
-  List<QuickSearchResult>? chapterSearch(Manga manga,
-      {Category? category, String? query}) {
+  List<QuickSearchResult>? chapterSearch(MangaDto manga,
+      {CategoryDto? category, String? query}) {
     final chapterList = ref
         .watch(mangaChapterListProvider(mangaId: manga.id))
         .valueOrNull

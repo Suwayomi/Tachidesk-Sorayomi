@@ -9,7 +9,7 @@ import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../controller/server_controller.dart';
-import '../../../../domain/automatic_backup_settings/automatic_backup_settings_dto.dart';
+import '../../../../domain/settings/settings.dart';
 import '../../data/backup_settings_repository.dart';
 
 class AutomaticBackupSection extends ConsumerWidget {
@@ -59,7 +59,7 @@ class AutomaticBackupSection extends ConsumerWidget {
                       () => repository.updateBackupTime(backupTime),
                       ref.read(toastProvider));
                   if (result != null) {
-                    ref.watch(settingsProvider.notifier).updateState(result);
+                    ref.read(settingsProvider.notifier).updateState(result);
                   }
                 } else {
                   if (context.mounted) {

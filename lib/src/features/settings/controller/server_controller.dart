@@ -9,7 +9,7 @@ part 'server_controller.g.dart';
 @riverpod
 class Settings extends _$Settings {
   @override
-  Stream<SettingsDto?> build() =>
+  Future<SettingsDto?> build() =>
       ref.watch(settingsRepositoryProvider).getServerSettings();
 
   void updateState(SettingsDto value) =>

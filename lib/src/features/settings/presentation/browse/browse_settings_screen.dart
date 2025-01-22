@@ -13,7 +13,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../controller/server_controller.dart';
-import '../../domain/browse/browse_settings.dart';
+import '../../domain/settings/settings.dart';
 import 'data/browse_settings_repository.dart';
 import 'widgets/show_nsfw_switch/show_nsfw_switch.dart';
 
@@ -24,7 +24,7 @@ class BrowseSettingsScreen extends ConsumerWidget {
   Widget build(context, ref) {
     final repository = ref.watch(browseSettingsRepositoryProvider);
     final serverSettings = ref.watch(settingsProvider);
-    final BrowseSettingsDto? browseSettings = serverSettings.valueOrNull;
+    final BrowserSettingsDto? browseSettings = serverSettings.valueOrNull;
     onRefresh() => ref.refresh(settingsProvider.future);
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.browse)),

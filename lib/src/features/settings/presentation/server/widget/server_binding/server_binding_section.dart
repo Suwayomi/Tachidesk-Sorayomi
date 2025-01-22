@@ -5,7 +5,7 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
-import '../../../../domain/server_binding/server_binding.dart';
+import '../../../../domain/settings/settings.dart';
 import '../../data/server_settings_repository.dart';
 
 class ServerBindingSection extends ConsumerWidget {

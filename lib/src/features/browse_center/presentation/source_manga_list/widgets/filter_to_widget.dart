@@ -7,8 +7,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import '../../../../../constants/app_constants.dart';
 import '../../../../../constants/app_sizes.dart';
-import '../../../../../graphql/__generated__/schema.schema.gql.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/search_field.dart';
 import '../../../../../widgets/sort_list_tile.dart';
@@ -41,7 +41,9 @@ class FilterToWidget extends StatelessWidget {
       ) =>
         SearchField(
           autofocus: false,
-          onChanged: (val) => onChanged([FilterChange()..textState = val]),
+          onChanged: (val) => onChanged([
+            FilterChange(textState: val, position: kPositionPlaceholder),
+          ]),
           hintText: name,
           initialText: currentChanges.firstOrNull?.textState ?? state,
         ),
@@ -52,18 +54,23 @@ class FilterToWidget extends StatelessWidget {
         CheckboxListTile(
           value: currentChanges.firstOrNull?.checkBoxState ?? state.ifNull(),
           title: Text(name),
-          onChanged: (value) =>
-              onChanged([FilterChange()..checkBoxState = value]),
+          onChanged: (value) => onChanged([
+            FilterChange(checkBoxState: value, position: kPositionPlaceholder)
+          ]),
           controlAffinity: ListTileControlAffinity.leading,
         ),
       FilterTriState(
         name: String? name,
-        tristate: GTriState state,
+        tristate: TriState state,
       ) =>
         CheckboxListTile(
           value: currentChanges.firstOrNull?.triState?.toBool ?? state.toBool,
-          onChanged: (value) => onChanged(
-              [FilterChange()..triState = TriStateExtension.fromBool(value)]),
+          onChanged: (value) => onChanged([
+            FilterChange(
+              triState: TriStateExtension.fromBool(value),
+              position: kPositionPlaceholder,
+            )
+          ]),
           title: Text(name),
           controlAffinity: ListTileControlAffinity.leading,
           tristate: true,
@@ -82,18 +89,31 @@ class FilterToWidget extends StatelessWidget {
             for (int i = 0; i < (values.length).getValueOnNullOrNegative(); i++)
               SortListTile(
                 key: ValueKey("$name-$i"),
-                ascending: (currentChanges.firstOrNull?.sortState.ascending ??
+                ascending: (currentChanges.firstOrNull?.sortState?.ascending ??
                         state.ascending)
                     .ifNull(true),
                 title: Text(values[i]),
                 selected: i == state.index,
                 onChanged: (value) {
-                  final sortChange = SortStateChange()..ascending = value;
-                  onChanged([FilterChange()..sortState = sortChange]);
+                  final sortChange = SortStateChange(
+                    ascending: value.ifNull(true),
+                    index: state.index,
+                  );
+                  onChanged([
+                    FilterChange(
+                      sortState: sortChange,
+                      position: kPositionPlaceholder,
+                    )
+                  ]);
                 },
                 onSelected: () {
-                  final sortChange = SortStateChange()..ascending = true;
-                  onChanged([FilterChange()..sortState = sortChange]);
+                  final sortChange = SortStateChange(ascending: true, index: i);
+                  onChanged([
+                    FilterChange(
+                      sortState: sortChange,
+                      position: kPositionPlaceholder,
+                    )
+                  ]);
                 },
               )
           ],
@@ -138,8 +158,12 @@ class FilterToWidget extends StatelessWidget {
                               ),
                             ))
                         .toList(),
-                    onChanged: (value) =>
-                        onChanged([FilterChange()..selectState = value]),
+                    onChanged: (value) => onChanged([
+                      FilterChange(
+                        selectState: value,
+                        position: kPositionPlaceholder,
+                      )
+                    ]),
                   ),
                 ),
               ),
@@ -184,7 +208,10 @@ class FilterGroupWidget extends HookWidget {
       },
     );
     onChanged(filterChanges
-        .map((groupFilter) => FilterChange()..groupChange = groupFilter)
+        .map((groupFilter) => FilterChange(
+              groupChange: groupFilter,
+              position: kPositionPlaceholder,
+            ))
         .toList());
   }
 
@@ -194,12 +221,13 @@ class FilterGroupWidget extends HookWidget {
 
     useEffect(() {
       Map<int, List<FilterChange>> changeMap = {};
-      for (var change in currentChanges) {
-        if (change.groupChange.position != null) continue;
-        changeMap[change.groupChange.position!] = [
-          ...?changeMap[change.groupChange.position!],
-          change.groupChange,
-        ];
+      for (final change in currentChanges) {
+        if (change.groupChange != null) {
+          changeMap[change.groupChange!.position] = [
+            ...?changeMap[change.groupChange!.position],
+            change.groupChange!,
+          ];
+        }
       }
       filterChangeMap.value = changeMap;
       return null;
@@ -214,12 +242,13 @@ class FilterGroupWidget extends HookWidget {
             filter: filters[index],
             currentChanges: filterChangeMap.value[index] ?? [],
             onChanged: (groupFilter) {
-              for (var filter in groupFilter) {
-                filter.update((newFilter) => newFilter.position = index);
+              final updatedGroupFilters = <FilterChange>[];
+              for (final filter in groupFilter) {
+                updatedGroupFilters.add(filter.copyWith(position: index));
               }
               onChangedWrapper({
                 ...filterChangeMap.value,
-                index: groupFilter,
+                index: updatedGroupFilters,
               });
             },
           ),

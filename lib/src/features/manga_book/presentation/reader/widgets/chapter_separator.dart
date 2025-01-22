@@ -24,8 +24,8 @@ class ChapterSeparator extends ConsumerWidget {
     required this.chapter,
     required this.isPreviousChapterSeparator,
   });
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final bool isPreviousChapterSeparator;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

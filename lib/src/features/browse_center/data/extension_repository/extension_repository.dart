@@ -4,9 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:ferry/ferry.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,14 +14,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../domain/extension/extension_model.dart';
-import 'graphql/query.dart';
+import './graphql/__generated__/query.graphql.dart';
 
 part 'extension_repository.g.dart';
 
 class ExtensionRepository {
-  final Client ferryClient;
+  final GraphQLClient client;
 
-  ExtensionRepository(this.ferryClient);
+  ExtensionRepository(this.client);
 
   Future<void> installExtensionFile(
     BuildContext context, {
@@ -33,30 +33,50 @@ class ExtensionRepository {
     if (!(file!.name.endsWith('.apk'))) {
       throw context.l10n.errorFilePickUnknownExtension(".apk");
     }
-    return (ferryClient.fetch(
-      ExtensionQuery.installExternalExtension(
-          await http.MultipartFile.fromPath("extensionFile", file.path!)),
-    )).first;
+    await client.mutate$InstallExternalExtension(
+      Options$Mutation$InstallExternalExtension(
+        variables: Variables$Mutation$InstallExternalExtension(
+          extensionFile:
+              await http.MultipartFile.fromPath("extensionFile", file.path!),
+        ),
+      ),
+    );
   }
 
-  Future<void> installExtension(String pkgName) => (ferryClient
-          .fetch(ExtensionQuery.updateExtension(pkgName, install: true)))
-      .first;
+  Future<void> installExtension(String pkgName) =>
+      client.mutate$UpdateExtension(
+        Options$Mutation$UpdateExtension(
+          variables: Variables$Mutation$UpdateExtension(
+            id: pkgName,
+            install: true,
+          ),
+        ),
+      );
 
-  Future<void> uninstallExtension(String pkgName) => (ferryClient
-          .fetch(ExtensionQuery.updateExtension(pkgName, uninstall: true)))
-      .first;
+  Future<void> uninstallExtension(String pkgName) =>
+      client.mutate$UpdateExtension(
+        Options$Mutation$UpdateExtension(
+          variables: Variables$Mutation$UpdateExtension(
+            id: pkgName,
+            uninstall: true,
+          ),
+        ),
+      );
 
-  Future<void> updateExtension(String pkgName) =>
-      (ferryClient.fetch(ExtensionQuery.updateExtension(pkgName, update: true)))
-          .first;
+  Future<void> updateExtension(String pkgName) => client.mutate$UpdateExtension(
+        Options$Mutation$UpdateExtension(
+          variables: Variables$Mutation$UpdateExtension(
+            id: pkgName,
+            update: true,
+          ),
+        ),
+      );
 
-  Stream<List<Extension>?> getExtensionListStream() => (ferryClient.fetch(
-        ExtensionQuery.extensionList(),
-        (data) => data.fetchExtensions?.extensions.toList(),
-      ));
+  Future<List<Extension>?> getExtensionListStream() => client
+      .mutate$FetchExtensionList()
+      .getData((data) => data.fetchExtensions?.extensions.toList());
 }
 
 @riverpod
 ExtensionRepository extensionRepository(Ref ref) =>
-    ExtensionRepository(ref.watch(ferryClientProvider));
+    ExtensionRepository(ref.watch(graphQlClientProvider));

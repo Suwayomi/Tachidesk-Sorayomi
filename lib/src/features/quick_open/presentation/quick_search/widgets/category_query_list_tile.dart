@@ -23,9 +23,9 @@ class CategoryQueryListTile extends StatelessWidget {
     this.afterClick,
   })  : assert(category == null ? manga != null && chapter != null : true),
         assert(chapter != null ? manga != null : true);
-  final Category? category;
-  final Manga? manga;
-  final Chapter? chapter;
+  final CategoryDto? category;
+  final MangaDto? manga;
+  final ChapterDto? chapter;
   final VoidCallback? afterClick;
 
   @override

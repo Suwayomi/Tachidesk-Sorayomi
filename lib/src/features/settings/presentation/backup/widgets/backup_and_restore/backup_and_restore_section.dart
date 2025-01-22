@@ -8,7 +8,7 @@ import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/file_picker_utils.dart';
 import '../../../../../../utils/misc/toast/toast.dart';
 import '../../../../../../widgets/section_title.dart';
-import '../../../../domain/restore_status/restore_status.dart';
+import '../../../../domain/settings/settings.dart';
 import '../../data/backup_settings_repository.dart';
 import 'widgets/backup_missing_dialog.dart';
 import 'widgets/create_backup_dialog.dart';
@@ -45,18 +45,17 @@ class BackupAndRestoreSection extends HookConsumerWidget {
     final asyncBackupFile = await AsyncValue.guard(
         () => FilePickerUtils.convertToMultipartFile(pickedFile, "backup"));
 
-    if (context.mounted && asyncBackupFile.hasError) {
+    if (context.mounted &&
+        (asyncBackupFile.hasError || asyncBackupFile.value == null)) {
       asyncBackupFile.showToastOnError(toast);
       return null;
     }
 
-    final backupFile = asyncBackupFile.value;
+    final backupFile = asyncBackupFile.value!;
     if (context.mounted) toast?.show(context.l10n.validating);
 
-    final validateResult = await AsyncValue.guard(() => ref
-        .read(backupSettingsRepositoryProvider)
-        .validateBackup(backupFile)
-        .first);
+    final validateResult = await AsyncValue.guard(() =>
+        ref.read(backupSettingsRepositoryProvider).validateBackup(backupFile));
 
     if (context.mounted && validateResult.hasError) {
       validateResult.showToastOnError(toast);
@@ -78,14 +77,14 @@ class BackupAndRestoreSection extends HookConsumerWidget {
       final asyncBackupFile = await AsyncValue.guard(
           () => FilePickerUtils.convertToMultipartFile(pickedFile, "backup"));
 
-      if (context.mounted && asyncBackupFile.hasError) {
+      if (context.mounted &&
+          (asyncBackupFile.hasError || asyncBackupFile.value == null)) {
         asyncBackupFile.showToastOnError(toast);
         return null;
       }
       final backupResponse = (await AsyncValue.guard(() => ref
           .read(backupSettingsRepositoryProvider)
-          .restoreBackup(asyncBackupFile.value)
-          .first));
+          .restoreBackup(asyncBackupFile.value!)));
 
       if (backupResponse.hasError) {
         toast?.showError(backupResponse.error.toString());

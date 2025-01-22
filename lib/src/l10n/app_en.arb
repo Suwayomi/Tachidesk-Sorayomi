@@ -222,6 +222,9 @@
     "@downloaded": {
         "description": "Text to show downloaded chapters status in Filters  "
     },
+    "@downloading": {
+        "description": "Text to show chapters downloading"
+    },
     "@downloads": {
         "description": "Screen title and Navigation text of Downloads screen"
     },
@@ -239,6 +242,9 @@
     },
     "@enterProp": {
         "description": "Hint text for text field to enter value of Property"
+    },
+    "@error": {
+        "description": "Text to show error downloading chapters"
     },
     "@errorBackupCreate": {
         "description": "Error Text to show that backup creating failed"
@@ -585,6 +591,9 @@
     },
     "@previousChapter": {
         "description": "Text for Previous Chapter button in Manga Reader Screen"
+    },
+    "@queued": {
+        "description": "Text to show chapters are queued for downloading"
     },
     "@quickSearch": {
         "description": "Screen title and Button text of Quick Search screen"
@@ -973,12 +982,14 @@
     "downloadLocation": "Download location",
     "downloadLocationHint": "The path to the directory on the server where downloaded files should get saved in",
     "downloaded": "Downloaded",
+    "downloading": "Downloading",
     "downloads": "Downloads",
     "edit": "Edit",
     "editCategory": "Edit Category",
     "emptyCategory": "Category name can't be Empty",
     "enableSocksProxy": "Use SOCKS Proxy",
     "enterProp": "Enter {prop}",
+    "error": "Error",
     "errorBackupCreate": "Failed to create Backup",
     "errorBackupRestore": "Failed to restore backup!",
     "errorExtension": "Can't find the selected extension",
@@ -1084,6 +1095,7 @@
     "pending": "Pending",
     "pinchToZoom": "Pinch to Zoom",
     "previousChapter": "Previous: {chapterTitle}",
+    "queued": "Queued",
     "quickSearch": "Quick Search",
     "quickSearchCategory": "Go to Category 'C'",
     "quickSearchCategoryManga": "Go to Manga 'M' in Category 'C'",

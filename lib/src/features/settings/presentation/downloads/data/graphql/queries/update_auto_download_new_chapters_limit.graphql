@@ -1,9 +1,0 @@
-# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
-
-mutation UpdateAutoDownloadNewChaptersLimit($autoDownloadNewChaptersLimit: Int = 3) {
-  setSettings(input: {settings: {autoDownloadNewChaptersLimit: $autoDownloadNewChaptersLimit}}) {
-    settings {
-      ...SettingsFragment
-    }
-  }
-}

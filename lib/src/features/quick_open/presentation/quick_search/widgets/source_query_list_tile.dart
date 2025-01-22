@@ -22,18 +22,17 @@ class SourceQueryListTile extends ConsumerWidget {
     this.afterClick,
   });
 
-  final Source source;
+  final SourceDto source;
   final String? query;
   final VoidCallback? afterClick;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: (() async {
-        ref.read(sourceLastUsedProvider.notifier).update(source.id.value);
+        ref.read(sourceLastUsedProvider.notifier).update(source.id);
         SourceTypeRoute(
-          sourceId: source.id.value,
-          sourceType:
-              (query.isBlank ? SourceType.POPULAR : SourceType.SEARCH).name,
+          sourceId: source.id,
+          sourceType: (query.isBlank ? SourceType.POPULAR : SourceType.SEARCH),
           query: query,
         ).go(context);
         afterClick?.call();

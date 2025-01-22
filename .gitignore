@@ -50,4 +50,5 @@ app.*.map.json
 
 *.g.dart
 *.freezed.dart
+*.graphql.dart
 **/__generated__

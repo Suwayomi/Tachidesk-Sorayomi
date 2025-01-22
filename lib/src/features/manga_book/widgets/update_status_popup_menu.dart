@@ -19,7 +19,7 @@ class UpdateStatusPopupMenu extends ConsumerWidget {
     this.getCategory,
     this.showSummaryButton = true,
   });
-  final Category? Function()? getCategory;
+  final CategoryDto? Function()? getCategory;
   final bool showSummaryButton;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

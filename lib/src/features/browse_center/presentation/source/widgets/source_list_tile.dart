@@ -17,16 +17,16 @@ import '../controller/source_controller.dart';
 class SourceListTile extends ConsumerWidget {
   const SourceListTile({super.key, required this.source});
 
-  final Source source;
+  final SourceDto source;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListTile(
       onTap: (() async {
-        ref.read(sourceLastUsedProvider.notifier).update(source.id.value);
+        ref.read(sourceLastUsedProvider.notifier).update(source.id);
         SourceTypeRoute(
-          sourceId: source.id.value,
-          sourceType: SourceType.POPULAR.name,
+          sourceId: source.id,
+          sourceType: SourceType.POPULAR,
         ).go(context);
       }),
       leading: ClipRRect(
@@ -43,12 +43,10 @@ class SourceListTile extends ConsumerWidget {
       trailing: (source.supportsLatest.ifNull())
           ? TextButton(
               onPressed: () async {
-                ref
-                    .read(sourceLastUsedProvider.notifier)
-                    .update(source.id.value);
+                ref.read(sourceLastUsedProvider.notifier).update(source.id);
                 SourceTypeRoute(
-                  sourceId: source.id.value,
-                  sourceType: SourceType.LATEST.name,
+                  sourceId: source.id,
+                  sourceType: SourceType.LATEST,
                 ).go(context);
               },
               child: Text(context.l10n.latest),

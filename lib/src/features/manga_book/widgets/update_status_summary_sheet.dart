@@ -22,7 +22,7 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final statusUpdate = ref.watch(updateSummaryProvider);
     final statusUpdateStream = ref.watch(updatesSocketProvider);
-    final AsyncValue<UpdateStatus?> finalStatus =
+    final AsyncValue<UpdateStatusDto?> finalStatus =
         (statusUpdateStream.valueOrNull?.total.isGreaterThan(0)).ifNull()
             ? statusUpdateStream
             : statusUpdate;
@@ -37,25 +37,25 @@ class UpdateStatusSummaryDialog extends ConsumerWidget {
           onRefresh: () => ref.refresh(updateSummaryProvider.future),
           child: ListView(
             children: [
-              if ((data?.running).isNotBlank)
+              if ((data?.runningJobs.mangaList).isNotBlank)
                 UpdateStatusExpansionTile(
-                  mangas: data!.running!,
+                  mangas: data!.runningJobs.mangaList,
                   title: context.l10n.running,
                   initiallyExpanded: true,
                 ),
-              if ((data?.pending).isNotBlank)
+              if ((data?.pendingJobs.mangaList).isNotBlank)
                 UpdateStatusExpansionTile(
-                  mangas: data!.pending!,
+                  mangas: data!.pendingJobs.mangaList,
                   title: context.l10n.pending,
                 ),
-              if ((data?.completed).isNotBlank)
+              if ((data?.completeJobs.mangaList).isNotBlank)
                 UpdateStatusExpansionTile(
-                  mangas: data!.completed!,
+                  mangas: data!.completeJobs.mangaList,
                   title: context.l10n.completed,
                 ),
-              if ((data?.failed).isNotBlank)
+              if ((data?.failedJobs.mangaList).isNotBlank)
                 UpdateStatusExpansionTile(
-                  mangas: data!.failed!,
+                  mangas: data!.failedJobs.mangaList,
                   title: context.l10n.failed,
                   initiallyExpanded: true,
                 ),
@@ -75,7 +75,7 @@ class UpdateStatusExpansionTile extends StatelessWidget {
     required this.title,
     this.initiallyExpanded = false,
   });
-  final List<Manga> mangas;
+  final List<MangaDto> mangas;
   final String title;
   final bool initiallyExpanded;
   @override

@@ -1,7 +1,0 @@
-# import '/src/features/settings/domain/restore_status/graphql/restore_status_fragment.graphql'
-
-query RestoreStatus($restoreId: String!) {
-  restoreStatus(id: $restoreId) {
-    ...RestoreStatusFragment
-  }
-}

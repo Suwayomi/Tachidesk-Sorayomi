@@ -1,8 +1,0 @@
-
-fragment DownloadsSettingsFragment on SettingsType {
-  downloadAsCbz
-  downloadsPath
-  autoDownloadNewChapters
-  autoDownloadNewChaptersLimit
-  excludeEntryWithUnreadChapters
-}

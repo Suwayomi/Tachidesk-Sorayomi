@@ -179,13 +179,7 @@ class AboutScreen extends HookConsumerWidget {
                 ),
               ClipboardListTile(
                 title: context.l10n.buildTime,
-                value: (about.buildTime.value).isNull
-                    ? null
-                    : DateTime.fromMillisecondsSinceEpoch(
-                        (int.tryParse(about.buildTime.value)
-                                .getValueOnNullOrNegative()) *
-                            1000,
-                      ).toDateString,
+                value: about.buildTime.toDateString,
               ),
               if (serverVer.isNotBlank)
                 ListTile(

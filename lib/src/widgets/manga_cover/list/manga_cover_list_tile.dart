@@ -21,7 +21,7 @@ class MangaCoverListTile extends StatelessWidget {
     this.showCountBadges = false,
   });
 
-  final Manga manga;
+  final MangaDto manga;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final bool showCountBadges;

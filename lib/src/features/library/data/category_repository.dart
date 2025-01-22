@@ -6,84 +6,89 @@
 
 import 'dart:async';
 
-import 'package:dio/dio.dart';
-import 'package:ferry/ferry.dart';
+import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../constants/endpoints.dart';
 import '../../../global_providers/global_providers.dart';
+import '../../../graphql/__generated__/schema.graphql.dart';
 import '../../../utils/extensions/custom_extensions.dart';
-import '../../../utils/storage/dio/dio_client.dart';
-import '../../manga_book/domain/manga/graphql/__generated__/manga_fragment.data.gql.dart';
 import '../../manga_book/domain/manga/manga_model.dart';
 import '../domain/category/category_model.dart';
-import 'graphql/query.dart';
+import './graphql/__generated__/query.graphql.dart';
 
 part 'category_repository.g.dart';
 
 class CategoryRepository {
-  final DioClient dioClient;
-  final Client ferryClient;
+  final GraphQLClient ferryClient;
 
-  CategoryRepository(this.dioClient, this.ferryClient);
+  CategoryRepository(this.ferryClient);
 
-  Stream<List<Category>?> getCategoryList() => ferryClient.fetch(
-      CategoryQuery.getAllCategories(),
-      (data) => data.categories.nodes.asList());
+  Future<List<CategoryDto>?> getCategoryList() => ferryClient
+      .query$AllCategories()
+      .getData((data) => data.categories.nodes);
 
-  Future<void> createCategory({
-    required Category category,
-    CancelToken? cancelToken,
-  }) =>
-      dioClient.post(
-        CategoryUrl.category,
-        data: FormData.fromMap(category.toJson().filterOutNulls),
-        cancelToken: cancelToken,
+  Future<void> createCategory({required CategoryCreate category}) =>
+      ferryClient.mutate$CreateCategory(
+        Options$Mutation$CreateCategory(
+          variables: Variables$Mutation$CreateCategory(input: category),
+        ),
       );
 
   Future<void> editCategory({
-    required Category category,
-    CancelToken? cancelToken,
+    required int categoryId,
+    required CategoryUpdate category,
   }) =>
-      dioClient.patch(
-        CategoryUrl.withId(category.id),
-        data: FormData.fromMap(category.toJson().filterOutNulls),
-        cancelToken: cancelToken,
+      ferryClient.mutate$UpdateCategory(
+        Options$Mutation$UpdateCategory(
+          variables: Variables$Mutation$UpdateCategory(
+            input: Input$UpdateCategoryInput(
+              id: categoryId,
+              patch: category,
+            ),
+          ),
+        ),
       );
 
   Future<void> deleteCategory({
-    required Category category,
-    CancelToken? cancelToken,
+    required int categoryId,
   }) =>
-      dioClient.delete(
-        CategoryUrl.withId(category.id),
-        cancelToken: cancelToken,
+      ferryClient.mutate$DeleteCategory(
+        Options$Mutation$DeleteCategory(
+          variables: Variables$Mutation$DeleteCategory(
+            input: Input$DeleteCategoryInput(categoryId: categoryId),
+          ),
+        ),
       );
 
   Future<void> reorderCategory({
-    required int from,
-    required int to,
+    required int categoryId,
+    required int position,
   }) =>
-      dioClient.patch(
-        CategoryUrl.reorder,
-        data: FormData.fromMap({"from": from, "to": to}),
+      ferryClient.mutate$UpdateCategoryOrder(
+        Options$Mutation$UpdateCategoryOrder(
+          variables: Variables$Mutation$UpdateCategoryOrder(
+            input: Input$UpdateCategoryOrderInput(
+              id: categoryId,
+              position: position,
+            ),
+          ),
+        ),
       );
 
   //  Manga
-  Future<List<Manga>?> getMangasFromCategory({
+  Future<List<MangaDto>?> getMangasFromCategory({
     required int categoryId,
-    CancelToken? cancelToken,
-  }) async =>
-      (await dioClient.get<List<Manga>, Manga>(
-        CategoryUrl.withId(categoryId),
-        decoder: (e) => GMangaFragmentData(), //TODO: Implement decoder
-      ))
-          .data;
+  }) =>
+      ferryClient
+          .query$GetCategoryMangas(
+            Options$Query$GetCategoryMangas(
+              variables: Variables$Query$GetCategoryMangas(id: categoryId),
+            ),
+          )
+          .getData((data) => data.category.mangas.nodes);
 }
 
 @riverpod
-CategoryRepository categoryRepository(Ref ref) => CategoryRepository(
-      ref.watch(dioClientKeyProvider),
-      ref.watch(ferryClientProvider),
-    );
+CategoryRepository categoryRepository(Ref ref) =>
+    CategoryRepository(ref.watch(graphQlClientProvider));

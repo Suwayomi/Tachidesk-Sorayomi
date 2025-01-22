@@ -39,7 +39,7 @@ class ExtensionRepositoryScreen extends ConsumerWidget {
               ref.read(toastProvider),
             );
             if (result != null) {
-              ref.watch(settingsProvider.notifier).updateState(result);
+              ref.read(settingsProvider.notifier).updateState(result);
             }
           } else if (context.mounted) {
             ref.read(toastProvider)?.showError(
@@ -89,7 +89,7 @@ class ExtensionRepositoryScreen extends ConsumerWidget {
                                   ref.read(toastProvider));
                               if (result != null) {
                                 ref
-                                    .watch(settingsProvider.notifier)
+                                    .read(settingsProvider.notifier)
                                     .updateState(result);
                               }
                             },

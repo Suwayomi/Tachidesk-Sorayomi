@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../../utils/hooks/polling_hook.dart';
-import '../../../../../domain/restore_status/restore_status.dart';
+import '../../../../../domain/settings/settings.dart';
 import '../../../controllers/backup_controller.dart';
 
 class RestoreStatusProgress extends HookConsumerWidget {
@@ -17,7 +17,7 @@ class RestoreStatusProgress extends HookConsumerWidget {
   final ValueChanged<RestoreState> onCompleted;
   @override
   Widget build(context, ref) {
-    final statusProvider = RestoreStatusProvider(restoreRequestId);
+    final statusProvider = restoreStatusProvider(restoreRequestId);
     final asyncRestoreStatus = ref.watch(statusProvider);
     final restoreStatus = asyncRestoreStatus.valueOrNull;
 

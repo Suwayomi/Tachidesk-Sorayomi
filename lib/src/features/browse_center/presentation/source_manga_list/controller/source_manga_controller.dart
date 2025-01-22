@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:built_collection/built_collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -18,13 +17,12 @@ import '../../../domain/source/source_model.dart';
 part 'source_manga_controller.g.dart';
 
 @riverpod
-Stream<Source?> source(Ref ref, String sourceId) =>
+Future<SourceDto?> source(Ref ref, String sourceId) =>
     ref.watch(sourceRepositoryProvider).getSource(sourceId);
 
 @riverpod
-Future<BuiltList<Filter>?> baseSourceMangaFilterList(
-        Ref ref, String sourceId) =>
-    ref.read(sourceRepositoryProvider).getSourceFilter(sourceId).first;
+Future<List<Filter>?> baseSourceMangaFilterList(Ref ref, String sourceId) =>
+    ref.read(sourceRepositoryProvider).getSourceFilter(sourceId);
 
 @riverpod
 class SourceDisplayMode extends _$SourceDisplayMode

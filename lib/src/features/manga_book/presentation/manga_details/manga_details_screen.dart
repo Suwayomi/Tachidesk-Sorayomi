@@ -42,12 +42,12 @@ class MangaDetailsScreen extends HookConsumerWidget {
       firstUnreadInFilteredChapterListProvider(mangaId: mangaId),
     );
 
-    final selectedChapters = useState<Map<int, Chapter>>({});
+    final selectedChapters = useState<Map<int, ChapterDto>>({});
 
     // Refresh manga
     final mangaRefresh = useCallback(
         ([bool onlineFetch = false]) async =>
-            await ref.read(mangaProvider.notifier).refresh(onlineFetch),
+            await ref.read(mangaProvider.notifier).refresh(),
         [mangaProvider]);
 
     // Refresh chapter list
@@ -109,7 +109,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                           ...?filteredChapterList.valueOrNull
                         ];
                         selectedChapters.value =
-                            ({for (Chapter i in chapterList) i.id: i});
+                            ({for (ChapterDto i in chapterList) i.id: i});
                       },
                       icon: const Icon(Icons.select_all_rounded),
                     ),
@@ -119,7 +119,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                           ...?filteredChapterList.valueOrNull
                         ];
                         selectedChapters.value = ({
-                          for (Chapter i in chapterList)
+                          for (ChapterDto i in chapterList)
                             if (!selectedChapters.value.containsKey(i.id))
                               i.id: i
                         });
@@ -274,8 +274,8 @@ class MultiSelectPopupButton extends StatelessWidget {
     required this.selectedChapters,
   });
 
-  final AsyncValue<List<Chapter>?> filteredChapterList;
-  final ValueNotifier<Map<int, Chapter>> selectedChapters;
+  final AsyncValue<List<ChapterDto>?> filteredChapterList;
+  final ValueNotifier<Map<int, ChapterDto>> selectedChapters;
 
   @override
   Widget build(BuildContext context) {
@@ -287,7 +287,9 @@ class MultiSelectPopupButton extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           onTap: () {
-            List<Chapter> chapterList = [...?filteredChapterList.valueOrNull];
+            List<ChapterDto> chapterList = [
+              ...?filteredChapterList.valueOrNull
+            ];
             final lastId = selectedChapters.value.keys.last;
             final lastIndex =
                 chapterList.lastIndexWhere((chapter) => chapter.id == lastId);
@@ -305,7 +307,7 @@ class MultiSelectPopupButton extends StatelessWidget {
             final chapterList = [...?filteredChapterList.valueOrNull];
 
             selectedChapters.value = ({
-              for (Chapter i in chapterList)
+              for (ChapterDto i in chapterList)
                 if (!i.isRead.ifNull()) i.id: i
             });
           },

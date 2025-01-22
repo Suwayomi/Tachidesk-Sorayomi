@@ -77,7 +77,7 @@ class ServerSearchButton extends ConsumerWidget {
               } else {
                 if (context.mounted) {
                   ref
-                      .watch(toastProvider)
+                      .read(toastProvider)
                       ?.showError(context.l10n.noServerFound);
                 }
               }

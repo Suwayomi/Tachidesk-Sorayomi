@@ -43,10 +43,12 @@ class SourcePreferenceScreen extends HookConsumerWidget {
               ),
               sourcePreference: sourcePreference,
               onChanged: (value) async {
-                value.position = index;
                 await ref
                     .read(sourceRepositoryProvider)
-                    .updateSourcePreferenceById(sourceId, value);
+                    .updateSourcePreferenceById(
+                      sourceId,
+                      value.copyWith(position: index),
+                    );
                 ref.invalidate(preferenceProvider);
               },
             );

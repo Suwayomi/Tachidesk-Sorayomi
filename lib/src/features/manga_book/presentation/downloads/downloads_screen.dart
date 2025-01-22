@@ -12,6 +12,8 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/downloads/downloads_repository.dart';
+import '../../domain/downloads/downloads_model.dart';
+import 'controller/downloads_controller.dart';
 import 'widgets/download_progress_list_tile.dart';
 import 'widgets/downloads_fab.dart';
 
@@ -38,7 +40,9 @@ class DownloadsScreen extends ConsumerWidget {
         ],
       ),
       floatingActionButton: showDownloadsFAB
-          ? DownloadsFab(status: downloadsGlobalStatus.valueOrNull ?? "")
+          ? DownloadsFab(
+              status:
+                  downloadsGlobalStatus.valueOrNull ?? DownloaderState.STARTED)
           : null,
       body: downloadsGlobalStatus.showUiWhenData(
         context,

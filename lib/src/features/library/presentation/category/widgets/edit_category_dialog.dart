@@ -12,28 +12,33 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../domain/category/category_model.dart';
-import '../../../domain/category/graphql/__generated__/category_fragment.data.gql.dart';
 
 class EditCategoryDialog extends HookConsumerWidget {
   const EditCategoryDialog({
     super.key,
-    required this.editCategory,
+    this.editCategory,
+    this.createCategory,
     this.category,
-  });
-  final Category? category;
-  final void Function(Category) editCategory;
+  }) : assert((category != null && editCategory != null) ||
+            (category == null && createCategory != null));
+  final CategoryDto? category;
+  final void Function(CategoryUpdate)? editCategory;
+  final void Function(CategoryCreate)? createCategory;
 
   Future<void> submitEditCategory(
     String categoryName,
     bool defaultCategory,
   ) async {
-    //TODO: Implement editCategory
-
-    // return editCategory((category ?? Category()).copyWith(
-    //   name: categoryName,
-    //   defaultCategory: defaultCategory,
-    // ));
-    return editCategory(GCategoryFragmentData());
+    if (category == null) {
+      return createCategory!(CategoryCreate(
+        name: categoryName,
+        $default: defaultCategory,
+      ));
+    }
+    return editCategory!(CategoryUpdate(
+      name: categoryName,
+      $default: defaultCategory,
+    ));
   }
 
   @override

@@ -21,8 +21,8 @@ class SourceShortSearch extends StatelessWidget {
     required this.mangaList,
     this.query,
   });
-  final Source source;
-  final AsyncValue<List<Manga>> mangaList;
+  final SourceDto source;
+  final AsyncValue<List<MangaDto>> mangaList;
   final String? query;
 
   @override
@@ -35,8 +35,8 @@ class SourceShortSearch extends StatelessWidget {
           title: Text(source.displayName),
           trailing: const Icon(Icons.arrow_forward_rounded),
           onTap: () => SourceTypeRoute(
-            sourceId: source.id.value,
-            sourceType: SourceType.SEARCH.name,
+            sourceId: source.id,
+            sourceType: SourceType.SEARCH,
             query: query,
           ).push(context),
         ),

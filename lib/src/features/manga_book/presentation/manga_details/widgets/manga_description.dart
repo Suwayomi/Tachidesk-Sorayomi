@@ -26,7 +26,7 @@ class MangaDescription extends HookConsumerWidget {
     required this.addMangaToLibrary,
     required this.refresh,
   });
-  final Manga manga;
+  final MangaDto manga;
   final AsyncCallback refresh;
   final AsyncCallback removeMangaFromLibrary;
   final AsyncCallback addMangaToLibrary;

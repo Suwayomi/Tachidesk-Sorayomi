@@ -24,10 +24,10 @@ class ChapterListTile extends StatelessWidget {
     this.canTapSelect = false,
     this.isSelected = false,
   });
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final AsyncCallback updateData;
-  final ValueChanged<Chapter> toggleSelect;
+  final ValueChanged<ChapterDto> toggleSelect;
   final bool canTapSelect;
   final bool isSelected;
   @override
@@ -62,7 +62,7 @@ class ChapterListTile extends StatelessWidget {
         subtitle: Row(
           children: [
             Text(
-              int.tryParse(chapter.uploadDate.value).toDaysAgo(context),
+              int.tryParse(chapter.uploadDate).toDaysAgo(context),
               style: TextStyle(
                 color: chapter.isRead.ifNull() ? Colors.grey : null,
               ),

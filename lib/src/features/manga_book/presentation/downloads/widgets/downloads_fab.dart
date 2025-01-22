@@ -10,14 +10,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../data/downloads/downloads_repository.dart';
+import '../../../domain/downloads/downloads_model.dart';
 
 class DownloadsFab extends ConsumerWidget {
   const DownloadsFab({super.key, required this.status});
-  final String status;
+  final DownloaderState status;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider);
-    if (status == "Stopped" || status == "Error") {
+    if (status == DownloaderState.STOPPED) {
       return FloatingActionButton.extended(
         onPressed: () async {
           (await AsyncValue.guard(

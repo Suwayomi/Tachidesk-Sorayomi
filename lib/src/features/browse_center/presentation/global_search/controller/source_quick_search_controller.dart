@@ -17,12 +17,12 @@ import '../../source/controller/source_controller.dart';
 part 'source_quick_search_controller.g.dart';
 
 typedef QuickSearchResults = ({
-  Source source,
-  AsyncValue<List<Manga>> mangaList
+  SourceDto source,
+  AsyncValue<List<MangaDto>> mangaList
 });
 
 @riverpod
-Future<List<Manga>> sourceQuickSearchMangaList(
+Future<List<MangaDto>> sourceQuickSearchMangaList(
   Ref ref,
   String sourceId, {
   String? query,
@@ -45,14 +45,14 @@ AsyncValue<List<QuickSearchResults>> quickSearchResults(Ref ref,
 
   final sourceMap = {...?sourceMapData.valueOrNull}..remove("lastUsed");
   final sourceList = sourceMap.values.fold(
-    <Source>[],
+    <SourceDto>[],
     (prev, cur) => [...prev, ...cur],
   );
   final List<QuickSearchResults> sourceMangaListPairList = [];
-  for (Source source in sourceList) {
-    if (source.id.value.isNotBlank) {
+  for (SourceDto source in sourceList) {
+    if (source.id.isNotBlank) {
       final mangaList = ref.watch(
-        sourceQuickSearchMangaListProvider(source.id.value, query: query),
+        sourceQuickSearchMangaListProvider(source.id, query: query),
       );
       sourceMangaListPairList.add((mangaList: mangaList, source: source));
     }

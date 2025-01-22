@@ -5,11 +5,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import '../../../../utils/extensions/custom_extensions.dart';
-import 'graphql/__generated__/chapter_fragment.data.gql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-typedef Chapter = GChapterFragment;
+typedef ChapterDto = Fragment$ChapterDto;
 
-extension ChapterExtension on GChapterFragment {
+typedef ChapterWithMangaDto = Fragment$ChapterWithMangaDto;
+
+extension ChapterExtension on Fragment$ChapterDto {
   bool query([String? query]) {
     return name.query(query) || index == int.tryParse(query ?? '');
   }

@@ -16,37 +16,45 @@ part 'edit_category_controller.g.dart';
 @riverpod
 class CategoryController extends _$CategoryController {
   @override
-  Stream<List<Category>?> build() =>
+  Future<List<CategoryDto>?> build() =>
       ref.watch(categoryRepositoryProvider).getCategoryList();
 
-  Future<AsyncValue<void>> deleteCategory(Category category) async {
+  Future<AsyncValue<void>> deleteCategory(int categoryId) async {
     final response = await AsyncValue.guard(() => ref
         .read(categoryRepositoryProvider)
-        .deleteCategory(category: category));
+        .deleteCategory(categoryId: categoryId));
     ref.invalidateSelf();
     return response;
   }
 
-  Future<AsyncValue<void>> editCategory(Category category) async {
+  Future<AsyncValue<void>> editCategory(
+      int categoryId, CategoryUpdate category) async {
     final categoryRepository = ref.read(categoryRepositoryProvider);
-    final response = await AsyncValue.guard(() async {
-      return await categoryRepository.editCategory(category: category);
-    });
+    final response = await AsyncValue.guard(() => categoryRepository
+        .editCategory(categoryId: categoryId, category: category));
     ref.invalidateSelf();
     return response;
   }
 
-  Future<AsyncValue<void>> reorderCategory(int from, int to) async {
+  Future<AsyncValue<void>> createCategory(CategoryCreate category) async {
+    final categoryRepository = ref.read(categoryRepositoryProvider);
+    final response = await AsyncValue.guard(
+        () => categoryRepository.createCategory(category: category));
+    ref.invalidateSelf();
+    return response;
+  }
+
+  Future<AsyncValue<void>> reorderCategory(int categoryId, int position) async {
     final response = await AsyncValue.guard(() => ref
         .read(categoryRepositoryProvider)
-        .reorderCategory(from: from, to: to));
+        .reorderCategory(categoryId: categoryId, position: position));
     ref.invalidateSelf();
     return response;
   }
 }
 
 @riverpod
-List<Category>? categoryListQuery(
+List<CategoryDto>? categoryListQuery(
   Ref ref, {
   required String query,
 }) {

@@ -16,12 +16,12 @@ import '../../../domain/source/source_model.dart';
 part 'source_controller.g.dart';
 
 @riverpod
-Stream<List<Source>?> sourceList(Ref ref) =>
+Future<List<SourceDto>?> sourceList(Ref ref) =>
     ref.watch(sourceRepositoryProvider).getSourceList();
 
 @riverpod
-AsyncValue<Map<String, List<Source>>> sourceMap(Ref ref) {
-  final sourceMap = <String, List<Source>>{};
+AsyncValue<Map<String, List<SourceDto>>> sourceMap(Ref ref) {
+  final sourceMap = <String, List<SourceDto>>{};
   final sourceListData = ref.watch(sourceListProvider);
   final sourceLastUsed = ref.watch(sourceLastUsedProvider);
   for (final e in [...?sourceListData.valueOrNull]) {
@@ -30,7 +30,7 @@ AsyncValue<Map<String, List<Source>>> sourceMap(Ref ref) {
       (value) => [...value, e],
       ifAbsent: () => [e],
     );
-    if (e.id.value == sourceLastUsed) sourceMap["lastUsed"] = [e];
+    if (e.id == sourceLastUsed) sourceMap["lastUsed"] = [e];
   }
   return sourceListData.copyWithData((e) => sourceMap);
 }
@@ -62,8 +62,8 @@ class SourceFilterLangMap extends _$SourceFilterLangMap {
 }
 
 @riverpod
-AsyncValue<Map<String, List<Source>>?> sourceMapFiltered(Ref ref) {
-  final sourceMapFiltered = <String, List<Source>>{};
+AsyncValue<Map<String, List<SourceDto>>?> sourceMapFiltered(Ref ref) {
+  final sourceMapFiltered = <String, List<SourceDto>>{};
   final sourceMapData = ref.watch(sourceMapProvider);
   final sourceMap = {...?sourceMapData.valueOrNull};
   final enabledLangList = [...?ref.watch(sourceLanguageFilterProvider)]..sort();
@@ -74,7 +74,7 @@ AsyncValue<Map<String, List<Source>>?> sourceMapFiltered(Ref ref) {
 }
 
 @riverpod
-List<Source>? sourceQuery(Ref ref, {String? query}) {
+List<SourceDto>? sourceQuery(Ref ref, {String? query}) {
   final sourceMap = {...?ref.watch(sourceMapFilteredProvider).valueOrNull}
     ..remove('lastUsed');
   if (query.isNotBlank) {

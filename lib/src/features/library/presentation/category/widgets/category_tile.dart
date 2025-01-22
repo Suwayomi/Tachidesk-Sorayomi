@@ -22,11 +22,12 @@ class CategoryTile extends HookConsumerWidget {
     required this.maxOrderIndex,
   });
 
-  final Category category;
+  final CategoryDto category;
   final int maxOrderIndex;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final order = category.order.getValueOnNullOrNegative();
+    final isDefault = category.id == 0 || category.order == 0;
     return Card(
       margin: KEdgeInsets.h16v4.size,
       child: Padding(
@@ -41,21 +42,21 @@ class CategoryTile extends HookConsumerWidget {
               children: [
                 IconButton(
                   visualDensity: VisualDensity.compact,
-                  onPressed: order <= 0
+                  onPressed: order <= 1
                       ? null
                       : () => ref
                           .read(categoryControllerProvider.notifier)
-                          .reorderCategory(order, order - 1),
+                          .reorderCategory(category.id, order - 1),
                   icon: const Icon(Icons.arrow_drop_up_rounded),
                   color: Colors.grey,
                 ),
                 IconButton(
                   visualDensity: VisualDensity.compact,
-                  onPressed: order >= maxOrderIndex
+                  onPressed: order < 1 || order >= maxOrderIndex - 1
                       ? null
                       : () => ref
                           .read(categoryControllerProvider.notifier)
-                          .reorderCategory(order, order + 1),
+                          .reorderCategory(category.id, order + 1),
                   icon: const Icon(Icons.arrow_drop_down_rounded),
                   color: Colors.grey,
                 ),
@@ -66,39 +67,42 @@ class CategoryTile extends HookConsumerWidget {
                     context: context,
                     builder: (context) => EditCategoryDialog(
                       category: category,
-                      editCategory: (newCategory) => ref
+                      editCategory: (updated) => ref
                           .read(categoryControllerProvider.notifier)
-                          .editCategory(newCategory),
+                          .editCategory(category.id, updated),
                     ),
                   ),
                   icon: const Icon(Icons.edit_rounded),
                   color: Colors.grey,
                 ),
-                if (category.id != 0)
-                  IconButton(
-                    visualDensity: VisualDensity.compact,
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: Text(context.l10n.deleteCategoryTitle),
-                        content: Text(context.l10n.deleteCategoryDescription),
-                        actions: [
-                          const PopButton(),
-                          ElevatedButton(
-                            onPressed: () {
-                              ref
-                                  .read(categoryControllerProvider.notifier)
-                                  .deleteCategory(category);
-                              Navigator.pop(context);
-                            },
-                            child: Text(context.l10n.delete),
-                          ),
-                        ],
-                      ),
-                    ),
-                    icon: const Icon(Icons.delete_rounded),
-                    color: Colors.grey,
-                  ),
+                IconButton(
+                  visualDensity: VisualDensity.compact,
+                  onPressed: !isDefault
+                      ? () => showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(context.l10n.deleteCategoryTitle),
+                              content:
+                                  Text(context.l10n.deleteCategoryDescription),
+                              actions: [
+                                const PopButton(),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    ref
+                                        .read(
+                                            categoryControllerProvider.notifier)
+                                        .deleteCategory(category.id);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(context.l10n.delete),
+                                ),
+                              ],
+                            ),
+                          )
+                      : null,
+                  icon: const Icon(Icons.delete_rounded),
+                  color: Colors.grey,
+                ),
               ],
             ),
             const Gap(8),

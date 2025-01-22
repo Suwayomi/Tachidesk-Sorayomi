@@ -10,13 +10,13 @@ import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../controller/server_controller.dart';
-import '../../../../domain/cloud_flare/cloud_flare.dart';
+import '../../../../domain/settings/settings.dart';
 import '../../data/server_settings_repository.dart';
 
 class CloudFlareSection extends ConsumerWidget {
   const CloudFlareSection({super.key, required this.cloudFlareDto});
 
-  final CloudFlareDto cloudFlareDto;
+  final CloudFlareBypassDto cloudFlareDto;
   @override
   Widget build(context, ref) {
     final repository = ref.watch(serverSettingsRepositoryProvider);

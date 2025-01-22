@@ -35,8 +35,8 @@ class SinglePageReaderMode extends HookConsumerWidget {
     this.showReaderLayoutAnimation = false,
   });
 
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final ValueSetter<int>? onPageChanged;
   final bool reverse;
   final Axis scrollDirection;

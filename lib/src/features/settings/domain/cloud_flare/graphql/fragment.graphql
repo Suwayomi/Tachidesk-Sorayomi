@@ -1,8 +1,0 @@
-
-fragment CloudFlareBypassFragment on SettingsType {
-  flareSolverrEnabled
-  flareSolverrSessionName
-  flareSolverrSessionTtl
-  flareSolverrTimeout
-  flareSolverrUrl
-}

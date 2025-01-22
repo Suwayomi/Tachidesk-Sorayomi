@@ -25,7 +25,7 @@ class MangaCoverGridTile extends StatelessWidget {
     this.showCountBadges = false,
     this.showDarkOverlay = true,
   });
-  final Manga manga;
+  final MangaDto manga;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final bool showCountBadges;

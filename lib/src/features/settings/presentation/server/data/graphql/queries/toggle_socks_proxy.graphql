@@ -1,9 +1,0 @@
-# import '/src/features/settings/domain/settings/graphql/settings_fragment.graphql'
-
-mutation ToggleSocksProxy($socksProxyEnabled: Boolean = false) {
-  setSettings(input: {settings: {socksProxyEnabled: $socksProxyEnabled}}) {
-    settings {
-      ...SettingsFragment
-    }
-  }
-}

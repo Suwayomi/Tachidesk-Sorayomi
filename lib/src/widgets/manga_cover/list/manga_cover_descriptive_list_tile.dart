@@ -24,7 +24,7 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
     this.showBadges = true,
     this.showCountBadges = true,
   });
-  final Manga manga;
+  final MangaDto manga;
   final bool showBadges;
   final bool showCountBadges;
   final VoidCallback? onPressed;

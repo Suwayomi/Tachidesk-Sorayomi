@@ -16,7 +16,7 @@ import '../../../domain/about/about_dto.dart';
 part 'about_controller.g.dart';
 
 @riverpod
-Stream<AboutDto?> about(Ref ref) =>
+Future<AboutDto?> about(Ref ref) =>
     ref.watch(aboutRepositoryProvider).getAbout();
 
 @riverpod

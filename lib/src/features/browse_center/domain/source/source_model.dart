@@ -6,39 +6,42 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../graphql/__generated__/schema.schema.gql.dart';
+import '../../../../graphql/__generated__/schema.graphql.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
-import 'graphql/__generated__/source_fragment.data.gql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-typedef Source = GSourceFragment;
+export '../../../../graphql/__generated__/schema.graphql.dart'
+    show Enum$FetchSourceMangaType;
 
-typedef SourceType = GFetchSourceMangaType;
+typedef SourceDto = Fragment$SourceDto;
 
-extension SourceExtensions on GSourceFragment {
+typedef SourceType = Enum$FetchSourceMangaType;
+
+extension SourceExtensions on SourceDto {
   Language? get language => LanguageJsonConverter.fromJson(lang);
 }
 
-extension SourceMangaTypeExtension on GFetchSourceMangaType {
+extension SourceMangaTypeExtension on SourceType {
   IconData get icon => switch (this) {
-        GFetchSourceMangaType.LATEST => Icons.new_releases_outlined,
-        GFetchSourceMangaType.POPULAR => Icons.favorite_border_rounded,
-        GFetchSourceMangaType.SEARCH => Icons.filter_list_outlined,
-        GFetchSourceMangaType() => throw UnimplementedError(),
+        SourceType.LATEST => Icons.new_releases_outlined,
+        SourceType.POPULAR => Icons.favorite_border_rounded,
+        SourceType.SEARCH => Icons.filter_list_outlined,
+        SourceType.$unknown => throw UnimplementedError(),
       };
 
   IconData get selectedIcon => switch (this) {
-        GFetchSourceMangaType.LATEST => Icons.new_releases_rounded,
-        GFetchSourceMangaType.POPULAR => Icons.favorite_rounded,
-        GFetchSourceMangaType.SEARCH => Icons.filter_list_rounded,
-        GFetchSourceMangaType() => throw UnimplementedError(),
+        SourceType.LATEST => Icons.new_releases_rounded,
+        SourceType.POPULAR => Icons.favorite_rounded,
+        SourceType.SEARCH => Icons.filter_list_rounded,
+        SourceType.$unknown => throw UnimplementedError(),
       };
 
   String toLocale(BuildContext context) => switch (this) {
-        GFetchSourceMangaType.LATEST => context.l10n.sourceTypeLatest,
-        GFetchSourceMangaType.POPULAR => context.l10n.sourceTypePopular,
-        GFetchSourceMangaType.SEARCH => context.l10n.sourceTypeFilter,
-        GFetchSourceMangaType() => throw UnimplementedError(),
+        SourceType.LATEST => context.l10n.sourceTypeLatest,
+        SourceType.POPULAR => context.l10n.sourceTypePopular,
+        SourceType.SEARCH => context.l10n.sourceTypeFilter,
+        SourceType.$unknown => throw UnimplementedError(),
       };
 }

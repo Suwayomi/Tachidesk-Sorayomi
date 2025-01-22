@@ -8,14 +8,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
-import 'graphql/__generated__/manga_fragment.data.gql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
 part 'manga_model.freezed.dart';
 part 'manga_model.g.dart';
 
-typedef Manga = GMangaFragment;
+typedef MangaDto = Fragment$MangaDto;
 
-extension MangaExtensions on GMangaFragment {
+typedef MangaBaseDto = Fragment$MangaBaseDto;
+
+extension MangaExtensions on MangaDto {
   bool genreMatches(
       List<String>? mangaGenreList, List<String>? queryGenreList) {
     Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
@@ -33,55 +35,6 @@ extension MangaExtensions on GMangaFragment {
   MangaMeta get metaData => MangaMeta.fromJson(
       {for (final metaItem in meta) metaItem.key: metaItem.value});
 }
-// @freezed
-// class Manga with _$Manga {
-//   Manga._();
-//   factory Manga({
-//     String? artist,
-//     String? author,
-//     String? description,
-//     int? downloadCount,
-//     int? chapterCount,
-//     int? lastReadAt,
-//     Chapter? lastChapterRead,
-//     Chapter? latestFetchedChapter,
-//     Chapter? latestReadChapter,
-//     Chapter? latestUploadedChapter,
-//     bool? freshData,
-//     List<String>? genre,
-//     bool? inLibrary,
-//     int? id,
-//     int? inLibraryAt,
-//     bool? initialized,
-//     String? realUrl,
-//     Source? source,
-//     String? sourceId,
-//     @JsonKey(fromJson: MangaStatus.fromJson, toJson: MangaStatus.toJson)
-//     MangaStatus? status,
-//     String? thumbnailUrl,
-//     int? thumbnailUrlLastFetched,
-//     String? title,
-//     int? unreadCount,
-//     int? lastFetchedAt,
-//     int? chaptersLastFetchedAt,
-//     String? url,
-//     MangaMeta? meta,
-//   }) = _Manga;
-
-//   bool genreMatches(
-//       List<String>? mangaGenreList, List<String>? queryGenreList) {
-//     Set<String>? mangaSet = mangaGenreList?.map((e) => e.toLowerCase()).toSet();
-//     Set<String>? querySet =
-//         queryGenreList?.map((e) => e.toLowerCase().trim()).toSet();
-//     return (mangaSet?.containsAll(querySet ?? <String>{})).ifNull(true);
-//   }
-
-//   bool query([String? query]) {
-//     return title.query(query) ||
-//         author.query(query) ||
-//         genreMatches(genre, query?.split(','));
-//   }
-// }
 
 @freezed
 class MangaMeta with _$MangaMeta {

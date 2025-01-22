@@ -6,10 +6,10 @@
 
 import '../../../../utils/freezed_converters/language_json_converter.dart';
 import '../language/language_model.dart';
-import 'graphql/__generated__/extension_fragment.data.gql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-typedef Extension = GExtensionFragment;
+typedef Extension = Fragment$ExtensionDto;
 
-extension ExtensionExtensions on GExtensionFragment {
+extension ExtensionExtensions on Extension {
   Language? get language => LanguageJsonConverter.fromJson(lang);
 }

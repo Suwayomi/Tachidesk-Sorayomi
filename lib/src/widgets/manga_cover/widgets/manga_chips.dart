@@ -18,7 +18,7 @@ class MangaChipsRow extends ConsumerWidget {
     required this.manga,
     this.showCountBadges = false,
   });
-  final Manga manga;
+  final MangaDto manga;
   final bool showCountBadges;
   @override
   Widget build(BuildContext context, WidgetRef ref) {

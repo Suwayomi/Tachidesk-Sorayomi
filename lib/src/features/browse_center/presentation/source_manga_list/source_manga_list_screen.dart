@@ -37,7 +37,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
 
   void _fetchPage(
     SourceRepository repository,
-    PagingController<int, Manga> controller,
+    PagingController<int, MangaDto> controller,
     int pageKey, {
     ValueNotifier<String?>? query,
     List<FilterChange>? filter,
@@ -83,7 +83,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
 
     final query = useState(initialQuery);
     final showSearch = useState(initialQuery.isNotBlank);
-    final controller = usePagingController<int, Manga>(firstPageKey: 1);
+    final controller = usePagingController<int, MangaDto>(firstPageKey: 1);
 
     useEffect(() {
       controller.addPageRequestListener(
@@ -129,7 +129,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                         if (sourceType == SourceType.POPULAR) return;
                         SourceTypeRoute(
                           sourceId: sourceId,
-                          sourceType: SourceType.POPULAR.name,
+                          sourceType: SourceType.POPULAR,
                         ).go(context);
                       },
                     ),
@@ -141,7 +141,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                           if (sourceType == SourceType.LATEST) return;
                           SourceTypeRoute(
                             sourceId: sourceId,
-                            sourceType: SourceType.LATEST.name,
+                            sourceType: SourceType.LATEST,
                           ).go(context);
                         },
                       ),
@@ -151,7 +151,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                         groupValue: sourceType,
                         onSelected: (val) => SourceTypeRoute(
                           sourceId: sourceId,
-                          sourceType: SourceType.SEARCH.name,
+                          sourceType: SourceType.SEARCH,
                         ).go(context),
                       ),
                     ),
@@ -172,7 +172,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
                           if (val == null) return;
                           SourceTypeRoute(
                             sourceId: sourceId,
-                            sourceType: SourceType.SEARCH.name,
+                            sourceType: SourceType.SEARCH,
                             query: val,
                           ).go(context);
                         }

@@ -4,9 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../constants/app_constants.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../widgets/popup_widgets/multi_select_popup.dart';
 import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
@@ -39,8 +39,10 @@ class SourcePreferenceToWidget extends StatelessWidget {
           title: Text(title),
           subtitle: summary.isNotBlank ? Text(summary!) : null,
           value: currentValue.ifNull(defaultValue.ifNull()),
-          onChanged: (value) =>
-              onChanged(SourcePreferenceChange()..checkBoxState = value),
+          onChanged: (value) => onChanged(SourcePreferenceChange(
+            checkBoxState: value,
+            position: kPositionPlaceholder,
+          )),
           controlAffinity: ListTileControlAffinity.trailing,
         ),
       SwitchPreferenceCompat(
@@ -55,8 +57,10 @@ class SourcePreferenceToWidget extends StatelessWidget {
           title: Text(title),
           subtitle: summary.isNotBlank ? Text(summary!) : null,
           value: currentValue.ifNull(defaultValue.ifNull()),
-          onChanged: (value) =>
-              onChanged(SourcePreferenceChange()..switchState = value),
+          onChanged: (value) => onChanged(SourcePreferenceChange(
+            switchState: value,
+            position: kPositionPlaceholder,
+          )),
           controlAffinity: ListTileControlAffinity.trailing,
         ),
       ListPreference(
@@ -64,8 +68,8 @@ class SourcePreferenceToWidget extends StatelessWidget {
         listTitle: String? title,
         listDefaultValue: String? defaultValue,
         listValue: String? currentValue,
-        entries: BuiltList<String> entries,
-        entryValues: BuiltList<String> entryValues,
+        entries: List<String> entries,
+        entryValues: List<String> entryValues,
       ) =>
         ListTile(
           key: Key(key),
@@ -78,7 +82,10 @@ class SourcePreferenceToWidget extends StatelessWidget {
               optionList: entryValues.toList(),
               value: currentValue ?? defaultValue ?? "",
               onChange: (value) {
-                onChanged(SourcePreferenceChange()..listState = value);
+                onChanged(SourcePreferenceChange(
+                  listState: value,
+                  position: kPositionPlaceholder,
+                ));
                 Navigator.pop(context);
               },
               getOptionTitle: (entry) => entries[entryValues.indexOf(entry)],
@@ -89,10 +96,10 @@ class SourcePreferenceToWidget extends StatelessWidget {
         key: String key,
         multiSelectTitle: String? title,
         summary: String? summary,
-        multiSelectDefaultValue: BuiltList<String>? defaultValue,
-        multiSelectValue: BuiltList<String>? currentValue,
-        entries: BuiltList<String>? entries,
-        entryValues: BuiltList<String> entryValues,
+        multiSelectDefaultValue: List<String>? defaultValue,
+        multiSelectValue: List<String>? currentValue,
+        entries: List<String> entries,
+        entryValues: List<String> entryValues,
       ) =>
         ListTile(
           key: Key(key),
@@ -105,8 +112,10 @@ class SourcePreferenceToWidget extends StatelessWidget {
               optionList: entryValues.toList(),
               values: currentValue?.toList() ?? defaultValue?.toList() ?? [],
               onChange: (value) {
-                onChanged(SourcePreferenceChange()
-                  ..multiSelectState = ListBuilder(value));
+                onChanged(SourcePreferenceChange(
+                  multiSelectState: value,
+                  position: kPositionPlaceholder,
+                ));
                 Navigator.pop(context);
               },
               getOptionTitle: (entry) => entries[entryValues.indexOf(entry)],
@@ -132,14 +141,16 @@ class SourcePreferenceToWidget extends StatelessWidget {
               title: dialogTitle ?? title ?? "",
               subtitle: dialogMessage ?? summary ?? "",
               onChange: (value) async {
-                onChanged(SourcePreferenceChange()..editTextState = value);
+                onChanged(SourcePreferenceChange(
+                  editTextState: value,
+                  position: kPositionPlaceholder,
+                ));
                 Navigator.pop(context);
               },
               initialValue: currentValue ?? defaultValue,
             ),
           ),
         ),
-      // TODO: Handle this case.
       SourcePreference() => throw UnimplementedError(
           'Unhandled preference type: ${prop.runtimeType}'),
     };

@@ -4,55 +4,60 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import '../../../../graphql/__generated__/schema.schema.gql.dart';
-import '../../data/source_repository/graphql/queries/__generated__/source_filter_by_id.data.gql.dart';
+import '../../../../graphql/__generated__/schema.graphql.dart';
+import 'graphql/__generated__/fragment.graphql.dart';
 
-typedef Filter = GFilterFragment;
+typedef Filter = Fragment$FilterDto;
 
-typedef FilterHeader = GPrimitiveFilterFragment__asHeaderFilter;
+typedef FilterHeader = Fragment$FilterDto$$HeaderFilter;
 
-typedef FilterSeparator = GPrimitiveFilterFragment__asSeparatorFilter;
+typedef FilterSeparator = Fragment$FilterDto$$SeparatorFilter;
 
-typedef FilterText = GPrimitiveFilterFragment__asTextFilter;
+typedef FilterText = Fragment$FilterDto$$TextFilter;
 
-typedef FilterCheckBox = GPrimitiveFilterFragment__asCheckBoxFilter;
+typedef FilterCheckBox = Fragment$FilterDto$$CheckBoxFilter;
 
-typedef FilterTriState = GPrimitiveFilterFragment__asTriStateFilter;
+typedef FilterTriState = Fragment$FilterDto$$TriStateFilter;
 
-typedef FilterSort = GPrimitiveFilterFragment__asSortFilter;
+typedef FilterSort = Fragment$FilterDto$$SortFilter;
 
-typedef FilterSelect = GPrimitiveFilterFragment__asSelectFilter;
+typedef FilterSelect = Fragment$FilterDto$$SelectFilter;
 
-typedef FilterGroup = GFilterFragment__asGroupFilter;
+typedef FilterGroup = Fragment$FilterDto$$GroupFilter;
 
-typedef TriState = GTriState;
+typedef TriState = Enum$TriState;
 
-typedef FilterChange = GFilterChangeInputBuilder;
+typedef FilterChange = Input$FilterChangeInput;
 
-typedef SortStateChange = GSortSelectionInputBuilder;
+typedef SortStateChange = Input$SortSelectionInput;
 
-typedef SortState = GPrimitiveFilterFragment__asSortFilter_sortState;
+typedef SortState = Enum$SortOrder;
 
-extension TriStateExtension on GTriState {
-  bool? get toBool {
-    // static const GTriState IGNORE = _$gTriStateIGNORE;
+extension TriStateExtension on TriState {
+  bool? get toBool => switch (this) {
+        TriState.IGNORE => null,
+        Enum$TriState.INCLUDE => true,
+        Enum$TriState.EXCLUDE => false,
+        Enum$TriState.$unknown => throw UnimplementedError(),
+      };
 
-    // static const GTriState INCLUDE = _$gTriStateINCLUDE;
+  static TriState fromBool(bool? value) => switch (value) {
+        true => TriState.INCLUDE,
+        false => TriState.EXCLUDE,
+        null => TriState.IGNORE,
+      };
+}
 
-    // static const GTriState EXCLUDE = _$gTriStateEXCLUDE;
-    if (this == GTriState.IGNORE) {
-      return null;
-    } else if (this == GTriState.INCLUDE) {
-      return true;
-    } else if (this == GTriState.EXCLUDE) {
-      return false;
-    }
-    throw Exception("State Not Found");
-  }
-
-  static GTriState fromBool(bool? value) => switch (value) {
-        true => GTriState.INCLUDE,
-        false => GTriState.EXCLUDE,
-        null => GTriState.IGNORE,
+extension SortStateExtension on SortState {
+  bool get ascending => switch (this) {
+        SortState.ASC ||
+        SortState.ASC_NULLS_FIRST ||
+        SortState.ASC_NULLS_LAST =>
+          true,
+        SortState.DESC ||
+        SortState.DESC_NULLS_FIRST ||
+        SortState.DESC_NULLS_LAST =>
+          false,
+        SortState.$unknown => throw UnimplementedError(),
       };
 }

@@ -35,14 +35,11 @@
     "licenser.license": "MPLv2",
     "licenser.projectName": "Tachidesk-Sorayomi",
     "licenser.author": "Contributors to the Suwayomi project",
+    "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
     "files.exclude": {
         // "**/__generated__": true,
-        // "**/*.ast.gql.dart": true,
-        // "**/*.data.gql.dart": true,
+        // "**/*.graphql.dart": true,
         // "**/*.freezed.dart": true,
-        // "**/*.g.dart": true,
-        // "**/*.gql.g.dart": true,
-        // "**/*.req.gql.dart": true,
-        // "**/*.var.gql.dart": true
+        "**/*.g.dart": true,
     }
 }

@@ -14,6 +14,8 @@ import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/misc/toast/toast.dart';
 import '../../../../../widgets/server_image.dart';
 import '../../../data/downloads/downloads_repository.dart';
+import '../../../domain/downloads/downloads_model.dart';
+import '../controller/downloads_controller.dart';
 
 class DownloadProgressListTile extends HookConsumerWidget {
   const DownloadProgressListTile({
@@ -32,26 +34,17 @@ class DownloadProgressListTile extends HookConsumerWidget {
     Toast? toast,
     WidgetRef ref,
     bool addToDownload,
-    int mangaId,
-    int chapterIndex,
+    int chapterId,
   ) async {
     try {
-      if (!chapterIndex.isNull && !mangaId.isNull) {
-        (await AsyncValue.guard(() async {
-          final repo = ref.read(downloadsRepositoryProvider);
-          await repo.removeChapterFromDownloadQueue(
-            mangaId,
-            chapterIndex,
-          );
-          if (addToDownload) {
-            await repo.addChapterToDownloadQueue(
-              mangaId,
-              chapterIndex,
-            );
-          }
-        }))
-            .showToastOnError(toast);
-      }
+      (await AsyncValue.guard(() async {
+        final repo = ref.read(downloadsRepositoryProvider);
+        await repo.removeChapterFromDownloadQueue(chapterId);
+        if (addToDownload) {
+          await repo.addChaptersBatchToDownloadQueue([chapterId]);
+        }
+      }))
+          .showToastOnError(toast);
     } catch (e) {
       //
     }
@@ -60,32 +53,37 @@ class DownloadProgressListTile extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final status = useState<String?>(null);
-    final download = ref.watch(downloadsFromIdProvider(chapterId));
+    final downloadUpdate = ref.watch(downloadsFromIdProvider(chapterId));
     useEffect(() {
-      status.value = download?.state == "Downloading"
-          ? "${((download?.progress ?? 0) * 100).toInt()}%"
-          : download?.state == "Error"
-              ? "${download?.state}(${download?.tries})"
-              : download?.state;
+      status.value = downloadUpdate?.download.state == DownloadState.DOWNLOADING
+          ? "${((downloadUpdate?.download.progress ?? 0) * 100).toInt()}%"
+          : downloadUpdate?.download.state == DownloadState.ERROR
+              ? "${downloadUpdate?.download.state.toLocale(context)} (${downloadUpdate?.download.tries})"
+              : downloadUpdate?.download.state.toLocale(context);
       return null;
-    }, [download?.state, download?.progress, download?.tries]);
-    if (download == null) return const SizedBox.shrink();
+    }, [
+      downloadUpdate?.download.state,
+      downloadUpdate?.download.progress,
+      downloadUpdate?.download.tries
+    ]);
+    if (downloadUpdate == null) return const SizedBox.shrink();
     return Card(
       margin: KEdgeInsets.h16v4.size,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
           children: [
-            if ((download.manga?.thumbnailUrl).isNotBlank)
+            if ((downloadUpdate.download.manga.thumbnailUrl).isNotBlank)
               Padding(
                 padding: KEdgeInsets.a8.size,
                 child: InkWell(
                   onTap: () =>
-                      MangaRoute(mangaId: download.mangaId!).push(context),
+                      MangaRoute(mangaId: downloadUpdate.download.manga.id)
+                          .push(context),
                   child: ClipRRect(
                     borderRadius: KBorderRadius.r8.radius,
                     child: ServerImage(
-                      imageUrl: download.manga!.thumbnailUrl!,
+                      imageUrl: downloadUpdate.download.manga.thumbnailUrl!,
                       size: const Size.square(56),
                     ),
                   ),
@@ -101,14 +99,12 @@ class DownloadProgressListTile extends HookConsumerWidget {
                       contentPadding: EdgeInsets.zero,
                       dense: true,
                       title: Text(
-                        download.manga?.title ?? "",
+                        downloadUpdate.download.manga.title,
                         style: context.textTheme.labelLarge,
                         overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: Text(
-                        download.chapter?.name ??
-                            download.chapter?.chapterNumber.toString() ??
-                            "",
+                        downloadUpdate.download.chapter.name,
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.labelSmall,
                       ),
@@ -120,9 +116,9 @@ class DownloadProgressListTile extends HookConsumerWidget {
                             ),
                     ),
                     LinearProgressIndicator(
-                      value: (download.progress ?? 0),
+                      value: downloadUpdate.download.progress,
                       semanticsValue:
-                          "${((download.progress ?? 0) * 100).toInt()}%",
+                          "${(downloadUpdate.download.progress * 100).toInt()}%",
                     ),
                     Row(
                       children: [
@@ -133,10 +129,8 @@ class DownloadProgressListTile extends HookConsumerWidget {
                               : () => ref
                                   .read(downloadsRepositoryProvider)
                                   .reorderDownload(
-                                    download.mangaId!,
-                                    download.chapterIndex!,
-                                    index - 1,
-                                  ),
+                                      downloadUpdate.download.chapter.id,
+                                      index - 1),
                           icon: const Icon(Icons.arrow_drop_up_rounded),
                           color: Colors.grey,
                         ),
@@ -147,10 +141,8 @@ class DownloadProgressListTile extends HookConsumerWidget {
                               : () => ref
                                   .read(downloadsRepositoryProvider)
                                   .reorderDownload(
-                                    download.mangaId!,
-                                    download.chapterIndex!,
-                                    index + 1,
-                                  ),
+                                      downloadUpdate.download.chapter.id,
+                                      index + 1),
                           icon: const Icon(Icons.arrow_drop_down_rounded),
                           color: Colors.grey,
                         ),
@@ -165,36 +157,31 @@ class DownloadProgressListTile extends HookConsumerWidget {
                 borderRadius: KBorderRadius.r16.radius,
               ),
               itemBuilder: (context) => [
-                if (download.state == "Error")
+                if (downloadUpdate.download.state == DownloadState.ERROR)
                   PopupMenuItem(
                     child: Text(context.l10n.retry),
-                    onTap: () => toggleChapterToQueue(toast, ref, true,
-                        download.mangaId!, download.chapterIndex!),
+                    onTap: () => toggleChapterToQueue(
+                        toast, ref, true, downloadUpdate.download.chapter.id),
                   ),
                 PopupMenuItem(
                   child: Text(context.l10n.delete),
-                  onTap: () => toggleChapterToQueue(toast, ref, false,
-                      download.mangaId!, download.chapterIndex!),
+                  onTap: () => toggleChapterToQueue(
+                      toast, ref, false, downloadUpdate.download.chapter.id),
                 ),
                 if (!index.isZero)
                   PopupMenuItem(
                     child: Text(context.l10n.moveToTop),
-                    onTap: () =>
-                        ref.read(downloadsRepositoryProvider).reorderDownload(
-                              download.mangaId!,
-                              download.chapterIndex!,
-                              0,
-                            ),
+                    onTap: () => ref
+                        .read(downloadsRepositoryProvider)
+                        .reorderDownload(downloadUpdate.download.chapter.id, 0),
                   ),
                 if (index < downloadsCount - 1)
                   PopupMenuItem(
                     child: Text(context.l10n.moveToBottom),
-                    onTap: () =>
-                        ref.read(downloadsRepositoryProvider).reorderDownload(
-                              download.mangaId!,
-                              download.chapterIndex!,
-                              downloadsCount - 1,
-                            ),
+                    onTap: () => ref
+                        .read(downloadsRepositoryProvider)
+                        .reorderDownload(downloadUpdate.download.chapter.id,
+                            downloadsCount - 1),
                   ),
               ],
             ),

@@ -122,7 +122,7 @@ class SwitchSettingsPropTile extends ConsumerWidget {
               ref.read(toastProvider),
             );
             if (result != null && result is SettingsDto) {
-              ref.watch(settingsProvider.notifier).updateState(result);
+              ref.read(settingsProvider.notifier).updateState(result);
             }
           },
         ),
