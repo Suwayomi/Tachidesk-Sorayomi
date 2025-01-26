@@ -31,4 +31,7 @@ fragment DownloadUpdatesDto on DownloadUpdates {
     updates {
         ...DownloadUpdateDto
     }
+    initial {
+        ...DownloadDto
+    }
 }

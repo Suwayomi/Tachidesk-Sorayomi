@@ -53,6 +53,33 @@ GraphQLClient graphQlClient(Ref ref) {
 }
 
 @riverpod
+GraphQLClient graphQlSubscriptionClient(Ref ref) {
+  final authType = ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial;
+  final credentials = ref.watch(credentialsProvider);
+  Link link = WebSocketLink(
+      Endpoints.baseApi(
+        baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+        port: ref.watch(serverPortProvider),
+        addPort: ref.watch(serverPortToggleProvider).ifNull(),
+        isGraphQl: true,
+        isWebsocket: true,
+      ),
+      subProtocol: GraphQLProtocol.graphqlTransportWs);
+  if (authType == AuthType.basic && credentials.isNotBlank) {
+    final AuthLink authLink = AuthLink(getToken: () => credentials);
+    link = authLink.concat(link);
+  }
+  final loggerLink = LoggerLink();
+  return GraphQLClient(
+    link: loggerLink.concat(link),
+    defaultPolicies: DefaultPolicies(
+      query: Policies(fetch: FetchPolicy.networkOnly),
+    ),
+    cache: GraphQLCache(store: ref.watch(hiveStoreProvider)),
+  );
+}
+
+@riverpod
 ValueNotifier<GraphQLClient> graphQlClientNotifier(Ref ref) {
   final notifier = ValueNotifier(ref.watch(graphQlClientProvider));
   // Dispose of the notifier when the provider is destroyed

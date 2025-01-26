@@ -6,4 +6,4 @@
 
 import './graphql/__generated__/fragment.graphql.dart';
 
-typedef DownloadsQueue = Fragment$DownloadStatusDto;
+typedef DownloadStatusDto = Fragment$DownloadStatusDto;

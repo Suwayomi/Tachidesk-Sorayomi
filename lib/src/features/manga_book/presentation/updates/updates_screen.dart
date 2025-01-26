@@ -11,7 +11,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/hooks/paging_controller_hook.dart';
-import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../data/updates/updates_repository.dart';
@@ -142,12 +141,10 @@ class UpdatesScreen extends HookConsumerWidget {
               final chapterTile = ChapterMangaListTile(
                 chapterWithMangaDto: item,
                 updatePair: () async {
-                  final chapter = ref
-                      .refresh(chapterProvider(
-                        mangaId: item.manga.id,
-                        chapterIndex: item.index,
-                      ))
-                      .valueOrToast(ref.read(toastProvider));
+                  final chapter = await ref.refresh(chapterProvider(
+                    mangaId: item.manga.id,
+                    chapterIndex: item.index,
+                  ).future);
                   try {
                     controller.itemList = [...?controller.itemList]
                       ..replaceRange(index, index + 1, [

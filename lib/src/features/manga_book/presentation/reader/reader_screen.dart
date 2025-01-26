@@ -173,12 +173,12 @@ class ReaderScreen extends HookConsumerWidget {
                       )
                   };
                 },
-                refresh: () => ref.refresh(chapterProviderWithIndex),
+                refresh: () => ref.refresh(chapterProviderWithIndex.future),
                 addScaffoldWrapper: true,
               );
             },
             addScaffoldWrapper: true,
-            refresh: () => ref.refresh(mangaProvider),
+            refresh: () => ref.refresh(mangaProvider.future),
           ),
         ),
       ),

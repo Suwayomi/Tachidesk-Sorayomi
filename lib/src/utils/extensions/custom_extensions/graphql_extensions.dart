@@ -3,7 +3,9 @@ part of '../custom_extensions.dart';
 extension GraphQlExtensions<T> on QueryResult<T> {
   T? get result {
     if (hasException && exception != null) {
-      debugPrint(exception.toString());
+      if (kDebugMode) {
+        exception?.log();
+      }
       throw OperationMessageException(exception!);
     }
     return parsedData;

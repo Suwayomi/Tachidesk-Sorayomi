@@ -12,14 +12,16 @@ import '../../../../global_providers/global_providers.dart';
 import '../../../../graphql/__generated__/schema.graphql.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../domain/downloads/downloads_model.dart';
+import '../../domain/downloads_queue/downloads_queue_model.dart';
 import './graphql/__generated__/query.graphql.dart';
 
 part 'downloads_repository.g.dart';
 
 class DownloadsRepository {
-  const DownloadsRepository(this.client);
+  const DownloadsRepository(this.client, this.subscriptionClient);
 
   final GraphQLClient client;
+  final GraphQLClient subscriptionClient;
   // Downloads
   Future<void> startDownloads() => client.mutate$StartDownloader(
         Options$Mutation$StartDownloader(
@@ -74,17 +76,21 @@ class DownloadsRepository {
         ),
       );
 
-  Stream<DownloadUpdatesDto?> downloadStatusSubscription() => client
+  Stream<DownloadUpdatesDto?> downloadStatusSubscription() => subscriptionClient
       .subscribe$DownloadStatusChanged(
         Options$Subscription$DownloadStatusChanged(
           variables: Variables$Subscription$DownloadStatusChanged(
-            input: Input$DownloadChangedInput(maxUpdates: 50),
+            input: Input$DownloadChangedInput(maxUpdates: 150),
           ),
         ),
       )
       .getData((data) => data.downloadStatusChanged);
+
+  Future<DownloadStatusDto?> getDownloadStatus() =>
+      client.query$GetDownloadStatus().getData((data) => data.downloadStatus);
 }
 
 @riverpod
-DownloadsRepository downloadsRepository(Ref ref) =>
-    DownloadsRepository(ref.watch(graphQlClientProvider));
+DownloadsRepository downloadsRepository(Ref ref) => DownloadsRepository(
+    ref.watch(graphQlClientProvider),
+    ref.watch(graphQlSubscriptionClientProvider));

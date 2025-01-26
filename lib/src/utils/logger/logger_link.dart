@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:graphql/client.dart';
 
 class LoggerLink extends Link {
@@ -8,10 +7,9 @@ class LoggerLink extends Link {
     NextLink? forward,
   ]) {
     Stream<Response> response = forward!(request).map((Response fetchResult) {
-      if (kDebugMode) {
-        debugPrint("Request: $request");
-        debugPrint("Response: ${fetchResult.data ?? "null"}");
-      }
+      // if (kDebugMode) {
+      //   request.log();
+      // }
       return fetchResult;
     }).handleError((error) {
       throw error;

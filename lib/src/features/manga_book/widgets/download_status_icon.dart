@@ -73,12 +73,12 @@ class DownloadStatusIcon extends HookConsumerWidget {
     final toast = ref.watch(toastProvider);
     final downloadUpdate = ref.watch(downloadsFromIdProvider(chapter.id));
     useEffect(() {
-      if (downloadUpdate?.download.state == DownloadState.FINISHED) {
+      if (downloadUpdate?.state == DownloadState.FINISHED) {
         Future.microtask(
             () => newUpdatePair(ref, (value) => isLoading.value = value));
       }
       return;
-    }, [downloadUpdate?.download.state]);
+    }, [downloadUpdate?.state]);
 
     if (isLoading.value) {
       return Padding(
@@ -87,7 +87,7 @@ class DownloadStatusIcon extends HookConsumerWidget {
       );
     } else {
       if (downloadUpdate != null) {
-        if (downloadUpdate.download.state == DownloadState.ERROR) {
+        if (downloadUpdate.state == DownloadState.ERROR) {
           return IconButton(
             onPressed: () => toggleChapterToQueue(toast, ref, isError: true),
             icon: const Icon(Icons.replay_rounded),
@@ -96,9 +96,8 @@ class DownloadStatusIcon extends HookConsumerWidget {
           return IconButton(
             onPressed: () => toggleChapterToQueue(toast, ref, isRemove: true),
             icon: MiniCircularProgressIndicator(
-              value: downloadUpdate.download.progress == 0
-                  ? null
-                  : downloadUpdate.download.progress,
+              value:
+                  downloadUpdate.progress == 0 ? null : downloadUpdate.progress,
               color: context.iconColor,
             ),
           );

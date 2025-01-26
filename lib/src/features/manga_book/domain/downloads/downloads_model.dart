@@ -20,12 +20,26 @@ typedef DownloaderState = Enum$DownloaderState;
 
 typedef DownloadState = Enum$DownloadState;
 
+typedef DownloadUpdateType = Enum$DownloadUpdateType;
+
 extension DownloadStateExt on DownloadState {
   String toLocale(BuildContext context) => switch (this) {
         Enum$DownloadState.QUEUED => context.l10n.queued,
         Enum$DownloadState.DOWNLOADING => context.l10n.downloading,
         Enum$DownloadState.FINISHED => context.l10n.finished,
         Enum$DownloadState.ERROR => context.l10n.error,
+        Enum$DownloadState.$unknown => throw UnimplementedError(),
+      };
+}
+
+extension DownloadDtoExt on DownloadDto {
+  String toDisplayName(BuildContext context) => switch (state) {
+        Enum$DownloadState.DOWNLOADING => "${((progress) * 100).toInt()}%",
+        Enum$DownloadState.ERROR =>
+          "${state.toLocale(context)} (${tries.padLeft()})",
+        Enum$DownloadState.QUEUED ||
+        Enum$DownloadState.FINISHED =>
+          state.toLocale(context),
         Enum$DownloadState.$unknown => throw UnimplementedError(),
       };
 }

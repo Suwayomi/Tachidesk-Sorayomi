@@ -18,9 +18,10 @@ import './graphql/__generated__/query.graphql.dart';
 part 'updates_repository.g.dart';
 
 class UpdatesRepository {
-  const UpdatesRepository(this.client);
+  const UpdatesRepository(this.client, this.subscriptionClient);
 
   final GraphQLClient client;
+  final GraphQLClient subscriptionClient;
   // Downloads
 
   // Updates
@@ -85,14 +86,15 @@ class UpdatesRepository {
       .query$UpdateStatusDto(Options$Query$UpdateStatusDto())
       .getData((data) => data.updateStatus);
 
-  Stream<UpdateStatusDto?> updateStatusSubscription() => client
+  Stream<UpdateStatusDto?> updateStatusSubscription() => subscriptionClient
       .subscribe$UpdateStatusChange(Options$Subscription$UpdateStatusChange())
       .getData((data) => data.updateStatusChanged);
 }
 
 @riverpod
-UpdatesRepository updatesRepository(Ref ref) =>
-    UpdatesRepository(ref.watch(graphQlClientProvider));
+UpdatesRepository updatesRepository(Ref ref) => UpdatesRepository(
+    ref.watch(graphQlClientProvider),
+    ref.watch(graphQlSubscriptionClientProvider));
 
 @riverpod
 Future<UpdateStatusDto?> updateSummary(Ref ref) =>

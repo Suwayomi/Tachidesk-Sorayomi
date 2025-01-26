@@ -40,3 +40,9 @@ subscription DownloadStatusChanged($input: DownloadChangedInput!) {
       ...DownloadUpdatesDto
   }
 }
+
+query GetDownloadStatus {
+  downloadStatus {
+    ...DownloadStatusDto
+  }
+}

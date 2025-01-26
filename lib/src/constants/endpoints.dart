@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import '../utils/extensions/custom_extensions.dart';
 import 'db_keys.dart';
 
 abstract class Endpoints {
@@ -14,9 +15,14 @@ abstract class Endpoints {
     bool addPort = true,
     bool appendApiToUrl = true,
     bool isGraphQl = false,
+    bool isWebsocket = false,
   }) {
-    Uri url = Uri.tryParse(baseUrl ?? DBKeys.serverUrl.initial) ??
-        Uri.parse(DBKeys.serverUrl.initial);
+    String primary = baseUrl ?? DBKeys.serverUrl.initial;
+    if (isWebsocket) {
+      primary = primary.toWebSocket!;
+    }
+    Uri url = Uri.tryParse(primary) ?? Uri.parse(DBKeys.serverUrl.initial);
+
     if (port != null && addPort) {
       url = url.replace(port: port);
     }

@@ -41,7 +41,7 @@ class LibraryScreen extends HookConsumerWidget {
           return Emoticons(
             title: context.l10n.noCategoriesFound,
             button: TextButton(
-              onPressed: () => ref.refresh(categoryControllerProvider),
+              onPressed: () => ref.refresh(categoryControllerProvider.future),
               child: Text(context.l10n.refresh),
             ),
           );
@@ -126,7 +126,7 @@ class LibraryScreen extends HookConsumerWidget {
                       title: context.l10n.noCategoriesFound,
                       button: TextButton(
                         onPressed: () =>
-                            ref.refresh(categoryControllerProvider),
+                            ref.refresh(categoryControllerProvider.future),
                         child: Text(context.l10n.refresh),
                       ),
                     )
@@ -144,7 +144,7 @@ class LibraryScreen extends HookConsumerWidget {
           );
         }
       },
-      refresh: () => ref.refresh(categoryControllerProvider),
+      refresh: () => ref.refresh(categoryControllerProvider.future),
       wrapper: (body) => Scaffold(
         appBar: AppBar(
           title: Text(context.l10n.library),

@@ -24,7 +24,7 @@ class DownloadsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final toast = ref.watch(toastProvider);
     final downloadsChapterIds = ref.watch(downloadsChapterIdsProvider);
-    final downloadsGlobalStatus = ref.watch(downloadsStatusProvider);
+    final downloadsGlobalStatus = ref.watch(downloaderStateProvider);
     final showDownloadsFAB = ref.watch(showDownloadsFABProvider);
     return Scaffold(
       appBar: AppBar(
