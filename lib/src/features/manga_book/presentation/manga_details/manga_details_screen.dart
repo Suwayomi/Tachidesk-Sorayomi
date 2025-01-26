@@ -13,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/app_sizes.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../library/presentation/library/controller/library_controller.dart';
@@ -147,6 +148,14 @@ class MangaDetailsScreen extends HookConsumerWidget {
                               EditMangaCategoryDialog(mangaId: mangaId),
                         ),
                         icon: const Icon(Icons.category_rounded),
+                      ),
+                      IconButton(
+                        onPressed: () => launchUrlInWeb(
+                          context,
+                          data!.url,
+                          ref.read(toastProvider),
+                        ),
+                        icon: const Icon(Icons.open_in_new_rounded),
                       )
                     ],
                     Builder(
@@ -193,6 +202,15 @@ class MangaDetailsScreen extends HookConsumerWidget {
                             onTap: () => refresh(true),
                             child: Text(context.l10n.refresh),
                           ),
+                          if (data?.url != null)
+                            PopupMenuItem(
+                              onTap: () => launchUrlInWeb(
+                                context,
+                                data!.url,
+                                ref.read(toastProvider),
+                              ),
+                              child: Text(context.l10n.openInWeb),
+                            ),
                         ],
                       )
                   ],

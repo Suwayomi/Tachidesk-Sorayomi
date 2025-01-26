@@ -562,6 +562,9 @@
     "@openFlareSolverr": {
         "description": "Text for link to Open Flare Solverr setup documentation"
     },
+    "@openInWeb": {
+        "description": "Button title text for open the url in web"
+    },
     "@or": {
         "description": "text literal for word or"
     },
@@ -1087,6 +1090,7 @@
     "numSelected": "{num} Selected",
     "obsolete": "Obsolete",
     "openFlareSolverr": "Checkout FlareSolverr for information on how to set it up",
+    "openInWeb": "Open In Web",
     "or": "or",
     "page": "Page: {number}",
     "parallelSourceRequest": "Parallel source requests",
