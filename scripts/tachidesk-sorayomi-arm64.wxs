@@ -31,7 +31,7 @@
             <Component Id="tachidesk_sorayomi.exe" Guid="*" Win64="yes">
                 <File Id="tachidesk_sorayomi.exe" Source="tachidesk_sorayomi.exe" KeyPath="yes">
                     <Shortcut Id="tachidesk_sorayom_desktop.lnk" Name="Sorayomi" Directory="DesktopFolder" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" />
-                    <Shortcut Id="tachidesk_sorayom_program_menu.lnk" Name="Sorayomi" Directory="ProgramMenuDir" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" Description="A free and open source manga reader to read manga from a Tachidesk-Server instance." />
+                    <Shortcut Id="tachidesk_sorayom_program_menu.lnk" Name="Sorayomi" Directory="ProgramMenuDir" WorkingDirectory="INSTALLDIR" Icon="tachidesk_sorayomi.ico" IconIndex="0" Advertise="yes" Description="A free and open source manga reader to read manga from a Suwayomi-Server instance." />
                 </File>
             </Component>
 
