@@ -57,8 +57,8 @@ class SourceRepository {
   Future<List<SourcePreference>?> getSourcePreference(String sourceId) =>
       ferryClient
           .query$SourcePreferenceById(Options$Query$SourcePreferenceById(
-            variables: Variables$Query$SourcePreferenceById(id: sourceId),
-          ))
+              variables: Variables$Query$SourcePreferenceById(id: sourceId),
+              fetchPolicy: FetchPolicy.noCache))
           .getData((data) => data.source.preferences);
 
   Future<List<Filter>?> getSourceFilter(String sourceId) => ferryClient

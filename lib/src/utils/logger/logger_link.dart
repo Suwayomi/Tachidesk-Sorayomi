@@ -9,6 +9,7 @@ class LoggerLink extends Link {
     Stream<Response> response = forward!(request).map((Response fetchResult) {
       // if (kDebugMode) {
       //   request.log();
+      //   logger.i(fetchResult.response);
       // }
       return fetchResult;
     }).handleError((error) {

@@ -9,19 +9,21 @@ import 'graphql/__generated__/fragment.graphql.dart';
 
 typedef Filter = Fragment$FilterDto;
 
-typedef FilterHeader = Fragment$FilterDto$$HeaderFilter;
+typedef PrimitiveFilter = Fragment$PrimitiveFilterDto;
 
-typedef FilterSeparator = Fragment$FilterDto$$SeparatorFilter;
+typedef FilterHeader = Fragment$PrimitiveFilterDto$$HeaderFilter;
 
-typedef FilterText = Fragment$FilterDto$$TextFilter;
+typedef FilterSeparator = Fragment$PrimitiveFilterDto$$SeparatorFilter;
 
-typedef FilterCheckBox = Fragment$FilterDto$$CheckBoxFilter;
+typedef FilterText = Fragment$PrimitiveFilterDto$$TextFilter;
 
-typedef FilterTriState = Fragment$FilterDto$$TriStateFilter;
+typedef FilterCheckBox = Fragment$PrimitiveFilterDto$$CheckBoxFilter;
 
-typedef FilterSort = Fragment$FilterDto$$SortFilter;
+typedef FilterTriState = Fragment$PrimitiveFilterDto$$TriStateFilter;
 
-typedef FilterSelect = Fragment$FilterDto$$SelectFilter;
+typedef FilterSort = Fragment$PrimitiveFilterDto$$SortFilter;
+
+typedef FilterSelect = Fragment$PrimitiveFilterDto$$SelectFilter;
 
 typedef FilterGroup = Fragment$FilterDto$$GroupFilter;
 
@@ -30,6 +32,8 @@ typedef TriState = Enum$TriState;
 typedef FilterChange = Input$FilterChangeInput;
 
 typedef SortStateChange = Input$SortSelectionInput;
+
+typedef SortSelectionDto = Fragment$SortSelectionDto;
 
 typedef SortState = Enum$SortOrder;
 

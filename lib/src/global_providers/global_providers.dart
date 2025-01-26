@@ -46,7 +46,7 @@ GraphQLClient graphQlClient(Ref ref) {
   return GraphQLClient(
     link: loggerLink.concat(link),
     defaultPolicies: DefaultPolicies(
-      query: Policies(fetch: FetchPolicy.networkOnly),
+      query: Policies(fetch: FetchPolicy.noCache),
     ),
     cache: GraphQLCache(store: ref.watch(hiveStoreProvider)),
   );
@@ -73,7 +73,7 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
   return GraphQLClient(
     link: loggerLink.concat(link),
     defaultPolicies: DefaultPolicies(
-      query: Policies(fetch: FetchPolicy.networkOnly),
+      query: Policies(fetch: FetchPolicy.noCache),
     ),
     cache: GraphQLCache(store: ref.watch(hiveStoreProvider)),
   );

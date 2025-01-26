@@ -5,10 +5,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../constants/enum.dart';
+import '../../../features/browse_center/domain/source/source_model.dart';
 import '../../../features/manga_book/domain/manga/manga_model.dart';
+import '../../../routes/router_config.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../grid/manga_cover_grid_tile.dart';
 import '../widgets/manga_badges.dart';
@@ -32,8 +35,6 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
   final ValueChanged<String?>? onTitleClicked;
   @override
   Widget build(BuildContext context) {
-    final sourceName =
-        " • ${manga.source?.displayName ?? context.l10n.unknownSource}";
     return InkWell(
       onTap: onPressed,
       onLongPress: onLongPress,
@@ -72,14 +73,18 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                         semanticsLabel: manga.title,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2.0),
+                    Gap(8),
+                    InkWell(
+                      onTap: onTitleClicked != null && manga.author.isNotBlank
+                          ? () => onTitleClicked!(manga.author)
+                          : null,
                       child: Text(
                         manga.author ?? context.l10n.unknownAuthor,
                         overflow: TextOverflow.ellipsis,
-                        style: context.textTheme.bodySmall,
+                        style: context.textTheme.bodyMedium,
                       ),
                     ),
+                    Gap(8),
                     Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
@@ -94,11 +99,22 @@ class MangaCoverDescriptiveListTile extends StatelessWidget {
                             style: context.textTheme.bodySmall,
                           ),
                         ],
-                        if (manga.source?.displayName != null)
-                          Text(
-                            sourceName,
-                            style: context.textTheme.bodySmall,
+                        if (manga.source?.displayName != null) ...[
+                          Text(" • "),
+                          InkWell(
+                            onTap: (manga.source?.id).isNotBlank
+                                ? () => SourceTypeRoute(
+                                        sourceId: manga.source!.id,
+                                        sourceType: SourceType.POPULAR)
+                                    .go(context)
+                                : null,
+                            child: Text(
+                              manga.source?.displayName ??
+                                  context.l10n.unknownSource,
+                              style: context.textTheme.bodySmall,
+                            ),
                           ),
+                        ]
                       ],
                     ),
                     // if (showLastReadChapter) ...[

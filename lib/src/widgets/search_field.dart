@@ -19,6 +19,7 @@ class SearchField extends HookWidget {
     this.onSubmitted,
     this.hintText,
     this.autofocus = true,
+    this.actions,
   });
   final String? hintText;
   final String? initialText;
@@ -26,6 +27,7 @@ class SearchField extends HookWidget {
   final ValueChanged<String?>? onSubmitted;
   final VoidCallback? onClose;
   final bool autofocus;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class SearchField extends HookWidget {
         : null;
 
     return SizedBox(
-      width: context.isLargeTablet ? context.widthScale(scale: .3) : null,
+      width: context.isLargeTablet ? context.widthScale(scale: .5) : null,
       child: Padding(
         padding: KEdgeInsets.h16v4.size,
         child: TextField(
@@ -55,7 +57,13 @@ class SearchField extends HookWidget {
             isDense: true,
             border: const OutlineInputBorder(),
             labelText: hintText ?? context.l10n.search,
-            suffixIcon: closeIcon,
+            suffixIcon: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ...?actions,
+                if (closeIcon != null) closeIcon,
+              ],
+            ),
           ),
         ),
       ),

@@ -21,12 +21,13 @@ class FilterToWidget extends StatelessWidget {
     required this.currentChanges,
     required this.onChanged,
   });
-  final Filter filter;
+  final PrimitiveFilter filter;
   final List<FilterChange> currentChanges;
   final ValueChanged<List<FilterChange>> onChanged;
 
   @override
   Widget build(BuildContext context) {
+    final firstCurrentChange = currentChanges.firstOrNull;
     return switch (filter) {
       FilterHeader(name: String? name) => name.isNotBlank
           ? ListTile(
@@ -45,14 +46,14 @@ class FilterToWidget extends StatelessWidget {
             FilterChange(textState: val, position: kPositionPlaceholder),
           ]),
           hintText: name,
-          initialText: currentChanges.firstOrNull?.textState ?? state,
+          initialText: firstCurrentChange?.textState ?? state,
         ),
       FilterCheckBox(
         name: String? name,
         checkBoxState: bool? state,
       ) =>
         CheckboxListTile(
-          value: currentChanges.firstOrNull?.checkBoxState ?? state.ifNull(),
+          value: firstCurrentChange?.checkBoxState ?? state.ifNull(),
           title: Text(name),
           onChanged: (value) => onChanged([
             FilterChange(checkBoxState: value, position: kPositionPlaceholder)
@@ -64,7 +65,7 @@ class FilterToWidget extends StatelessWidget {
         tristate: TriState state,
       ) =>
         CheckboxListTile(
-          value: currentChanges.firstOrNull?.triState?.toBool ?? state.toBool,
+          value: firstCurrentChange?.triState?.toBool ?? state.toBool,
           onChanged: (value) => onChanged([
             FilterChange(
               triState: TriStateExtension.fromBool(value),
@@ -77,7 +78,7 @@ class FilterToWidget extends StatelessWidget {
         ),
       FilterSort(
         name: String name,
-        sortState: SortState state,
+        sortState: SortSelectionDto state,
         displayValues: List<String> values,
       ) =>
         ExpansionTile(
@@ -89,15 +90,16 @@ class FilterToWidget extends StatelessWidget {
             for (int i = 0; i < (values.length).getValueOnNullOrNegative(); i++)
               SortListTile(
                 key: ValueKey("$name-$i"),
-                ascending: (currentChanges.firstOrNull?.sortState?.ascending ??
+                ascending: (firstCurrentChange?.sortState?.ascending ??
                         state.ascending)
                     .ifNull(true),
                 title: Text(values[i]),
-                selected: i == state.index,
+                selected:
+                    i == (firstCurrentChange?.sortState?.index ?? state.index),
                 onChanged: (value) {
                   final sortChange = SortStateChange(
                     ascending: value.ifNull(true),
-                    index: state.index,
+                    index: i,
                   );
                   onChanged([
                     FilterChange(
@@ -142,7 +144,7 @@ class FilterToWidget extends StatelessWidget {
                   child: DropdownButton(
                     icon: const Icon(Icons.keyboard_arrow_down_rounded),
                     isExpanded: true,
-                    value: currentChanges.firstOrNull?.selectState ?? state,
+                    value: firstCurrentChange?.selectState ?? state,
                     hint: Text(name),
                     items: List.generate(
                       (displayValues.length).getValueOnNullOrNegative(),
@@ -172,7 +174,7 @@ class FilterToWidget extends StatelessWidget {
         ),
       FilterGroup(
         name: String name,
-        groupState: List<Filter> state,
+        groupState: List<PrimitiveFilter> state,
       ) =>
         FilterGroupWidget(
           name: name,
@@ -180,7 +182,7 @@ class FilterToWidget extends StatelessWidget {
           currentChanges: currentChanges,
           onChanged: onChanged,
         ),
-      Filter() => throw UnimplementedError(),
+      PrimitiveFilter() => throw UnimplementedError(),
     };
   }
 }
@@ -195,7 +197,7 @@ class FilterGroupWidget extends HookWidget {
   });
 
   final String name;
-  final List<Filter> filters;
+  final List<PrimitiveFilter> filters;
   final List<FilterChange> currentChanges;
   final ValueChanged<List<FilterChange>> onChanged;
 
