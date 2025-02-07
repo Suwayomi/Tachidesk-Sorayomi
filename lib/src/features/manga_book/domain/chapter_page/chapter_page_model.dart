@@ -9,3 +9,5 @@ import './graphql/__generated__/fragment.graphql.dart';
 typedef ChapterPageDto = Fragment$ChapterPageDto;
 
 typedef ChapterPageWithMangaDto = Fragment$ChapterPageWithMangaDto;
+
+typedef ChapterPagesDto = Fragment$ChapterPagesDto;

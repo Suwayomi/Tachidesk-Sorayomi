@@ -54,20 +54,23 @@ class DownloadsScreen extends ConsumerWidget {
           } else {
             final downloadsCount =
                 (downloadsChapterIds.length).getValueOnNullOrNegative();
-            return ListView.builder(
-              itemExtent: 104,
-              itemBuilder: (context, index) {
-                if (index == downloadsCount) return const Gap(104);
-                final chapterId = downloadsChapterIds[index];
-                return DownloadProgressListTile(
-                  key: ValueKey("$chapterId"),
-                  index: index,
-                  downloadsCount: downloadsCount,
-                  chapterId: chapterId,
-                  toast: toast,
-                );
-              },
-              itemCount: downloadsCount + 1,
+            return RefreshIndicator(
+              onRefresh: () => ref.refresh(downloadStatusProvider.future),
+              child: ListView.builder(
+                itemExtent: 104,
+                itemBuilder: (context, index) {
+                  if (index == downloadsCount) return const Gap(104);
+                  final chapterId = downloadsChapterIds[index];
+                  return DownloadProgressListTile(
+                    key: ValueKey("$chapterId"),
+                    index: index,
+                    downloadsCount: downloadsCount,
+                    chapterId: chapterId,
+                    toast: toast,
+                  );
+                },
+                itemCount: downloadsCount + 1,
+              ),
             );
           }
         },

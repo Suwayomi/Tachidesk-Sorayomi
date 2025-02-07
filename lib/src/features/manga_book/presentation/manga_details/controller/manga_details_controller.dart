@@ -182,7 +182,7 @@ ChapterDto? firstUnreadInFilteredChapterList(
 ({ChapterDto? first, ChapterDto? second})? getNextAndPreviousChapters(
   Ref ref, {
   required int mangaId,
-  required String chapterIndex,
+  required int chapterId,
   bool shouldAscSort = true,
 }) {
   final isAscSorted = ref.watch(mangaChapterSortDirectionProvider) ??
@@ -193,13 +193,11 @@ ChapterDto? firstUnreadInFilteredChapterList(
   if (filteredList == null) {
     return null;
   } else {
-    final currentChapterIndex = filteredList
-        .indexWhere((element) => "${element.index}" == chapterIndex);
-    final prevChapter =
-        currentChapterIndex > 0 ? filteredList[currentChapterIndex - 1] : null;
-    final nextChapter = currentChapterIndex < (filteredList.length - 1)
-        ? filteredList[currentChapterIndex + 1]
-        : null;
+    final current =
+        filteredList.indexWhere((element) => element.id == chapterId);
+    final prevChapter = current > 0 ? filteredList[current - 1] : null;
+    final nextChapter =
+        current < (filteredList.length - 1) ? filteredList[current + 1] : null;
     return (
       first: shouldAscSort && isAscSorted ? nextChapter : prevChapter,
       second: shouldAscSort && isAscSorted ? prevChapter : nextChapter,

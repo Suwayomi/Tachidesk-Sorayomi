@@ -32,6 +32,9 @@ mutation ClearDownloader($input: ClearDownloaderInput!) {
 mutation ReorderChapterDownload($input: ReorderChapterDownloadInput!) {
   reorderChapterDownload(input: $input) {
     __typename
+    downloadStatus {
+      ...DownloadStatusDto
+    }
   }
 }
 

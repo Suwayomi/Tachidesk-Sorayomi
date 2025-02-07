@@ -108,3 +108,9 @@ query GetMangaCategories($id: Int!) {
     __typename
   }
 }
+
+mutation GetChapterPages($input: FetchChapterPagesInput!) {
+  fetchChapterPages(input: $input) {
+    ...ChapterPagesDto
+  }
+}

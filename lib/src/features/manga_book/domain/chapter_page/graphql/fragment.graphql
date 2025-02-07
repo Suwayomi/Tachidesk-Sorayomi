@@ -17,3 +17,13 @@ fragment ChapterPageWithMangaDto on ChapterNodeList {
     }
     totalCount
 }
+
+fragment ChapterPagesDto on FetchChapterPagesPayload {
+    chapter {
+      id
+      pageCount
+      __typename
+    }
+    pages
+    __typename
+}

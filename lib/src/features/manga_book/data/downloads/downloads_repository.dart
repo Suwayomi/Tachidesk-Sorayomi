@@ -64,8 +64,8 @@ class DownloadsRepository {
         ),
       );
 
-  Future<void> reorderDownload(int chapterId, int to) =>
-      client.mutate$ReorderChapterDownload(
+  Future<DownloadStatusDto?> reorderDownload(int chapterId, int to) => client
+      .mutate$ReorderChapterDownload(
         Options$Mutation$ReorderChapterDownload(
           variables: Variables$Mutation$ReorderChapterDownload(
             input: Input$ReorderChapterDownloadInput(
@@ -74,7 +74,8 @@ class DownloadsRepository {
             ),
           ),
         ),
-      );
+      )
+      .getData((data) => data.reorderChapterDownload?.downloadStatus);
 
   Stream<DownloadUpdatesDto?> downloadStatusSubscription() => subscriptionClient
       .subscribe$DownloadStatusChanged(

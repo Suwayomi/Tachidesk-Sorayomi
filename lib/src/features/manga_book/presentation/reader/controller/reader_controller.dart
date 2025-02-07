@@ -9,15 +9,18 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../data/manga_book/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
+import '../../../domain/chapter_page/chapter_page_model.dart';
 
 part 'reader_controller.g.dart';
 
 @riverpod
 FutureOr<ChapterDto?> chapter(
   Ref ref, {
-  required int mangaId,
-  required int chapterIndex,
+  required int chapterId,
 }) =>
-    ref
-        .watch(mangaBookRepositoryProvider)
-        .getChapter(mangaId: mangaId, chapterIndex: chapterIndex);
+    ref.watch(mangaBookRepositoryProvider).getChapter(chapterId: chapterId);
+
+@riverpod
+Future<ChapterPagesDto?> chapterPages(Ref ref, {required int chapterId}) => ref
+    .watch(mangaBookRepositoryProvider)
+    .getChapterPages(chapterId: chapterId);

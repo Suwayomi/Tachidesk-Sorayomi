@@ -141,10 +141,8 @@ class UpdatesScreen extends HookConsumerWidget {
               final chapterTile = ChapterMangaListTile(
                 chapterWithMangaDto: item,
                 updatePair: () async {
-                  final chapter = await ref.refresh(chapterProvider(
-                    mangaId: item.manga.id,
-                    chapterIndex: item.index,
-                  ).future);
+                  final chapter = await ref
+                      .refresh(chapterProvider(chapterId: item.id).future);
                   try {
                     controller.itemList = [...?controller.itemList]
                       ..replaceRange(index, index + 1, [

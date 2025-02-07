@@ -239,7 +239,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
                       onPressed: () {
                         ReaderRoute(
                           mangaId: firstUnreadChapter.mangaId,
-                          chapterIndex: firstUnreadChapter.index,
+                          chapterId: firstUnreadChapter.id,
                           showReaderLayoutAnimation: true,
                         ).push(context);
                       },

@@ -21,13 +21,13 @@ class UpdateStatusRoute extends GoRouteData {
 class ReaderRoute extends GoRouteData {
   const ReaderRoute({
     required this.mangaId,
-    required this.chapterIndex,
+    required this.chapterId,
     this.transVertical,
     this.toPrev,
     this.showReaderLayoutAnimation = false,
   });
   final int mangaId;
-  final int chapterIndex;
+  final int chapterId;
   final bool? transVertical;
   final bool? toPrev;
   final bool showReaderLayoutAnimation;
@@ -40,7 +40,7 @@ class ReaderRoute extends GoRouteData {
       key: state.pageKey,
       child: ReaderScreen(
         mangaId: mangaId,
-        chapterIndex: chapterIndex,
+        chapterId: chapterId,
         showReaderLayoutAnimation: showReaderLayoutAnimation,
       ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {

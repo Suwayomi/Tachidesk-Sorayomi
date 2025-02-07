@@ -14,6 +14,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../library/domain/category/category_model.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_batch/chapter_batch_model.dart';
+import '../../domain/chapter_page/chapter_page_model.dart';
 import '../../domain/manga/manga_model.dart';
 import './__generated__/query.graphql.dart';
 
@@ -117,21 +118,29 @@ class MangaBookRepository {
   // Chapters
 
   Future<ChapterDto?> getChapter({
-    required int mangaId,
-    required int chapterIndex,
+    required int chapterId,
   }) async =>
       client
-          .query$GetChapterPage(
-            Options$Query$GetChapterPage(
-              variables: Variables$Query$GetChapterPage(
-                condition: Input$ChapterConditionInput(
-                  mangaId: mangaId,
-                  sourceOrder: chapterIndex,
-                ),
+          .query$GetChapter(
+            Options$Query$GetChapter(
+              variables: Variables$Query$GetChapter(
+                id: chapterId,
               ),
             ),
           )
-          .getData((data) => data.chapters.nodes.firstOrNull);
+          .getData((data) => data.chapter);
+
+  Future<ChapterPagesDto?> getChapterPages({
+    required int chapterId,
+  }) async =>
+      client
+          .mutate$GetChapterPages(
+            Options$Mutation$GetChapterPages(
+              variables: Variables$Mutation$GetChapterPages(
+                  input: Input$FetchChapterPagesInput(chapterId: chapterId)),
+            ),
+          )
+          .getData((data) => data.fetchChapterPages);
 
   Future<void> putChapter({
     required int chapterId,

@@ -80,7 +80,7 @@ abstract class Routes {
 
   // Commons
   static const mangaRoute = '/manga/:mangaId';
-  static const reader = 'chapter/:chapterIndex';
+  static const reader = 'chapter/:chapterId';
   static const updateStatus = "/update-status";
   static const about = 'about';
   static const globalSearch = '/global-search';

@@ -31,9 +31,7 @@ class ChapterSeparator extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final nextPrevChapterPair = ref.watch(
       getNextAndPreviousChaptersProvider(
-        mangaId: manga.id,
-        chapterIndex: "${chapter.index}",
-      ),
+          mangaId: manga.id, chapterId: chapter.id),
     );
     final navigationLayout = ref.watch(readerNavigationLayoutKeyProvider);
     final showPrevNextButtons = manga.metaData.readerNavigationLayout ==
@@ -57,7 +55,7 @@ class ChapterSeparator extends ConsumerWidget {
                 child: FilledButton(
                   onPressed: () => ReaderRoute(
                     mangaId: nextPrevChapterPair!.second!.mangaId,
-                    chapterIndex: nextPrevChapterPair.second!.index,
+                    chapterId: nextPrevChapterPair.second!.id,
                   ).pushReplacement(context),
                   child: Text(
                     context.l10n.previousChapter(
@@ -88,7 +86,7 @@ class ChapterSeparator extends ConsumerWidget {
                 child: FilledButton(
                   onPressed: () => ReaderRoute(
                     mangaId: nextPrevChapterPair!.first!.mangaId,
-                    chapterIndex: nextPrevChapterPair.first!.index,
+                    chapterId: nextPrevChapterPair.first!.id,
                   ).pushReplacement(context),
                   child: Text(
                     context.l10n.nextChapter(

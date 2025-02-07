@@ -214,6 +214,7 @@ class SourceMangaListScreen extends HookConsumerWidget {
             sourceType == SourceType.SEARCH && filterList.isNotBlank
                 ? Builder(
                     builder: (context) => FloatingActionButton.extended(
+                      icon: Icon(Icons.filter_alt_rounded),
                       onPressed: () => context.isTablet
                           ? Scaffold.of(context).openEndDrawer()
                           : showModalBottomSheet(

@@ -44,7 +44,7 @@ class CategoryQueryListTile extends StatelessWidget {
         if (chapter?.index != null) {
           ReaderRoute(
             mangaId: manga!.id,
-            chapterIndex: chapter!.index,
+            chapterId: chapter!.id,
             showReaderLayoutAnimation: true,
           ).push(context);
         } else if (manga?.id != null) {
