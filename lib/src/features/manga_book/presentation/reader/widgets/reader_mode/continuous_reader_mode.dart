@@ -14,13 +14,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../../constants/app_constants.dart';
-import '../../../../../../constants/endpoints.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_pinch_to_zoom/reader_pinch_to_zoom.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
+import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
@@ -30,25 +30,27 @@ class ContinuousReaderMode extends HookConsumerWidget {
     super.key,
     required this.manga,
     required this.chapter,
+    required this.chapterPages,
     this.showSeparator = false,
     this.onPageChanged,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.showReaderLayoutAnimation = false,
   });
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final bool showSeparator;
   final ValueSetter<int>? onPageChanged;
   final Axis scrollDirection;
   final bool reverse;
   final bool showReaderLayoutAnimation;
+  final ChapterPagesDto chapterPages;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = useMemoized(() => ItemScrollController());
     final positionsListener = useMemoized(() => ItemPositionsListener.create());
     final currentIndex = useState(
-      chapter.read.ifNull()
+      chapter.isRead.ifNull()
           ? 0
           : (chapter.lastPageRead).getValueOnNullOrNegative(),
     );
@@ -84,6 +86,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
     final isPinchToZoomEnabled = ref.read(pinchToZoomProvider).ifNull(true);
     return ReaderWrapper(
       scrollDirection: scrollDirection,
+      chapterPages: chapterPages,
       chapter: chapter,
       manga: manga,
       showReaderLayoutAnimation: showReaderLayoutAnimation,
@@ -127,7 +130,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
                 alignment: alignment,
               );
       },
-      child: AppUtils.wrapIf(
+      child: AppUtils.wrapOn(
         !kIsWeb &&
                 (Platform.isAndroid || Platform.isIOS) &&
                 isPinchToZoomEnabled
@@ -136,12 +139,12 @@ class ContinuousReaderMode extends HookConsumerWidget {
         ScrollablePositionedList.separated(
           itemScrollController: scrollController,
           itemPositionsListener: positionsListener,
-          initialScrollIndex: chapter.read.ifNull()
+          initialScrollIndex: chapter.isRead.ifNull()
               ? 0
               : chapter.lastPageRead.getValueOnNullOrNegative(),
           scrollDirection: scrollDirection,
           reverse: reverse,
-          itemCount: chapter.pageCount ?? 0,
+          itemCount: chapterPages.chapter.pageCount,
           minCacheExtent: scrollDirection == Axis.vertical
               ? context.height * 2
               : context.width * 2,
@@ -153,12 +156,8 @@ class ContinuousReaderMode extends HookConsumerWidget {
               fit: scrollDirection == Axis.vertical
                   ? BoxFit.fitWidth
                   : BoxFit.fitHeight,
-              appendApiToUrl: true,
-              imageUrl: MangaUrl.chapterPageWithIndex(
-                chapterIndex: chapter.index!,
-                mangaId: manga.id!,
-                pageIndex: index,
-              ),
+              appendApiToUrl: false,
+              imageUrl: chapterPages.pages[index],
               progressIndicatorBuilder: (_, __, downloadProgress) => Center(
                 child: CircularProgressIndicator(
                   value: downloadProgress.progress,
@@ -174,7 +173,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
                 child: child,
               ),
             );
-            if (index == 0 || index == (chapter.pageCount ?? 1) - 1) {
+            if (index == 0 || index == chapterPages.chapter.pageCount - 1) {
               final bool reverseDirection =
                   scrollDirection == Axis.horizontal && reverse;
               final separator = SizedBox(
