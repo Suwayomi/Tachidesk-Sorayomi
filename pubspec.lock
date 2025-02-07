@@ -382,10 +382,11 @@ packages:
   flutter_android_volume_keydown:
     dependency: "direct main"
     description:
-      name: flutter_android_volume_keydown
-      sha256: bf7fed0be85541b939d9deb97b375cb12e6e703aa013754441318b0b9014e711
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "9db2306fd2b4f804f5b9fbf69b97b211f47f527c"
+      url: "https://github.com/DattatreyaReddy/flutter_android_volume_keydown"
+    source: git
     version: "1.0.1"
   flutter_cache_manager:
     dependency: "direct main"

@@ -29,12 +29,12 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33 // flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
-
+    compileSdkVersion 34 // flutter.compileSdkVersion
+    ndkVersion "27.0.12077973"
+    namespace "com.suwayomi.tachidesk_sorayomi"
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
