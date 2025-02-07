@@ -170,12 +170,6 @@ jobs:
         working-directory: ${{ matrix.build_path }}
         run: compress-archive -Path * -DestinationPath "${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-x64.zip"
 
-        # Windows packaging
-      - name: Compress build for Windows
-        if: matrix.target == 'windows'
-        working-directory: ${{ matrix.build_path }}
-        run: compress-archive -Path * -DestinationPath "${env:GITHUB_WORKSPACE}\${{ env.pkg_name }}-${{ github.ref_name }}-${{ matrix.target }}-arm64.zip"
-
       - name: Create MSI Package
         if: matrix.target == 'windows' && startsWith(github.ref, 'refs/tags/')
         working-directory: ${{ matrix.build_path }}
