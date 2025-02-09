@@ -53,6 +53,9 @@
             <Component Id="permission_handler_windows_plugin.dll" Guid="*" Win64="yes">
                 <File Id="permission_handler_windows_plugin.dll" Source="permission_handler_windows_plugin.dll" KeyPath="yes" />
             </Component>
+            <Component Id="connectivity_plus_plugin.dll" Guid="*" Win64="yes">
+                <File Id="connectivity_plus_plugin.dll" Source="connectivity_plus_plugin.dll" KeyPath="yes" />
+            </Component>
         </DirectoryRef>
 
         <!-- Feature -->
@@ -66,6 +69,7 @@
             <ComponentRef Id="flutter_windows.dll" />
             <ComponentRef Id="url_launcher_windows_plugin.dll" />
             <ComponentRef Id="permission_handler_windows_plugin.dll" />
+            <ComponentRef Id="connectivity_plus_plugin.dll" />
         </Feature>
 
         <Icon Id="tachidesk_sorayomi.ico" SourceFile="$(var.Icon)" />
