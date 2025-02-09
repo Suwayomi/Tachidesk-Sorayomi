@@ -73,6 +73,7 @@ class LibrarySettingsScreen extends ConsumerWidget {
                     leading: const Icon(Icons.label_rounded),
                     onTap: () => const EditCategoriesRoute().go(context),
                   ),
+                  // HideEmptyCategoryTile(),
                   SectionTitle(title: context.l10n.globalUpdate),
                   SettingsPropTile(
                     leading: const Icon(Icons.autorenew_rounded),

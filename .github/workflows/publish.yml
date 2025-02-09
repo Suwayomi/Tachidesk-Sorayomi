@@ -38,7 +38,7 @@ jobs:
           - os: windows-latest
             target: windows
             build_path: build\windows\x64\runner\Release
- 
+
     steps:
       - uses: subosito/flutter-action@v2
         with:
@@ -100,10 +100,8 @@ jobs:
       - name: Copy VC redistributables to release directory for Windows
         if: matrix.target == 'windows'
         working-directory: ${{ matrix.build_path }}
-        run: |
-          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\msvcp140.dll') .
-          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140.dll') .
-          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140_1.dll') .
+        run: Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\*.dll') .
+
 
       # Android packaging
       - name: Rename build for Android
