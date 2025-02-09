@@ -345,6 +345,9 @@
     "@help": {
         "description": "Button text of help in about screen"
     },
+    "@hideEmptyCategory": {
+        "description": "Switch button text to Hide empty category in library"
+    },
     "@inLibrary": {
         "description": "Button and Chip text to show that the manga is in Library"
     },
@@ -1024,6 +1027,7 @@
     "gqlDebugLogs": "Graphql debug logs",
     "gqlDebugLogsHint": "This includes logs with non privacy safe information",
     "help": "Help",
+    "hideEmptyCategory": "Hide Empty Category",
     "inLibrary": "In library",
     "includeCategories": "Categories",
     "includeChapters": "Chapters",
