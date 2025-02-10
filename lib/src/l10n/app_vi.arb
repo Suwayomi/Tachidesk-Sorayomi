@@ -75,7 +75,7 @@
   "@allScanlators": {
     "description": "Text for all Scanlators in manga description screen chapter filter"
   },
-  "appTitle": "Tachidesk Sorayomi",
+  "appTitle": "Sorayomi",
   "@appTitle": {
     "description": "Name of the app (Tachidesk Sorayomi in native script)"
   },
@@ -916,5 +916,305 @@
   "updateCompleted": "Cập nhật đã hoàn tất",
   "@updateCompleted": {
     "description": "Button text to show that extension update is completed"
+  },
+  "autoDownload": "Tự động tải xuống",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "automaticallyRefreshMetadata": "Tự động làm mới siêu dữ liệu",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "Kiểm tra bìa và thông tin chi tiết mới khi cập nhật thư viện",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupAndRestore": "Sao lưu và khôi phục",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "Dọn dẹp sao lưu",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupInterval": "Thời gian sao lưu",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupLocation": "Vị trí sao lưu",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupCleanupDescription": "{count, select, 0{Never} 01{Xóa các bản sao lưu cũ 1 ngày} other{Xóa các bản sao lưu cũ hơn {count} ngày}}",
+  "@backupCleanupDescription": {},
+  "chapterDownloadLimit": "Giới hạn tải chương",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "Giới hạn số lượng chương mới sẽ được tải xuống.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "debugLogs": "Nhật ký gỡ lỗi",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "downloadLocationHint": "Đường dẫn đến thư mục trên máy chủ nơi các tập tin đã tải xuống sẽ được lưu vào",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "enableSocksProxy": "Sử dụng SOCKS Proxy",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "error": "Lỗi",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "Không tạo được bản sao lưu",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "errorBackupRestore": "Khôi phục sao lưu thất bại!",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "extensionRepository": "Kho lưu trữ mở rộng",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "Thêm kho lưu trữ mà phần mở rộng có thể được cài đặt",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "flareSolverr": "FlareSolverr",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "flareSolverrRequestTimeout": "Thời gian chờ yêu cầu của FlareSolverr",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "flareSolverrServerUrl": "Url máy chủ FlareSolverr",
+  "@flareSolverrServerUrl": {
+    "description": "Title text for FlareSolverr Server Url property"
+  },
+  "flareSolverrSessionName": "Tên phiên FlareSolverr",
+  "@flareSolverrSessionName": {
+    "description": "Title text for FlareSolverr Session Name property"
+  },
+  "enterProp": "Nhập {prop}",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "flareSolverrSessionTTL": "Phiên FlareSolverr TTL",
+  "@flareSolverrSessionTTL": {
+    "description": "Title text for FlareSolverr Session TTL property"
+  },
+  "includeCategories": "Thể loại",
+  "@includeCategories": {
+    "description": "Check box text to include categories during create backup"
+  },
+  "includeChapters": "Chương",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
+  },
+  "invalidPort": "Cổng không hợp lệ",
+  "@invalidPort": {
+    "description": "Error when Submitted invalid Port Number"
+  },
+  "ip": "Địa chỉ IP",
+  "@ip": {
+    "description": "Option title for Server IP Address in Server settings"
+  },
+  "ipHintText": "Nhập địa chỉ IP liên kết máy chủ",
+  "@ipHintText": {},
+  "localSourceLocation": "Vị trí nguồn cục bộ",
+  "@localSourceLocation": {
+    "description": "Text for Local Source Location settings property"
+  },
+  "misc": "Khác",
+  "@misc": {
+    "description": "Section title for misc settings"
+  },
+  "nChapters": "{n, plural, =0{None} =1{1 Chương} other{{n} Chương}}",
+  "@nChapters": {
+    "description": "Text for showing N chapters"
+  },
+  "nDays": "{count, select, 01{01 Ngày} other{{count} Ngày}}",
+  "@nDays": {
+    "description": "to show Number of days with plural"
+  },
+  "nHours": "{n, plural, =1{1 giờ} other{{n} giờ}}",
+  "@nHours": {
+    "description": "Text to represent 'n' hours"
+  },
+  "nMinutes": "{n, plural, =1{1 Phút} other{{n} Phút}}",
+  "@nMinutes": {
+    "description": "Text to represent 'n' Minutes"
+  },
+  "nSeconds": "{n, plural, =1{1 giây} other{{n} giây}}",
+  "@nSeconds": {
+    "description": "Text to represent 'n' seconds"
+  },
+  "nSources": "{n, plural, =1{1 Nguồn} other{{n} Nguồn}}",
+  "@nSources": {
+    "description": "Text to represent n number Parallel source requests"
+  },
+  "none": "Không có",
+  "@none": {
+    "description": "Text for None"
+  },
+  "openInWeb": "Mở Trong Web",
+  "@openInWeb": {
+    "description": "Button title text for open the url in web"
+  },
+  "or": "hoặc",
+  "@or": {
+    "description": "text literal for word or"
+  },
+  "parallelSourceRequest": "Số lượng kết nối",
+  "@parallelSourceRequest": {
+    "description": "Text for Parallel source requests property"
+  },
+  "queued": "Đã xếp hàng",
+  "@queued": {
+    "description": "Text to show chapters are queued for downloading"
+  },
+  "serverBindings": "Ràng buộc máy chủ",
+  "@serverBindings": {
+    "description": "Title for server bindings settings"
+  },
+  "skipUpdatingEntries": "Bỏ qua cập nhật các mục",
+  "@skipUpdatingEntries": {
+    "description": "Settings Text to update skip Updating Entries"
+  },
+  "socksPassword": "Mật khẩu SOCKS",
+  "@socksPassword": {},
+  "socksHost": "Địa chỉ SOCKS",
+  "@socksHost": {},
+  "systemTrayIcon": "Hiển thị biểu tượng trong khay hệ thống",
+  "@systemTrayIcon": {
+    "description": "Switch title to Show icon in system tray in settings"
+  },
+  "socksVersion": "Phiên bản SOCKS",
+  "@socksVersion": {
+    "description": "Title for Socks version picker"
+  },
+  "socksUserName": "Tên người dùng SOCKS",
+  "@socksUserName": {},
+  "socksPort": "Cổng SOCKS",
+  "@socksPort": {},
+  "updateFailed": "Không cập nhật được {property}",
+  "@updateFailed": {
+    "description": "Failed to update Text"
+  },
+  "withUnreadChapter": "Với chương chưa đọc",
+  "@withUnreadChapter": {
+    "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+  },
+  "invalidProp": "Không hợp lệ {property}",
+  "@invalidProp": {
+    "description": "Toast text for select invalid property value"
+  },
+  "backupTime": "Thời gian sao lưu",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "downloading": "Đang tải xuống",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "automaticUpdate": "Tự động cập nhật",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "copied": "Đã sao chép!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "openFlareSolverr": "Kiểm tra FlareSolverr để biết thông tin về cách thiết lập",
+  "@openFlareSolverr": {
+    "description": "Text for link to Open Flare Solverr setup documentation"
+  },
+  "thatHaventBeenStarted": "Chưa bắt đầu đọc",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
+  },
+  "excludeEntryWithUnreadChapters": "Không tự động tải chương các truyện đang có chương chưa đọc",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "gqlDebugLogsHint": "Điều này bao gồm các bản ghi có thông tin không an toàn về quyền riêng tư",
+  "@gqlDebugLogsHint": {
+    "description": "Switch subTitle for Graphql Debug logs in settings"
+  },
+  "advanced": "Nâng cao",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "authentication": "Xác thực",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownloadNewChapters": "Tải xuống chương mới",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "Tự động sao lưu",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "backupLocationDescription": "Đường dẫn đến thư mục trên máy chủ nơi các bản sao lưu sẽ được lưu vào",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "cloudflareBypass": "Bỏ qua Cloudflare",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "downloadLocation": "Vị trí tải xuống",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "withCompletedStatus": "Với trạng thái Đã hoàn thành",
+  "@withCompletedStatus": {
+    "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+  },
+  "hideEmptyCategory": "Ẩn danh mục trống",
+  "@hideEmptyCategory": {
+    "description": "Switch button text to Hide empty category in library"
+  },
+  "saveAsCBZArchive": "Lưu bằng định dạng nén CBZ",
+  "@saveAsCBZArchive": {
+    "description": "Settings toggle label for Save as CBZ archive"
+  },
+  "validating": "Xác thực",
+  "@validating": {
+    "description": "toast to show backup validation is in progress"
+  },
+  "gqlDebugLogs": "Nhật ký gỡ lỗi Graphql",
+  "@gqlDebugLogs": {
+    "description": "Switch title for Graphql Debug logs in settings"
+  },
+  "localSourceLocationDescription": "Đường dẫn đến thư mục trên máy chủ nơi các tệp nguồn cục bộ được lưu trong",
+  "@localSourceLocationDescription": {
+    "description": "Description text for Local Source Location property"
+  },
+  "noPropFound": "Không tìm thấy {prop}",
+  "@noPropFound": {
+    "description": "Template text to say No value for property found"
+  },
+  "restore": "Khôi phục",
+  "@restore": {
+    "description": "Button Text to create backup"
+  },
+  "socksProxy": "SOCKS Proxy",
+  "@socksProxy": {
+    "description": "Section title for SOCKS Proxy settings"
+  },
+  "nRepo": "{n, plural, =1{1 Kho lưu trữ} other{{n} Kho lưu trữ}}",
+  "@nRepo": {
+    "description": "Text to show n repo as subtitle"
   }
 }
