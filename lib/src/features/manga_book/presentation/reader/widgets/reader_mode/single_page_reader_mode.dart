@@ -13,7 +13,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../../constants/app_constants.dart';
-import '../../../../../../constants/endpoints.dart';
 import '../../../../../../utils/extensions/cache_manager_extensions.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
@@ -21,6 +20,7 @@ import '../../../../../../widgets/custom_circular_progress_indicator.dart';
 import '../../../../../../widgets/server_image.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
+import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../reader_wrapper.dart';
 
@@ -29,23 +29,25 @@ class SinglePageReaderMode extends HookConsumerWidget {
     super.key,
     required this.manga,
     required this.chapter,
+    required this.chapterPages,
     this.onPageChanged,
     this.reverse = false,
     this.scrollDirection = Axis.horizontal,
     this.showReaderLayoutAnimation = false,
   });
 
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final ValueSetter<int>? onPageChanged;
   final bool reverse;
   final Axis scrollDirection;
   final bool showReaderLayoutAnimation;
+  final ChapterPagesDto chapterPages;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cacheManager = useMemoized(() => DefaultCacheManager());
     final scrollController = usePageController(
-      initialPage: chapter.read.ifNull()
+      initialPage: chapter.isRead.ifNull()
           ? 0
           : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
@@ -57,33 +59,21 @@ class SinglePageReaderMode extends HookConsumerWidget {
       if (currentPage > 0) {
         cacheManager.getServerFile(
           ref,
-          MangaUrl.chapterPageWithIndex(
-            chapterIndex: chapter.index!,
-            mangaId: manga.id!,
-            pageIndex: currentPage - 1,
-          ),
+          chapterPages.pages[currentPage - 1],
         );
       }
       // Next page
       if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 1)) {
         cacheManager.getServerFile(
           ref,
-          MangaUrl.chapterPageWithIndex(
-            chapterIndex: chapter.index!,
-            mangaId: manga.id!,
-            pageIndex: currentPage + 1,
-          ),
+          chapterPages.pages[currentPage + 1],
         );
       }
       // 2nd next page
       if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 2)) {
         cacheManager.getServerFile(
           ref,
-          MangaUrl.chapterPageWithIndex(
-            chapterIndex: chapter.index!,
-            mangaId: manga.id!,
-            pageIndex: currentPage + 2,
-          ),
+          chapterPages.pages[currentPage + 1],
         );
       }
       return null;
@@ -103,6 +93,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
       scrollDirection: scrollDirection,
       chapter: chapter,
       manga: manga,
+      chapterPages: chapterPages,
       currentIndex: currentIndex.value,
       onChanged: (index) => scrollController.jumpToPage(index),
       showReaderLayoutAnimation: showReaderLayoutAnimation,
@@ -124,18 +115,14 @@ class SinglePageReaderMode extends HookConsumerWidget {
             showReloadButton: true,
             fit: BoxFit.contain,
             size: Size.fromHeight(context.height),
-            appendApiToUrl: true,
-            imageUrl: MangaUrl.chapterPageWithIndex(
-              chapterIndex: chapter.index!,
-              mangaId: manga.id!,
-              pageIndex: index,
-            ),
+            appendApiToUrl: false,
+            imageUrl: chapterPages.pages[index],
             progressIndicatorBuilder: (context, url, downloadProgress) =>
                 CenterSorayomiShimmerIndicator(
               value: downloadProgress.progress,
             ),
           );
-          return AppUtils.wrapIf(
+          return AppUtils.wrapOn(
             !kIsWeb && (Platform.isAndroid || Platform.isIOS)
                 ? (child) => InteractiveViewer(maxScale: 5, child: child)
                 : null,

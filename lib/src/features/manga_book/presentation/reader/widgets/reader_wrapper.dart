@@ -23,7 +23,7 @@ import '../../../../../routes/router_config.dart';
 import '../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../utils/launch_url_in_web.dart';
 import '../../../../../utils/misc/toast/toast.dart';
-import '../../../../../widgets/radio_list_popup.dart';
+import '../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../../../../settings/presentation/reader/widgets/reader_initial_overlay_tile/reader_initial_overlay_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
@@ -31,9 +31,10 @@ import '../../../../settings/presentation/reader/widgets/reader_padding_slider/r
 import '../../../../settings/presentation/reader/widgets/reader_swipe_toggle_tile/reader_swipe_chapter_toggle_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_volume_tap_invert_tile/reader_volume_tap_invert_tile.dart';
 import '../../../../settings/presentation/reader/widgets/reader_volume_tap_tile/reader_volume_tap_tile.dart';
-import '../../../data/manga_book_repository.dart';
+import '../../../data/manga_book/manga_book_repository.dart';
 import '../../../domain/chapter/chapter_model.dart';
-import '../../../domain/chapter_patch/chapter_put_model.dart';
+import '../../../domain/chapter_batch/chapter_batch_model.dart';
+import '../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../domain/manga/manga_model.dart';
 import '../../../widgets/chapter_actions/single_chapter_action_icon.dart';
 import '../../manga_details/controller/manga_details_controller.dart';
@@ -53,23 +54,25 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.onPrevious,
     required this.scrollDirection,
     this.showReaderLayoutAnimation = false,
+    required this.chapterPages,
   });
   final Widget child;
-  final Manga manga;
-  final Chapter chapter;
+  final MangaDto manga;
+  final ChapterDto chapter;
   final ValueChanged<int> onChanged;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
   final int currentIndex;
   final Axis scrollDirection;
   final bool showReaderLayoutAnimation;
+  final ChapterPagesDto chapterPages;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nextPrevChapterPair = ref.watch(
       getNextAndPreviousChaptersProvider(
-        mangaId: manga.id!,
-        chapterIndex: "${chapter.index}",
+        mangaId: manga.id,
+        chapterId: chapter.id,
       ),
     );
     final invertTap = ref.watch(invertTapProvider).ifNull();
@@ -90,13 +93,14 @@ class ReaderWrapper extends HookConsumerWidget {
     final visibility =
         useState(ref.read(readerInitialOverlayProvider).ifNull());
     final mangaReaderPadding =
-        useState(manga.meta?.readerPadding ?? localMangaReaderPadding);
+        useState(manga.metaData.readerPadding ?? localMangaReaderPadding);
     final mangaReaderMagnifierSize = useState(
-      manga.meta?.readerMagnifierSize ?? localMangaReaderMagnifierSize,
+      manga.metaData.readerMagnifierSize ?? localMangaReaderMagnifierSize,
     );
 
-    final mangaReaderMode = manga.meta?.readerMode ?? ReaderMode.defaultReader;
-    final mangaReaderNavigationLayout = manga.meta?.readerNavigationLayout ??
+    final mangaReaderMode =
+        manga.metaData.readerMode ?? ReaderMode.defaultReader;
+    final mangaReaderNavigationLayout = manga.metaData.readerNavigationLayout ??
         ReaderNavigationLayout.defaultNavigation;
 
     final showReaderModePopup = useCallback(
@@ -106,17 +110,17 @@ class ReaderWrapper extends HookConsumerWidget {
           optionList: ReaderMode.values,
           getOptionTitle: (value) => value.toLocale(context),
           value: mangaReaderMode,
-          title: context.l10n!.readerMode,
+          title: context.l10n.readerMode,
           onChange: (enumValue) async {
             if (context.mounted) Navigator.pop(context);
             await AsyncValue.guard(
               () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: manga.id!,
+                    mangaId: manga.id,
                     key: MangaMetaKeys.readerMode.key,
                     value: enumValue.name,
                   ),
             );
-            ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
+            ref.invalidate(mangaWithIdProvider(mangaId: manga.id));
           },
         ),
       ),
@@ -129,18 +133,18 @@ class ReaderWrapper extends HookConsumerWidget {
         builder: (context) => RadioListPopup<ReaderNavigationLayout>(
           optionList: ReaderNavigationLayout.values,
           getOptionTitle: (value) => value.toLocale(context),
-          title: context.l10n!.readerNavigationLayout,
+          title: context.l10n.readerNavigationLayout,
           value: mangaReaderNavigationLayout,
           onChange: (enumValue) async {
             if (context.mounted) Navigator.pop(context);
             await AsyncValue.guard(
               () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                    mangaId: manga.id!,
+                    mangaId: manga.id,
                     key: MangaMetaKeys.readerNavigationLayout.key,
                     value: enumValue.name,
                   ),
             );
-            ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
+            ref.invalidate(mangaWithIdProvider(mangaId: manga.id));
           },
         ),
       ),
@@ -182,13 +186,13 @@ class ReaderWrapper extends HookConsumerWidget {
                 title: ListTile(
                   title: (manga.title).isNotBlank
                       ? Text(
-                          "${manga.title}",
+                          manga.title,
                           overflow: TextOverflow.ellipsis,
                         )
                       : null,
                   subtitle: (chapter.name).isNotBlank
                       ? Text(
-                          "${chapter.name}",
+                          chapter.name,
                           overflow: TextOverflow.ellipsis,
                         )
                       : null,
@@ -202,10 +206,10 @@ class ReaderWrapper extends HookConsumerWidget {
                             launchUrlInWeb(
                               context,
                               (chapter.realUrl ?? ""),
-                              ref.read(toastProvider(context)),
+                              ref.read(toastProvider),
                             );
                           },
-                          icon: const Icon(Icons.public),
+                          icon: const Icon(Icons.public_rounded),
                         )
                 ],
               )
@@ -225,7 +229,7 @@ class ReaderWrapper extends HookConsumerWidget {
               ListTile(
                 style: ListTileStyle.drawer,
                 leading: const Icon(Icons.app_settings_alt_outlined),
-                title: Text(context.l10n!.readerMode),
+                title: Text(context.l10n.readerMode),
                 subtitle: Text(mangaReaderMode.toLocale(context)),
                 onTap: () {
                   context.pop();
@@ -235,7 +239,7 @@ class ReaderWrapper extends HookConsumerWidget {
               ListTile(
                 style: ListTileStyle.drawer,
                 leading: const Icon(Icons.touch_app_rounded),
-                title: Text(context.l10n!.readerNavigationLayout),
+                title: Text(context.l10n.readerNavigationLayout),
                 subtitle: Text(mangaReaderNavigationLayout.toLocale(context)),
                 onTap: () {
                   context.pop();
@@ -247,12 +251,12 @@ class ReaderWrapper extends HookConsumerWidget {
                 onChanged: (value) {
                   AsyncValue.guard(
                     () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                          mangaId: manga.id!,
+                          mangaId: manga.id,
                           key: MangaMetaKeys.readerPadding.key,
                           value: value,
                         ),
                   );
-                  ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
+                  ref.invalidate(mangaWithIdProvider(mangaId: manga.id));
                 },
               ),
               AsyncReaderMagnifierSizeSlider(
@@ -260,12 +264,12 @@ class ReaderWrapper extends HookConsumerWidget {
                 onChanged: (value) {
                   AsyncValue.guard(
                     () => ref.read(mangaBookRepositoryProvider).patchMangaMeta(
-                          mangaId: manga.id!,
+                          mangaId: manga.id,
                           key: MangaMetaKeys.readerMagnifierSize.key,
                           value: value,
                         ),
                   );
-                  ref.invalidate(mangaWithIdProvider(mangaId: manga.id!));
+                  ref.invalidate(mangaWithIdProvider(mangaId: manga.id));
                 },
               ),
             ],
@@ -284,9 +288,8 @@ class ReaderWrapper extends HookConsumerWidget {
                             onPressed: nextPrevChapterPair?.second != null
                                 ? () => ReaderRoute(
                                       mangaId:
-                                          nextPrevChapterPair!.second!.mangaId!,
-                                      chapterIndex:
-                                          nextPrevChapterPair.second!.index!,
+                                          nextPrevChapterPair!.second!.mangaId,
+                                      chapterId: nextPrevChapterPair.second!.id,
                                       toPrev: true,
                                       transVertical:
                                           scrollDirection != Axis.vertical,
@@ -300,7 +303,7 @@ class ReaderWrapper extends HookConsumerWidget {
                         Expanded(
                           child: PageNumberSlider(
                             currentValue: currentIndex,
-                            maxValue: chapter.pageCount ?? 1,
+                            maxValue: chapterPages.chapter.pageCount,
                             onChanged: (index) => onChanged(index),
                             inverted: invertTap,
                           ),
@@ -311,9 +314,8 @@ class ReaderWrapper extends HookConsumerWidget {
                             onPressed: nextPrevChapterPair?.first != null
                                 ? () => ReaderRoute(
                                       mangaId:
-                                          nextPrevChapterPair!.first!.mangaId!,
-                                      chapterIndex:
-                                          nextPrevChapterPair.first!.index!,
+                                          nextPrevChapterPair!.first!.mangaId,
+                                      chapterId: nextPrevChapterPair.first!.id,
                                       transVertical:
                                           scrollDirection != Axis.vertical,
                                     ).pushReplacement(context)
@@ -336,27 +338,17 @@ class ReaderWrapper extends HookConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            if (chapter.index != null &&
-                                chapter.bookmarked != null)
-                              SingleChapterActionIcon(
-                                icon: chapter.bookmarked!
-                                    ? Icons.bookmark_rounded
-                                    : Icons.bookmark_outline_rounded,
-                                chapterIndex: chapter.index!,
-                                mangaId: manga.id!,
-                                chapterPut: ChapterPut(
-                                  bookmarked: !chapter.bookmarked!,
-                                ),
-                                refresh: () async {
-                                  if (manga.id != null &&
-                                      chapter.index != null) {
-                                    return ref.refresh(chapterProvider(
-                                      mangaId: manga.id!,
-                                      chapterIndex: chapter.index!,
-                                    ).future);
-                                  }
-                                },
-                              ),
+                            SingleChapterActionIcon(
+                              icon: chapter.isBookmarked
+                                  ? Icons.bookmark_rounded
+                                  : Icons.bookmark_outline_rounded,
+                              chapterId: chapter.id,
+                              change: ChapterChange(
+                                  isBookmarked: !chapter.isBookmarked),
+                              refresh: () => ref.refresh(
+                                  chapterProvider(chapterId: chapter.id)
+                                      .future),
+                            ),
                             IconButton(
                               icon: const Icon(Icons.app_settings_alt_outlined),
                               onPressed: () => showReaderModePopup(),
@@ -390,8 +382,8 @@ class ReaderWrapper extends HookConsumerWidget {
                 onInvoke: (intent) {
                   nextPrevChapterPair?.second != null
                       ? ReaderRoute(
-                          mangaId: nextPrevChapterPair!.second!.mangaId!,
-                          chapterIndex: nextPrevChapterPair.second!.index!,
+                          mangaId: nextPrevChapterPair!.second!.mangaId,
+                          chapterId: nextPrevChapterPair.second!.id,
                           toPrev: true,
                           transVertical: scrollDirection != Axis.vertical,
                         ).pushReplacement(context)
@@ -402,8 +394,8 @@ class ReaderWrapper extends HookConsumerWidget {
               NextChapterIntent: CallbackAction<NextChapterIntent>(
                 onInvoke: (intent) => nextPrevChapterPair?.first != null
                     ? ReaderRoute(
-                        mangaId: nextPrevChapterPair!.first!.mangaId!,
-                        chapterIndex: nextPrevChapterPair.first!.index!,
+                        mangaId: nextPrevChapterPair!.first!.mangaId,
+                        chapterId: nextPrevChapterPair.first!.id,
                         transVertical: scrollDirection != Axis.vertical,
                       ).pushReplacement(context)
                     : onNext(),
@@ -423,7 +415,7 @@ class ReaderWrapper extends HookConsumerWidget {
                     toggleVisibility: () =>
                         visibility.value = !visibility.value,
                     scrollDirection: scrollDirection,
-                    mangaId: manga.id!,
+                    mangaId: manga.id,
                     mangaReaderPadding: mangaReaderPadding.value,
                     mangaReaderMagnifierSize: mangaReaderMagnifierSize.value,
                     onNext: onNext,
@@ -468,7 +460,7 @@ class ReaderView extends HookWidget {
   final double mangaReaderMagnifierSize;
   final VoidCallback onNext;
   final VoidCallback onPrevious;
-  final ({Chapter? first, Chapter? second})? prevNextChapterPair;
+  final ({ChapterDto? first, ChapterDto? second})? prevNextChapterPair;
   final ReaderNavigationLayout mangaReaderNavigationLayout;
   final bool readerSwipeChapterToggle;
   final bool showReaderLayoutAnimation;
@@ -486,14 +478,14 @@ class ReaderView extends HookWidget {
     nextChapter() => prevNextChapterPair?.first != null
         ? ReaderRoute(
             mangaId: mangaId,
-            chapterIndex: prevNextChapterPair!.first!.index!,
+            chapterId: prevNextChapterPair!.first!.id,
             transVertical: scrollDirection != Axis.vertical,
           ).pushReplacement(context)
         : null;
     prevChapter() => prevNextChapterPair?.second != null
         ? ReaderRoute(
             mangaId: mangaId,
-            chapterIndex: prevNextChapterPair!.second!.index!,
+            chapterId: prevNextChapterPair!.second!.id,
             toPrev: true,
             transVertical: scrollDirection != Axis.vertical,
           ).pushReplacement(context)

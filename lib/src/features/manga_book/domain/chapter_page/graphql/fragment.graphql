@@ -1,0 +1,29 @@
+fragment ChapterPageDto on ChapterNodeList {
+    nodes {
+      ...ChapterDto
+    }
+    pageInfo {
+      ...PageInfoDto
+    }
+    totalCount
+}
+
+fragment ChapterPageWithMangaDto on ChapterNodeList {
+    nodes {
+      ...ChapterWithMangaDto
+    }
+    pageInfo {
+      ...PageInfoDto
+    }
+    totalCount
+}
+
+fragment ChapterPagesDto on FetchChapterPagesPayload {
+    chapter {
+      id
+      pageCount
+      __typename
+    }
+    pages
+    __typename
+}
