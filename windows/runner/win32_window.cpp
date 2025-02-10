@@ -1,10 +1,15 @@
 #include "win32_window.h"
 
+#include <dwmapi.h>
 #include <flutter_windows.h>
 
 #include "resource.h"
 
 namespace {
+
+#ifndef DWMWA_USE_IMMERSIVE_DARK_MODE
+#define DWMWA_USE_IMMERSIVE_DARK_MODE 20
+#endif
 
 constexpr const wchar_t kWindowClassName[] = L"FLUTTER_RUNNER_WIN32_WINDOW";
 
@@ -188,6 +193,16 @@ Win32Window::MessageHandler(HWND hwnd,
         SetFocus(child_content_);
       }
       return 0;
+      case WM_CREATE: {
+        BOOL darkMode = TRUE;
+        DwmSetWindowAttribute(
+          window_handle_,                       
+          DWMWA_USE_IMMERSIVE_DARK_MODE,        
+          &darkMode,                           
+          sizeof(darkMode)                 
+        );
+      return 0;
+    }
   }
 
   return DefWindowProc(window_handle_, message, wparam, lparam);
