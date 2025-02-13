@@ -15,20 +15,22 @@ import '../../domain/chapter_batch/chapter_batch_model.dart';
 
 class MultiChaptersActionIcon extends ConsumerWidget {
   const MultiChaptersActionIcon({
-    required this.icon,
+    this.iconData,
     required this.chapterList,
     required this.change,
     required this.refresh,
+    this.icon,
     super.key,
   });
   final List<int> chapterList;
   final ChapterChange change;
   final AsyncValueSetter<bool> refresh;
-  final IconData icon;
+  final IconData? iconData;
+  final Widget? icon;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
-      icon: Icon(icon),
+      icon: icon ?? Icon(iconData),
       onPressed: () async {
         final result = await AsyncValue.guard(
           () => ref.read(mangaBookRepositoryProvider).modifyBulkChapters(

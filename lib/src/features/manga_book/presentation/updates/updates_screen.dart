@@ -103,7 +103,6 @@ class UpdatesScreen extends HookConsumerWidget {
           ? MultiChaptersActionsBottomAppBar(
               selectedChapters: selectedChapters,
               afterOptionSelected: () async => controller.refresh(),
-              hasPreviousDone: false,
             )
           : null,
       body: RefreshIndicator(
