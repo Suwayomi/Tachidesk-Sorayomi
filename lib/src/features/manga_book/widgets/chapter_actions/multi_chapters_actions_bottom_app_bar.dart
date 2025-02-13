@@ -9,8 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../../../constants/gen/assets.gen.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/misc/toast/toast.dart';
+import '../../data/downloads/downloads_repository.dart';
 import '../../data/manga_book/manga_book_repository.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../domain/chapter_batch/chapter_batch_model.dart';
@@ -21,14 +23,16 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
     super.key,
     required this.selectedChapters,
     required this.afterOptionSelected,
-    this.hasPreviousDone = true,
+    this.chapterList,
   });
 
   final ValueNotifier<Map<int, ChapterDto>> selectedChapters;
   final AsyncCallback afterOptionSelected;
-  final bool hasPreviousDone;
+  final List<ChapterDto>? chapterList;
 
-  List<int> get chapterList => selectedChapters.value.keys.toList();
+  List<int> get selectedChapterList => selectedChapters.value.keys.toList();
+  ChapterDto get firstChapter =>
+      selectedChapters.value[selectedChapterList.first]!;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,53 +50,63 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
         children: [
           if (selectedList.any((e) => e.isBookmarked.ifNull()))
             MultiChaptersActionIcon(
-              icon: Icons.bookmark_remove_rounded,
-              chapterList: chapterList,
+              iconData: Icons.bookmark_remove_rounded,
+              chapterList: selectedChapterList,
               change: ChapterChange(isBookmarked: false),
               refresh: refresh,
             ),
           if (selectedList.any((e) => !(e.isBookmarked.ifNull())))
             MultiChaptersActionIcon(
-              icon: Icons.bookmark_add_rounded,
-              chapterList: chapterList,
+              iconData: Icons.bookmark_add_rounded,
+              chapterList: selectedChapterList,
               change: ChapterChange(isBookmarked: true),
               refresh: refresh,
             ),
-          // TODO
-          // if (selectedList.isSingletonList && hasPreviousDone)
-          //   SingleChapterActionIcon(
-          //     chapterId: selectedChapters.value[chapterList.first]!.id,
-          //     imageIcon: ImageIcon(
-          //       Assets.icons.previousDone.provider(),
-          //       color: context.theme.cardTheme.color,
-          //     ),
-          //     change: ChapterChange(markPrevRead: true),
-          //     refresh: refresh,
-          //   ),
+          if (selectedList.isSingletonList && chapterList.isNotBlank)
+            MultiChaptersActionIcon(
+              chapterList: [
+                for (final chapter in chapterList!)
+                  if (firstChapter.index > chapter.index) chapter.id
+              ],
+              icon: ImageIcon(
+                Assets.icons.previousDone.provider(),
+                color: context.theme.cardTheme.color,
+              ),
+              change: ChapterChange(isRead: true),
+              refresh: refresh,
+            ),
           if (selectedList.any((e) => !(e.isRead.ifNull())))
             MultiChaptersActionIcon(
-              icon: Icons.done_all_rounded,
-              chapterList: chapterList,
+              iconData: Icons.done_all_rounded,
+              chapterList: selectedChapterList,
               change: ChapterChange(isRead: true, lastPageRead: 0),
               refresh: refresh,
             ),
           if (selectedList.any((e) => e.isRead.ifNull()))
             MultiChaptersActionIcon(
-              icon: Icons.remove_done_rounded,
-              chapterList: chapterList,
+              iconData: Icons.remove_done_rounded,
+              chapterList: selectedChapterList,
               change: ChapterChange(isRead: false),
               refresh: refresh,
             ),
-          // TODO
-          // if (selectedList.any((e) => !(e.isDownloaded.ifNull())))
-          //   MultiChaptersActionIcon(
-          //     icon: Icons.download_rounded,
-          //     chapterList: <int>[
-          //       for (var e in selectedList)
-          //         if (!(e.isDownloaded.ifNull(true))) (e.id)
-          //     ],
-          //     refresh: refresh,
-          //   ),
+          if (selectedList.any((e) => !(e.isDownloaded.ifNull())))
+            IconButton(
+              icon: Icon(Icons.download_rounded),
+              onPressed: () async {
+                final result = await AsyncValue.guard(
+                  () => ref
+                      .read(downloadsRepositoryProvider)
+                      .addChaptersBatchToDownloadQueue([
+                    for (var e in selectedList)
+                      if (!(e.isDownloaded.ifNull(true))) (e.id)
+                  ]),
+                );
+                if (context.mounted) {
+                  result.showToastOnError(ref.read(toastProvider));
+                }
+                await refresh(true);
+              },
+            ),
           if (selectedList.any((e) => e.isDownloaded.ifNull()))
             IconButton(
               icon: Icon(Icons.delete_rounded),
@@ -100,7 +114,7 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
                 final result = await AsyncValue.guard(
                   () => ref
                       .read(mangaBookRepositoryProvider)
-                      .deleteChapters(chapterList),
+                      .deleteChapters(selectedChapterList),
                 );
                 if (context.mounted) {
                   result.showToastOnError(ref.read(toastProvider));

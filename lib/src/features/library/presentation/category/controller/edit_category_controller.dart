@@ -63,3 +63,11 @@ List<CategoryDto>? categoryListQuery(
       ?.where((element) => (element.name.query(query)).ifNull())
       .toList();
 }
+
+@riverpod
+AsyncValue<List<CategoryDto>?> nonZeroCategoryList(Ref ref) {
+  final categoryList = ref.watch(categoryControllerProvider);
+  return categoryList.copyWithData((_) => categoryList.valueOrNull
+      ?.where((element) => element.mangas.totalCount > 0)
+      .toList());
+}
