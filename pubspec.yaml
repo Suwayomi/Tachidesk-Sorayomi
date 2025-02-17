@@ -2,7 +2,7 @@ name: tachidesk_sorayomi
 description: A manga reader client for Suwayomi Server.
 
 publish_to: "none"
-version: 0.6.1+1
+version: 0.6.2+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

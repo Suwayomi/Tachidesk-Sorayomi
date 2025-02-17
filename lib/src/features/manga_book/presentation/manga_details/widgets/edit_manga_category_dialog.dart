@@ -75,6 +75,7 @@ class EditMangaCategoryDialog extends HookConsumerWidget {
                                                 mangaId, category.id),
                                   );
                                   ref.read(provider.notifier).refresh();
+                                  ref.invalidate(categoryControllerProvider);
                                 },
                                 value: selectedCategoryList?.containsKey(
                                       "${category.id}",

@@ -14,8 +14,10 @@ import '../../../../constants/app_sizes.dart';
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
+import '../../../../utils/misc/app_utils.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
+import '../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../library/presentation/library/controller/library_controller.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
@@ -46,10 +48,10 @@ class MangaDetailsScreen extends HookConsumerWidget {
     final selectedChapters = useState<Map<int, ChapterDto>>({});
 
     // Refresh manga
-    final mangaRefresh = useCallback(
-        ([bool onlineFetch = false]) async =>
-            await ref.read(mangaProvider.notifier).refresh(),
-        [mangaProvider]);
+    final mangaRefresh = useCallback(([bool onlineFetch = false]) async {
+      await ref.read(mangaProvider.notifier).refresh();
+      ref.invalidate(categoryControllerProvider);
+    }, [mangaProvider]);
 
     // Refresh chapter list
     final chapterListRefresh = useCallback(
@@ -150,10 +152,13 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         icon: const Icon(Icons.category_rounded),
                       ),
                       IconButton(
-                        onPressed: () => launchUrlInWeb(
-                          context,
-                          data!.url,
-                          ref.read(toastProvider),
+                        onPressed: AppUtils.returnIf(
+                          data!.realUrl != null,
+                          () => launchUrlInWeb(
+                            context,
+                            data.realUrl!,
+                            ref.read(toastProvider),
+                          ),
                         ),
                         icon: const Icon(Icons.open_in_new_rounded),
                       )
@@ -202,11 +207,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
                             onTap: () => refresh(true),
                             child: Text(context.l10n.refresh),
                           ),
-                          if (data?.url != null)
+                          if (data?.realUrl != null)
                             PopupMenuItem(
                               onTap: () => launchUrlInWeb(
                                 context,
-                                data!.url,
+                                data!.realUrl!,
                                 ref.read(toastProvider),
                               ),
                               child: Text(context.l10n.openInWeb),
@@ -224,6 +229,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
               ? MultiChaptersActionsBottomAppBar(
                   afterOptionSelected: chapterListRefresh,
                   selectedChapters: selectedChapters,
+                  chapterList: filteredChapterList.value,
                 )
               : null,
           floatingActionButton:
