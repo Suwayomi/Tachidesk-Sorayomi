@@ -555,7 +555,7 @@
   "@readerModeSingleVertical": {
     "description": "Radio button text for Reader Mode Type - Single Vertical"
   },
-  "readerModeWebtoon": "Webtoon",
+  "readerModeWebtoon": "Cuộn dọc",
   "@readerModeWebtoon": {
     "description": "Radio button text for Reader Mode Type - Webtoon"
   },

@@ -91,11 +91,11 @@
   "@quickSearchCategoryManga": {
     "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
   },
-  "clientVersion": "用戶端版本",
+  "clientVersion": "客戶端版本",
   "@clientVersion": {
     "description": "Text title for the current version of the client in About screen"
   },
-  "missingExtension": "插件缺失",
+  "missingExtension": "遺失擴充套件",
   "@missingExtension": {
     "description": "Group title to show the Missing Extensions when restoring Backup"
   },
@@ -237,7 +237,7 @@
   "@restoreBackupTitle": {
     "description": "Button text to create backup"
   },
-  "client": "用戶端",
+  "client": "客戶端",
   "@client": {
     "description": "Text title for the name of the client in About screen"
   },
@@ -259,7 +259,7 @@
       }
     }
   },
-  "errorFilePickUnknownExtension": "請選擇含 {extensionName} 的插件",
+  "errorFilePickUnknownExtension": "請選擇含 {extensionName} 的擴充套件",
   "@errorFilePickUnknownExtension": {
     "description": "Error Description to show when user selected unknown extension file"
   },
@@ -307,7 +307,7 @@
   "@errorUserName": {
     "description": "Error Description to show that UserName cannot be empty"
   },
-  "userName": "用戶名",
+  "userName": "使用者名稱",
   "@userName": {
     "description": "Title text for User Name field"
   },
@@ -471,7 +471,7 @@
   "@library": {
     "description": "Screen title and Button text of Library and Library Settings screen"
   },
-  "backup": "備份和恢復",
+  "backup": "備份＆還原",
   "@backup": {
     "description": "Screen title and Button text of Backup & Restore screen"
   },
@@ -515,7 +515,7 @@
   "@chapterSortUploadDate": {
     "description": "Radio button text for sort by Upload Date"
   },
-  "extensions": "插件",
+  "extensions": "擴充套件",
   "@extensions": {
     "description": "Extension list Tab title in Browse Screen"
   },
@@ -587,11 +587,11 @@
   "@daysAgo": {
     "description": "Days ago text to show the release date of manga"
   },
-  "extensionListEmpty": "插件列表為空",
+  "extensionListEmpty": "擴充套件清單為空",
   "@extensionListEmpty": {
     "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
   },
-  "webUI": "在瀏覽器中打開",
+  "webUI": "在瀏覽器中開啟",
   "@webUI": {
     "description": "Button text to open in web UI"
   },
@@ -621,7 +621,7 @@
   "@refresh": {
     "description": "Refresh button text"
   },
-  "nsfwInfo": "這不能防止非官方或可能被錯誤標記的插件在應用程式中顯示 NSFW(18+) 內容",
+  "nsfwInfo": "這不能防止非官方或可能被錯誤標記的擴充套件在應用程式中顯示 NSFW(18+) 內容",
   "@nsfwInfo": {
     "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
   },
@@ -701,7 +701,7 @@
   "@sourceTypePopular": {
     "description": "Tab text Popular for source screen type"
   },
-  "nsfw": "在插件和來源中顯示 NSFW 內容",
+  "nsfw": "在擴充套件和來源中顯示 NSFW 內容",
   "@nsfw": {
     "description": "Switch text to show/hide the nsfw extensions"
   },
@@ -741,7 +741,7 @@
   "@pending": {
     "description": "Pending status Manga Group title in Update Summary Screen"
   },
-  "errorExtension": "所選插件不存在",
+  "errorExtension": "選擇的擴充套件不存在",
   "@errorExtension": {
     "description": "Error Description to show when user selected unknown extension from list"
   },
@@ -785,7 +785,7 @@
   "@mangaSortLastRead": {
     "description": "Radio button text for Manga sort Type - Last Read"
   },
-  "extensionInstalled": "插件安裝完成！",
+  "extensionInstalled": "擴充套件安裝完成！",
   "@extensionInstalled": {
     "description": "Toast text to show that the Extension Installed successfully"
   },
@@ -801,7 +801,7 @@
   "@errorFilePick": {
     "description": "Error Description to show when user does not selected an file"
   },
-  "buildTime": "構建時間",
+  "buildTime": "建置時間",
   "@buildTime": {
     "description": "Text title to show build time of Server in About Screen"
   },
@@ -841,7 +841,7 @@
   "@failed": {
     "description": "Failed status Manga Group title in Update Summary Screen"
   },
-  "errorLaunchURL": "打開失敗\n已複製 \"{url}\" 至剪貼簿",
+  "errorLaunchURL": "開啟失敗\n已複製 \"{url}\" 至剪貼簿",
   "@errorLaunchURL": {
     "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
     "placeholders": {
@@ -871,7 +871,7 @@
   "@selectInBetween": {
     "description": "Toast Text for selecting chapters in between first and last Chapters"
   },
-  "readerOverlaySubtitle": "打開章節時顯示標題和設定",
+  "readerOverlaySubtitle": "開啟章節時顯示標題和設定",
   "@readerOverlaySubtitle": {},
   "quickSearchShowAllCommandTip": "提示：輸入 '?' 以查看所有指令",
   "@quickSearchShowAllCommandTip": {
@@ -916,5 +916,257 @@
   "quickSearch": "快速搜索",
   "@quickSearch": {
     "description": "Screen title and Button text of Quick Search screen"
+  },
+  "errorBackupRestore": "還原備份失敗！",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "restore": "還原",
+  "@restore": {
+    "description": "Button Text to create backup"
+  },
+  "backupLocation": "備份位置",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "downloadLocation": "下載位置",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "or": "或",
+  "@or": {
+    "description": "text literal for word or"
+  },
+  "none": "無",
+  "@none": {
+    "description": "Text for None"
+  },
+  "ip": "IP 位址",
+  "@ip": {
+    "description": "Option title for Server IP Address in Server settings"
+  },
+  "systemTrayIcon": "在系統匣顯示圖示",
+  "@systemTrayIcon": {
+    "description": "Switch title to Show icon in system tray in settings"
+  },
+  "localSourceLocation": "本機來源位置",
+  "@localSourceLocation": {
+    "description": "Text for Local Source Location settings property"
+  },
+  "flareSolverrServerUrl": "FlareSolverr 伺服器 URL",
+  "@flareSolverrServerUrl": {
+    "description": "Title text for FlareSolverr Server Url property"
+  },
+  "socksVersion": "SOCKS 版本",
+  "@socksVersion": {
+    "description": "Title for Socks version picker"
+  },
+  "backupTime": "備份時間",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "noPropFound": "找不到 {prop}",
+  "@noPropFound": {
+    "description": "Template text to say No value for property found"
+  },
+  "includeCategories": "分類",
+  "@includeCategories": {
+    "description": "Check box text to include categories during create backup"
+  },
+  "backupAndRestore": "備份與還原",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "chapterDownloadLimit": "章節下載限制",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "限制要下載的新章節的數量。",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "backupInterval": "備份間隔",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "automaticUpdate": "自動更新",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "自動刷新詮釋資料",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "更新書櫃時檢查新封面與詳細資料",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "automaticBackup": "自動備份",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "autoDownloadNewChapters": "下載新章節",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "backupCleanup": "備份清理",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupCleanupDescription": "{count, select, 0{Never} 01{刪除 1 日以前的備份} other{刪除 {count} 日以前的備份}}",
+  "@backupCleanupDescription": {},
+  "authentication": "驗證",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "自動下載",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "advanced": "進階",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "debugLogs": "除錯日誌",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "downloading": "下載中",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "error": "錯誤",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "建立備份失敗",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "copied": "已複製！",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "enterProp": "輸入 {prop}",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "enableSocksProxy": "使用 SOCKS Proxy",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "extensionRepository": "擴充套件儲存庫",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "新增儲存庫以從中安裝擴充套件",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "ipHintText": "輸入伺服器綁定 IP 位址",
+  "@ipHintText": {},
+  "includeChapters": "章節",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
+  },
+  "invalidPort": "無效的通訊埠",
+  "@invalidPort": {
+    "description": "Error when Submitted invalid Port Number"
+  },
+  "invalidProp": "無效的 {property}",
+  "@invalidProp": {
+    "description": "Toast text for select invalid property value"
+  },
+  "gqlDebugLogs": "Graphql 除錯日誌",
+  "@gqlDebugLogs": {
+    "description": "Switch title for Graphql Debug logs in settings"
+  },
+  "gqlDebugLogsHint": "這包括包含使用非隱私安全資訊的日誌",
+  "@gqlDebugLogsHint": {
+    "description": "Switch subTitle for Graphql Debug logs in settings"
+  },
+  "hideEmptyCategory": "隱藏空分類",
+  "@hideEmptyCategory": {
+    "description": "Switch button text to Hide empty category in library"
+  },
+  "flareSolverr": "FlareSolverr",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "flareSolverrRequestTimeout": "FlareSolverr 請求逾時",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "flareSolverrSessionName": "FlareSolverr 會話名稱",
+  "@flareSolverrSessionName": {
+    "description": "Title text for FlareSolverr Session Name property"
+  },
+  "flareSolverrSessionTTL": "FlareSolverr 會話 TTL",
+  "@flareSolverrSessionTTL": {
+    "description": "Title text for FlareSolverr Session TTL property"
+  },
+  "localSourceLocationDescription": "在伺服器上儲存本機來源檔案的目錄路徑",
+  "@localSourceLocationDescription": {
+    "description": "Description text for Local Source Location property"
+  },
+  "nChapters": "{n, plural, =0{None} =1{1 Chapter} other{{n} 章節}}",
+  "@nChapters": {
+    "description": "Text for showing N chapters"
+  },
+  "nDays": "{count, select, 01{01 Day} other{{count} 日}}",
+  "@nDays": {
+    "description": "to show Number of days with plural"
+  },
+  "nHours": "{n, plural, =1{1 hour} other{{n} 小時}}",
+  "@nHours": {
+    "description": "Text to represent 'n' hours"
+  },
+  "nMinutes": "{n, plural, =1{1 Minute} other{{n} 分鐘}}",
+  "@nMinutes": {
+    "description": "Text to represent 'n' Minutes"
+  },
+  "nSeconds": "{n, plural, =1{1 second} other{{n} 秒}}",
+  "@nSeconds": {
+    "description": "Text to represent 'n' seconds"
+  },
+  "nSources": "{n, plural, =1{1 Source} other{{n} 來源}}",
+  "@nSources": {
+    "description": "Text to represent n number Parallel source requests"
+  },
+  "serverBindings": "伺服器綁定",
+  "@serverBindings": {
+    "description": "Title for server bindings settings"
+  },
+  "thatHaventBeenStarted": "尚未開始",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
+  },
+  "socksProxy": "SOCKS Proxy",
+  "@socksProxy": {
+    "description": "Section title for SOCKS Proxy settings"
+  },
+  "socksHost": "SOCKS 主機",
+  "@socksHost": {},
+  "socksPassword": "SOCKS 密碼",
+  "@socksPassword": {},
+  "socksPort": "SOCKS 通訊埠",
+  "@socksPort": {},
+  "socksUserName": "SOCKS 使用者名稱",
+  "@socksUserName": {},
+  "queued": "排隊",
+  "@queued": {
+    "description": "Text to show chapters are queued for downloading"
+  },
+  "saveAsCBZArchive": "儲存為 CBZ 壓縮檔",
+  "@saveAsCBZArchive": {
+    "description": "Settings toggle label for Save as CBZ archive"
+  },
+  "updateFailed": "更新 {property} 失敗",
+  "@updateFailed": {
+    "description": "Failed to update Text"
+  },
+  "validating": "驗證",
+  "@validating": {
+    "description": "toast to show backup validation is in progress"
   }
 }
