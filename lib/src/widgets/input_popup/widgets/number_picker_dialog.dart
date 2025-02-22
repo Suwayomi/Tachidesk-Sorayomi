@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../../utils/misc/app_utils.dart';
+import '../../async_buttons/async_text_button.dart';
 import '../../number_picker/number_picker.dart';
 
 class NumberPickerDialog extends HookWidget {
@@ -28,7 +29,7 @@ class NumberPickerDialog extends HookWidget {
   final String? description;
   @override
   Widget build(BuildContext context) {
-    final valueState = useState(value.ifNull(min));
+    final numberPickerState = useState(value.ifNull(min));
     return AlertDialog(
       title: titleWidget ?? Text(title!, overflow: TextOverflow.ellipsis),
       content: AppUtils.wrapChildIf(
@@ -44,8 +45,8 @@ class NumberPickerDialog extends HookWidget {
         child: NumberPicker(
           max: max,
           min: min,
-          onChanged: (value) => valueState.value = value,
-          value: valueState.value,
+          onChanged: (value) => numberPickerState.value = value,
+          value: numberPickerState.value,
         ),
       ),
       actions: [
@@ -53,9 +54,13 @@ class NumberPickerDialog extends HookWidget {
           onPressed: () => Navigator.pop(context),
           child: Text(context.l10n.cancel),
         ),
-        TextButton(
+        AsyncTextButton(
           onPressed: () async {
-            await onChanged?.call(valueState.value);
+            context.hideKeyboard;
+            // waiting for the number picker to unfocus
+            // so that the numberPickerState update itself
+            await Future.delayed(Duration(milliseconds: 50));
+            await onChanged?.call(numberPickerState.value);
             if (context.mounted) Navigator.pop(context);
           },
           child: Text(context.l10n.save),

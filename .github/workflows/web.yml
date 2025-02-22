@@ -29,7 +29,7 @@ jobs:
       - run: flutter pub get
       - run: dart run build_runner build --delete-conflicting-outputs
 
-      - uses: bluefireteam/flutter-gh-pages@v7
+      - uses: bluefireteam/flutter-gh-pages@v9
         with:
           baseHref: /Tachidesk-Sorayomi/
           webRenderer: canvaskit
