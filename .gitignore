@@ -52,3 +52,4 @@ app.*.map.json
 *.freezed.dart
 *.graphql.dart
 **/__generated__
+lib/src/l10n/generated

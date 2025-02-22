@@ -4,6 +4,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+synthetic-package: false
 arb-dir: lib/src/l10n
 template-arb-file: app_en.arb
 output-localization-file: app_localizations.dart
+output-dir: lib/src/l10n/generated
