@@ -27,6 +27,7 @@ jobs:
       - uses: actions/checkout@v3
       # - run: flutter create .
       - run: flutter pub get
+      - run: flutter gen-l10n
       - run: dart run build_runner build --delete-conflicting-outputs
 
       - uses: bluefireteam/flutter-gh-pages@v9

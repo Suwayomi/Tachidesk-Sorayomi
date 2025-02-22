@@ -113,7 +113,7 @@
   "@completed": {
     "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
   },
-  "copyMsg": "'{msg}'‮ تم نسخ!",
+  "copyMsg": "'{msg}' تم نسخ!",
   "@copyMsg": {
     "description": "Toast text to show that the message has been copied",
     "placeholders": {

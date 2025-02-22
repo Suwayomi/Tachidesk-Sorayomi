@@ -71,6 +71,7 @@ jobs:
       - uses: actions/checkout@v3
       # - run: flutter create .
       - run: flutter pub get
+      - run: flutter gen-l10n
       - run: dart run build_runner build --delete-conflicting-outputs
 
       # Configure Keystore for Android
@@ -187,7 +188,7 @@ jobs:
         with:
           draft: false
           files: ${{ env.pkg_name }}*
-          token: ${{ secrets.WINGET }}
+          token: ${{ secrets.DEPLOY_TOKEN }}
 
   winget-publish:
     needs: create-build
