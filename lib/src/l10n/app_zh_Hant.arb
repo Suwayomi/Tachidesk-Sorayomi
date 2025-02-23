@@ -1109,27 +1109,27 @@
   "@localSourceLocationDescription": {
     "description": "Description text for Local Source Location property"
   },
-  "nChapters": "{n, plural, =0{None} =1{1 Chapter} other{{n} 章節}}",
+  "nChapters": "{n, plural, =0{None} =1{1 章節} other{{n} 章節}}",
   "@nChapters": {
     "description": "Text for showing N chapters"
   },
-  "nDays": "{count, select, 01{01 Day} other{{count} 日}}",
+  "nDays": "{count, select, 01{01 日} other{{count} 日}}",
   "@nDays": {
     "description": "to show Number of days with plural"
   },
-  "nHours": "{n, plural, =1{1 hour} other{{n} 小時}}",
+  "nHours": "{n, plural, =1{1 小時} other{{n} 小時}}",
   "@nHours": {
     "description": "Text to represent 'n' hours"
   },
-  "nMinutes": "{n, plural, =1{1 Minute} other{{n} 分鐘}}",
+  "nMinutes": "{n, plural, =1{1 分鐘} other{{n} 分鐘}}",
   "@nMinutes": {
     "description": "Text to represent 'n' Minutes"
   },
-  "nSeconds": "{n, plural, =1{1 second} other{{n} 秒}}",
+  "nSeconds": "{n, plural, =1{1 秒} other{{n} 秒}}",
   "@nSeconds": {
     "description": "Text to represent 'n' seconds"
   },
-  "nSources": "{n, plural, =1{1 Source} other{{n} 來源}}",
+  "nSources": "{n, plural, =1{1 來源} other{{n} 來源}}",
   "@nSources": {
     "description": "Text to represent n number Parallel source requests"
   },
@@ -1168,5 +1168,25 @@
   "validating": "驗證",
   "@validating": {
     "description": "toast to show backup validation is in progress"
+  },
+  "backupLocationDescription": "伺服器上用於自動備份的儲存位置的目錄路徑",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "downloadLocationHint": "伺服器上用於下載檔案的儲存位置的目錄路徑",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "excludeEntryWithUnreadChapters": "對於帶有未讀章節的作品忽略自動章節下載",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "nRepo": "{n, plural, =1{1 儲存庫} other{{n} 儲存庫}}",
+  "@nRepo": {
+    "description": "Text to show n repo as subtitle"
+  },
+  "openFlareSolverr": "檢查 Flaresolverr 以獲取有關如何設定的資訊",
+  "@openFlareSolverr": {
+    "description": "Text for link to Open Flare Solverr setup documentation"
   }
 }
