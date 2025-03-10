@@ -1188,5 +1188,17 @@
   "openFlareSolverr": "檢查 Flaresolverr 以獲取有關如何設定的資訊",
   "@openFlareSolverr": {
     "description": "Text for link to Open Flare Solverr setup documentation"
+  },
+  "skipUpdatingEntries": "略過更新項",
+  "@skipUpdatingEntries": {
+    "description": "Settings Text to update skip Updating Entries"
+  },
+  "withCompletedStatus": "具有已完成狀態",
+  "@withCompletedStatus": {
+    "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+  },
+  "withUnreadChapter": "具有未讀的章節",
+  "@withUnreadChapter": {
+    "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
   }
 }
