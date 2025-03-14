@@ -1200,5 +1200,17 @@
   "withUnreadChapter": "具有未讀的章節",
   "@withUnreadChapter": {
     "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+  },
+  "misc": "雜項",
+  "@misc": {
+    "description": "Section title for misc settings"
+  },
+  "cloudflareBypass": "略過 Cloudflare",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "openInWeb": "在瀏覽器中開啟",
+  "@openInWeb": {
+    "description": "Button title text for open the url in web"
   }
 }
