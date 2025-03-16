@@ -1,1 +1,1220 @@
-{}
+{
+  "appLanguage": "பயன்பாட்டு மொழி",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTitle": "சோரயோமி",
+  "@appTitle": {
+    "description": "Name of the app (Sorayomi in native script)"
+  },
+  "appTheme": "பயன்பாட்டு கருப்பொருள் பயன்முறை",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appearance": "தோற்றம்",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "அங்கீகார வகை",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeBasic": "அடிப்படை ஏற்பு",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "எதுவுமில்லை",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "authentication": "ஏற்பு",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "ஆட்டோ-டவுன்லோட்",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "automaticUpdate": "தானியங்கி புதுப்பிப்பு",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "மெட்டாடேட்டாவை தானாக புதுப்பிக்கவும்",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "நூலகத்தைப் புதுப்பிக்கும்போது புதிய கவர் மற்றும் விவரங்களைச் சரிபார்க்கவும்",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backup": "காப்புப்பிரதி மற்றும் மீட்டமை",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "backupAndRestore": "காப்புப்பிரதி மற்றும் மீட்டமை",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "காப்புப்பிரதி தூய்மைப்படுத்துதல்",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupCleanupDescription": "{எண்ணுங்கள், தேர்ந்தெடுக்கவும், 0 {Never} 01 {Delete Backups that are older 1 day} பிற {பழைய காப்புப்பிரதிகளை நீக்கு {count} நாட்கள்}}",
+  "@backupCleanupDescription": {},
+  "backupInterval": "காப்பு இடைவெளி",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupLocation": "காப்புப்பிரதி இருப்பிடம்",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupLocationDescription": "தானியங்கி காப்புப்பிரதிகள் சேமிக்கப்பட வேண்டிய சேவையகத்தில் கோப்பகத்திற்கான பாதை",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "backupTime": "காப்புப்பிரதி நேரம்",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "badges": "பேட்ச்கள்",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "bookmarked": "புக்மார்க்கு செய்யப்பட்டது",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "browse": "உலாவு",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "buildTime": "நேரத்தை உருவாக்குங்கள்",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cacheCleared": "கேச் அழிக்கப்பட்டது",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "cancel": "ரத்துசெய்",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categories": "வகைகள்",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "chapterDownloadLimit": "அத்தியாயம் பதிவிறக்க வரம்பு",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "பதிவிறக்கம் செய்யப் போகும் புதிய அத்தியாயங்களின் அளவைக் கட்டுப்படுத்துங்கள்.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "chapterSortSource": "மூலத்தால்",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "பதிவேற்றுவதன் மூலம்",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "checkForServerUpdates": "சேவையக புதுப்பிப்புகளை சரிபார்க்கவும்",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "checkForUpdates": "புதுப்பிப்புகளை சரிபார்க்கவும்",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "தெளிவான தற்காலிக சேமிப்பு",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "clientVersion": "கிளீன் பதிப்பு",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "close": "மூடு",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "cloudflareBypass": "கிளவுட்ஃப்ளேர் பைபாச்",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "completed": "முடிந்தது",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "copied": "நகலெடுக்கப்பட்டது!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "copyMsg": "'{msg}' நகலெடுக்கப்பட்டது!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupDescription": "டச்சிடெச்க் காப்புப்பிரதியாக காப்பு நூலகம்",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "createBackupTitle": "காப்புப்பிரதியை உருவாக்கவும்",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "credentials": "நற்சான்றிதழ்கள்",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "current": "மின்னோட்ட்ம், ஓட்டம்",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "daysAgo": "{days} சில நாட்களுக்கு முன்பு",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "debugLogs": "பிழைத்திருத்த பதிவுகள்",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "defaultCategory": "புதிய மங்காவை நூலகத்தில் சேர்க்கும்போது இயல்புநிலை வகை",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "display": "காட்சி",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "displayMode": "காட்சி முறை",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "displayModeDescriptiveList": "விளக்க பட்டியல்",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "displayModeGrid": "வலைவாய்",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "displayModeList": "பட்டியல்",
+  "@displayModeList": {
+    "description": "Radio button text for Manga Cover display mode - List"
+  },
+  "downloadLocation": "இருப்பிடத்தைப் பதிவிறக்கவும்",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "downloadLocationHint": "பதிவிறக்கம் செய்யப்பட்ட கோப்புகள் சேமிக்கப்பட வேண்டிய சேவையகத்தில் கோப்பகத்திற்கான பாதை",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "downloads": "பதிவிறக்கங்கள்",
+  "@downloads": {
+    "description": "Screen title and Navigation text of Downloads screen"
+  },
+  "edit": "தொகு",
+  "@edit": {
+    "description": "Popup button text to edit Category in Edit category screen"
+  },
+  "editCategory": "வகையைத் திருத்து",
+  "@editCategory": {
+    "description": "Screen title, Button text and  of Downloads screen"
+  },
+  "emptyCategory": "வகை பெயர் காலியாக இருக்க முடியாது",
+  "@emptyCategory": {
+    "description": "Description to show that category list is empty in Edit Category screen"
+  },
+  "enableSocksProxy": "சாக்ச் ப்ராக்சியைப் பயன்படுத்தவும்",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "enterProp": "{prop} உள்ளிடவும்",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "error": "பிழை",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "காப்புப்பிரதியை உருவாக்கத் தவறிவிட்டது",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "errorBackupRestore": "காப்புப்பிரதியை மீட்டெடுப்பதில் தோல்வி!",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "errorExtension": "தேர்ந்தெடுக்கப்பட்ட நீட்டிப்பைக் கண்டுபிடிக்க முடியவில்லை",
+  "@errorExtension": {
+    "description": "Error Description to show when user selected unknown extension from list"
+  },
+  "errorFilePick": "கோப்பு தேர்ந்தெடுக்கப்படவில்லை!",
+  "@errorFilePick": {
+    "description": "Error Description to show when user does not selected an file"
+  },
+  "errorFilePickUnknownExtension": "{extensionName} நீட்டிப்புடன் ஒரு கோப்பைத் தேர்ந்தெடுக்கவும்",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "errorLaunchURL": "திறக்கத் தவறிவிட்டது!\n இடைநிலைப்பலகைக்கு \"{url}\" ஐ நகலெடுக்கிறது",
+  "@errorLaunchURL": {
+    "description": "Error Description to show when App failed to launch an URL and copied the URL to clipboard",
+    "placeholders": {
+      "url": {
+        "example": "http://sorayomi.suwayomi.org",
+        "type": "String"
+      }
+    }
+  },
+  "errorPassword": "கடவுச்சொல் காலியாக இருக்க முடியாது",
+  "@errorPassword": {
+    "description": "Error Description to show that password cannot be empty"
+  },
+  "errorSomethingWentWrong": "ஏதோ தவறு நடந்தது!",
+  "@errorSomethingWentWrong": {
+    "description": "Error Description to show that Something went wrong!"
+  },
+  "errorUserName": "பயனர்பெயர் காலியாக இருக்க முடியாது",
+  "@errorUserName": {
+    "description": "Error Description to show that UserName cannot be empty"
+  },
+  "excludeEntryWithUnreadChapters": "படிக்காத அத்தியாயங்களுடன் உள்ளீடுகளுக்கான தானியங்கி அத்தியாய பதிவிறக்கங்களை புறக்கணிக்கவும்",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "extensionInstalled": "நீட்டிப்பு நிறுவப்பட்டது!",
+  "@extensionInstalled": {
+    "description": "Toast text to show that the Extension Installed successfully"
+  },
+  "extensionListEmpty": "நீட்டிப்பு பட்டியல் காலியாக உள்ளது",
+  "@extensionListEmpty": {
+    "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
+  },
+  "extensionRepository": "நீட்டிப்பு களஞ்சியம்",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "நீட்டிப்புகளை நிறுவக்கூடிய களஞ்சியங்களைச் சேர்க்கவும்",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "failed": "தோல்வியுற்றது",
+  "@failed": {
+    "description": "Failed status Manga Group title in Update Summary Screen"
+  },
+  "extensions": "நீட்டிப்புகள்",
+  "@extensions": {
+    "description": "Extension list Tab title in Browse Screen"
+  },
+  "filter": "வடிப்பி",
+  "@filter": {
+    "description": "title of filter Tab across the app"
+  },
+  "findServer": "கண்டுபிடி",
+  "@findServer": {
+    "description": "Button text of Find Server"
+  },
+  "finished": "முடிந்தது",
+  "@finished": {
+    "description": "Text to show the Currently Finished reading chapter in Reader Screen"
+  },
+  "flareSolverr": "FLARESOLVERR",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "flareSolverrServerUrl": "FLARESOLVERR சேவையகம் முகவரி",
+  "@flareSolverrServerUrl": {
+    "description": "Title text for FlareSolverr Server Url property"
+  },
+  "flareSolverrRequestTimeout": "Felaresolverr கோரிக்கை நேரம் முடிந்தது",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "flareSolverrSessionName": "FLARESOLVERR அமர்வு பெயர்",
+  "@flareSolverrSessionName": {
+    "description": "Title text for FlareSolverr Session Name property"
+  },
+  "flareSolverrSessionTTL": "FLARESOLVERR அமர்வு ttl",
+  "@flareSolverrSessionTTL": {
+    "description": "Title text for FlareSolverr Session TTL property"
+  },
+  "general": "பொது",
+  "@general": {
+    "description": "Screen title and Button text of General setting screen"
+  },
+  "help": "உதவி",
+  "@help": {
+    "description": "Button text of help in about screen"
+  },
+  "hideEmptyCategory": "வெற்று வகையை மறைக்கவும்",
+  "@hideEmptyCategory": {
+    "description": "Switch button text to Hide empty category in library"
+  },
+  "inLibrary": "நூலகத்தில்",
+  "@inLibrary": {
+    "description": "Button and Chip text to show that the manga is in Library"
+  },
+  "includeCategories": "வகைகள்",
+  "@includeCategories": {
+    "description": "Check box text to include categories during create backup"
+  },
+  "includeChapters": "பாடங்கள்",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
+  },
+  "installingExtension": "நீட்டிப்பை நிறுவுதல்",
+  "@installingExtension": {
+    "description": "Toast text to show that the extension is installing"
+  },
+  "invalidPort": "தவறான துறைமுகம்",
+  "@invalidPort": {
+    "description": "Error when Submitted invalid Port Number"
+  },
+  "invalidProp": "தவறான {property}",
+  "@invalidProp": {
+    "description": "Toast text for select invalid property value"
+  },
+  "ip": "ஐபி முகவரி",
+  "@ip": {
+    "description": "Option title for Server IP Address in Server settings"
+  },
+  "install": "நிறுவவும்",
+  "@install": {
+    "description": "Button text to install the extension"
+  },
+  "installing": "நிறுவுகிறது",
+  "@installing": {
+    "description": "Button text to show that the extension is installing"
+  },
+  "ipHintText": "சேவையக பிணைப்பு ஐபி முகவரியை உள்ளிடவும்",
+  "@ipHintText": {},
+  "isTrueBlack": "உண்மையான கருப்பு",
+  "@isTrueBlack": {
+    "description": "Switch title to enable {} black theme"
+  },
+  "languages": "மொழிகள்",
+  "@languages": {
+    "description": "Popup title to filter extensions based on language"
+  },
+  "latest": "அண்மைக் கால",
+  "@latest": {
+    "description": "Button text to take user to the latest tab of Source manga screen"
+  },
+  "library": "நூலகம்",
+  "@library": {
+    "description": "Screen title and Button text of Library and Library Settings screen"
+  },
+  "localSourceLocation": "உள்ளக மூல இடம்",
+  "@localSourceLocation": {
+    "description": "Text for Local Source Location settings property"
+  },
+  "localSourceLocationDescription": "உள்ளக மூல கோப்புகள் சேமிக்கப்படும் சேவையகத்தில் கோப்பகத்திற்கான பாதை",
+  "@localSourceLocationDescription": {
+    "description": "Description text for Local Source Location property"
+  },
+  "manga": "மங்கா",
+  "@manga": {
+    "description": "Screen title and Button text of Manga details screen"
+  },
+  "mangaGridSize": "மங்கா கட்டம் அளவு",
+  "@mangaGridSize": {
+    "description": "Popup title and Button text to change Manga Grid size"
+  },
+  "mangaMissingSources": "மங்கா காணாமல் போன ஆதாரங்கள்",
+  "@mangaMissingSources": {
+    "description": "Group title to show the Manga Missing Sources when restoring Backup"
+  },
+  "mangaSortLastRead": "கடைசியாக படியுங்கள்",
+  "@mangaSortLastRead": {
+    "description": "Radio button text for Manga sort Type - Last Read"
+  },
+  "mangaSortUnread": "படிக்காதது",
+  "@mangaSortUnread": {
+    "description": "Radio button text for Manga sort Type - Unread"
+  },
+  "mangaStatusCancelled": "ரத்து செய்யப்பட்டது",
+  "@mangaStatusCancelled": {
+    "description": "Text to show Manga Status Cancelled in Manga details screen"
+  },
+  "mangaStatusCompleted": "முடிந்தது",
+  "@mangaStatusCompleted": {
+    "description": "Text to show Manga Status Completed in Manga details screen"
+  },
+  "mangaStatusLicensed": "உரிமம்",
+  "@mangaStatusLicensed": {
+    "description": "Text to show Manga Status Licensed in Manga details screen"
+  },
+  "mangaSortAlphabetical": "அகரவரிசை",
+  "@mangaSortAlphabetical": {
+    "description": "Radio button text for Manga sort Type - Alphabetical"
+  },
+  "mangaSortDateAdded": "தேதி சேர்க்கப்பட்டது",
+  "@mangaSortDateAdded": {
+    "description": "Radio button text for Manga sort Type - Date Added"
+  },
+  "mangaStatusOnHiatus": "இடைவெளியில்",
+  "@mangaStatusOnHiatus": {
+    "description": "Text to show Manga Status On Hiatus in Manga details screen"
+  },
+  "mangaStatusOngoing": "நடந்து கொண்டிருக்கிறது",
+  "@mangaStatusOngoing": {
+    "description": "Text to show Manga Status Ongoing in Manga details screen"
+  },
+  "mangaStatusPublishingFinished": "வெளியீடு முடிந்தது",
+  "@mangaStatusPublishingFinished": {
+    "description": "Text to show Manga Status Publishing Finished in Manga details screen"
+  },
+  "mangaStatusUnknown": "தெரியவில்லை",
+  "@mangaStatusUnknown": {
+    "description": "Text to show Manga Status Unknown in Manga details screen"
+  },
+  "missingExtension": "நீட்டிப்புகளைக் காணவில்லை",
+  "@missingExtension": {
+    "description": "Group title to show the Missing Extensions when restoring Backup"
+  },
+  "missingTrackers": "காணாமல் போன டிராக்கர்கள்",
+  "@missingTrackers": {
+    "description": "Group title to show the Missing Trackers when restoring Backup"
+  },
+  "more": "மேலும்",
+  "@more": {
+    "description": "Screen title and Navigation text of More screen"
+  },
+  "moveToBottom": "கீழே செல்லுங்கள்",
+  "@moveToBottom": {
+    "description": "Button text to move download/category to the bottom of list"
+  },
+  "moveToTop": "மேலே செல்லுங்கள்",
+  "@moveToTop": {
+    "description": "Button text to move download/category to the top of list"
+  },
+  "nChapters": "{n, பன்மை, = 0 {None} = 1 {1 Chapter} பிற {{n} அத்தியாயங்கள்}}",
+  "@nChapters": {
+    "description": "Text for showing N chapters"
+  },
+  "nDays": "{எண்ணுங்கள், தேர்ந்தெடுக்கவும், 01 {01 Day} பிற {{count} நாட்கள்}}",
+  "@nDays": {
+    "description": "to show Number of days with plural"
+  },
+  "nHours": "{n, பன்மை, = 1 {1 hour} பிற {{n} மணிநேரம்}}",
+  "@nHours": {
+    "description": "Text to represent 'n' hours"
+  },
+  "nMinutes": "{n, பன்மை, = 1 {1 Minute} பிற {{n} நிமிடங்கள்}}",
+  "@nMinutes": {
+    "description": "Text to represent 'n' Minutes"
+  },
+  "nRepo": "{n, பன்மை, = 1 {1 Repo} பிற {{n} repos}}",
+  "@nRepo": {
+    "description": "Text to show n repo as subtitle"
+  },
+  "nSeconds": "{n, பன்மை, = 1 {1 second} பிற {{n} விநாடிகள்}}",
+  "@nSeconds": {
+    "description": "Text to represent 'n' seconds"
+  },
+  "nSources": "{n, பன்மை, = 1 {1 Source} பிற {{n} மூலங்கள்}}",
+  "@nSources": {
+    "description": "Text to represent n number Parallel source requests"
+  },
+  "nameCountDisplay": "{name}: {count}",
+  "@nameCountDisplay": {
+    "description": "Text pattern to display an name and count in a string",
+    "placeholders": {
+      "count": {
+        "example": "22",
+        "type": "int"
+      },
+      "name": {
+        "example": "Downloaded",
+        "type": "String"
+      }
+    }
+  },
+  "newUpdateAvailable": "புதிய புதுப்பிப்பு கிடைக்கிறது",
+  "@newUpdateAvailable": {
+    "description": "Popup title to show that the App/Server has and update"
+  },
+  "nextChapter": "அடுத்து: {அத்தியாயம்",
+  "@nextChapter": {
+    "description": "Text for Next Chapter button in Manga Reader Screen"
+  },
+  "noCategoriesFound": "உங்களிடம் எந்த வகைகளும் இல்லை.\n (உதவிக்குறிப்பு: உங்கள் நூலகத்தை ஒழுங்கமைக்க ஒன்றை உருவாக்க பிளச் பொத்தானைத் தட்டவும்)",
+  "@noCategoriesFound": {
+    "description": "Hint text to add new Category when category list is empty"
+  },
+  "noCategoriesFoundAlt": "உங்களிடம் எந்த வகைகளும் இல்லை.\n உங்கள் நூலகத்தை ஒழுங்கமைக்க அமைப்புகளில் ஒன்றை உருவாக்கவும்",
+  "@noCategoriesFoundAlt": {
+    "description": "Hint text to add new Category in Settings when category list is empty"
+  },
+  "noCategoryMangaFound": "இந்த வகையில் எந்த மங்காவும் காணப்படவில்லை.\n (உதவிக்குறிப்பு: உங்கள் தேடல் மற்றும் வடிப்பான்களை சரிபார்க்கவும்!)",
+  "@noCategoryMangaFound": {
+    "description": "Hint text to check filter when manga list is empty in Category tab in Library"
+  },
+  "noChaptersFound": "அத்தியாயங்கள் எதுவும் கிடைக்கவில்லை",
+  "@noChaptersFound": {
+    "description": "Text to show that the Chapter list is empty in Manga details Screen"
+  },
+  "noDownloads": "பதிவிறக்கங்கள் இல்லை",
+  "@noDownloads": {
+    "description": "Text to show that there is no active downloads in Downloads Screen"
+  },
+  "noMangaFound": "மங்காக்கள் எதுவும் கிடைக்கவில்லை",
+  "@noMangaFound": {
+    "description": "Text to show that the Manga list is empty"
+  },
+  "noOfChapters": "{count} அத்தியாயங்கள்",
+  "@noOfChapters": {
+    "description": "Title text to show the number of chapters in the Manga details screen",
+    "placeholders": {
+      "count": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "noPropFound": "இல்லை {prop} காணப்படுகிறது",
+  "@noPropFound": {
+    "description": "Template text to say No value for property found"
+  },
+  "noResultFound": "முடிவுகள் எதுவும் கிடைக்கவில்லை",
+  "@noResultFound": {
+    "description": "Text to show that no results found for the given search query"
+  },
+  "noServerFound": "உங்கள் உள்ளக நெட்வொர்க்கில் சேவையகம் எதுவும் காணப்படவில்லை",
+  "@noServerFound": {
+    "description": "Text to show that no Server found in locale network"
+  },
+  "noSourcesFound": "ஆதாரங்கள் எதுவும் கிடைக்கவில்லை",
+  "@noSourcesFound": {
+    "description": "Text to show that the Source list is empty"
+  },
+  "noUpdatesAvailable": "நீங்கள் அண்மைக் கால பதிப்பைப் பயன்படுத்துகிறீர்கள்",
+  "@noUpdatesAvailable": {
+    "description": "Text to show that the user is using the latest version of the app"
+  },
+  "noUpdatesFound": "புதுப்பிப்புகள் எதுவும் கிடைக்கவில்லை",
+  "@noUpdatesFound": {
+    "description": "Toast Text to show that there are no Updates available"
+  },
+  "none": "எதுவுமில்லை",
+  "@none": {
+    "description": "Text for None"
+  },
+  "nsfw": "NSFW நீட்டிப்புகள் மற்றும் ஆதாரங்களைக் காட்டு",
+  "@nsfw": {
+    "description": "Switch text to show/hide the nsfw extensions"
+  },
+  "nsfw18": "18+",
+  "@nsfw18": {
+    "description": "18+ tag Text to show in extensions list"
+  },
+  "nsfwInfo": "இது பயன்பாட்டில் NSFW (18+) உள்ளடக்கத்தை வெளிப்படுத்துவதிலிருந்து அதிகாரப்பூர்வமற்ற அல்லது தவறான கொடிய நீட்டிப்புகளைத் தடுக்காது",
+  "@nsfwInfo": {
+    "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
+  },
+  "numSelected": "{num} தேர்ந்தெடுக்கப்பட்டது",
+  "@numSelected": {
+    "description": "Title text to show the number of chapters selected in the Manga details screen and Updates screen",
+    "placeholders": {
+      "num": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "obsolete": "வழக்கற்றுப்போன",
+  "@obsolete": {
+    "description": "Text to show that the extension has become Obsolete"
+  },
+  "openFlareSolverr": "அதை எவ்வாறு அமைப்பது என்பது குறித்த தகவலுக்கு Fectout Flaresolverr",
+  "@openFlareSolverr": {
+    "description": "Text for link to Open Flare Solverr setup documentation"
+  },
+  "openInWeb": "வலையில் திறந்திருக்கும்",
+  "@openInWeb": {
+    "description": "Button title text for open the url in web"
+  },
+  "or": "அல்லது",
+  "@or": {
+    "description": "text literal for word or"
+  },
+  "page": "பக்கம்: {number}",
+  "@page": {
+    "description": "Text to show the last read Page number of the chapter in Manga details screen",
+    "placeholders": {
+      "number": {
+        "example": "23",
+        "type": "int"
+      }
+    }
+  },
+  "parallelSourceRequest": "இணை மூல கோரிக்கைகள்",
+  "@parallelSourceRequest": {
+    "description": "Text for Parallel source requests property"
+  },
+  "pending": "நிலுவையில் உள்ளது",
+  "@pending": {
+    "description": "Pending status Manga Group title in Update Summary Screen"
+  },
+  "pinchToZoom": "பெரிதாக்க கிள்ளுதல்",
+  "@pinchToZoom": {
+    "description": "Switch title to enable pinch to zoom in reader screen"
+  },
+  "previousChapter": "முந்தைய: {அத்தியாயம்",
+  "@previousChapter": {
+    "description": "Text for Previous Chapter button in Manga Reader Screen"
+  },
+  "quickSearch": "விரைவான தேடல்",
+  "@quickSearch": {
+    "description": "Screen title and Button text of Quick Search screen"
+  },
+  "quickSearchCategory": "'சி' வகைக்குச் செல்லுங்கள்",
+  "@quickSearchCategory": {
+    "description": "Quick Open Hint text for Category C with prefill '#C'"
+  },
+  "quickSearchCategoryManga": "'சி' பிரிவில் மங்கா 'எம்' க்குச் செல்லுங்கள்",
+  "@quickSearchCategoryManga": {
+    "description": "Quick Open Hint text for searching Manga M in Category C with prefill '#C/M'"
+  },
+  "quickSearchCategoryMangaChapter": "'சி' பிரிவில் மங்கா 'எம்' இலிருந்து 'சிஎன்' என்ற அத்தியாயத்தின் பெயருக்குச் செல்லுங்கள்",
+  "@quickSearchCategoryMangaChapter": {
+    "description": "Quick Open Hint text for searching Chapter name CN from Manga M in Source S with prefill '#C/M:CN'"
+  },
+  "quickSearchContext": "வினவல் ஃச் ஐத் தேடுங்கள் (முடிவுகள் திரை சூழலை அடிப்படையாகக் கொண்டவை)",
+  "@quickSearchContext": {
+    "description": "Quick Open Hint text for query X"
+  },
+  "quickSearchShowAllCommandTip": "உதவிக்குறிப்பு: உள்ளிடவும் '?' எல்லா கட்டளைகளையும் காண",
+  "@quickSearchShowAllCommandTip": {
+    "description": "Quick Open Tip text for showing all commands by entering '?'"
+  },
+  "quickSearchSource": "மூலத்திற்குச் செல்லுங்கள் 'கள்'",
+  "@quickSearchSource": {
+    "description": "Quick Open Hint text for Source S with prefill '@S'"
+  },
+  "quickSearchSourceManga": "மூலத்தில் மங்கா 'எம்' ஐத் தேடுங்கள் 'எச்'",
+  "@quickSearchSourceManga": {
+    "description": "Quick Open Hint text for searching Manga M in Source S with prefill '@S/M'"
+  },
+  "readerMagnifierSize": "உருப்பெருக்கி அளவு",
+  "@readerMagnifierSize": {
+    "description": "Slider title text for Reader Magnifier Size"
+  },
+  "readerMode": "படித்தல் பயன்முறை",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerModeContinuousHorizontalLTR": "தொடர்ச்சியான கிடைமட்ட (எல்.டி.ஆர்)",
+  "@readerModeContinuousHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
+  },
+  "readerModeContinuousHorizontalRTL": "தொடர்ச்சியான கிடைமட்ட (ஆர்.டி.எல்)",
+  "@readerModeContinuousHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Continuous Horizontal (RTL)"
+  },
+  "readerModeContinuousVertical": "தொடர்ச்சியான செங்குத்து",
+  "@readerModeContinuousVertical": {
+    "description": "Radio button text for Reader Mode Type - Continuous Vertical"
+  },
+  "readerModeDefaultReader": "இயல்புநிலை",
+  "@readerModeDefaultReader": {
+    "description": "Radio button text for Reader Mode Type - Default"
+  },
+  "readerModeSingleHorizontalLTR": "ஒற்றை கிடைமட்ட (எல்.டி.ஆர்)",
+  "@readerModeSingleHorizontalLTR": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (LTR)"
+  },
+  "readerModeSingleHorizontalRTL": "ஒற்றை கிடைமட்ட (ஆர்.டி.எல்)",
+  "@readerModeSingleHorizontalRTL": {
+    "description": "Radio button text for Reader Mode Type - Single Horizontal (RTL)"
+  },
+  "readerModeSingleVertical": "ஒற்றை செங்குத்து",
+  "@readerModeSingleVertical": {
+    "description": "Radio button text for Reader Mode Type - Single Vertical"
+  },
+  "readerModeWebtoon": "வெப்டூன்",
+  "@readerModeWebtoon": {
+    "description": "Radio button text for Reader Mode Type - Webtoon"
+  },
+  "readerNavigationLayout": "வழிசெலுத்தல் தளவமைப்பு",
+  "@readerNavigationLayout": {
+    "description": "Popup title and Button text of Reader Navigation Layout popup"
+  },
+  "readerNavigationLayoutDefault": "இயல்புநிலை",
+  "@readerNavigationLayoutDefault": {
+    "description": "Radio button text for Reader Navigation Layout - Default"
+  },
+  "readerNavigationLayoutDisabled": "முடக்கப்பட்டது",
+  "@readerNavigationLayoutDisabled": {
+    "description": "Radio button text for Reader Navigation Layout - Disabled"
+  },
+  "readerNavigationLayoutEdge": "விளிம்பு",
+  "@readerNavigationLayoutEdge": {
+    "description": "Radio button text for Reader Navigation Layout - Edge"
+  },
+  "readerNavigationLayoutInvert": "தலைகீழ் தட்டுதல்",
+  "@readerNavigationLayoutInvert": {
+    "description": "Switch title to invert Tap to scroll in reader screen"
+  },
+  "readerNavigationLayoutKindlish": "கின்டெல்-இச்",
+  "@readerNavigationLayoutKindlish": {
+    "description": "Radio button text for Reader Navigation Layout - Kindle-ish"
+  },
+  "readerNavigationLayoutLShaped": "எல் வடிவ",
+  "@readerNavigationLayoutLShaped": {
+    "description": "Radio button text for Reader Navigation Layout - L Shaped"
+  },
+  "readerNavigationLayoutRightAndLeft": "வலது மற்றும் இடது",
+  "@readerNavigationLayoutRightAndLeft": {
+    "description": "Radio button text for Reader Navigation Layout - Right And Left"
+  },
+  "readerOverlay": "வாசகர் ஆரம்ப மேலடுக்கு",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "readerOverlaySubtitle": "ஒரு அத்தியாயத்தைத் திறக்கும்போது தலைப்பு மற்றும் விரைவான அமைப்புகளைக் காட்டுகிறது",
+  "@readerOverlaySubtitle": {},
+  "readerScrollAnimation": "உருள் அனிமேசன்",
+  "@readerScrollAnimation": {
+    "description": "Switch title to Disable scroll animation in reader screen"
+  },
+  "readerSwipeChapterToggle": "மாற்றுவதை ச்வைப் செய்யுங்கள்",
+  "@readerSwipeChapterToggle": {
+    "description": "Switch title to toggle `swipe to change chapter` in reader screen"
+  },
+  "readerSwipeChapterToggleDescription": "வாசகரில் அத்தியாயத்தை மாற்ற ச்வைப் செய்யவும்",
+  "@readerSwipeChapterToggleDescription": {
+    "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
+  },
+  "readerVolumeTap": "தொகுதி விசைகள்",
+  "@readerVolumeTap": {
+    "description": "Switch button text for Reader Page Navigation with Volume Tap"
+  },
+  "readerVolumeTapInvert": "தொகுதி விசைகள் தலைகீழ்",
+  "@readerVolumeTapInvert": {
+    "description": "Switch button text to invert Volume Tap "
+  },
+  "readerVolumeTapSubtitle": "தொகுதி விசைகளுடன் செல்லவும்",
+  "@readerVolumeTapSubtitle": {
+    "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+  },
+  "reddit": "ரெடிட்",
+  "@reddit": {
+    "description": "Reddit app title"
+  },
+  "refresh": "புதுப்பிப்பு",
+  "@refresh": {
+    "description": "Refresh button text"
+  },
+  "reload": "ஏற்றவும்",
+  "@reload": {
+    "description": "Reload button text"
+  },
+  "remove": "அகற்று",
+  "@remove": {
+    "description": "Remove Button text"
+  },
+  "removeFromLibrary": "நூலகத்திலிருந்து அகற்றவா?",
+  "@removeFromLibrary": {
+    "description": "Remove From Library Popup text"
+  },
+  "reset": "மீட்டமை",
+  "@reset": {
+    "description": "Button text of reset button in source filters"
+  },
+  "restore": "மீட்டமை",
+  "@restore": {
+    "description": "Button Text to create backup"
+  },
+  "restoreBackupDescription": "காப்புப்பிரதியிலிருந்து டச்சிடெச்கை மீட்டெடுக்கவும்",
+  "@restoreBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "restoreBackupTitle": "காப்புப்பிரதியை மீட்டமைக்கவும்",
+  "@restoreBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "restored": "காப்புப்பிரதி மீட்டெடுக்கப்பட்டது!",
+  "@restored": {
+    "description": "Toast Text to show that the backup has been restored"
+  },
+  "restoring": "காப்புப்பிரதியை மீட்டமைத்தல்",
+  "@restoring": {
+    "description": "Toast Text to show that the backup is restoring"
+  },
+  "saveAsCBZArchive": "சிபிஇசட் காப்பகமாக சேமிக்கவும்",
+  "@saveAsCBZArchive": {
+    "description": "Settings toggle label for Save as CBZ archive"
+  },
+  "scanlators": "ச்கேன்லேட்டர்கள்",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "search": "தேடல்",
+  "@search": {
+    "description": "Search field hint Text"
+  },
+  "searchingForUpdates": "புதுப்பிப்புகளைத் தேடுகிறது",
+  "@searchingForUpdates": {
+    "description": "Toast Text for searching for updates of the App/Server"
+  },
+  "selectInBetween": "இடையில் தேர்ந்தெடுக்கவும்",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "selectNext10": "அடுத்த 10 ஐத் தேர்ந்தெடுக்கவும்",
+  "@selectNext10": {
+    "description": "Toast Text for selecting next 10 chapters"
+  },
+  "selectUnread": "படிக்கத் தேர்ந்தெடுக்கவும்",
+  "@selectUnread": {
+    "description": "Popup Text for selecting unread chapters"
+  },
+  "server": "சேவையகம்",
+  "@server": {
+    "description": "Text title for the server in About screen"
+  },
+  "serverBindings": "சேவையக பிணைப்புகள்",
+  "@serverBindings": {
+    "description": "Title for server bindings settings"
+  },
+  "serverPort": "சேவையகம் துறைமுகம்",
+  "@serverPort": {
+    "description": "Popup title and Button text to update Server Port"
+  },
+  "serverPortHintText": "சேவையக துறைமுகம்",
+  "@serverPortHintText": {
+    "description": "Text Filed hint text to update Server Port"
+  },
+  "serverUrl": "சேவையக முகவரி",
+  "@serverUrl": {
+    "description": "Popup title and Button text to update Server Url"
+  },
+  "serverUrlHintText": "சேவையக முகவரி",
+  "@serverUrlHintText": {
+    "description": "Text Filed hint text to update Server Url"
+  },
+  "serverVersion": "சேவையக பதிப்பு",
+  "@serverVersion": {
+    "description": "Text title for the current version of the Server in About screen"
+  },
+  "settings": "அமைப்புகள்",
+  "@settings": {
+    "description": "Screen title and Button text of Settings screen"
+  },
+  "skipUpdatingEntries": "உள்ளீடுகளைப் புதுப்பிப்பதைத் தவிர்க்கவும்",
+  "@skipUpdatingEntries": {
+    "description": "Settings Text to update skip Updating Entries"
+  },
+  "socksHost": "சாக்ச் புரவலன்",
+  "@socksHost": {},
+  "socksPassword": "சாக்ச் கடவுச்சொல்",
+  "@socksPassword": {},
+  "socksPort": "சாக்ச் துறைமுகம்",
+  "@socksPort": {},
+  "socksProxy": "சாக்ச் பதிலாள்",
+  "@socksProxy": {
+    "description": "Section title for SOCKS Proxy settings"
+  },
+  "socksUserName": "சாக்ச் பயனர்பெயர்",
+  "@socksUserName": {},
+  "socksVersion": "சாக்ச் பதிப்பு",
+  "@socksVersion": {
+    "description": "Title for Socks version picker"
+  },
+  "sort": "வரிசைப்படுத்து",
+  "@sort": {
+    "description": "title of sort Tab across the app"
+  },
+  "source": "மூலம்",
+  "@source": {
+    "description": "Screen title and Button text of source screen"
+  },
+  "sourceTypeFilter": "வடிப்பி",
+  "@sourceTypeFilter": {
+    "description": "Tab text Filter for source screen type"
+  },
+  "sourceTypeLatest": "அண்மைக் கால",
+  "@sourceTypeLatest": {
+    "description": "Tab text Latest for source screen type"
+  },
+  "sourceTypePopular": "மக்கள்",
+  "@sourceTypePopular": {
+    "description": "Tab text Popular for source screen type"
+  },
+  "sources": "மூலங்கள்",
+  "@sources": {
+    "description": "title of Sources Tab in Browse Screen"
+  },
+  "start": "தொடங்கு",
+  "@start": {
+    "description": "Button text start reading the manga"
+  },
+  "systemTrayIcon": "கணினி தட்டில் ஐகானைக் காட்டு",
+  "@systemTrayIcon": {
+    "description": "Switch title to Show icon in system tray in settings"
+  },
+  "thatHaventBeenStarted": "அது தொடங்கப்படவில்லை",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
+  },
+  "themeModeDark": "இருண்ட",
+  "@themeModeDark": {
+    "description": "Radio button text for App theme - Dark"
+  },
+  "today": "இன்று",
+  "@today": {
+    "description": "Today Text to show the release date of manga"
+  },
+  "uninstall": "நிறுவல் நீக்க",
+  "@uninstall": {
+    "description": "Button text to Uninstall the extension"
+  },
+  "uninstalling": "நிறுவல் நீக்குதல்",
+  "@uninstalling": {
+    "description": "Button text to show that the extension is uninstalling"
+  },
+  "unknownAuthor": "தெரியாத ஆசிரியர்",
+  "@unknownAuthor": {
+    "description": "Text to show unknown author in Manga details screen"
+  },
+  "unknownManga": "தெரியாத மங்கா",
+  "@unknownManga": {
+    "description": "Text to show unknown manga in Manga details screen"
+  },
+  "unknownSource": "தெரியாத சான்று",
+  "@unknownSource": {
+    "description": "Text to show unknown Source in Manga details screen"
+  },
+  "unread": "படிக்காதது",
+  "@unread": {
+    "description": "Checkbox text to unread bookmarked manga/chapters across app"
+  },
+  "update": "புதுப்பிப்பு",
+  "@update": {
+    "description": "Button text to update the extension"
+  },
+  "updateCompleted": "புதுப்பிப்பு முடிந்தது",
+  "@updateCompleted": {
+    "description": "Button text to show that extension update is completed"
+  },
+  "updateFailed": "{சொத்து bep புதுப்பிக்கத் தவறிவிட்டது",
+  "@updateFailed": {
+    "description": "Failed to update Text"
+  },
+  "updates": "புதுப்பிப்புகள்",
+  "@updates": {
+    "description": "Screen title and Button text of Updates screen"
+  },
+  "updatesSummary": "புதுப்பிப்புகள் சுருக்கம்",
+  "@updatesSummary": {
+    "description": "Screen title and Button text of Updates Summary screen"
+  },
+  "updating": "புதுப்பித்தல்",
+  "@updating": {
+    "description": "Button text to show that the extension is updating"
+  },
+  "userName": "பயனர் பெயர்",
+  "@userName": {
+    "description": "Title text for User Name field"
+  },
+  "validating": "சரிபார்ப்பு",
+  "@validating": {
+    "description": "toast to show backup validation is in progress"
+  },
+  "versionAvailable": "பதிப்பு {version} {பயன்பாட்டிற்கு கிடைக்கிறது !!",
+  "@versionAvailable": {
+    "description": "Text to show that there is an update to App/Server",
+    "placeholders": {
+      "app": {
+        "example": "Server",
+        "type": "String"
+      },
+      "version": {
+        "example": "v0.4.2",
+        "type": "String"
+      }
+    }
+  },
+  "webUI": "வலையில் திறந்திருக்கும்",
+  "@webUI": {
+    "description": "Button text to open in web UI"
+  },
+  "webView": "வலை பார்வை",
+  "@webView": {
+    "description": "Button text to open manga website"
+  },
+  "whatsNew": "புதியது என்ன?",
+  "@whatsNew": {
+    "description": "Button text to open whats new page of app in web"
+  },
+  "withCompletedStatus": "நிறைவு செய்யப்பட்ட நிலையுடன்",
+  "@withCompletedStatus": {
+    "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+  },
+  "withUnreadChapter": "படிக்காத அத்தியாயங்களுடன்)",
+  "@withUnreadChapter": {
+    "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+  },
+  "yesterday": "நேற்று",
+  "@yesterday": {
+    "description": "Yesterday Text to show the release date of manga"
+  },
+  "about": "பற்றி",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "வகையைச் சேர்க்கவும்",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "நூலகத்தில் சேர்க்கவும்",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "advanced": "மேம்பட்ட",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "allScanlators": "அனைத்து ச்கேன்லேட்டர்களும்",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "autoDownloadNewChapters": "புதிய அத்தியாயங்களைப் பதிவிறக்கவும்",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "தானியங்கி காப்புப்பிரதி",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "categoryUpdate": "வகை புதுப்பிப்பு",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "channel": "வாய்க்கால்",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "அத்தியாயம் {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortFetchedDate": "தேதியைப் பெற்றதன் மூலம்",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "client": "கிளீன்",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "delete": "நீக்கு",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "deleteCategoryDescription": "இது இந்த பிரிவில் உள்ள அனைத்து மங்காவையும் இயல்புநிலைக்கு இணைக்கும்!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "deleteCategoryTitle": "நீங்கள் உறுதியாக இருக்கிறீர்களா?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "discord": "முரண்பாடு",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "downloaded": "பதிவிறக்கம்",
+  "@downloaded": {
+    "description": "Text to show downloaded chapters status in Filters  "
+  },
+  "downloading": "பதிவிறக்குகிறது",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "gitHub": "கிரப்",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "globalSearch": "உலக தேடல்",
+  "@globalSearch": {
+    "description": "Screen title of Global Search screen"
+  },
+  "globalUpdate": "உலகளாவிய புதுப்பிப்பு",
+  "@globalUpdate": {
+    "description": "Button text of Global Manga Update"
+  },
+  "gqlDebugLogs": "கிராஃபிக்யூஎல் பிழைத்திருத்த பதிவுகள்",
+  "@gqlDebugLogs": {
+    "description": "Switch title for Graphql Debug logs in settings"
+  },
+  "gqlDebugLogsHint": "தனியுரிமை அல்லாத பாதுகாப்பான தகவல்களுடன் பதிவுகள் இதில் அடங்கும்",
+  "@gqlDebugLogsHint": {
+    "description": "Switch subTitle for Graphql Debug logs in settings"
+  },
+  "misc": "இதர",
+  "@misc": {
+    "description": "Section title for misc settings"
+  },
+  "password": "கடவுச்சொல்",
+  "@password": {
+    "description": "Title text for password field"
+  },
+  "pause": "இடைநிறுத்தம்",
+  "@pause": {
+    "description": "Button text to pause downloads"
+  },
+  "queued": "வரிசையில்",
+  "@queued": {
+    "description": "Text to show chapters are queued for downloading"
+  },
+  "reader": "வாசகர்",
+  "@reader": {
+    "description": "Screen title and Button text of Reader screen"
+  },
+  "readerPadding": "வாசகர் திணிப்பு",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
+  },
+  "resume": "மீண்டும் தொடங்குங்கள்",
+  "@resume": {
+    "description": "Button Text to resume Chapter reading/downloading"
+  },
+  "retry": "மீண்டும் முயற்சிக்கவும்",
+  "@retry": {
+    "description": "Retry Button Text"
+  },
+  "running": "இயங்கும்",
+  "@running": {
+    "description": "Running status Manga Group title in Update Summary Screen"
+  },
+  "save": "சேமி",
+  "@save": {
+    "description": "Save Button Text"
+  },
+  "themeModeLight": "ஒளி",
+  "@themeModeLight": {
+    "description": "Radio button text for App theme - Light"
+  },
+  "themeModeSystem": "மண்டலம்",
+  "@themeModeSystem": {
+    "description": "Radio button text for App theme - System"
+  }
+}
