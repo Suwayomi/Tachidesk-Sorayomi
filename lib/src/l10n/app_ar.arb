@@ -916,5 +916,49 @@
   "selectUnread": "حدد غير المقروءة",
   "@selectUnread": {
     "description": "Popup Text for selecting unread chapters"
+  },
+  "chapterDownloadLimitDesc": "ضع حدا لكمية الفصول التي سيتم تحميلها.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "advanced": "متقدم",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "automaticUpdate": "التحديث التلقائي",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "authentication": "المصادقة",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "التحميل التلقائي",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "autoDownloadNewChapters": "تحميل الفصول الجديدة",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "عمل نسخة احتياطية تلقائيا",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "automaticallyRefreshMetadataSubtitle": "تحقق من وجود غلاف وتفاصيل للفصل جديدة عند تحديث المكتبة",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupTime": "وقت النسخ الاحتياطي",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "chapterDownloadLimit": "حد تحميل الفصول",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "copied": "تم النسخ!",
+  "@copied": {
+    "description": "Copied Text"
   }
 }
