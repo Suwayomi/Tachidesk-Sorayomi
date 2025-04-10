@@ -1212,5 +1212,9 @@
   "openInWeb": "在瀏覽器中開啟",
   "@openInWeb": {
     "description": "Button title text for open the url in web"
+  },
+  "parallelSourceRequest": "並行來源請求數量",
+  "@parallelSourceRequest": {
+    "description": "Text for Parallel source requests property"
   }
 }
