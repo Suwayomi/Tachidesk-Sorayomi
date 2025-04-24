@@ -42,7 +42,7 @@
   "@channel": {},
   "chapterNumber": "Capítulo {number}",
   "@chapterNumber": {},
-  "chapterSortFetchedDate": "Por dados recolhidos",
+  "chapterSortFetchedDate": "Por Data de Busca",
   "@chapterSortFetchedDate": {},
   "chapterSortSource": "Por fonte",
   "@chapterSortSource": {},
@@ -62,7 +62,7 @@
   "@copyMsg": {},
   "create": "Criar",
   "@create": {},
-  "createBackupDescription": "Salvar como backup do Tachidesk",
+  "createBackupDescription": "Salvar a biblioteca como um backup do Tachidesk",
   "@createBackupDescription": {},
   "createBackupTitle": "Criar Backup",
   "@createBackupTitle": {},
@@ -74,25 +74,25 @@
   "@defaultCategory": {},
   "delete": "Remover",
   "@delete": {},
-  "deleteCategoryDescription": "Isto irá fundir todos os mangas desta categoria para predefinidos!",
+  "deleteCategoryDescription": "Isto mesclará todos os mangás desta categoria para predefinidos!",
   "@deleteCategoryDescription": {},
-  "deleteCategoryTitle": "Tem a certeza?",
+  "deleteCategoryTitle": "Tem certeza?",
   "@deleteCategoryTitle": {},
   "discord": "Discord",
   "@discord": {},
-  "display": "Exibir",
+  "display": "Exibição",
   "@display": {},
   "displayMode": "Modo de exibição",
   "@displayMode": {},
   "displayModeDescriptiveList": "Lista descritiva",
   "@displayModeDescriptiveList": {},
-  "displayModeGrid": "Grelha",
+  "displayModeGrid": "Grade",
   "@displayModeGrid": {},
   "displayModeList": "Lista",
   "@displayModeList": {},
   "downloaded": "Transferidos",
   "@downloaded": {},
-  "downloads": "Transferências",
+  "downloads": "Baixados",
   "@downloads": {},
   "edit": "Editar",
   "@edit": {},
@@ -106,13 +106,13 @@
   "@errorFilePick": {},
   "errorFilePickUnknownExtension": "Por favor selecione um arquivo com {extensionName} extensão",
   "@errorFilePickUnknownExtension": {},
-  "errorLaunchURL": "Falha ao abrir!\nA Copiar \"{url}\" para a área de transferência",
+  "errorLaunchURL": "Falha ao abrir!\nCopiando \"{url}\" para a área de transferência",
   "@errorLaunchURL": {},
   "errorPassword": "Senha não pode ficar em branco",
   "@errorPassword": {},
   "errorSomethingWentWrong": "Algo correu mal!",
   "@errorSomethingWentWrong": {},
-  "errorUserName": "Nome de utilizador não pode ficar em branco",
+  "errorUserName": "Nome de usuário não pode ficar em branco",
   "@errorUserName": {},
   "extensionInstalled": "Extensão instalada!",
   "@extensionInstalled": {},
@@ -376,7 +376,7 @@
   "@findServer": {
     "description": "Button text of Find Server"
   },
-  "chapterSortUploadDate": "Por data do envio",
+  "chapterSortUploadDate": "Por Data de Envio",
   "@chapterSortUploadDate": {
     "description": "Radio button text for sort by Upload Date"
   },
@@ -517,5 +517,69 @@
   "selectNext10": "Selecione os próximos 10",
   "@selectNext10": {
     "description": "Toast Text for selecting next 10 chapters"
+  },
+  "advanced": "Avançado",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "backupAndRestore": "Fazer Backup e Restaurar",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "Limpar Backups",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "chapterDownloadLimit": "Limite de download de capítulos",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "Limite a quantidade de capítulos novos que serão baixados.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "copied": "Copiado!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "debugLogs": "Registros de debug",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "downloadLocation": "Local de download",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "downloadLocationHint": "O caminho para o diretório no servidor onde os arquivos baixados devem ser salvos",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "downloading": "Baixando",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "error": "Erro",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "Falha ao criar Backup",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "errorBackupRestore": "Falha ao restaurar Backup!",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "extensionRepository": "Repositório de extensões",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "Adicione repositórios de onde as extensões podem ser instaladas",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "excludeEntryWithUnreadChapters": "Ignorar downloads automáticos de capítulos para entradas com capítulos não lidos",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
   }
 }
