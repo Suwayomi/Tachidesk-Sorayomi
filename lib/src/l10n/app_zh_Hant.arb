@@ -1089,7 +1089,7 @@
   "@hideEmptyCategory": {
     "description": "Switch button text to Hide empty category in library"
   },
-  "flareSolverr": "FlareSolverr",
+  "flareSolverr": "啓用FlareSolverr",
   "@flareSolverr": {
     "description": "Toggle title to enable FlareSolverr"
   },
@@ -1141,7 +1141,7 @@
   "@thatHaventBeenStarted": {
     "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
   },
-  "socksProxy": "SOCKS Proxy",
+  "socksProxy": "SOCKS 代理",
   "@socksProxy": {
     "description": "Section title for SOCKS Proxy settings"
   },
