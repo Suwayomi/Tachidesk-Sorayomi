@@ -7,7 +7,7 @@
   "@addToLibrary": {
     "description": "Button text to add Manga to Library in Manga Details Screen"
   },
-  "about": "このアプリについて",
+  "about": "About",
   "@about": {
     "description": "Screen title and Button text of About screen"
   },
@@ -822,5 +822,337 @@
   "appearance": "外観",
   "@appearance": {
     "description": "Screen title and Button text of Appearance screen"
+  },
+  "client": "クライアント",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "clientVersion": "クライアントバージョン",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "displayModeGrid": "グリッド",
+  "@displayModeGrid": {
+    "description": "Radio button text for Manga Cover display mode - Grid"
+  },
+  "readerMode": "読書モード",
+  "@readerMode": {
+    "description": "Popup title and Button text of Reader Mode popup"
+  },
+  "readerPadding": "リーダーのパディング",
+  "@readerPadding": {
+    "description": "Slider title text for Reader Padding"
+  },
+  "reddit": "Reddit",
+  "@reddit": {
+    "description": "Reddit app title"
+  },
+  "running": "実行中",
+  "@running": {
+    "description": "Running status Manga Group title in Update Summary Screen"
+  },
+  "themeModeLight": "ライト",
+  "@themeModeLight": {
+    "description": "Radio button text for App theme - Light"
+  },
+  "channel": "チャンネル",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "browse": "Browse",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "advanced": "高度",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "authentication": "認証",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "自動ダウンロード",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "autoDownloadNewChapters": "新しい章をダウンロード",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "自動バックアップ",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "automaticUpdate": "自動更新",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "メタデータを自動更新",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "ライブラリの更新時に新しいカバーと詳細をチェック",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupAndRestore": "バックアップと復元",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "バックアップのクリーンアップ",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupCleanupDescription": "{count, select, 0{Never} 01{1日以上前のバックアップを削除する} other{{count}日以上前のバックアップを削除する}}",
+  "@backupCleanupDescription": {},
+  "backupInterval": "バックアップ間隔",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupLocation": "バックアップ場所",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupLocationDescription": "自動バックアップが保存されるサーバーのディレクトリへのパス",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "backupTime": "バックアップ時刻",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "chapterDownloadLimit": "章ダウンロード制限",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "ダウンロードする新しい章の量を制限します。",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "cloudflareBypass": "Cloudflare バイパス",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "copied": "コピー済！",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "debugLogs": "デバッグログ",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  },
+  "display": "表示",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "downloadLocation": "ダウンロード場所",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "downloading": "ダウンロード中",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "enableSocksProxy": "SOCKSプロキシを使用する",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "enterProp": "{prop}を入力してください",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "error": "エラー",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "バックアップの作成に失敗しました",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "errorBackupRestore": "バックアップの復元に失敗しました！",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "errorFilePickUnknownExtension": "拡張機能 {extensionName} のファイルを選択してください",
+  "@errorFilePickUnknownExtension": {
+    "description": "Error Description to show when user selected unknown extension file"
+  },
+  "extensionRepository": "拡張機能リポジトリ",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "拡張機能をインストールできるリポジトリを追加する",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "flareSolverrRequestTimeout": "FlareSolverrリクエストタイムアウト",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "flareSolverrSessionName": "FlareSolverrセッション名",
+  "@flareSolverrSessionName": {
+    "description": "Title text for FlareSolverr Session Name property"
+  },
+  "flareSolverrSessionTTL": "FlareSolverrセッションTTL",
+  "@flareSolverrSessionTTL": {
+    "description": "Title text for FlareSolverr Session TTL property"
+  },
+  "gitHub": "GitHub",
+  "@gitHub": {
+    "description": "GitHub app title"
+  },
+  "gqlDebugLogs": "Graphql デバッグログ",
+  "@gqlDebugLogs": {
+    "description": "Switch title for Graphql Debug logs in settings"
+  },
+  "gqlDebugLogsHint": "このログはプライバシーにかかわる情報を含みます",
+  "@gqlDebugLogsHint": {
+    "description": "Switch subTitle for Graphql Debug logs in settings"
+  },
+  "includeCategories": "カテゴリー",
+  "@includeCategories": {
+    "description": "Check box text to include categories during create backup"
+  },
+  "includeChapters": "章",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
+  },
+  "invalidPort": "無効なポート",
+  "@invalidPort": {
+    "description": "Error when Submitted invalid Port Number"
+  },
+  "invalidProp": "無効： {property}",
+  "@invalidProp": {
+    "description": "Toast text for select invalid property value"
+  },
+  "ipHintText": "サーバーのバインドIPアドレスを入力してください",
+  "@ipHintText": {},
+  "localSourceLocation": "ローカルソースの場所",
+  "@localSourceLocation": {
+    "description": "Text for Local Source Location settings property"
+  },
+  "misc": "その他",
+  "@misc": {
+    "description": "Section title for misc settings"
+  },
+  "noPropFound": "{prop}が見つかりませんでした",
+  "@noPropFound": {
+    "description": "Template text to say No value for property found"
+  },
+  "none": "なし",
+  "@none": {
+    "description": "Text for None"
+  },
+  "openFlareSolverr": "設定方法に関する情報は、FlareSolverrを確認してください",
+  "@openFlareSolverr": {
+    "description": "Text for link to Open Flare Solverr setup documentation"
+  },
+  "openInWeb": "Webで開く",
+  "@openInWeb": {
+    "description": "Button title text for open the url in web"
+  },
+  "or": "または",
+  "@or": {
+    "description": "text literal for word or"
+  },
+  "parallelSourceRequest": "ソースリクエストの並列化",
+  "@parallelSourceRequest": {
+    "description": "Text for Parallel source requests property"
+  },
+  "queued": "キューに追加済",
+  "@queued": {
+    "description": "Text to show chapters are queued for downloading"
+  },
+  "restore": "復元",
+  "@restore": {
+    "description": "Button Text to create backup"
+  },
+  "saveAsCBZArchive": "CBZアーカイブとして保存",
+  "@saveAsCBZArchive": {
+    "description": "Settings toggle label for Save as CBZ archive"
+  },
+  "serverBindings": "サーバーバインディング",
+  "@serverBindings": {
+    "description": "Title for server bindings settings"
+  },
+  "skipUpdatingEntries": "アップデートをスキップするエントリ",
+  "@skipUpdatingEntries": {
+    "description": "Settings Text to update skip Updating Entries"
+  },
+  "socksHost": "SOCKSホスト",
+  "@socksHost": {},
+  "socksPassword": "SOCKSパスワード",
+  "@socksPassword": {},
+  "socksPort": "SOCKSポート",
+  "@socksPort": {},
+  "socksUserName": "SOCKSユーザー名",
+  "@socksUserName": {},
+  "socksVersion": "SOCKSバージョン",
+  "@socksVersion": {
+    "description": "Title for Socks version picker"
+  },
+  "systemTrayIcon": "システムトレイにアイコンを表示する",
+  "@systemTrayIcon": {
+    "description": "Switch title to Show icon in system tray in settings"
+  },
+  "updateFailed": "{property} の更新に失敗しました",
+  "@updateFailed": {
+    "description": "Failed to update Text"
+  },
+  "validating": "検証中",
+  "@validating": {
+    "description": "toast to show backup validation is in progress"
+  },
+  "withCompletedStatus": "「完結済」ステータス",
+  "@withCompletedStatus": {
+    "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+  },
+  "withUnreadChapter": "未読の章",
+  "@withUnreadChapter": {
+    "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+  },
+  "appTitle": "Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Sorayomi in native script)"
+  },
+  "ip": "IPアドレス",
+  "@ip": {
+    "description": "Option title for Server IP Address in Server settings"
+  },
+  "flareSolverrServerUrl": "FlareSolverrサーバーURL",
+  "@flareSolverrServerUrl": {
+    "description": "Title text for FlareSolverr Server Url property"
+  },
+  "hideEmptyCategory": "空のカテゴリを隠す",
+  "@hideEmptyCategory": {
+    "description": "Switch button text to Hide empty category in library"
+  },
+  "downloadLocationHint": "ダウンロードしたファイルが保存されるサーバーのディレクトリへのパス",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "excludeEntryWithUnreadChapters": "未読の章があるエントリで章の自動ダウンロードを無視する",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "socksProxy": "SOCKSプロキシ",
+  "@socksProxy": {
+    "description": "Section title for SOCKS Proxy settings"
+  },
+  "flareSolverr": "FlareSolverr",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "localSourceLocationDescription": "ローカルソースファイルが保存されるサーバーのディレクトリへのパス",
+  "@localSourceLocationDescription": {
+    "description": "Description text for Local Source Location property"
+  },
+  "themeModeDark": "ダーク",
+  "@themeModeDark": {
+    "description": "Radio button text for App theme - Dark"
   }
 }
