@@ -52,32 +52,36 @@ class SinglePageReaderMode extends HookConsumerWidget {
           : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
     final currentIndex = useState(scrollController.initialPage);
+    
     useEffect(() {
       if (onPageChanged != null) onPageChanged!(currentIndex.value);
       int currentPage = currentIndex.value;
-      // Prev page
-      if (currentPage > 0) {
-        cacheManager.getServerFile(
-          ref,
-          chapterPages.pages[currentPage - 1],
-        );
-      }
-      // Next page
-      if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 1)) {
-        cacheManager.getServerFile(
-          ref,
-          chapterPages.pages[currentPage + 1],
-        );
-      }
-      // 2nd next page
-      if (currentPage < (chapter.pageCount.getValueOnNullOrNegative() - 2)) {
-        cacheManager.getServerFile(
-          ref,
-          chapterPages.pages[currentPage + 1],
-        );
+      // Only prefetch if we have pages data
+      if (chapterPages.pages.isNotEmpty) {
+        // Prev page
+        if (currentPage > 0 && currentPage - 1 < chapterPages.pages.length) {
+          cacheManager.getServerFile(
+            ref,
+            chapterPages.pages[currentPage - 1],
+          );
+        }
+        // Next page
+        if (currentPage < (chapterPages.pages.length - 1)) {
+          cacheManager.getServerFile(
+            ref,
+            chapterPages.pages[currentPage + 1],
+          );
+        }
+        // 2nd next page
+        if (currentPage < (chapterPages.pages.length - 2)) {
+          cacheManager.getServerFile(
+            ref,
+            chapterPages.pages[currentPage + 2],
+          );
+        }
       }
       return null;
-    }, [currentIndex.value]);
+    }, [currentIndex.value, chapterPages.pages.length]);
     useEffect(() {
       listener() {
         final currentPage = scrollController.page;
@@ -111,6 +115,20 @@ class SinglePageReaderMode extends HookConsumerWidget {
         controller: scrollController,
         allowImplicitScrolling: true,
         itemBuilder: (BuildContext context, int index) {
+          // Show loading indicator if no pages are available yet
+          if (chapterPages.pages.isEmpty) {
+            return const Center(
+              child: CenterSorayomiShimmerIndicator(),
+            );
+          }
+          
+          // Add bounds checking to prevent accessing non-existent pages
+          if (index >= chapterPages.pages.length) {
+            return const Center(
+              child: CenterSorayomiShimmerIndicator(),
+            );
+          }
+          
           final image = ServerImage(
             showReloadButton: true,
             fit: BoxFit.contain,
@@ -129,7 +147,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
             image,
           );
         },
-        itemCount: chapter.pageCount.getValueOnNullOrNegative(),
+        itemCount: chapterPages.pages.isEmpty ? 1 : chapterPages.pages.length,
       ),
     );
   }
