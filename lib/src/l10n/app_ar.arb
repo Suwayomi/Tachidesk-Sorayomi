@@ -916,5 +916,139 @@
   "selectUnread": "حدد غير المقروءة",
   "@selectUnread": {
     "description": "Popup Text for selecting unread chapters"
+  },
+  "chapterDownloadLimitDesc": "ضع حدا لكمية الفصول التي سيتم تحميلها.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "advanced": "متقدم",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "automaticUpdate": "التحديث التلقائي",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "authentication": "المصادقة",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "التحميل التلقائي",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "autoDownloadNewChapters": "تحميل الفصول الجديدة",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "عمل نسخة احتياطية تلقائيا",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "automaticallyRefreshMetadataSubtitle": "تحقق من وجود غلاف وتفاصيل للفصل جديدة عند تحديث المكتبة",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupTime": "وقت النسخ الاحتياطي",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "chapterDownloadLimit": "حد تحميل الفصول",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "copied": "تم النسخ!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "downloadLocationHint": "مسار المجلد على الخادم حيث يجب حفظ الملفات المحملة",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "excludeEntryWithUnreadChapters": "تجاهل التحميل التلقائي للتنزيلات التي تحتوي على فصول غير مقروءة",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "errorBackupCreate": "فشل في إنشاء النسخ الاحتياطي",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "automaticallyRefreshMetadata": "تحديث البيانات تلقائيًا",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "backupAndRestore": "النسخ الاحتياطي والاستعادة",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "إدارة النسخ الاحتياطي",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupInterval": "فترة النسخ الاحتياطي",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupCleanupDescription": "{count, select, 0{أبدًا} 01{حذف النسخ الاحتياطية التي مر عليها يوم واحد} other{حذف النسخ الاحتياطية التي مر عليها {count} أيام}}",
+  "@backupCleanupDescription": {},
+  "backupLocation": "مكان النسخ الاحتياطي",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupLocationDescription": "مسار المجلد على الخادم حيث يجب حفظ النسخ الاحتياطية التلقائية",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "cloudflareBypass": "تجاوز خدمة Cloudflare",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "debugLogs": "سجلات التصحيح",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "downloadLocation": "موقع التحميل",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "downloading": "جاري التحميل",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "enableSocksProxy": "استخدام بروكسي SOCKS",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "enterProp": "أدخل {prop}",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "error": "خطأ",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupRestore": "فشل في استعادة النسخة الاحتياطية!",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "extensionRepository": "مستودع الإضافات",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "أضف المستودعات التي يمكن تثبيت الإضافات منها",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "flareSolverr": "فلير سولفر",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "flareSolverrRequestTimeout": "انتهاء مهلة طلب FlareSolverr",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "includeChapters": "الفصول",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
   }
 }

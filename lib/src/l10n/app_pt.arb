@@ -42,7 +42,7 @@
   "@channel": {},
   "chapterNumber": "Capítulo {number}",
   "@chapterNumber": {},
-  "chapterSortFetchedDate": "Por dados recolhidos",
+  "chapterSortFetchedDate": "Por Data de Busca",
   "@chapterSortFetchedDate": {},
   "chapterSortSource": "Por fonte",
   "@chapterSortSource": {},
@@ -62,7 +62,7 @@
   "@copyMsg": {},
   "create": "Criar",
   "@create": {},
-  "createBackupDescription": "Salvar como backup do Tachidesk",
+  "createBackupDescription": "Salvar a biblioteca como um backup do Tachidesk",
   "@createBackupDescription": {},
   "createBackupTitle": "Criar Backup",
   "@createBackupTitle": {},
@@ -74,25 +74,25 @@
   "@defaultCategory": {},
   "delete": "Remover",
   "@delete": {},
-  "deleteCategoryDescription": "Isto irá fundir todos os mangas desta categoria para predefinidos!",
+  "deleteCategoryDescription": "Isto mesclará todos os mangás desta categoria para predefinidos!",
   "@deleteCategoryDescription": {},
-  "deleteCategoryTitle": "Tem a certeza?",
+  "deleteCategoryTitle": "Tem certeza?",
   "@deleteCategoryTitle": {},
   "discord": "Discord",
   "@discord": {},
-  "display": "Exibir",
+  "display": "Exibição",
   "@display": {},
   "displayMode": "Modo de exibição",
   "@displayMode": {},
   "displayModeDescriptiveList": "Lista descritiva",
   "@displayModeDescriptiveList": {},
-  "displayModeGrid": "Grelha",
+  "displayModeGrid": "Grade",
   "@displayModeGrid": {},
   "displayModeList": "Lista",
   "@displayModeList": {},
   "downloaded": "Transferidos",
   "@downloaded": {},
-  "downloads": "Transferências",
+  "downloads": "Baixados",
   "@downloads": {},
   "edit": "Editar",
   "@edit": {},
@@ -106,13 +106,13 @@
   "@errorFilePick": {},
   "errorFilePickUnknownExtension": "Por favor selecione um arquivo com {extensionName} extensão",
   "@errorFilePickUnknownExtension": {},
-  "errorLaunchURL": "Falha ao abrir!\nA Copiar \"{url}\" para a área de transferência",
+  "errorLaunchURL": "Falha ao abrir!\nCopiando \"{url}\" para a área de transferência",
   "@errorLaunchURL": {},
   "errorPassword": "Senha não pode ficar em branco",
   "@errorPassword": {},
   "errorSomethingWentWrong": "Algo correu mal!",
   "@errorSomethingWentWrong": {},
-  "errorUserName": "Nome de utilizador não pode ficar em branco",
+  "errorUserName": "Nome de usuário não pode ficar em branco",
   "@errorUserName": {},
   "extensionInstalled": "Extensão instalada!",
   "@extensionInstalled": {},
@@ -376,7 +376,7 @@
   "@findServer": {
     "description": "Button text of Find Server"
   },
-  "chapterSortUploadDate": "Por data do envio",
+  "chapterSortUploadDate": "Por Data de Envio",
   "@chapterSortUploadDate": {
     "description": "Radio button text for sort by Upload Date"
   },
@@ -517,5 +517,265 @@
   "selectNext10": "Selecione os próximos 10",
   "@selectNext10": {
     "description": "Toast Text for selecting next 10 chapters"
+  },
+  "advanced": "Avançado",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "backupAndRestore": "Fazer Backup e Restaurar",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "Limpar Backups",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "chapterDownloadLimit": "Limite de download de capítulos",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "Limite a quantidade de capítulos novos que serão baixados.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "copied": "Copiado!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "debugLogs": "Registros de debug",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "downloadLocation": "Local de download",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "downloadLocationHint": "O caminho para o diretório no servidor onde os arquivos baixados devem ser salvos",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "downloading": "Baixando",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "error": "Erro",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "Falha ao criar Backup",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "errorBackupRestore": "Falha ao restaurar Backup!",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "extensionRepository": "Repositório de extensões",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "Adicione repositórios de onde as extensões podem ser instaladas",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "excludeEntryWithUnreadChapters": "Ignorar downloads automáticos de capítulos para entradas com capítulos não lidos",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "authentication": "Autenticação",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "Download automático",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "autoDownloadNewChapters": "Baixe novos capítulos",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "Backup automático",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "automaticUpdate": "Atualização Automática",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "Recarregar automaticamente os metadados",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "Buscar por novas capas e detalhes quando atualizar a biblioteca",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupCleanupDescription": "{count, select, 0{Never} 01{Delete Backups que são mais antigos que 1 dia} other{Delete Backups que são mais antigos que {count} dias}}",
+  "@backupCleanupDescription": {},
+  "backupInterval": "Intervalo de Backup",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupLocation": "Local do backup",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupLocationDescription": "O caminho para o diretório no servidor onde os backups automáticos devem ser salvos",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "backupTime": "Hora do Backup",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "cloudflareBypass": "Cloudflare Bypass",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "enableSocksProxy": "Use SOCKS Proxy",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "flareSolverr": "FlareSolverr",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "flareSolverrRequestTimeout": "Tempo limite da solicitação do FlareSolverr",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "flareSolverrServerUrl": "URL do servidor FlareSolverr",
+  "@flareSolverrServerUrl": {
+    "description": "Title text for FlareSolverr Server Url property"
+  },
+  "flareSolverrSessionName": "Nome da sessão do FlareSolverr",
+  "@flareSolverrSessionName": {
+    "description": "Title text for FlareSolverr Session Name property"
+  },
+  "flareSolverrSessionTTL": "TTL da sessão do FlareSolverr",
+  "@flareSolverrSessionTTL": {
+    "description": "Title text for FlareSolverr Session TTL property"
+  },
+  "gqlDebugLogs": "Logs de depuração do Graphql",
+  "@gqlDebugLogs": {
+    "description": "Switch title for Graphql Debug logs in settings"
+  },
+  "gqlDebugLogsHint": "Isso inclui registros com informações não seguras de privacidade",
+  "@gqlDebugLogsHint": {
+    "description": "Switch subTitle for Graphql Debug logs in settings"
+  },
+  "hideEmptyCategory": "Ocultar categoria vazia",
+  "@hideEmptyCategory": {
+    "description": "Switch button text to Hide empty category in library"
+  },
+  "includeCategories": "Categorias",
+  "@includeCategories": {
+    "description": "Check box text to include categories during create backup"
+  },
+  "includeChapters": "Capítulos",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
+  },
+  "invalidPort": "Porta inválida",
+  "@invalidPort": {
+    "description": "Error when Submitted invalid Port Number"
+  },
+  "invalidProp": "inválida {property}",
+  "@invalidProp": {
+    "description": "Toast text for select invalid property value"
+  },
+  "ip": "Endereço IP",
+  "@ip": {
+    "description": "Option title for Server IP Address in Server settings"
+  },
+  "ipHintText": "Insira o endereço IP de vinculação do servidor",
+  "@ipHintText": {},
+  "localSourceLocation": "Localização da fonte local",
+  "@localSourceLocation": {
+    "description": "Text for Local Source Location settings property"
+  },
+  "localSourceLocationDescription": "O caminho para o diretório no servidor onde os arquivos de origem locais são salvos",
+  "@localSourceLocationDescription": {
+    "description": "Description text for Local Source Location property"
+  },
+  "none": "Nenhum",
+  "@none": {
+    "description": "Text for None"
+  },
+  "openFlareSolverr": "Consulte o FlareSolverr para obter informações sobre como configurá-lo",
+  "@openFlareSolverr": {
+    "description": "Text for link to Open Flare Solverr setup documentation"
+  },
+  "openInWeb": "Abrir na Web",
+  "@openInWeb": {
+    "description": "Button title text for open the url in web"
+  },
+  "or": "ou",
+  "@or": {
+    "description": "text literal for word or"
+  },
+  "parallelSourceRequest": "Solicitações de fontes paralelas",
+  "@parallelSourceRequest": {
+    "description": "Text for Parallel source requests property"
+  },
+  "queued": "Na fila",
+  "@queued": {
+    "description": "Text to show chapters are queued for downloading"
+  },
+  "restore": "Restaurar",
+  "@restore": {
+    "description": "Button Text to create backup"
+  },
+  "saveAsCBZArchive": "Salvar como arquivo CBZ",
+  "@saveAsCBZArchive": {
+    "description": "Settings toggle label for Save as CBZ archive"
+  },
+  "serverBindings": "Vinculações de servidor",
+  "@serverBindings": {
+    "description": "Title for server bindings settings"
+  },
+  "skipUpdatingEntries": "Pular atualização de entradas",
+  "@skipUpdatingEntries": {
+    "description": "Settings Text to update skip Updating Entries"
+  },
+  "socksHost": "Host SOCKS",
+  "@socksHost": {},
+  "socksPassword": "Senha SOCKS",
+  "@socksPassword": {},
+  "socksPort": "Porta SOCKS",
+  "@socksPort": {},
+  "socksProxy": "Proxy SOCKS",
+  "@socksProxy": {
+    "description": "Section title for SOCKS Proxy settings"
+  },
+  "socksUserName": "Nome de usuário SOCKS",
+  "@socksUserName": {},
+  "socksVersion": "Versão SOCKS",
+  "@socksVersion": {
+    "description": "Title for Socks version picker"
+  },
+  "systemTrayIcon": "Mostrar ícone na bandeja do sistema",
+  "@systemTrayIcon": {
+    "description": "Switch title to Show icon in system tray in settings"
+  },
+  "thatHaventBeenStarted": "Que ainda não foram iniciadas",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
+  },
+  "updateFailed": "Falha ao atualizar {property}",
+  "@updateFailed": {
+    "description": "Failed to update Text"
+  },
+  "validating": "Validando",
+  "@validating": {
+    "description": "toast to show backup validation is in progress"
+  },
+  "withCompletedStatus": "Com status Concluído",
+  "@withCompletedStatus": {
+    "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+  },
+  "misc": "Diversos",
+  "@misc": {
+    "description": "Section title for misc settings"
   }
 }
