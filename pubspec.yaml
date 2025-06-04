@@ -14,7 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   extension_type_unions: ^1.0.10
   file_picker: ^8.0.0+1
-  flex_color_scheme: ^8.0.0
+  flex_color_scheme: ^8.2.0
   flutter:
     sdk: flutter
   flutter_android_volume_keydown:
@@ -38,7 +38,7 @@ dependencies:
   hooks_riverpod: ^2.1.1
   http: ^1.2.0
   infinite_scroll_pagination: ^4.0.0
-  intl: ^0.19.0
+  intl: ^0.20.2
   json_annotation: ^4.9.0
   logger: ^2.5.0
   network_info_plus: ^6.0.0
