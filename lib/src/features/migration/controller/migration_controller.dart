@@ -12,8 +12,11 @@ import '../../../utils/extensions/custom_extensions.dart';
 import '../../browse_center/data/source_repository/source_repository.dart';
 import '../../browse_center/domain/source/source_model.dart';
 import '../../browse_center/presentation/source/controller/source_controller.dart';
+import '../../library/presentation/category/controller/edit_category_controller.dart';
+import '../../library/presentation/library/controller/library_controller.dart';
 import '../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../manga_book/domain/manga/manga_model.dart';
+import '../../manga_book/presentation/manga_details/controller/manga_details_controller.dart';
 import '../data/migration_repository.dart';
 import '../domain/migration_models.dart';
 
@@ -124,34 +127,61 @@ class MigrationExecution extends _$MigrationExecution {
         status: MigrationStatus.preparing,
       );
 
-      // Add a small delay to show the preparing state
-      await Future.delayed(const Duration(milliseconds: 500));
+      // Add a delay for visual feedback
+      await Future.delayed(const Duration(milliseconds: 1000));
 
-      // Simulate progress updates during migration
-      _updateProgress('Migrating chapters...', 25.0, MigrationStatus.migrating);
-      await Future.delayed(const Duration(milliseconds: 500));
-      
-      _updateProgress('Migrating categories...', 50.0, MigrationStatus.migrating);
-      await Future.delayed(const Duration(milliseconds: 500));
-      
-      _updateProgress('Finalizing migration...', 75.0, MigrationStatus.migrating);
-      await Future.delayed(const Duration(milliseconds: 500));
-      
+      // Update progress to migrating chapters
+      state = const MigrationProgress(
+        currentStep: 'Migrating chapters...',
+        percentage: 25.0,
+        status: MigrationStatus.migrating,
+      );
+
+      // Add another delay
+      await Future.delayed(const Duration(milliseconds: 800));
+
+      // Update progress to migrating categories
+      state = const MigrationProgress(
+        currentStep: 'Migrating categories...',
+        percentage: 50.0,
+        status: MigrationStatus.migrating,
+      );
+
+      // Add another delay
+      await Future.delayed(const Duration(milliseconds: 600));
+
+      // Update progress to finalizing
+      state = const MigrationProgress(
+        currentStep: 'Finalizing migration...',
+        percentage: 75.0,
+        status: MigrationStatus.migrating,
+      );
+
+      // Now execute the actual migration
       final result = await ref.read(migrationRepositoryProvider)
           .migrateManga(fromMangaId, toMangaId, options);
 
+      // Update final progress based on result
       if (result?.success == true) {
-        _updateProgress('Migration completed', 100.0, MigrationStatus.completed);
+        state = const MigrationProgress(
+          currentStep: 'Migration completed',
+          percentage: 100.0,
+          status: MigrationStatus.completed,
+        );
+        
+        // Invalidate caches to refresh UI data after successful migration
+        await _invalidateCachesAfterMigration(fromMangaId, toMangaId);
       } else {
-        _updateProgress(
-          result?.error ?? 'Migration failed',
-          0.0,
-          MigrationStatus.error,
+        state = MigrationProgress(
+          currentStep: result?.error ?? 'Migration failed',
+          percentage: 0.0,
+          status: MigrationStatus.error,
+          errorMessage: result?.error,
         );
       }
 
       return result;
-    } catch (e) {
+    } catch (e, stackTrace) {
       state = MigrationProgress(
         currentStep: 'Migration failed',
         status: MigrationStatus.error,
@@ -177,12 +207,42 @@ class MigrationExecution extends _$MigrationExecution {
         status: MigrationStatus.cancelled,
       );
     } catch (e) {
-      // Handle cancellation error
+      // Handle cancellation error - for now just set to cancelled since cancellation isn't implemented
+      state = const MigrationProgress(
+        currentStep: 'Migration cancelled',
+        status: MigrationStatus.cancelled,
+      );
     }
   }
 
   void reset() {
     state = null;
+  }
+
+  /// Invalidate caches after successful migration to refresh UI data
+  Future<void> _invalidateCachesAfterMigration(int fromMangaId, int toMangaId) async {
+    try {
+      // Invalidate manga details for both source and target manga
+      ref.invalidate(mangaWithIdProvider(mangaId: fromMangaId));
+      ref.invalidate(mangaWithIdProvider(mangaId: toMangaId));
+      
+      // Invalidate chapter lists for both manga (needed for unread count refresh)
+      ref.invalidate(mangaChapterListProvider(mangaId: fromMangaId));
+      ref.invalidate(mangaChapterListProvider(mangaId: toMangaId));
+      
+      // Invalidate all category manga lists to refresh library
+      final categories = ref.read(categoryControllerProvider).valueOrNull ?? [];
+      for (final category in categories) {
+        ref.invalidate(categoryMangaListProvider(category.id));
+      }
+      // Also invalidate the default "All" category (id: 0)
+      ref.invalidate(categoryMangaListProvider(0));
+      
+      // Small delay to ensure cache invalidation propagates
+      await Future.delayed(const Duration(milliseconds: 100));
+    } catch (e) {
+      // Don't throw - cache invalidation errors shouldn't fail the migration
+    }
   }
 }
 

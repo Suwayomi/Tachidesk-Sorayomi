@@ -43,14 +43,9 @@ class MigrationOptionsWidget extends StatelessWidget {
               spacing: 8,
               children: [
                 _PresetChip(
-                  label: l10n?.quickMigration ?? 'Quick',
-                  isSelected: _isQuickPreset(),
-                  onTap: () => _applyQuickPreset(),
-                ),
-                _PresetChip(
-                  label: l10n?.fullMigration ?? 'Full',
-                  isSelected: _isFullPreset(),
-                  onTap: () => _applyFullPreset(),
+                  label: l10n?.quickMigration ?? 'Recommended',
+                  isSelected: _isRecommendedPreset(),
+                  onTap: () => _applyRecommendedPreset(),
                 ),
                 _PresetChip(
                   label: l10n?.customMigration ?? 'Custom',
@@ -89,24 +84,6 @@ class MigrationOptionsWidget extends StatelessWidget {
               onChanged: (value) => onChanged(options.copyWith(migrateCategories: value)),
             ),
             
-            // Migrate downloads
-            _OptionTile(
-              icon: Icons.download_outlined,
-              title: l10n?.migrateDownloads ?? 'Migrate Downloads',
-              subtitle: l10n?.migrateDownloadsDescription ?? 'Move downloaded chapters to new source',
-              value: options.migrateDownloads,
-              onChanged: (value) => onChanged(options.copyWith(migrateDownloads: value)),
-            ),
-            
-            // Migrate tracking
-            _OptionTile(
-              icon: Icons.track_changes_outlined,
-              title: l10n?.migrateTracking ?? 'Migrate Tracking',
-              subtitle: l10n?.migrateTrackingDescription ?? 'Copy tracking information to new source',
-              value: options.migrateTracking,
-              onChanged: (value) => onChanged(options.copyWith(migrateTracking: value)),
-            ),
-            
             // Delete source
             Container(
               margin: const EdgeInsets.only(top: 8),
@@ -133,42 +110,22 @@ class MigrationOptionsWidget extends StatelessWidget {
     );
   }
 
-  bool _isQuickPreset() {
+  bool _isRecommendedPreset() {
     return options.migrateChapters &&
            options.migrateCategories &&
-           !options.migrateDownloads &&
-           !options.migrateTracking &&
-           options.deleteSource;
-  }
-
-  bool _isFullPreset() {
-    return options.migrateChapters &&
-           options.migrateCategories &&
-           options.migrateDownloads &&
-           options.migrateTracking &&
            options.deleteSource;
   }
 
   bool _isCustomPreset() {
-    return !_isQuickPreset() && !_isFullPreset();
+    return !_isRecommendedPreset();
   }
 
-  void _applyQuickPreset() {
+  void _applyRecommendedPreset() {
     onChanged(const MigrationOption(
       migrateChapters: true,
       migrateCategories: true,
       migrateDownloads: false,
       migrateTracking: false,
-      deleteSource: true,
-    ));
-  }
-
-  void _applyFullPreset() {
-    onChanged(const MigrationOption(
-      migrateChapters: true,
-      migrateCategories: true,
-      migrateDownloads: true,
-      migrateTracking: true,
       deleteSource: true,
     ));
   }

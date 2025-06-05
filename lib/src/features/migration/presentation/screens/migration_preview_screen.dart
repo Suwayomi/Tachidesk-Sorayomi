@@ -220,11 +220,13 @@ class MigrationPreviewScreen extends ConsumerWidget {
       },
     );
     
-    // Start the migration process
-    ref.read(migrationExecutionProvider.notifier).executeMigration(
-      fromMangaId: sourceManga.id,
-      toMangaId: targetManga.id,
-      options: migrationOptions,
-    );
+    // Add a small delay to ensure navigation completes, then start the migration process
+    Future.delayed(const Duration(milliseconds: 100), () {
+      ref.read(migrationExecutionProvider.notifier).executeMigration(
+        fromMangaId: sourceManga.id,
+        toMangaId: targetManga.id,
+        options: migrationOptions,
+      );
+    });
   }
 } 

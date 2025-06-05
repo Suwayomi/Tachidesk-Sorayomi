@@ -243,6 +243,48 @@ class MigrationProgressScreen extends ConsumerWidget {
           style: theme.textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
+        const SizedBox(height: 16),
+        Card(
+          color: theme.colorScheme.surfaceVariant,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: theme.colorScheme.primary,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Migration Summary',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '• Migrated from: ${sourceManga.title}',
+                  style: theme.textTheme.bodySmall,
+                ),
+                Text(
+                  '• Migrated to: ${targetManga.title}',
+                  style: theme.textTheme.bodySmall,
+                ),
+                Text(
+                  '• Source: ${targetSource.displayName ?? targetSource.name}',
+                  style: theme.textTheme.bodySmall,
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -416,6 +458,8 @@ class MigrationProgressScreen extends ConsumerWidget {
   }
 
   void _completeMigration(BuildContext context, WidgetRef ref) {
+    final migrationProgress = ref.read(migrationExecutionProvider);
+    
     // Reset migration state
     ref.read(migrationExecutionProvider.notifier).reset();
     ref.read(selectedMigrationSourceProvider.notifier).clear();
@@ -423,7 +467,13 @@ class MigrationProgressScreen extends ConsumerWidget {
     ref.read(migrationOptionsProvider.notifier).reset();
     ref.read(migrationSearchQueryProvider.notifier).clear();
     
-    // Navigate back to manga details
-    context.go('/manga/${sourceManga.id}');
+    // Navigate based on migration result
+    if (migrationProgress?.status == MigrationStatus.completed) {
+      // If migration was successful, go back to the library so user can see the migrated manga
+      context.go('/library/0');
+    } else {
+      // If migration failed or was cancelled, go back to source manga
+      context.go('/manga/${sourceManga.id}');
+    }
   }
 } 
