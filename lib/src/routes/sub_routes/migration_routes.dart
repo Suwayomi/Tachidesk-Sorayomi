@@ -7,10 +7,9 @@ class MigrationGlobalSearchRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    final extra = state.extra as Map<String, dynamic>?;
-    final sourceManga = extra?['sourceManga'];
+    final extra = state.extra as MigrationRouteData?;
     
-    if (sourceManga == null) {
+    if (extra == null) {
       // If no manga provided, navigate back
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.pop();
@@ -20,7 +19,7 @@ class MigrationGlobalSearchRoute extends GoRouteData {
       );
     }
 
-    return MigrationGlobalSearchScreen(sourceManga: sourceManga);
+    return MigrationGlobalSearchScreen(sourceManga: extra.sourceManga);
   }
 }
 
@@ -31,10 +30,9 @@ class MigrationSourceSelectionRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    final extra = state.extra as Map<String, dynamic>?;
-    final sourceManga = extra?['sourceManga'];
+    final extra = state.extra as MigrationRouteData?;
     
-    if (sourceManga == null) {
+    if (extra == null) {
       // If no manga provided, navigate back
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.pop();
@@ -44,7 +42,7 @@ class MigrationSourceSelectionRoute extends GoRouteData {
       );
     }
 
-    return MigrationSourceSelectionScreen(sourceManga: sourceManga);
+    return MigrationSourceSelectionScreen(sourceManga: extra.sourceManga);
   }
 }
 
@@ -55,11 +53,9 @@ class MigrationSearchRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    final extra = state.extra as Map<String, dynamic>?;
-    final sourceManga = extra?['sourceManga'];
-    final targetSource = extra?['targetSource'];
+    final extra = state.extra as MigrationSearchRouteData?;
     
-    if (sourceManga == null || targetSource == null) {
+    if (extra == null) {
       // If required data is missing, navigate back
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.pop();
@@ -70,8 +66,8 @@ class MigrationSearchRoute extends GoRouteData {
     }
 
     return MigrationSearchScreen(
-      sourceManga: sourceManga,
-      targetSource: targetSource,
+      sourceManga: extra.sourceManga,
+      targetSource: extra.targetSource,
     );
   }
 }
@@ -83,12 +79,9 @@ class MigrationPreviewRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    final extra = state.extra as Map<String, dynamic>?;
-    final sourceManga = extra?['sourceManga'];
-    final targetManga = extra?['targetManga'];
-    final targetSource = extra?['targetSource'];
+    final extra = state.extra as MigrationPreviewRouteData?;
     
-    if (sourceManga == null || targetManga == null || targetSource == null) {
+    if (extra == null) {
       // If required data is missing, navigate back
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.pop();
@@ -99,9 +92,9 @@ class MigrationPreviewRoute extends GoRouteData {
     }
 
     return MigrationPreviewScreen(
-      sourceManga: sourceManga,
-      targetManga: targetManga,
-      targetSource: targetSource,
+      sourceManga: extra.sourceManga,
+      targetManga: extra.targetManga,
+      targetSource: extra.targetSource,
     );
   }
 }
@@ -113,13 +106,9 @@ class MigrationProgressRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    final extra = state.extra as Map<String, dynamic>?;
-    final sourceManga = extra?['sourceManga'];
-    final targetManga = extra?['targetManga'];
-    final targetSource = extra?['targetSource'];
-    final options = extra?['options'];
+    final extra = state.extra as MigrationProgressRouteData?;
     
-    if (sourceManga == null || targetManga == null || targetSource == null || options == null) {
+    if (extra == null) {
       // If required data is missing, navigate back
       WidgetsBinding.instance.addPostFrameCallback((_) {
         context.pop();
@@ -130,10 +119,10 @@ class MigrationProgressRoute extends GoRouteData {
     }
 
     return MigrationProgressScreen(
-      sourceManga: sourceManga,
-      targetManga: targetManga,
-      targetSource: targetSource,
-      options: options,
+      sourceManga: extra.sourceManga,
+      targetManga: extra.targetManga,
+      targetSource: extra.targetSource,
+      options: extra.options,
     );
   }
 } 

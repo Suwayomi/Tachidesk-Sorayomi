@@ -22,7 +22,7 @@ class MigrationOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     return Card(
       child: Padding(
@@ -30,9 +30,8 @@ class MigrationOptionsWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Quick presets
             Text(
-              l10n?.quickPresets ?? 'Quick Presets',
+              l10n.quickPresets,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -43,12 +42,12 @@ class MigrationOptionsWidget extends StatelessWidget {
               spacing: 8,
               children: [
                 _PresetChip(
-                  label: l10n?.quickMigration ?? 'Recommended',
+                  label: l10n.quickMigration,
                   isSelected: _isRecommendedPreset(),
                   onTap: () => _applyRecommendedPreset(),
                 ),
                 _PresetChip(
-                  label: l10n?.customMigration ?? 'Custom',
+                  label: l10n.customMigration,
                   isSelected: _isCustomPreset(),
                   onTap: () {}, // Custom means user configures manually
                 ),
@@ -59,7 +58,7 @@ class MigrationOptionsWidget extends StatelessWidget {
             
             // Individual options
             Text(
-              l10n?.migrationSettings ?? 'Migration Settings',
+              l10n.migrationSettings,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -69,22 +68,23 @@ class MigrationOptionsWidget extends StatelessWidget {
             // Migrate chapters
             _OptionTile(
               icon: Icons.menu_book_outlined,
-              title: l10n?.migrateChapters ?? 'Migrate Chapters',
-              subtitle: l10n?.migrateChaptersDescription ?? 'Copy chapter read status to new source',
+              title: l10n.migrateChapters,
+              subtitle: l10n.migrateChaptersDescription,
               value: options.migrateChapters,
-              onChanged: (value) => onChanged(options.copyWith(migrateChapters: value)),
+              onChanged: (value) => onChanged(options.copyWith(migrateChapters: value ?? false)),
             ),
             
             // Migrate categories
             _OptionTile(
               icon: Icons.label_outline,
-              title: l10n?.migrateCategories ?? 'Migrate Categories',
-              subtitle: l10n?.migrateCategoriesDescription ?? 'Copy manga categories to new source',
+              title: l10n.migrateCategories,
+              subtitle: l10n.migrateCategoriesDescription,
               value: options.migrateCategories,
-              onChanged: (value) => onChanged(options.copyWith(migrateCategories: value)),
+              onChanged: (value) => onChanged(options.copyWith(migrateCategories: value ?? false)),
             ),
             
-            // Delete source
+            // Delete source manga
+            const SizedBox(height: 8),
             Container(
               margin: const EdgeInsets.only(top: 8),
               padding: const EdgeInsets.all(12),
@@ -97,11 +97,11 @@ class MigrationOptionsWidget extends StatelessWidget {
               ),
               child: _OptionTile(
                 icon: Icons.delete_outline,
-                title: l10n?.deleteSourceManga ?? 'Delete Source Manga',
-                subtitle: l10n?.deleteSourceMangaDescription ?? 'Remove the original manga from library after migration',
+                title: l10n.deleteSourceManga,
+                subtitle: l10n.deleteSourceMangaDescription,
                 value: options.deleteSource,
-                onChanged: (value) => onChanged(options.copyWith(deleteSource: value)),
-                isDestructive: true,
+                onChanged: (value) => onChanged(options.copyWith(deleteSource: value ?? false)),
+                destructive: true,
               ),
             ),
           ],
@@ -113,7 +113,7 @@ class MigrationOptionsWidget extends StatelessWidget {
   bool _isRecommendedPreset() {
     return options.migrateChapters &&
            options.migrateCategories &&
-           options.deleteSource;
+           !options.deleteSource;
   }
 
   bool _isCustomPreset() {
@@ -126,7 +126,7 @@ class MigrationOptionsWidget extends StatelessWidget {
       migrateCategories: true,
       migrateDownloads: false,
       migrateTracking: false,
-      deleteSource: true,
+      deleteSource: false,
     ));
   }
 }
@@ -144,7 +144,7 @@ class _PresetChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     
     return FilterChip(
       label: Text(label),
@@ -170,19 +170,19 @@ class _OptionTile extends StatelessWidget {
     required this.subtitle,
     required this.value,
     required this.onChanged,
-    this.isDestructive = false,
+    this.destructive = false,
   });
 
   final IconData icon;
   final String title;
   final String subtitle;
   final bool value;
-  final ValueChanged<bool> onChanged;
-  final bool isDestructive;
+  final ValueChanged<bool?> onChanged;
+  final bool destructive;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -191,7 +191,7 @@ class _OptionTile extends StatelessWidget {
           Icon(
             icon,
             size: 24,
-            color: isDestructive 
+            color: destructive 
                 ? theme.colorScheme.error
                 : theme.colorScheme.onSurface,
           ),
@@ -205,22 +205,20 @@ class _OptionTile extends StatelessWidget {
                   title,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w500,
-                    color: isDestructive 
+                    color: destructive 
                         ? theme.colorScheme.error
                         : theme.colorScheme.onSurface,
                   ),
                 ),
-                if (subtitle.isNotEmpty) ...[
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: isDestructive 
-                          ? theme.colorScheme.error.withOpacity(0.7)
-                          : theme.colorScheme.onSurfaceVariant,
-                    ),
+                const SizedBox(height: 2),
+                Text(
+                  subtitle,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: destructive 
+                        ? theme.colorScheme.error.withOpacity(0.7)
+                        : theme.colorScheme.onSurfaceVariant,
                   ),
-                ],
+                ),
               ],
             ),
           ),
@@ -228,7 +226,7 @@ class _OptionTile extends StatelessWidget {
           Switch(
             value: value,
             onChanged: onChanged,
-            activeColor: isDestructive 
+            activeColor: destructive 
                 ? theme.colorScheme.error
                 : theme.colorScheme.primary,
           ),

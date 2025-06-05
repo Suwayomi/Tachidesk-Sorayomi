@@ -13,6 +13,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../browse_center/domain/source/source_model.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
+import '../../domain/migration_models.dart';
 
 class MigrationSourceShortSearch extends StatelessWidget {
   const MigrationSourceShortSearch({
@@ -25,7 +26,7 @@ class MigrationSourceShortSearch extends StatelessWidget {
   
   final SourceDto source;
   final AsyncValue<List<MangaDto>> mangaList;
-  final dynamic sourceManga;
+  final MangaDto sourceManga;
   final String? query;
 
   @override
@@ -72,15 +73,14 @@ class MigrationSourceShortSearch extends StatelessWidget {
   }
 
   void _onMangaSelected(BuildContext context, MangaDto targetManga) {
-    // Use the actual SourceDto object instead of creating a map
-    // Navigate to migration preview screen directly with MangaDto
+    // Navigate to migration preview screen with proper data class
     context.push(
       '/migration/preview',
-      extra: {
-        'sourceManga': sourceManga,
-        'targetManga': targetManga,
-        'targetSource': source, // Pass the actual SourceDto object
-      },
+      extra: MigrationPreviewRouteData(
+        sourceManga: sourceManga,
+        targetManga: targetManga,
+        targetSource: source,
+      ),
     );
   }
 } 

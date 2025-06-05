@@ -7,6 +7,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/server_image.dart';
 
 class MangaComparisonWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class MangaComparisonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     
     return Card(
       child: Padding(
@@ -90,7 +91,7 @@ class MangaComparisonWidget extends StatelessWidget {
     String label,
     IconData icon,
   ) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     
     return Container(
       padding: const EdgeInsets.all(12),
@@ -223,7 +224,7 @@ class MangaComparisonWidget extends StatelessWidget {
   }
 
   Widget _buildComparisonSummary(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     
     // Calculate similarity indicators
     final titleMatch = _calculateTitleSimilarity(sourceManga.title, targetManga.title);
@@ -274,7 +275,7 @@ class MangaComparisonWidget extends StatelessWidget {
   }
 
   Widget _buildMatchIndicator(BuildContext context, String label, double score) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     Color color;
     IconData icon;
     

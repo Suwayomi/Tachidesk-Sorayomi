@@ -14,6 +14,7 @@ import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../browse_center/presentation/source/controller/source_controller.dart';
+import '../../../manga_book/domain/manga/manga_model.dart';
 import '../widgets/migration_source_short_search.dart';
 import '../../controller/migration_controller.dart';
 
@@ -23,7 +24,7 @@ class MigrationGlobalSearchScreen extends HookConsumerWidget {
     required this.sourceManga,
   });
 
-  final dynamic sourceManga;
+  final MangaDto sourceManga;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

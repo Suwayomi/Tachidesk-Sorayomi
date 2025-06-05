@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flutter/material.dart';
 import 'package:graphql/client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,6 +13,7 @@ import '../../../graphql/__generated__/schema.graphql.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../browse_center/data/source_repository/graphql/__generated__/query.graphql.dart';
 import '../../browse_center/domain/source/source_model.dart';
+import '../../manga_book/domain/chapter/chapter_model.dart';
 import '../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../manga_book/data/manga_book/__generated__/query.graphql.dart';
 import '../domain/migration_models.dart';
@@ -19,9 +21,9 @@ import '../domain/migration_models.dart';
 part 'migration_repository.g.dart';
 
 abstract class MigrationRepository {
-  Future<List<MigrationSource>?> getMigrationSources(int mangaId);
-  Future<List<Fragment$MangaDto>?> searchMangaInSource(String sourceId, String query);
-  Future<MigrationResult?> migrateManga(int fromMangaId, int toMangaId, MigrationOption options);
+  Future<List<MigrationSource>?> getMigrationSources(int mangaId, [BuildContext? context]);
+  Future<List<Fragment$MangaDto>?> searchMangaInSource(String sourceId, String query, [BuildContext? context]);
+  Future<MigrationResult?> migrateManga(int fromMangaId, int toMangaId, MigrationOption options, [BuildContext? context]);
   Future<void> cancelMigration();
 }
 
@@ -31,7 +33,7 @@ class MigrationRepositoryImpl implements MigrationRepository {
   MigrationRepositoryImpl(this.client);
 
   @override
-  Future<List<MigrationSource>?> getMigrationSources(int mangaId) async {
+  Future<List<MigrationSource>?> getMigrationSources(int mangaId, [BuildContext? context]) async {
     try {
       final result = await client.query$SourceList();
       
@@ -53,12 +55,13 @@ class MigrationRepositoryImpl implements MigrationRepository {
         supportsLatest: source.supportsLatest,
       )).toList();
     } catch (e) {
-      throw Exception('Failed to get migration sources: $e');
+      final errorMessage = context?.l10n.errorGettingMigrationSources ?? 'Failed to get migration sources';
+      throw Exception('$errorMessage: $e');
     }
   }
 
   @override
-  Future<List<Fragment$MangaDto>?> searchMangaInSource(String sourceId, String query) async {
+  Future<List<Fragment$MangaDto>?> searchMangaInSource(String sourceId, String query, [BuildContext? context]) async {
     try {
       final result = await client.mutate$FetchSourceManga(
         Options$Mutation$FetchSourceManga(
@@ -79,12 +82,13 @@ class MigrationRepositoryImpl implements MigrationRepository {
       
       return result.parsedData?.fetchSourceManga?.mangas ?? [];
     } catch (e) {
-      throw Exception('Failed to search manga in source: $e');
+      final errorMessage = context?.l10n.errorSearchingMangaInSource ?? 'Failed to search manga in source';
+      throw Exception('$errorMessage: $e');
     }
   }
 
   @override
-  Future<MigrationResult?> migrateManga(int fromMangaId, int toMangaId, MigrationOption options) async {
+  Future<MigrationResult?> migrateManga(int fromMangaId, int toMangaId, MigrationOption options, [BuildContext? context]) async {
     try {
       
       // Get source manga information
@@ -95,12 +99,14 @@ class MigrationRepositoryImpl implements MigrationRepository {
       );
       
       if (sourceMangaResult.hasException) {
-        throw Exception('Failed to fetch source manga: ${sourceMangaResult.exception}');
+        final errorMessage = context?.l10n.errorFetchingSourceManga ?? 'Failed to fetch source manga';
+        throw Exception('$errorMessage: ${sourceMangaResult.exception}');
       }
       
       final sourceManga = sourceMangaResult.parsedData?.manga;
       if (sourceManga == null) {
-        throw Exception('Source manga not found');
+        final errorMessage = context?.l10n.errorSourceMangaNotFound ?? 'Source manga not found';
+        throw Exception(errorMessage);
       }
       
       // Get target manga information
@@ -111,12 +117,14 @@ class MigrationRepositoryImpl implements MigrationRepository {
       );
       
       if (targetMangaResult.hasException) {
-        throw Exception('Failed to fetch target manga: ${targetMangaResult.exception}');
+        final errorMessage = context?.l10n.errorFetchingTargetManga ?? 'Failed to fetch target manga';
+        throw Exception('$errorMessage: ${targetMangaResult.exception}');
       }
       
       final targetManga = targetMangaResult.parsedData?.manga;
       if (targetManga == null) {
-        throw Exception('Target manga not found');
+        final errorMessage = context?.l10n.errorTargetMangaNotFound ?? 'Target manga not found';
+        throw Exception(errorMessage);
       }
       
       List<String> warnings = [];
@@ -186,59 +194,101 @@ class MigrationRepositoryImpl implements MigrationRepository {
       // Step 3: Migrate reading progress if enabled
       if (options.migrateChapters) {
         try {
-          // Get source manga chapters
-          final sourceChaptersResult = await client.query$GetChapterPage(
-            Options$Query$GetChapterPage(
-              variables: Variables$Query$GetChapterPage(
-                condition: Input$ChapterConditionInput(mangaId: fromMangaId),
+          // Get source manga chapters using the correct API
+          final sourceChaptersResult = await client.mutate$GetChaptersByMangaId(
+            Options$Mutation$GetChaptersByMangaId(
+              variables: Variables$Mutation$GetChaptersByMangaId(
+                input: Input$FetchChaptersInput(mangaId: fromMangaId),
               ),
             ),
           );
           
-          // Get target manga chapters
-          final targetChaptersResult = await client.query$GetChapterPage(
-            Options$Query$GetChapterPage(
-              variables: Variables$Query$GetChapterPage(
-                condition: Input$ChapterConditionInput(mangaId: toMangaId),
+          // Get target manga chapters using the correct API
+          final targetChaptersResult = await client.mutate$GetChaptersByMangaId(
+            Options$Mutation$GetChaptersByMangaId(
+              variables: Variables$Mutation$GetChaptersByMangaId(
+                input: Input$FetchChaptersInput(mangaId: toMangaId),
               ),
             ),
           );
           
           if (!sourceChaptersResult.hasException && !targetChaptersResult.hasException &&
-              sourceChaptersResult.parsedData != null && targetChaptersResult.parsedData != null) {
+              sourceChaptersResult.parsedData?.fetchChapters?.chapters != null && 
+              targetChaptersResult.parsedData?.fetchChapters?.chapters != null) {
             
-            final sourceChapters = sourceChaptersResult.parsedData!.chapters.nodes;
-            final targetChapters = targetChaptersResult.parsedData!.chapters.nodes;
+            final sourceChapters = sourceChaptersResult.parsedData!.fetchChapters!.chapters!;
+            final targetChapters = targetChaptersResult.parsedData!.fetchChapters!.chapters!;
             
-            // Try to match chapters by chapter number and migrate read status
+            // Create a list to batch update read chapters
+            List<Input$UpdateChapterInput> chapterUpdates = [];
+            
+            // Try to match chapters by multiple criteria for better accuracy
             for (final sourceChapter in sourceChapters) {
               if (sourceChapter.isRead) {
-                // Find matching chapter in target manga by chapter number
-                final matchingChapter = targetChapters.where(
+                ChapterDto? matchingChapter;
+                
+                // First, try exact chapter number match
+                matchingChapter = targetChapters.where(
                   (chapter) => (chapter.chapterNumber - sourceChapter.chapterNumber).abs() < 0.01,
                 ).firstOrNull;
                 
+                // If no exact match, try name matching (case insensitive)
+                if (matchingChapter == null && sourceChapter.name.isNotEmpty) {
+                  final sourceName = sourceChapter.name.toLowerCase().trim();
+                  matchingChapter = targetChapters.where(
+                    (chapter) => chapter.name.toLowerCase().trim() == sourceName,
+                  ).firstOrNull;
+                }
+                
+                // If still no match, try partial name matching
+                if (matchingChapter == null && sourceChapter.name.isNotEmpty) {
+                  final sourceName = sourceChapter.name.toLowerCase().trim();
+                  matchingChapter = targetChapters.where(
+                    (chapter) {
+                      final targetName = chapter.name.toLowerCase().trim();
+                      return targetName.contains(sourceName) || sourceName.contains(targetName);
+                    },
+                  ).firstOrNull;
+                }
+                
+                // If we found a matching chapter and it's not already read
                 if (matchingChapter != null && !matchingChapter.isRead) {
-                  // Mark target chapter as read
-                  final updateChapterResult = await client.mutate$UpdateChapter(
-                    Options$Mutation$UpdateChapter(
-                      variables: Variables$Mutation$UpdateChapter(
-                        input: Input$UpdateChapterInput(
-                          id: matchingChapter.id,
-                          patch: Input$UpdateChapterPatchInput(
-                            isRead: true,
-                            lastPageRead: sourceChapter.lastPageRead,
-                          ),
-                        ),
+                  chapterUpdates.add(
+                    Input$UpdateChapterInput(
+                      id: matchingChapter.id,
+                      patch: Input$UpdateChapterPatchInput(
+                        isRead: true,
+                        lastPageRead: sourceChapter.lastPageRead,
+                        isBookmarked: sourceChapter.isBookmarked, // Also migrate bookmarks
                       ),
                     ),
                   );
-                  
-                  if (!updateChapterResult.hasException) {
-                    migratedChapters++;
-                  }
                 }
               }
+            }
+            
+            // Batch update chapters if we have any to update
+            if (chapterUpdates.isNotEmpty) {
+              // Update chapters one by one to avoid overwhelming the server
+              for (final updateInput in chapterUpdates) {
+                try {
+                  final updateResult = await client.mutate$UpdateChapter(
+                    Options$Mutation$UpdateChapter(variables: Variables$Mutation$UpdateChapter(input: updateInput)),
+                  );
+                  
+                  if (!updateResult.hasException) {
+                    migratedChapters++;
+                  } else {
+                    warnings.add('Failed to migrate chapter ${updateInput.id}: ${updateResult.exception}');
+                  }
+                } catch (e) {
+                  warnings.add('Failed to migrate chapter ${updateInput.id}: $e');
+                }
+              }
+            }
+            
+            if (migratedChapters == 0 && sourceChapters.any((ch) => ch.isRead)) {
+              warnings.add('No matching chapters found for read status migration. This may be due to different chapter numbering between sources.');
             }
           }
         } catch (e) {

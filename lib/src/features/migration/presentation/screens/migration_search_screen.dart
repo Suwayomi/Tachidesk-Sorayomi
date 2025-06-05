@@ -9,11 +9,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/server_image.dart';
+import '../../../browse_center/domain/source/source_model.dart';
+import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
+import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
-import '../../../../utils/extensions/custom_extensions.dart';
 
 class MigrationSearchScreen extends HookConsumerWidget {
   const MigrationSearchScreen({
@@ -22,8 +24,8 @@ class MigrationSearchScreen extends HookConsumerWidget {
     required this.targetSource,
   });
 
-  final dynamic sourceManga;
-  final dynamic targetSource;
+  final MangaDto sourceManga;
+  final SourceDto targetSource;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,7 +65,7 @@ class MigrationSearchScreen extends HookConsumerWidget {
             padding: const EdgeInsets.all(16),
             child: SearchBar(
               controller: searchController,
-              hintText: l10n?.searchManga ?? 'Search manga...',
+              hintText: l10n.searchManga,
               leading: const Icon(Icons.search),
               trailing: [
                 if (searchQuery.isNotEmpty)
@@ -95,7 +97,7 @@ class MigrationSearchScreen extends HookConsumerWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceVariant,
+              color: context.theme.colorScheme.surfaceVariant,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -103,14 +105,14 @@ class MigrationSearchScreen extends HookConsumerWidget {
                 Icon(
                   Icons.info_outline,
                   size: 16,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  color: context.theme.colorScheme.onSurfaceVariant,
                 ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     'Searching in ${targetSource.displayName ?? targetSource.name} (${targetSource.lang.toUpperCase()})',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    style: context.theme.textTheme.bodySmall?.copyWith(
+                      color: context.theme.colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ),
@@ -136,15 +138,15 @@ class MigrationSearchScreen extends HookConsumerWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          l10n?.searchForManga ?? 'Search for manga in the target source',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          l10n.searchForManga,
+                          style: context.theme.textTheme.titleMedium?.copyWith(
                             color: Colors.grey.shade600,
                           ),
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          l10n?.enterSearchTerm ?? 'Enter a search term to find manga',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          l10n.enterSearchTerm,
+                          style: context.theme.textTheme.bodyMedium?.copyWith(
                             color: Colors.grey.shade500,
                           ),
                         ),
@@ -165,13 +167,13 @@ class MigrationSearchScreen extends HookConsumerWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          l10n?.noResultsFound ?? 'No results found',
-                          style: Theme.of(context).textTheme.titleMedium,
+                          l10n.noResultsFound,
+                          style: context.theme.textTheme.titleMedium,
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          l10n?.tryDifferentSearch ?? 'Try a different search term',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          l10n.tryDifferentSearch,
+                          style: context.theme.textTheme.bodyMedium?.copyWith(
                             color: Colors.grey.shade600,
                           ),
                         ),
@@ -212,13 +214,13 @@ class MigrationSearchScreen extends HookConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      l10n?.searchError ?? 'Search error',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      l10n.searchError,
+                      style: context.theme.textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       error.toString(),
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
                         color: Colors.grey.shade600,
                       ),
                       textAlign: TextAlign.center,
@@ -233,7 +235,7 @@ class MigrationSearchScreen extends HookConsumerWidget {
                           ).future);
                         }
                       },
-                      child: Text(l10n?.retry ?? 'Retry'),
+                      child: Text(l10n.retry),
                     ),
                   ],
                 ),
@@ -253,14 +255,14 @@ class MigrationSearchScreen extends HookConsumerWidget {
     // Select the target manga
     ref.read(selectedTargetMangaProvider.notifier).select(targetManga);
     
-    // Navigate to migration preview screen
+    // Navigate to migration preview screen with proper data class
     context.push(
       '/migration/preview',
-      extra: {
-        'sourceManga': sourceManga,
-        'targetManga': targetManga,
-        'targetSource': targetSource,
-      },
+      extra: MigrationPreviewRouteData(
+        sourceManga: sourceManga,
+        targetManga: targetManga,
+        targetSource: targetSource,
+      ),
     );
   }
 }
@@ -301,7 +303,7 @@ class _MangaSearchResultCard extends StatelessWidget {
                   children: [
                     Text(
                       manga.title ?? 'Unknown Title',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      style: context.theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
                       maxLines: 2,
@@ -311,7 +313,7 @@ class _MangaSearchResultCard extends StatelessWidget {
                       const SizedBox(height: 2),
                       Text(
                         manga.author!,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: context.theme.textTheme.bodySmall?.copyWith(
                           color: Colors.grey.shade600,
                         ),
                         maxLines: 1,

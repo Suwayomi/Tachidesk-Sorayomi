@@ -20,6 +20,7 @@ import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../library/presentation/library/controller/library_controller.dart';
+import '../../../migration/domain/migration_models.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
 import 'controller/manga_details_controller.dart';
@@ -93,9 +94,9 @@ class MangaDetailsScreen extends HookConsumerWidget {
       if (manga == null) return;
       
       // Navigate to migration source selection
-      context.push('/migration/global-search', extra: {
-        'sourceManga': manga,
-      });
+      context.push('/migration/global-search', extra: MigrationRouteData(
+        sourceManga: manga,
+      ));
     }
 
     return PopScope(

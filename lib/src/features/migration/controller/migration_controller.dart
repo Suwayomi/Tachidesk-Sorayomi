@@ -49,13 +49,10 @@ class MigrationSearch extends _$MigrationSearch {
   Future<void> search(String sourceId, String query) async {
     state = const AsyncLoading();
     
-    try {
-      final results = await ref.read(migrationRepositoryProvider)
+    state = await AsyncValue.guard(() async {
+      return await ref.read(migrationRepositoryProvider)
           .searchMangaInSource(sourceId, query);
-      state = AsyncData(results);
-    } catch (e) {
-      state = AsyncError(e, StackTrace.current);
-    }
+    });
   }
 
   void clearResults() {
@@ -122,7 +119,7 @@ class MigrationExecution extends _$MigrationExecution {
     try {
       // Set initial progress
       state = const MigrationProgress(
-        currentStep: 'Preparing migration...',
+        currentStep: 'preparingMigration',
         percentage: 0.0,
         status: MigrationStatus.preparing,
       );
@@ -132,7 +129,7 @@ class MigrationExecution extends _$MigrationExecution {
 
       // Update progress to migrating chapters
       state = const MigrationProgress(
-        currentStep: 'Migrating chapters...',
+        currentStep: 'migrateChapters',
         percentage: 25.0,
         status: MigrationStatus.migrating,
       );
@@ -142,7 +139,7 @@ class MigrationExecution extends _$MigrationExecution {
 
       // Update progress to migrating categories
       state = const MigrationProgress(
-        currentStep: 'Migrating categories...',
+        currentStep: 'migrateCategories',
         percentage: 50.0,
         status: MigrationStatus.migrating,
       );
@@ -152,7 +149,7 @@ class MigrationExecution extends _$MigrationExecution {
 
       // Update progress to finalizing
       state = const MigrationProgress(
-        currentStep: 'Finalizing migration...',
+        currentStep: 'migrationInProgress',
         percentage: 75.0,
         status: MigrationStatus.migrating,
       );
@@ -164,7 +161,7 @@ class MigrationExecution extends _$MigrationExecution {
       // Update final progress based on result
       if (result?.success == true) {
         state = const MigrationProgress(
-          currentStep: 'Migration completed',
+          currentStep: 'migrationCompleted',
           percentage: 100.0,
           status: MigrationStatus.completed,
         );
@@ -173,7 +170,7 @@ class MigrationExecution extends _$MigrationExecution {
         await _invalidateCachesAfterMigration(fromMangaId, toMangaId);
       } else {
         state = MigrationProgress(
-          currentStep: result?.error ?? 'Migration failed',
+          currentStep: 'migrationFailed',
           percentage: 0.0,
           status: MigrationStatus.error,
           errorMessage: result?.error,
@@ -183,7 +180,7 @@ class MigrationExecution extends _$MigrationExecution {
       return result;
     } catch (e, stackTrace) {
       state = MigrationProgress(
-        currentStep: 'Migration failed',
+        currentStep: 'migrationFailed',
         status: MigrationStatus.error,
         errorMessage: e.toString(),
       );
@@ -203,13 +200,13 @@ class MigrationExecution extends _$MigrationExecution {
     try {
       await ref.read(migrationRepositoryProvider).cancelMigration();
       state = const MigrationProgress(
-        currentStep: 'Migration cancelled',
+        currentStep: 'migrationCancelled',
         status: MigrationStatus.cancelled,
       );
     } catch (e) {
       // Handle cancellation error - for now just set to cancelled since cancellation isn't implemented
       state = const MigrationProgress(
-        currentStep: 'Migration cancelled',
+        currentStep: 'migrationCancelled',
         status: MigrationStatus.cancelled,
       );
     }

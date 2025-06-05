@@ -9,11 +9,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../browse_center/data/source_repository/source_repository.dart';
+import '../../../browse_center/domain/source/source_model.dart';
 import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
+import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
 import '../widgets/migration_source_card.dart';
-import '../../../../utils/extensions/custom_extensions.dart';
 
 class MigrationSourceSelectionScreen extends HookConsumerWidget {
   const MigrationSourceSelectionScreen({
@@ -21,7 +24,7 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
     required this.sourceManga,
   });
 
-  final dynamic sourceManga;
+  final MangaDto sourceManga;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +34,7 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.selectTargetSource ?? 'Select Target Source'),
+        title: Text(l10n.selectTargetSource),
       ),
       body: sourcesAsync.when(
         data: (sources) {
@@ -47,13 +50,13 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    l10n?.noSourcesAvailable ?? 'No sources available for migration',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    l10n.noSourcesAvailable,
+                    style: context.theme.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    l10n?.checkSourceConfiguration ?? 'Please check your source configuration',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    l10n.checkSourceConfiguration,
+                    style: context.theme.textTheme.bodyMedium?.copyWith(
                       color: Colors.grey,
                     ),
                   ),
@@ -79,13 +82,13 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    l10n?.noAlternativeSources ?? 'No alternative sources available',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    l10n.noAlternativeSources,
+                    style: context.theme.textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    l10n?.installMoreSources ?? 'Install more sources to enable migration',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    l10n.installMoreSources,
+                    style: context.theme.textTheme.bodyMedium?.copyWith(
                       color: Colors.grey,
                     ),
                   ),
@@ -124,13 +127,13 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                l10n?.errorLoadingSources ?? 'Error loading sources',
-                style: Theme.of(context).textTheme.titleMedium,
+                l10n.errorLoadingSources,
+                style: context.theme.textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
               Text(
                 error.toString(),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: context.theme.textTheme.bodyMedium?.copyWith(
                   color: Colors.grey,
                 ),
                 textAlign: TextAlign.center,
@@ -138,7 +141,7 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => ref.refresh(migrationSourcesProvider(mangaId: sourceManga.id)),
-                child: Text(l10n?.retry ?? 'Retry'),
+                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -151,17 +154,45 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     MigrationSource source,
-  ) {
+  ) async {
     // Select the source
     ref.read(selectedMigrationSourceProvider.notifier).select(source);
     
-    // Navigate to manga search screen
-    context.push(
-      '/migration/search',
-      extra: {
-        'sourceManga': sourceManga,
-        'targetSource': source,
-      },
-    );
+    // Fetch the actual SourceDto from the source repository
+    try {
+      final sourceRepository = ref.read(sourceRepositoryProvider);
+      final targetSourceDto = await sourceRepository.getSource(source.id);
+      
+      if (targetSourceDto != null) {
+        // Navigate to manga search screen with proper data class
+        context.push(
+          '/migration/search',
+          extra: MigrationSearchRouteData(
+            sourceManga: sourceManga,
+            targetSource: targetSourceDto,
+          ),
+        );
+      } else {
+        // Fallback: Show error message
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error: Could not load source details'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      // Fallback: Show error message
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading source: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 } 

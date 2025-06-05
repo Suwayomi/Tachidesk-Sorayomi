@@ -6,6 +6,8 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../browse_center/domain/source/graphql/__generated__/fragment.graphql.dart';
+import '../../browse_center/domain/source/source_model.dart';
 import '../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 
 part 'migration_models.freezed.dart';
@@ -91,4 +93,40 @@ class MangaSearchResult with _$MangaSearchResult {
 
   factory MangaSearchResult.fromJson(Map<String, dynamic> json) =>
       _$MangaSearchResultFromJson(json);
+}
+
+// Route Data Classes to replace Map<String, dynamic>
+// These classes don't need JSON serialization since they're only used for navigation
+@freezed
+class MigrationRouteData with _$MigrationRouteData {
+  const factory MigrationRouteData({
+    required Fragment$MangaDto sourceManga,
+  }) = _MigrationRouteData;
+}
+
+@freezed
+class MigrationSearchRouteData with _$MigrationSearchRouteData {
+  const factory MigrationSearchRouteData({
+    required Fragment$MangaDto sourceManga,
+    required Fragment$SourceDto targetSource,
+  }) = _MigrationSearchRouteData;
+}
+
+@freezed
+class MigrationPreviewRouteData with _$MigrationPreviewRouteData {
+  const factory MigrationPreviewRouteData({
+    required Fragment$MangaDto sourceManga,
+    required Fragment$MangaDto targetManga,
+    required Fragment$SourceDto targetSource,
+  }) = _MigrationPreviewRouteData;
+}
+
+@freezed
+class MigrationProgressRouteData with _$MigrationProgressRouteData {
+  const factory MigrationProgressRouteData({
+    required Fragment$MangaDto sourceManga,
+    required Fragment$MangaDto targetManga,
+    required Fragment$SourceDto targetSource,
+    required MigrationOption options,
+  }) = _MigrationProgressRouteData;
 } 

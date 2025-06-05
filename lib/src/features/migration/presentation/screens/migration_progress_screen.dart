@@ -10,9 +10,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../browse_center/domain/source/source_model.dart';
 import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
+import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../widgets/migration_progress_widgets.dart';
 
 class MigrationProgressScreen extends ConsumerWidget {
   const MigrationProgressScreen({
@@ -23,10 +25,10 @@ class MigrationProgressScreen extends ConsumerWidget {
     required this.options,
   });
 
-  final dynamic sourceManga;
-  final dynamic targetManga;
+  final MangaDto sourceManga;
+  final MangaDto targetManga;
   final SourceDto targetSource;
-  final dynamic options;
+  final MigrationOption options;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,7 +46,7 @@ class MigrationProgressScreen extends ConsumerWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(l10n?.migrationInProgress ?? 'Migration in Progress'),
+          title: Text(l10n.migrationInProgress),
           automaticallyImplyLeading: migrationProgress?.status == MigrationStatus.completed ||
                                      migrationProgress?.status == MigrationStatus.error ||
                                      migrationProgress?.status == MigrationStatus.cancelled,
@@ -55,374 +57,35 @@ class MigrationProgressScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // Migration info card
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n?.migrationDetails ?? 'Migration Details',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text('${l10n?.from ?? 'From'}: ${sourceManga.title}'),
-                      Text('${l10n?.to ?? 'To'}: ${targetManga.title}'),
-                      Text('${l10n?.source ?? 'Source'}: ${targetSource.displayName ?? targetSource.name}'),
-                    ],
-                  ),
-                ),
+              MigrationInfoCard(
+                sourceManga: sourceManga,
+                targetManga: targetManga,
+                targetSource: targetSource,
               ),
               
               const SizedBox(height: 24),
               
               // Progress section
               Expanded(
-                child: _buildProgressContent(context, migrationProgress),
+                child: MigrationProgressContent(
+                  progress: migrationProgress,
+                  sourceManga: sourceManga,
+                  targetManga: targetManga,
+                  targetSource: targetSource,
+                ),
               ),
               
               // Action buttons
-              _buildActionButtons(context, ref, migrationProgress),
+              MigrationActionButtons(
+                progress: migrationProgress,
+                onCancel: () => _showCancelConfirmation(context, ref),
+                onComplete: () => _completeMigration(context, ref),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Widget _buildProgressContent(BuildContext context, MigrationProgress? progress) {
-    final l10n = context.l10n;
-    final theme = Theme.of(context);
-
-    if (progress == null) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const CircularProgressIndicator(),
-            const SizedBox(height: 16),
-            Text(
-              l10n?.preparingMigration ?? 'Preparing migration...',
-              style: theme.textTheme.titleMedium,
-            ),
-          ],
-        ),
-      );
-    }
-
-    switch (progress.status) {
-      case MigrationStatus.preparing:
-      case MigrationStatus.migrating:
-        return _buildActiveProgress(context, progress);
-        
-      case MigrationStatus.completed:
-        return _buildCompletedState(context);
-        
-      case MigrationStatus.error:
-        return _buildErrorState(context, progress);
-        
-      case MigrationStatus.cancelled:
-        return _buildCancelledState(context);
-        
-      default:
-        return _buildActiveProgress(context, progress);
-    }
-  }
-
-  Widget _buildActiveProgress(BuildContext context, MigrationProgress progress) {
-    final theme = Theme.of(context);
-    
-    return Column(
-      children: [
-        // Progress indicator
-        SizedBox(
-          width: 200,
-          height: 200,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              SizedBox(
-                width: 200,
-                height: 200,
-                child: CircularProgressIndicator(
-                  value: progress.percentage / 100,
-                  strokeWidth: 8,
-                  backgroundColor: theme.colorScheme.surfaceVariant,
-                ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    '${progress.percentage.toInt()}%',
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.primary,
-                    ),
-                  ),
-                  if (progress.totalItems > 0) ...[
-                    const SizedBox(height: 4),
-                    Text(
-                      '${progress.processedItems}/${progress.totalItems}',
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ],
-          ),
-        ),
-        
-        const SizedBox(height: 32),
-        
-        // Current step
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Icon(
-                  _getStepIcon(progress.status),
-                  color: theme.colorScheme.primary,
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    progress.currentStep,
-                    style: theme.textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        
-        const Spacer(),
-      ],
-    );
-  }
-
-  Widget _buildCompletedState(BuildContext context) {
-    final l10n = context.l10n;
-    final theme = Theme.of(context);
-    
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            color: Colors.green.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.check_circle,
-            size: 80,
-            color: Colors.green,
-          ),
-        ),
-        const SizedBox(height: 24),
-        Text(
-          l10n?.migrationCompleted ?? 'Migration Completed!',
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.green,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          l10n?.migrationSuccessMessage ?? 
-          'Your manga has been successfully migrated to the new source.',
-          style: theme.textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 16),
-        Card(
-          color: theme.colorScheme.surfaceVariant,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.info_outline,
-                      color: theme.colorScheme.primary,
-                      size: 20,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Migration Summary',
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '• Migrated from: ${sourceManga.title}',
-                  style: theme.textTheme.bodySmall,
-                ),
-                Text(
-                  '• Migrated to: ${targetManga.title}',
-                  style: theme.textTheme.bodySmall,
-                ),
-                Text(
-                  '• Source: ${targetSource.displayName ?? targetSource.name}',
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildErrorState(BuildContext context, MigrationProgress progress) {
-    final l10n = context.l10n;
-    final theme = Theme.of(context);
-    
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            color: Colors.red.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.error,
-            size: 80,
-            color: Colors.red,
-          ),
-        ),
-        const SizedBox(height: 24),
-        Text(
-          l10n?.migrationFailed ?? 'Migration Failed',
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.red,
-          ),
-        ),
-        const SizedBox(height: 8),
-        if (progress.errorMessage?.isNotEmpty == true) ...[
-          Card(
-            color: theme.colorScheme.errorContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                progress.errorMessage!,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onErrorContainer,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ],
-    );
-  }
-
-  Widget _buildCancelledState(BuildContext context) {
-    final l10n = context.l10n;
-    final theme = Theme.of(context);
-    
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            color: Colors.orange.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            Icons.cancel,
-            size: 80,
-            color: Colors.orange,
-          ),
-        ),
-        const SizedBox(height: 24),
-        Text(
-          l10n?.migrationCancelled ?? 'Migration Cancelled',
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: Colors.orange,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          l10n?.migrationCancelledMessage ?? 
-          'The migration process has been cancelled. No changes were made.',
-          style: theme.textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildActionButtons(
-    BuildContext context,
-    WidgetRef ref,
-    MigrationProgress? progress,
-  ) {
-    final l10n = context.l10n;
-    
-    if (progress == null ||
-        progress.status == MigrationStatus.preparing ||
-        progress.status == MigrationStatus.migrating) {
-      // Cancel button during active migration
-      return SafeArea(
-        child: OutlinedButton(
-          onPressed: () => _showCancelConfirmation(context, ref),
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.red,
-            side: const BorderSide(color: Colors.red),
-          ),
-          child: Text(l10n?.cancelMigration ?? 'Cancel Migration'),
-        ),
-      );
-    }
-    
-    // Done button after completion/error/cancellation
-    return SafeArea(
-      child: FilledButton(
-        onPressed: () => _completeMigration(context, ref),
-        child: Text(l10n?.done ?? 'Done'),
-      ),
-    );
-  }
-
-  IconData _getStepIcon(MigrationStatus status) {
-    switch (status) {
-      case MigrationStatus.preparing:
-        return Icons.settings;
-      case MigrationStatus.migrating:
-        return Icons.sync;
-      case MigrationStatus.completed:
-        return Icons.check_circle;
-      case MigrationStatus.error:
-        return Icons.error;
-      case MigrationStatus.cancelled:
-        return Icons.cancel;
-      default:
-        return Icons.info;
-    }
   }
 
   Future<void> _showCancelConfirmation(BuildContext context, WidgetRef ref) async {
@@ -431,22 +94,22 @@ class MigrationProgressScreen extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(l10n?.cancelMigration ?? 'Cancel Migration'),
+        title: Text(l10n.cancelMigration),
         content: Text(
-          l10n?.cancelMigrationConfirmation ?? 
-          'Are you sure you want to cancel the migration? This action cannot be undone.',
+          l10n.cancelMigrationConfirmation,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(l10n?.no ?? 'No'),
+            child: Text(l10n.no),
           ),
+          const SizedBox(width: 8),
           FilledButton(
             onPressed: () => Navigator.of(context).pop(true),
             style: FilledButton.styleFrom(
               backgroundColor: Colors.red,
             ),
-            child: Text(l10n?.yes ?? 'Yes'),
+            child: Text(l10n.yes),
           ),
         ],
       ),

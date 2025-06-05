@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../browse_center/domain/source/source_model.dart';
 import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
+import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
 import '../widgets/manga_comparison_widget.dart';
@@ -24,8 +25,8 @@ class MigrationPreviewScreen extends ConsumerWidget {
     required this.targetSource,
   });
 
-  final dynamic sourceManga;
-  final dynamic targetManga;
+  final MangaDto sourceManga;
+  final MangaDto targetManga;
   final SourceDto targetSource;
 
   @override
@@ -35,7 +36,8 @@ class MigrationPreviewScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.migrationPreview ?? 'Migration Preview'),
+        title: Text(l10n.migrationPreview),
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -56,8 +58,8 @@ class MigrationPreviewScreen extends ConsumerWidget {
                   
                   // Migration options
                   Text(
-                    l10n?.migrationOptions ?? 'Migration Options',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    l10n.migrationOptions,
+                    style: context.theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -74,7 +76,7 @@ class MigrationPreviewScreen extends ConsumerWidget {
                   
                   // Warning card
                   Card(
-                    color: Theme.of(context).colorScheme.errorContainer,
+                    color: context.theme.colorScheme.errorContainer,
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Column(
@@ -84,13 +86,14 @@ class MigrationPreviewScreen extends ConsumerWidget {
                             children: [
                               Icon(
                                 Icons.warning_amber_rounded,
-                                color: Theme.of(context).colorScheme.onErrorContainer,
+                                color: context.theme.colorScheme.error,
+                                size: 20,
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                l10n?.importantNotice ?? 'Important Notice',
-                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Theme.of(context).colorScheme.onErrorContainer,
+                                l10n.importantNotice,
+                                style: context.theme.textTheme.titleSmall?.copyWith(
+                                  color: context.theme.colorScheme.error,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -98,20 +101,18 @@ class MigrationPreviewScreen extends ConsumerWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            l10n?.migrationWarning ?? 
-                            'Migration will replace the current manga with the selected one. This action cannot be undone. Make sure you have selected the correct target manga.',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.onErrorContainer,
+                            l10n.migrationWarning,
+                            style: context.theme.textTheme.bodyMedium?.copyWith(
+                              color: context.theme.colorScheme.onErrorContainer,
                             ),
                           ),
                           if (migrationOptions.deleteSource) ...[
                             const SizedBox(height: 8),
                             Text(
-                              l10n?.deleteSourceWarning ?? 
-                              'The original manga will be removed from your library after migration.',
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: Theme.of(context).colorScheme.onErrorContainer,
-                                fontWeight: FontWeight.w500,
+                              l10n.deleteSourceWarning,
+                              style: context.theme.textTheme.bodyMedium?.copyWith(
+                                color: context.theme.colorScheme.error,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
@@ -130,10 +131,10 @@ class MigrationPreviewScreen extends ConsumerWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
+              color: context.theme.colorScheme.surface,
               border: Border(
                 top: BorderSide(
-                  color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+                  color: context.theme.colorScheme.outline.withOpacity(0.2),
                 ),
               ),
             ),
@@ -143,14 +144,14 @@ class MigrationPreviewScreen extends ConsumerWidget {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () => context.pop(),
-                      child: Text(l10n?.cancel ?? 'Cancel'),
+                      child: Text(l10n.cancel),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: FilledButton(
                       onPressed: () => _showMigrationConfirmation(context, ref),
-                      child: Text(l10n?.startMigration ?? 'Start Migration'),
+                      child: Text(l10n.startMigration),
                     ),
                   ),
                 ],
@@ -168,38 +169,39 @@ class MigrationPreviewScreen extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(l10n?.confirmMigration ?? 'Confirm Migration'),
+        title: Text(l10n.confirmMigration),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n?.migrationConfirmationMessage ?? 
-              'Are you sure you want to migrate this manga? This action cannot be undone.',
+              l10n.migrationConfirmationMessage,
+              style: context.theme.textTheme.bodyMedium,
             ),
             const SizedBox(height: 16),
             Text(
-              '${l10n?.from ?? 'From'}: ${sourceManga.title}',
-              style: const TextStyle(fontWeight: FontWeight.w500),
+              '${l10n.from}: ${sourceManga.title}',
+              style: context.theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 4),
             Text(
-              '${l10n?.to ?? 'To'}: ${targetManga.title}',
-              style: const TextStyle(fontWeight: FontWeight.w500),
+              '${l10n.to}: ${targetManga.title}',
+              style: context.theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(l10n?.cancel ?? 'Cancel'),
+            child: Text(l10n.cancel),
           ),
+          const SizedBox(width: 8),
           FilledButton(
             onPressed: () {
               Navigator.of(context).pop();
               _startMigration(context, ref);
             },
-            child: Text(l10n?.migrate ?? 'Migrate'),
+            child: Text(l10n.migrate),
           ),
         ],
       ),
@@ -212,12 +214,12 @@ class MigrationPreviewScreen extends ConsumerWidget {
     // Navigate to migration progress screen
     context.pushReplacement(
       '/migration/progress',
-      extra: {
-        'sourceManga': sourceManga,
-        'targetManga': targetManga,
-        'targetSource': targetSource,
-        'options': migrationOptions,
-      },
+      extra: MigrationProgressRouteData(
+        sourceManga: sourceManga,
+        targetManga: targetManga,
+        targetSource: targetSource,
+        options: migrationOptions,
+      ),
     );
     
     // Add a small delay to ensure navigation completes, then start the migration process
