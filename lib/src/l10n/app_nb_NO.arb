@@ -1,1 +1,272 @@
-{}
+{
+  "addCategory": "Legg til kategori",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "browse": "Bla gjennom",
+  "@browse": {
+    "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
+  },
+  "close": "Lukk",
+  "@close": {
+    "description": "Text for close button"
+  },
+  "cacheCleared": "Cache tømt",
+  "@cacheCleared": {
+    "description": "Toast Text to show after clearing cache"
+  },
+  "appLanguage": "App-språk",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "backupAndRestore": "Sikkerhetskopi og gjenopprett",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "authType": "Autentiseringstype",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "backupLocation": "Plassering av sikkerhetskopi",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupCleanup": "Opprydding av sikkerhetskopi",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "badges": "Merker",
+  "@badges": {
+    "description": "Checkbox Group title to enable Badges on manga Cover in Library Screen"
+  },
+  "defaultCategory": "Standardkategori når ny manga legges til i biblioteket",
+  "@defaultCategory": {
+    "description": "Checkbox description when creating a Category to add manga to the Category by Default"
+  },
+  "categories": "Kategorier",
+  "@categories": {
+    "description": "Button text of edit Categories screen in Library settings screen"
+  },
+  "credentials": "Innloggingsdetaljer",
+  "@credentials": {
+    "description": "Popup title and Button text to enter Authentication credentials"
+  },
+  "backupLocationDescription": "Stien til mappen på serveren hvor automatiske sikkerhetskopier skal lagres",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "checkForServerUpdates": "Sjekk etter serveroppdateringer",
+  "@checkForServerUpdates": {
+    "description": "Button text to check for Server updates"
+  },
+  "allScanlators": "Alle scanlators",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "appTheme": "App-tema",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appTitle": "Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Sorayomi in native script)"
+  },
+  "appearance": "Utseende",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authTypeBasic": "Enkel autentisering",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "Ingen",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "authentication": "Autentisering",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownloadNewChapters": "Last ned nye kapitler",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "Automatisk sikkerhetskopi",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "automaticUpdate": "Automatisk oppdatering",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "Oppdater metadata automatisk",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "Sjekk etter nytt omslag og detaljer når biblioteket oppdateres",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backup": "Sikkerhetskopi",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "backupCleanupDescription": "{count, select, 0{Aldri} 01{Slett sikkerhetskopier som er eldre enn 1 dag} other{Slett sikkerhetskopier som er eldre enn {count} dager}}",
+  "@backupCleanupDescription": {},
+  "backupTime": "Tidspunkt for sikkerhetskopi",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "buildTime": "Byggetidspunkt",
+  "@buildTime": {
+    "description": "Text title to show build time of Server in About Screen"
+  },
+  "cancel": "Avbryt",
+  "@cancel": {
+    "description": "Text for Cancel button in a Popup"
+  },
+  "categoryUpdate": "Kategori-oppdatering",
+  "@categoryUpdate": {
+    "description": "Button text to update the mangas in the Category"
+  },
+  "channel": "Kanal",
+  "@channel": {
+    "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
+  },
+  "chapterNumber": "Kapittel {number}",
+  "@chapterNumber": {
+    "description": "Text title for Chapter name in chapter list",
+    "placeholders": {
+      "number": {
+        "example": "12.5",
+        "type": "double"
+      }
+    }
+  },
+  "chapterSortFetchedDate": "Etter hentet dato",
+  "@chapterSortFetchedDate": {
+    "description": "Radio button text for sort by Fetched Date"
+  },
+  "chapterSortSource": "Etter kilde",
+  "@chapterSortSource": {
+    "description": "Radio button text for sort by Source"
+  },
+  "chapterSortUploadDate": "Etter opplastingsdato",
+  "@chapterSortUploadDate": {
+    "description": "Radio button text for sort by Upload Date"
+  },
+  "checkForUpdates": "Sjekk etter oppdateringer",
+  "@checkForUpdates": {
+    "description": "Button text to check for App Updates"
+  },
+  "clearCache": "Tøm cache",
+  "@clearCache": {
+    "description": "Button text for clear cache in General Settings screen"
+  },
+  "cloudflareBypass": "Cloudflare Bypass",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "copied": "Kopiert!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "copyMsg": "'{msg}' kopiert!",
+  "@copyMsg": {
+    "description": "Toast text to show that the message has been copied",
+    "placeholders": {
+      "msg": {
+        "example": "Client : Sorayomi",
+        "type": "String"
+      }
+    }
+  },
+  "createBackupTitle": "Opprett sikkerhetskopi",
+  "@createBackupTitle": {
+    "description": "Button text to create backup"
+  },
+  "current": "Nåværende",
+  "@current": {
+    "description": "Text to show the currently reading chapter in Reader Screen"
+  },
+  "debugLogs": "Feilsøkingslogger",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "deleteCategoryTitle": "Er du sikker?",
+  "@deleteCategoryTitle": {
+    "description": "Popup title when deleting Category"
+  },
+  "display": "Visning",
+  "@display": {
+    "description": "Text for Display tab in Library screen drawer"
+  },
+  "advanced": "Avansert",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "autoDownload": "Automatisk nedlasting",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "clientVersion": "Klientversjon",
+  "@clientVersion": {
+    "description": "Text title for the current version of the client in About screen"
+  },
+  "deleteCategoryDescription": "Dette vil overføre alle mangaer i denne kategorien til standardkategorien!",
+  "@deleteCategoryDescription": {
+    "description": "Popup description when deleting Category"
+  },
+  "backupInterval": "Intervall for sikkerhetskopi",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "completed": "Fullført",
+  "@completed": {
+    "description": "Checkbox text to filter Completed mangas in Library screen and Manga Grouping text in Update Summary screen"
+  },
+  "daysAgo": "{days} dager siden",
+  "@daysAgo": {
+    "description": "Days ago text to show the release date of manga"
+  },
+  "delete": "Slett",
+  "@delete": {
+    "description": "Text for delete button"
+  },
+  "createBackupDescription": "Sikkerhetskopier bibliotek som Tachidesk-sikkerhetskopi",
+  "@createBackupDescription": {
+    "description": "Button text description to create backup"
+  },
+  "displayMode": "Visningsmodus",
+  "@displayMode": {
+    "description": "Radio Group title to change manga Cover display in Library and Source Screens"
+  },
+  "bookmarked": "Bokmerket",
+  "@bookmarked": {
+    "description": "Checkbox text to filter bookmarked manga chapters in Manga Details screen"
+  },
+  "about": "Om",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "chapterDownloadLimit": "Nedlastingsgrense for kapitler",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "Begrens antall nye kapitler som skal lastes ned.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "addToLibrary": "Legg til i bibliotek",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "client": "Klient",
+  "@client": {
+    "description": "Text title for the name of the client in About screen"
+  },
+  "discord": "Discord",
+  "@discord": {
+    "description": "Discord app title"
+  }
+}
