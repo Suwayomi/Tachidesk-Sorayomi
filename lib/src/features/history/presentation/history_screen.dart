@@ -49,6 +49,7 @@ class HistoryScreen extends ConsumerWidget {
                   .read(historySearchQueryProvider.notifier)
                   .updateQuery(query ?? ''),
               hintText: l10n.searchHistory,
+              autofocus: false,
             ),
           ),
           // History content
