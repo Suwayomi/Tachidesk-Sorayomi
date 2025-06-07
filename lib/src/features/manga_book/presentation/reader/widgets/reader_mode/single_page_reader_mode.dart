@@ -52,7 +52,7 @@ class SinglePageReaderMode extends HookConsumerWidget {
           : chapter.lastPageRead.getValueOnNullOrNegative(),
     );
     final currentIndex = useState(scrollController.initialPage);
-    
+
     useEffect(() {
       if (onPageChanged != null) onPageChanged!(currentIndex.value);
       int currentPage = currentIndex.value;
@@ -121,14 +121,14 @@ class SinglePageReaderMode extends HookConsumerWidget {
               child: CenterSorayomiShimmerIndicator(),
             );
           }
-          
+
           // Add bounds checking to prevent accessing non-existent pages
           if (index >= chapterPages.pages.length) {
             return const Center(
               child: CenterSorayomiShimmerIndicator(),
             );
           }
-          
+
           final image = ServerImage(
             showReloadButton: true,
             fit: BoxFit.contain,
