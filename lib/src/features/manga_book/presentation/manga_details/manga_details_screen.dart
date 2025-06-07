@@ -8,6 +8,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -19,6 +20,7 @@ import '../../../../utils/misc/toast/toast.dart';
 import '../../../../widgets/emoticons.dart';
 import '../../../library/presentation/category/controller/edit_category_controller.dart';
 import '../../../library/presentation/library/controller/library_controller.dart';
+import '../../../migration/domain/migration_models.dart';
 import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
 import 'controller/manga_details_controller.dart';
@@ -87,6 +89,16 @@ class MangaDetailsScreen extends HookConsumerWidget {
       return;
     }, []);
 
+    // Migration function
+    void startMigration(BuildContext context, int mangaId, dynamic manga) {
+      if (manga == null) return;
+
+      // Navigate to migration source selection
+      MigrationGlobalSearchRoute(
+        $extra: MigrationRouteData(sourceManga: manga),
+      ).push(context);
+    }
+
     return PopScope(
       onPopInvokedWithResult: (didPop, _) async {
         if (didPop && categoryId != null) {
@@ -152,6 +164,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         icon: const Icon(Icons.category_rounded),
                       ),
                       IconButton(
+                        onPressed: () => startMigration(context, mangaId, data),
+                        icon: const Icon(Icons.swap_horiz_rounded),
+                        tooltip: context.l10n.migrate,
+                      ),
+                      IconButton(
                         onPressed: AppUtils.returnIf(
                           data!.realUrl != null,
                           () => launchUrlInWeb(
@@ -202,6 +219,16 @@ class MangaDetailsScreen extends HookConsumerWidget {
                               },
                             ),
                             child: Text(context.l10n.editCategory),
+                          ),
+                          PopupMenuItem(
+                            onTap: () => startMigration(context, mangaId, data),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.swap_horiz_rounded),
+                                const SizedBox(width: 8),
+                                Text(context.l10n.migrate),
+                              ],
+                            ),
                           ),
                           PopupMenuItem(
                             onTap: () => refresh(true),

@@ -1,5 +1,4 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +19,12 @@ import '../features/manga_book/presentation/manga_details/manga_details_screen.d
 import '../features/manga_book/presentation/reader/reader_screen.dart';
 import '../features/manga_book/presentation/updates/updates_screen.dart';
 import '../features/manga_book/widgets/update_status_summary_sheet.dart';
+import '../features/migration/domain/migration_models.dart';
+import '../features/migration/presentation/screens/migration_global_search_screen.dart';
+import '../features/migration/presentation/screens/migration_preview_screen.dart';
+import '../features/migration/presentation/screens/migration_progress_screen.dart';
+import '../features/migration/presentation/screens/migration_search_screen.dart';
+import '../features/migration/presentation/screens/migration_source_selection_screen.dart';
 import '../features/quick_open/presentation/search_stack/search_stack_screen.dart';
 import '../features/settings/presentation/appearance/appearance_screen.dart';
 import '../features/settings/presentation/backup/backup_screen.dart';
@@ -40,6 +45,7 @@ part 'sub_routes/browser_routes.dart';
 part 'sub_routes/common_routes.dart';
 part 'sub_routes/downloads_routes.dart';
 part 'sub_routes/library_routes.dart';
+part 'sub_routes/migration_routes.dart';
 part 'sub_routes/more_routes.dart';
 part 'sub_routes/updates_routes.dart';
 
@@ -84,6 +90,13 @@ abstract class Routes {
   static const updateStatus = "/update-status";
   static const about = 'about';
   static const globalSearch = '/global-search';
+
+  // Migration
+  static const migrationGlobalSearch = '/migration/global-search';
+  static const migrationSourceSelection = '/migration/source-selection';
+  static const migrationSearch = '/migration/search';
+  static const migrationPreview = '/migration/preview';
+  static const migrationProgress = '/migration/progress';
 }
 
 @riverpod
@@ -192,6 +205,13 @@ GoRouter routerConfig(ref) {
     ),
     TypedGoRoute<UpdateStatusRoute>(path: Routes.updateStatus),
     TypedGoRoute<GlobalSearchRoute>(path: Routes.globalSearch),
+    TypedGoRoute<MigrationGlobalSearchRoute>(
+        path: Routes.migrationGlobalSearch),
+    TypedGoRoute<MigrationSourceSelectionRoute>(
+        path: Routes.migrationSourceSelection),
+    TypedGoRoute<MigrationSearchRoute>(path: Routes.migrationSearch),
+    TypedGoRoute<MigrationPreviewRoute>(path: Routes.migrationPreview),
+    TypedGoRoute<MigrationProgressRoute>(path: Routes.migrationProgress),
   ],
 )
 @immutable

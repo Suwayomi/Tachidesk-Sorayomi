@@ -59,7 +59,7 @@
   "@backupCleanup": {
     "description": "Title for file backup cleanup edit tile"
   },
-  "backupCleanupDescription": "{எண்ணுங்கள், தேர்ந்தெடுக்கவும், 0 {Never} 01 {Delete Backups that are older 1 day} பிற {பழைய காப்புப்பிரதிகளை நீக்கு {count} நாட்கள்}}",
+  "backupCleanupDescription": "{count, select, 0{Never} 01{Delete Backups that are older 1 day} other{பழைய காப்புப்பிரதிகளை நீக்கு {count} நாட்கள்}}",
   "@backupCleanupDescription": {},
   "backupInterval": "காப்பு இடைவெளி",
   "@backupInterval": {
@@ -499,31 +499,31 @@
   "@moveToTop": {
     "description": "Button text to move download/category to the top of list"
   },
-  "nChapters": "{n, பன்மை, = 0 {None} = 1 {1 Chapter} பிற {{n} அத்தியாயங்கள்}}",
+  "nChapters": "{n, plural, =0{None} =1{1 Chapter} other{{n} அத்தியாயங்கள்}}",
   "@nChapters": {
     "description": "Text for showing N chapters"
   },
-  "nDays": "{எண்ணுங்கள், தேர்ந்தெடுக்கவும், 01 {01 Day} பிற {{count} நாட்கள்}}",
+  "nDays": "{count, select, 01{1 Day} other{{count} நாட்கள்}}",
   "@nDays": {
     "description": "to show Number of days with plural"
   },
-  "nHours": "{n, பன்மை, = 1 {1 hour} பிற {{n} மணிநேரம்}}",
+  "nHours": "{n, plural, =1{1 hour} other{{n} மணிநேரம்}}",
   "@nHours": {
     "description": "Text to represent 'n' hours"
   },
-  "nMinutes": "{n, பன்மை, = 1 {1 Minute} பிற {{n} நிமிடங்கள்}}",
+  "nMinutes": "{n, plural, =1{1 Minute} other{{n} நிமிடங்கள்}}",
   "@nMinutes": {
     "description": "Text to represent 'n' Minutes"
   },
-  "nRepo": "{n, பன்மை, = 1 {1 Repo} பிற {{n} repos}}",
+  "nRepo": "{n, plural, =1{1 Repo} other{{n} repos}}",
   "@nRepo": {
     "description": "Text to show n repo as subtitle"
   },
-  "nSeconds": "{n, பன்மை, = 1 {1 second} பிற {{n} விநாடிகள்}}",
+  "nSeconds": "{n, plural, =1{1 second} other{{n} விநாடிகள்}}",
   "@nSeconds": {
     "description": "Text to represent 'n' seconds"
   },
-  "nSources": "{n, பன்மை, = 1 {1 Source} பிற {{n} மூலங்கள்}}",
+  "nSources": "{n, plural, =1{1 Source} other{{n} மூலங்கள்}}",
   "@nSources": {
     "description": "Text to represent n number Parallel source requests"
   },
@@ -545,7 +545,7 @@
   "@newUpdateAvailable": {
     "description": "Popup title to show that the App/Server has and update"
   },
-  "nextChapter": "அடுத்து: {அத்தியாயம்",
+  "nextChapter": "அடுத்து: {chapterTitle}",
   "@nextChapter": {
     "description": "Text for Next Chapter button in Manga Reader Screen"
   },
@@ -671,7 +671,7 @@
   "@pinchToZoom": {
     "description": "Switch title to enable pinch to zoom in reader screen"
   },
-  "previousChapter": "முந்தைய: {அத்தியாயம்",
+  "previousChapter": "முந்தைய: {chapterTitle}",
   "@previousChapter": {
     "description": "Text for Previous Chapter button in Manga Reader Screen"
   },
@@ -1009,7 +1009,7 @@
   "@updateCompleted": {
     "description": "Button text to show that extension update is completed"
   },
-  "updateFailed": "{சொத்து bep புதுப்பிக்கத் தவறிவிட்டது",
+  "updateFailed": "{property} புதுப்பிக்கத் தவறிவிட்டது",
   "@updateFailed": {
     "description": "Failed to update Text"
   },
@@ -1033,7 +1033,7 @@
   "@validating": {
     "description": "toast to show backup validation is in progress"
   },
-  "versionAvailable": "பதிப்பு {version} {பயன்பாட்டிற்கு கிடைக்கிறது !!",
+  "versionAvailable": "பதிப்பு {version} {app}ற்கு கிடைக்கிறது !!",
   "@versionAvailable": {
     "description": "Text to show that there is an update to App/Server",
     "placeholders": {
