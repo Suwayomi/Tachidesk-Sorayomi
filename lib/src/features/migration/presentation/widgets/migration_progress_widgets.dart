@@ -6,10 +6,10 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../browse_center/domain/source/source_model.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../domain/migration_models.dart';
-import '../../../../utils/extensions/custom_extensions.dart';
 
 /// Widget displaying migration information card
 class MigrationInfoCard extends StatelessWidget {
@@ -27,7 +27,7 @@ class MigrationInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -43,7 +43,7 @@ class MigrationInfoCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text('${l10n.from}: ${sourceManga.title}'),
             Text('${l10n.to}: ${targetManga.title}'),
-            Text('${l10n.source}: ${targetSource.displayName ?? targetSource.name}'),
+            Text('${l10n.source}: ${targetSource.displayName}'),
           ],
         ),
       ),
@@ -68,9 +68,6 @@ class MigrationProgressContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final theme = context.theme;
-
     if (progress == null) {
       return MigrationPreparingWidget();
     }
@@ -79,20 +76,20 @@ class MigrationProgressContent extends StatelessWidget {
       case MigrationStatus.preparing:
       case MigrationStatus.migrating:
         return MigrationActiveProgressWidget(progress: progress!);
-        
+
       case MigrationStatus.completed:
         return MigrationCompletedWidget(
           sourceManga: sourceManga,
           targetManga: targetManga,
           targetSource: targetSource,
         );
-        
+
       case MigrationStatus.error:
         return MigrationErrorWidget(progress: progress!);
-        
+
       case MigrationStatus.cancelled:
         return MigrationCancelledWidget();
-        
+
       default:
         return MigrationActiveProgressWidget(progress: progress!);
     }
@@ -137,18 +134,16 @@ class MigrationActiveProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
-    
     return Column(
       children: [
         // Progress indicator
         MigrationProgressIndicator(progress: progress),
-        
+
         const SizedBox(height: 32),
-        
+
         // Current step
         MigrationCurrentStepCard(progress: progress),
-        
+
         const Spacer(),
       ],
     );
@@ -167,7 +162,7 @@ class MigrationProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    
+
     return SizedBox(
       width: 200,
       height: 200,
@@ -180,7 +175,7 @@ class MigrationProgressIndicator extends StatelessWidget {
             child: CircularProgressIndicator(
               value: progress.percentage / 100,
               strokeWidth: 8,
-              backgroundColor: theme.colorScheme.surfaceVariant,
+              backgroundColor: theme.colorScheme.surfaceContainerHighest,
             ),
           ),
           Column(
@@ -222,7 +217,7 @@ class MigrationCurrentStepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -235,7 +230,7 @@ class MigrationCurrentStepCard extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                progress.currentStep,
+                _getStepDisplayText(context, progress.currentStep),
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
@@ -248,20 +243,27 @@ class MigrationCurrentStepCard extends StatelessWidget {
   }
 
   IconData _getStepIcon(MigrationStatus status) {
-    switch (status) {
-      case MigrationStatus.preparing:
-        return Icons.settings;
-      case MigrationStatus.migrating:
-        return Icons.sync;
-      case MigrationStatus.completed:
-        return Icons.check_circle;
-      case MigrationStatus.error:
-        return Icons.error;
-      case MigrationStatus.cancelled:
-        return Icons.cancel;
-      default:
-        return Icons.info;
-    }
+    return switch (status) {
+      MigrationStatus.preparing => Icons.settings,
+      MigrationStatus.migrating => Icons.sync,
+      MigrationStatus.completed => Icons.check_circle,
+      MigrationStatus.error => Icons.error,
+      MigrationStatus.cancelled => Icons.cancel,
+      _ => Icons.info,
+    };
+  }
+
+  String _getStepDisplayText(BuildContext context, MigrationStep step) {
+    final l10n = context.l10n;
+    return switch (step) {
+      MigrationStep.preparingMigration => l10n.preparingMigration,
+      MigrationStep.migrateChapters => l10n.migrateChapters,
+      MigrationStep.migrateCategories => l10n.migrateCategories,
+      MigrationStep.migrationInProgress => l10n.migrationInProgress,
+      MigrationStep.migrationCompleted => l10n.migrationCompleted,
+      MigrationStep.migrationFailed => l10n.migrationFailed,
+      MigrationStep.migrationCancelled => l10n.migrationCancelled,
+    };
   }
 }
 
@@ -282,7 +284,7 @@ class MigrationCompletedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = context.theme;
-    
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -329,7 +331,7 @@ class MigrationErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = context.theme;
-    
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -375,7 +377,7 @@ class MigrationCancelledWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final theme = context.theme;
-    
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -450,9 +452,9 @@ class MigrationSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    
+
     return Card(
-      color: theme.colorScheme.surfaceVariant,
+      color: theme.colorScheme.surfaceContainerHighest,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -485,7 +487,7 @@ class MigrationSummaryCard extends StatelessWidget {
               style: theme.textTheme.bodySmall,
             ),
             Text(
-              '• Source: ${targetSource.displayName ?? targetSource.name}',
+              '• Source: ${targetSource.displayName}',
               style: theme.textTheme.bodySmall,
             ),
           ],
@@ -511,7 +513,7 @@ class MigrationActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    
+
     if (progress == null ||
         progress!.status == MigrationStatus.preparing ||
         progress!.status == MigrationStatus.migrating) {
@@ -527,7 +529,7 @@ class MigrationActionButtons extends StatelessWidget {
         ),
       );
     }
-    
+
     // Done button after completion/error/cancellation
     return SafeArea(
       child: FilledButton(
@@ -536,4 +538,4 @@ class MigrationActionButtons extends StatelessWidget {
       ),
     );
   }
-} 
+}

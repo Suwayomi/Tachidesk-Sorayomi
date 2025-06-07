@@ -6,7 +6,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -15,8 +14,8 @@ import '../../../../widgets/emoticons.dart';
 import '../../../../widgets/search_field.dart';
 import '../../../browse_center/presentation/source/controller/source_controller.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
-import '../widgets/migration_source_short_search.dart';
 import '../../controller/migration_controller.dart';
+import '../widgets/migration_source_short_search.dart';
 
 class MigrationGlobalSearchScreen extends HookConsumerWidget {
   const MigrationGlobalSearchScreen({
@@ -28,12 +27,13 @@ class MigrationGlobalSearchScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final query = useState<String?>(sourceManga?.title);
-    final migrationSearchResult = ref.watch(migrationGlobalSearchResultsProvider(query: query.value));
-    
+    final query = useState<String?>(sourceManga.title);
+    final migrationSearchResult =
+        ref.watch(migrationGlobalSearchResultsProvider(query: query.value));
+
     // Auto-search with source manga title on screen load
     useEffect(() {
-      final initialQuery = sourceManga?.title ?? '';
+      final initialQuery = sourceManga.title;
       if (initialQuery.isNotEmpty) {
         query.value = initialQuery;
       }
@@ -82,4 +82,4 @@ class MigrationGlobalSearchScreen extends HookConsumerWidget {
       ),
     );
   }
-} 
+}

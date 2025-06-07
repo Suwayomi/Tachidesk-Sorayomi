@@ -6,8 +6,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../routes/router_config.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/server_image.dart';
@@ -32,10 +33,10 @@ class MigrationSearchScreen extends HookConsumerWidget {
     final l10n = context.l10n;
     final searchController = useTextEditingController();
     final searchQuery = ref.watch(migrationSearchQueryProvider);
-    
+
     // Auto-search with source manga title on screen load
     useEffect(() {
-      final initialQuery = sourceManga.title ?? '';
+      final initialQuery = sourceManga.title;
       if (initialQuery.isNotEmpty) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           searchController.text = initialQuery;
@@ -56,7 +57,7 @@ class MigrationSearchScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search in ${targetSource.displayName ?? targetSource.name}'),
+        title: Text('Search in ${targetSource.displayName}'),
       ),
       body: Column(
         children: [
@@ -90,14 +91,14 @@ class MigrationSearchScreen extends HookConsumerWidget {
               },
             ),
           ),
-          
+
           // Source info banner
           Container(
             width: double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: 16),
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: context.theme.colorScheme.surfaceVariant,
+              color: context.theme.colorScheme.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -110,7 +111,7 @@ class MigrationSearchScreen extends HookConsumerWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    'Searching in ${targetSource.displayName ?? targetSource.name} (${targetSource.lang.toUpperCase()})',
+                    'Searching in ${targetSource.displayName} (${targetSource.lang.toUpperCase()})',
                     style: context.theme.textTheme.bodySmall?.copyWith(
                       color: context.theme.colorScheme.onSurfaceVariant,
                     ),
@@ -119,9 +120,9 @@ class MigrationSearchScreen extends HookConsumerWidget {
               ],
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Search results
           Expanded(
             child: searchResultsAsync.when(
@@ -254,16 +255,15 @@ class MigrationSearchScreen extends HookConsumerWidget {
   ) {
     // Select the target manga
     ref.read(selectedTargetMangaProvider.notifier).select(targetManga);
-    
+
     // Navigate to migration preview screen with proper data class
-    context.push(
-      '/migration/preview',
-      extra: MigrationPreviewRouteData(
+    MigrationPreviewRoute(
+      $extra: MigrationPreviewRouteData(
         sourceManga: sourceManga,
         targetManga: targetManga,
         targetSource: targetSource,
       ),
-    );
+    ).push(context);
   }
 }
 
@@ -292,7 +292,7 @@ class _MangaSearchResultCard extends StatelessWidget {
                 imageUrl: manga.thumbnailUrl ?? '',
               ),
             ),
-            
+
             // Manga info
             Expanded(
               flex: 1,
@@ -302,7 +302,7 @@ class _MangaSearchResultCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      manga.title ?? 'Unknown Title',
+                      manga.title,
                       style: context.theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
@@ -329,4 +329,4 @@ class _MangaSearchResultCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

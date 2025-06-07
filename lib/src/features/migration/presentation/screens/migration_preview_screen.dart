@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../routes/router_config.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../browse_center/domain/source/source_model.dart';
-import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
 import '../widgets/manga_comparison_widget.dart';
 import '../widgets/migration_options_widget.dart';
-import '../../../../utils/extensions/custom_extensions.dart';
 
 class MigrationPreviewScreen extends ConsumerWidget {
   const MigrationPreviewScreen({
@@ -53,9 +53,9 @@ class MigrationPreviewScreen extends ConsumerWidget {
                     sourceManga: sourceManga,
                     targetManga: targetManga,
                   ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Migration options
                   Text(
                     l10n.migrationOptions,
@@ -64,16 +64,18 @@ class MigrationPreviewScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  
+
                   MigrationOptionsWidget(
                     options: migrationOptions,
                     onChanged: (newOptions) {
-                      ref.read(migrationOptionsProvider.notifier).update(newOptions);
+                      ref
+                          .read(migrationOptionsProvider.notifier)
+                          .update(newOptions);
                     },
                   ),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // Warning card
                   Card(
                     color: context.theme.colorScheme.errorContainer,
@@ -92,7 +94,8 @@ class MigrationPreviewScreen extends ConsumerWidget {
                               const SizedBox(width: 8),
                               Text(
                                 l10n.importantNotice,
-                                style: context.theme.textTheme.titleSmall?.copyWith(
+                                style: context.theme.textTheme.titleSmall
+                                    ?.copyWith(
                                   color: context.theme.colorScheme.error,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -110,7 +113,8 @@ class MigrationPreviewScreen extends ConsumerWidget {
                             const SizedBox(height: 8),
                             Text(
                               l10n.deleteSourceWarning,
-                              style: context.theme.textTheme.bodyMedium?.copyWith(
+                              style:
+                                  context.theme.textTheme.bodyMedium?.copyWith(
                                 color: context.theme.colorScheme.error,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -120,13 +124,13 @@ class MigrationPreviewScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 16),
                 ],
               ),
             ),
           ),
-          
+
           // Action buttons
           Container(
             padding: const EdgeInsets.all(16),
@@ -165,7 +169,7 @@ class MigrationPreviewScreen extends ConsumerWidget {
 
   void _showMigrationConfirmation(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -181,12 +185,14 @@ class MigrationPreviewScreen extends ConsumerWidget {
             const SizedBox(height: 16),
             Text(
               '${l10n.from}: ${sourceManga.title}',
-              style: context.theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+              style: context.theme.textTheme.bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 4),
             Text(
               '${l10n.to}: ${targetManga.title}',
-              style: context.theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+              style: context.theme.textTheme.bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.w600),
             ),
           ],
         ),
@@ -210,25 +216,24 @@ class MigrationPreviewScreen extends ConsumerWidget {
 
   void _startMigration(BuildContext context, WidgetRef ref) {
     final migrationOptions = ref.read(migrationOptionsProvider);
-    
+
     // Navigate to migration progress screen
-    context.pushReplacement(
-      '/migration/progress',
-      extra: MigrationProgressRouteData(
+    MigrationProgressRoute(
+      $extra: MigrationProgressRouteData(
         sourceManga: sourceManga,
         targetManga: targetManga,
         targetSource: targetSource,
         options: migrationOptions,
       ),
-    );
-    
+    ).pushReplacement(context);
+
     // Add a small delay to ensure navigation completes, then start the migration process
     Future.delayed(const Duration(milliseconds: 100), () {
       ref.read(migrationExecutionProvider.notifier).executeMigration(
-        fromMangaId: sourceManga.id,
-        toMangaId: targetManga.id,
-        options: migrationOptions,
-      );
+            fromMangaId: sourceManga.id,
+            toMangaId: targetManga.id,
+            options: migrationOptions,
+          );
     });
   }
-} 
+}

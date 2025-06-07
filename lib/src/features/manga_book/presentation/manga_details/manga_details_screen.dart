@@ -8,7 +8,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
@@ -92,11 +92,11 @@ class MangaDetailsScreen extends HookConsumerWidget {
     // Migration function
     void startMigration(BuildContext context, int mangaId, dynamic manga) {
       if (manga == null) return;
-      
+
       // Navigate to migration source selection
-      context.push('/migration/global-search', extra: MigrationRouteData(
-        sourceManga: manga,
-      ));
+      MigrationGlobalSearchRoute(
+        $extra: MigrationRouteData(sourceManga: manga),
+      ).push(context);
     }
 
     return PopScope(

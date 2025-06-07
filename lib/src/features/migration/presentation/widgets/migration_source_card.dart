@@ -6,8 +6,8 @@
 
 import 'package:flutter/material.dart';
 
-import '../../domain/migration_models.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../domain/migration_models.dart';
 
 class MigrationSourceCard extends StatelessWidget {
   const MigrationSourceCard({
@@ -24,7 +24,7 @@ class MigrationSourceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    
+
     return Card(
       elevation: isSelected ? 4 : 1,
       child: InkWell(
@@ -53,7 +53,7 @@ class MigrationSourceCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                
+
                 // Source information
                 Expanded(
                   child: Column(
@@ -67,7 +67,7 @@ class MigrationSourceCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      
+
                       // Language and manga count
                       Row(
                         children: [
@@ -78,7 +78,7 @@ class MigrationSourceCard extends StatelessWidget {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: theme.colorScheme.surfaceVariant,
+                              color: theme.colorScheme.surfaceContainerHighest,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
@@ -90,7 +90,7 @@ class MigrationSourceCard extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          
+
                           // Manga count
                           if (source.mangaCount > 0) ...[
                             Icon(
@@ -111,7 +111,7 @@ class MigrationSourceCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                
+
                 // Status indicator and selection icon
                 Column(
                   children: [
@@ -128,9 +128,9 @@ class MigrationSourceCard extends StatelessWidget {
                         color: theme.colorScheme.outline,
                         size: 20,
                       ),
-                    
+
                     const SizedBox(height: 8),
-                    
+
                     // Selection indicator
                     if (isSelected)
                       Icon(
@@ -151,4 +151,4 @@ class MigrationSourceCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

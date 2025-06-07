@@ -8,12 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../browse_center/domain/source/source_model.dart';
-import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
-import '../../../../utils/extensions/custom_extensions.dart';
 import '../widgets/migration_progress_widgets.dart';
 
 class MigrationProgressScreen extends ConsumerWidget {
@@ -37,8 +36,8 @@ class MigrationProgressScreen extends ConsumerWidget {
 
     return PopScope(
       canPop: migrationProgress?.status == MigrationStatus.completed ||
-              migrationProgress?.status == MigrationStatus.error ||
-              migrationProgress?.status == MigrationStatus.cancelled,
+          migrationProgress?.status == MigrationStatus.error ||
+          migrationProgress?.status == MigrationStatus.cancelled,
       onPopInvokedWithResult: (didPop, _) async {
         if (!didPop && migrationProgress != null) {
           await _showCancelConfirmation(context, ref);
@@ -47,9 +46,10 @@ class MigrationProgressScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(l10n.migrationInProgress),
-          automaticallyImplyLeading: migrationProgress?.status == MigrationStatus.completed ||
-                                     migrationProgress?.status == MigrationStatus.error ||
-                                     migrationProgress?.status == MigrationStatus.cancelled,
+          automaticallyImplyLeading:
+              migrationProgress?.status == MigrationStatus.completed ||
+                  migrationProgress?.status == MigrationStatus.error ||
+                  migrationProgress?.status == MigrationStatus.cancelled,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -62,9 +62,9 @@ class MigrationProgressScreen extends ConsumerWidget {
                 targetManga: targetManga,
                 targetSource: targetSource,
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // Progress section
               Expanded(
                 child: MigrationProgressContent(
@@ -74,7 +74,7 @@ class MigrationProgressScreen extends ConsumerWidget {
                   targetSource: targetSource,
                 ),
               ),
-              
+
               // Action buttons
               MigrationActionButtons(
                 progress: migrationProgress,
@@ -88,9 +88,10 @@ class MigrationProgressScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> _showCancelConfirmation(BuildContext context, WidgetRef ref) async {
+  Future<void> _showCancelConfirmation(
+      BuildContext context, WidgetRef ref) async {
     final l10n = context.l10n;
-    
+
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -114,7 +115,7 @@ class MigrationProgressScreen extends ConsumerWidget {
         ],
       ),
     );
-    
+
     if (confirmed == true) {
       await ref.read(migrationExecutionProvider.notifier).cancelMigration();
     }
@@ -122,14 +123,14 @@ class MigrationProgressScreen extends ConsumerWidget {
 
   void _completeMigration(BuildContext context, WidgetRef ref) {
     final migrationProgress = ref.read(migrationExecutionProvider);
-    
+
     // Reset migration state
     ref.read(migrationExecutionProvider.notifier).reset();
     ref.read(selectedMigrationSourceProvider.notifier).clear();
     ref.read(selectedTargetMangaProvider.notifier).clear();
     ref.read(migrationOptionsProvider.notifier).reset();
     ref.read(migrationSearchQueryProvider.notifier).clear();
-    
+
     // Navigate based on migration result
     if (migrationProgress?.status == MigrationStatus.completed) {
       // If migration was successful, go back to the library so user can see the migrated manga
@@ -139,4 +140,4 @@ class MigrationProgressScreen extends ConsumerWidget {
       context.go('/manga/${sourceManga.id}');
     }
   }
-} 
+}

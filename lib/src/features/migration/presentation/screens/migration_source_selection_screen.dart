@@ -5,14 +5,12 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../../routes/router_config.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../browse_center/data/source_repository/source_repository.dart';
-import '../../../browse_center/domain/source/source_model.dart';
-import '../../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 import '../../../manga_book/domain/manga/manga_model.dart';
 import '../../controller/migration_controller.dart';
 import '../../domain/migration_models.dart';
@@ -29,7 +27,8 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final sourcesAsync = ref.watch(migrationSourcesProvider(mangaId: sourceManga.id));
+    final sourcesAsync =
+        ref.watch(migrationSourcesProvider(mangaId: sourceManga.id));
     final selectedSource = ref.watch(selectedMigrationSourceProvider);
 
     return Scaffold(
@@ -140,7 +139,8 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () => ref.refresh(migrationSourcesProvider(mangaId: sourceManga.id)),
+                onPressed: () => ref
+                    .refresh(migrationSourcesProvider(mangaId: sourceManga.id)),
                 child: Text(l10n.retry),
               ),
             ],
@@ -157,21 +157,22 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
   ) async {
     // Select the source
     ref.read(selectedMigrationSourceProvider.notifier).select(source);
-    
+
     // Fetch the actual SourceDto from the source repository
     try {
       final sourceRepository = ref.read(sourceRepositoryProvider);
       final targetSourceDto = await sourceRepository.getSource(source.id);
-      
+
       if (targetSourceDto != null) {
         // Navigate to manga search screen with proper data class
-        context.push(
-          '/migration/search',
-          extra: MigrationSearchRouteData(
-            sourceManga: sourceManga,
-            targetSource: targetSourceDto,
-          ),
-        );
+        if (context.mounted) {
+          MigrationSearchRoute(
+            $extra: MigrationSearchRouteData(
+              sourceManga: sourceManga,
+              targetSource: targetSourceDto,
+            ),
+          ).push(context);
+        }
       } else {
         // Fallback: Show error message
         if (context.mounted) {
@@ -195,4 +196,4 @@ class MigrationSourceSelectionScreen extends HookConsumerWidget {
       }
     }
   }
-} 
+}

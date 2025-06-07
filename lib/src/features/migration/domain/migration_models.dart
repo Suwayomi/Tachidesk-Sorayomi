@@ -7,7 +7,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../browse_center/domain/source/graphql/__generated__/fragment.graphql.dart';
-import '../../browse_center/domain/source/source_model.dart';
 import '../../manga_book/domain/manga/graphql/__generated__/fragment.graphql.dart';
 
 part 'migration_models.freezed.dart';
@@ -68,10 +67,20 @@ enum MigrationStatus {
   cancelled,
 }
 
+enum MigrationStep {
+  preparingMigration,
+  migrateChapters,
+  migrateCategories,
+  migrationInProgress,
+  migrationCompleted,
+  migrationFailed,
+  migrationCancelled,
+}
+
 @freezed
 class MigrationProgress with _$MigrationProgress {
   const factory MigrationProgress({
-    required String currentStep,
+    required MigrationStep currentStep,
     @Default(0.0) double percentage,
     @Default(MigrationStatus.idle) MigrationStatus status,
     String? errorMessage,
@@ -129,4 +138,4 @@ class MigrationProgressRouteData with _$MigrationProgressRouteData {
     required Fragment$SourceDto targetSource,
     required MigrationOption options,
   }) = _MigrationProgressRouteData;
-} 
+}

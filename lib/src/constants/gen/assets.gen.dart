@@ -55,12 +55,12 @@ class $AssetsIconsLauncherGen {
 
   /// List of all assets
   List<dynamic> get values => [
-    fromSuwayomi,
-    iosSorayomiIcon,
-    sorayomiIconIco,
-    sorayomiIconPng,
-    sorayomiPreviewIcon,
-  ];
+        fromSuwayomi,
+        iosSorayomiIcon,
+        sorayomiIconIco,
+        sorayomiIconPng,
+        sorayomiPreviewIcon,
+      ];
 }
 
 class Assets {

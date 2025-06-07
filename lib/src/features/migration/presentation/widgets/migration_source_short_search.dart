@@ -5,10 +5,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/manga_cover/grid/manga_cover_grid_tile.dart';
 import '../../../browse_center/domain/source/source_model.dart';
@@ -23,7 +23,7 @@ class MigrationSourceShortSearch extends StatelessWidget {
     required this.sourceManga,
     this.query,
   });
-  
+
   final SourceDto source;
   final AsyncValue<List<MangaDto>> mangaList;
   final MangaDto sourceManga;
@@ -74,13 +74,12 @@ class MigrationSourceShortSearch extends StatelessWidget {
 
   void _onMangaSelected(BuildContext context, MangaDto targetManga) {
     // Navigate to migration preview screen with proper data class
-    context.push(
-      '/migration/preview',
-      extra: MigrationPreviewRouteData(
+    MigrationPreviewRoute(
+      $extra: MigrationPreviewRouteData(
         sourceManga: sourceManga,
         targetManga: targetManga,
         targetSource: source,
       ),
-    );
+    ).push(context);
   }
-} 
+}
