@@ -13,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../history/presentation/history_controller.dart';
 import '../../../settings/presentation/reader/widgets/reader_mode_tile/reader_mode_tile.dart';
 import '../../data/manga_book/manga_book_repository.dart';
 import '../../domain/chapter_batch/chapter_batch_model.dart';
@@ -64,6 +65,9 @@ class ReaderScreen extends HookConsumerWidget {
               ),
             ),
       );
+
+      // Invalidate history to refresh the reading progress
+      ref.invalidate(readingHistoryProvider);
     }, [chapter.valueOrNull, chapterPages.valueOrNull]);
 
     final onPageChanged = useCallback<AsyncValueSetter<int>>(

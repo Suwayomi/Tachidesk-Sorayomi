@@ -4,15 +4,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../routes/router_config.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/server_image.dart';
+import '../../../manga_book/presentation/manga_details/controller/manga_details_controller.dart';
 import '../../domain/history_item.dart';
+import '../../domain/history_menu_action.dart';
 
-class HistoryItemTile extends StatelessWidget {
+class HistoryItemTile extends ConsumerWidget {
   const HistoryItemTile({
     super.key,
     required this.item,
@@ -24,8 +29,15 @@ class HistoryItemTile extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback onRemove;
 
+  bool _isChapterCompleted() {
+    final isFullyRead = item.isRead == true;
+    final hasFinishedChapter =
+        item.pageCount > 0 && item.lastPageRead >= (item.pageCount - 1);
+    return isFullyRead || hasFinishedChapter;
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final readDate = item.readAt;
     final timeString = readDate != null ? DateFormat.Hm().format(readDate) : '';
 
@@ -35,7 +47,7 @@ class HistoryItemTile extends StatelessWidget {
         vertical: 2,
       ),
       child: InkWell(
-        onTap: onTap ?? () => _navigateToReader(context),
+        onTap: onTap ?? () => _navigateToReader(context, ref),
         borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -97,15 +109,23 @@ class HistoryItemTile extends StatelessWidget {
                         if (item.lastPageRead > 0 && item.pageCount > 0) ...[
                           const SizedBox(width: 8),
                           Icon(
-                            Icons.bookmark,
+                            _isChapterCompleted()
+                                ? Icons.check_circle
+                                : Icons.bookmark,
                             size: 14,
-                            color: context.theme.colorScheme.primary,
+                            color: _isChapterCompleted()
+                                ? context.theme.colorScheme.secondary
+                                : context.theme.colorScheme.primary,
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '${item.lastPageRead}/${item.pageCount}',
+                            _isChapterCompleted()
+                                ? 'Completed'
+                                : '${item.lastPageRead}/${item.pageCount}',
                             style: context.theme.textTheme.labelSmall?.copyWith(
-                              color: context.theme.colorScheme.primary,
+                              color: _isChapterCompleted()
+                                  ? context.theme.colorScheme.secondary
+                                  : context.theme.colorScheme.primary,
                             ),
                           ),
                         ],
@@ -132,43 +152,35 @@ class HistoryItemTile extends StatelessWidget {
                 ),
               ),
               // Actions
-              PopupMenuButton<String>(
+              PopupMenuButton<HistoryMenuAction>(
                 icon: Icon(
                   Icons.more_vert,
                   color: context.theme.colorScheme.onSurfaceVariant,
                 ),
-                onSelected: (value) {
-                  switch (value) {
-                    case 'remove':
+                onSelected: (action) {
+                  switch (action) {
+                    case HistoryMenuAction.removeFromHistory:
                       _showRemoveDialog(context);
                       break;
-                    case 'manga':
+                    case HistoryMenuAction.viewManga:
                       _navigateToManga(context);
                       break;
                   }
                 },
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: 'manga',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.book),
-                        const SizedBox(width: 8),
-                        Text(context.l10n.viewManga),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 'remove',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.delete_outline),
-                        const SizedBox(width: 8),
-                        Text(context.l10n.removeFromHistory),
-                      ],
-                    ),
-                  ),
-                ],
+                itemBuilder: (context) => HistoryMenuAction.values
+                    .map(
+                      (action) => PopupMenuItem(
+                        value: action,
+                        child: Row(
+                          children: [
+                            Icon(action.icon),
+                            const SizedBox(width: 8),
+                            Text(action.toLocale(context)),
+                          ],
+                        ),
+                      ),
+                    )
+                    .toList(),
               ),
             ],
           ),
@@ -200,12 +212,92 @@ class HistoryItemTile extends StatelessWidget {
     );
   }
 
-  void _navigateToReader(BuildContext context) {
-    // Navigate to the reader, continuing from where the user left off
-    ReaderRoute(
-      mangaId: item.mangaId,
-      chapterId: item.id,
-    ).push(context);
+  /// Ensures all preference providers required for chapter filtering/sorting are initialized
+  void _ensurePreferenceProvidersInitialized(WidgetRef ref) {
+    ref.read(mangaChapterSortProvider);
+    ref.read(mangaChapterSortDirectionProvider);
+    ref.read(mangaChapterFilterUnreadProvider);
+    ref.read(mangaChapterFilterDownloadedProvider);
+    ref.read(mangaChapterFilterBookmarkedProvider);
+    ref.read(mangaChapterFilterScanlatorProvider(mangaId: item.mangaId));
+  }
+
+  void _navigateToReader(BuildContext context, WidgetRef ref) {
+    // Check if chapter is fully read. If so, attempt to navigate to the next one.
+    if (_isChapterCompleted()) {
+      // Go straight to the loading logic.
+      _navigateToNextChapterAfterLoading(context, ref);
+    } else {
+      // Chapter not fully read, continue from where the user left off.
+      ReaderRoute(
+        mangaId: item.mangaId,
+        chapterId: item.id,
+      ).push(context);
+    }
+  }
+
+  Future<void> _navigateToNextChapterAfterLoading(
+      BuildContext context, WidgetRef ref) async {
+    // Use a completer to await the result from the listener.
+    final completer = Completer<void>();
+    ProviderSubscription? subscription;
+
+    // This function will handle the actual navigation and cleanup.
+    void navigateAndCleanup(int chapterId) {
+      if (completer.isCompleted) return;
+
+      // Ensure the widget is still mounted before navigating.
+      if (context.mounted) {
+        ReaderRoute(
+          mangaId: item.mangaId,
+          chapterId: chapterId,
+        ).push(context);
+      }
+      // Cleanup: cancel subscription, complete future.
+      subscription?.close();
+      completer.complete();
+    }
+
+    // Manually set up the listener.
+    subscription = ref.listenManual(
+      mangaChapterListWithFilterProvider(mangaId: item.mangaId),
+      (previous, next) {
+        // We only care when the state becomes data.
+        if (next is AsyncData<List<dynamic>?>) {
+          // Now that the filtered list is ready, get the next chapter.
+          final nextPrevChapterPair = ref.read(
+            getNextAndPreviousChaptersProvider(
+              mangaId: item.mangaId,
+              chapterId: item.id,
+            ),
+          );
+          // If a next chapter exists, use it. Otherwise, fall back to the current chapter.
+          navigateAndCleanup(nextPrevChapterPair?.first?.id ?? item.id);
+        } else if (next is AsyncError) {
+          // On error, fall back to the current chapter.
+          navigateAndCleanup(item.id);
+        }
+      },
+    );
+
+    // Trigger the process:
+    // 1. Initialize preferences.
+    _ensurePreferenceProvidersInitialized(ref);
+    // 2. Refresh the base list, which will eventually trigger our listener.
+    await ref
+        .read(mangaChapterListProvider(mangaId: item.mangaId).notifier)
+        .refresh();
+
+    // Set a timeout to prevent getting stuck indefinitely.
+    Future.any([
+      completer.future,
+      Future.delayed(const Duration(seconds: 10)).then((_) {
+        // If timeout occurs, fall back to the current chapter.
+        if (!completer.isCompleted) {
+          navigateAndCleanup(item.id);
+        }
+      })
+    ]);
   }
 
   void _navigateToManga(BuildContext context) {

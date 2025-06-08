@@ -37,7 +37,7 @@ class HistoryGroupWidget extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                group.title,
+                group.getLocalizedTitle(context),
                 style: context.theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: context.theme.colorScheme.primary,

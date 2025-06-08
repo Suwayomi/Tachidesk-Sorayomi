@@ -57,11 +57,11 @@ class HistoryScreen extends ConsumerWidget {
             child: historyState.when(
               data: (data) {
                 if (data == null || data.isEmpty) {
-                  return _buildEmptyState(context, l10n);
+                  return HistoryEmptyState(l10n: l10n);
                 }
 
                 if (historyGroups.isEmpty && searchQuery.isNotBlank) {
-                  return _buildNoSearchResults(context, l10n);
+                  return HistoryNoSearchResults(l10n: l10n);
                 }
 
                 return RefreshIndicator(
@@ -85,11 +85,11 @@ class HistoryScreen extends ConsumerWidget {
               loading: () => const Center(
                 child: CircularProgressIndicator(),
               ),
-              error: (error, stack) => _buildErrorState(
-                context,
-                l10n,
-                error,
-                () => ref.read(readingHistoryProvider.notifier).refresh(),
+              error: (error, stack) => HistoryErrorState(
+                l10n: l10n,
+                error: error,
+                onRetry: () =>
+                    ref.read(readingHistoryProvider.notifier).refresh(),
               ),
             ),
           ),
@@ -97,8 +97,18 @@ class HistoryScreen extends ConsumerWidget {
       ),
     );
   }
+}
 
-  Widget _buildEmptyState(BuildContext context, AppLocalizations l10n) {
+class HistoryEmptyState extends StatelessWidget {
+  const HistoryEmptyState({
+    super.key,
+    required this.l10n,
+  });
+
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -127,8 +137,18 @@ class HistoryScreen extends ConsumerWidget {
       ),
     );
   }
+}
 
-  Widget _buildNoSearchResults(BuildContext context, AppLocalizations l10n) {
+class HistoryNoSearchResults extends StatelessWidget {
+  const HistoryNoSearchResults({
+    super.key,
+    required this.l10n,
+  });
+
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -157,13 +177,22 @@ class HistoryScreen extends ConsumerWidget {
       ),
     );
   }
+}
 
-  Widget _buildErrorState(
-    BuildContext context,
-    AppLocalizations l10n,
-    Object error,
-    VoidCallback onRetry,
-  ) {
+class HistoryErrorState extends StatelessWidget {
+  const HistoryErrorState({
+    super.key,
+    required this.l10n,
+    required this.error,
+    required this.onRetry,
+  });
+
+  final AppLocalizations l10n;
+  final Object error;
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),

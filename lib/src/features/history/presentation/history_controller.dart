@@ -35,11 +35,9 @@ class ReadingHistory extends _$ReadingHistory {
     );
 
     ref.keepAlive();
-    if (result.hasError) {
-      state = AsyncValue.error(result.error!, result.stackTrace!);
-    } else {
-      state = AsyncData(result.value?.nodes);
-    }
+    state = result.hasValue
+        ? AsyncData(result.value?.nodes)
+        : AsyncValue.error(result.error!, result.stackTrace!);
   }
 
   Future<void> loadMore() async {
@@ -114,11 +112,7 @@ class MangaReadingHistory extends _$MangaReadingHistory {
           .getMangaReadingHistory(mangaId: mangaId),
     );
 
-    if (result.hasError) {
-      state = AsyncValue.error(result.error!, result.stackTrace!);
-    } else {
-      state = result;
-    }
+    state = result;
   }
 }
 
@@ -128,11 +122,11 @@ List<HistoryGroup> historyGroupedByDate(Ref ref) {
 
   if (historyItems.isEmpty) return [];
 
-  // Group items by their read date
+  // Group items by their read date using a simple key
   final Map<String, List<HistoryItemDto>> groupedItems = {};
 
   for (final item in historyItems) {
-    final groupKey = item.readDateGroup;
+    final groupKey = item.readDateGroupKey;
     groupedItems.putIfAbsent(groupKey, () => []).add(item);
   }
 

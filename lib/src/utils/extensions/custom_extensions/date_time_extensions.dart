@@ -114,6 +114,38 @@ extension DateTimeExtensions on DateTime {
           .format(this);
     }
   }
+
+  /// Check if this date is today
+  bool get isToday {
+    final now = DateTime.now();
+    return isSameDay(now);
+  }
+
+  /// Check if this date is yesterday
+  bool get isYesterday {
+    final yesterday = DateTime.now().subtract(const Duration(days: 1));
+    return isSameDay(yesterday);
+  }
+
+  /// Get a formatted date string for grouping purposes
+  String dateGroupString(BuildContext context) {
+    if (isToday) return context.l10n.today;
+    if (isYesterday) return context.l10n.yesterday;
+
+    final now = DateTime.now();
+    final difference = now.difference(this).inDays;
+
+    if (difference < 0) {
+      // Future date (shouldn't happen but handle gracefully)
+      return 'Recently Read';
+    } else if (difference < 7) {
+      // Show day of week for the past week
+      return toDayString;
+    } else {
+      // For older items, show the specific date
+      return toDateString;
+    }
+  }
 }
 
 extension TimeOfDayE on TimeOfDay {

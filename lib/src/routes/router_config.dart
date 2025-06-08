@@ -128,6 +128,9 @@ GoRouter routerConfig(ref) {
         TypedStatefulShellBranch<UpdatesBranch>(
           routes: [TypedGoRoute<UpdatesRoute>(path: Routes.updates)],
         ),
+        TypedStatefulShellBranch<HistoryBranch>(
+          routes: [TypedGoRoute<HistoryTabRoute>(path: '/history')],
+        ),
         TypedStatefulShellBranch<BrowserBranch>(
           routes: [
             TypedStatefulShellRoute<BrowseShellRoute>(

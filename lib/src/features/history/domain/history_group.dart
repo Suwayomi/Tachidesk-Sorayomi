@@ -4,8 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../utils/extensions/custom_extensions.dart';
 import '../../manga_book/domain/chapter/graphql/__generated__/fragment.graphql.dart';
 import 'history_item.dart';
 
@@ -43,6 +45,34 @@ class HistoryGroup with _$HistoryGroup {
       }
     }
     return mostRecent;
+  }
+
+  /// Get the localized title for this group
+  String getLocalizedTitle(BuildContext context) {
+    // Handle special keys
+    switch (title) {
+      case 'Today':
+        return context.l10n.today;
+      case 'Yesterday':
+        return context.l10n.yesterday;
+      case 'Recently Read':
+        return 'Recently Read'; // This might need localization if available
+    }
+
+    // Handle weekday keys
+    if (title.startsWith('week_')) {
+      final weekdayNumber = int.tryParse(title.split('_')[1]);
+      if (weekdayNumber != null && weekdayNumber >= 1 && weekdayNumber <= 7) {
+        // Create a date for the specific weekday and format it
+        final now = DateTime.now();
+        final daysToSubtract = (now.weekday - weekdayNumber) % 7;
+        final targetDate = now.subtract(Duration(days: daysToSubtract));
+        return targetDate.toDayString;
+      }
+    }
+
+    // Return the title as-is for date strings and unknown formats
+    return title;
   }
 
   /// Filter items in this group by search query

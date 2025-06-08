@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'package:flutter/material.dart';
+
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../manga_book/domain/chapter/chapter_model.dart';
 
@@ -39,67 +41,47 @@ extension HistoryItemExtension on HistoryItemDto {
   bool get isReadToday {
     final readDate = readAt;
     if (readDate == null) return false;
-    final now = DateTime.now();
-    return readDate.year == now.year &&
-        readDate.month == now.month &&
-        readDate.day == now.day;
+    return readDate.isToday;
   }
 
   /// Check if this item was read yesterday
   bool get isReadYesterday {
     final readDate = readAt;
     if (readDate == null) return false;
-    final yesterday = DateTime.now().subtract(const Duration(days: 1));
-    return readDate.year == yesterday.year &&
-        readDate.month == yesterday.month &&
-        readDate.day == yesterday.day;
+    return readDate.isYesterday;
   }
 
   /// Get a formatted date string for grouping (by day)
-  String get readDateGroup {
+  String readDateGroup(BuildContext context) {
     final readDate = readAt;
     if (readDate == null) {
       return 'Recently Read';
     }
 
-    if (isReadToday) return 'Today';
-    if (isReadYesterday) return 'Yesterday';
+    return readDate.dateGroupString(context);
+  }
+
+  /// Get a simple key for grouping without needing context
+  String get readDateGroupKey {
+    final readDate = readAt;
+    if (readDate == null) {
+      return 'Recently Read';
+    }
+
+    if (readDate.isToday) return 'Today';
+    if (readDate.isYesterday) return 'Yesterday';
 
     final now = DateTime.now();
     final difference = now.difference(readDate).inDays;
 
     if (difference < 0) {
-      // Future date (shouldn't happen but handle gracefully)
       return 'Recently Read';
     } else if (difference < 7) {
-      // Show specific days for the past week
-      final weekdays = [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday'
-      ];
-      return weekdays[readDate.weekday - 1];
+      // Use weekday number for grouping, will be localized in UI
+      return 'week_${readDate.weekday}';
     } else {
-      // For older items, show the specific date
-      final months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ];
-      return '${months[readDate.month - 1]} ${readDate.day}, ${readDate.year}';
+      // Use date string for older items
+      return readDate.toDateString;
     }
   }
 
