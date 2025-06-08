@@ -38,19 +38,22 @@ class HistoryGroup with _$HistoryGroup {
     return items
         .where((item) => item.readAt != null)
         .map((item) => item.readAt!)
-        .fold<DateTime?>(null, (previous, current) =>
-            previous == null ? current : DateTimeExtensions.max(previous, current));
+        .fold<DateTime?>(
+            null,
+            (previous, current) => previous == null
+                ? current
+                : DateTimeExtensions.max(previous, current));
   }
 
   /// Get the localized title for this group
   String getLocalizedTitle(BuildContext context) {
     // Handle special keys
     switch (title) {
-      case 'Today':
+      case DateGroupKeys.today:
         return context.l10n.today;
-      case 'Yesterday':
+      case DateGroupKeys.yesterday:
         return context.l10n.yesterday;
-      case 'Recently Read':
+      case DateGroupKeys.recentlyRead:
         return 'Recently Read'; // This might need localization if available
     }
 

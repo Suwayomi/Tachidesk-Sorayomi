@@ -35,9 +35,11 @@ class ReadingHistory extends _$ReadingHistory {
     );
 
     ref.keepAlive();
-    state = result.hasValue
-        ? AsyncData(result.value?.nodes)
-        : AsyncValue.error(result.error!, result.stackTrace!);
+    state = result.when(
+      data: (data) => AsyncData(data?.nodes),
+      error: (error, stackTrace) => AsyncError(error, stackTrace),
+      loading: () => const AsyncLoading(),
+    );
   }
 
   Future<void> loadMore() async {
@@ -49,13 +51,18 @@ class ReadingHistory extends _$ReadingHistory {
           ref.read(historyRepositoryProvider).getReadingHistory(pageNo: pageNo),
     );
 
-    if (result.hasValue && result.value?.nodes != null) {
-      final newItems = result.value?.nodes ?? [];
-      final updatedItems = [...currentItems, ...newItems];
-      state = AsyncData(updatedItems);
-    } else if (result.hasError) {
-      state = AsyncValue.error(result.error!, result.stackTrace!);
-    }
+    state = result.when(
+      data: (data) {
+        if (data?.nodes != null) {
+          final newItems = data?.nodes ?? [];
+          final updatedItems = [...currentItems, ...newItems];
+          return AsyncData(updatedItems);
+        }
+        return state; // Keep current state if no new data
+      },
+      error: (error, stackTrace) => AsyncError(error, stackTrace),
+      loading: () => state, // Keep current state while loading more
+    );
   }
 
   /// Remove a chapter from reading history
@@ -112,7 +119,7 @@ class MangaReadingHistory extends _$MangaReadingHistory {
           .getMangaReadingHistory(mangaId: mangaId),
     );
 
-      state = result;
+    state = result;
   }
 }
 

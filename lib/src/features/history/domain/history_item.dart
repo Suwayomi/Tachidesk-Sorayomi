@@ -55,7 +55,7 @@ extension HistoryItemExtension on HistoryItemDto {
   String readDateGroup(BuildContext context) {
     final readDate = readAt;
     if (readDate == null) {
-      return 'Recently Read';
+      return DateGroupKeys.recentlyRead;
     }
 
     return readDate.dateGroupString(context);
@@ -65,14 +65,14 @@ extension HistoryItemExtension on HistoryItemDto {
   String get readDateGroupKey {
     final readDate = readAt;
     if (readDate == null) {
-      return 'Recently Read';
+      return DateGroupKeys.recentlyRead;
     }
 
-    if (readDate.isToday) return 'Today';
-    if (readDate.isYesterday) return 'Yesterday';
+    if (readDate.isToday) return DateGroupKeys.today;
+    if (readDate.isYesterday) return DateGroupKeys.yesterday;
 
     if (readDate.daysSinceNow < 0) {
-      return 'Recently Read';
+      return DateGroupKeys.recentlyRead;
     } else if (readDate.isWithinPastWeek) {
       // Use weekday number for grouping, will be localized in UI
       return 'week_${readDate.weekday}';

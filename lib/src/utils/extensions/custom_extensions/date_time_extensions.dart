@@ -6,6 +6,13 @@
 
 part of '../custom_extensions.dart';
 
+/// Constants for date group keys to avoid hardcoded strings
+class DateGroupKeys {
+  static const String today = 'Today';
+  static const String yesterday = 'Yesterday';
+  static const String recentlyRead = 'Recently Read';
+}
+
 extension DateTimeExtensions on DateTime {
   String get toDateString => DateFormat.yMMMd().format(this);
   String get toMonthYearString => DateFormat.yMMM().format(this);
@@ -137,7 +144,7 @@ extension DateTimeExtensions on DateTime {
 
     if (difference < 0) {
       // Future date (shouldn't happen but handle gracefully)
-      return 'Recently Read';
+      return DateGroupKeys.recentlyRead;
     } else if (difference < 7) {
       // Show day of week for the past week
       return toDayString;
