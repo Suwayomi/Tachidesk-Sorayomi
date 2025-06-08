@@ -35,16 +35,11 @@ class HistoryGroup with _$HistoryGroup {
   DateTime? get mostRecentReadDate {
     if (items.isEmpty) return null;
 
-    DateTime? mostRecent;
-    for (final item in items) {
-      final readDate = item.readAt;
-      if (readDate != null) {
-        if (mostRecent == null || readDate.isAfter(mostRecent)) {
-          mostRecent = readDate;
-        }
-      }
-    }
-    return mostRecent;
+    return items
+        .where((item) => item.readAt != null)
+        .map((item) => item.readAt!)
+        .fold<DateTime?>(null, (previous, current) =>
+            previous == null ? current : DateTimeExtensions.max(previous, current));
   }
 
   /// Get the localized title for this group

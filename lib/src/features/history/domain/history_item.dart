@@ -71,12 +71,9 @@ extension HistoryItemExtension on HistoryItemDto {
     if (readDate.isToday) return 'Today';
     if (readDate.isYesterday) return 'Yesterday';
 
-    final now = DateTime.now();
-    final difference = now.difference(readDate).inDays;
-
-    if (difference < 0) {
+    if (readDate.daysSinceNow < 0) {
       return 'Recently Read';
-    } else if (difference < 7) {
+    } else if (readDate.isWithinPastWeek) {
       // Use weekday number for grouping, will be localized in UI
       return 'week_${readDate.weekday}';
     } else {

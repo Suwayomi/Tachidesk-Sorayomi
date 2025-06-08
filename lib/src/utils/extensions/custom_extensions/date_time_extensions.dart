@@ -146,6 +146,15 @@ extension DateTimeExtensions on DateTime {
       return toDateString;
     }
   }
+
+  /// Get the number of days between this date and now
+  int get daysSinceNow => DateTime.now().difference(this).inDays;
+
+  /// Check if this date is within the past week (excluding today and yesterday)
+  bool get isWithinPastWeek {
+    final days = daysSinceNow;
+    return days >= 2 && days < 7;
+  }
 }
 
 extension TimeOfDayE on TimeOfDay {

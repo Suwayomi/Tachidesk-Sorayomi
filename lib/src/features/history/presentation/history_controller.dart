@@ -112,7 +112,7 @@ class MangaReadingHistory extends _$MangaReadingHistory {
           .getMangaReadingHistory(mangaId: mangaId),
     );
 
-    state = result;
+      state = result;
   }
 }
 
