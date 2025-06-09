@@ -6,11 +6,31 @@
 
 part of '../custom_extensions.dart';
 
-/// Constants for date group keys to avoid hardcoded strings
-class DateGroupKeys {
-  static const String today = 'Today';
-  static const String yesterday = 'Yesterday';
-  static const String recentlyRead = 'Recently Read';
+enum DateGroupKeys implements LocaleEnum {
+  today("Today"),
+  yesterday("Yesterday"),
+  recentlyRead("Recently Read");
+
+  const DateGroupKeys(this.value);
+
+  @override
+  final String value;
+
+  static DateGroupKeys? fromValue(String value) {
+    return DateGroupKeys.values.where((key) => key.value == value).firstOrNull;
+  }
+
+  @override
+  String toLocale(BuildContext context) {
+    switch (this) {
+      case today:
+        return context.l10n.today;
+      case yesterday:
+        return context.l10n.yesterday;
+      case recentlyRead:
+        return context.l10n.recentlyRead;
+    }
+  }
 }
 
 extension DateTimeExtensions on DateTime {
@@ -144,7 +164,7 @@ extension DateTimeExtensions on DateTime {
 
     if (difference < 0) {
       // Future date (shouldn't happen but handle gracefully)
-      return DateGroupKeys.recentlyRead;
+      return DateGroupKeys.recentlyRead.toLocale(context);
     } else if (difference < 7) {
       // Show day of week for the past week
       return toDayString;
@@ -166,11 +186,11 @@ extension DateTimeExtensions on DateTime {
   /// Get a simple key for grouping without needing context
   /// This provides non-localized keys that can be used for data grouping
   String get dateGroupKey {
-    if (isToday) return DateGroupKeys.today;
-    if (isYesterday) return DateGroupKeys.yesterday;
+    if (isToday) return DateGroupKeys.today.value;
+    if (isYesterday) return DateGroupKeys.yesterday.value;
 
     if (daysSinceNow < 0) {
-      return DateGroupKeys.recentlyRead;
+      return DateGroupKeys.recentlyRead.value;
     } else if (isWithinPastWeek) {
       // Use weekday number for grouping, will be localized in UI
       return 'week_$weekday';

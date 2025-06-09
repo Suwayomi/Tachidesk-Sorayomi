@@ -14,6 +14,7 @@ import 'package:graphql/client.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../../abstracts/locale_enum.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../../widgets/custom_circular_progress_indicator.dart';
 import '../../widgets/emoticons.dart';

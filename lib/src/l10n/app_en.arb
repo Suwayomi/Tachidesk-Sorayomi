@@ -920,6 +920,9 @@
     "@yesterday": {
         "description": "Yesterday Text to show the release date of manga"
     },
+    "@recentlyRead": {
+        "description": "Recently Read Text to show reading history grouping"
+    },
     "about": "About",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
@@ -1286,6 +1289,7 @@
     "withCompletedStatus": "With Completed status",
     "withUnreadChapter": "With unread chapter(s)",
     "yesterday": "Yesterday",
+    "recentlyRead": "Recently Read",
     "history": "History",
     "searchHistory": "Search history...",
     "noHistoryFound": "No reading history found",

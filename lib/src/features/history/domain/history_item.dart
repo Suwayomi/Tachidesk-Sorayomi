@@ -35,7 +35,7 @@ extension HistoryItemExtension on HistoryItemDto {
   String readDateGroup(BuildContext context) {
     final readDate = readAt;
     if (readDate == null) {
-      return DateGroupKeys.recentlyRead;
+      return DateGroupKeys.recentlyRead.toLocale(context);
     }
 
     return readDate.dateGroupString(context);
@@ -45,7 +45,7 @@ extension HistoryItemExtension on HistoryItemDto {
   String get readDateGroupKey {
     final readDate = readAt;
     if (readDate == null) {
-      return DateGroupKeys.recentlyRead;
+      return DateGroupKeys.recentlyRead.value;
     }
 
     return readDate.dateGroupKey;
