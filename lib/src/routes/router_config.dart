@@ -12,6 +12,7 @@ import '../features/browse_center/presentation/global_search/global_search_scree
 import '../features/browse_center/presentation/source/source_screen.dart';
 import '../features/browse_center/presentation/source_manga_list/source_manga_list_screen.dart';
 import '../features/browse_center/presentation/source_preference/source_preference_screen.dart';
+import '../features/history/presentation/history_screen.dart';
 import '../features/library/presentation/category/edit_category_screen.dart';
 import '../features/library/presentation/library/library_screen.dart';
 import '../features/manga_book/presentation/downloads/downloads_screen.dart';
@@ -44,6 +45,7 @@ part 'router_config.g.dart';
 part 'sub_routes/browser_routes.dart';
 part 'sub_routes/common_routes.dart';
 part 'sub_routes/downloads_routes.dart';
+part 'sub_routes/history_routes.dart';
 part 'sub_routes/library_routes.dart';
 part 'sub_routes/migration_routes.dart';
 part 'sub_routes/more_routes.dart';
@@ -63,6 +65,8 @@ abstract class Routes {
   static const updates = '/updates';
 
   static const downloads = '/downloads';
+
+  static const history = 'history';
 
   static const extensionRoute = '/extension';
   static const source = '/source';
@@ -124,6 +128,9 @@ GoRouter routerConfig(ref) {
         TypedStatefulShellBranch<UpdatesBranch>(
           routes: [TypedGoRoute<UpdatesRoute>(path: Routes.updates)],
         ),
+        TypedStatefulShellBranch<HistoryBranch>(
+          routes: [TypedGoRoute<HistoryTabRoute>(path: '/history')],
+        ),
         TypedStatefulShellBranch<BrowserBranch>(
           routes: [
             TypedStatefulShellRoute<BrowseShellRoute>(
@@ -163,6 +170,7 @@ GoRouter routerConfig(ref) {
               path: Routes.more,
               routes: [
                 TypedGoRoute<AboutRoute>(path: Routes.about),
+                TypedGoRoute<HistoryRoute>(path: Routes.history),
                 TypedGoRoute<SettingsRoute>(
                   path: Routes.settings,
                   routes: [

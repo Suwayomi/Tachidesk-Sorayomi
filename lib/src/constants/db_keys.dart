@@ -52,6 +52,8 @@ enum DBKeys {
   hideEmptyCategory(false),
   pinchToZoom(true),
   flexScheme(FlexScheme.material),
+  historyEnabled(true),
+  historyRetentionDays(90),
   ;
 
   const DBKeys(this.initial);

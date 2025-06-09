@@ -38,6 +38,11 @@ class MoreScreen extends ConsumerWidget {
             leading: const Icon(Icons.label_rounded),
             onTap: () => const EditCategoriesRoute().push(context),
           ),
+          ListTile(
+            title: Text(context.l10n.history),
+            leading: const Icon(Icons.history_rounded),
+            onTap: () => const HistoryRoute().go(context),
+          ),
           const AppThemeModeTile(),
           ListTile(
             title: Text(context.l10n.backup),

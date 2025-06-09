@@ -13,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
+import '../../../history/presentation/history_controller.dart';
 import '../../../settings/presentation/reader/widgets/reader_mode_tile/reader_mode_tile.dart';
 import '../../data/manga_book/manga_book_repository.dart';
 import '../../domain/chapter_batch/chapter_batch_model.dart';
@@ -45,27 +46,39 @@ class ReaderScreen extends HookConsumerWidget {
 
     final updateLastRead = useCallback((int currentPage) async {
       final chapterValue = chapter.valueOrNull;
-      if (chapterValue == null) return;
+      final chapterPagesValue = chapterPages.valueOrNull;
+      if (chapterValue == null || chapterPagesValue == null) return;
 
-      final isReadingCompeted = ((chapterValue.isRead).ifNull() ||
-          (currentPage >=
-              ((chapterValue.pageCount).getValueOnNullOrNegative() - 1)));
+      // Use the actual loaded pages count, not the chapter's pageCount metadata
+      final actualPageCount = chapterPagesValue.pages.length;
+
+      // Only mark as completed if we've reached the actual last page
+      final isReadingCompleted =
+          (currentPage >= (actualPageCount - 1)) && actualPageCount > 0;
+
       await AsyncValue.guard(
         () => ref.read(mangaBookRepositoryProvider).putChapter(
               chapterId: chapterValue.id,
               patch: ChapterChange(
-                lastPageRead: isReadingCompeted ? 0 : currentPage,
-                isRead: isReadingCompeted,
+                lastPageRead: isReadingCompleted ? 0 : currentPage,
+                isRead: isReadingCompleted,
               ),
             ),
       );
-    }, [chapter.valueOrNull]);
+
+      // Invalidate history to refresh the reading progress
+      ref.invalidate(readingHistoryProvider);
+    }, [chapter.valueOrNull, chapterPages.valueOrNull]);
 
     final onPageChanged = useCallback<AsyncValueSetter<int>>(
       (int index) async {
         final chapterValue = chapter.valueOrNull;
-        if ((chapterValue?.isRead).ifNull() ||
-            (chapterValue?.lastPageRead).getValueOnNullOrNegative() >= index) {
+        final chapterPagesValue = chapterPages.valueOrNull;
+        if (chapterValue == null || chapterPagesValue == null) return;
+
+        // Skip if chapter is already read or if we're going backwards
+        if ((chapterValue.isRead).ifNull() ||
+            (chapterValue.lastPageRead).getValueOnNullOrNegative() >= index) {
           return;
         }
 
@@ -74,9 +87,10 @@ class ReaderScreen extends HookConsumerWidget {
           finalDebounce?.cancel();
         }
 
-        if ((index >=
-            ((chapter.valueOrNull?.pageCount).getValueOnNullOrNegative() -
-                1))) {
+        // Use actual loaded pages count instead of chapter metadata
+        final actualPageCount = chapterPagesValue.pages.length;
+
+        if (index >= (actualPageCount - 1) && actualPageCount > 0) {
           updateLastRead(index);
         } else {
           debounce.value = Timer(
@@ -86,7 +100,7 @@ class ReaderScreen extends HookConsumerWidget {
         }
         return;
       },
-      [chapter],
+      [chapter, chapterPages],
     );
 
     useEffect(() {

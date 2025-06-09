@@ -64,6 +64,35 @@ class NavigationShellScreen extends HookConsumerWidget {
       );
       return;
     }, []);
+
+    // Handle different navigation indices for tablet vs phone
+    int getAdjustedIndex(int index) {
+      if (context.isTablet) {
+        // Tablet: Library(0), Updates(1), History(2), Browse(3), Downloads(4), More(5)
+        return index;
+      } else {
+        // Phone: Library(0), Updates(1), Browse(2), Downloads(3), More(4)
+        // Skip history index (2) by adjusting indices
+        if (index >= 2) {
+          return index +
+              1; // Browse becomes 3, Downloads becomes 4, More becomes 5
+        }
+        return index;
+      }
+    }
+
+    int getReverseAdjustedIndex(int index) {
+      if (context.isTablet) {
+        return index;
+      } else {
+        // Convert back: if index > 2, subtract 1 to skip history
+        if (index > 2) {
+          return index - 1;
+        }
+        return index;
+      }
+    }
+
     if (context.isTablet) {
       return Scaffold(
         body: Row(
@@ -71,7 +100,7 @@ class NavigationShellScreen extends HookConsumerWidget {
             BigScreenNavigationBar(
               selectedIndex: child.currentIndex,
               onDestinationSelected: (index) => child.goBranch(
-                index,
+                getAdjustedIndex(index),
                 initialLocation: index == child.currentIndex,
               ),
             ),
@@ -84,9 +113,9 @@ class NavigationShellScreen extends HookConsumerWidget {
         body: child,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: SmallScreenNavigationBar(
-          selectedIndex: child.currentIndex,
+          selectedIndex: getReverseAdjustedIndex(child.currentIndex),
           onDestinationSelected: (index) => child.goBranch(
-            index,
+            getAdjustedIndex(index),
             initialLocation: index == child.currentIndex,
           ),
         ),

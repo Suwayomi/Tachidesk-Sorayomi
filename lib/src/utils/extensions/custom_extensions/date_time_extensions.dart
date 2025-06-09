@@ -6,6 +6,33 @@
 
 part of '../custom_extensions.dart';
 
+enum DateGroupKeys implements LocaleEnum {
+  today("Today"),
+  yesterday("Yesterday"),
+  recentlyRead("Recently Read");
+
+  const DateGroupKeys(this.value);
+
+  @override
+  final String value;
+
+  static DateGroupKeys? fromValue(String value) {
+    return DateGroupKeys.values.where((key) => key.value == value).firstOrNull;
+  }
+
+  @override
+  String toLocale(BuildContext context) {
+    switch (this) {
+      case today:
+        return context.l10n.today;
+      case yesterday:
+        return context.l10n.yesterday;
+      case recentlyRead:
+        return context.l10n.recentlyRead;
+    }
+  }
+}
+
 extension DateTimeExtensions on DateTime {
   String get toDateString => DateFormat.yMMMd().format(this);
   String get toMonthYearString => DateFormat.yMMM().format(this);
@@ -112,6 +139,64 @@ extension DateTimeExtensions on DateTime {
     } else {
       return DateFormat.yMMMd(context.currentLocale.toLanguageTag())
           .format(this);
+    }
+  }
+
+  /// Check if this date is today
+  bool get isToday {
+    final now = DateTime.now();
+    return isSameDay(now);
+  }
+
+  /// Check if this date is yesterday
+  bool get isYesterday {
+    final yesterday = DateTime.now().subtract(const Duration(days: 1));
+    return isSameDay(yesterday);
+  }
+
+  /// Get a formatted date string for grouping purposes
+  String dateGroupString(BuildContext context) {
+    if (isToday) return context.l10n.today;
+    if (isYesterday) return context.l10n.yesterday;
+
+    final now = DateTime.now();
+    final difference = now.difference(this).inDays;
+
+    if (difference < 0) {
+      // Future date (shouldn't happen but handle gracefully)
+      return DateGroupKeys.recentlyRead.toLocale(context);
+    } else if (difference < 7) {
+      // Show day of week for the past week
+      return toDayString;
+    } else {
+      // For older items, show the specific date
+      return toDateString;
+    }
+  }
+
+  /// Get the number of days between this date and now
+  int get daysSinceNow => DateTime.now().difference(this).inDays;
+
+  /// Check if this date is within the past week (excluding today and yesterday)
+  bool get isWithinPastWeek {
+    final days = daysSinceNow;
+    return days >= 2 && days < 7;
+  }
+
+  /// Get a simple key for grouping without needing context
+  /// This provides non-localized keys that can be used for data grouping
+  String get dateGroupKey {
+    if (isToday) return DateGroupKeys.today.value;
+    if (isYesterday) return DateGroupKeys.yesterday.value;
+
+    if (daysSinceNow < 0) {
+      return DateGroupKeys.recentlyRead.value;
+    } else if (isWithinPastWeek) {
+      // Use weekday number for grouping, will be localized in UI
+      return 'week_$weekday';
+    } else {
+      // Use date string for older items
+      return toDateString;
     }
   }
 }
