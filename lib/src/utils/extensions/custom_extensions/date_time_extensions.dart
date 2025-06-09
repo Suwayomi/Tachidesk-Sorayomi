@@ -162,6 +162,23 @@ extension DateTimeExtensions on DateTime {
     final days = daysSinceNow;
     return days >= 2 && days < 7;
   }
+
+  /// Get a simple key for grouping without needing context
+  /// This provides non-localized keys that can be used for data grouping
+  String get dateGroupKey {
+    if (isToday) return DateGroupKeys.today;
+    if (isYesterday) return DateGroupKeys.yesterday;
+
+    if (daysSinceNow < 0) {
+      return DateGroupKeys.recentlyRead;
+    } else if (isWithinPastWeek) {
+      // Use weekday number for grouping, will be localized in UI
+      return 'week_$weekday';
+    } else {
+      // Use date string for older items
+      return toDateString;
+    }
+  }
 }
 
 extension TimeOfDayE on TimeOfDay {

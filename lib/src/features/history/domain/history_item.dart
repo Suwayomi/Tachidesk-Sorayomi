@@ -15,27 +15,7 @@ typedef HistoryItemDto = ChapterWithMangaDto;
 
 extension HistoryItemExtension on HistoryItemDto {
   /// Get the read timestamp as DateTime
-  DateTime? get readAt {
-    final timestamp = lastReadAt;
-    if (timestamp.isBlank) return null;
-    final milliseconds = int.tryParse(timestamp);
-    if (milliseconds == null || milliseconds <= 0) return null;
-
-    // Try parsing as milliseconds first, then as seconds if the result is too old
-    var dateTime = DateTime.fromMillisecondsSinceEpoch(milliseconds);
-
-    // If the parsed date is before 1990, it's likely in seconds format
-    if (dateTime.year < 1990) {
-      dateTime = DateTime.fromMillisecondsSinceEpoch(milliseconds * 1000);
-    }
-
-    // If still before 1990, something is wrong with the data
-    if (dateTime.year < 1990) {
-      return null;
-    }
-
-    return dateTime;
-  }
+  DateTime? get readAt => lastReadAt.parseTimestamp;
 
   /// Check if this item was read today
   bool get isReadToday {
@@ -68,18 +48,7 @@ extension HistoryItemExtension on HistoryItemDto {
       return DateGroupKeys.recentlyRead;
     }
 
-    if (readDate.isToday) return DateGroupKeys.today;
-    if (readDate.isYesterday) return DateGroupKeys.yesterday;
-
-    if (readDate.daysSinceNow < 0) {
-      return DateGroupKeys.recentlyRead;
-    } else if (readDate.isWithinPastWeek) {
-      // Use weekday number for grouping, will be localized in UI
-      return 'week_${readDate.weekday}';
-    } else {
-      // Use date string for older items
-      return readDate.toDateString;
-    }
+    return readDate.dateGroupKey;
   }
 
   /// Search functionality for history items
