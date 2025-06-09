@@ -7,7 +7,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../l10n/generated/app_localizations.dart';
 import '../../../utils/extensions/custom_extensions.dart';
 import '../../../widgets/emoticons.dart';
 import '../../../widgets/search_field.dart';
@@ -57,11 +56,11 @@ class HistoryScreen extends ConsumerWidget {
             child: historyState.when(
               data: (data) {
                 if (data == null || data.isEmpty) {
-                  return HistoryEmptyState(l10n: l10n);
+                  return const HistoryEmptyState();
                 }
 
                 if (historyGroups.isEmpty && searchQuery.isNotBlank) {
-                  return HistoryNoSearchResults(l10n: l10n);
+                  return const HistoryNoSearchResults();
                 }
 
                 return RefreshIndicator(
@@ -86,7 +85,6 @@ class HistoryScreen extends ConsumerWidget {
                 child: CircularProgressIndicator(),
               ),
               error: (error, stack) => HistoryErrorState(
-                l10n: l10n,
                 error: error,
                 onRetry: () =>
                     ref.read(readingHistoryProvider.notifier).refresh(),
@@ -100,15 +98,11 @@ class HistoryScreen extends ConsumerWidget {
 }
 
 class HistoryEmptyState extends StatelessWidget {
-  const HistoryEmptyState({
-    super.key,
-    required this.l10n,
-  });
-
-  final AppLocalizations l10n;
+  const HistoryEmptyState({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -140,15 +134,11 @@ class HistoryEmptyState extends StatelessWidget {
 }
 
 class HistoryNoSearchResults extends StatelessWidget {
-  const HistoryNoSearchResults({
-    super.key,
-    required this.l10n,
-  });
-
-  final AppLocalizations l10n;
+  const HistoryNoSearchResults({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -182,17 +172,16 @@ class HistoryNoSearchResults extends StatelessWidget {
 class HistoryErrorState extends StatelessWidget {
   const HistoryErrorState({
     super.key,
-    required this.l10n,
     required this.error,
     required this.onRetry,
   });
 
-  final AppLocalizations l10n;
   final Object error;
   final VoidCallback onRetry;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
