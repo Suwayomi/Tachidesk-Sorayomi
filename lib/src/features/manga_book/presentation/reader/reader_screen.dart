@@ -258,9 +258,7 @@ class ReaderScreen extends HookConsumerWidget {
                                     showReaderLayoutAnimation,
                                 chapterPages: chapterPagesData,
                               ),
-                            ReaderMode.webtoon ||
-                            ReaderMode.defaultReader ||
-                            null =>
+                            ReaderMode.webtoon || _ =>
                               ContinuousReaderMode(
                                 chapter: chapterData,
                                 manga: data,
