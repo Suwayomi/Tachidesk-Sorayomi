@@ -920,6 +920,9 @@
     "@yesterday": {
         "description": "Yesterday Text to show the release date of manga"
     },
+    "@recentlyRead": {
+        "description": "Recently Read Text to show reading history grouping"
+    },
     "about": "About",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
@@ -1285,5 +1288,16 @@
     "whatsNew": "What's New?",
     "withCompletedStatus": "With Completed status",
     "withUnreadChapter": "With unread chapter(s)",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "recentlyRead": "Recently Read",
+    "history": "History",
+    "searchHistory": "Search history...",
+    "noHistoryFound": "No reading history found",
+    "startReadingToSeeHistory": "Start reading manga to see your history here",
+    "noSearchResults": "No search results",
+    "tryDifferentSearchTerm": "Try a different search term",
+    "errorOccurred": "An error occurred",
+    "viewManga": "View Manga",
+    "removeFromHistory": "Remove from History",
+    "removeFromHistoryConfirmation": "Are you sure you want to remove this chapter from your reading history?"
 }

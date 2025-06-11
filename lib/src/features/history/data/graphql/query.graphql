@@ -1,0 +1,19 @@
+query GetReadingHistory(
+  $first: Int,
+  $offset: Int,
+  $after: Cursor,
+  $before: Cursor,
+  $filter: ChapterFilterInput,
+  $order: [ChapterOrderInput!]
+) {
+  chapters(
+    first: $first
+    offset: $offset
+    after: $after
+    before: $before
+    filter: $filter
+    order: $order
+  ) {
+    ...ChapterPageWithMangaDto
+  }
+} 
