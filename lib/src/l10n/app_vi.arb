@@ -1348,5 +1348,29 @@
   "noMatchingMangaFound": "Không tìm thấy manga phù hợp trong bất kỳ nguồn nào",
   "@noMatchingMangaFound": {},
   "migrateTrackingDescription": "Sao chép thông tin theo dõi vào nguồn mới",
-  "@migrateTrackingDescription": {}
+  "@migrateTrackingDescription": {},
+  "removeFromHistoryConfirmation": "Bạn có chắc chắn muốn xóa chương này khỏi lịch sử đọc của mình không?",
+  "@removeFromHistoryConfirmation": {},
+  "tryDifferentSearchTerm": "Hãy thử một từ khóa tìm kiếm khác",
+  "@tryDifferentSearchTerm": {},
+  "recentlyRead": "Đọc gần đây",
+  "@recentlyRead": {
+    "description": "Recently Read Text to show reading history grouping"
+  },
+  "history": "Lịch sử",
+  "@history": {},
+  "removeFromHistory": "Xóa khỏi Lịch sử",
+  "@removeFromHistory": {},
+  "searchHistory": "Tìm kiếm lịch sử...",
+  "@searchHistory": {},
+  "noHistoryFound": "Không tìm thấy lịch sử đọc",
+  "@noHistoryFound": {},
+  "startReadingToSeeHistory": "Bắt đầu đọc truyện để xem lịch sử của bạn tại đây",
+  "@startReadingToSeeHistory": {},
+  "noSearchResults": "Không có kết quả tìm kiếm",
+  "@noSearchResults": {},
+  "errorOccurred": "Đã xảy ra lỗi",
+  "@errorOccurred": {},
+  "viewManga": "Xem truyện",
+  "@viewManga": {}
 }
