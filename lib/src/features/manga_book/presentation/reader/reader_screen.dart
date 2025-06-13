@@ -199,16 +199,75 @@ class ReaderScreen extends HookConsumerWidget {
                                 showReaderLayoutAnimation,
                             chapterPages: chapterPagesData,
                           ),
-                        ReaderMode.defaultReader ||
-                        null =>
-                          ContinuousReaderMode(
-                            chapter: chapterData,
-                            manga: data,
-                            onPageChanged: onPageChanged,
-                            showReaderLayoutAnimation:
-                                showReaderLayoutAnimation,
-                            chapterPages: chapterPagesData,
-                          )
+                        ReaderMode.defaultReader || null => switch (
+                              defaultReaderMode ?? ReaderMode.webtoon) {
+                            ReaderMode.singleHorizontalLTR =>
+                              SinglePageReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                chapterPages: chapterPagesData,
+                              ),
+                            ReaderMode.singleHorizontalRTL =>
+                              SinglePageReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                reverse: true,
+                                showReaderLayoutAnimation:
+                                    showReaderLayoutAnimation,
+                                chapterPages: chapterPagesData,
+                              ),
+                            ReaderMode.singleVertical => SinglePageReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                scrollDirection: Axis.vertical,
+                                showReaderLayoutAnimation:
+                                    showReaderLayoutAnimation,
+                                chapterPages: chapterPagesData,
+                              ),
+                            ReaderMode.continuousHorizontalLTR =>
+                              ContinuousReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                scrollDirection: Axis.horizontal,
+                                showReaderLayoutAnimation:
+                                    showReaderLayoutAnimation,
+                                chapterPages: chapterPagesData,
+                              ),
+                            ReaderMode.continuousHorizontalRTL =>
+                              ContinuousReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                scrollDirection: Axis.horizontal,
+                                reverse: true,
+                                showReaderLayoutAnimation:
+                                    showReaderLayoutAnimation,
+                                chapterPages: chapterPagesData,
+                              ),
+                            ReaderMode.continuousVertical =>
+                              ContinuousReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                showSeparator: true,
+                                showReaderLayoutAnimation:
+                                    showReaderLayoutAnimation,
+                                chapterPages: chapterPagesData,
+                              ),
+                            ReaderMode.webtoon || _ =>
+                              ContinuousReaderMode(
+                                chapter: chapterData,
+                                manga: data,
+                                onPageChanged: onPageChanged,
+                                showReaderLayoutAnimation:
+                                    showReaderLayoutAnimation,
+                                chapterPages: chapterPagesData,
+                              ),
+                          }
                       };
                     },
                   );
