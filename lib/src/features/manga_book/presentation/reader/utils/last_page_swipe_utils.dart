@@ -18,14 +18,14 @@ enum SwipeDirection {
   down,
 }
 
-/// TASK 4.2: Navigation action types for smart navigation logic
+/// Navigation action types for smart navigation logic
 enum NavigationAction {
   pageNavigation,
   nextChapter,
   previousChapter,
 }
 
-/// TASK 4.2: Page position types for smart navigation decisions
+/// Page position types for smart navigation decisions
 enum PagePosition {
   firstPage,
   middlePage,
@@ -124,17 +124,17 @@ class LastPageSwipeUtils {
     }
   }
 
-  /// TASK 3.3: Enhanced swipe direction detection with diagonal handling and minimum velocity
+  /// Enhanced swipe direction detection with diagonal handling and minimum velocity
   static SwipeDirection? detectSwipeDirectionAdvanced(DragEndDetails details) {
     final velocityPixels = details.velocity.pixelsPerSecond;
 
-    // Minimum velocity threshold to avoid accidental triggers (Task 3.3 requirement)
+    // Minimum velocity threshold to avoid accidental triggers
     const double minVelocity = 100.0;
     if (velocityPixels.distance < minVelocity) {
       return null;
     }
 
-    // TASK 3.3: Prioritize primary direction for diagonal swipes
+    // Prioritize primary direction for diagonal swipes
     final double absX = velocityPixels.dx.abs();
     final double absY = velocityPixels.dy.abs();
 
@@ -147,7 +147,7 @@ class LastPageSwipeUtils {
     }
   }
 
-  /// TASK 3.4: Check if swipe is within acceptable angle tolerance (±15°)
+  /// Check if swipe is within acceptable angle tolerance (±15°)
   static bool isWithinAngleTolerance({
     required SwipeDirection actualDirection,
     required SwipeDirection expectedDirection,
@@ -180,12 +180,12 @@ class LastPageSwipeUtils {
     double diff = (angleDegrees - expectedAngle).abs();
     if (diff > 180) diff = 360 - diff;
 
-    // TASK 3.4: ±15° tolerance as specified in project.mdc
+    // ±15° tolerance
     const double toleranceDegrees = 15.0;
     return diff <= toleranceDegrees;
   }
 
-  /// TASK 3.4: Enhanced direction validation with tolerance for slightly off-angle swipes
+  /// Enhanced direction validation with tolerance for slightly off-angle swipes
   static bool shouldTriggerChapterNavWithTolerance({
     required bool lastPageSwipeEnabled,
     required bool isAtLastPage,
@@ -193,7 +193,7 @@ class LastPageSwipeUtils {
     required ReaderMode resolvedReaderMode,
     required DragEndDetails details,
   }) {
-    // Basic validation from project.mdc safety rules
+    // Basic validation from safety rules
     if (!lastPageSwipeEnabled || !isAtLastPage) {
       return false;
     }
@@ -206,7 +206,7 @@ class LastPageSwipeUtils {
       return true;
     }
 
-    // TASK 3.4: Add tolerance for slightly off-angle swipes (±15°)
+    // Add tolerance for slightly off-angle swipes (±15°)
     return isWithinAngleTolerance(
       actualDirection: actualDirection,
       expectedDirection: expectedDirection,
@@ -215,19 +215,19 @@ class LastPageSwipeUtils {
   }
 
   /// Checks if the current context should trigger chapter navigation
-  /// This is the main validation function following project.mdc safety rules
+  /// This is the main validation function following safety rules
   static bool shouldTriggerChapterNav({
     required bool lastPageSwipeEnabled,
     required bool isAtLastPage,
     required SwipeDirection actualDirection,
     required ReaderMode resolvedReaderMode,
   }) {
-    // Every custom gesture must be wrapped like this (from project.mdc safety rules)
+    // Every custom gesture must be wrapped like this (from safety rules)
     if (!lastPageSwipeEnabled || !isAtLastPage) {
       return false;
     }
 
-    // Direction validation required (from project.mdc safety rules)
+    // Direction validation required (from safety rules)
     return isCorrectDirection(actualDirection, resolvedReaderMode);
   }
 
@@ -253,10 +253,6 @@ class LastPageSwipeUtils {
     }
   }
 
-  // ===========================================================================
-  // TASK 2.1: Last-Page Detection Logic
-  // ===========================================================================
-
   /// Checks if the current page is the last page of the chapter
   static bool isAtLastPage({
     required int currentIndex,
@@ -266,7 +262,7 @@ class LastPageSwipeUtils {
     return currentIndex >= chapterPages.pages.length - 1;
   }
 
-  /// TASK 4.1: Checks if the current page is the first page of the chapter
+  /// Checks if the current page is the first page of the chapter
   static bool isAtFirstPage({
     required int currentIndex,
   }) {
@@ -283,7 +279,7 @@ class LastPageSwipeUtils {
     return currentIndex >= (pageCount - 1);
   }
 
-  /// TASK 4.2: Enhanced page position detection for smart navigation
+  /// Enhanced page position detection for smart navigation
   static bool isAtLastPageReliable({
     required int currentIndex,
     required ChapterPagesDto chapterPages,
@@ -310,7 +306,7 @@ class LastPageSwipeUtils {
     return result;
   }
 
-  /// TASK 4.2: Comprehensive page position detection for smart navigation
+  /// Comprehensive page position detection for smart navigation
   static PagePosition detectPagePosition({
     required int currentIndex,
     required ChapterPagesDto chapterPages,
@@ -331,10 +327,6 @@ class LastPageSwipeUtils {
       return PagePosition.middlePage;
     }
   }
-
-  // ===========================================================================
-  // TASK 2.4: Direction-Aware State Management & Logging
-  // ===========================================================================
 
   /// Validates direction matching for debugging purposes
   /// Returns true if actual direction matches expected direction for the reader mode

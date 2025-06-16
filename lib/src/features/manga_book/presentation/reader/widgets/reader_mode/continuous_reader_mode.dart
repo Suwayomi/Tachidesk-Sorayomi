@@ -29,14 +29,12 @@ import '../reader_wrapper.dart';
 class _ScrollConfig {
   const _ScrollConfig._();
 
-  /// Debounce duration for position updates during scrolling
-  static const Duration positionUpdateDebounce = Duration(milliseconds: 300);
+  /// Normal visibility threshold for position tracking
+  static const double minVisibleAreaThreshold = 0.4;
 
-  /// Threshold for detecting significant position changes
-  static const double positionChangeThreshold = 0.5;
-
-  /// Minimum visible area required to consider an item "current"
-  static const double minVisibleAreaThreshold = 0.3;
+  /// Extended delay only for programmatic navigation to prevent jumps
+  static const Duration programmaticNavigationDelay =
+      Duration(milliseconds: 800);
 }
 
 class ContinuousReaderMode extends HookConsumerWidget {
@@ -77,6 +75,7 @@ class ContinuousReaderMode extends HookConsumerWidget {
     // Passive position tracking that doesn't interfere with scrolling
     final ObjectRef<Timer?> positionUpdateTimer = useRef<Timer?>(null);
     final ValueNotifier<bool> isUserScrolling = useState(false);
+    final ValueNotifier<bool> isNavigatingFromSlider = useState(false);
     final ValueNotifier<int> lastReportedIndex = useState(currentIndex.value);
 
     // Dispose timer properly
@@ -87,26 +86,31 @@ class ContinuousReaderMode extends HookConsumerWidget {
       };
     }, []);
 
-    // Completely passive position tracking that only observes
+    // Enhanced position tracking that allows UI updates but prevents jumps
     useEffect(() {
       void listener() {
-        // Mark as user scrolling to prevent interference
-        isUserScrolling.value = true;
-
         final List<ItemPosition> positions =
             positionsListener.itemPositions.value.toList();
 
         if (positions.isEmpty) return;
 
-        // Cancel any pending position updates
+        // Don't update position if we're navigating from slider
+        if (!isNavigatingFromSlider.value) {
+          // Always update position for UI display (navigation bar needs this)
+          _updatePositionForDisplay(positions, currentIndex, lastReportedIndex);
+        }
+
+        // Mark as user scrolling to prevent programmatic navigation
+        isUserScrolling.value = true;
+
+        // Cancel any pending programmatic navigation
         positionUpdateTimer.value?.cancel();
 
-        // Use longer debounce to ensure scroll has settled
+        // Only allow programmatic navigation after extended delay
         positionUpdateTimer.value =
-            Timer(_ScrollConfig.positionUpdateDebounce, () {
-          _updateCurrentPositionPassively(
-              positions, currentIndex, lastReportedIndex);
+            Timer(_ScrollConfig.programmaticNavigationDelay, () {
           isUserScrolling.value = false;
+          isNavigatingFromSlider.value = false; // Reset slider navigation flag
         });
       }
 
@@ -117,16 +121,17 @@ class ContinuousReaderMode extends HookConsumerWidget {
       };
     }, []);
 
-    // Notify page changes only when they're significant
+    // Notify page changes for UI updates (navigation bar) but prevent programmatic jumps
     useEffect(() {
       final ValueSetter<int>? pageChanged = onPageChanged;
       if (pageChanged != null &&
           lastReportedIndex.value != currentIndex.value) {
+        // Always notify for UI display updates
         pageChanged(currentIndex.value);
         lastReportedIndex.value = currentIndex.value;
       }
       return null;
-    }, [currentIndex.value]);
+    }, [currentIndex.value]); // Only watch currentIndex changes
 
     final bool isAnimationEnabled =
         ref.read(readerScrollAnimationProvider).ifNull(true);
@@ -140,11 +145,26 @@ class ContinuousReaderMode extends HookConsumerWidget {
       manga: manga,
       showReaderLayoutAnimation: showReaderLayoutAnimation,
       currentIndex: currentIndex.value,
-      onChanged: (int index) => _jumpToPageSafely(
-        scrollController,
-        isUserScrolling,
-        index,
-      ),
+      onChanged: (index) {
+        // Mark that we're navigating from slider to prevent position interference
+        isNavigatingFromSlider.value = true;
+
+        // Update current index for display
+        currentIndex.value = index;
+
+        // Force navigation for slider - bypass scroll state checks
+        _jumpToPageSafely(
+          scrollController,
+          isUserScrolling,
+          index,
+          forceNavigation: true,
+        );
+
+        // Reset the flag after the navigation completes
+        Timer(const Duration(milliseconds: 300), () {
+          isNavigatingFromSlider.value = false;
+        });
+      },
       // Disable automatic previous/next navigation for webtoon to prevent jumping
       onPrevious: () => _handleNavigationSafely(
         scrollController,
@@ -234,38 +254,31 @@ class ContinuousReaderMode extends HookConsumerWidget {
     );
   }
 
-  /// Passive position tracking that only observes scroll position without interfering
-  static void _updateCurrentPositionPassively(
+  /// Immediate position tracking for UI display (navigation bar)
+  static void _updatePositionForDisplay(
     List<ItemPosition> positions,
     ValueNotifier<int> currentIndex,
     ValueNotifier<int> lastReportedIndex,
   ) {
     if (positions.isEmpty) return;
 
-    // Find the item that's most prominently visible
-    ItemPosition? bestCandidate;
+    // Find the item that's most visible for display purposes
+    ItemPosition? mostVisible;
     double bestVisibleArea = 0.0;
 
     for (final ItemPosition position in positions) {
       final double visibleArea = _calculateVisibleArea(position);
 
-      // Only consider items that are significantly visible
-      if (visibleArea > _ScrollConfig.minVisibleAreaThreshold &&
-          visibleArea > bestVisibleArea) {
-        bestCandidate = position;
+      if (visibleArea > bestVisibleArea &&
+          visibleArea > _ScrollConfig.minVisibleAreaThreshold) {
         bestVisibleArea = visibleArea;
+        mostVisible = position;
       }
     }
 
-    // Only update if we found a good candidate and it's a significant change
-    if (bestCandidate != null) {
-      final int newIndex = bestCandidate.index;
-      final double indexDifference =
-          (newIndex - currentIndex.value).abs().toDouble();
-
-      if (indexDifference >= _ScrollConfig.positionChangeThreshold) {
-        currentIndex.value = newIndex;
-      }
+    if (mostVisible != null) {
+      // Update current index for display but don't trigger programmatic scrolling
+      currentIndex.value = mostVisible.index;
     }
   }
 
@@ -281,16 +294,20 @@ class ContinuousReaderMode extends HookConsumerWidget {
     return (visibleEnd - visibleStart).clamp(0.0, 1.0);
   }
 
-  /// Safe page jumping that respects user scroll state
+  /// Safe page jumping that respects user scroll state unless forced (for slider navigation)
   static void _jumpToPageSafely(
     ItemScrollController scrollController,
     ValueNotifier<bool> isUserScrolling,
-    int index,
-  ) {
-    // Only jump if user is not actively scrolling
-    if (!isUserScrolling.value) {
-      scrollController.jumpTo(index: index);
+    int index, {
+    bool forceNavigation = false,
+  }) {
+    // Allow forced navigation (from slider) or when user isn't scrolling
+    if (!forceNavigation && isUserScrolling.value) {
+      return; // Only block automatic navigation during user scrolling
     }
+
+    // Perform the navigation
+    scrollController.jumpTo(index: index);
   }
 
   /// Safe navigation that only works when appropriate and doesn't interfere with scrolling
