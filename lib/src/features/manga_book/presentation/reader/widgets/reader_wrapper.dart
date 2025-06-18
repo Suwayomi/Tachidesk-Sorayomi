@@ -70,7 +70,7 @@ class ReaderWrapper extends HookConsumerWidget {
   final bool showReaderLayoutAnimation;
   final ChapterPagesDto chapterPages;
 
-  /// TASK 4: Determine transition direction based on reading mode for proper animations
+  /// Determine transition direction based on reading mode for proper animations
   /// Returns true for vertical transitions, false for horizontal transitions
   bool _shouldUseVerticalTransition(ReaderMode readerMode) {
     switch (readerMode) {
@@ -94,7 +94,7 @@ class ReaderWrapper extends HookConsumerWidget {
     }
   }
 
-  /// TASK 4: Determine if the reading mode is RTL for proper animation direction
+  /// Determine if the reading mode is RTL for proper animation direction
   /// Returns true for RTL modes, false for LTR/Vertical modes
   bool _isRTLReaderMode(ReaderMode readerMode) {
     switch (readerMode) {
@@ -219,7 +219,7 @@ class ReaderWrapper extends HookConsumerWidget {
       return null;
     }, [visibility.value]);
 
-    // TASK 4: Enhanced navigation callbacks with last-page swipe logic
+    // Enhanced navigation callbacks with last-page swipe logic
     final enhancedOnNext = useCallback(() {
       if (lastPageSwipeEnabled && !readerSwipeChapterToggle) {
         // Check if we're at the last page
@@ -272,7 +272,7 @@ class ReaderWrapper extends HookConsumerWidget {
       nextPrevChapterPair
     ]);
 
-    // TASK 4: Chapter navigation callbacks with direction-aware animations
+    // Chapter navigation callbacks with direction-aware animations
     final onNextChapter = useCallback(() {
       if (nextPrevChapterPair?.first != null) {
         // Determine transition direction and RTL handling
@@ -598,7 +598,7 @@ class ReaderWrapper extends HookConsumerWidget {
     );
   }
 
-  /// TASK 4: Enhanced child widget that adds last-page swipe detection for PageView
+  /// Enhanced child widget that adds last-page swipe detection for PageView
   Widget _buildEnhancedChildWithPageDetection(
     Widget originalChild,
     bool lastPageSwipeEnabled,
@@ -626,7 +626,7 @@ class ReaderWrapper extends HookConsumerWidget {
   }
 }
 
-/// TASK 4: Widget that enhances PageView with last-page swipe detection
+/// Widget that enhances PageView with last-page swipe detection
 class _PageViewEnhancer extends StatefulWidget {
   const _PageViewEnhancer({
     required this.originalChild,
@@ -837,8 +837,8 @@ class ReaderView extends HookWidget {
   final bool showReaderLayoutAnimation;
   final Widget child;
 
-  /// Gesture handling has been extracted to DirectionalSwipeGestureHandler widget
-  /// for better performance and maintainability. This widget now focuses on:
+  /// Gesture handling extracted for better performance and maintainability.
+  /// This widget focuses on:
   /// - Magnification handling
   /// - Navigation layout overlay
   /// - Basic UI state management
