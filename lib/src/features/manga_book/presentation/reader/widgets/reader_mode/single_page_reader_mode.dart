@@ -109,11 +109,14 @@ class SinglePageReaderMode extends HookConsumerWidget {
         duration: isAnimationEnabled ? kDuration : kInstantDuration,
         curve: kCurve,
       ),
+      pageController: scrollController,
       child: PageView.builder(
         scrollDirection: scrollDirection,
         reverse: reverse,
         controller: scrollController,
         allowImplicitScrolling: true,
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
         itemBuilder: (BuildContext context, int index) {
           // Show loading indicator if no pages are available yet
           if (chapterPages.pages.isEmpty) {

@@ -42,6 +42,7 @@ import '../../../widgets/chapter_actions/single_chapter_action_icon.dart';
 import '../../manga_details/controller/manga_details_controller.dart';
 import '../controller/reader_controller.dart';
 import '../utils/last_page_swipe_utils.dart';
+import 'directional_swipe_gesture_handler.dart';
 import 'page_number_slider.dart';
 import 'reader_navigation_layout/reader_navigation_layout.dart';
 
@@ -58,6 +59,7 @@ class ReaderWrapper extends HookConsumerWidget {
     required this.scrollDirection,
     this.showReaderLayoutAnimation = false,
     required this.chapterPages,
+    this.pageController,
   });
   final Widget child;
   final MangaDto manga;
@@ -69,6 +71,7 @@ class ReaderWrapper extends HookConsumerWidget {
   final Axis scrollDirection;
   final bool showReaderLayoutAnimation;
   final ChapterPagesDto chapterPages;
+  final PageController? pageController;
 
   /// Determine transition direction based on reading mode for proper animations
   /// Returns true for vertical transitions, false for horizontal transitions
@@ -579,6 +582,7 @@ class ReaderWrapper extends HookConsumerWidget {
                     currentIndex: currentIndex,
                     chapterPages: chapterPages,
                     showReaderLayoutAnimation: showReaderLayoutAnimation,
+                    pageController: pageController,
                     child: _buildEnhancedChildWithPageDetection(
                       child,
                       lastPageSwipeEnabled,
@@ -608,12 +612,10 @@ class ReaderWrapper extends HookConsumerWidget {
     ReaderMode resolvedReaderMode,
     Axis scrollDirection,
   ) {
-    // Only enhance PageView widgets when feature is enabled
     if (!lastPageSwipeEnabled || readerSwipeChapterToggle) {
       return originalChild;
     }
 
-    // Try to extract PageView from the child and add our listener
     return _PageViewEnhancer(
       originalChild: originalChild,
       chapterPages: chapterPages,
@@ -656,6 +658,7 @@ class _PageViewEnhancerState extends State<_PageViewEnhancer> {
   bool _isAtMinExtent = false;
   DateTime? _maxExtentReachedTime;
   DateTime? _minExtentReachedTime;
+  bool _edgeNavTriggered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -695,30 +698,8 @@ class _PageViewEnhancerState extends State<_PageViewEnhancer> {
   }
 
   void _checkBoundarySwipe(int? oldPage, int currentPage, PageMetrics metrics) {
-    // Safety check: only process if last page swipe is enabled
-    if (!widget.lastPageSwipeEnabled) {
-      return;
-    }
-
-    final totalPages = widget.chapterPages.pages.length;
-
-    // Check if we stayed at boundary (attempted swipe but couldn't go further)
-    final isAtLastPage = currentPage >= (totalPages - 1);
-    final isAtFirstPage = currentPage <= 0;
-
-    // If we're at a boundary and the page didn't change (or changed minimally),
-    // this might indicate a swipe attempt at the boundary
-    if (oldPage != null && oldPage == currentPage) {
-      if (isAtLastPage) {
-        widget.onNextChapter();
-        return;
-      }
-
-      if (isAtFirstPage) {
-        widget.onPreviousChapter();
-        return;
-      }
-    }
+    // We now rely solely on overscroll detection, so do nothing here.
+    return;
   }
 
   void _checkScrollAttemptAtBoundary(ScrollMetrics metrics) {
@@ -728,20 +709,33 @@ class _PageViewEnhancerState extends State<_PageViewEnhancer> {
       final currentPage = metrics.page?.round() ?? 0;
       final totalPages = widget.chapterPages.pages.length;
 
-      // Check if we're at max extent (trying to scroll past last page)
-      if (metrics.atEdge && currentPage >= (totalPages - 1)) {
-        // Only trigger if we're actually trying to scroll beyond
-        if (metrics.pixels >= metrics.maxScrollExtent) {
-          widget.onNextChapter();
+      final bool atLastPage = currentPage >= (totalPages - 1);
+      final bool atFirstPage = currentPage <= 0;
+
+      // Trigger immediately when user drags past edge more than 10 logical pixels
+      const double kOverscrollThreshold = 10.0;
+
+      if (widget.lastPageSwipeEnabled) {
+        if (atLastPage &&
+            metrics.pixels - metrics.maxScrollExtent > kOverscrollThreshold) {
+          if (!_edgeNavTriggered) {
+            _edgeNavTriggered = true;
+            widget.onNextChapter();
+          }
+        } else if (atFirstPage &&
+            metrics.minScrollExtent - metrics.pixels > kOverscrollThreshold) {
+          if (!_edgeNavTriggered) {
+            _edgeNavTriggered = true;
+            widget.onPreviousChapter();
+          }
         }
       }
 
-      // Check if we're at min extent (trying to scroll past first page)
-      if (metrics.atEdge && currentPage <= 0) {
-        // Only trigger if we're actually trying to scroll beyond
-        if (metrics.pixels <= metrics.minScrollExtent) {
-          widget.onPreviousChapter();
-        }
+      _isAtMaxExtent = metrics.pixels >= metrics.maxScrollExtent;
+      _isAtMinExtent = metrics.pixels <= metrics.minScrollExtent;
+
+      if (!_isAtMaxExtent && !_isAtMinExtent) {
+        _edgeNavTriggered = false;
       }
     } else {
       // Continuous scroll readers (webtoon, vertical modes)
@@ -767,6 +761,10 @@ class _PageViewEnhancerState extends State<_PageViewEnhancer> {
       if (!_isAtMinExtent && wasAtMinExtent) {
         _minExtentReachedTime = null;
       }
+
+      if (!_isAtMaxExtent && !_isAtMinExtent) {
+        _edgeNavTriggered = false;
+      }
     }
   }
 
@@ -777,23 +775,51 @@ class _PageViewEnhancerState extends State<_PageViewEnhancer> {
     }
 
     final now = DateTime.now();
+    // Use shorter delay for PageView (paged readers) to feel more responsive
+    final bool isPagedReader = notification.metrics is PageMetrics;
+    final int triggerDelayMs = isPagedReader ? 50 : 300;
 
-    // Check for overscroll at the end (positive overscroll when at max extent)
-    if (_isAtMaxExtent && notification.overscroll > 0) {
-      // Only trigger if user has been at max extent for a reasonable time (300ms)
-      // This prevents momentum scrolling from immediately triggering navigation
-      if (_maxExtentReachedTime != null &&
-          now.difference(_maxExtentReachedTime!).inMilliseconds > 300) {
-        widget.onNextChapter();
+    const double kImmediateThreshold = 2.0;
+
+    // For PageView (paged reader) fire immediately once overscroll crosses tiny threshold
+    if (isPagedReader) {
+      if (_isAtMaxExtent && notification.overscroll > kImmediateThreshold) {
+        if (!_edgeNavTriggered) {
+          _edgeNavTriggered = true;
+          widget.onNextChapter();
+        }
+        return;
+      }
+      if (_isAtMinExtent && notification.overscroll < -kImmediateThreshold) {
+        if (!_edgeNavTriggered) {
+          _edgeNavTriggered = true;
+          widget.onPreviousChapter();
+        }
+        return;
       }
     }
 
-    // Check for overscroll at the beginning (negative overscroll when at min extent)
+    // Fallback for continuous readers (webtoon) – keep delay logic
+    // Check for overscroll at the end (positive overscroll when at max extent)
+    if (_isAtMaxExtent && notification.overscroll > 0) {
+      if (_maxExtentReachedTime != null &&
+          now.difference(_maxExtentReachedTime!).inMilliseconds >
+              triggerDelayMs) {
+        if (!_edgeNavTriggered) {
+          _edgeNavTriggered = true;
+          widget.onNextChapter();
+        }
+      }
+    }
+
     if (_isAtMinExtent && notification.overscroll < 0) {
-      // Only trigger if user has been at min extent for a reasonable time (300ms)
       if (_minExtentReachedTime != null &&
-          now.difference(_minExtentReachedTime!).inMilliseconds > 300) {
-        widget.onPreviousChapter();
+          now.difference(_minExtentReachedTime!).inMilliseconds >
+              triggerDelayMs) {
+        if (!_edgeNavTriggered) {
+          _edgeNavTriggered = true;
+          widget.onPreviousChapter();
+        }
       }
     }
   }
@@ -818,6 +844,7 @@ class ReaderView extends HookWidget {
     required this.chapterPages,
     required this.child,
     this.showReaderLayoutAnimation = false,
+    this.pageController,
   });
 
   final VoidCallback toggleVisibility;
@@ -836,6 +863,7 @@ class ReaderView extends HookWidget {
   final ChapterPagesDto chapterPages;
   final bool showReaderLayoutAnimation;
   final Widget child;
+  final PageController? pageController;
 
   /// Gesture handling extracted for better performance and maintainability.
   /// This widget focuses on:
@@ -853,32 +881,50 @@ class ReaderView extends HookWidget {
       mangaReaderMagnifierSize,
     );
 
+    // Build the core reading content wrapped with padding
+    Widget content = Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: context.height *
+            (scrollDirection != Axis.vertical ? mangaReaderPadding : 0),
+        horizontal: context.width *
+            (scrollDirection == Axis.vertical ? mangaReaderPadding : 0),
+      ),
+      child: child,
+    );
+
+    final PageController? controller = pageController ??
+        (PrimaryScrollController.of(context) is PageController
+            ? PrimaryScrollController.of(context) as PageController
+            : null);
+
+    content = DirectionalSwipeGestureHandler(
+      onTap: toggleVisibility,
+      onLongPressStart: (details) {
+        dragGesturePosition.value = details.localPosition;
+        showMagnification.value = true;
+      },
+      onLongPressEnd: (details) {
+        showMagnification.value = false;
+      },
+      onLongPressMoveUpdate: (details) =>
+          dragGesturePosition.value = details.localPosition,
+      scrollDirection: scrollDirection,
+      readerSwipeChapterToggle: readerSwipeChapterToggle,
+      lastPageSwipeEnabled: lastPageSwipeEnabled,
+      resolvedReaderMode: resolvedReaderMode,
+      currentIndex: currentIndex,
+      chapterPages: chapterPages,
+      mangaId: mangaId,
+      prevNextChapterPair: prevNextChapterPair,
+      onNextPage: onNext,
+      onPreviousPage: onPrevious,
+      pageController: controller,
+      child: content,
+    );
+
     return Stack(
       children: [
-        // Simplified: just use regular gesture detection, enhanced callbacks handle the logic
-        GestureDetector(
-          onTap: toggleVisibility,
-          onLongPressStart: (details) {
-            dragGesturePosition.value = (details.localPosition);
-            showMagnification.value = (true);
-          },
-          onLongPressEnd: (details) {
-            dragGesturePosition.value = (details.localPosition);
-            showMagnification.value = (false);
-          },
-          onLongPressMoveUpdate: (details) =>
-              dragGesturePosition.value = (details.localPosition),
-          behavior: HitTestBehavior.translucent,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: context.height *
-                  (scrollDirection != Axis.vertical ? mangaReaderPadding : 0),
-              horizontal: context.width *
-                  (scrollDirection == Axis.vertical ? mangaReaderPadding : 0),
-            ),
-            child: child,
-          ),
-        ),
+        content,
         ReaderNavigationLayoutWidget(
           onNext: onNext,
           onPrevious: onPrevious,
@@ -900,7 +946,7 @@ class ReaderView extends HookWidget {
               magnificationScale: 2,
               child: const ColoredBox(color: Color.fromARGB(8, 158, 158, 158)),
             ),
-          )
+          ),
       ],
     );
   }
