@@ -125,11 +125,6 @@ class DirectionalSwipeGestureHandler extends HookWidget {
     }
     final realTimePageIndex = pageController?.page?.round() ?? currentIndex;
 
-    debugPrint('🔧 Real-time page detection:');
-    debugPrint('  - State currentIndex: $currentIndex');
-    debugPrint('  - PageController.page: ${pageController?.page}');
-    debugPrint('  - Using realTimePageIndex: $realTimePageIndex');
-
     final pagePosition = LastPageSwipeUtils.detectPagePosition(
       currentIndex: realTimePageIndex,
       chapterPages: chapterPages,
