@@ -120,6 +120,14 @@ class DirectionalSwipeGestureHandler extends HookWidget {
     required SwipeDirection direction,
     required DragEndDetails details,
   }) {
+    // In continuous vertical readers, treat drag end as a swipe only at
+    // chapter edges to avoid interfering with normal scrolling.
+
+    final bool isContinuousVerticalMode =
+        resolvedReaderMode == ReaderMode.webtoon ||
+            resolvedReaderMode == ReaderMode.continuousVertical;
+
+    // Resolve current page index for edge checks.
     if (!lastPageSwipeEnabled) {
       return;
     }
@@ -134,6 +142,12 @@ class DirectionalSwipeGestureHandler extends HookWidget {
         pagePosition == PagePosition.singlePage;
     final isAtFirstPage = pagePosition == PagePosition.firstPage ||
         pagePosition == PagePosition.singlePage;
+
+    // Skip swipe handling during mid-chapter scrolling in continuous
+    // vertical readers.
+    if (isContinuousVerticalMode && !(isAtLastPage || isAtFirstPage)) {
+      return;
+    }
 
     final navigationAction = _determineNavigationAction(
       direction: direction,
