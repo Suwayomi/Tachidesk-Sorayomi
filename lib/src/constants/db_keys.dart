@@ -51,6 +51,7 @@ enum DBKeys {
   volumeTapInvert(false),
   hideEmptyCategory(false),
   pinchToZoom(true),
+  readerIgnoreSafeArea(false),
   flexScheme(FlexScheme.material),
   historyEnabled(true),
   historyRetentionDays(90),
