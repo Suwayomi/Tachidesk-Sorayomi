@@ -14,6 +14,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../../constants/enum.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../history/presentation/history_controller.dart';
+import '../../../settings/presentation/reader/widgets/reader_ignore_safe_area_tile/reader_ignore_safe_area_tile.dart';
 import '../../../settings/presentation/reader/widgets/reader_mode_tile/reader_mode_tile.dart';
 import '../../data/manga_book/manga_book_repository.dart';
 import '../../domain/chapter_batch/chapter_batch_model.dart';
@@ -41,6 +42,7 @@ class ReaderScreen extends HookConsumerWidget {
     final manga = ref.watch(mangaProvider);
     final chapter = ref.watch(chapterProviderWithIndex);
     final defaultReaderMode = ref.watch(readerModeKeyProvider);
+    final ignoreSafeArea = ref.watch(readerIgnoreSafeAreaProvider).ifNull();
 
     final debounce = useRef<Timer?>(null);
 
@@ -121,6 +123,10 @@ class ReaderScreen extends HookConsumerWidget {
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: SafeArea(
+          top: !ignoreSafeArea,
+          bottom: !ignoreSafeArea,
+          left: !ignoreSafeArea,
+          right: !ignoreSafeArea,
           child: manga.showUiWhenData(
             context,
             (data) {
