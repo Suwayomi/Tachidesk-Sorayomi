@@ -86,6 +86,7 @@ abstract class Routes {
   static const generalSettings = 'general';
   static const backup = 'backup';
   static const serverSettings = 'server';
+  static const automaticUrlSwitching = 'automatic-url-switching';
   static const downloadsSettings = 'downloads';
 
   // Commons

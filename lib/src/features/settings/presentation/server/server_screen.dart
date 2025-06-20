@@ -14,6 +14,7 @@ import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
 import '../../controller/server_controller.dart';
 import 'widget/authentication/authentication_section.dart';
+import 'widget/automatic_url_switching/automatic_url_switching_section.dart';
 import 'widget/client/client_section.dart';
 import 'widget/client/server_port_tile/server_port_tile.dart';
 import 'widget/client/server_url_tile/server_url_tile.dart';
@@ -64,6 +65,8 @@ class ServerScreen extends ConsumerWidget {
                   },
                 ),
               if (serverSettings.valueOrNull != null) ...[
+                const AutomaticUrlSwitchingSection(),
+                const Divider(),
                 ServerBindingSection(serverBindingDto: serverSettings.value!),
                 SocksProxySection(socksProxyDto: serverSettings.value!),
                 CloudFlareSection(cloudFlareDto: serverSettings.value!),

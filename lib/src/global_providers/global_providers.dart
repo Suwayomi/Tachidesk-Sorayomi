@@ -14,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
+import '../features/settings/domain/network_detector/network_detector.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
 import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
@@ -27,9 +28,28 @@ part 'global_providers.g.dart';
 GraphQLClient graphQlClient(Ref ref) {
   final authType = ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial;
   final credentials = ref.watch(credentialsProvider);
+
+  // Use automatic URL switching if enabled, otherwise fall back to manual URL
+  final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+  String baseUrl;
+
+  if (automaticSwitching == true) {
+    // Watch the active server URL which handles automatic switching
+    final activeUrl = ref.watch(activeServerUrlProvider);
+    baseUrl = activeUrl.when(
+      data: (url) =>
+          url ?? ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+      loading: () => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+      error: (_, __) =>
+          ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+    );
+  } else {
+    baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+  }
+
   Link link = HttpLink(
     Endpoints.baseApi(
-      baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+      baseUrl: baseUrl,
       port: ref.watch(serverPortProvider),
       addPort: ref.watch(serverPortToggleProvider).ifNull(),
       isGraphQl: true,
@@ -56,9 +76,28 @@ GraphQLClient graphQlClient(Ref ref) {
 GraphQLClient graphQlSubscriptionClient(Ref ref) {
   final authType = ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial;
   final credentials = ref.watch(credentialsProvider);
+
+  // Use automatic URL switching if enabled, otherwise fall back to manual URL
+  final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+  String baseUrl;
+
+  if (automaticSwitching == true) {
+    // Watch the active server URL which handles automatic switching
+    final activeUrl = ref.watch(activeServerUrlProvider);
+    baseUrl = activeUrl.when(
+      data: (url) =>
+          url ?? ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+      loading: () => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+      error: (_, __) =>
+          ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+    );
+  } else {
+    baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+  }
+
   Link link = WebSocketLink(
       Endpoints.baseApi(
-        baseUrl: ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+        baseUrl: baseUrl,
         port: ref.watch(serverPortProvider),
         addPort: ref.watch(serverPortToggleProvider).ifNull(),
         isGraphQl: true,
@@ -140,4 +179,116 @@ Queue rateLimitQueue(Ref ref, [String? query]) {
     queue.cancel();
   });
   return queue;
+}
+
+// Automatic URL Switching providers
+@riverpod
+class AutomaticUrlSwitching extends _$AutomaticUrlSwitching
+    with SharedPreferenceClientMixin<bool> {
+  @override
+  bool? build() => initialize(DBKeys.automaticUrlSwitching);
+}
+
+@riverpod
+class LocalNetworkWifiName extends _$LocalNetworkWifiName
+    with SharedPreferenceClientMixin<String> {
+  @override
+  String? build() => initialize(DBKeys.localNetworkWifiName);
+}
+
+@riverpod
+class LocalNetworkServerUrl extends _$LocalNetworkServerUrl
+    with SharedPreferenceClientMixin<String> {
+  @override
+  String? build() => initialize(DBKeys.localNetworkServerUrl);
+}
+
+@riverpod
+class ExternalNetworkUrls extends _$ExternalNetworkUrls
+    with SharedPreferenceClientMixin<List<String>> {
+  @override
+  List<String>? build() => initialize(DBKeys.externalNetworkUrls);
+
+  void addExternalUrl(String url) {
+    final currentList = state ?? <String>[];
+    if (!currentList.contains(url)) {
+      update([...currentList, url]);
+    }
+  }
+
+  void removeExternalUrl(String url) {
+    final currentList = state ?? <String>[];
+    update(currentList.where((item) => item != url).toList());
+  }
+
+  void updateExternalUrl(int index, String newUrl) {
+    final currentList = state ?? <String>[];
+    if (index >= 0 && index < currentList.length) {
+      final updatedList = [...currentList];
+      updatedList[index] = newUrl;
+      update(updatedList);
+    }
+  }
+}
+
+@riverpod
+class ActiveServerUrl extends _$ActiveServerUrl {
+  @override
+  Future<String?> build() async {
+    // Listen to all relevant providers
+    final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+    final localWifiName = ref.watch(localNetworkWifiNameProvider);
+    final localServerUrl = ref.watch(localNetworkServerUrlProvider);
+    final externalUrls = ref.watch(externalNetworkUrlsProvider);
+    final manualServerUrl = ref.watch(serverUrlProvider);
+    final serverPort = ref.watch(serverPortProvider);
+
+    // If automatic switching is disabled, return manual URL
+    if (automaticSwitching != true) {
+      return manualServerUrl;
+    }
+
+    // Get current WiFi name
+    final currentWifi = await NetworkDetector.getCurrentWifiName();
+
+    // Check if we're on the configured local network
+    if (currentWifi != null &&
+        localWifiName != null &&
+        localWifiName.isNotEmpty &&
+        currentWifi.toLowerCase().contains(localWifiName.toLowerCase())) {
+      // Generate local network URL
+      if (localServerUrl != null && localServerUrl.isNotEmpty) {
+        final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
+          localServerUrl,
+          serverPort,
+        );
+        if (generatedUrl != null) {
+          // Verify local server is reachable
+          final isReachable =
+              await NetworkDetector.isServerReachable(generatedUrl);
+          if (isReachable) {
+            return generatedUrl;
+          }
+        }
+      }
+    }
+
+    // Try external URLs
+    if (externalUrls != null && externalUrls.isNotEmpty) {
+      for (final url in externalUrls) {
+        final isReachable = await NetworkDetector.isServerReachable(url);
+        if (isReachable) {
+          return url;
+        }
+      }
+    }
+
+    // Fallback to manual URL
+    return manualServerUrl;
+  }
+
+  /// Force refresh the active URL
+  void refresh() {
+    ref.invalidateSelf();
+  }
 }

@@ -54,6 +54,11 @@ enum DBKeys {
   flexScheme(FlexScheme.material),
   historyEnabled(true),
   historyRetentionDays(90),
+  // Automatic URL Switching
+  automaticUrlSwitching(false),
+  localNetworkWifiName(''),
+  localNetworkServerUrl(''),
+  externalNetworkUrls(<String>[]),
   ;
 
   const DBKeys(this.initial);
