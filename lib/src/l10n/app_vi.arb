@@ -1372,5 +1372,9 @@
   "errorOccurred": "Đã xảy ra lỗi",
   "@errorOccurred": {},
   "viewManga": "Xem truyện",
-  "@viewManga": {}
+  "@viewManga": {},
+  "readerLastPageSwipeToggle": "Vuốt trang cuối cùng",
+  "@readerLastPageSwipeToggle": {},
+  "readerLastPageSwipeToggleDescription": "Vuốt sang chương tiếp theo chỉ ở trang cuối cùng",
+  "@readerLastPageSwipeToggleDescription": {}
 }
