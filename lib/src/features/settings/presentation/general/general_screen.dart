@@ -13,6 +13,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/popup_widgets/radio_list_popup.dart';
 import 'quick_search_toggle/quick_search_toggle_tile.dart';
+import 'timeout_settings/timeout_settings_section.dart';
 
 class GeneralScreen extends ConsumerWidget {
   const GeneralScreen({super.key});
@@ -56,6 +57,7 @@ class GeneralScreen extends ConsumerWidget {
           //   },
           // ),
           const QuickSearchToggleTile(),
+          const TimeoutSettingsSection(),
         ],
       ),
     );
