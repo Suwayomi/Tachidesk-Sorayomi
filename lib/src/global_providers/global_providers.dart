@@ -19,12 +19,14 @@ import '../constants/enum.dart';
 import '../features/settings/domain/automatic_url_switching/external_url_config.dart';
 import '../features/settings/domain/automatic_url_switching/local_network_config.dart';
 import '../features/settings/domain/network_detector/network_detector.dart';
+import '../features/settings/presentation/general/timeout_settings/timeout_settings_section.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
 import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
 import '../utils/extensions/custom_extensions.dart';
 import '../utils/logger/logger_link.dart';
 import '../utils/mixin/shared_preferences_client_mixin.dart';
+import '../utils/network/timeout_http_client.dart';
 
 part 'global_providers.g.dart';
 
@@ -61,11 +63,21 @@ GraphQLClient graphQlClient(Ref ref) {
     followRedirects: true,
     // httpResponseDecoder: httpResponseDecoder,
     defaultHeaders: {'Content-Type': 'application/json; charset=utf-8'},
+    httpClient: TimeoutHttpClient(
+      Duration(milliseconds: effectiveTimeoutMs),
+      retries: retryCount,
+      retryDelay: Duration(milliseconds: retryDelayMs),
+    ),
   );
+
+  // Auto retry is handled by TimeoutHttpClient retries instead of RetryLink
+
+  // Basic authentication link
   if (authType == AuthType.basic && credentials.isNotBlank) {
     final AuthLink authLink = AuthLink(getToken: () => credentials);
     link = authLink.concat(link);
   }
+
   final loggerLink = LoggerLink();
   return GraphQLClient(
     link: loggerLink.concat(link),

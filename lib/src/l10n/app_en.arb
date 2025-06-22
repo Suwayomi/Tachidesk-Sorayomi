@@ -829,6 +829,9 @@
     "@readerOverlay": {
         "description": "Toggle subtile text for Initial Reader Overlay"
     },
+    "@readerOverlaySubtitle": {
+        "description": "Shows title and quick settings when opening a chapter"
+    },
     "@readerPadding": {
         "description": "Slider title text for Reader Padding"
     },
@@ -841,6 +844,12 @@
     "@readerSwipeChapterToggleDescription": {
         "description": "Switch tile description for, toggle `swipe to change chapter` in reader screen"
     },
+    "@readerLastPageSwipeToggle": {
+        "description": "Last page swipe"
+    },
+    "@readerLastPageSwipeToggleDescription": {
+        "description": "Swipe to next chapter only at last page"
+    },
     "@readerVolumeTap": {
         "description": "Switch button text for Reader Page Navigation with Volume Tap"
     },
@@ -849,6 +858,12 @@
     },
     "@readerVolumeTapSubtitle": {
         "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
+    },
+    "@readerIgnoreSafeAreaToggle": {
+        "description": "Toggle text to ignore safe area in reader"
+    },
+    "@readerIgnoreSafeAreaToggleDescription": {
+        "description": "Description for ignore safe area toggle in reader settings"
     },
     "@reddit": {
         "description": "Reddit app title"
@@ -1337,6 +1352,8 @@
     "readerVolumeTap": "Volume Keys",
     "readerVolumeTapInvert": "Invert Volume Keys",
     "readerVolumeTapSubtitle": "Navigate with Volume Keys",
+    "readerIgnoreSafeAreaToggle": "Ignore Safe Area",
+    "readerIgnoreSafeAreaToggleDescription": "Allow content to extend into notch and home indicator areas",
     "reddit": "Reddit",
     "refresh": "Refresh",
     "migrate": "Migrate",
@@ -1489,5 +1506,15 @@
     "errorOccurred": "An error occurred",
     "viewManga": "View Manga",
     "removeFromHistory": "Remove from History",
-    "removeFromHistoryConfirmation": "Are you sure you want to remove this chapter from your reading history?"
+    "removeFromHistoryConfirmation": "Are you sure you want to remove this chapter from your reading history?",
+    "timeoutSettings": "Timeout Settings",
+    "serverRequestTimeout": "Server Request Timeout",
+    "@serverRequestTimeout": {"description": "Controls how long to wait for server responses"},
+    "serverRequestTimeoutDescription": "Time to wait for server responses (in seconds)",
+    "autoRefreshOnTimeout": "Auto-refresh on Timeout",
+    "@autoRefreshOnTimeout": {"description": "Toggle automatic retry on timeout"},
+    "autoRefreshOnTimeoutDescription": "Automatically retries requests that timeout",
+    "autoRefreshRetryDelay": "Auto-refresh Retry Delay",
+    "@autoRefreshRetryDelay": {"description": "Delay between auto retry attempts in seconds"},
+    "autoRefreshRetryDelayDescription": "Delay between auto retry attempts (in seconds)"
 }
