@@ -13,6 +13,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/app_sizes.dart';
+import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
@@ -51,8 +52,23 @@ class ServerImage extends HookConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
 
+    // Use automatic URL switching if enabled, otherwise fall back to manual URL
+    final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+    String baseUrl;
+    
+    if (automaticSwitching == true) {
+      final activeUrl = ref.watch(activeServerUrlProvider);
+      baseUrl = activeUrl.when(
+        data: (url) => url ?? ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+        loading: () => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+        error: (_, __) => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+      );
+    } else {
+      baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+    }
+
     final baseApi = "${Endpoints.baseApi(
-      baseUrl: ref.watch(serverUrlProvider),
+      baseUrl: baseUrl,
       port: ref.watch(serverPortProvider),
       addPort: ref.watch(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,

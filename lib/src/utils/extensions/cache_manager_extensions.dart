@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../constants/db_keys.dart';
 import '../../constants/endpoints.dart';
 import '../../constants/enum.dart';
 import '../../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
@@ -22,8 +23,20 @@ extension CacheManagerExtension on CacheManager {
       {bool appendApiToUrl = true}) async {
     final authType = ref.read(authTypeKeyProvider);
     final basicToken = ref.read(credentialsProvider);
+    
+    // Use automatic URL switching if enabled, otherwise fall back to manual URL
+    final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
+    String baseUrl;
+    
+    if (automaticSwitching == true) {
+      final activeUrl = await ref.read(activeServerUrlProvider.future);
+      baseUrl = activeUrl ?? ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+    } else {
+      baseUrl = ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+    }
+    
     final baseApi = "${Endpoints.baseApi(
-      baseUrl: ref.read(serverUrlProvider),
+      baseUrl: baseUrl,
       port: ref.read(serverPortProvider),
       addPort: ref.read(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,
