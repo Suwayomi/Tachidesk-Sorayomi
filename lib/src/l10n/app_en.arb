@@ -141,6 +141,21 @@
     "@urlValidationError": {
         "description": "Error message for URL validation failure"
     },
+    "@testConnection": {
+        "description": "Button text to test network connection"
+    },
+    "@testConnectionResult": {
+        "description": "Title for connection test result dialog"
+    },
+    "@connectionSuccessful": {
+        "description": "Message shown when connection test succeeds"
+    },
+    "@connectionFailed": {
+        "description": "Message shown when connection test fails"
+    },
+    "@testing": {
+        "description": "Text shown while testing connection"
+    },
     "@permissionRequired": {
         "description": "Title for permission request dialog"
     },
@@ -1096,6 +1111,11 @@
     "globalAuthenticationDescription": "Use the same authentication for all local and external networks",
     "externalNetwork": "External Network",
     "urlValidationError": "Error: {message}",
+    "testConnection": "Test Connection",
+    "testConnectionResult": "Connection Test Result",
+    "connectionSuccessful": "Connection successful",
+    "connectionFailed": "Connection failed",
+    "testing": "Testing...",
     "permissionRequired": "Permission Required",
     "permissionRequiredMessage": "Automatic URL switching requires location permission to detect WiFi network information. Would you like to grant this permission?",
     "permissionDeniedMessage": "Location permission is required for automatic URL switching to work. Please enable it in app settings.",

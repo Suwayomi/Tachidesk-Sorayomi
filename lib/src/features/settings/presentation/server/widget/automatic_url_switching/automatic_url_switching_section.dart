@@ -20,6 +20,7 @@ import '../../../../../../widgets/section_title.dart';
 import '../../../../domain/automatic_url_switching/external_url_config.dart';
 import '../../../../domain/automatic_url_switching/local_network_config.dart';
 import '../../../../domain/network_detector/network_detector.dart';
+import '../client/server_port_tile/server_port_tile.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
   const AutomaticUrlSwitchingSection({super.key});
@@ -241,6 +242,11 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
+                      icon: const Icon(Icons.network_check),
+                      onPressed: () => _TestConnectionHelper.testLocalNetwork(context, ref, config),
+                      tooltip: context.l10n.testConnection,
+                    ),
+                    IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () => _showEditLocalNetworkDialog(
                           context, ref, index, config),
@@ -287,6 +293,11 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    IconButton(
+                      icon: const Icon(Icons.network_check),
+                      onPressed: () => _TestConnectionHelper.testExternalUrl(context, ref, config),
+                      tooltip: context.l10n.testConnection,
+                    ),
                     IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () => _showEditExternalUrlDialog(
@@ -391,37 +402,20 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             TextButton(
               onPressed: () async {
                 if (newUrl.isNotEmpty) {
-                  // Store context references before async operation
-                  final navigator = Navigator.of(context);
-                  final scaffoldMessenger = ScaffoldMessenger.of(context);
-                  final l10n = context.l10n;
-
-                  // Validate URL
-                  final result =
-                      await NetworkDetector.validateExternalUrl(newUrl);
-                  if (result.isValid && result.validatedUrl != null) {
-                    final config = ExternalUrlConfig(
-                      url: result.validatedUrl!,
-                      authType: globalAuthEnabled ? AuthType.none : authType,
-                      username: globalAuthEnabled
-                          ? null
-                          : (authType == AuthType.basic ? username : null),
-                      password: globalAuthEnabled
-                          ? null
-                          : (authType == AuthType.basic ? password : null),
-                    );
-                    ref
-                        .read(externalNetworkUrlConfigsProvider.notifier)
-                        .addExternalUrl(config);
-                    navigator.pop();
-                  } else {
-                    // Show error
-                    scaffoldMessenger.showSnackBar(
-                      SnackBar(
-                          content:
-                              Text(l10n.urlValidationError(result.message))),
-                    );
-                  }
+                  final config = ExternalUrlConfig(
+                    url: newUrl,
+                    authType: globalAuthEnabled ? AuthType.none : authType,
+                    username: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? username : null),
+                    password: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? password : null),
+                  );
+                  ref
+                      .read(externalNetworkUrlConfigsProvider.notifier)
+                      .addExternalUrl(config);
+                  Navigator.of(context).pop();
                 }
               },
               child: Text(context.l10n.add),
@@ -513,37 +507,20 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                         authType != currentConfig.authType ||
                         username != (currentConfig.username ?? '') ||
                         password != (currentConfig.password ?? ''))) {
-                  // Store context references before async operation
-                  final navigator = Navigator.of(context);
-                  final scaffoldMessenger = ScaffoldMessenger.of(context);
-                  final l10n = context.l10n;
-
-                  // Validate URL
-                  final result =
-                      await NetworkDetector.validateExternalUrl(newUrl);
-                  if (result.isValid && result.validatedUrl != null) {
-                    final config = ExternalUrlConfig(
-                      url: result.validatedUrl!,
-                      authType: globalAuthEnabled ? AuthType.none : authType,
-                      username: globalAuthEnabled
-                          ? null
-                          : (authType == AuthType.basic ? username : null),
-                      password: globalAuthEnabled
-                          ? null
-                          : (authType == AuthType.basic ? password : null),
-                    );
-                    ref
-                        .read(externalNetworkUrlConfigsProvider.notifier)
-                        .updateExternalUrl(index, config);
-                    navigator.pop();
-                  } else {
-                    // Show error
-                    scaffoldMessenger.showSnackBar(
-                      SnackBar(
-                          content:
-                              Text(l10n.urlValidationError(result.message))),
-                    );
-                  }
+                  final config = ExternalUrlConfig(
+                    url: newUrl,
+                    authType: globalAuthEnabled ? AuthType.none : authType,
+                    username: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? username : null),
+                    password: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? password : null),
+                  );
+                  ref
+                      .read(externalNetworkUrlConfigsProvider.notifier)
+                      .updateExternalUrl(index, config);
+                  Navigator.of(context).pop();
                 } else {
                   Navigator.of(context).pop();
                 }
@@ -834,6 +811,123 @@ class _GlobalCredentialsPopup extends HookConsumerWidget {
           child: Text(context.l10n.save),
         ),
       ],
+    );
+  }
+}
+
+class _TestConnectionHelper {
+  static void testExternalUrl(BuildContext context, WidgetRef ref, ExternalUrlConfig config) async {
+    _showTestDialog(context, () async {
+      final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
+      Map<String, String>? auth;
+      
+      if (globalAuthEnabled) {
+        final authType = ref.read(globalAuthTypeProvider);
+        final username = ref.read(globalUsernameProvider);
+        final password = ref.read(globalPasswordProvider);
+        
+        if (authType == AuthType.basic && username?.isNotEmpty == true && password?.isNotEmpty == true) {
+          auth = {'username': username!, 'password': password!};
+        }
+      } else {
+        if (config.authType == AuthType.basic && 
+            config.username?.isNotEmpty == true && 
+            config.password?.isNotEmpty == true) {
+          auth = {'username': config.username!, 'password': config.password!};
+        }
+      }
+      
+      return await NetworkDetector.isServerReachableWithAuth(config.url, auth);
+    });
+  }
+
+  static void testLocalNetwork(BuildContext context, WidgetRef ref, LocalNetworkConfig config) async {
+    _showTestDialog(context, () async {
+      final serverPort = ref.read(serverPortProvider);
+      final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
+      
+      // Generate the full URL with port
+      final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
+        config.serverUrl,
+        serverPort,
+      );
+      
+      if (generatedUrl == null) {
+        return false;
+      }
+      
+      Map<String, String>? auth;
+      
+      if (globalAuthEnabled) {
+        final authType = ref.read(globalAuthTypeProvider);
+        final username = ref.read(globalUsernameProvider);
+        final password = ref.read(globalPasswordProvider);
+        
+        if (authType == AuthType.basic && username?.isNotEmpty == true && password?.isNotEmpty == true) {
+          auth = {'username': username!, 'password': password!};
+        }
+      } else {
+        if (config.authType == AuthType.basic && 
+            config.username?.isNotEmpty == true && 
+            config.password?.isNotEmpty == true) {
+          auth = {'username': config.username!, 'password': config.password!};
+        }
+      }
+      
+      return await NetworkDetector.isServerReachableWithAuth(generatedUrl, auth);
+    });
+  }
+
+  static void _showTestDialog(BuildContext context, Future<bool> Function() testFunction) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.testConnectionResult),
+        content: FutureBuilder<bool>(
+          future: testFunction(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const CircularProgressIndicator(),
+                  const SizedBox(width: 16),
+                  Text(context.l10n.testing),
+                ],
+              );
+            } else if (snapshot.hasData) {
+              final success = snapshot.data!;
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    success ? Icons.check_circle : Icons.error,
+                    color: success ? Colors.green : Colors.red,
+                  ),
+                  const SizedBox(width: 16),
+                  Text(success ? context.l10n.connectionSuccessful : context.l10n.connectionFailed),
+                ],
+              );
+            } else {
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.error, color: Colors.red),
+                  const SizedBox(width: 16),
+                  Text(context.l10n.connectionFailed),
+                ],
+              );
+            }
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(context.l10n.close),
+          ),
+        ],
+      ),
     );
   }
 }
