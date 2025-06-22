@@ -43,6 +43,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           value: automaticSwitching ?? false,
           onChanged: (value) async {
             if (value) {
+              // Always enable the setting first
+              ref.read(automaticUrlSwitchingProvider.notifier).update(value);
+              
               // Store context references before async operations
               final l10n = context.l10n;
               final scaffoldMessenger = ScaffoldMessenger.of(context);
@@ -78,12 +81,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 if (shouldRequest == true) {
                   final granted =
                       await NetworkDetector.requestRequiredPermissions();
-                  if (granted) {
-                    ref
-                        .read(automaticUrlSwitchingProvider.notifier)
-                        .update(value);
-                  } else {
-                    // Show permission denied message
+                  if (!granted) {
+                    // Show permission denied message but keep setting enabled
                     if (context.mounted) {
                       scaffoldMessenger.showSnackBar(
                         SnackBar(
@@ -96,9 +95,20 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                       );
                     }
                   }
+                } else {
+                  // User cancelled permission request but setting remains enabled
+                  if (context.mounted) {
+                    scaffoldMessenger.showSnackBar(
+                      SnackBar(
+                        content: Text(l10n.automaticUrlSwitchingEnabledWithoutPermission),
+                        action: SnackBarAction(
+                          label: l10n.openSettings,
+                          onPressed: () => openAppSettings(),
+                        ),
+                      ),
+                    );
+                  }
                 }
-              } else {
-                ref.read(automaticUrlSwitchingProvider.notifier).update(value);
               }
             } else {
               // Disable without permission check
