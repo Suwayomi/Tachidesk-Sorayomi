@@ -126,6 +126,15 @@
     "@serverUrlHint": {
         "description": "Hint text for server URL input field"
     },
+    "@globalAuthentication": {
+        "description": "Section title for global authentication"
+    },
+    "@enableGlobalAuthentication": {
+        "description": "Toggle title to enable/disable global authentication"
+    },
+    "@globalAuthenticationDescription": {
+        "description": "Description of how global authentication works"
+    },
     "@externalNetwork": {
         "description": "Section title for external network configuration"
     },
@@ -1082,6 +1091,9 @@
     "wifiNetworkNameHint": "Enter WiFi network name (SSID)",
     "serverUrl": "Server URL",
     "serverUrlHint": "http://192.168.1.100:4567",
+    "globalAuthentication": "Global Authentication",
+    "enableGlobalAuthentication": "Enable Global Authentication",
+    "globalAuthenticationDescription": "Use the same authentication for all local and external networks",
     "externalNetwork": "External Network",
     "urlValidationError": "Error: {message}",
     "permissionRequired": "Permission Required",

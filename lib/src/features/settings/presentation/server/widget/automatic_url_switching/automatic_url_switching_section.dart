@@ -26,6 +26,10 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     final localNetworkConfigs = ref.watch(localNetworkConfigsProvider);
     final externalUrls = ref.watch(externalNetworkUrlConfigsProvider);
     final activeUrl = ref.watch(activeServerUrlProvider);
+    final globalAuthEnabled = ref.watch(globalAuthenticationEnabledProvider);
+    final globalAuthType = ref.watch(globalAuthTypeProvider);
+    final globalUsername = ref.watch(globalUsernameProvider);
+    final globalPassword = ref.watch(globalPasswordProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,6 +150,72 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ),
           ),
 
+          // Global Authentication Section
+          const Divider(),
+          SectionTitle(title: context.l10n.globalAuthentication),
+          SwitchListTile(
+            title: Text(context.l10n.enableGlobalAuthentication),
+            subtitle: Text(context.l10n.globalAuthenticationDescription),
+            value: globalAuthEnabled ?? false,
+            onChanged: (value) {
+              ref.read(globalAuthenticationEnabledProvider.notifier).update(value);
+            },
+          ),
+
+          if (globalAuthEnabled == true) ...[
+            ListTile(
+              leading: const Icon(Icons.security),
+              title: DropdownButtonFormField<AuthType>(
+                decoration: InputDecoration(
+                  labelText: context.l10n.authenticationType,
+                  border: InputBorder.none,
+                ),
+                value: globalAuthType ?? AuthType.none,
+                items: AuthType.values.map((type) {
+                  return DropdownMenuItem(
+                    value: type,
+                    child: Text(type.toLocale(context)),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  if (value != null) {
+                    ref.read(globalAuthTypeProvider.notifier).update(value);
+                  }
+                },
+              ),
+            ),
+            
+            if (globalAuthType == AuthType.basic) ...[
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.username,
+                    border: InputBorder.none,
+                  ),
+                  controller: TextEditingController(text: globalUsername ?? ''),
+                  onChanged: (value) {
+                    ref.read(globalUsernameProvider.notifier).update(value);
+                  },
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.lock),
+                title: TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.password,
+                    border: InputBorder.none,
+                  ),
+                  controller: TextEditingController(text: globalPassword ?? ''),
+                  obscureText: true,
+                  onChanged: (value) {
+                    ref.read(globalPasswordProvider.notifier).update(value);
+                  },
+                ),
+              ),
+            ],
+          ],
+
           // Local Network Configuration
           const Divider(),
           SectionTitle(title: context.l10n.localNetwork),
@@ -263,6 +333,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     String username = '';
     String password = '';
     
+    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
+    
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -279,40 +351,42 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   ),
                   onChanged: (value) => newUrl = value,
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<AuthType>(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.authenticationType,
-                  ),
-                  value: authType,
-                  items: AuthType.values.map((type) {
-                    return DropdownMenuItem(
-                      value: type,
-                      child: Text(type.toLocale(context)),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      authType = value ?? AuthType.none;
-                    });
-                  },
-                ),
-                if (authType == AuthType.basic) ...[
+                if (!globalAuthEnabled) ...[
                   const SizedBox(height: 16),
-                  TextField(
+                  DropdownButtonFormField<AuthType>(
                     decoration: InputDecoration(
-                      labelText: context.l10n.username,
+                      labelText: context.l10n.authenticationType,
                     ),
-                    onChanged: (value) => username = value,
+                    value: authType,
+                    items: AuthType.values.map((type) {
+                      return DropdownMenuItem(
+                        value: type,
+                        child: Text(type.toLocale(context)),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        authType = value ?? AuthType.none;
+                      });
+                    },
                   ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.password,
+                  if (authType == AuthType.basic) ...[
+                    const SizedBox(height: 16),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.username,
+                      ),
+                      onChanged: (value) => username = value,
                     ),
-                    obscureText: true,
-                    onChanged: (value) => password = value,
-                  ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.password,
+                      ),
+                      obscureText: true,
+                      onChanged: (value) => password = value,
+                    ),
+                  ],
                 ],
               ],
             ),
@@ -336,9 +410,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   if (result.isValid && result.validatedUrl != null) {
                     final config = ExternalUrlConfig(
                       url: result.validatedUrl!,
-                      authType: authType,
-                      username: authType == AuthType.basic ? username : null,
-                      password: authType == AuthType.basic ? password : null,
+                      authType: globalAuthEnabled ? AuthType.none : authType,
+                      username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
+                      password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
                     );
                     ref
                         .read(externalNetworkUrlConfigsProvider.notifier)
@@ -368,6 +442,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     String username = currentConfig.username ?? '';
     String password = currentConfig.password ?? '';
     
+    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
+    
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -385,42 +461,44 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   controller: TextEditingController(text: currentConfig.url),
                   onChanged: (value) => newUrl = value,
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<AuthType>(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.authenticationType,
-                  ),
-                  value: authType,
-                  items: AuthType.values.map((type) {
-                    return DropdownMenuItem(
-                      value: type,
-                      child: Text(type.toLocale(context)),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      authType = value ?? AuthType.none;
-                    });
-                  },
-                ),
-                if (authType == AuthType.basic) ...[
+                if (!globalAuthEnabled) ...[
                   const SizedBox(height: 16),
-                  TextField(
+                  DropdownButtonFormField<AuthType>(
                     decoration: InputDecoration(
-                      labelText: context.l10n.username,
+                      labelText: context.l10n.authenticationType,
                     ),
-                    controller: TextEditingController(text: username),
-                    onChanged: (value) => username = value,
+                    value: authType,
+                    items: AuthType.values.map((type) {
+                      return DropdownMenuItem(
+                        value: type,
+                        child: Text(type.toLocale(context)),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        authType = value ?? AuthType.none;
+                      });
+                    },
                   ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.password,
+                  if (authType == AuthType.basic) ...[
+                    const SizedBox(height: 16),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.username,
+                      ),
+                      controller: TextEditingController(text: username),
+                      onChanged: (value) => username = value,
                     ),
-                    controller: TextEditingController(text: password),
-                    obscureText: true,
-                    onChanged: (value) => password = value,
-                  ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.password,
+                      ),
+                      controller: TextEditingController(text: password),
+                      obscureText: true,
+                      onChanged: (value) => password = value,
+                    ),
+                  ],
                 ],
               ],
             ),
@@ -447,9 +525,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   if (result.isValid && result.validatedUrl != null) {
                     final config = ExternalUrlConfig(
                       url: result.validatedUrl!,
-                      authType: authType,
-                      username: authType == AuthType.basic ? username : null,
-                      password: authType == AuthType.basic ? password : null,
+                      authType: globalAuthEnabled ? AuthType.none : authType,
+                      username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
+                      password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
                     );
                     ref
                         .read(externalNetworkUrlConfigsProvider.notifier)
@@ -481,6 +559,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     String username = '';
     String password = '';
     
+    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
+    
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -505,40 +585,42 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   ),
                   onChanged: (value) => serverUrl = value,
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<AuthType>(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.authenticationType,
-                  ),
-                  value: authType,
-                  items: AuthType.values.map((type) {
-                    return DropdownMenuItem(
-                      value: type,
-                      child: Text(type.toLocale(context)),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      authType = value ?? AuthType.none;
-                    });
-                  },
-                ),
-                if (authType == AuthType.basic) ...[
+                if (!globalAuthEnabled) ...[
                   const SizedBox(height: 16),
-                  TextField(
+                  DropdownButtonFormField<AuthType>(
                     decoration: InputDecoration(
-                      labelText: context.l10n.username,
+                      labelText: context.l10n.authenticationType,
                     ),
-                    onChanged: (value) => username = value,
+                    value: authType,
+                    items: AuthType.values.map((type) {
+                      return DropdownMenuItem(
+                        value: type,
+                        child: Text(type.toLocale(context)),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        authType = value ?? AuthType.none;
+                      });
+                    },
                   ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.password,
+                  if (authType == AuthType.basic) ...[
+                    const SizedBox(height: 16),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.username,
+                      ),
+                      onChanged: (value) => username = value,
                     ),
-                    obscureText: true,
-                    onChanged: (value) => password = value,
-                  ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.password,
+                      ),
+                      obscureText: true,
+                      onChanged: (value) => password = value,
+                    ),
+                  ],
                 ],
               ],
             ),
@@ -554,9 +636,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   final config = LocalNetworkConfig(
                     wifiName: wifiName,
                     serverUrl: serverUrl,
-                    authType: authType,
-                    username: authType == AuthType.basic ? username : null,
-                    password: authType == AuthType.basic ? password : null,
+                    authType: globalAuthEnabled ? AuthType.none : authType,
+                    username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
+                    password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
                   );
                   ref
                       .read(localNetworkConfigsProvider.notifier)
@@ -579,6 +661,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     AuthType authType = currentConfig.authType;
     String username = currentConfig.username ?? '';
     String password = currentConfig.password ?? '';
+    
+    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
     
     showDialog(
       context: context,
@@ -606,42 +690,44 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   controller: TextEditingController(text: currentConfig.serverUrl),
                   onChanged: (value) => serverUrl = value,
                 ),
-                const SizedBox(height: 16),
-                DropdownButtonFormField<AuthType>(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.authenticationType,
-                  ),
-                  value: authType,
-                  items: AuthType.values.map((type) {
-                    return DropdownMenuItem(
-                      value: type,
-                      child: Text(type.toLocale(context)),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      authType = value ?? AuthType.none;
-                    });
-                  },
-                ),
-                if (authType == AuthType.basic) ...[
+                if (!globalAuthEnabled) ...[
                   const SizedBox(height: 16),
-                  TextField(
+                  DropdownButtonFormField<AuthType>(
                     decoration: InputDecoration(
-                      labelText: context.l10n.username,
+                      labelText: context.l10n.authenticationType,
                     ),
-                    controller: TextEditingController(text: username),
-                    onChanged: (value) => username = value,
+                    value: authType,
+                    items: AuthType.values.map((type) {
+                      return DropdownMenuItem(
+                        value: type,
+                        child: Text(type.toLocale(context)),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        authType = value ?? AuthType.none;
+                      });
+                    },
                   ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.password,
+                  if (authType == AuthType.basic) ...[
+                    const SizedBox(height: 16),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.username,
+                      ),
+                      controller: TextEditingController(text: username),
+                      onChanged: (value) => username = value,
                     ),
-                    controller: TextEditingController(text: password),
-                    obscureText: true,
-                    onChanged: (value) => password = value,
-                  ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.password,
+                      ),
+                      controller: TextEditingController(text: password),
+                      obscureText: true,
+                      onChanged: (value) => password = value,
+                    ),
+                  ],
                 ],
               ],
             ),
@@ -657,9 +743,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   final config = LocalNetworkConfig(
                     wifiName: wifiName,
                     serverUrl: serverUrl,
-                    authType: authType,
-                    username: authType == AuthType.basic ? username : null,
-                    password: authType == AuthType.basic ? password : null,
+                    authType: globalAuthEnabled ? AuthType.none : authType,
+                    username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
+                    password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
                   );
                   ref
                       .read(localNetworkConfigsProvider.notifier)

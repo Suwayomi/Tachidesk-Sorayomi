@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -50,6 +52,44 @@ class NetworkDetector {
       final response = await http.get(
         Uri.parse(aboutUrl),
         headers: {'Accept': 'application/json'},
+      ).timeout(connectionTimeout);
+
+      // Check if response is successful and contains expected server info
+      if (response.statusCode == 200) {
+        final body = response.body.toLowerCase();
+        return body.contains('suwayomi') || body.contains('tachidesk');
+      }
+      return false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /// Check if a server URL is reachable with authentication
+  static Future<bool> isServerReachableWithAuth(String serverUrl, Map<String, String>? auth) async {
+    try {
+      // Ensure URL has protocol
+      String url = serverUrl;
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'http://$url';
+      }
+
+      // Try to reach the server's about endpoint to verify it's a Suwayomi server
+      final aboutUrl = '$url/api/v1/settings/about';
+      
+      // Prepare headers
+      final headers = <String, String>{'Accept': 'application/json'};
+      
+      // Add basic auth if provided
+      if (auth != null && auth['username'] != null && auth['password'] != null) {
+        final credentials = '${auth['username']}:${auth['password']}';
+        final encoded = base64Encode(utf8.encode(credentials));
+        headers['Authorization'] = 'Basic $encoded';
+      }
+      
+      final response = await http.get(
+        Uri.parse(aboutUrl),
+        headers: headers,
       ).timeout(connectionTimeout);
 
       // Check if response is successful and contains expected server info

@@ -60,6 +60,10 @@ enum DBKeys {
   localNetworkServerUrl(''),
   localNetworkConfigs(<String>[]),
   externalNetworkUrls(<String>[]),
+  globalAuthenticationEnabled(false),
+  globalAuthType(AuthType.none),
+  globalUsername(''),
+  globalPassword(''),
   ;
 
   const DBKeys(this.initial);

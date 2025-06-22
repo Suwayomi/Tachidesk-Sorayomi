@@ -358,6 +358,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
     final externalUrlConfigs = ref.watch(externalNetworkUrlConfigsProvider);
     final manualServerUrl = ref.watch(serverUrlProvider);
     final serverPort = ref.watch(serverPortProvider);
+    final globalAuthEnabled = ref.watch(globalAuthenticationEnabledProvider);
 
     // If automatic switching is disabled, return manual URL
     if (automaticSwitching != true) {
@@ -377,9 +378,11 @@ class ActiveServerUrl extends _$ActiveServerUrl {
             serverPort,
           );
           if (generatedUrl != null) {
-            // Verify local server is reachable
-            final isReachable =
-                await NetworkDetector.isServerReachable(generatedUrl);
+            // Verify local server is reachable (authentication handled by HTTP client)
+            final isReachable = await NetworkDetector.isServerReachableWithAuth(
+              generatedUrl,
+              globalAuthEnabled == true ? _getGlobalAuth() : _getLocalAuth(config),
+            );
             if (isReachable) {
               return generatedUrl;
             }
@@ -388,10 +391,13 @@ class ActiveServerUrl extends _$ActiveServerUrl {
       }
     }
 
-    // Try external URLs (Note: Authentication will be handled separately in the future)
+    // Try external URLs
     if (externalUrlConfigs != null && externalUrlConfigs.isNotEmpty) {
       for (final config in externalUrlConfigs) {
-        final isReachable = await NetworkDetector.isServerReachable(config.url);
+        final isReachable = await NetworkDetector.isServerReachableWithAuth(
+          config.url,
+          globalAuthEnabled == true ? _getGlobalAuth() : _getExternalAuth(config),
+        );
         if (isReachable) {
           return config.url;
         }
@@ -405,5 +411,82 @@ class ActiveServerUrl extends _$ActiveServerUrl {
   /// Force refresh the active URL
   void refresh() {
     ref.invalidateSelf();
+  }
+
+  Map<String, String>? _getGlobalAuth() {
+    final authType = ref.read(globalAuthTypeProvider);
+    final username = ref.read(globalUsernameProvider);
+    final password = ref.read(globalPasswordProvider);
+    
+    if (authType == AuthType.basic && username?.isNotEmpty == true && password?.isNotEmpty == true) {
+      return {'username': username!, 'password': password!};
+    }
+    return null;
+  }
+
+  Map<String, String>? _getLocalAuth(LocalNetworkConfig config) {
+    if (config.authType == AuthType.basic && 
+        config.username?.isNotEmpty == true && 
+        config.password?.isNotEmpty == true) {
+      return {'username': config.username!, 'password': config.password!};
+    }
+    return null;
+  }
+
+  Map<String, String>? _getExternalAuth(ExternalUrlConfig config) {
+    if (config.authType == AuthType.basic && 
+        config.username?.isNotEmpty == true && 
+        config.password?.isNotEmpty == true) {
+      return {'username': config.username!, 'password': config.password!};
+    }
+    return null;
+  }
+}
+
+// Global Authentication providers
+@riverpod
+class GlobalAuthenticationEnabled extends _$GlobalAuthenticationEnabled {
+  @override
+  bool? build() => ref.read(sharedPreferencesProvider).getBool(DBKeys.globalAuthenticationEnabled.name);
+
+  Future<void> update(bool value) async {
+    await ref.read(sharedPreferencesProvider).setBool(DBKeys.globalAuthenticationEnabled.name, value);
+    state = value;
+  }
+}
+
+@riverpod
+class GlobalAuthType extends _$GlobalAuthType {
+  @override
+  AuthType? build() {
+    final value = ref.read(sharedPreferencesProvider).getString(DBKeys.globalAuthType.name);
+    return value != null ? AuthType.values.byName(value) : null;
+  }
+
+  Future<void> update(AuthType value) async {
+    await ref.read(sharedPreferencesProvider).setString(DBKeys.globalAuthType.name, value.name);
+    state = value;
+  }
+}
+
+@riverpod
+class GlobalUsername extends _$GlobalUsername {
+  @override
+  String? build() => ref.read(sharedPreferencesProvider).getString(DBKeys.globalUsername.name);
+
+  Future<void> update(String value) async {
+    await ref.read(sharedPreferencesProvider).setString(DBKeys.globalUsername.name, value);
+    state = value;
+  }
+}
+
+@riverpod
+class GlobalPassword extends _$GlobalPassword {
+  @override
+  String? build() => ref.read(sharedPreferencesProvider).getString(DBKeys.globalPassword.name);
+
+  Future<void> update(String value) async {
+    await ref.read(sharedPreferencesProvider).setString(DBKeys.globalPassword.name, value);
+    state = value;
   }
 }
