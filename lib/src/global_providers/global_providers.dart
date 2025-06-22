@@ -38,6 +38,7 @@ GraphQLClient graphQlClient(Ref ref) {
 
   // Use automatic URL switching if enabled, otherwise fall back to manual URL
   final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+  final serverUrl = ref.watch(serverUrlProvider);
   String baseUrl;
 
   if (automaticSwitching == true) {
@@ -45,13 +46,13 @@ GraphQLClient graphQlClient(Ref ref) {
     final activeUrl = ref.watch(activeServerUrlProvider);
     baseUrl = activeUrl.when(
       data: (url) =>
-          url ?? ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
-      loading: () => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+          url ?? serverUrl ?? DBKeys.serverUrl.initial,
+      loading: () => serverUrl ?? DBKeys.serverUrl.initial,
       error: (_, __) =>
-          ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+          serverUrl ?? DBKeys.serverUrl.initial,
     );
   } else {
-    baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+    baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
   }
 
   // Get timeout and retry settings
@@ -103,6 +104,7 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
 
   // Use automatic URL switching if enabled, otherwise fall back to manual URL
   final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+  final serverUrl = ref.watch(serverUrlProvider);
   String baseUrl;
 
   if (automaticSwitching == true) {
@@ -110,13 +112,13 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
     final activeUrl = ref.watch(activeServerUrlProvider);
     baseUrl = activeUrl.when(
       data: (url) =>
-          url ?? ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
-      loading: () => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+          url ?? serverUrl ?? DBKeys.serverUrl.initial,
+      loading: () => serverUrl ?? DBKeys.serverUrl.initial,
       error: (_, __) =>
-          ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+          serverUrl ?? DBKeys.serverUrl.initial,
     );
   } else {
-    baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+    baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
   }
 
   Link link = WebSocketLink(
