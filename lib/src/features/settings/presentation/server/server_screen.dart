@@ -52,9 +52,8 @@ class ServerScreen extends ConsumerWidget {
               if (automaticSwitching != true) ...[
                 const ClientSection(),
                 const Divider(),
+                const AuthenticationSection(),
               ],
-              
-              const AuthenticationSection(),
               if (!kIsWeb)
                 ListTile(
                   leading: const Icon(Icons.web_rounded),

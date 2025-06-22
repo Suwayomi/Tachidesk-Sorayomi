@@ -99,6 +99,12 @@
     "@networkInformationDescription": {
         "description": "Description of how automatic URL switching works"
     },
+    "@localNetwork": {
+        "description": "Section title for local network configuration"
+    },
+    "@externalNetwork": {
+        "description": "Section title for external network configuration"
+    },
     "@urlValidationError": {
         "description": "Error message for URL validation failure"
     },
@@ -1037,6 +1043,8 @@
     "externalUrlsConfigured": "{count, plural, =0{No external URLs configured} =1{1 external URL configured} other{{count} external URLs configured}}",
     "networkInformation": "Network Information",
     "networkInformationDescription": "The app will automatically detect your WiFi network and switch to the appropriate server URL.",
+    "localNetwork": "Local Network",
+    "externalNetwork": "External Network",
     "urlValidationError": "Error: {message}",
     "permissionRequired": "Permission Required",
     "permissionRequiredMessage": "Automatic URL switching requires location permission to detect WiFi network information. Would you like to grant this permission?",

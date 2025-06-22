@@ -147,6 +147,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ),
 
           // Local Network Configuration
+          const Divider(),
+          SectionTitle(title: context.l10n.localNetwork),
           SettingsPropTile(
             title: context.l10n.localWifiNetworkName,
             subtitle: localWifiName?.isNotEmpty == true
@@ -180,6 +182,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ),
 
           // External URLs
+          const Divider(),
+          SectionTitle(title: context.l10n.externalNetwork),
           ListTile(
             leading: const Icon(Icons.cloud),
             title: Text(context.l10n.externalUrls),
@@ -220,12 +224,14 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
               );
             }),
 
-          if (!kIsWeb)
+          if (!kIsWeb) ...[
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.info_outline),
               title: Text(context.l10n.networkInformation),
               subtitle: Text(context.l10n.networkInformationDescription),
             ),
+          ],
         ],
       ],
     );
