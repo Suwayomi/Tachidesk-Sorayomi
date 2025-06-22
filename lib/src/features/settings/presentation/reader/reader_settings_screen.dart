@@ -12,8 +12,10 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
+import 'widgets/reader_ignore_safe_area_tile/reader_ignore_safe_area_tile.dart';
 import 'widgets/reader_initial_overlay_tile/reader_initial_overlay_tile.dart';
 import 'widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
+import 'widgets/reader_last_page_swipe_tile/reader_last_page_swipe_tile.dart';
 import 'widgets/reader_magnifier_size_slider/reader_magnifier_size_slider.dart';
 import 'widgets/reader_mode_tile/reader_mode_tile.dart';
 import 'widgets/reader_navigation_layout_tile/reader_navigation_layout_tile.dart';
@@ -39,11 +41,15 @@ class ReaderSettingsScreen extends ConsumerWidget {
           const ReaderInvertTapTile(),
           const ReaderInitialOverlayTile(),
           const SwipeChapterToggleTile(),
+          const ReaderLastPageSwipeTile(),
           const ReaderScrollAnimationTile(),
           const ReaderPaddingSlider(),
           const ReaderMagnifierSizeSlider(),
           if (!kIsWeb) ...[
-            if (Platform.isAndroid || Platform.isIOS) const ReaderPinchToZoom(),
+            if (Platform.isAndroid || Platform.isIOS) ...[
+              const ReaderPinchToZoom(),
+              const ReaderIgnoreSafeAreaTile(),
+            ],
             if (Platform.isAndroid) ...[
               const ReaderVolumeTapTile(),
               if (isVolumeTapEnabled) const ReaderVolumeTapInvertTile(),

@@ -1312,6 +1312,8 @@
     "readerScrollAnimation": "Scroll animation",
     "readerSwipeChapterToggle": "Swipe toggle",
     "readerSwipeChapterToggleDescription": "Swipe to change chapter in reader",
+    "readerLastPageSwipeToggle": "Last page swipe",
+    "readerLastPageSwipeToggleDescription": "Swipe to next chapter only at last page",
     "readerVolumeTap": "Volume Keys",
     "readerVolumeTapInvert": "Invert Volume Keys",
     "readerVolumeTapSubtitle": "Navigate with Volume Keys",

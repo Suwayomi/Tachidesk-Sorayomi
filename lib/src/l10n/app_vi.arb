@@ -201,7 +201,7 @@
   "@emptyCategory": {
     "description": "Description to show that category list is empty in Edit Category screen"
   },
-  "errorExtension": "Không thể tìm thấy tiện ích mở rộng đã chọn",
+  "errorExtension": "Không thể tìm thấy phần mở rộng đã chọn",
   "@errorExtension": {
     "description": "Error Description to show when user selected unknown extension from list"
   },
@@ -227,15 +227,15 @@
   "@errorUserName": {
     "description": "Error Description to show that UserName cannot be empty"
   },
-  "extensionInstalled": "Đã cài đặt tiện ích mở rộng!",
+  "extensionInstalled": "Đã cài đặt phần mở rộng!",
   "@extensionInstalled": {
     "description": "Toast text to show that the Extension Installed successfully"
   },
-  "extensionListEmpty": "Danh sách tiện ích trống",
+  "extensionListEmpty": "Danh sách phần mở rộng trống",
   "@extensionListEmpty": {
     "description": "Description to show that Extension list is empty in Extension list tab of Browse screen"
   },
-  "extensions": "Tiện ích mở rộng",
+  "extensions": "Phần mở rộng",
   "@extensions": {
     "description": "Extension list Tab title in Browse Screen"
   },
@@ -271,7 +271,7 @@
   "@globalSearch": {
     "description": "Screen title of Global Search screen"
   },
-  "globalUpdate": "Cập nhật toàn cầu",
+  "globalUpdate": "Cập nhật thư viện",
   "@globalUpdate": {
     "description": "Button text of Global Manga Update"
   },
@@ -287,7 +287,7 @@
   "@installing": {
     "description": "Button text to show that the extension is installing"
   },
-  "installingExtension": "Cài đặt tiện ích mở rộng",
+  "installingExtension": "Cài đặt phần mở rộng",
   "@installingExtension": {
     "description": "Toast text to show that the extension is installing"
   },
@@ -359,7 +359,7 @@
   "@mangaStatusUnknown": {
     "description": "Text to show Manga Status Unknown in Manga details screen"
   },
-  "missingExtension": "Thiếu tiện ích mở rộng",
+  "missingExtension": "Thiếu phần mở rộng",
   "@missingExtension": {
     "description": "Group title to show the Missing Extensions when restoring Backup"
   },
@@ -535,7 +535,7 @@
   "@readerModeContinuousHorizontalLTR": {
     "description": "Radio button text for Reader Mode Type - Continuous Horizontal (LTR)"
   },
-  "readerModeContinuousVertical": "Liên tục theo chiều dọc",
+  "readerModeContinuousVertical": "Cuộc dọc có khoảng cách",
   "@readerModeContinuousVertical": {
     "description": "Radio button text for Reader Mode Type - Continuous Vertical"
   },
@@ -649,7 +649,7 @@
   "@reset": {
     "description": "Button text of reset button in source filters"
   },
-  "restoreBackupDescription": "Khôi phục Tachidesk từ bản sao lưu",
+  "restoreBackupDescription": "Khôi phục Suwayomi từ bản sao lưu",
   "@restoreBackupDescription": {
     "description": "Button text description to create backup"
   },
@@ -843,7 +843,7 @@
   "@moveToTop": {
     "description": "Button text to move download/category to the top of list"
   },
-  "nsfwInfo": "Điều này không ngăn các tiện ích mở rộng không chính thức hoặc có khả năng bị gắn cờ không chính xác hiển thị nội dung NSFW(18+) trong ứng dụng",
+  "nsfwInfo": "Điều này không ngăn các phần mở rộng không chính thức hoặc có khả năng gắn cờ không chính xác hiển thị nội dung NSFW(18+) trong ứng dụng",
   "@nsfwInfo": {
     "description": "Hint text to show that the nsfw switch cannot prevent incorrectly flagged extensions from surfacing"
   },
@@ -1216,5 +1216,161 @@
   "nRepo": "{n, plural, =1{1 Kho lưu trữ} other{{n} Kho lưu trữ}}",
   "@nRepo": {
     "description": "Text to show n repo as subtitle"
-  }
+  },
+  "mangaSortLastUpdated": "Lần cuối cập nhật",
+  "@mangaSortLastUpdated": {
+    "description": "Radio button text for Manga sort Type - Last Updated"
+  },
+  "migrate": "Di chuyển",
+  "@migrate": {},
+  "migrationSelectTargetSource": "Chọn nguồn đích",
+  "@migrationSelectTargetSource": {},
+  "migrationSearchInSource": "Tìm kiếm trong {sourceName}",
+  "@migrationSearchInSource": {},
+  "migrationPreview": "Xem trước di chuyển",
+  "@migrationPreview": {},
+  "migrationInProgress": "Đang tiến hành di chuyển",
+  "@migrationInProgress": {},
+  "migrationComplete": "Di chuyển đã hoàn tất",
+  "@migrationComplete": {},
+  "migrationFailed": "Di chuyển không thành công",
+  "@migrationFailed": {},
+  "migrationCancelled": "Di chuyển đã bị hủy bỏ",
+  "@migrationCancelled": {},
+  "migrateChapters": "Di chuyển chương",
+  "@migrateChapters": {},
+  "migrateChaptersDescription": "Sao chép trạng thái đã đọc chương sang nguồn mới",
+  "@migrateChaptersDescription": {},
+  "migrateCategories": "Di chuyển danh mục",
+  "@migrateCategories": {},
+  "migrateCategoriesDescription": "Sao chép danh mục Manga vào nguồn mới",
+  "@migrateCategoriesDescription": {},
+  "migrateDownloads": "Di chuyển tải xuống",
+  "@migrateDownloads": {},
+  "migrateDownloadsDescription": "Di chuyển các chương được tải xuống sang nguồn mới",
+  "@migrateDownloadsDescription": {},
+  "migrateTracking": "Di chuyển theo dõi",
+  "@migrateTracking": {},
+  "migrationOptions": "Tùy chọn di chuyển",
+  "@migrationOptions": {},
+  "migrationSettings": "Cài đặt di chuyển",
+  "@migrationSettings": {},
+  "selectTargetSource": "Chọn Nguồn Đích",
+  "@selectTargetSource": {},
+  "noSourcesAvailable": "Không có nguồn nào có sẵn để di chuyển",
+  "@noSourcesAvailable": {},
+  "checkSourceConfiguration": "Vui lòng kiểm tra cấu hình nguồn của bạn",
+  "@checkSourceConfiguration": {},
+  "noAlternativeSources": "Không có nguồn thay thế nào có sẵn",
+  "@noAlternativeSources": {},
+  "installMoreSources": "Cài đặt nhiều nguồn hơn để cho phép di chuyển",
+  "@installMoreSources": {},
+  "errorLoadingSources": "Lỗi tải nguồn",
+  "@errorLoadingSources": {},
+  "errorGettingMigrationSources": "Không nhận được nguồn di chuyển",
+  "@errorGettingMigrationSources": {},
+  "errorSearchingMangaInSource": "Không thể tìm kiếm manga trong nguồn",
+  "@errorSearchingMangaInSource": {},
+  "errorFetchingSourceManga": "Không lấy được manga nguồn",
+  "@errorFetchingSourceManga": {},
+  "errorSourceMangaNotFound": "Nguồn manga không tìm thấy",
+  "@errorSourceMangaNotFound": {},
+  "searchManga": "Tìm kiếm manga...",
+  "@searchManga": {},
+  "searchForManga": "Tìm kiếm manga trong nguồn đích",
+  "@searchForManga": {},
+  "enterSearchTerm": "Nhập để tìm kiếm để tìm manga",
+  "@enterSearchTerm": {},
+  "errorFetchingTargetManga": "Không lấy được manga đích",
+  "@errorFetchingTargetManga": {},
+  "errorTargetMangaNotFound": "Không tìm thấy manga đích",
+  "@errorTargetMangaNotFound": {},
+  "noResultsFound": "Không tìm thấy kết quả nào",
+  "@noResultsFound": {},
+  "tryDifferentSearch": "Hãy thử từ khóa tìm kiếm khác",
+  "@tryDifferentSearch": {},
+  "searchError": "Lỗi tìm kiếm",
+  "@searchError": {},
+  "importantNotice": "Thông báo quan trọng",
+  "@importantNotice": {},
+  "migrationWarning": "Thao tác này sẽ di chuyển vĩnh viễn dữ liệu manga của bạn. Không thể hoàn tác hành động này.",
+  "@migrationWarning": {},
+  "deleteSourceWarning": "Manga gốc sẽ bị xóa khỏi thư viện của bạn sau khi di chuyển.",
+  "@deleteSourceWarning": {},
+  "confirmMigration": "Xác nhận di chuyển",
+  "@confirmMigration": {},
+  "migrationConfirmationMessage": "Bạn có chắc chắn muốn di chuyển manga này không? Hành động này không thể hoàn tác.",
+  "@migrationConfirmationMessage": {},
+  "startMigration": "Bắt đầu di chuyển",
+  "@startMigration": {},
+  "preparingMigration": "Đang chuẩn bị di chuyển...",
+  "@preparingMigration": {},
+  "migrationCompleted": "Quá trình di chuyển đã hoàn tất!",
+  "@migrationCompleted": {},
+  "migrationSuccessMessage": "Manga của bạn đã được di chuyển thành công sang nguồn mới.",
+  "@migrationSuccessMessage": {},
+  "migrationCancelledMessage": "Quá trình di chuyển đã bị hủy. Không có thay đổi nào được thực hiện.",
+  "@migrationCancelledMessage": {},
+  "cancelMigration": "Hủy bỏ di chuyển",
+  "@cancelMigration": {},
+  "cancelMigrationConfirmation": "Bạn có chắc chắn muốn hủy quá trình di chuyển không? Hành động này không thể hoàn tác.",
+  "@cancelMigrationConfirmation": {},
+  "quickPresets": "Cài đặt nhanh",
+  "@quickPresets": {},
+  "quickMigration": "Nhanh",
+  "@quickMigration": {},
+  "fullMigration": "Đầy đủ",
+  "@fullMigration": {},
+  "customMigration": "Tùy chỉnh",
+  "@customMigration": {},
+  "deleteSourceManga": "Xóa Nguồn Manga",
+  "@deleteSourceManga": {},
+  "deleteSourceMangaDescription": "Xóa manga gốc khỏi thư viện sau khi di chuyển",
+  "@deleteSourceMangaDescription": {},
+  "done": "Xong",
+  "@done": {},
+  "yes": "Có",
+  "@yes": {},
+  "no": "Không",
+  "@no": {},
+  "from": "Từ",
+  "@from": {},
+  "to": "Đến",
+  "@to": {},
+  "migrationDetails": "Chi tiết di chuyển",
+  "@migrationDetails": {},
+  "searchAllSources": "Tìm kiếm tất cả các nguồn",
+  "@searchAllSources": {},
+  "deleteSourceAfterMigration": "Xóa manga nguồn sau khi di chuyển",
+  "@deleteSourceAfterMigration": {},
+  "searchingAllSources": "Đang tìm kiếm trên tất cả các nguồn có sẵn...",
+  "@searchingAllSources": {},
+  "noMatchingMangaFound": "Không tìm thấy manga phù hợp trong bất kỳ nguồn nào",
+  "@noMatchingMangaFound": {},
+  "migrateTrackingDescription": "Sao chép thông tin theo dõi vào nguồn mới",
+  "@migrateTrackingDescription": {},
+  "removeFromHistoryConfirmation": "Bạn có chắc chắn muốn xóa chương này khỏi lịch sử đọc của mình không?",
+  "@removeFromHistoryConfirmation": {},
+  "tryDifferentSearchTerm": "Hãy thử một từ khóa tìm kiếm khác",
+  "@tryDifferentSearchTerm": {},
+  "recentlyRead": "Đọc gần đây",
+  "@recentlyRead": {
+    "description": "Recently Read Text to show reading history grouping"
+  },
+  "history": "Lịch sử",
+  "@history": {},
+  "removeFromHistory": "Xóa khỏi Lịch sử",
+  "@removeFromHistory": {},
+  "searchHistory": "Tìm kiếm lịch sử...",
+  "@searchHistory": {},
+  "noHistoryFound": "Không tìm thấy lịch sử đọc",
+  "@noHistoryFound": {},
+  "startReadingToSeeHistory": "Bắt đầu đọc truyện để xem lịch sử của bạn tại đây",
+  "@startReadingToSeeHistory": {},
+  "noSearchResults": "Không có kết quả tìm kiếm",
+  "@noSearchResults": {},
+  "errorOccurred": "Đã xảy ra lỗi",
+  "@errorOccurred": {},
+  "viewManga": "Xem truyện",
+  "@viewManga": {}
 }
