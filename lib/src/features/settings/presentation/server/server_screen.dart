@@ -18,7 +18,6 @@ import 'widget/authentication/authentication_section.dart';
 import 'widget/automatic_url_switching/automatic_url_switching_section.dart';
 import 'widget/client/client_section.dart';
 import 'widget/client/server_port_tile/server_port_tile.dart';
-import 'widget/client/server_url_tile/server_url_tile.dart';
 import 'widget/cloud_flare/cloud_flare_section.dart';
 import 'widget/misc_settings/misc_settings_section.dart';
 import 'widget/server_binding/server_binding_section.dart';
@@ -58,18 +57,23 @@ class ServerScreen extends ConsumerWidget {
                 ListTile(
                   leading: const Icon(Icons.web_rounded),
                   title: Text(context.l10n.webUI),
-                  onTap: () {
+                  onTap: () async {
+                    // Store context references before async operations
+                    final toast = ref.read(toastProvider);
+                    
+                    // Use active server URL (which includes automatic switching logic)
+                    final activeUrl = await ref.read(activeServerUrlProvider.future);
                     final url = Endpoints.baseApi(
-                      baseUrl: ref.read(serverUrlProvider),
+                      baseUrl: activeUrl,
                       port: ref.read(serverPortProvider),
                       addPort: ref.watch(serverPortToggleProvider).ifNull(),
                       appendApiToUrl: false,
                     );
-                    if (url.isNotBlank) {
+                    if (url.isNotBlank && context.mounted) {
                       launchUrlInWeb(
                         context,
                         url,
-                        ref.read(toastProvider),
+                        toast,
                       );
                     }
                   },
