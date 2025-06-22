@@ -54,17 +54,18 @@ class ServerImage extends HookConsumerWidget {
 
     // Use automatic URL switching if enabled, otherwise fall back to manual URL
     final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+    final serverUrl = ref.watch(serverUrlProvider);
     String baseUrl;
     
     if (automaticSwitching == true) {
       final activeUrl = ref.watch(activeServerUrlProvider);
       baseUrl = activeUrl.when(
-        data: (url) => url ?? ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
-        loading: () => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
-        error: (_, __) => ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial,
+        data: (url) => url ?? serverUrl ?? DBKeys.serverUrl.initial,
+        loading: () => serverUrl ?? DBKeys.serverUrl.initial,
+        error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
       );
     } else {
-      baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+      baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
     }
 
     final baseApi = "${Endpoints.baseApi(
