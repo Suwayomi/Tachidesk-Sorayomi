@@ -29,8 +29,8 @@ class ReaderIgnoreSafeAreaTile extends HookConsumerWidget {
     return SwitchListTile(
       controlAffinity: ListTileControlAffinity.trailing,
       secondary: const Icon(Icons.fullscreen_rounded),
-      title: const Text("Ignore Safe Area"),
-      subtitle: const Text("Allow content to extend into notch and home indicator areas"),
+      title: Text(context.l10n.readerIgnoreSafeAreaToggle),
+      subtitle: Text(context.l10n.readerIgnoreSafeAreaToggleDescription),
       onChanged: ref.read(readerIgnoreSafeAreaProvider.notifier).update,
       value: ref.watch(readerIgnoreSafeAreaProvider).ifNull(),
     );
