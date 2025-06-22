@@ -51,7 +51,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             if (value) {
               // Always enable the setting first
               ref.read(automaticUrlSwitchingProvider.notifier).update(value);
-              
+
               // Store context references before async operations
               final l10n = context.l10n;
               final scaffoldMessenger = ScaffoldMessenger.of(context);
@@ -106,7 +106,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   if (context.mounted) {
                     scaffoldMessenger.showSnackBar(
                       SnackBar(
-                        content: Text(l10n.automaticUrlSwitchingEnabledWithoutPermission),
+                        content: Text(
+                            l10n.automaticUrlSwitchingEnabledWithoutPermission),
                         action: SnackBarAction(
                           label: l10n.openSettings,
                           onPressed: () => openAppSettings(),
@@ -160,7 +161,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             subtitle: Text(context.l10n.globalAuthenticationDescription),
             value: globalAuthEnabled ?? false,
             onChanged: (value) {
-              ref.read(globalAuthenticationEnabledProvider.notifier).update(value);
+              ref
+                  .read(globalAuthenticationEnabledProvider.notifier)
+                  .update(value);
             },
           ),
 
@@ -169,7 +172,9 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ListTile(
               leading: const Icon(Icons.security_rounded),
               title: Text(context.l10n.authType),
-              subtitle: globalAuthType != null ? Text(globalAuthType.toLocale(context)) : null,
+              subtitle: globalAuthType != null
+                  ? Text(globalAuthType.toLocale(context))
+                  : null,
               onTap: () => showDialog(
                 context: context,
                 builder: (context) => RadioListPopup<AuthType>(
@@ -184,7 +189,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 ),
               ),
             ),
-            
+
             // Global Credentials Tile (matches manual auth UX)
             if (globalAuthType != null && globalAuthType != AuthType.none)
               ListTile(
@@ -206,7 +211,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             leading: const Icon(Icons.wifi),
             title: Text(context.l10n.localNetworks),
             subtitle: Text(
-              context.l10n.localNetworksConfigured(localNetworkConfigs?.length ?? 0),
+              context.l10n
+                  .localNetworksConfigured(localNetworkConfigs?.length ?? 0),
             ),
             trailing: IconButton(
               icon: const Icon(Icons.add),
@@ -227,7 +233,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   children: [
                     Text(config.serverUrl),
                     if (config.authType != AuthType.none)
-                      Text('${config.authType.toLocale(context)} - ${config.username ?? 'No username'}'),
+                      Text(
+                          '${config.authType.toLocale(context)} - ${config.username ?? 'No username'}'),
                   ],
                 ),
                 trailing: Row(
@@ -235,8 +242,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.edit),
-                      onPressed: () =>
-                          _showEditLocalNetworkDialog(context, ref, index, config),
+                      onPressed: () => _showEditLocalNetworkDialog(
+                          context, ref, index, config),
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
@@ -273,16 +280,17 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
               return ListTile(
                 leading: const Icon(Icons.language),
                 title: Text(config.url),
-                subtitle: config.authType != AuthType.none 
-                    ? Text('${config.authType.toLocale(context)} - ${config.username ?? 'No username'}')
+                subtitle: config.authType != AuthType.none
+                    ? Text(
+                        '${config.authType.toLocale(context)} - ${config.username ?? 'No username'}')
                     : null,
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
                       icon: const Icon(Icons.edit),
-                      onPressed: () =>
-                          _showEditExternalUrlDialog(context, ref, index, config),
+                      onPressed: () => _showEditExternalUrlDialog(
+                          context, ref, index, config),
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
@@ -315,9 +323,10 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     AuthType authType = AuthType.none;
     String username = '';
     String password = '';
-    
-    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
-    
+
+    final globalAuthEnabled =
+        ref.read(globalAuthenticationEnabledProvider) ?? false;
+
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -394,8 +403,12 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     final config = ExternalUrlConfig(
                       url: result.validatedUrl!,
                       authType: globalAuthEnabled ? AuthType.none : authType,
-                      username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
-                      password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
+                      username: globalAuthEnabled
+                          ? null
+                          : (authType == AuthType.basic ? username : null),
+                      password: globalAuthEnabled
+                          ? null
+                          : (authType == AuthType.basic ? password : null),
                     );
                     ref
                         .read(externalNetworkUrlConfigsProvider.notifier)
@@ -405,7 +418,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     // Show error
                     scaffoldMessenger.showSnackBar(
                       SnackBar(
-                          content: Text(l10n.urlValidationError(result.message))),
+                          content:
+                              Text(l10n.urlValidationError(result.message))),
                     );
                   }
                 }
@@ -418,15 +432,16 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     );
   }
 
-  void _showEditExternalUrlDialog(
-      BuildContext context, WidgetRef ref, int index, ExternalUrlConfig currentConfig) {
+  void _showEditExternalUrlDialog(BuildContext context, WidgetRef ref,
+      int index, ExternalUrlConfig currentConfig) {
     String newUrl = currentConfig.url;
     AuthType authType = currentConfig.authType;
     String username = currentConfig.username ?? '';
     String password = currentConfig.password ?? '';
-    
-    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
-    
+
+    final globalAuthEnabled =
+        ref.read(globalAuthenticationEnabledProvider) ?? false;
+
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -493,10 +508,11 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ),
             TextButton(
               onPressed: () async {
-                if (newUrl.isNotEmpty && (newUrl != currentConfig.url || 
-                    authType != currentConfig.authType ||
-                    username != (currentConfig.username ?? '') ||
-                    password != (currentConfig.password ?? ''))) {
+                if (newUrl.isNotEmpty &&
+                    (newUrl != currentConfig.url ||
+                        authType != currentConfig.authType ||
+                        username != (currentConfig.username ?? '') ||
+                        password != (currentConfig.password ?? ''))) {
                   // Store context references before async operation
                   final navigator = Navigator.of(context);
                   final scaffoldMessenger = ScaffoldMessenger.of(context);
@@ -509,8 +525,12 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     final config = ExternalUrlConfig(
                       url: result.validatedUrl!,
                       authType: globalAuthEnabled ? AuthType.none : authType,
-                      username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
-                      password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
+                      username: globalAuthEnabled
+                          ? null
+                          : (authType == AuthType.basic ? username : null),
+                      password: globalAuthEnabled
+                          ? null
+                          : (authType == AuthType.basic ? password : null),
                     );
                     ref
                         .read(externalNetworkUrlConfigsProvider.notifier)
@@ -520,7 +540,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     // Show error
                     scaffoldMessenger.showSnackBar(
                       SnackBar(
-                          content: Text(l10n.urlValidationError(result.message))),
+                          content:
+                              Text(l10n.urlValidationError(result.message))),
                     );
                   }
                 } else {
@@ -541,9 +562,10 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     AuthType authType = AuthType.none;
     String username = '';
     String password = '';
-    
-    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
-    
+
+    final globalAuthEnabled =
+        ref.read(globalAuthenticationEnabledProvider) ?? false;
+
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -620,8 +642,12 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     wifiName: wifiName,
                     serverUrl: serverUrl,
                     authType: globalAuthEnabled ? AuthType.none : authType,
-                    username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
-                    password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
+                    username: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? username : null),
+                    password: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? password : null),
                   );
                   ref
                       .read(localNetworkConfigsProvider.notifier)
@@ -637,16 +663,17 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     );
   }
 
-  void _showEditLocalNetworkDialog(
-      BuildContext context, WidgetRef ref, int index, LocalNetworkConfig currentConfig) {
+  void _showEditLocalNetworkDialog(BuildContext context, WidgetRef ref,
+      int index, LocalNetworkConfig currentConfig) {
     String wifiName = currentConfig.wifiName;
     String serverUrl = currentConfig.serverUrl;
     AuthType authType = currentConfig.authType;
     String username = currentConfig.username ?? '';
     String password = currentConfig.password ?? '';
-    
-    final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
-    
+
+    final globalAuthEnabled =
+        ref.read(globalAuthenticationEnabledProvider) ?? false;
+
     showDialog(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -661,7 +688,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     labelText: context.l10n.wifiNetworkName,
                     hintText: context.l10n.wifiNetworkNameHint,
                   ),
-                  controller: TextEditingController(text: currentConfig.wifiName),
+                  controller:
+                      TextEditingController(text: currentConfig.wifiName),
                   onChanged: (value) => wifiName = value,
                 ),
                 const SizedBox(height: 16),
@@ -670,7 +698,8 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     labelText: context.l10n.serverUrl,
                     hintText: context.l10n.serverUrlHint,
                   ),
-                  controller: TextEditingController(text: currentConfig.serverUrl),
+                  controller:
+                      TextEditingController(text: currentConfig.serverUrl),
                   onChanged: (value) => serverUrl = value,
                 ),
                 if (!globalAuthEnabled) ...[
@@ -727,8 +756,12 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     wifiName: wifiName,
                     serverUrl: serverUrl,
                     authType: globalAuthEnabled ? AuthType.none : authType,
-                    username: globalAuthEnabled ? null : (authType == AuthType.basic ? username : null),
-                    password: globalAuthEnabled ? null : (authType == AuthType.basic ? password : null),
+                    username: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? username : null),
+                    password: globalAuthEnabled
+                        ? null
+                        : (authType == AuthType.basic ? password : null),
                   );
                   ref
                       .read(localNetworkConfigsProvider.notifier)
@@ -752,11 +785,11 @@ class _GlobalCredentialsPopup extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final globalUsername = ref.watch(globalUsernameProvider);
     final globalPassword = ref.watch(globalPasswordProvider);
-    
+
     final username = useTextEditingController(text: globalUsername ?? '');
     final password = useTextEditingController(text: globalPassword ?? '');
     final formKey = useMemoized(() => GlobalKey<FormState>(), []);
-    
+
     return AlertDialog(
       title: Text(context.l10n.credentials),
       content: Form(

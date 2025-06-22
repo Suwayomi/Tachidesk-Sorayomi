@@ -47,7 +47,7 @@ class ServerScreen extends ConsumerWidget {
               // Automatic URL Switching should be at the top
               const AutomaticUrlSwitchingSection(),
               const Divider(),
-              
+
               // Only show manual client settings if automatic switching is disabled
               if (automaticSwitching != true) ...[
                 const ClientSection(),

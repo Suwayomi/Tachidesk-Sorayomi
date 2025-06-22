@@ -211,14 +211,14 @@ class LocalNetworkServerUrl extends _$LocalNetworkServerUrl
 class LocalNetworkConfigs extends _$LocalNetworkConfigs {
   @override
   List<LocalNetworkConfig>? build() {
-    final stringList = ref.read(sharedPreferencesProvider).getStringList(DBKeys.localNetworkConfigs.name);
+    final stringList = ref
+        .read(sharedPreferencesProvider)
+        .getStringList(DBKeys.localNetworkConfigs.name);
     if (stringList == null) return null;
-    
+
     return stringList.map((jsonString) {
       try {
-        final json = Map<String, dynamic>.from(
-          jsonDecode(jsonString) as Map
-        );
+        final json = Map<String, dynamic>.from(jsonDecode(jsonString) as Map);
         return LocalNetworkConfig.fromJson(json);
       } catch (e) {
         // For backward compatibility, treat as plain config
@@ -241,7 +241,8 @@ class LocalNetworkConfigs extends _$LocalNetworkConfigs {
 
   void removeLocalNetwork(String wifiName) {
     final currentList = state ?? <LocalNetworkConfig>[];
-    final updatedList = currentList.where((item) => item.wifiName != wifiName).toList();
+    final updatedList =
+        currentList.where((item) => item.wifiName != wifiName).toList();
     _saveToPreferences(updatedList);
     state = updatedList;
   }
@@ -257,10 +258,11 @@ class LocalNetworkConfigs extends _$LocalNetworkConfigs {
   }
 
   void _saveToPreferences(List<LocalNetworkConfig> configs) {
-    final jsonStrings = configs.map((config) => 
-      jsonEncode(config.toJson())
-    ).toList();
-    ref.read(sharedPreferencesProvider).setStringList(DBKeys.localNetworkConfigs.name, jsonStrings);
+    final jsonStrings =
+        configs.map((config) => jsonEncode(config.toJson())).toList();
+    ref
+        .read(sharedPreferencesProvider)
+        .setStringList(DBKeys.localNetworkConfigs.name, jsonStrings);
   }
 }
 
@@ -269,14 +271,14 @@ class LocalNetworkConfigs extends _$LocalNetworkConfigs {
 class ExternalNetworkUrlConfigs extends _$ExternalNetworkUrlConfigs {
   @override
   List<ExternalUrlConfig>? build() {
-    final stringList = ref.read(sharedPreferencesProvider).getStringList(DBKeys.externalNetworkUrls.name);
+    final stringList = ref
+        .read(sharedPreferencesProvider)
+        .getStringList(DBKeys.externalNetworkUrls.name);
     if (stringList == null) return null;
-    
+
     return stringList.map((jsonString) {
       try {
-        final json = Map<String, dynamic>.from(
-          jsonDecode(jsonString) as Map
-        );
+        final json = Map<String, dynamic>.from(jsonDecode(jsonString) as Map);
         return ExternalUrlConfig.fromJson(json);
       } catch (e) {
         // For backward compatibility, treat as plain URL with no auth
@@ -312,10 +314,11 @@ class ExternalNetworkUrlConfigs extends _$ExternalNetworkUrlConfigs {
   }
 
   void _saveToPreferences(List<ExternalUrlConfig> configs) {
-    final jsonStrings = configs.map((config) => 
-      jsonEncode(config.toJson())
-    ).toList();
-    ref.read(sharedPreferencesProvider).setStringList(DBKeys.externalNetworkUrls.name, jsonStrings);
+    final jsonStrings =
+        configs.map((config) => jsonEncode(config.toJson())).toList();
+    ref
+        .read(sharedPreferencesProvider)
+        .setStringList(DBKeys.externalNetworkUrls.name, jsonStrings);
   }
 }
 
@@ -369,7 +372,9 @@ class ActiveServerUrl extends _$ActiveServerUrl {
     final currentWifi = await NetworkDetector.getCurrentWifiName();
 
     // Check if we're on any configured local network
-    if (currentWifi != null && localNetworkConfigs != null && localNetworkConfigs.isNotEmpty) {
+    if (currentWifi != null &&
+        localNetworkConfigs != null &&
+        localNetworkConfigs.isNotEmpty) {
       for (final config in localNetworkConfigs) {
         if (currentWifi.toLowerCase().contains(config.wifiName.toLowerCase())) {
           // Generate local network URL
@@ -381,7 +386,9 @@ class ActiveServerUrl extends _$ActiveServerUrl {
             // Verify local server is reachable (authentication handled by HTTP client)
             final isReachable = await NetworkDetector.isServerReachableWithAuth(
               generatedUrl,
-              globalAuthEnabled == true ? _getGlobalAuth() : _getLocalAuth(config),
+              globalAuthEnabled == true
+                  ? _getGlobalAuth()
+                  : _getLocalAuth(config),
             );
             if (isReachable) {
               return generatedUrl;
@@ -396,7 +403,9 @@ class ActiveServerUrl extends _$ActiveServerUrl {
       for (final config in externalUrlConfigs) {
         final isReachable = await NetworkDetector.isServerReachableWithAuth(
           config.url,
-          globalAuthEnabled == true ? _getGlobalAuth() : _getExternalAuth(config),
+          globalAuthEnabled == true
+              ? _getGlobalAuth()
+              : _getExternalAuth(config),
         );
         if (isReachable) {
           return config.url;
@@ -417,16 +426,18 @@ class ActiveServerUrl extends _$ActiveServerUrl {
     final authType = ref.read(globalAuthTypeProvider);
     final username = ref.read(globalUsernameProvider);
     final password = ref.read(globalPasswordProvider);
-    
-    if (authType == AuthType.basic && username?.isNotEmpty == true && password?.isNotEmpty == true) {
+
+    if (authType == AuthType.basic &&
+        username?.isNotEmpty == true &&
+        password?.isNotEmpty == true) {
       return {'username': username!, 'password': password!};
     }
     return null;
   }
 
   Map<String, String>? _getLocalAuth(LocalNetworkConfig config) {
-    if (config.authType == AuthType.basic && 
-        config.username?.isNotEmpty == true && 
+    if (config.authType == AuthType.basic &&
+        config.username?.isNotEmpty == true &&
         config.password?.isNotEmpty == true) {
       return {'username': config.username!, 'password': config.password!};
     }
@@ -434,8 +445,8 @@ class ActiveServerUrl extends _$ActiveServerUrl {
   }
 
   Map<String, String>? _getExternalAuth(ExternalUrlConfig config) {
-    if (config.authType == AuthType.basic && 
-        config.username?.isNotEmpty == true && 
+    if (config.authType == AuthType.basic &&
+        config.username?.isNotEmpty == true &&
         config.password?.isNotEmpty == true) {
       return {'username': config.username!, 'password': config.password!};
     }
@@ -447,10 +458,14 @@ class ActiveServerUrl extends _$ActiveServerUrl {
 @riverpod
 class GlobalAuthenticationEnabled extends _$GlobalAuthenticationEnabled {
   @override
-  bool? build() => ref.read(sharedPreferencesProvider).getBool(DBKeys.globalAuthenticationEnabled.name);
+  bool? build() => ref
+      .read(sharedPreferencesProvider)
+      .getBool(DBKeys.globalAuthenticationEnabled.name);
 
   Future<void> update(bool value) async {
-    await ref.read(sharedPreferencesProvider).setBool(DBKeys.globalAuthenticationEnabled.name, value);
+    await ref
+        .read(sharedPreferencesProvider)
+        .setBool(DBKeys.globalAuthenticationEnabled.name, value);
     state = value;
   }
 }
@@ -459,12 +474,16 @@ class GlobalAuthenticationEnabled extends _$GlobalAuthenticationEnabled {
 class GlobalAuthType extends _$GlobalAuthType {
   @override
   AuthType? build() {
-    final value = ref.read(sharedPreferencesProvider).getString(DBKeys.globalAuthType.name);
+    final value = ref
+        .read(sharedPreferencesProvider)
+        .getString(DBKeys.globalAuthType.name);
     return value != null ? AuthType.values.byName(value) : null;
   }
 
   Future<void> update(AuthType value) async {
-    await ref.read(sharedPreferencesProvider).setString(DBKeys.globalAuthType.name, value.name);
+    await ref
+        .read(sharedPreferencesProvider)
+        .setString(DBKeys.globalAuthType.name, value.name);
     state = value;
   }
 }
@@ -472,10 +491,13 @@ class GlobalAuthType extends _$GlobalAuthType {
 @riverpod
 class GlobalUsername extends _$GlobalUsername {
   @override
-  String? build() => ref.read(sharedPreferencesProvider).getString(DBKeys.globalUsername.name);
+  String? build() =>
+      ref.read(sharedPreferencesProvider).getString(DBKeys.globalUsername.name);
 
   Future<void> update(String value) async {
-    await ref.read(sharedPreferencesProvider).setString(DBKeys.globalUsername.name, value);
+    await ref
+        .read(sharedPreferencesProvider)
+        .setString(DBKeys.globalUsername.name, value);
     state = value;
   }
 }
@@ -483,10 +505,13 @@ class GlobalUsername extends _$GlobalUsername {
 @riverpod
 class GlobalPassword extends _$GlobalPassword {
   @override
-  String? build() => ref.read(sharedPreferencesProvider).getString(DBKeys.globalPassword.name);
+  String? build() =>
+      ref.read(sharedPreferencesProvider).getString(DBKeys.globalPassword.name);
 
   Future<void> update(String value) async {
-    await ref.read(sharedPreferencesProvider).setString(DBKeys.globalPassword.name, value);
+    await ref
+        .read(sharedPreferencesProvider)
+        .setString(DBKeys.globalPassword.name, value);
     state = value;
   }
 }

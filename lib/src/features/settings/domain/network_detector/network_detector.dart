@@ -66,7 +66,8 @@ class NetworkDetector {
   }
 
   /// Check if a server URL is reachable with authentication
-  static Future<bool> isServerReachableWithAuth(String serverUrl, Map<String, String>? auth) async {
+  static Future<bool> isServerReachableWithAuth(
+      String serverUrl, Map<String, String>? auth) async {
     try {
       // Ensure URL has protocol
       String url = serverUrl;
@@ -76,21 +77,25 @@ class NetworkDetector {
 
       // Try to reach the server's about endpoint to verify it's a Suwayomi server
       final aboutUrl = '$url/api/v1/settings/about';
-      
+
       // Prepare headers
       final headers = <String, String>{'Accept': 'application/json'};
-      
+
       // Add basic auth if provided
-      if (auth != null && auth['username'] != null && auth['password'] != null) {
+      if (auth != null &&
+          auth['username'] != null &&
+          auth['password'] != null) {
         final credentials = '${auth['username']}:${auth['password']}';
         final encoded = base64Encode(utf8.encode(credentials));
         headers['Authorization'] = 'Basic $encoded';
       }
-      
-      final response = await http.get(
-        Uri.parse(aboutUrl),
-        headers: headers,
-      ).timeout(connectionTimeout);
+
+      final response = await http
+          .get(
+            Uri.parse(aboutUrl),
+            headers: headers,
+          )
+          .timeout(connectionTimeout);
 
       // Check if response is successful and contains expected server info
       if (response.statusCode == 200) {
