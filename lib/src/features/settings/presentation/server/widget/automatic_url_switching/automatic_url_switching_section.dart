@@ -6,21 +6,19 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../../../constants/enum.dart';
 import '../../../../../../global_providers/global_providers.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../domain/automatic_url_switching/external_url_config.dart';
 import '../../../../domain/automatic_url_switching/local_network_config.dart';
 import '../../../../domain/network_detector/network_detector.dart';
 import '../client/server_port_tile/server_port_tile.dart';
+import 'global_credentials_popup.dart';
 import 'test_connection_dialog.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
@@ -198,10 +196,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 leading: const Icon(Icons.password_rounded),
                 title: Text(context.l10n.credentials),
                 onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => _GlobalCredentialsPopup(),
-                  );
+                  GlobalCredentialsPopup.show(context);
                 },
               ),
           ],
@@ -752,66 +747,6 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _GlobalCredentialsPopup extends HookConsumerWidget {
-  const _GlobalCredentialsPopup();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final globalUsername = ref.watch(globalUsernameProvider);
-    final globalPassword = ref.watch(globalPasswordProvider);
-
-    final username = useTextEditingController(text: globalUsername ?? '');
-    final password = useTextEditingController(text: globalPassword ?? '');
-    final formKey = useMemoized(() => GlobalKey<FormState>(), []);
-
-    return AlertDialog(
-      title: Text(context.l10n.credentials),
-      content: Form(
-        key: formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextFormField(
-              controller: username,
-              validator: (value) =>
-                  value.isBlank ? (context.l10n.errorUserName) : null,
-              decoration: InputDecoration(
-                hintText: context.l10n.userName,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-            const Gap(4),
-            TextFormField(
-              controller: password,
-              validator: (value) =>
-                  value.isBlank ? (context.l10n.errorPassword) : null,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: context.l10n.password,
-                border: const OutlineInputBorder(),
-              ),
-            ),
-          ],
-        ),
-      ),
-      actions: [
-        const PopButton(),
-        ElevatedButton(
-          onPressed: () async {
-            if ((formKey.currentState?.validate()).ifNull()) {
-              // Update global credentials
-              ref.read(globalUsernameProvider.notifier).update(username.text);
-              ref.read(globalPasswordProvider.notifier).update(password.text);
-              Navigator.pop(context);
-            }
-          },
-          child: Text(context.l10n.save),
-        ),
-      ],
     );
   }
 }
