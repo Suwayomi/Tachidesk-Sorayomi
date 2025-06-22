@@ -6,6 +6,7 @@
 
 import 'package:http/http.dart' as http;
 import 'package:network_info_plus/network_info_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class NetworkDetector {
   static const Duration connectionTimeout = Duration(seconds: 5);
@@ -112,6 +113,36 @@ class NetworkDetector {
     } catch (e) {
       return null;
     }
+  }
+
+  /// Check if location permissions are granted for WiFi info access
+  static Future<bool> hasLocationPermission() async {
+    try {
+      final status = await Permission.location.status;
+      return status == PermissionStatus.granted;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /// Request location permissions for WiFi info access
+  static Future<bool> requestLocationPermission() async {
+    try {
+      final status = await Permission.location.request();
+      return status == PermissionStatus.granted;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /// Check if all required permissions are granted
+  static Future<bool> hasRequiredPermissions() async {
+    return await hasLocationPermission();
+  }
+
+  /// Request all required permissions
+  static Future<bool> requestRequiredPermissions() async {
+    return await requestLocationPermission();
   }
 }
 

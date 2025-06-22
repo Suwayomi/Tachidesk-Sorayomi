@@ -7,6 +7,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../../../global_providers/global_providers.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
@@ -40,8 +41,69 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 : context.l10n.automaticUrlSwitchingDisabled,
           ),
           value: automaticSwitching ?? false,
-          onChanged: (value) {
-            ref.read(automaticUrlSwitchingProvider.notifier).update(value);
+          onChanged: (value) async {
+            if (value) {
+              // Store context references before async operations
+              final l10n = context.l10n;
+              final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+              // Check permissions when enabling
+              final hasPermissions =
+                  await NetworkDetector.hasRequiredPermissions();
+              if (!hasPermissions) {
+                // Show permission dialog using stored context references
+                bool? shouldRequest;
+                if (context.mounted) {
+                  shouldRequest = await showDialog<bool>(
+                    context: context,
+                    builder: (dialogContext) => AlertDialog(
+                      title: Text(l10n.permissionRequired),
+                      content: Text(l10n.permissionRequiredMessage),
+                      actions: [
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.of(dialogContext).pop(false),
+                          child: Text(l10n.cancel),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.of(dialogContext).pop(true),
+                          child: Text(l10n.grantPermission),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+                if (shouldRequest == true) {
+                  final granted =
+                      await NetworkDetector.requestRequiredPermissions();
+                  if (granted) {
+                    ref
+                        .read(automaticUrlSwitchingProvider.notifier)
+                        .update(value);
+                  } else {
+                    // Show permission denied message
+                    if (context.mounted) {
+                      scaffoldMessenger.showSnackBar(
+                        SnackBar(
+                          content: Text(l10n.permissionDeniedMessage),
+                          action: SnackBarAction(
+                            label: l10n.openSettings,
+                            onPressed: () => openAppSettings(),
+                          ),
+                        ),
+                      );
+                    }
+                  }
+                }
+              } else {
+                ref.read(automaticUrlSwitchingProvider.notifier).update(value);
+              }
+            } else {
+              // Disable without permission check
+              ref.read(automaticUrlSwitchingProvider.notifier).update(value);
+            }
           },
         ),
 

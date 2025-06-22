@@ -64,9 +64,10 @@ class ServerScreen extends ConsumerWidget {
                     }
                   },
                 ),
+              // Automatic URL Switching should always be available
+              const AutomaticUrlSwitchingSection(),
+              const Divider(),
               if (serverSettings.valueOrNull != null) ...[
-                const AutomaticUrlSwitchingSection(),
-                const Divider(),
                 ServerBindingSection(serverBindingDto: serverSettings.value!),
                 SocksProxySection(socksProxyDto: serverSettings.value!),
                 CloudFlareSection(cloudFlareDto: serverSettings.value!),
