@@ -6,12 +6,16 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../../../constants/enum.dart';
 import '../../../../../../global_providers/global_providers.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../../widgets/popup_widgets/pop_button.dart';
+import '../../../../../../widgets/popup_widgets/radio_list_popup.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../domain/automatic_url_switching/external_url_config.dart';
 import '../../../../domain/automatic_url_switching/local_network_config.dart';
@@ -28,8 +32,6 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     final activeUrl = ref.watch(activeServerUrlProvider);
     final globalAuthEnabled = ref.watch(globalAuthenticationEnabledProvider);
     final globalAuthType = ref.watch(globalAuthTypeProvider);
-    final globalUsername = ref.watch(globalUsernameProvider);
-    final globalPassword = ref.watch(globalPasswordProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,57 +165,38 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ),
 
           if (globalAuthEnabled == true) ...[
+            // Global Authentication Type Tile (matches AuthTypeTile UX)
             ListTile(
-              leading: const Icon(Icons.security),
-              title: DropdownButtonFormField<AuthType>(
-                decoration: InputDecoration(
-                  labelText: context.l10n.authenticationType,
-                  border: InputBorder.none,
+              leading: const Icon(Icons.security_rounded),
+              title: Text(context.l10n.authType),
+              subtitle: globalAuthType != null ? Text(globalAuthType.toLocale(context)) : null,
+              onTap: () => showDialog(
+                context: context,
+                builder: (context) => RadioListPopup<AuthType>(
+                  title: context.l10n.authType,
+                  optionList: AuthType.values,
+                  getOptionTitle: (value) => value.toLocale(context),
+                  value: globalAuthType ?? AuthType.none,
+                  onChange: (enumValue) {
+                    ref.read(globalAuthTypeProvider.notifier).update(enumValue);
+                    Navigator.pop(context);
+                  },
                 ),
-                value: globalAuthType ?? AuthType.none,
-                items: AuthType.values.map((type) {
-                  return DropdownMenuItem(
-                    value: type,
-                    child: Text(type.toLocale(context)),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  if (value != null) {
-                    ref.read(globalAuthTypeProvider.notifier).update(value);
-                  }
-                },
               ),
             ),
             
-            if (globalAuthType == AuthType.basic) ...[
+            // Global Credentials Tile (matches manual auth UX)
+            if (globalAuthType != null && globalAuthType != AuthType.none)
               ListTile(
-                leading: const Icon(Icons.person),
-                title: TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.username,
-                    border: InputBorder.none,
-                  ),
-                  controller: TextEditingController(text: globalUsername ?? ''),
-                  onChanged: (value) {
-                    ref.read(globalUsernameProvider.notifier).update(value);
-                  },
-                ),
+                leading: const Icon(Icons.password_rounded),
+                title: Text(context.l10n.credentials),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => _GlobalCredentialsPopup(),
+                  );
+                },
               ),
-              ListTile(
-                leading: const Icon(Icons.lock),
-                title: TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.password,
-                    border: InputBorder.none,
-                  ),
-                  controller: TextEditingController(text: globalPassword ?? ''),
-                  obscureText: true,
-                  onChanged: (value) {
-                    ref.read(globalPasswordProvider.notifier).update(value);
-                  },
-                ),
-              ),
-            ],
           ],
 
           // Local Network Configuration
@@ -758,6 +741,66 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _GlobalCredentialsPopup extends HookConsumerWidget {
+  const _GlobalCredentialsPopup();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final globalUsername = ref.watch(globalUsernameProvider);
+    final globalPassword = ref.watch(globalPasswordProvider);
+    
+    final username = useTextEditingController(text: globalUsername ?? '');
+    final password = useTextEditingController(text: globalPassword ?? '');
+    final formKey = useMemoized(() => GlobalKey<FormState>(), []);
+    
+    return AlertDialog(
+      title: Text(context.l10n.credentials),
+      content: Form(
+        key: formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              controller: username,
+              validator: (value) =>
+                  value.isBlank ? (context.l10n.errorUserName) : null,
+              decoration: InputDecoration(
+                hintText: context.l10n.userName,
+                border: const OutlineInputBorder(),
+              ),
+            ),
+            const Gap(4),
+            TextFormField(
+              controller: password,
+              validator: (value) =>
+                  value.isBlank ? (context.l10n.errorPassword) : null,
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: context.l10n.password,
+                border: const OutlineInputBorder(),
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        const PopButton(),
+        ElevatedButton(
+          onPressed: () async {
+            if ((formKey.currentState?.validate()).ifNull()) {
+              // Update global credentials
+              ref.read(globalUsernameProvider.notifier).update(username.text);
+              ref.read(globalPasswordProvider.notifier).update(password.text);
+              Navigator.pop(context);
+            }
+          },
+          child: Text(context.l10n.save),
+        ),
+      ],
     );
   }
 }
