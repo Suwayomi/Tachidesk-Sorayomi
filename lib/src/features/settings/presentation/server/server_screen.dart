@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../constants/endpoints.dart';
+import '../../../../global_providers/global_providers.dart';
 import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../utils/launch_url_in_web.dart';
 import '../../../../utils/misc/toast/toast.dart';
@@ -29,6 +30,7 @@ class ServerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final serverSettings = ref.watch(settingsProvider);
+    final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
     onRefresh() => ref.refresh(settingsProvider.future);
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +44,16 @@ class ServerScreen extends ConsumerWidget {
           ),
           child: ListView(
             children: [
-              const ClientSection(),
+              // Automatic URL Switching should be at the top
+              const AutomaticUrlSwitchingSection(),
+              const Divider(),
+              
+              // Only show manual client settings if automatic switching is disabled
+              if (automaticSwitching != true) ...[
+                const ClientSection(),
+                const Divider(),
+              ],
+              
               const AuthenticationSection(),
               if (!kIsWeb)
                 ListTile(
@@ -64,8 +75,6 @@ class ServerScreen extends ConsumerWidget {
                     }
                   },
                 ),
-              // Automatic URL Switching should always be available
-              const AutomaticUrlSwitchingSection(),
               const Divider(),
               if (serverSettings.valueOrNull != null) ...[
                 ServerBindingSection(serverBindingDto: serverSettings.value!),
