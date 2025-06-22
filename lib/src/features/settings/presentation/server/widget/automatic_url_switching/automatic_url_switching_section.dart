@@ -21,6 +21,7 @@ import '../../../../domain/automatic_url_switching/external_url_config.dart';
 import '../../../../domain/automatic_url_switching/local_network_config.dart';
 import '../../../../domain/network_detector/network_detector.dart';
 import '../client/server_port_tile/server_port_tile.dart';
+import 'test_connection_dialog.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
   const AutomaticUrlSwitchingSection({super.key});
@@ -879,55 +880,6 @@ class _TestConnectionHelper {
   }
 
   static void _showTestDialog(BuildContext context, Future<bool> Function() testFunction) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.testConnectionResult),
-        content: FutureBuilder<bool>(
-          future: testFunction(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const CircularProgressIndicator(),
-                  const SizedBox(width: 16),
-                  Text(context.l10n.testing),
-                ],
-              );
-            } else if (snapshot.hasData) {
-              final success = snapshot.data!;
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    success ? Icons.check_circle : Icons.error,
-                    color: success ? Colors.green : Colors.red,
-                  ),
-                  const SizedBox(width: 16),
-                  Text(success ? context.l10n.connectionSuccessful : context.l10n.connectionFailed),
-                ],
-              );
-            } else {
-              return Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.error, color: Colors.red),
-                  const SizedBox(width: 16),
-                  Text(context.l10n.connectionFailed),
-                ],
-              );
-            }
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(context.l10n.close),
-          ),
-        ],
-      ),
-    );
+    TestConnectionDialog.show(context, testFunction);
   }
 }
