@@ -718,6 +718,12 @@
     "@readerVolumeTapSubtitle": {
         "description": "Switch button Subtitle text for Reader Page Navigation with Volume Tap"
     },
+    "@readerIgnoreSafeAreaToggle": {
+        "description": "Toggle text to ignore safe area in reader"
+    },
+    "@readerIgnoreSafeAreaToggleDescription": {
+        "description": "Description for ignore safe area toggle in reader settings"
+    },
     "@reddit": {
         "description": "Reddit app title"
     },
@@ -1158,6 +1164,8 @@
     "readerVolumeTap": "Volume Keys",
     "readerVolumeTapInvert": "Invert Volume Keys",
     "readerVolumeTapSubtitle": "Navigate with Volume Keys",
+    "readerIgnoreSafeAreaToggle": "Ignore Safe Area",
+    "readerIgnoreSafeAreaToggleDescription": "Allow content to extend into notch and home indicator areas",
     "reddit": "Reddit",
     "refresh": "Refresh",
     "migrate": "Migrate",
