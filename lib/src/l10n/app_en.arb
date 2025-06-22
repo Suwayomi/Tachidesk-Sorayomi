@@ -102,6 +102,30 @@
     "@localNetwork": {
         "description": "Section title for local network configuration"
     },
+    "@localNetworks": {
+        "description": "Title for local networks list"
+    },
+    "@localNetworksConfigured": {
+        "description": "Text showing number of configured local networks"
+    },
+    "@addLocalNetwork": {
+        "description": "Dialog title for adding local network"
+    },
+    "@editLocalNetwork": {
+        "description": "Dialog title for editing local network"
+    },
+    "@wifiNetworkName": {
+        "description": "Title for WiFi network name input field"
+    },
+    "@wifiNetworkNameHint": {
+        "description": "Hint text for WiFi network name input field"
+    },
+    "@serverUrl": {
+        "description": "Title for server URL input field"
+    },
+    "@serverUrlHint": {
+        "description": "Hint text for server URL input field"
+    },
     "@externalNetwork": {
         "description": "Section title for external network configuration"
     },
@@ -1050,6 +1074,14 @@
     "networkInformation": "Network Information",
     "networkInformationDescription": "The app will automatically detect your WiFi network and switch to the appropriate server URL.",
     "localNetwork": "Local Network",
+    "localNetworks": "Local Networks",
+    "localNetworksConfigured": "{count, plural, =0{No local networks configured} =1{1 local network configured} other{{count} local networks configured}}",
+    "addLocalNetwork": "Add Local Network",
+    "editLocalNetwork": "Edit Local Network",
+    "wifiNetworkName": "WiFi Network Name",
+    "wifiNetworkNameHint": "Enter WiFi network name (SSID)",
+    "serverUrl": "Server URL",
+    "serverUrlHint": "http://192.168.1.100:4567",
     "externalNetwork": "External Network",
     "urlValidationError": "Error: {message}",
     "permissionRequired": "Permission Required",

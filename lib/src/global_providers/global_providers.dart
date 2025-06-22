@@ -17,6 +17,7 @@ import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/domain/automatic_url_switching/external_url_config.dart';
+import '../features/settings/domain/automatic_url_switching/local_network_config.dart';
 import '../features/settings/domain/network_detector/network_detector.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
 import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
@@ -207,6 +208,64 @@ class LocalNetworkServerUrl extends _$LocalNetworkServerUrl
 }
 
 @riverpod
+class LocalNetworkConfigs extends _$LocalNetworkConfigs {
+  @override
+  List<LocalNetworkConfig>? build() {
+    final stringList = ref.read(sharedPreferencesProvider).getStringList(DBKeys.localNetworkConfigs.name);
+    if (stringList == null) return null;
+    
+    return stringList.map((jsonString) {
+      try {
+        final json = Map<String, dynamic>.from(
+          jsonDecode(jsonString) as Map
+        );
+        return LocalNetworkConfig.fromJson(json);
+      } catch (e) {
+        // For backward compatibility, treat as plain config
+        return LocalNetworkConfig(
+          wifiName: 'Unknown',
+          serverUrl: jsonString,
+        );
+      }
+    }).toList();
+  }
+
+  void addLocalNetwork(LocalNetworkConfig config) {
+    final currentList = state ?? <LocalNetworkConfig>[];
+    if (!currentList.any((item) => item.wifiName == config.wifiName)) {
+      final updatedList = [...currentList, config];
+      _saveToPreferences(updatedList);
+      state = updatedList;
+    }
+  }
+
+  void removeLocalNetwork(String wifiName) {
+    final currentList = state ?? <LocalNetworkConfig>[];
+    final updatedList = currentList.where((item) => item.wifiName != wifiName).toList();
+    _saveToPreferences(updatedList);
+    state = updatedList;
+  }
+
+  void updateLocalNetwork(int index, LocalNetworkConfig newConfig) {
+    final currentList = state ?? <LocalNetworkConfig>[];
+    if (index >= 0 && index < currentList.length) {
+      final updatedList = [...currentList];
+      updatedList[index] = newConfig;
+      _saveToPreferences(updatedList);
+      state = updatedList;
+    }
+  }
+
+  void _saveToPreferences(List<LocalNetworkConfig> configs) {
+    final jsonStrings = configs.map((config) => 
+      jsonEncode(config.toJson())
+    ).toList();
+    ref.read(sharedPreferencesProvider).setStringList(DBKeys.localNetworkConfigs.name, jsonStrings);
+  }
+}
+
+// Keep the old provider for backward compatibility but deprecate it
+@riverpod
 class ExternalNetworkUrlConfigs extends _$ExternalNetworkUrlConfigs {
   @override
   List<ExternalUrlConfig>? build() {
@@ -295,8 +354,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
   Future<String?> build() async {
     // Listen to all relevant providers
     final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
-    final localWifiName = ref.watch(localNetworkWifiNameProvider);
-    final localServerUrl = ref.watch(localNetworkServerUrlProvider);
+    final localNetworkConfigs = ref.watch(localNetworkConfigsProvider);
     final externalUrlConfigs = ref.watch(externalNetworkUrlConfigsProvider);
     final manualServerUrl = ref.watch(serverUrlProvider);
     final serverPort = ref.watch(serverPortProvider);
@@ -309,23 +367,22 @@ class ActiveServerUrl extends _$ActiveServerUrl {
     // Get current WiFi name
     final currentWifi = await NetworkDetector.getCurrentWifiName();
 
-    // Check if we're on the configured local network
-    if (currentWifi != null &&
-        localWifiName != null &&
-        localWifiName.isNotEmpty &&
-        currentWifi.toLowerCase().contains(localWifiName.toLowerCase())) {
-      // Generate local network URL
-      if (localServerUrl != null && localServerUrl.isNotEmpty) {
-        final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
-          localServerUrl,
-          serverPort,
-        );
-        if (generatedUrl != null) {
-          // Verify local server is reachable
-          final isReachable =
-              await NetworkDetector.isServerReachable(generatedUrl);
-          if (isReachable) {
-            return generatedUrl;
+    // Check if we're on any configured local network
+    if (currentWifi != null && localNetworkConfigs != null && localNetworkConfigs.isNotEmpty) {
+      for (final config in localNetworkConfigs) {
+        if (currentWifi.toLowerCase().contains(config.wifiName.toLowerCase())) {
+          // Generate local network URL
+          final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
+            config.serverUrl,
+            serverPort,
+          );
+          if (generatedUrl != null) {
+            // Verify local server is reachable
+            final isReachable =
+                await NetworkDetector.isServerReachable(generatedUrl);
+            if (isReachable) {
+              return generatedUrl;
+            }
           }
         }
       }

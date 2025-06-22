@@ -12,10 +12,9 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../../../../constants/enum.dart';
 import '../../../../../../global_providers/global_providers.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
-import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
 import '../../../../domain/automatic_url_switching/external_url_config.dart';
+import '../../../../domain/automatic_url_switching/local_network_config.dart';
 import '../../../../domain/network_detector/network_detector.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
@@ -24,8 +23,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
-    final localWifiName = ref.watch(localNetworkWifiNameProvider);
-    final localServerUrl = ref.watch(localNetworkServerUrlProvider);
+    final localNetworkConfigs = ref.watch(localNetworkConfigsProvider);
     final externalUrls = ref.watch(externalNetworkUrlConfigsProvider);
     final activeUrl = ref.watch(activeServerUrlProvider);
 
@@ -151,37 +149,54 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           // Local Network Configuration
           const Divider(),
           SectionTitle(title: context.l10n.localNetwork),
-          SettingsPropTile(
-            title: context.l10n.localWifiNetworkName,
-            subtitle: localWifiName?.isNotEmpty == true
-                ? localWifiName
-                : context.l10n.localWifiNetworkNameHint,
+          ListTile(
             leading: const Icon(Icons.wifi),
-            type: SettingsPropType.textField(
-              hintText: context.l10n.localWifiNetworkNameHint,
-              value: localWifiName,
-              onChanged: (value) async {
-                ref.read(localNetworkWifiNameProvider.notifier).update(value);
-                return;
-              },
+            title: Text(context.l10n.localNetworks),
+            subtitle: Text(
+              context.l10n.localNetworksConfigured(localNetworkConfigs?.length ?? 0),
+            ),
+            trailing: IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () => _showAddLocalNetworkDialog(context, ref),
             ),
           ),
 
-          SettingsPropTile(
-            title: context.l10n.localServerUrl,
-            subtitle: localServerUrl?.isNotEmpty == true
-                ? localServerUrl
-                : context.l10n.localServerUrlHint,
-            leading: const Icon(Icons.home),
-            type: SettingsPropType.textField(
-              hintText: context.l10n.localServerUrlHint,
-              value: localServerUrl,
-              onChanged: (value) async {
-                ref.read(localNetworkServerUrlProvider.notifier).update(value);
-                return;
-              },
-            ),
-          ),
+          if (localNetworkConfigs?.isNotEmpty == true)
+            ...localNetworkConfigs!.asMap().entries.map((entry) {
+              final index = entry.key;
+              final config = entry.value;
+              return ListTile(
+                leading: const Icon(Icons.wifi),
+                title: Text(config.wifiName),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(config.serverUrl),
+                    if (config.authType != AuthType.none)
+                      Text('${config.authType.toLocale(context)} - ${config.username ?? 'No username'}'),
+                  ],
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () =>
+                          _showEditLocalNetworkDialog(context, ref, index, config),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        ref
+                            .read(localNetworkConfigsProvider.notifier)
+                            .removeLocalNetwork(config.wifiName);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            }),
 
           // External URLs
           const Divider(),
@@ -448,6 +463,207 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                     );
                   }
                 } else {
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(context.l10n.save),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showAddLocalNetworkDialog(BuildContext context, WidgetRef ref) {
+    String wifiName = '';
+    String serverUrl = '';
+    AuthType authType = AuthType.none;
+    String username = '';
+    String password = '';
+    
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(context.l10n.addLocalNetwork),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.wifiNetworkName,
+                    hintText: context.l10n.wifiNetworkNameHint,
+                  ),
+                  onChanged: (value) => wifiName = value,
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.serverUrl,
+                    hintText: context.l10n.serverUrlHint,
+                  ),
+                  onChanged: (value) => serverUrl = value,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<AuthType>(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.authenticationType,
+                  ),
+                  value: authType,
+                  items: AuthType.values.map((type) {
+                    return DropdownMenuItem(
+                      value: type,
+                      child: Text(type.toLocale(context)),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      authType = value ?? AuthType.none;
+                    });
+                  },
+                ),
+                if (authType == AuthType.basic) ...[
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.username,
+                    ),
+                    onChanged: (value) => username = value,
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.password,
+                    ),
+                    obscureText: true,
+                    onChanged: (value) => password = value,
+                  ),
+                ],
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () {
+                if (wifiName.isNotEmpty && serverUrl.isNotEmpty) {
+                  final config = LocalNetworkConfig(
+                    wifiName: wifiName,
+                    serverUrl: serverUrl,
+                    authType: authType,
+                    username: authType == AuthType.basic ? username : null,
+                    password: authType == AuthType.basic ? password : null,
+                  );
+                  ref
+                      .read(localNetworkConfigsProvider.notifier)
+                      .addLocalNetwork(config);
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(context.l10n.add),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showEditLocalNetworkDialog(
+      BuildContext context, WidgetRef ref, int index, LocalNetworkConfig currentConfig) {
+    String wifiName = currentConfig.wifiName;
+    String serverUrl = currentConfig.serverUrl;
+    AuthType authType = currentConfig.authType;
+    String username = currentConfig.username ?? '';
+    String password = currentConfig.password ?? '';
+    
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(context.l10n.editLocalNetwork),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.wifiNetworkName,
+                    hintText: context.l10n.wifiNetworkNameHint,
+                  ),
+                  controller: TextEditingController(text: currentConfig.wifiName),
+                  onChanged: (value) => wifiName = value,
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.serverUrl,
+                    hintText: context.l10n.serverUrlHint,
+                  ),
+                  controller: TextEditingController(text: currentConfig.serverUrl),
+                  onChanged: (value) => serverUrl = value,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<AuthType>(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.authenticationType,
+                  ),
+                  value: authType,
+                  items: AuthType.values.map((type) {
+                    return DropdownMenuItem(
+                      value: type,
+                      child: Text(type.toLocale(context)),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      authType = value ?? AuthType.none;
+                    });
+                  },
+                ),
+                if (authType == AuthType.basic) ...[
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.username,
+                    ),
+                    controller: TextEditingController(text: username),
+                    onChanged: (value) => username = value,
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.password,
+                    ),
+                    controller: TextEditingController(text: password),
+                    obscureText: true,
+                    onChanged: (value) => password = value,
+                  ),
+                ],
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () {
+                if (wifiName.isNotEmpty && serverUrl.isNotEmpty) {
+                  final config = LocalNetworkConfig(
+                    wifiName: wifiName,
+                    serverUrl: serverUrl,
+                    authType: authType,
+                    username: authType == AuthType.basic ? username : null,
+                    password: authType == AuthType.basic ? password : null,
+                  );
+                  ref
+                      .read(localNetworkConfigsProvider.notifier)
+                      .updateLocalNetwork(index, config);
                   Navigator.of(context).pop();
                 }
               },

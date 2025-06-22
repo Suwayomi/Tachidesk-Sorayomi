@@ -58,6 +58,7 @@ enum DBKeys {
   automaticUrlSwitching(false),
   localNetworkWifiName(''),
   localNetworkServerUrl(''),
+  localNetworkConfigs(<String>[]),
   externalNetworkUrls(<String>[]),
   ;
 
