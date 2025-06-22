@@ -11,13 +11,30 @@ import 'package:network_info_plus/network_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class NetworkDetector {
-  static const Duration connectionTimeout = Duration(seconds: 5);
+  // Reduced timeout for faster detection - 3 seconds is usually enough
+  static const Duration connectionTimeout = Duration(seconds: 3);
+  
+  // Cache for WiFi name to avoid repeated platform calls
+  static String? _cachedWifiName;
+  static DateTime? _wifiCacheTime;
+  static const Duration _wifiCacheExpiry = Duration(seconds: 10);
 
-  /// Get current WiFi SSID/name
+  /// Get current WiFi SSID/name with caching
   static Future<String?> getCurrentWifiName() async {
     try {
+      // Check cache first
+      if (_cachedWifiName != null && 
+          _wifiCacheTime != null && 
+          DateTime.now().difference(_wifiCacheTime!) < _wifiCacheExpiry) {
+        return _cachedWifiName;
+      }
+      
       final info = NetworkInfo();
       final wifiName = await info.getWifiName();
+
+      // Cache the result
+      _cachedWifiName = wifiName;
+      _wifiCacheTime = DateTime.now();
 
       // On Android, the result might be null if location permissions aren't granted
       // In this case, we'll just return null and the automatic switching won't work
@@ -188,6 +205,12 @@ class NetworkDetector {
   /// Request all required permissions
   static Future<bool> requestRequiredPermissions() async {
     return await requestLocationPermission();
+  }
+
+  /// Clear WiFi name cache (useful when user manually refreshes)
+  static void clearWifiCache() {
+    _cachedWifiName = null;
+    _wifiCacheTime = null;
   }
 }
 

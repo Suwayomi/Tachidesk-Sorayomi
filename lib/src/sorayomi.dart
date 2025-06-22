@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'features/settings/domain/automatic_url_switching/app_lifecycle_manager.dart';
 import 'features/settings/presentation/appearance/widgets/app_theme_selector/app_theme_selector.dart';
 import 'features/settings/presentation/appearance/widgets/is_true_black/is_true_black_tile.dart';
 import 'features/settings/widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
@@ -18,17 +19,41 @@ import 'l10n/generated/app_localizations.dart';
 import 'routes/router_config.dart';
 import 'utils/extensions/custom_extensions.dart';
 
-class Sorayomi extends ConsumerWidget {
+class Sorayomi extends ConsumerStatefulWidget {
   const Sorayomi({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<Sorayomi> createState() => _SorayomiState();
+}
+
+class _SorayomiState extends ConsumerState<Sorayomi> {
+  AppLifecycleManager? _lifecycleManager;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize lifecycle manager after the first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _lifecycleManager = AppLifecycleManager(ref);
+      _lifecycleManager?.initialize();
+    });
+  }
+
+  @override
+  void dispose() {
+    _lifecycleManager?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final routes = ref.watch(routerConfigProvider);
     final themeMode = ref.watch(appThemeModeProvider);
     final appLocale = ref.watch(l10nProvider);
     final appScheme = ref.watch(appSchemeProvider);
     final isTrueBlack = ref.watch(isTrueBlackProvider);
     final client = ref.watch(graphQlClientNotifierProvider);
+
     return GraphQLProvider(
       client: client,
       child: MaterialApp.router(

@@ -398,18 +398,29 @@ class ActiveServerUrl extends _$ActiveServerUrl {
       }
     }
 
-    // Try external URLs
+    // Try external URLs in parallel for better performance
     if (externalUrlConfigs != null && externalUrlConfigs.isNotEmpty) {
-      for (final config in externalUrlConfigs) {
+      // Create futures for all external URL tests
+      final futures = externalUrlConfigs.map((config) async {
         final isReachable = await NetworkDetector.isServerReachableWithAuth(
           config.url,
           globalAuthEnabled == true
               ? _getGlobalAuth()
               : _getExternalAuth(config),
         );
-        if (isReachable) {
-          return config.url;
+        return isReachable ? config.url : null;
+      }).toList();
+      
+      // Wait for first successful result
+      try {
+        final results = await Future.wait(futures);
+        for (final result in results) {
+          if (result != null) {
+            return result;
+          }
         }
+      } catch (e) {
+        // If parallel requests fail, continue to fallback
       }
     }
 
@@ -419,6 +430,8 @@ class ActiveServerUrl extends _$ActiveServerUrl {
 
   /// Force refresh the active URL
   void refresh() {
+    // Clear WiFi cache to force fresh network detection
+    NetworkDetector.clearWifiCache();
     ref.invalidateSelf();
   }
 
