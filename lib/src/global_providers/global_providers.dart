@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
+import '../constants/timeout_constants.dart';
 import '../features/settings/domain/automatic_url_switching/external_url_config.dart';
 import '../features/settings/domain/automatic_url_switching/local_network_config.dart';
 import '../features/settings/domain/network_detector/network_detector.dart';
@@ -53,6 +54,13 @@ GraphQLClient graphQlClient(Ref ref) {
     baseUrl = ref.watch(serverUrlProvider) ?? DBKeys.serverUrl.initial;
   }
 
+  // Get timeout and retry settings
+  final timeoutMs = ref.watch(serverRequestTimeoutProvider) ?? 
+      TimeoutConstants.requestTimeoutDefaultMs;
+  final autoRefreshEnabled = ref.watch(autoRefreshOnTimeoutProvider) ?? false;
+  final retryDelayMs = ref.watch(autoRefreshRetryDelayProvider) ?? 
+      TimeoutConstants.autoRefreshRetryDelayDefaultMs;
+
   Link link = HttpLink(
     Endpoints.baseApi(
       baseUrl: baseUrl,
@@ -64,8 +72,8 @@ GraphQLClient graphQlClient(Ref ref) {
     // httpResponseDecoder: httpResponseDecoder,
     defaultHeaders: {'Content-Type': 'application/json; charset=utf-8'},
     httpClient: TimeoutHttpClient(
-      Duration(milliseconds: effectiveTimeoutMs),
-      retries: retryCount,
+      Duration(milliseconds: timeoutMs),
+      retries: autoRefreshEnabled ? 3 : 0,
       retryDelay: Duration(milliseconds: retryDelayMs),
     ),
   );
