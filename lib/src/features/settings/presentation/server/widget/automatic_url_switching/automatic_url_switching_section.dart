@@ -9,11 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../../../constants/enum.dart';
 import '../../../../../../global_providers/global_providers.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../widgets/input_popup/domain/settings_prop_type.dart';
 import '../../../../../../widgets/input_popup/settings_prop_tile.dart';
 import '../../../../../../widgets/section_title.dart';
+import '../../../../domain/automatic_url_switching/external_url_config.dart';
 import '../../../../domain/network_detector/network_detector.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
@@ -24,7 +26,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
     final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
     final localWifiName = ref.watch(localNetworkWifiNameProvider);
     final localServerUrl = ref.watch(localNetworkServerUrlProvider);
-    final externalUrls = ref.watch(externalNetworkUrlsProvider);
+    final externalUrls = ref.watch(externalNetworkUrlConfigsProvider);
     final activeUrl = ref.watch(activeServerUrlProvider);
 
     return Column(
@@ -199,24 +201,27 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           if (externalUrls?.isNotEmpty == true)
             ...externalUrls!.asMap().entries.map((entry) {
               final index = entry.key;
-              final url = entry.value;
+              final config = entry.value;
               return ListTile(
                 leading: const Icon(Icons.language),
-                title: Text(url),
+                title: Text(config.url),
+                subtitle: config.authType != AuthType.none 
+                    ? Text('${config.authType.toLocale(context)} - ${config.username ?? 'No username'}')
+                    : null,
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () =>
-                          _showEditExternalUrlDialog(context, ref, index, url),
+                          _showEditExternalUrlDialog(context, ref, index, config),
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () {
                         ref
-                            .read(externalNetworkUrlsProvider.notifier)
-                            .removeExternalUrl(url);
+                            .read(externalNetworkUrlConfigsProvider.notifier)
+                            .removeExternalUrl(config.url);
                       },
                     ),
                   ],
@@ -239,104 +244,217 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
 
   void _showAddExternalUrlDialog(BuildContext context, WidgetRef ref) {
     String newUrl = '';
+    AuthType authType = AuthType.none;
+    String username = '';
+    String password = '';
+    
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.addExternalUrl),
-        content: TextField(
-          decoration: InputDecoration(
-            labelText: context.l10n.externalUrls,
-            hintText: context.l10n.externalUrlHint,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(context.l10n.addExternalUrl),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.externalUrls,
+                    hintText: context.l10n.externalUrlHint,
+                  ),
+                  onChanged: (value) => newUrl = value,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<AuthType>(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.authenticationType,
+                  ),
+                  value: authType,
+                  items: AuthType.values.map((type) {
+                    return DropdownMenuItem(
+                      value: type,
+                      child: Text(type.toLocale(context)),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      authType = value ?? AuthType.none;
+                    });
+                  },
+                ),
+                if (authType == AuthType.basic) ...[
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.username,
+                    ),
+                    onChanged: (value) => username = value,
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.password,
+                    ),
+                    obscureText: true,
+                    onChanged: (value) => password = value,
+                  ),
+                ],
+              ],
+            ),
           ),
-          onChanged: (value) => newUrl = value,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(context.l10n.cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              if (newUrl.isNotEmpty) {
-                // Store context references before async operation
-                final navigator = Navigator.of(context);
-                final scaffoldMessenger = ScaffoldMessenger.of(context);
-                final l10n = context.l10n;
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                if (newUrl.isNotEmpty) {
+                  // Store context references before async operation
+                  final navigator = Navigator.of(context);
+                  final scaffoldMessenger = ScaffoldMessenger.of(context);
+                  final l10n = context.l10n;
 
-                // Validate URL
-                final result =
-                    await NetworkDetector.validateExternalUrl(newUrl);
-                if (result.isValid && result.validatedUrl != null) {
-                  ref
-                      .read(externalNetworkUrlsProvider.notifier)
-                      .addExternalUrl(result.validatedUrl!);
-                  navigator.pop();
-                } else {
-                  // Show error
-                  scaffoldMessenger.showSnackBar(
-                    SnackBar(
-                        content: Text(l10n.urlValidationError(result.message))),
-                  );
+                  // Validate URL
+                  final result =
+                      await NetworkDetector.validateExternalUrl(newUrl);
+                  if (result.isValid && result.validatedUrl != null) {
+                    final config = ExternalUrlConfig(
+                      url: result.validatedUrl!,
+                      authType: authType,
+                      username: authType == AuthType.basic ? username : null,
+                      password: authType == AuthType.basic ? password : null,
+                    );
+                    ref
+                        .read(externalNetworkUrlConfigsProvider.notifier)
+                        .addExternalUrl(config);
+                    navigator.pop();
+                  } else {
+                    // Show error
+                    scaffoldMessenger.showSnackBar(
+                      SnackBar(
+                          content: Text(l10n.urlValidationError(result.message))),
+                    );
+                  }
                 }
-              }
-            },
-            child: Text(context.l10n.add),
-          ),
-        ],
+              },
+              child: Text(context.l10n.add),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   void _showEditExternalUrlDialog(
-      BuildContext context, WidgetRef ref, int index, String currentUrl) {
-    String newUrl = currentUrl;
+      BuildContext context, WidgetRef ref, int index, ExternalUrlConfig currentConfig) {
+    String newUrl = currentConfig.url;
+    AuthType authType = currentConfig.authType;
+    String username = currentConfig.username ?? '';
+    String password = currentConfig.password ?? '';
+    
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.editExternalUrl),
-        content: TextField(
-          decoration: InputDecoration(
-            labelText: context.l10n.externalUrls,
-            hintText: context.l10n.externalUrlHint,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(context.l10n.editExternalUrl),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.externalUrls,
+                    hintText: context.l10n.externalUrlHint,
+                  ),
+                  controller: TextEditingController(text: currentConfig.url),
+                  onChanged: (value) => newUrl = value,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<AuthType>(
+                  decoration: InputDecoration(
+                    labelText: context.l10n.authenticationType,
+                  ),
+                  value: authType,
+                  items: AuthType.values.map((type) {
+                    return DropdownMenuItem(
+                      value: type,
+                      child: Text(type.toLocale(context)),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      authType = value ?? AuthType.none;
+                    });
+                  },
+                ),
+                if (authType == AuthType.basic) ...[
+                  const SizedBox(height: 16),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.username,
+                    ),
+                    controller: TextEditingController(text: username),
+                    onChanged: (value) => username = value,
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: context.l10n.password,
+                    ),
+                    controller: TextEditingController(text: password),
+                    obscureText: true,
+                    onChanged: (value) => password = value,
+                  ),
+                ],
+              ],
+            ),
           ),
-          controller: TextEditingController(text: currentUrl),
-          onChanged: (value) => newUrl = value,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(context.l10n.cancel),
-          ),
-          TextButton(
-            onPressed: () async {
-              if (newUrl.isNotEmpty && newUrl != currentUrl) {
-                // Store context references before async operation
-                final navigator = Navigator.of(context);
-                final scaffoldMessenger = ScaffoldMessenger.of(context);
-                final l10n = context.l10n;
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                if (newUrl.isNotEmpty && (newUrl != currentConfig.url || 
+                    authType != currentConfig.authType ||
+                    username != (currentConfig.username ?? '') ||
+                    password != (currentConfig.password ?? ''))) {
+                  // Store context references before async operation
+                  final navigator = Navigator.of(context);
+                  final scaffoldMessenger = ScaffoldMessenger.of(context);
+                  final l10n = context.l10n;
 
-                // Validate URL
-                final result =
-                    await NetworkDetector.validateExternalUrl(newUrl);
-                if (result.isValid && result.validatedUrl != null) {
-                  ref
-                      .read(externalNetworkUrlsProvider.notifier)
-                      .updateExternalUrl(index, result.validatedUrl!);
-                  navigator.pop();
+                  // Validate URL
+                  final result =
+                      await NetworkDetector.validateExternalUrl(newUrl);
+                  if (result.isValid && result.validatedUrl != null) {
+                    final config = ExternalUrlConfig(
+                      url: result.validatedUrl!,
+                      authType: authType,
+                      username: authType == AuthType.basic ? username : null,
+                      password: authType == AuthType.basic ? password : null,
+                    );
+                    ref
+                        .read(externalNetworkUrlConfigsProvider.notifier)
+                        .updateExternalUrl(index, config);
+                    navigator.pop();
+                  } else {
+                    // Show error
+                    scaffoldMessenger.showSnackBar(
+                      SnackBar(
+                          content: Text(l10n.urlValidationError(result.message))),
+                    );
+                  }
                 } else {
-                  // Show error
-                  scaffoldMessenger.showSnackBar(
-                    SnackBar(
-                        content: Text(l10n.urlValidationError(result.message))),
-                  );
+                  Navigator.of(context).pop();
                 }
-              } else {
-                Navigator.of(context).pop();
-              }
-            },
-            child: Text(context.l10n.save),
-          ),
-        ],
+              },
+              child: Text(context.l10n.save),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
+import '../features/settings/domain/automatic_url_switching/external_url_config.dart';
 import '../features/settings/domain/network_detector/network_detector.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
 import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
@@ -204,6 +207,61 @@ class LocalNetworkServerUrl extends _$LocalNetworkServerUrl
 }
 
 @riverpod
+class ExternalNetworkUrlConfigs extends _$ExternalNetworkUrlConfigs {
+  @override
+  List<ExternalUrlConfig>? build() {
+    final stringList = ref.read(sharedPreferencesProvider).getStringList(DBKeys.externalNetworkUrls.name);
+    if (stringList == null) return null;
+    
+    return stringList.map((jsonString) {
+      try {
+        final json = Map<String, dynamic>.from(
+          jsonDecode(jsonString) as Map
+        );
+        return ExternalUrlConfig.fromJson(json);
+      } catch (e) {
+        // For backward compatibility, treat as plain URL with no auth
+        return ExternalUrlConfig(url: jsonString);
+      }
+    }).toList();
+  }
+
+  void addExternalUrl(ExternalUrlConfig config) {
+    final currentList = state ?? <ExternalUrlConfig>[];
+    if (!currentList.any((item) => item.url == config.url)) {
+      final updatedList = [...currentList, config];
+      _saveToPreferences(updatedList);
+      state = updatedList;
+    }
+  }
+
+  void removeExternalUrl(String url) {
+    final currentList = state ?? <ExternalUrlConfig>[];
+    final updatedList = currentList.where((item) => item.url != url).toList();
+    _saveToPreferences(updatedList);
+    state = updatedList;
+  }
+
+  void updateExternalUrl(int index, ExternalUrlConfig newConfig) {
+    final currentList = state ?? <ExternalUrlConfig>[];
+    if (index >= 0 && index < currentList.length) {
+      final updatedList = [...currentList];
+      updatedList[index] = newConfig;
+      _saveToPreferences(updatedList);
+      state = updatedList;
+    }
+  }
+
+  void _saveToPreferences(List<ExternalUrlConfig> configs) {
+    final jsonStrings = configs.map((config) => 
+      jsonEncode(config.toJson())
+    ).toList();
+    ref.read(sharedPreferencesProvider).setStringList(DBKeys.externalNetworkUrls.name, jsonStrings);
+  }
+}
+
+// Keep the old provider for backward compatibility but deprecate it
+@riverpod
 class ExternalNetworkUrls extends _$ExternalNetworkUrls
     with SharedPreferenceClientMixin<List<String>> {
   @override
@@ -239,7 +297,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
     final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
     final localWifiName = ref.watch(localNetworkWifiNameProvider);
     final localServerUrl = ref.watch(localNetworkServerUrlProvider);
-    final externalUrls = ref.watch(externalNetworkUrlsProvider);
+    final externalUrlConfigs = ref.watch(externalNetworkUrlConfigsProvider);
     final manualServerUrl = ref.watch(serverUrlProvider);
     final serverPort = ref.watch(serverPortProvider);
 
@@ -273,12 +331,12 @@ class ActiveServerUrl extends _$ActiveServerUrl {
       }
     }
 
-    // Try external URLs
-    if (externalUrls != null && externalUrls.isNotEmpty) {
-      for (final url in externalUrls) {
-        final isReachable = await NetworkDetector.isServerReachable(url);
+    // Try external URLs (Note: Authentication will be handled separately in the future)
+    if (externalUrlConfigs != null && externalUrlConfigs.isNotEmpty) {
+      for (final config in externalUrlConfigs) {
+        final isReachable = await NetworkDetector.isServerReachable(config.url);
         if (isReachable) {
-          return url;
+          return config.url;
         }
       }
     }

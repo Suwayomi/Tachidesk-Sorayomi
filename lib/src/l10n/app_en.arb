@@ -120,6 +120,12 @@
     "@automaticUrlSwitchingEnabledWithoutPermission": {
         "description": "Message shown when automatic URL switching is enabled but permission is not granted"
     },
+    "@authenticationType": {
+        "description": "Label for authentication type dropdown"
+    },
+    "@username": {
+        "description": "Label for username input field"
+    },
     "@openSettings": {
         "description": "Button text to open app settings"
     },
@@ -1050,6 +1056,8 @@
     "permissionRequiredMessage": "Automatic URL switching requires location permission to detect WiFi network information. Would you like to grant this permission?",
     "permissionDeniedMessage": "Location permission is required for automatic URL switching to work. Please enable it in app settings.",
     "automaticUrlSwitchingEnabledWithoutPermission": "Automatic URL switching enabled, but location permission is required for it to work properly.",
+    "authenticationType": "Authentication Type",
+    "username": "Username",
     "openSettings": "Open Settings",
     "grantPermission": "Grant Permission",
     "autoDownload": "Auto-download",
