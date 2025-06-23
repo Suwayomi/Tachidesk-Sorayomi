@@ -31,16 +31,106 @@ class ServerUrlTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+    final manualServerUrl = ref.watch(serverUrlProvider);
     final activeServerUrlAsync = ref.watch(activeServerUrlProvider);
+
+    // Show appropriate URL based on automatic switching state
+    String? displayUrl;
+    if (automaticSwitching == true) {
+      displayUrl = activeServerUrlAsync.when(
+        data: (url) => url,
+        loading: () => null,
+        error: (_, __) => null,
+      );
+    } else {
+      displayUrl = manualServerUrl;
+    }
+
     return ListTile(
       title: Text(context.l10n.serverUrl),
-      subtitle: activeServerUrlAsync.when(
-        data: (url) => Text(url ?? context.l10n.serverUrlHintText),
-        loading: () => Text(context.l10n.serverUrlHintText),
-        error: (_, __) => Text(context.l10n.serverUrlHintText),
-      ),
+      subtitle: Text(displayUrl ?? context.l10n.serverUrlHintText),
       leading: const Icon(Icons.computer_rounded),
-      onTap: () => const ServerSettingsRoute().go(context),
+      onTap: automaticSwitching == true
+          ? () => const ServerSettingsRoute().go(context)
+          : () => _showServerUrlDialog(context, ref),
+    );
+  }
+
+  void _showServerUrlDialog(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (context) => _ServerUrlDialog(
+        currentUrl: ref.read(serverUrlProvider),
+        onSave: (newUrl) {
+          ref.read(serverUrlProvider.notifier).update(newUrl);
+        },
+      ),
+    );
+  }
+}
+
+class _ServerUrlDialog extends StatefulWidget {
+  const _ServerUrlDialog({
+    required this.currentUrl,
+    required this.onSave,
+  });
+
+  final String? currentUrl;
+  final void Function(String) onSave;
+
+  @override
+  State<_ServerUrlDialog> createState() => _ServerUrlDialogState();
+}
+
+class _ServerUrlDialogState extends State<_ServerUrlDialog> {
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.currentUrl ?? '');
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(context.l10n.serverUrl),
+      content: TextField(
+        controller: _controller,
+        autofocus: true,
+        decoration: InputDecoration(
+          hintText: context.l10n.serverUrlHintText,
+          border: const OutlineInputBorder(),
+        ),
+        onSubmitted: (value) {
+          if (value.isNotEmpty) {
+            widget.onSave(value);
+            Navigator.of(context).pop();
+          }
+        },
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(context.l10n.cancel),
+        ),
+        TextButton(
+          onPressed: () {
+            if (_controller.text.isNotEmpty) {
+              widget.onSave(_controller.text);
+              Navigator.of(context).pop();
+            }
+          },
+          child: Text(context.l10n.save),
+        ),
+      ],
     );
   }
 }
