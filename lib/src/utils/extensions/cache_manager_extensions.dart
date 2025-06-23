@@ -30,7 +30,13 @@ extension CacheManagerExtension on CacheManager {
     
     if (automaticSwitching == true) {
       final activeUrl = await ref.read(activeServerUrlProvider.future);
-      baseUrl = activeUrl ?? ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+      // Only use the active URL if it's not null and has been validated
+      if (activeUrl != null && activeUrl.isNotEmpty) {
+        baseUrl = activeUrl;
+      } else {
+        // Fall back to manual URL if active URL is null/empty
+        baseUrl = ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+      }
     } else {
       baseUrl = ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
     }

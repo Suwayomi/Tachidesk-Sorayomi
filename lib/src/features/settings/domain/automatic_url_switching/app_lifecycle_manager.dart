@@ -56,7 +56,7 @@ class AppLifecycleManager with WidgetsBindingObserver {
   /// Refresh the active server URL
   void _refreshActiveUrl() {
     try {
-      ref.read(activeServerUrlProvider.notifier).refresh();
+      ref.read(activeServerUrlProvider.notifier).refreshDebounced();
     } catch (e) {
       // Ignore errors during refresh - provider will handle them gracefully
     }

@@ -44,7 +44,14 @@ GraphQLClient graphQlClient(Ref ref) {
     // Watch the active server URL which handles automatic switching
     final activeUrl = ref.watch(activeServerUrlProvider);
     baseUrl = activeUrl.when(
-      data: (url) => url ?? serverUrl ?? DBKeys.serverUrl.initial,
+      data: (url) {
+        // Only use the active URL if it's not null and has been validated
+        if (url != null && url.isNotEmpty) {
+          return url;
+        }
+        // Fall back to manual URL if active URL is null/empty
+        return serverUrl ?? DBKeys.serverUrl.initial;
+      },
       loading: () => serverUrl ?? DBKeys.serverUrl.initial,
       error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
     );
@@ -116,7 +123,14 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
     // Watch the active server URL which handles automatic switching
     final activeUrl = ref.watch(activeServerUrlProvider);
     baseUrl = activeUrl.when(
-      data: (url) => url ?? serverUrl ?? DBKeys.serverUrl.initial,
+      data: (url) {
+        // Only use the active URL if it's not null and has been validated
+        if (url != null && url.isNotEmpty) {
+          return url;
+        }
+        // Fall back to manual URL if active URL is null/empty
+        return serverUrl ?? DBKeys.serverUrl.initial;
+      },
       loading: () => serverUrl ?? DBKeys.serverUrl.initial,
       error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
     );
@@ -393,90 +407,117 @@ class ActiveServerUrl extends _$ActiveServerUrl {
       return manualServerUrl;
     }
 
-    // Get current WiFi name
-    final currentWifi = await NetworkDetector.getCurrentWifiName();
+    // Start with manual URL as fallback
+    String? bestUrl = manualServerUrl;
 
-    // Check if we're on any configured local network with timeout
-    if (currentWifi != null &&
-        localNetworkConfigs != null &&
-        localNetworkConfigs.isNotEmpty) {
-      for (final config in localNetworkConfigs) {
-        if (currentWifi.toLowerCase().contains(config.wifiName.toLowerCase())) {
-          // Generate local network URL
-          final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
-            config.serverUrl,
-            serverPort,
-          );
-          if (generatedUrl != null) {
-            // Verify local server is reachable with timeout
-            try {
-              final isReachable = await NetworkDetector.isServerReachableWithAuth(
-                generatedUrl,
-                globalAuthEnabled == true
-                    ? _getGlobalAuth()
-                    : _getLocalAuth(config),
-              ).timeout(
-                const Duration(seconds: 6), // Slightly longer than NetworkDetector timeout
-                onTimeout: () => false,
-              );
-              if (isReachable) {
-                return generatedUrl;
+    try {
+      // Get current WiFi name with timeout
+      final currentWifi = await NetworkDetector.getCurrentWifiName()
+          .timeout(const Duration(seconds: 3), onTimeout: () => null);
+
+      // Check if we're on any configured local network with timeout
+      if (currentWifi != null &&
+          localNetworkConfigs != null &&
+          localNetworkConfigs.isNotEmpty) {
+        for (final config in localNetworkConfigs) {
+          if (currentWifi.toLowerCase().contains(config.wifiName.toLowerCase())) {
+            // Generate local network URL
+            final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
+              config.serverUrl,
+              serverPort,
+            ).timeout(const Duration(seconds: 2), onTimeout: () => null);
+            
+            if (generatedUrl != null) {
+              // Verify local server is reachable with timeout
+              try {
+                final isReachable = await NetworkDetector.isServerReachableWithAuth(
+                  generatedUrl,
+                  globalAuthEnabled == true
+                      ? _getGlobalAuth()
+                      : _getLocalAuth(config),
+                ).timeout(
+                  const Duration(seconds: 5), // Shorter timeout to prevent hanging
+                  onTimeout: () => false,
+                );
+                if (isReachable) {
+                  // Validate that the URL is properly formed before returning
+                  if (generatedUrl.startsWith('http://') || generatedUrl.startsWith('https://')) {
+                    return generatedUrl;
+                  }
+                }
+              } catch (e) {
+                // Continue to next config if this one fails
+                continue;
               }
-            } catch (e) {
-              // Continue to next config if this one fails
-              continue;
             }
           }
         }
       }
-    }
 
-    // Try external URLs with timeout and better error handling
-    if (externalUrlConfigs != null && externalUrlConfigs.isNotEmpty) {
-      // Create futures for all external URL tests with individual timeouts
-      final futures = externalUrlConfigs.map((config) async {
-        try {
-          final isReachable = await NetworkDetector.isServerReachableWithAuth(
-            config.url,
-            globalAuthEnabled == true
-                ? _getGlobalAuth()
-                : _getExternalAuth(config),
-          ).timeout(
-            const Duration(seconds: 6), // Slightly longer than NetworkDetector timeout
-            onTimeout: () => false,
-          );
-          return isReachable ? config.url : null;
-        } catch (e) {
-          // Log the error for debugging but don't let it crash the whole process
-          return null;
-        }
-      }).toList();
-
-      // Wait for first successful result with overall timeout
-      try {
-        final results = await Future.wait(futures).timeout(
-          const Duration(seconds: 10), // Overall timeout for all external URLs
-          onTimeout: () => List<String?>.filled(futures.length, null),
-        );
-        for (final result in results) {
-          if (result != null) {
-            return result;
+      // Try external URLs with timeout and better error handling
+      if (externalUrlConfigs != null && externalUrlConfigs.isNotEmpty) {
+        // Create futures for all external URL tests with individual timeouts
+        final futures = externalUrlConfigs.map((config) async {
+          try {
+            // Validate URL format first
+            if (!config.url.startsWith('http://') && !config.url.startsWith('https://')) {
+              return null;
+            }
+            
+            final isReachable = await NetworkDetector.isServerReachableWithAuth(
+              config.url,
+              globalAuthEnabled == true
+                  ? _getGlobalAuth()
+                  : _getExternalAuth(config),
+            ).timeout(
+              const Duration(seconds: 5), // Shorter timeout to prevent hanging
+              onTimeout: () => false,
+            );
+            return isReachable ? config.url : null;
+          } catch (e) {
+            // Log the error for debugging but don't let it crash the whole process
+            return null;
           }
+        }).toList();
+
+        // Wait for first successful result with overall timeout
+        try {
+          final results = await Future.wait(futures).timeout(
+            const Duration(seconds: 8), // Reduced timeout for all external URLs
+            onTimeout: () => List<String?>.filled(futures.length, null),
+          );
+          for (final result in results) {
+            if (result != null) {
+              return result;
+            }
+          }
+        } catch (e) {
+          // If parallel requests fail, continue to fallback
         }
-      } catch (e) {
-        // If parallel requests fail, continue to fallback
       }
+    } catch (e) {
+      // If anything fails during URL discovery, fall back to manual URL
     }
 
     // Fallback to manual URL
-    return manualServerUrl;
+    return bestUrl;
   }
 
   /// Force refresh the active URL
   void refresh() {
     // Clear WiFi cache to force fresh network detection
     NetworkDetector.clearWifiCache();
+    // Invalidate the provider to trigger a rebuild
     ref.invalidateSelf();
+  }
+
+  /// Debounced refresh to prevent excessive network calls
+  void refreshDebounced() {
+    // Simple debouncing by checking if a refresh is already in progress
+    if (state.isLoading) {
+      return;
+    }
+    refresh();
   }
 
   Map<String, String>? _getGlobalAuth() {

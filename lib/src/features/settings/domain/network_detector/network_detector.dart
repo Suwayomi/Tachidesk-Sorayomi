@@ -73,8 +73,18 @@ class NetworkDetector {
 
       // Check if response is successful and contains expected server info
       if (response.statusCode == 200) {
-        final body = response.body.toLowerCase();
-        return body.contains('suwayomi') || body.contains('tachidesk');
+        try {
+          // Validate that we received valid JSON/text response
+          if (response.body.trim().isEmpty) {
+            return false;
+          }
+          
+          final body = response.body.toLowerCase();
+          return body.contains('suwayomi') || body.contains('tachidesk');
+        } catch (e) {
+          // If we can't parse the response body, it's not a valid server
+          return false;
+        }
       }
       return false;
     } catch (e) {
@@ -116,8 +126,18 @@ class NetworkDetector {
 
       // Check if response is successful and contains expected server info
       if (response.statusCode == 200) {
-        final body = response.body.toLowerCase();
-        return body.contains('suwayomi') || body.contains('tachidesk');
+        try {
+          // Validate that we received valid JSON/text response
+          if (response.body.trim().isEmpty) {
+            return false;
+          }
+          
+          final body = response.body.toLowerCase();
+          return body.contains('suwayomi') || body.contains('tachidesk');
+        } catch (e) {
+          // If we can't parse the response body, it's not a valid server
+          return false;
+        }
       }
       return false;
     } catch (e) {

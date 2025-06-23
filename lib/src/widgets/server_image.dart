@@ -60,7 +60,14 @@ class ServerImage extends HookConsumerWidget {
     if (automaticSwitching == true) {
       final activeUrl = ref.watch(activeServerUrlProvider);
       baseUrl = activeUrl.when(
-        data: (url) => url ?? serverUrl ?? DBKeys.serverUrl.initial,
+        data: (url) {
+          // Only use the active URL if it's not null and has been validated
+          if (url != null && url.isNotEmpty) {
+            return url;
+          }
+          // Fall back to manual URL if active URL is null/empty
+          return serverUrl ?? DBKeys.serverUrl.initial;
+        },
         loading: () => serverUrl ?? DBKeys.serverUrl.initial,
         error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
       );
