@@ -18,15 +18,13 @@ import '../../../../domain/automatic_url_switching/external_url_config.dart';
 import '../../../../domain/automatic_url_switching/local_network_config.dart';
 import '../../../../domain/network_detector/network_detector.dart';
 import '../client/server_port_tile/server_port_tile.dart';
-import 'global_credentials_popup.dart';
-import 'test_connection_dialog.dart';
-import 'widgets/add_external_url_dialog.dart';
-import 'widgets/add_local_network_dialog.dart';
-import 'widgets/edit_external_url_dialog.dart';
-import 'widgets/edit_local_network_dialog.dart';
 import 'widgets/external_url_config_tile.dart';
+import 'widgets/external_url_dialog.dart';
+import 'widgets/global_credentials_popup.dart';
 import 'widgets/local_network_config_tile.dart';
+import 'widgets/local_network_dialog.dart';
 import 'widgets/permission_request_dialog.dart';
+import 'widgets/test_connection_dialog.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
   const AutomaticUrlSwitchingSection({super.key});
@@ -204,7 +202,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
               icon: const Icon(Icons.add),
               onPressed: () => showDialog(
                 context: context,
-                builder: (context) => const AddLocalNetworkDialog(),
+                builder: (context) => const LocalNetworkDialog(),
               ),
             ),
           ),
@@ -218,12 +216,13 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 index: index,
                 onEdit: () => showDialog(
                   context: context,
-                  builder: (context) => EditLocalNetworkDialog(
+                  builder: (context) => LocalNetworkDialog(
                     index: index,
                     currentConfig: config,
                   ),
                 ),
-                onTest: () => _TestConnectionHelper.testLocalNetwork(context, ref, config),
+                onTest: () => _TestConnectionHelper.testLocalNetwork(
+                    context, ref, config),
               );
             }),
 
@@ -240,7 +239,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
               icon: const Icon(Icons.add),
               onPressed: () => showDialog(
                 context: context,
-                builder: (context) => const AddExternalUrlDialog(),
+                builder: (context) => const ExternalUrlDialog(),
               ),
             ),
           ),
@@ -254,12 +253,13 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 index: index,
                 onEdit: () => showDialog(
                   context: context,
-                  builder: (context) => EditExternalUrlDialog(
+                  builder: (context) => ExternalUrlDialog(
                     index: index,
                     currentConfig: config,
                   ),
                 ),
-                onTest: () => _TestConnectionHelper.testExternalUrl(context, ref, config),
+                onTest: () =>
+                    _TestConnectionHelper.testExternalUrl(context, ref, config),
               );
             }),
 
@@ -273,73 +273,84 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ],
         ],
       ],
-    );  }
+    );
+  }
 }
 
 class _TestConnectionHelper {
-  static void testExternalUrl(BuildContext context, WidgetRef ref, ExternalUrlConfig config) async {
+  static void testExternalUrl(
+      BuildContext context, WidgetRef ref, ExternalUrlConfig config) async {
     _showTestDialog(context, () async {
-      final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
+      final globalAuthEnabled =
+          ref.read(globalAuthenticationEnabledProvider) ?? false;
       Map<String, String>? auth;
-      
+
       if (globalAuthEnabled) {
         final authType = ref.read(globalAuthTypeProvider);
         final username = ref.read(globalUsernameProvider);
         final password = ref.read(globalPasswordProvider);
-        
-        if (authType == AuthType.basic && !username.isBlank && !password.isBlank) {
+
+        if (authType == AuthType.basic &&
+            !username.isBlank &&
+            !password.isBlank) {
           auth = {'username': username!, 'password': password!};
         }
       } else {
-        if (config.authType == AuthType.basic && 
-            !config.username.isBlank && 
+        if (config.authType == AuthType.basic &&
+            !config.username.isBlank &&
             !config.password.isBlank) {
           auth = {'username': config.username!, 'password': config.password!};
         }
       }
-      
+
       return await NetworkDetector.isServerReachableWithAuth(config.url, auth);
     });
   }
 
-  static void testLocalNetwork(BuildContext context, WidgetRef ref, LocalNetworkConfig config) async {
+  static void testLocalNetwork(
+      BuildContext context, WidgetRef ref, LocalNetworkConfig config) async {
     _showTestDialog(context, () async {
       final serverPort = ref.read(serverPortProvider);
-      final globalAuthEnabled = ref.read(globalAuthenticationEnabledProvider) ?? false;
-      
+      final globalAuthEnabled =
+          ref.read(globalAuthenticationEnabledProvider) ?? false;
+
       // Generate the full URL with port
       final generatedUrl = await NetworkDetector.generateLocalNetworkUrl(
         config.serverUrl,
         serverPort,
       );
-      
+
       if (generatedUrl == null) {
         return false;
       }
-      
+
       Map<String, String>? auth;
-      
+
       if (globalAuthEnabled) {
         final authType = ref.read(globalAuthTypeProvider);
         final username = ref.read(globalUsernameProvider);
         final password = ref.read(globalPasswordProvider);
-        
-        if (authType == AuthType.basic && !username.isBlank && !password.isBlank) {
+
+        if (authType == AuthType.basic &&
+            !username.isBlank &&
+            !password.isBlank) {
           auth = {'username': username!, 'password': password!};
         }
       } else {
-        if (config.authType == AuthType.basic && 
-            !config.username.isBlank && 
+        if (config.authType == AuthType.basic &&
+            !config.username.isBlank &&
             !config.password.isBlank) {
           auth = {'username': config.username!, 'password': config.password!};
         }
       }
-      
-      return await NetworkDetector.isServerReachableWithAuth(generatedUrl, auth);
+
+      return await NetworkDetector.isServerReachableWithAuth(
+          generatedUrl, auth);
     });
   }
 
-  static void _showTestDialog(BuildContext context, Future<bool> Function() testFunction) {
+  static void _showTestDialog(
+      BuildContext context, Future<bool> Function() testFunction) {
     TestConnectionDialog.show(context, testFunction);
   }
 }

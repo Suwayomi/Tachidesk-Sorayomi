@@ -6,7 +6,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../../../utils/extensions/custom_extensions.dart';
 
 /// A dialog widget that shows the result of a connection test
 class TestConnectionDialog extends StatelessWidget {
@@ -43,7 +43,9 @@ class TestConnectionDialog extends StatelessWidget {
                   color: success ? Colors.green : Colors.red,
                 ),
                 const SizedBox(width: 16),
-                Text(success ? context.l10n.connectionSuccessful : context.l10n.connectionFailed),
+                Text(success
+                    ? context.l10n.connectionSuccessful
+                    : context.l10n.connectionFailed),
               ],
             );
           } else {

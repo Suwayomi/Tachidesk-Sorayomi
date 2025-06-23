@@ -9,9 +9,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../../../global_providers/global_providers.dart';
-import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../widgets/popup_widgets/pop_button.dart';
+import '../../../../../../../global_providers/global_providers.dart';
+import '../../../../../../../utils/extensions/custom_extensions.dart';
+import '../../../../../../../widgets/popup_widgets/pop_button.dart';
 
 /// A popup dialog for editing global credentials
 class GlobalCredentialsPopup extends HookConsumerWidget {
