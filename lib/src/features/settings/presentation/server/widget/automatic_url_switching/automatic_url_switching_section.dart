@@ -20,6 +20,13 @@ import '../../../../domain/network_detector/network_detector.dart';
 import '../client/server_port_tile/server_port_tile.dart';
 import 'global_credentials_popup.dart';
 import 'test_connection_dialog.dart';
+import 'widgets/add_external_url_dialog.dart';
+import 'widgets/add_local_network_dialog.dart';
+import 'widgets/edit_external_url_dialog.dart';
+import 'widgets/edit_local_network_dialog.dart';
+import 'widgets/external_url_config_tile.dart';
+import 'widgets/local_network_config_tile.dart';
+import 'widgets/permission_request_dialog.dart';
 
 class AutomaticUrlSwitchingSection extends ConsumerWidget {
   const AutomaticUrlSwitchingSection({super.key});
@@ -63,25 +70,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 // Show permission dialog using stored context references
                 bool? shouldRequest;
                 if (context.mounted) {
-                  shouldRequest = await showDialog<bool>(
-                    context: context,
-                    builder: (dialogContext) => AlertDialog(
-                      title: Text(l10n.permissionRequired),
-                      content: Text(l10n.permissionRequiredMessage),
-                      actions: [
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.of(dialogContext).pop(false),
-                          child: Text(l10n.cancel),
-                        ),
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.of(dialogContext).pop(true),
-                          child: Text(l10n.grantPermission),
-                        ),
-                      ],
-                    ),
-                  );
+                  shouldRequest = await PermissionRequestDialog.show(context);
                 }
 
                 if (shouldRequest == true) {
@@ -213,7 +202,10 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ),
             trailing: IconButton(
               icon: const Icon(Icons.add),
-              onPressed: () => _showAddLocalNetworkDialog(context, ref),
+              onPressed: () => showDialog(
+                context: context,
+                builder: (context) => const AddLocalNetworkDialog(),
+              ),
             ),
           ),
 
@@ -221,42 +213,17 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ...localNetworkConfigs!.asMap().entries.map((entry) {
               final index = entry.key;
               final config = entry.value;
-              return ListTile(
-                leading: const Icon(Icons.wifi),
-                title: Text(config.wifiName),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(config.serverUrl),
-                    if (config.authType != AuthType.none)
-                      Text(
-                          '${config.authType.toLocale(context)} - ${config.username ?? 'No username'}'),
-                  ],
+              return LocalNetworkConfigTile(
+                config: config,
+                index: index,
+                onEdit: () => showDialog(
+                  context: context,
+                  builder: (context) => EditLocalNetworkDialog(
+                    index: index,
+                    currentConfig: config,
+                  ),
                 ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.network_check),
-                      onPressed: () => _TestConnectionHelper.testLocalNetwork(context, ref, config),
-                      tooltip: context.l10n.testConnection,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.edit),
-                      onPressed: () => _showEditLocalNetworkDialog(
-                          context, ref, index, config),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () {
-                        ref
-                            .read(localNetworkConfigsProvider.notifier)
-                            .removeLocalNetwork(config.wifiName);
-                      },
-                    ),
-                  ],
-                ),
+                onTest: () => _TestConnectionHelper.testLocalNetwork(context, ref, config),
               );
             }),
 
@@ -271,7 +238,10 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ),
             trailing: IconButton(
               icon: const Icon(Icons.add),
-              onPressed: () => _showAddExternalUrlDialog(context, ref),
+              onPressed: () => showDialog(
+                context: context,
+                builder: (context) => const AddExternalUrlDialog(),
+              ),
             ),
           ),
 
@@ -279,36 +249,17 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ...externalUrls!.asMap().entries.map((entry) {
               final index = entry.key;
               final config = entry.value;
-              return ListTile(
-                leading: const Icon(Icons.language),
-                title: Text(config.url),
-                subtitle: config.authType != AuthType.none
-                    ? Text(
-                        '${config.authType.toLocale(context)} - ${config.username ?? 'No username'}')
-                    : null,
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.network_check),
-                      onPressed: () => _TestConnectionHelper.testExternalUrl(context, ref, config),
-                      tooltip: context.l10n.testConnection,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.edit),
-                      onPressed: () => _showEditExternalUrlDialog(
-                          context, ref, index, config),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () {
-                        ref
-                            .read(externalNetworkUrlConfigsProvider.notifier)
-                            .removeExternalUrl(config.url);
-                      },
-                    ),
-                  ],
+              return ExternalUrlConfigTile(
+                config: config,
+                index: index,
+                onEdit: () => showDialog(
+                  context: context,
+                  builder: (context) => EditExternalUrlDialog(
+                    index: index,
+                    currentConfig: config,
+                  ),
                 ),
+                onTest: () => _TestConnectionHelper.testExternalUrl(context, ref, config),
               );
             }),
 
@@ -322,433 +273,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
           ],
         ],
       ],
-    );
-  }
-
-  void _showAddExternalUrlDialog(BuildContext context, WidgetRef ref) {
-    String newUrl = '';
-    AuthType authType = AuthType.none;
-    String username = '';
-    String password = '';
-
-    final globalAuthEnabled =
-        ref.read(globalAuthenticationEnabledProvider) ?? false;
-
-    showDialog(
-      context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(context.l10n.addExternalUrl),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.externalUrls,
-                    hintText: context.l10n.externalUrlHint,
-                  ),
-                  onChanged: (value) => newUrl = value,
-                ),
-                if (!globalAuthEnabled) ...[
-                  const SizedBox(height: 16),
-                  DropdownButtonFormField<AuthType>(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.authenticationType,
-                    ),
-                    value: authType,
-                    items: AuthType.values.map((type) {
-                      return DropdownMenuItem(
-                        value: type,
-                        child: Text(type.toLocale(context)),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        authType = value ?? AuthType.none;
-                      });
-                    },
-                  ),
-                  if (authType == AuthType.basic) ...[
-                    const SizedBox(height: 16),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.username,
-                      ),
-                      onChanged: (value) => username = value,
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.password,
-                      ),
-                      obscureText: true,
-                      onChanged: (value) => password = value,
-                    ),
-                  ],
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(context.l10n.cancel),
-            ),
-            TextButton(
-              onPressed: () async {
-                if (newUrl.isNotEmpty) {
-                  final config = ExternalUrlConfig(
-                    url: newUrl,
-                    authType: globalAuthEnabled ? AuthType.none : authType,
-                    username: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? username : null),
-                    password: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? password : null),
-                  );
-                  ref
-                      .read(externalNetworkUrlConfigsProvider.notifier)
-                      .addExternalUrl(config);
-                  Navigator.of(context).pop();
-                }
-              },
-              child: Text(context.l10n.add),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showEditExternalUrlDialog(BuildContext context, WidgetRef ref,
-      int index, ExternalUrlConfig currentConfig) {
-    String newUrl = currentConfig.url;
-    AuthType authType = currentConfig.authType;
-    String username = currentConfig.username ?? '';
-    String password = currentConfig.password ?? '';
-
-    final globalAuthEnabled =
-        ref.read(globalAuthenticationEnabledProvider) ?? false;
-
-    showDialog(
-      context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(context.l10n.editExternalUrl),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.externalUrls,
-                    hintText: context.l10n.externalUrlHint,
-                  ),
-                  controller: TextEditingController(text: currentConfig.url),
-                  onChanged: (value) => newUrl = value,
-                ),
-                if (!globalAuthEnabled) ...[
-                  const SizedBox(height: 16),
-                  DropdownButtonFormField<AuthType>(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.authenticationType,
-                    ),
-                    value: authType,
-                    items: AuthType.values.map((type) {
-                      return DropdownMenuItem(
-                        value: type,
-                        child: Text(type.toLocale(context)),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        authType = value ?? AuthType.none;
-                      });
-                    },
-                  ),
-                  if (authType == AuthType.basic) ...[
-                    const SizedBox(height: 16),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.username,
-                      ),
-                      controller: TextEditingController(text: username),
-                      onChanged: (value) => username = value,
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.password,
-                      ),
-                      controller: TextEditingController(text: password),
-                      obscureText: true,
-                      onChanged: (value) => password = value,
-                    ),
-                  ],
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(context.l10n.cancel),
-            ),
-            TextButton(
-              onPressed: () async {
-                if (newUrl.isNotEmpty &&
-                    (newUrl != currentConfig.url ||
-                        authType != currentConfig.authType ||
-                        username != (currentConfig.username ?? '') ||
-                        password != (currentConfig.password ?? ''))) {
-                  final config = ExternalUrlConfig(
-                    url: newUrl,
-                    authType: globalAuthEnabled ? AuthType.none : authType,
-                    username: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? username : null),
-                    password: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? password : null),
-                  );
-                  ref
-                      .read(externalNetworkUrlConfigsProvider.notifier)
-                      .updateExternalUrl(index, config);
-                  Navigator.of(context).pop();
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
-              child: Text(context.l10n.save),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showAddLocalNetworkDialog(BuildContext context, WidgetRef ref) {
-    String wifiName = '';
-    String serverUrl = '';
-    AuthType authType = AuthType.none;
-    String username = '';
-    String password = '';
-
-    final globalAuthEnabled =
-        ref.read(globalAuthenticationEnabledProvider) ?? false;
-
-    showDialog(
-      context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(context.l10n.addLocalNetwork),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.wifiNetworkName,
-                    hintText: context.l10n.wifiNetworkNameHint,
-                  ),
-                  onChanged: (value) => wifiName = value,
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.serverUrl,
-                    hintText: context.l10n.serverUrlHint,
-                  ),
-                  onChanged: (value) => serverUrl = value,
-                ),
-                if (!globalAuthEnabled) ...[
-                  const SizedBox(height: 16),
-                  DropdownButtonFormField<AuthType>(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.authenticationType,
-                    ),
-                    value: authType,
-                    items: AuthType.values.map((type) {
-                      return DropdownMenuItem(
-                        value: type,
-                        child: Text(type.toLocale(context)),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        authType = value ?? AuthType.none;
-                      });
-                    },
-                  ),
-                  if (authType == AuthType.basic) ...[
-                    const SizedBox(height: 16),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.username,
-                      ),
-                      onChanged: (value) => username = value,
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.password,
-                      ),
-                      obscureText: true,
-                      onChanged: (value) => password = value,
-                    ),
-                  ],
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(context.l10n.cancel),
-            ),
-            TextButton(
-              onPressed: () {
-                if (wifiName.isNotEmpty && serverUrl.isNotEmpty) {
-                  final config = LocalNetworkConfig(
-                    wifiName: wifiName,
-                    serverUrl: serverUrl,
-                    authType: globalAuthEnabled ? AuthType.none : authType,
-                    username: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? username : null),
-                    password: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? password : null),
-                  );
-                  ref
-                      .read(localNetworkConfigsProvider.notifier)
-                      .addLocalNetwork(config);
-                  Navigator.of(context).pop();
-                }
-              },
-              child: Text(context.l10n.add),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showEditLocalNetworkDialog(BuildContext context, WidgetRef ref,
-      int index, LocalNetworkConfig currentConfig) {
-    String wifiName = currentConfig.wifiName;
-    String serverUrl = currentConfig.serverUrl;
-    AuthType authType = currentConfig.authType;
-    String username = currentConfig.username ?? '';
-    String password = currentConfig.password ?? '';
-
-    final globalAuthEnabled =
-        ref.read(globalAuthenticationEnabledProvider) ?? false;
-
-    showDialog(
-      context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(context.l10n.editLocalNetwork),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.wifiNetworkName,
-                    hintText: context.l10n.wifiNetworkNameHint,
-                  ),
-                  controller:
-                      TextEditingController(text: currentConfig.wifiName),
-                  onChanged: (value) => wifiName = value,
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: context.l10n.serverUrl,
-                    hintText: context.l10n.serverUrlHint,
-                  ),
-                  controller:
-                      TextEditingController(text: currentConfig.serverUrl),
-                  onChanged: (value) => serverUrl = value,
-                ),
-                if (!globalAuthEnabled) ...[
-                  const SizedBox(height: 16),
-                  DropdownButtonFormField<AuthType>(
-                    decoration: InputDecoration(
-                      labelText: context.l10n.authenticationType,
-                    ),
-                    value: authType,
-                    items: AuthType.values.map((type) {
-                      return DropdownMenuItem(
-                        value: type,
-                        child: Text(type.toLocale(context)),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        authType = value ?? AuthType.none;
-                      });
-                    },
-                  ),
-                  if (authType == AuthType.basic) ...[
-                    const SizedBox(height: 16),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.username,
-                      ),
-                      controller: TextEditingController(text: username),
-                      onChanged: (value) => username = value,
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: context.l10n.password,
-                      ),
-                      controller: TextEditingController(text: password),
-                      obscureText: true,
-                      onChanged: (value) => password = value,
-                    ),
-                  ],
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text(context.l10n.cancel),
-            ),
-            TextButton(
-              onPressed: () {
-                if (wifiName.isNotEmpty && serverUrl.isNotEmpty) {
-                  final config = LocalNetworkConfig(
-                    wifiName: wifiName,
-                    serverUrl: serverUrl,
-                    authType: globalAuthEnabled ? AuthType.none : authType,
-                    username: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? username : null),
-                    password: globalAuthEnabled
-                        ? null
-                        : (authType == AuthType.basic ? password : null),
-                  );
-                  ref
-                      .read(localNetworkConfigsProvider.notifier)
-                      .updateLocalNetwork(index, config);
-                  Navigator.of(context).pop();
-                }
-              },
-              child: Text(context.l10n.save),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+    );  }
 }
 
 class _TestConnectionHelper {
