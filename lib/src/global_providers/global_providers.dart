@@ -7,6 +7,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:queue/queue.dart';
@@ -30,34 +31,35 @@ import '../utils/network/timeout_http_client.dart';
 
 part 'global_providers.g.dart';
 
+// Synchronous version of active server URL for immediate use by GraphQL clients
+@riverpod
+String activeServerUrlSync(Ref ref) {
+  final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+  final serverUrl = ref.watch(serverUrlProvider);
+  
+  if (automaticSwitching != true) {
+    return serverUrl ?? DBKeys.serverUrl.initial;
+  }
+  
+  // For automatic switching, get the async value
+  final activeUrlAsync = ref.watch(activeServerUrlProvider);
+  return activeUrlAsync.when(
+    data: (url) => url ?? 'http://localhost:4567', // Use placeholder if no automatic URL available
+    loading: () => 'http://localhost:4567', // Use placeholder while loading
+    error: (_, __) => 'http://localhost:4567', // Use placeholder on error
+  );
+}
+
 @riverpod
 GraphQLClient graphQlClient(Ref ref) {
   final authType = ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial;
   final credentials = ref.watch(credentialsProvider);
 
-  // Use automatic URL switching if enabled, otherwise fall back to manual URL
+  // Use automatic URL switching if enabled, never fallback to manual URL
   final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
-  final serverUrl = ref.watch(serverUrlProvider);
-  String baseUrl;
-
-  if (automaticSwitching == true) {
-    // Watch the active server URL which handles automatic switching
-    final activeUrl = ref.watch(activeServerUrlProvider);
-    baseUrl = activeUrl.when(
-      data: (url) {
-        // Only use the active URL if it's not null and has been validated
-        if (url != null && url.isNotEmpty) {
-          return url;
-        }
-        // Fall back to manual URL if active URL is null/empty
-        return serverUrl ?? DBKeys.serverUrl.initial;
-      },
-      loading: () => serverUrl ?? DBKeys.serverUrl.initial,
-      error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
-    );
-  } else {
-    baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
-  }
+  
+  // Use synchronous active server URL to avoid timing issues
+  final baseUrl = ref.watch(activeServerUrlSyncProvider);
 
   // Timeout settings
   final timeoutMs = ref.watch(serverRequestTimeoutProvider) ??
@@ -114,29 +116,11 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
   final authType = ref.watch(authTypeKeyProvider) ?? DBKeys.authType.initial;
   final credentials = ref.watch(credentialsProvider);
 
-  // Use automatic URL switching if enabled, otherwise fall back to manual URL
+  // Use automatic URL switching if enabled, never fallback to manual URL
   final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
-  final serverUrl = ref.watch(serverUrlProvider);
-  String baseUrl;
-
-  if (automaticSwitching == true) {
-    // Watch the active server URL which handles automatic switching
-    final activeUrl = ref.watch(activeServerUrlProvider);
-    baseUrl = activeUrl.when(
-      data: (url) {
-        // Only use the active URL if it's not null and has been validated
-        if (url != null && url.isNotEmpty) {
-          return url;
-        }
-        // Fall back to manual URL if active URL is null/empty
-        return serverUrl ?? DBKeys.serverUrl.initial;
-      },
-      loading: () => serverUrl ?? DBKeys.serverUrl.initial,
-      error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
-    );
-  } else {
-    baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
-  }
+  
+  // Use synchronous active server URL to avoid timing issues
+  final baseUrl = ref.watch(activeServerUrlSyncProvider);
 
   Link link = WebSocketLink(
       Endpoints.baseApi(
@@ -230,6 +214,27 @@ class AutomaticUrlSwitching extends _$AutomaticUrlSwitching
     with SharedPreferenceClientMixin<bool> {
   @override
   bool? build() => initialize(DBKeys.automaticUrlSwitching);
+  
+  @override
+  void update(bool? value) {
+    super.update(value);
+    
+    // When automatic URL switching setting changes, invalidate GraphQL clients
+    // Don't invalidate activeServerUrlProvider to avoid circular dependency
+    // Schedule invalidation for next frame to avoid timing issues
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      try {
+        ref.invalidate(graphQlClientProvider);
+        ref.invalidate(graphQlSubscriptionClientProvider);
+        ref.invalidate(graphQlClientNotifierProvider);
+        
+        // Clear image cache to prevent serving images from old URLs
+        DefaultCacheManager().emptyCache();
+      } catch (e) {
+        // Ignore invalidation errors - they're not critical for functionality
+      }
+    });
+  }
 }
 
 @riverpod
@@ -407,13 +412,13 @@ class ActiveServerUrl extends _$ActiveServerUrl {
       return manualServerUrl;
     }
 
-    // Start with manual URL as fallback
-    String? bestUrl = manualServerUrl;
+    // When automatic switching is enabled, we don't use manual URL as fallback
+    // These are completely separate systems
 
     try {
       // Get current WiFi name with timeout
       final currentWifi = await NetworkDetector.getCurrentWifiName()
-          .timeout(const Duration(seconds: 3), onTimeout: () => null);
+          .timeout(const Duration(seconds: 2), onTimeout: () => null);
 
       // Check if we're on any configured local network with timeout
       if (currentWifi != null &&
@@ -436,7 +441,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
                       ? _getGlobalAuth()
                       : _getLocalAuth(config),
                 ).timeout(
-                  const Duration(seconds: 5), // Shorter timeout to prevent hanging
+                  const Duration(seconds: 2), // Further reduced timeout to prevent hanging
                   onTimeout: () => false,
                 );
                 if (isReachable) {
@@ -470,7 +475,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
                   ? _getGlobalAuth()
                   : _getExternalAuth(config),
             ).timeout(
-              const Duration(seconds: 5), // Shorter timeout to prevent hanging
+              const Duration(seconds: 2), // Further reduced timeout to prevent hanging
               onTimeout: () => false,
             );
             return isReachable ? config.url : null;
@@ -483,7 +488,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
         // Wait for first successful result with overall timeout
         try {
           final results = await Future.wait(futures).timeout(
-            const Duration(seconds: 8), // Reduced timeout for all external URLs
+            const Duration(seconds: 4), // Reduced timeout for all external URLs
             onTimeout: () => List<String?>.filled(futures.length, null),
           );
           for (final result in results) {
@@ -492,15 +497,16 @@ class ActiveServerUrl extends _$ActiveServerUrl {
             }
           }
         } catch (e) {
-          // If parallel requests fail, continue to fallback
+          // If parallel requests fail, continue to next step
         }
       }
     } catch (e) {
-      // If anything fails during URL discovery, fall back to manual URL
+      // If anything fails during URL discovery, return null
     }
 
-    // Fallback to manual URL
-    return bestUrl;
+    // When automatic switching is enabled, never fall back to manual URL
+    // Return null if no automatic URLs are available or reachable
+    return null;
   }
 
   /// Force refresh the active URL

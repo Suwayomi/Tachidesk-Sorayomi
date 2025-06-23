@@ -24,18 +24,19 @@ extension CacheManagerExtension on CacheManager {
     final authType = ref.read(authTypeKeyProvider);
     final basicToken = ref.read(credentialsProvider);
     
-    // Use automatic URL switching if enabled, otherwise fall back to manual URL
+    // Use automatic URL switching if enabled, never fallback to manual URL
     final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
     String baseUrl;
     
     if (automaticSwitching == true) {
-      final activeUrl = await ref.read(activeServerUrlProvider.future);
-      // Only use the active URL if it's not null and has been validated
-      if (activeUrl != null && activeUrl.isNotEmpty) {
-        baseUrl = activeUrl;
-      } else {
-        // Fall back to manual URL if active URL is null/empty
-        baseUrl = ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+      try {
+        final activeUrl = await ref.read(activeServerUrlProvider.future);
+        // When automatic switching is enabled, only use the active URL
+        // If no automatic URL is available, use a placeholder that will fail gracefully
+        baseUrl = activeUrl ?? 'http://localhost:4567';
+      } catch (e) {
+        // Use placeholder when automatic switching fails
+        baseUrl = 'http://localhost:4567';
       }
     } else {
       baseUrl = ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;

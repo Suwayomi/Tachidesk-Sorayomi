@@ -11,13 +11,13 @@ import 'package:network_info_plus/network_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class NetworkDetector {
-  // Increased timeout for more reliable detection with automatic URL switching
-  static const Duration connectionTimeout = Duration(seconds: 8);
+  // Reduced timeout for more responsive detection with automatic URL switching
+  static const Duration connectionTimeout = Duration(seconds: 3); // Further reduced for better UX
   
   // Cache for WiFi name to avoid repeated platform calls
   static String? _cachedWifiName;
   static DateTime? _wifiCacheTime;
-  static const Duration _wifiCacheExpiry = Duration(seconds: 10);
+  static const Duration _wifiCacheExpiry = Duration(seconds: 15); // Slightly longer cache
 
   /// Get current WiFi SSID/name with caching
   static Future<String?> getCurrentWifiName() async {
@@ -68,24 +68,56 @@ class NetworkDetector {
       final aboutUrl = '$url/api/v1/settings/about';
       final response = await http.get(
         Uri.parse(aboutUrl),
-        headers: {'Accept': 'application/json'},
+        headers: {
+          'Accept': 'application/json',
+          'User-Agent': 'Tachidesk-Sorayomi',
+        },
       ).timeout(connectionTimeout);
 
       // Check if response is successful and contains expected server info
       if (response.statusCode == 200) {
         try {
-          // Validate that we received valid JSON/text response
+          // Validate that we received valid response
           if (response.body.trim().isEmpty) {
             return false;
           }
           
           final body = response.body.toLowerCase();
-          return body.contains('suwayomi') || body.contains('tachidesk');
+          
+          // More comprehensive validation
+          if (body.contains('suwayomi') || 
+              body.contains('tachidesk') ||
+              body.contains('"name"') ||
+              body.contains('"version"') ||
+              body.contains('"buildtype"')) {
+            return true;
+          }
+          
+          // Try to parse as JSON to check if it's valid JSON response
+          try {
+            final jsonData = json.decode(response.body);
+            if (jsonData is Map && 
+                (jsonData.containsKey('name') || 
+                 jsonData.containsKey('version') ||
+                 jsonData.containsKey('buildType'))) {
+              return true;
+            }
+          } catch (_) {
+            // Not valid JSON, but that's ok if content matches
+          }
+          
+          return false;
         } catch (e) {
           // If we can't parse the response body, it's not a valid server
           return false;
         }
       }
+      
+      // Also accept other success status codes that might indicate a valid server
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return true;
+      }
+      
       return false;
     } catch (e) {
       return false;
@@ -106,7 +138,10 @@ class NetworkDetector {
       final aboutUrl = '$url/api/v1/settings/about';
 
       // Prepare headers
-      final headers = <String, String>{'Accept': 'application/json'};
+      final headers = <String, String>{
+        'Accept': 'application/json',
+        'User-Agent': 'Tachidesk-Sorayomi',
+      };
 
       // Add basic auth if provided
       if (auth != null &&
@@ -127,18 +162,53 @@ class NetworkDetector {
       // Check if response is successful and contains expected server info
       if (response.statusCode == 200) {
         try {
-          // Validate that we received valid JSON/text response
+          // Validate that we received valid response
           if (response.body.trim().isEmpty) {
             return false;
           }
           
           final body = response.body.toLowerCase();
-          return body.contains('suwayomi') || body.contains('tachidesk');
+          
+          // More comprehensive validation
+          if (body.contains('suwayomi') || 
+              body.contains('tachidesk') ||
+              body.contains('"name"') ||
+              body.contains('"version"') ||
+              body.contains('"buildtype"')) {
+            return true;
+          }
+          
+          // Try to parse as JSON to check if it's valid JSON response
+          try {
+            final jsonData = json.decode(response.body);
+            if (jsonData is Map && 
+                (jsonData.containsKey('name') || 
+                 jsonData.containsKey('version') ||
+                 jsonData.containsKey('buildType'))) {
+              return true;
+            }
+          } catch (_) {
+            // Not valid JSON, but that's ok if content matches
+          }
+          
+          return false;
         } catch (e) {
           // If we can't parse the response body, it's not a valid server
           return false;
         }
       }
+      
+      // Handle authentication required responses
+      if (response.statusCode == 401 && auth == null) {
+        // Server requires auth but none provided, this indicates it's likely a valid server
+        return true;
+      }
+      
+      // Also accept other success status codes that might indicate a valid server
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return true;
+      }
+      
       return false;
     } catch (e) {
       return false;
@@ -165,11 +235,18 @@ class NetworkDetector {
         return ValidationResult(false, 'Invalid URL format');
       }
 
-      // Test if server is reachable
-      final isReachable = await isServerReachable(cleanUrl);
-      if (!isReachable) {
+      // Test if server is reachable with a shorter timeout for validation
+      try {
+        final isReachable = await isServerReachable(cleanUrl).timeout(
+          const Duration(seconds: 3), // Shorter timeout for validation
+        );
+        if (!isReachable) {
+          return ValidationResult(
+              false, 'Server is not reachable or not a valid Suwayomi server');
+        }
+      } catch (e) {
         return ValidationResult(
-            false, 'Server is not reachable or not a valid Suwayomi server');
+            false, 'Connection failed: ${e.toString()}');
       }
 
       return ValidationResult(true, 'Server validated successfully', cleanUrl);

@@ -6,6 +6,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -24,6 +25,27 @@ class ServerUrl extends _$ServerUrl with SharedPreferenceClientMixin<String> {
         DBKeys.serverUrl,
         initial: kIsWeb ? Uri.base.origin : DBKeys.serverUrl.initial,
       );
+  
+  @override
+  void update(String? value) {
+    super.update(value);
+    
+    // When manual server URL changes, invalidate GraphQL clients
+    // Don't invalidate activeServerUrlProvider to avoid circular dependency
+    // Schedule invalidation for next frame to avoid timing issues
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      try {
+        ref.invalidate(graphQlClientProvider);
+        ref.invalidate(graphQlSubscriptionClientProvider);
+        ref.invalidate(graphQlClientNotifierProvider);
+        
+        // Clear image cache to prevent serving images from old URLs
+        DefaultCacheManager().emptyCache();
+      } catch (e) {
+        // Ignore invalidation errors - they're not critical for functionality
+      }
+    });
+  }
 }
 
 class ServerUrlTile extends ConsumerWidget {

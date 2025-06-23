@@ -52,7 +52,7 @@ class ServerImage extends HookConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
 
-    // Use automatic URL switching if enabled, otherwise fall back to manual URL
+    // Use automatic URL switching if enabled, never fallback to manual URL
     final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
     final serverUrl = ref.watch(serverUrlProvider);
     String baseUrl;
@@ -61,15 +61,12 @@ class ServerImage extends HookConsumerWidget {
       final activeUrl = ref.watch(activeServerUrlProvider);
       baseUrl = activeUrl.when(
         data: (url) {
-          // Only use the active URL if it's not null and has been validated
-          if (url != null && url.isNotEmpty) {
-            return url;
-          }
-          // Fall back to manual URL if active URL is null/empty
-          return serverUrl ?? DBKeys.serverUrl.initial;
+          // When automatic switching is enabled, only use the active URL
+          // If no automatic URL is available, use a placeholder that will fail gracefully
+          return url ?? 'http://localhost:4567';
         },
-        loading: () => serverUrl ?? DBKeys.serverUrl.initial,
-        error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
+        loading: () => 'http://localhost:4567', // Default placeholder while loading
+        error: (_, __) => 'http://localhost:4567', // Use placeholder when automatic switching fails
       );
     } else {
       baseUrl = serverUrl ?? DBKeys.serverUrl.initial;

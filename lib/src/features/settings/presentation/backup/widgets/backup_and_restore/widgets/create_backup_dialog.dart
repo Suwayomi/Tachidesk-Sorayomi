@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../../../constants/db_keys.dart';
 import '../../../../../../../constants/endpoints.dart';
 import '../../../../../../../global_providers/global_providers.dart';
 import '../../../../../../../utils/extensions/custom_extensions.dart';
@@ -64,11 +65,19 @@ class CreateBackupDialog extends HookConsumerWidget {
             final activeUrl = await ref.read(activeServerUrlProvider.future);
             final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
             
+            // When automatic switching is enabled but no URL is available, show error
+            if (automaticSwitching == true && activeUrl == null) {
+              if (context.mounted) {
+                toast?.showError('No server URL available from automatic switching. Please configure local networks or external URLs.');
+              }
+              return;
+            }
+            
             if (!context.mounted) return;
             launchUrlInWeb(
               context,
               Endpoints.baseApi(
-                    baseUrl: activeUrl,
+                    baseUrl: activeUrl ?? (automaticSwitching == true ? 'http://localhost:4567' : DBKeys.serverUrl.initial),
                     port: automaticSwitching == true ? null : ref.read(serverPortProvider),
                     addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
                     appendApiToUrl: false,
