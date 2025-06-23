@@ -217,7 +217,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ),
           ),
 
-          if (localNetworkConfigs?.isNotEmpty == true)
+          if (!localNetworkConfigs.isBlank)
             ...localNetworkConfigs!.asMap().entries.map((entry) {
               final index = entry.key;
               final config = entry.value;
@@ -275,7 +275,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
             ),
           ),
 
-          if (externalUrls?.isNotEmpty == true)
+          if (!externalUrls.isBlank)
             ...externalUrls!.asMap().entries.map((entry) {
               final index = entry.key;
               final config = entry.value;
@@ -762,13 +762,13 @@ class _TestConnectionHelper {
         final username = ref.read(globalUsernameProvider);
         final password = ref.read(globalPasswordProvider);
         
-        if (authType == AuthType.basic && username?.isNotEmpty == true && password?.isNotEmpty == true) {
+        if (authType == AuthType.basic && !username.isBlank && !password.isBlank) {
           auth = {'username': username!, 'password': password!};
         }
       } else {
         if (config.authType == AuthType.basic && 
-            config.username?.isNotEmpty == true && 
-            config.password?.isNotEmpty == true) {
+            !config.username.isBlank && 
+            !config.password.isBlank) {
           auth = {'username': config.username!, 'password': config.password!};
         }
       }
@@ -799,13 +799,13 @@ class _TestConnectionHelper {
         final username = ref.read(globalUsernameProvider);
         final password = ref.read(globalPasswordProvider);
         
-        if (authType == AuthType.basic && username?.isNotEmpty == true && password?.isNotEmpty == true) {
+        if (authType == AuthType.basic && !username.isBlank && !password.isBlank) {
           auth = {'username': username!, 'password': password!};
         }
       } else {
         if (config.authType == AuthType.basic && 
-            config.username?.isNotEmpty == true && 
-            config.password?.isNotEmpty == true) {
+            !config.username.isBlank && 
+            !config.password.isBlank) {
           auth = {'username': config.username!, 'password': config.password!};
         }
       }
