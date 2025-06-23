@@ -70,8 +70,8 @@ class ServerImage extends HookConsumerWidget {
 
     final baseApi = "${Endpoints.baseApi(
       baseUrl: baseUrl,
-      port: ref.watch(serverPortProvider),
-      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+      port: automaticSwitching == true ? null : ref.watch(serverPortProvider),
+      addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,
     )}"
         "$imageUrl";

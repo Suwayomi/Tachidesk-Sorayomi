@@ -63,10 +63,11 @@ class ServerScreen extends ConsumerWidget {
                     
                     // Use active server URL (which includes automatic switching logic)
                     final activeUrl = await ref.read(activeServerUrlProvider.future);
+                    final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
                     final url = Endpoints.baseApi(
                       baseUrl: activeUrl,
-                      port: ref.read(serverPortProvider),
-                      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                      port: automaticSwitching == true ? null : ref.read(serverPortProvider),
+                      addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
                       appendApiToUrl: false,
                     );
                     if (url.isNotBlank && context.mounted) {

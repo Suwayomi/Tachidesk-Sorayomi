@@ -62,14 +62,15 @@ class CreateBackupDialog extends HookConsumerWidget {
             
             // Use active server URL (which includes automatic switching logic)
             final activeUrl = await ref.read(activeServerUrlProvider.future);
+            final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
             
             if (!context.mounted) return;
             launchUrlInWeb(
               context,
               Endpoints.baseApi(
                     baseUrl: activeUrl,
-                    port: ref.read(serverPortProvider),
-                    addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                    port: automaticSwitching == true ? null : ref.read(serverPortProvider),
+                    addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
                     appendApiToUrl: false,
                   ) +
                   backupUrl.value!,

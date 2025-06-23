@@ -70,8 +70,8 @@ GraphQLClient graphQlClient(Ref ref) {
   Link link = HttpLink(
     Endpoints.baseApi(
       baseUrl: baseUrl,
-      port: ref.watch(serverPortProvider),
-      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+      port: automaticSwitching == true ? null : ref.watch(serverPortProvider),
+      addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
       isGraphQl: true,
     ),
     followRedirects: true,
@@ -127,8 +127,8 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
   Link link = WebSocketLink(
       Endpoints.baseApi(
         baseUrl: baseUrl,
-        port: ref.watch(serverPortProvider),
-        addPort: ref.watch(serverPortToggleProvider).ifNull(),
+        port: automaticSwitching == true ? null : ref.watch(serverPortProvider),
+        addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
         isGraphQl: true,
         isWebsocket: true,
       ),

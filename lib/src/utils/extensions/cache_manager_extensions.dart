@@ -37,8 +37,8 @@ extension CacheManagerExtension on CacheManager {
     
     final baseApi = "${Endpoints.baseApi(
       baseUrl: baseUrl,
-      port: ref.read(serverPortProvider),
-      addPort: ref.read(serverPortToggleProvider).ifNull(),
+      port: automaticSwitching == true ? null : ref.read(serverPortProvider),
+      addPort: automaticSwitching == true ? false : ref.read(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,
     )}"
         "$url";
