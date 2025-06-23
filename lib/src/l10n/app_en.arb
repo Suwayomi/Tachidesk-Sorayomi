@@ -1516,5 +1516,8 @@
     "autoRefreshOnTimeoutDescription": "Automatically retries requests that timeout",
     "autoRefreshRetryDelay": "Auto-refresh Retry Delay",
     "@autoRefreshRetryDelay": {"description": "Delay between auto retry attempts in seconds"},
-    "autoRefreshRetryDelayDescription": "Delay between auto retry attempts (in seconds)"
+    "autoRefreshRetryDelayDescription": "Delay between auto retry attempts (in seconds)",
+    "localNetworkConfiguration": "Local Network Configuration",
+    "configureLocalWifiSettings": "Configure local WiFi network settings",
+    "manageExternalServerUrls": "Manage external server URLs"
 }

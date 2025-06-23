@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../global_providers/global_providers.dart';
+import '../../../../utils/extensions/custom_extensions.dart';
 import '../../../../widgets/section_title.dart';
 
 class AutomaticUrlSwitchingScreen extends ConsumerWidget {
@@ -21,7 +22,7 @@ class AutomaticUrlSwitchingScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Automatic URL Switching'),
+        title: Text(context.l10n.automaticUrlSwitching),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -31,11 +32,11 @@ class AutomaticUrlSwitchingScreen extends ConsumerWidget {
           children: [
             // Main toggle
             SwitchListTile(
-              title: const Text('Enable Automatic URL Switching'),
+              title: Text(context.l10n.enableAutomaticUrlSwitching),
               subtitle: Text(
                 automaticSwitching == true
-                    ? 'Automatically switch between local and external URLs'
-                    : 'Use manual server URL setting',
+                    ? context.l10n.automaticUrlSwitchingEnabled
+                    : context.l10n.automaticUrlSwitchingDisabled,
               ),
               value: automaticSwitching ?? false,
               onChanged: (value) {
@@ -61,11 +62,11 @@ class AutomaticUrlSwitchingScreen extends ConsumerWidget {
                     error: (_, __) => Colors.red,
                   ),
                 ),
-                title: const Text('Current Active URL'),
+                title: Text(context.l10n.currentActiveUrl),
                 subtitle: activeUrl.when(
-                  data: (url) => Text(url ?? 'No active URL found'),
-                  loading: () => const Text('Detecting network...'),
-                  error: (error, _) => Text('Error: $error'),
+                  data: (url) => Text(url ?? context.l10n.noActiveUrlFound),
+                  loading: () => Text(context.l10n.detectingNetwork),
+                  error: (error, _) => Text('Error: ${error.toString()}'),
                 ),
                 trailing: IconButton(
                   icon: const Icon(Icons.refresh),
@@ -78,32 +79,32 @@ class AutomaticUrlSwitchingScreen extends ConsumerWidget {
               const Divider(),
 
               // Local Network Section - Placeholder for now
-              const SectionTitle(title: "Local Network"),
-              const ListTile(
-                leading: Icon(Icons.wifi),
-                title: Text('Local Network Configuration'),
-                subtitle: Text('Configure local WiFi network settings'),
+              SectionTitle(title: context.l10n.localNetwork),
+              ListTile(
+                leading: const Icon(Icons.wifi),
+                title: Text(context.l10n.localNetworkConfiguration),
+                subtitle: Text(context.l10n.configureLocalWifiSettings),
               ),
 
               const Divider(),
 
               // External URLs Section - Placeholder for now
-              const SectionTitle(title: "External URLs"),
-              const ListTile(
-                leading: Icon(Icons.cloud),
-                title: Text('External URLs'),
-                subtitle: Text('Manage external server URLs'),
+              SectionTitle(title: context.l10n.externalUrls),
+              ListTile(
+                leading: const Icon(Icons.cloud),
+                title: Text(context.l10n.externalUrls),
+                subtitle: Text(context.l10n.manageExternalServerUrls),
               ),
 
               if (!kIsWeb) ...[
                 const Divider(),
 
                 // Network info section
-                const ListTile(
-                  leading: Icon(Icons.info_outline),
-                  title: Text('Network Information'),
+                ListTile(
+                  leading: const Icon(Icons.info_outline),
+                  title: Text(context.l10n.networkInformation),
                   subtitle: Text(
-                    'The app will automatically detect your WiFi network and switch to the appropriate server URL.',
+                    context.l10n.networkInformationDescription,
                   ),
                 ),
               ],
