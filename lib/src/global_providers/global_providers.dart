@@ -16,7 +16,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
-import '../constants/timeout_constants.dart';
 import '../features/settings/domain/automatic_url_switching/external_url_config.dart';
 import '../features/settings/domain/automatic_url_switching/local_network_config.dart';
 import '../features/settings/domain/network_detector/network_detector.dart';
@@ -45,22 +44,28 @@ GraphQLClient graphQlClient(Ref ref) {
     // Watch the active server URL which handles automatic switching
     final activeUrl = ref.watch(activeServerUrlProvider);
     baseUrl = activeUrl.when(
-      data: (url) =>
-          url ?? serverUrl ?? DBKeys.serverUrl.initial,
+      data: (url) => url ?? serverUrl ?? DBKeys.serverUrl.initial,
       loading: () => serverUrl ?? DBKeys.serverUrl.initial,
-      error: (_, __) =>
-          serverUrl ?? DBKeys.serverUrl.initial,
+      error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
     );
   } else {
     baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
   }
 
-  // Get timeout and retry settings
-  final timeoutMs = ref.watch(serverRequestTimeoutProvider) ?? 
-      TimeoutConstants.requestTimeoutDefaultMs;
-  final autoRefreshEnabled = ref.watch(autoRefreshOnTimeoutProvider) ?? false;
-  final retryDelayMs = ref.watch(autoRefreshRetryDelayProvider) ?? 
-      TimeoutConstants.autoRefreshRetryDelayDefaultMs;
+  // Timeout settings
+  final timeoutMs = ref.watch(serverRequestTimeoutProvider) ??
+      DBKeys.serverRequestTimeout.initial as int;
+  final autoRetry = ref.watch(autoRefreshOnTimeoutProvider).ifNull();
+  final retryDelayMs = ref.watch(autoRefreshRetryDelayProvider) ??
+      DBKeys.autoRefreshRetryDelay.initial as int;
+
+  final effectiveTimeoutMs = autoRetry
+      ? (retryDelayMs < timeoutMs ? retryDelayMs : timeoutMs)
+      : timeoutMs;
+
+  final retryCount = autoRetry
+      ? ((timeoutMs / retryDelayMs).ceil() - 1).clamp(0, 10)
+      : 0; // cap at 10 retries for safety
 
   Link link = HttpLink(
     Endpoints.baseApi(
@@ -73,8 +78,8 @@ GraphQLClient graphQlClient(Ref ref) {
     // httpResponseDecoder: httpResponseDecoder,
     defaultHeaders: {'Content-Type': 'application/json; charset=utf-8'},
     httpClient: TimeoutHttpClient(
-      Duration(milliseconds: timeoutMs),
-      retries: autoRefreshEnabled ? 3 : 0,
+      Duration(milliseconds: effectiveTimeoutMs),
+      retries: retryCount,
       retryDelay: Duration(milliseconds: retryDelayMs),
     ),
   );
@@ -111,11 +116,9 @@ GraphQLClient graphQlSubscriptionClient(Ref ref) {
     // Watch the active server URL which handles automatic switching
     final activeUrl = ref.watch(activeServerUrlProvider);
     baseUrl = activeUrl.when(
-      data: (url) =>
-          url ?? serverUrl ?? DBKeys.serverUrl.initial,
+      data: (url) => url ?? serverUrl ?? DBKeys.serverUrl.initial,
       loading: () => serverUrl ?? DBKeys.serverUrl.initial,
-      error: (_, __) =>
-          serverUrl ?? DBKeys.serverUrl.initial,
+      error: (_, __) => serverUrl ?? DBKeys.serverUrl.initial,
     );
   } else {
     baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
@@ -432,7 +435,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
         );
         return isReachable ? config.url : null;
       }).toList();
-      
+
       // Wait for first successful result
       try {
         final results = await Future.wait(futures);
