@@ -13,9 +13,9 @@ import '../../../../../../../global_providers/global_providers.dart';
 import '../../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../../widgets/popup_widgets/pop_button.dart';
 
-/// A popup dialog for editing global credentials
-class GlobalCredentialsPopup extends HookConsumerWidget {
-  const GlobalCredentialsPopup({super.key});
+/// A dialog for editing global credentials
+class GlobalCredentialsDialog extends HookConsumerWidget {
+  const GlobalCredentialsDialog({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,11 +73,11 @@ class GlobalCredentialsPopup extends HookConsumerWidget {
     );
   }
 
-  /// Shows the global credentials popup dialog
+  /// Shows the global credentials dialog
   static void show(BuildContext context) {
     showDialog(
       context: context,
-      builder: (context) => const GlobalCredentialsPopup(),
+      builder: (context) => const GlobalCredentialsDialog(),
     );
   }
 }

@@ -20,7 +20,7 @@ import '../../../../domain/network_detector/network_detector.dart';
 import '../client/server_port_tile/server_port_tile.dart';
 import 'widgets/external_url_config_tile.dart';
 import 'widgets/external_url_dialog.dart';
-import 'widgets/global_credentials_popup.dart';
+import 'widgets/global_credentials_dialog.dart';
 import 'widgets/local_network_config_tile.dart';
 import 'widgets/local_network_dialog.dart';
 import 'widgets/permission_request_dialog.dart';
@@ -183,7 +183,7 @@ class AutomaticUrlSwitchingSection extends ConsumerWidget {
                 leading: const Icon(Icons.password_rounded),
                 title: Text(context.l10n.credentials),
                 onTap: () {
-                  GlobalCredentialsPopup.show(context);
+                  GlobalCredentialsDialog.show(context);
                 },
               ),
           ],
