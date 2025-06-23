@@ -396,7 +396,7 @@ class ActiveServerUrl extends _$ActiveServerUrl {
     // Get current WiFi name
     final currentWifi = await NetworkDetector.getCurrentWifiName();
 
-    // Check if we're on any configured local network
+    // Check if we're on any configured local network with timeout
     if (currentWifi != null &&
         localNetworkConfigs != null &&
         localNetworkConfigs.isNotEmpty) {
@@ -408,37 +408,56 @@ class ActiveServerUrl extends _$ActiveServerUrl {
             serverPort,
           );
           if (generatedUrl != null) {
-            // Verify local server is reachable (authentication handled by HTTP client)
-            final isReachable = await NetworkDetector.isServerReachableWithAuth(
-              generatedUrl,
-              globalAuthEnabled == true
-                  ? _getGlobalAuth()
-                  : _getLocalAuth(config),
-            );
-            if (isReachable) {
-              return generatedUrl;
+            // Verify local server is reachable with timeout
+            try {
+              final isReachable = await NetworkDetector.isServerReachableWithAuth(
+                generatedUrl,
+                globalAuthEnabled == true
+                    ? _getGlobalAuth()
+                    : _getLocalAuth(config),
+              ).timeout(
+                const Duration(seconds: 6), // Slightly longer than NetworkDetector timeout
+                onTimeout: () => false,
+              );
+              if (isReachable) {
+                return generatedUrl;
+              }
+            } catch (e) {
+              // Continue to next config if this one fails
+              continue;
             }
           }
         }
       }
     }
 
-    // Try external URLs in parallel for better performance
+    // Try external URLs with timeout and better error handling
     if (externalUrlConfigs != null && externalUrlConfigs.isNotEmpty) {
-      // Create futures for all external URL tests
+      // Create futures for all external URL tests with individual timeouts
       final futures = externalUrlConfigs.map((config) async {
-        final isReachable = await NetworkDetector.isServerReachableWithAuth(
-          config.url,
-          globalAuthEnabled == true
-              ? _getGlobalAuth()
-              : _getExternalAuth(config),
-        );
-        return isReachable ? config.url : null;
+        try {
+          final isReachable = await NetworkDetector.isServerReachableWithAuth(
+            config.url,
+            globalAuthEnabled == true
+                ? _getGlobalAuth()
+                : _getExternalAuth(config),
+          ).timeout(
+            const Duration(seconds: 6), // Slightly longer than NetworkDetector timeout
+            onTimeout: () => false,
+          );
+          return isReachable ? config.url : null;
+        } catch (e) {
+          // Log the error for debugging but don't let it crash the whole process
+          return null;
+        }
       }).toList();
 
-      // Wait for first successful result
+      // Wait for first successful result with overall timeout
       try {
-        final results = await Future.wait(futures);
+        final results = await Future.wait(futures).timeout(
+          const Duration(seconds: 10), // Overall timeout for all external URLs
+          onTimeout: () => List<String?>.filled(futures.length, null),
+        );
         for (final result in results) {
           if (result != null) {
             return result;

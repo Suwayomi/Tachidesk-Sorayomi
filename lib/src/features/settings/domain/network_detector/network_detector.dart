@@ -11,8 +11,8 @@ import 'package:network_info_plus/network_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class NetworkDetector {
-  // Reduced timeout for faster detection - 3 seconds is usually enough
-  static const Duration connectionTimeout = Duration(seconds: 3);
+  // Increased timeout for more reliable detection with automatic URL switching
+  static const Duration connectionTimeout = Duration(seconds: 8);
   
   // Cache for WiFi name to avoid repeated platform calls
   static String? _cachedWifiName;
