@@ -46,7 +46,7 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'No more chapters ahead',
+                context.l10n.noMoreChaptersAhead,
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -94,7 +94,7 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'No more chapters behind',
+                context.l10n.noMoreChaptersBehind,
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -135,7 +135,7 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'Loading next chapter...',
+                context.l10n.loadingNextChapter,
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -176,7 +176,7 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'Loading previous chapter...',
+                context.l10n.loadingPreviousChapter,
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -212,7 +212,7 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'Loaded: $chapterName',
+                context.l10n.nextChapterLoaded(chapterName),
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -249,7 +249,7 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'Loaded: $chapterName',
+                context.l10n.previousChapterLoaded(chapterName),
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -287,7 +287,9 @@ class InfinityContinuousFeedback {
             const Gap(12),
             Expanded(
               child: Text(
-                'Failed to load ${isNext ? 'next' : 'previous'} chapter',
+                isNext
+                    ? context.l10n.failedToLoadNextChapter
+                    : context.l10n.failedToLoadPreviousChapter,
                 style: TextStyle(
                   color: context.theme.colorScheme.onErrorContainer,
                 ),
@@ -352,7 +354,7 @@ class InfinityContinuousChapterSeparator extends StatelessWidget {
               const Gap(8),
               if (!isChapterStart)
                 Text(
-                  'Finished',
+                  context.l10n.finished,
                   style: context.textTheme.titleMedium?.copyWith(
                     color: context.theme.colorScheme.secondary,
                     fontWeight: FontWeight.bold,
@@ -379,7 +381,7 @@ class InfinityContinuousChapterSeparator extends StatelessWidget {
                     ),
                     const Gap(4),
                     Text(
-                      'Chapter Completed',
+                      context.l10n.chapterCompleted,
                       style: context.textTheme.bodySmall?.copyWith(
                         color: context.theme.colorScheme.secondary,
                         fontStyle: FontStyle.italic,

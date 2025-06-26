@@ -31,15 +31,15 @@ class InfinityContinuousChapterLoader {
     BuildContext? context,
   ) async {
     loadingNext.value = true;
-    
+
     // Show loading feedback
     if (context != null && context.mounted) {
       InfinityContinuousFeedback.showLoadingNextChapterFeedback(
-        context, 
+        context,
         nextChapter.name,
       );
     }
-    
+
     try {
       final ChapterPagesDto? nextChapterPages = await ref
           .read(chapterPagesProvider(chapterId: nextChapter.id).future);
@@ -60,11 +60,11 @@ class InfinityContinuousChapterLoader {
           ];
           debugPrint(
               'Successfully loaded next chapter: ${nextChapter.name} with ${nextChapterPages.pages.length} pages');
-              
+
           // Show success feedback
           if (context != null && context.mounted) {
             InfinityContinuousFeedback.showNextChapterLoadedFeedback(
-              context, 
+              context,
               nextChapter.name,
             );
           }
@@ -74,7 +74,7 @@ class InfinityContinuousChapterLoader {
         // Show failure feedback
         if (context != null && context.mounted) {
           InfinityContinuousFeedback.showChapterLoadFailedFeedback(
-            context, 
+            context,
             nextChapter.name,
             isNext: true,
           );
@@ -86,7 +86,7 @@ class InfinityContinuousChapterLoader {
       // Show failure feedback
       if (context != null && context.mounted) {
         InfinityContinuousFeedback.showChapterLoadFailedFeedback(
-          context, 
+          context,
           nextChapter.name,
           isNext: true,
         );
@@ -111,15 +111,15 @@ class InfinityContinuousChapterLoader {
   ) async {
     debugPrint('Starting to load previous chapter: ${previousChapter.name}');
     loadingPrevious.value = true;
-    
+
     // Show loading feedback
     if (context != null && context.mounted) {
       InfinityContinuousFeedback.showLoadingPreviousChapterFeedback(
-        context, 
+        context,
         previousChapter.name,
       );
     }
-    
+
     try {
       final ChapterPagesDto? prevChapterPages = await ref
           .read(chapterPagesProvider(chapterId: previousChapter.id).future);
@@ -198,11 +198,11 @@ class InfinityContinuousChapterLoader {
 
           debugPrint(
               'Previous chapter inserted at beginning. Total chapters now: ${loadedChapters.value.length}');
-              
+
           // Show success feedback
           if (context != null && context.mounted) {
             InfinityContinuousFeedback.showPreviousChapterLoadedFeedback(
-              context, 
+              context,
               previousChapter.name,
             );
           }
@@ -259,7 +259,7 @@ class InfinityContinuousChapterLoader {
         // Show failure feedback
         if (context != null && context.mounted) {
           InfinityContinuousFeedback.showChapterLoadFailedFeedback(
-            context, 
+            context,
             previousChapter.name,
             isNext: false,
           );
@@ -271,7 +271,7 @@ class InfinityContinuousChapterLoader {
       // Show failure feedback
       if (context != null && context.mounted) {
         InfinityContinuousFeedback.showChapterLoadFailedFeedback(
-          context, 
+          context,
           previousChapter.name,
           isNext: false,
         );
