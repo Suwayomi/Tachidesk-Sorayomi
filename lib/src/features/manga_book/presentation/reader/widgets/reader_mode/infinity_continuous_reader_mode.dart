@@ -25,7 +25,6 @@ import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../../../manga_details/controller/manga_details_controller.dart';
 import '../../controller/reader_controller.dart';
-import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
 
 /// Infinity continuous reader mode with support for multi-chapter loading
@@ -446,29 +445,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
       ),
     );
 
-    // Add chapter separator at first and last page
-    if (index == 0 || index == chapterPages.chapter.pageCount - 1) {
-      final bool reverseDirection =
-          scrollDirection == Axis.horizontal && reverse;
-      final Widget separator = SizedBox(
-        width: scrollDirection != Axis.vertical ? context.width * .5 : null,
-        child: ChapterSeparator(
-          manga: manga,
-          chapter: chapter,
-          isPreviousChapterSeparator: (index == 0),
-        ),
-      );
-      return Flex(
-        direction: scrollDirection,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: ((index == 0) != reverseDirection)
-            ? [separator, image]
-            : [image, separator],
-      );
-    } else {
-      return image;
-    }
+    return image;
   }
 
   /// Builds a page item for continuous mode
@@ -596,7 +573,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             const Gap(12),
             Expanded(
               child: Text(
-                "You've reached the end of this manga",
+                context.l10n.lastChapterNotification,
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -640,7 +617,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             const Gap(12),
             Expanded(
               child: Text(
-                "You've reached the beginning of this manga",
+                context.l10n.firstChapterNotification,
                 style: TextStyle(
                   color: context.theme.colorScheme.onInverseSurface,
                 ),
@@ -672,9 +649,15 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           .shrink(); // No separator for pages within the same chapter
     }
 
+    // Double-check: ensure we have multiple chapters loaded before showing separator
+    if (loadedChapters.length <= 1) {
+      return const SizedBox
+          .shrink(); // Don't show separator if only one chapter is loaded
+    }
+
     // Determine if this is a chapter start or end
     final separatorInfo = _getSeparatorInfo(index, loadedChapters);
-    if (separatorInfo == null) return const Gap(16);
+    if (separatorInfo == null) return const SizedBox.shrink();
 
     return Column(
       children: [
@@ -709,7 +692,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
               Text(
                 separatorInfo.isChapterStart
                     ? context.l10n.chapterSeparator
-                    : "Chapter Complete",
+                    : context.l10n.finished,
                 style: context.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: separatorInfo.isChapterStart
@@ -739,7 +722,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                     ),
                     const Gap(4),
                     Text(
-                      "Next Chapter Below",
+                      context.l10n.loadingNextChapter,
                       style: context.textTheme.bodySmall?.copyWith(
                         color: context.theme.colorScheme.secondary,
                         fontWeight: FontWeight.w500,
