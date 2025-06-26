@@ -8,6 +8,7 @@
 ///
 /// This package contains the refactored infinity continuous reader mode split into
 /// multiple focused files for better maintainability and organization.
+library;
 
 export 'infinity_continuous_chapter_loader.dart';
 export 'infinity_continuous_config.dart';

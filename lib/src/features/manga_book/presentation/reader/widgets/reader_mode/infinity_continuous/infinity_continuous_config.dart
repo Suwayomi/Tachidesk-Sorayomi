@@ -10,8 +10,11 @@ import 'package:flutter/material.dart';
 class InfinityContinuousConfig {
   const InfinityContinuousConfig._();
 
-  /// Minimum overscroll distance to trigger chapter loading
-  static const double overscrollThreshold = 10.0;
+  /// Cooldown period to prevent rapid chapter loading triggers
+  static const Duration chapterLoadCooldown = Duration(milliseconds: 500);
+
+  /// Tolerance for detecting when scroll position is at min/max extent (in pixels)
+  static const double scrollExtentTolerance = 1.0;
 
   /// Higher threshold for user feedback to avoid spam
   static const double feedbackThreshold = 30.0;
