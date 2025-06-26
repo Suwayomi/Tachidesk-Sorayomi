@@ -33,8 +33,6 @@ class InfinityContinuousFeedback {
 
     lastFeedbackTime.value = now;
 
-    debugPrint('🔔 Showing end of manga feedback');
-
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -80,8 +78,6 @@ class InfinityContinuousFeedback {
     }
 
     lastFeedbackTime.value = now;
-
-    debugPrint('🔔 Showing start of manga feedback');
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

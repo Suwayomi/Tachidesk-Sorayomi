@@ -197,13 +197,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
       (pages: chapterPages, chapter: chapter, chapterId: chapter.id),
     ]);
 
-    // Debug logging for loaded chapters
-    useEffect(() {
-      debugPrint(
-          'Loaded chapters updated: ${loadedChapters.value.map((c) => c.chapter.name).join(', ')}');
-      return null;
-    }, [loadedChapters.value]);
-
     // Track chapter loading states
     final loadingNext = useState(false);
     final loadingPrevious = useState(false);
@@ -234,9 +227,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     useEffect(() {
       void updateNextPrevChapters() async {
         final currentChapterId = currentVisibleChapter.value.id;
-        debugPrint(
-            'Updating next/prev chapters for chapter ID: $currentChapterId');
-
         try {
           final nextPrevChapters = ref.read(
             getNextAndPreviousChaptersProvider(
@@ -245,10 +235,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             ),
           );
           nextPrevChapterPair.value = nextPrevChapters;
-          debugPrint(
-              'Next chapter: ${nextPrevChapters?.first?.name}, Previous chapter: ${nextPrevChapters?.second?.name}');
         } catch (e) {
-          debugPrint('Error getting next/prev chapters: $e');
           nextPrevChapterPair.value = null;
         }
       }
@@ -338,8 +325,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             : null,
         NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
-            debugPrint('ScrollNotification: ${notification.runtimeType}');
-
             // Custom overscroll detection based on Stack Overflow solution
             // https://stackoverflow.com/questions/67091643/check-for-overscroll-in-pageview-flutter
             if (notification is ScrollUpdateNotification) {
@@ -517,17 +502,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     final atMinScrollExtent = (metrics.pixels - metrics.minScrollExtent).abs() <
         InfinityContinuousConfig.scrollExtentTolerance;
 
-    debugPrint(
-        'Scroll metrics - pixels: ${metrics.pixels.toStringAsFixed(2)}, min: ${metrics.minScrollExtent.toStringAsFixed(2)}, max: ${metrics.maxScrollExtent.toStringAsFixed(2)}');
-    debugPrint(
-        'Position check - first: $firstVisibleIndex, last: $lastVisibleIndex, maxIndex: $maxIndex');
-    debugPrint(
-        'Overscroll check - end: $overscrollEnd, start: $overscrollStart, atEdge: ${metrics.atEdge}');
-    debugPrint(
-        'Chapter availability - next: ${nextPrevChapterPair?.first?.name ?? 'none'}, previous: ${nextPrevChapterPair?.second?.name ?? 'none'}');
-    debugPrint(
-        'Loading states - loadingNext: ${loadingNext.value}, loadingPrevious: ${loadingPrevious.value}');
-
     // Trigger next chapter loading on overscroll at end
     if ((overscrollEnd ||
             (atMaxScrollExtent &&
@@ -538,10 +512,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         nextPrevChapterPair?.first != null) {
       if (lastEndScrollTime.value == null ||
           now.difference(lastEndScrollTime.value!) > scrollCooldown) {
-        debugPrint(
-            '🔥 OVERSCROLL DETECTED AT END - triggering next chapter load');
         final nextChapter = nextPrevChapterPair!.first!;
-        debugPrint('Loading next chapter: ${nextChapter.name}');
 
         lastEndScrollTime.value = now;
         InfinityContinuousChapterLoader.loadNextChapter(
@@ -565,10 +536,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         nextPrevChapterPair?.second != null) {
       if (lastStartScrollTime.value == null ||
           now.difference(lastStartScrollTime.value!) > scrollCooldown) {
-        debugPrint(
-            '🔥 OVERSCROLL DETECTED AT START - triggering previous chapter load');
         final previousChapter = nextPrevChapterPair!.second!;
-        debugPrint('Loading previous chapter: ${previousChapter.name}');
 
         lastStartScrollTime.value = now;
         InfinityContinuousChapterLoader.loadPreviousChapter(
@@ -591,8 +559,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                 lastVisibleIndex >= maxIndex)) &&
         !loadingNext.value &&
         (nextPrevChapterPair?.first == null || hasReachedEnd.value)) {
-      debugPrint(
-          '🔔 Triggering end of manga feedback - overscrollEnd: $overscrollEnd, atMaxScrollExtent: $atMaxScrollExtent, tryingToScrollDown: $tryingToScrollDown, lastVisibleIndex: $lastVisibleIndex, maxIndex: $maxIndex, loadingNext: ${loadingNext.value}, nextChapter: ${nextPrevChapterPair?.first?.name ?? 'none'}, hasReachedEnd: ${hasReachedEnd.value}');
       InfinityContinuousFeedback.showEndOfMangaFeedback(
           context, lastEndFeedbackTime);
     }
@@ -604,8 +570,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                 firstVisibleIndex <= 0)) &&
         !loadingPrevious.value &&
         (nextPrevChapterPair?.second == null || hasReachedStart.value)) {
-      debugPrint(
-          '🔔 Triggering start of manga feedback - overscrollStart: $overscrollStart, atMinScrollExtent: $atMinScrollExtent, tryingToScrollUp: $tryingToScrollUp, firstVisibleIndex: $firstVisibleIndex, loadingPrevious: ${loadingPrevious.value}, previousChapter: ${nextPrevChapterPair?.second?.name ?? 'none'}, hasReachedStart: ${hasReachedStart.value}');
       InfinityContinuousFeedback.showStartOfMangaFeedback(
           context, lastStartFeedbackTime);
     }
