@@ -632,7 +632,7 @@
   "@cloudflareBypass": {
     "description": "Section title for Cloudflare Bypass"
   },
-  "enableSocksProxy": "Use SOCKS Proxy",
+  "enableSocksProxy": "Use Proxy SOCKS",
   "@enableSocksProxy": {
     "description": "Switch title to enable SOCKS Proxy"
   },
@@ -730,7 +730,7 @@
   "@saveAsCBZArchive": {
     "description": "Settings toggle label for Save as CBZ archive"
   },
-  "serverBindings": "Vinculações de servidor",
+  "serverBindings": "Ligações do servidor",
   "@serverBindings": {
     "description": "Title for server bindings settings"
   },
@@ -777,5 +777,221 @@
   "misc": "Diversos",
   "@misc": {
     "description": "Section title for misc settings"
-  }
+  },
+  "history": "Histórico",
+  "@history": {},
+  "searchHistory": "Pesquisar histórico...",
+  "@searchHistory": {},
+  "enterProp": "Entrar {prop}",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "nHours": "{n, plural, =1{1 hour} other{{n} hours}}",
+  "@nHours": {
+    "description": "Text to represent 'n' hours"
+  },
+  "nRepo": "{n, plural, =1{1 Repo} other{{n} Repos}}",
+  "@nRepo": {
+    "description": "Text to show n repo as subtitle"
+  },
+  "nChapters": "{n, plural, =0{None} =1{1 Chapter} other{{n} Chapters}}",
+  "@nChapters": {
+    "description": "Text for showing N chapters"
+  },
+  "nSources": "{n, plural, =1{1 Source} other{{n} Sources}}",
+  "@nSources": {
+    "description": "Text to represent n number Parallel source requests"
+  },
+  "noPropFound": "Nenhum {prop} encontrado",
+  "@noPropFound": {
+    "description": "Template text to say No value for property found"
+  },
+  "migrate": "Migrar",
+  "@migrate": {},
+  "migrationPreview": "Pré-visualizar migração",
+  "@migrationPreview": {},
+  "migrationSelectTargetSource": "Selecione a fonte de destino",
+  "@migrationSelectTargetSource": {},
+  "migrationSearchInSource": "Pesquisar em {sourceName}",
+  "@migrationSearchInSource": {},
+  "migrationInProgress": "Migração em Progresso",
+  "@migrationInProgress": {},
+  "migrationFailed": "Migração Falhou",
+  "@migrationFailed": {},
+  "migrateChapters": "Migrar capítulos",
+  "@migrateChapters": {},
+  "migrationCancelled": "Migração cancelada",
+  "@migrationCancelled": {},
+  "migrateChaptersDescription": "Copie o status do capítulo lido para nova fonte",
+  "@migrateChaptersDescription": {},
+  "selectTargetSource": "Selecione a fonte de destino",
+  "@selectTargetSource": {},
+  "migrationSettings": "Configurações de migração",
+  "@migrationSettings": {},
+  "errorGettingMigrationSources": "Falha ao obter fontes de migração",
+  "@errorGettingMigrationSources": {},
+  "deleteSourceWarning": "O mangá original será removido de sua biblioteca após a migração.",
+  "@deleteSourceWarning": {},
+  "confirmMigration": "Confirme a migração",
+  "@confirmMigration": {},
+  "startMigration": "Iniciar migração",
+  "@startMigration": {},
+  "migrationWarning": "Isso irá mover permanentemente seus dados de mangá. Esta ação não pode ser desfeita.",
+  "@migrationWarning": {},
+  "migrationConfirmationMessage": "Tem certeza de que quer migrar este mangá? Esta ação não pode ser desfeita.",
+  "@migrationConfirmationMessage": {},
+  "preparingMigration": "Preparando a migração...",
+  "@preparingMigration": {},
+  "migrationCompleted": "Migração concluída!",
+  "@migrationCompleted": {},
+  "deleteSourceAfterMigration": "Excluir mangá origem após a migração",
+  "@deleteSourceAfterMigration": {},
+  "migrationComplete": "Migração concluída com sucesso",
+  "@migrationComplete": {},
+  "errorLoadingSources": "Erro ao carregar fontes",
+  "@errorLoadingSources": {},
+  "errorSearchingMangaInSource": "Falha ao procurar mangá na fonte",
+  "@errorSearchingMangaInSource": {},
+  "errorFetchingSourceManga": "Falha ao buscar mangá de origem",
+  "@errorFetchingSourceManga": {},
+  "migrateTrackingDescription": "Copiar informações de rastreamento para nova fonte",
+  "@migrateTrackingDescription": {},
+  "migrationOptions": "Opções de migração",
+  "@migrationOptions": {},
+  "noSourcesAvailable": "Não existem fontes disponíveis para migração",
+  "@noSourcesAvailable": {},
+  "checkSourceConfiguration": "Por favor, verifique a configuração da sua fonte",
+  "@checkSourceConfiguration": {},
+  "noAlternativeSources": "Não existem fontes alternativas disponíveis",
+  "@noAlternativeSources": {},
+  "installMoreSources": "Instale mais fontes para habilitar a migração",
+  "@installMoreSources": {},
+  "tryDifferentSearch": "Experimente um termo de pesquisa diferente",
+  "@tryDifferentSearch": {},
+  "deleteSourceManga": "Deletar mangá fonte",
+  "@deleteSourceManga": {},
+  "quickMigration": "Rápido",
+  "@quickMigration": {},
+  "fullMigration": "Total",
+  "@fullMigration": {},
+  "customMigration": "Personalizado",
+  "@customMigration": {},
+  "done": "Feito",
+  "@done": {},
+  "to": "Para",
+  "@to": {},
+  "migrationDetails": "Detalhes da migração",
+  "@migrationDetails": {},
+  "searchAllSources": "Pesquisar todas as fontes",
+  "@searchAllSources": {},
+  "searchingAllSources": "Procurando em todas as fontes disponíveis...",
+  "@searchingAllSources": {},
+  "noMatchingMangaFound": "Nenhum mangá correspondente encontrado em qualquer fonte",
+  "@noMatchingMangaFound": {},
+  "errorOccurred": "Um erro ocorreu",
+  "@errorOccurred": {},
+  "viewManga": "Ver Mangá",
+  "@viewManga": {},
+  "noSearchResults": "Sem resultados de pesquisa",
+  "@noSearchResults": {},
+  "startReadingToSeeHistory": "Comece a ler mangás para ver seu histórico aqui",
+  "@startReadingToSeeHistory": {},
+  "tryDifferentSearchTerm": "Experimente um termo de pesquisa diferente",
+  "@tryDifferentSearchTerm": {},
+  "removeFromHistory": "Remover do Histórico",
+  "@removeFromHistory": {},
+  "readerLastPageSwipeToggle": "Gesto na última página",
+  "@readerLastPageSwipeToggle": {
+    "description": "Last page swipe"
+  },
+  "readerLastPageSwipeToggleDescription": "Deslizar para o próximo capítulo só na última página",
+  "@readerLastPageSwipeToggleDescription": {
+    "description": "Swipe to next chapter only at last page"
+  },
+  "readerIgnoreSafeAreaToggle": "Ignorar área segura",
+  "@readerIgnoreSafeAreaToggle": {
+    "description": "Toggle text to ignore safe area in reader"
+  },
+  "migrateCategoriesDescription": "Copiar categorias do mangá para nova fonte",
+  "@migrateCategoriesDescription": {},
+  "migrateDownloadsDescription": "Mover capítulos baixados para nova fonte",
+  "@migrateDownloadsDescription": {},
+  "migrateCategories": "Migrar categorias",
+  "@migrateCategories": {},
+  "migrateDownloads": "Migrar Downloads",
+  "@migrateDownloads": {},
+  "migrateTracking": "Migrar Rastreadores",
+  "@migrateTracking": {},
+  "errorTargetMangaNotFound": "Mangá alvo não encontrado",
+  "@errorTargetMangaNotFound": {},
+  "searchManga": "Procurar mangá...",
+  "@searchManga": {},
+  "enterSearchTerm": "Digite um termo de pesquisa para encontrar mangá",
+  "@enterSearchTerm": {},
+  "noResultsFound": "Nenhum resultado encontrado",
+  "@noResultsFound": {},
+  "searchError": "Erro de pesquisa",
+  "@searchError": {},
+  "importantNotice": "Aviso Importante",
+  "@importantNotice": {},
+  "migrationSuccessMessage": "Seu mangá foi migrado com sucesso para a nova fonte.",
+  "@migrationSuccessMessage": {},
+  "cancelMigration": "Cancelar migração",
+  "@cancelMigration": {},
+  "cancelMigrationConfirmation": "Tem certeza de que quer cancelar a migração? Esta ação não pode ser desfeita.",
+  "@cancelMigrationConfirmation": {},
+  "quickPresets": "Presets rápidos",
+  "@quickPresets": {},
+  "deleteSourceMangaDescription": "Remova o mangá original da biblioteca após a migração",
+  "@deleteSourceMangaDescription": {},
+  "yes": "Sim",
+  "@yes": {},
+  "no": "Não",
+  "@no": {},
+  "errorSourceMangaNotFound": "Mangá de origem não encontrado",
+  "@errorSourceMangaNotFound": {},
+  "errorFetchingTargetManga": "Falha ao buscar mangá destino",
+  "@errorFetchingTargetManga": {},
+  "searchForManga": "Procurar mangá na fonte destino",
+  "@searchForManga": {},
+  "from": "A partir de",
+  "@from": {},
+  "withUnreadChapter": "Com capítulo(s) não lido(s)",
+  "@withUnreadChapter": {
+    "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+  },
+  "recentlyRead": "Lidos recentemente",
+  "@recentlyRead": {
+    "description": "Recently Read Text to show reading history grouping"
+  },
+  "noHistoryFound": "Nenhum histórico de leitura encontrado",
+  "@noHistoryFound": {},
+  "removeFromHistoryConfirmation": "Tem certeza de que deseja remover este capítulo do seu histórico de leitura?",
+  "@removeFromHistoryConfirmation": {},
+  "timeoutSettings": "Configurações de timeout",
+  "@timeoutSettings": {},
+  "serverRequestTimeoutDescription": "Tempo para esperar por respostas do servidor (em segundos)",
+  "@serverRequestTimeoutDescription": {},
+  "autoRefreshOnTimeout": "Auto-refresh no Timeout",
+  "@autoRefreshOnTimeout": {
+    "description": "Toggle automatic retry on timeout"
+  },
+  "nMinutes": "{n, plural, =1{1 Minute} other{{n} Minutes}}",
+  "@nMinutes": {
+    "description": "Text to represent 'n' Minutes"
+  },
+  "mangaSortLastUpdated": "Última atualização",
+  "@mangaSortLastUpdated": {
+    "description": "Radio button text for Manga sort Type - Last Updated"
+  },
+  "nSeconds": "{n, plural, =1{1 second} other{{n} seconds}}",
+  "@nSeconds": {
+    "description": "Text to represent 'n' seconds"
+  },
+  "nDays": "{count, select, 01{01 Day} other{{count} Days}}",
+  "@nDays": {
+    "description": "to show Number of days with plural"
+  },
+  "migrationCancelledMessage": "O processo de migração foi cancelado. Não foram feitas alterações.",
+  "@migrationCancelledMessage": {}
 }
