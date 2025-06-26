@@ -25,7 +25,7 @@ import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
-import 'enhanced_continuous_reader_mode.dart';
+import 'infinity_continuous_reader_mode.dart';
 
 /// Configuration constants for improved scroll behavior
 class _ScrollConfig {
@@ -64,11 +64,14 @@ class ContinuousReaderMode extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Check if infinity scrolling mode is enabled
-    final infinityScrollingEnabled = ref.watch(infinityScrollingModeEnabledProvider).ifNull(false);
-    
-    // Use enhanced mode for webtoon with infinity scrolling enabled
-    if (infinityScrollingEnabled && scrollDirection == Axis.vertical && !showSeparator) {
-      return EnhancedContinuousReaderMode(
+    final infinityScrollingEnabled =
+        ref.watch(infinityScrollingModeEnabledProvider).ifNull(false);
+
+    // Use infinity mode for webtoon with infinity scrolling enabled
+    if (infinityScrollingEnabled &&
+        scrollDirection == Axis.vertical &&
+        !showSeparator) {
+      return InfinityContinuousReaderMode(
         manga: manga,
         chapter: chapter,
         chapterPages: chapterPages,

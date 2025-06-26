@@ -27,9 +27,9 @@ import '../../controller/reader_controller.dart';
 import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
 
-/// Enhanced continuous reader mode with support for multi-chapter loading
-class EnhancedContinuousReaderMode extends HookConsumerWidget {
-  const EnhancedContinuousReaderMode({
+/// Infinity continuous reader mode with support for multi-chapter loading
+class InfinityContinuousReaderMode extends HookConsumerWidget {
+  const InfinityContinuousReaderMode({
     super.key,
     required this.manga,
     required this.chapter,
@@ -50,8 +50,9 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final infinityScrollingEnabled = ref.watch(infinityScrollingModeEnabledProvider).ifNull(false);
-    
+    final infinityScrollingEnabled =
+        ref.watch(infinityScrollingModeEnabledProvider).ifNull(false);
+
     // If continuous reading is disabled, use the normal continuous reader mode
     if (!infinityScrollingEnabled || scrollDirection != Axis.vertical) {
       return _buildNormalMode(context, ref);
@@ -158,8 +159,7 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
           minCacheExtent: scrollDirection == Axis.vertical
               ? context.height * 2
               : context.width * 2,
-          separatorBuilder: (BuildContext context, int index) =>
-              const Gap(16),
+          separatorBuilder: (BuildContext context, int index) => const Gap(16),
           itemBuilder: (BuildContext context, int index) {
             return _buildPageItem(context, index);
           },
@@ -190,7 +190,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
     );
 
     // Track which chapters are loaded with their metadata in order
-    final loadedChapters = useState<List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>([
+    final loadedChapters = useState<
+        List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>([
       (pages: chapterPages, chapter: chapter, chapterId: chapter.id),
     ]);
 
@@ -208,24 +209,33 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
         if (positions.isEmpty) return;
 
         final totalPages = _getTotalPages(loadedChapters.value);
-        final lastVisible = positions.map((p) => p.index).reduce((a, b) => a > b ? a : b);
-        final firstVisible = positions.map((p) => p.index).reduce((a, b) => a < b ? a : b);
+        final lastVisible =
+            positions.map((p) => p.index).reduce((a, b) => a > b ? a : b);
+        final firstVisible =
+            positions.map((p) => p.index).reduce((a, b) => a < b ? a : b);
 
         // Debug information
-        print('Debug: totalPages=$totalPages, lastVisible=$lastVisible, firstVisible=$firstVisible');
-        print('Debug: loadingNext=${loadingNext.value}, hasReachedEnd=${hasReachedEnd.value}');
-        print('Debug: loadingPrevious=${loadingPrevious.value}, hasReachedStart=${hasReachedStart.value}');
-        print('Debug: nextChapter=${nextPrevChapterPair?.first?.id}, prevChapter=${nextPrevChapterPair?.second?.id}');
-        print('Debug: loadedChapters=[${loadedChapters.value.map((c) => c.chapterId).join(", ")}]');
+        print(
+            'Debug: totalPages=$totalPages, lastVisible=$lastVisible, firstVisible=$firstVisible');
+        print(
+            'Debug: loadingNext=${loadingNext.value}, hasReachedEnd=${hasReachedEnd.value}');
+        print(
+            'Debug: loadingPrevious=${loadingPrevious.value}, hasReachedStart=${hasReachedStart.value}');
+        print(
+            'Debug: nextChapter=${nextPrevChapterPair?.first?.id}, prevChapter=${nextPrevChapterPair?.second?.id}');
+        print(
+            'Debug: loadedChapters=[${loadedChapters.value.map((c) => c.chapterId).join(", ")}]');
 
         // Load next chapter when approaching the end (within 5 pages of the end)
-        if (!loadingNext.value && 
+        if (!loadingNext.value &&
             !hasReachedEnd.value &&
             nextPrevChapterPair?.first != null &&
             totalPages > 0 &&
             lastVisible >= totalPages - 5) {
-          print('Debug: Loading next chapter ${nextPrevChapterPair!.first!.id}');
-          _loadNextChapter(ref, nextPrevChapterPair.first!, loadedChapters, loadingNext, hasReachedEnd);
+          print(
+              'Debug: Loading next chapter ${nextPrevChapterPair!.first!.id}');
+          _loadNextChapter(ref, nextPrevChapterPair.first!, loadedChapters,
+              loadingNext, hasReachedEnd);
         }
 
         // Load previous chapter when approaching the start (within 5 pages of the start)
@@ -233,8 +243,10 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
             !hasReachedStart.value &&
             nextPrevChapterPair?.second != null &&
             firstVisible <= 5) {
-          print('Debug: Loading previous chapter ${nextPrevChapterPair!.second!.id}');
-          _loadPreviousChapter(ref, nextPrevChapterPair.second!, loadedChapters, loadingPrevious, hasReachedStart);
+          print(
+              'Debug: Loading previous chapter ${nextPrevChapterPair!.second!.id}');
+          _loadPreviousChapter(ref, nextPrevChapterPair.second!, loadedChapters,
+              loadingPrevious, hasReachedStart);
         }
 
         // Update current index
@@ -303,8 +315,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
               _buildSeparator(context, index, loadedChapters.value),
           itemBuilder: (BuildContext context, int index) {
             return _buildContinuousPageItem(
-              context, 
-              index, 
+              context,
+              index,
               loadedChapters.value,
               loadingNext.value,
               loadingPrevious.value,
@@ -321,9 +333,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   Widget _buildPageItem(BuildContext context, int index) {
     final Widget image = ServerImage(
       showReloadButton: true,
-      fit: scrollDirection == Axis.vertical
-          ? BoxFit.fitWidth
-          : BoxFit.fitHeight,
+      fit:
+          scrollDirection == Axis.vertical ? BoxFit.fitWidth : BoxFit.fitHeight,
       appendApiToUrl: false,
       imageUrl: chapterPages.pages[index],
       progressIndicatorBuilder: (_, __, downloadProgress) => Center(
@@ -332,12 +343,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
         ),
       ),
       wrapper: (Widget child) => SizedBox(
-        height: scrollDirection == Axis.vertical
-            ? context.height * .7
-            : null,
-        width: scrollDirection != Axis.vertical
-            ? context.width * .7
-            : null,
+        height: scrollDirection == Axis.vertical ? context.height * .7 : null,
+        width: scrollDirection != Axis.vertical ? context.width * .7 : null,
         child: child,
       ),
     );
@@ -347,9 +354,7 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
       final bool reverseDirection =
           scrollDirection == Axis.horizontal && reverse;
       final Widget separator = SizedBox(
-        width: scrollDirection != Axis.vertical
-            ? context.width * .5
-            : null,
+        width: scrollDirection != Axis.vertical ? context.width * .5 : null,
         child: ChapterSeparator(
           manga: manga,
           chapter: chapter,
@@ -373,7 +378,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   Widget _buildContinuousPageItem(
     BuildContext context,
     int index,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})> loadedChapters,
+    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+        loadedChapters,
     bool loadingNext,
     bool loadingPrevious,
     bool hasReachedEnd,
@@ -381,7 +387,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   ) {
     final chapterInfo = _getChapterInfoForIndex(index, loadedChapters);
     if (chapterInfo == null) {
-      return const SizedBox(height: 100, child: Center(child: CircularProgressIndicator()));
+      return const SizedBox(
+          height: 100, child: Center(child: CircularProgressIndicator()));
     }
 
     final Widget image = ServerImage(
@@ -404,7 +411,11 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   }
 
   /// Builds separator for continuous mode
-  Widget _buildSeparator(BuildContext context, int index, List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})> loadedChapters) {
+  Widget _buildSeparator(
+      BuildContext context,
+      int index,
+      List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+          loadedChapters) {
     final isChapterBoundary = _isChapterBoundary(index, loadedChapters);
     if (!isChapterBoundary) {
       return const Gap(16);
@@ -455,30 +466,40 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   void _loadNextChapter(
     WidgetRef ref,
     ChapterDto nextChapter,
-    ValueNotifier<List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>> loadedChapters,
+    ValueNotifier<
+            List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>
+        loadedChapters,
     ValueNotifier<bool> loadingNext,
     ValueNotifier<bool> hasReachedEnd,
   ) async {
     print('Debug: Starting to load next chapter ${nextChapter.id}');
     loadingNext.value = true;
     try {
-      final nextChapterPages = await ref.read(chapterPagesProvider(chapterId: nextChapter.id).future);
+      final nextChapterPages = await ref
+          .read(chapterPagesProvider(chapterId: nextChapter.id).future);
       if (nextChapterPages != null) {
-        print('Debug: Successfully loaded next chapter ${nextChapter.id} with ${nextChapterPages.pages.length} pages');
-        
+        print(
+            'Debug: Successfully loaded next chapter ${nextChapter.id} with ${nextChapterPages.pages.length} pages');
+
         // Check if chapter is already loaded to avoid duplicates
-        final alreadyLoaded = loadedChapters.value.any((item) => item.chapterId == nextChapter.id);
+        final alreadyLoaded = loadedChapters.value
+            .any((item) => item.chapterId == nextChapter.id);
         if (!alreadyLoaded) {
           loadedChapters.value = [
             ...loadedChapters.value,
-            (pages: nextChapterPages, chapter: nextChapter, chapterId: nextChapter.id),
+            (
+              pages: nextChapterPages,
+              chapter: nextChapter,
+              chapterId: nextChapter.id
+            ),
           ];
           print('Debug: Total loaded chapters: ${loadedChapters.value.length}');
         } else {
           print('Debug: Chapter ${nextChapter.id} already loaded, skipping');
         }
       } else {
-        print('Debug: Failed to load next chapter ${nextChapter.id} - nextChapterPages is null');
+        print(
+            'Debug: Failed to load next chapter ${nextChapter.id} - nextChapterPages is null');
         hasReachedEnd.value = true;
       }
     } catch (e) {
@@ -493,31 +514,42 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   void _loadPreviousChapter(
     WidgetRef ref,
     ChapterDto previousChapter,
-    ValueNotifier<List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>> loadedChapters,
+    ValueNotifier<
+            List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>
+        loadedChapters,
     ValueNotifier<bool> loadingPrevious,
     ValueNotifier<bool> hasReachedStart,
   ) async {
     print('Debug: Starting to load previous chapter ${previousChapter.id}');
     loadingPrevious.value = true;
     try {
-      final prevChapterPages = await ref.read(chapterPagesProvider(chapterId: previousChapter.id).future);
+      final prevChapterPages = await ref
+          .read(chapterPagesProvider(chapterId: previousChapter.id).future);
       if (prevChapterPages != null) {
-        print('Debug: Successfully loaded previous chapter ${previousChapter.id} with ${prevChapterPages.pages.length} pages');
-        
+        print(
+            'Debug: Successfully loaded previous chapter ${previousChapter.id} with ${prevChapterPages.pages.length} pages');
+
         // Check if chapter is already loaded to avoid duplicates
-        final alreadyLoaded = loadedChapters.value.any((item) => item.chapterId == previousChapter.id);
+        final alreadyLoaded = loadedChapters.value
+            .any((item) => item.chapterId == previousChapter.id);
         if (!alreadyLoaded) {
           // Insert at the beginning
           loadedChapters.value = [
-            (pages: prevChapterPages, chapter: previousChapter, chapterId: previousChapter.id),
+            (
+              pages: prevChapterPages,
+              chapter: previousChapter,
+              chapterId: previousChapter.id
+            ),
             ...loadedChapters.value,
           ];
           print('Debug: Total loaded chapters: ${loadedChapters.value.length}');
         } else {
-          print('Debug: Chapter ${previousChapter.id} already loaded, skipping');
+          print(
+              'Debug: Chapter ${previousChapter.id} already loaded, skipping');
         }
       } else {
-        print('Debug: Failed to load previous chapter ${previousChapter.id} - prevChapterPages is null');
+        print(
+            'Debug: Failed to load previous chapter ${previousChapter.id} - prevChapterPages is null');
         hasReachedStart.value = true;
       }
     } catch (e) {
@@ -529,18 +561,23 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   }
 
   /// Calculate total pages across all loaded chapters
-  int _getTotalPages(List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})> loadedChapters) {
-    return loadedChapters.fold(0, (sum, chapterData) => sum + chapterData.pages.pages.length);
+  int _getTotalPages(
+      List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+          loadedChapters) {
+    return loadedChapters.fold(
+        0, (sum, chapterData) => sum + chapterData.pages.pages.length);
   }
 
   /// Get chapter info for a specific index
   ({String page, String chapterName, int chapterId})? _getChapterInfoForIndex(
     int index,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})> loadedChapters,
+    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+        loadedChapters,
   ) {
     int currentIndex = 0;
     for (final chapterData in loadedChapters) {
-      if (index >= currentIndex && index < currentIndex + chapterData.pages.pages.length) {
+      if (index >= currentIndex &&
+          index < currentIndex + chapterData.pages.pages.length) {
         final pageIndex = index - currentIndex;
         return (
           page: chapterData.pages.pages[pageIndex],
@@ -554,7 +591,10 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   }
 
   /// Check if the index is at a chapter boundary
-  bool _isChapterBoundary(int index, List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})> loadedChapters) {
+  bool _isChapterBoundary(
+      int index,
+      List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+          loadedChapters) {
     int currentIndex = 0;
     for (final chapterData in loadedChapters) {
       if (index == currentIndex && currentIndex > 0) {
@@ -569,7 +609,8 @@ class EnhancedContinuousReaderMode extends HookConsumerWidget {
   void _updateCurrentIndex(
     List<ItemPosition> positions,
     ValueNotifier<int> currentIndex,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})> loadedChapters,
+    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+        loadedChapters,
   ) {
     if (positions.isEmpty) return;
 
