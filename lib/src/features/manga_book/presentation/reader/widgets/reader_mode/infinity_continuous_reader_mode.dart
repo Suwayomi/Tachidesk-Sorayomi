@@ -337,6 +337,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                 hasReachedStart,
                 lastEndFeedbackTime,
                 lastStartFeedbackTime,
+                scrollController,
+                positionsListener,
               );
             }
 
@@ -381,7 +383,9 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                         nextPrevChapterPair.value!.second!,
                         loadedChapters,
                         loadingPrevious,
-                        hasReachedStart);
+                        hasReachedStart,
+                        scrollController,
+                        positionsListener);
                   }
                 });
               } else if (!atStart && isAtStart.value) {
@@ -517,6 +521,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     ValueNotifier<bool> hasReachedStart,
     ObjectRef<DateTime?> lastEndFeedbackTime,
     ObjectRef<DateTime?> lastStartFeedbackTime,
+    ItemScrollController scrollController,
+    ItemPositionsListener positionsListener,
   ) {
     const double kOverscrollThreshold =
         10.0; // Minimum overscroll distance to trigger
@@ -537,8 +543,14 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         !loadingPrevious.value &&
         !hasReachedStart.value &&
         nextPrevChapterPair?.second != null) {
-      _loadPreviousChapter(ref, nextPrevChapterPair!.second!, loadedChapters,
-          loadingPrevious, hasReachedStart);
+      _loadPreviousChapter(
+          ref,
+          nextPrevChapterPair!.second!,
+          loadedChapters,
+          loadingPrevious,
+          hasReachedStart,
+          scrollController,
+          positionsListener);
     }
 
     // Show user feedback when trying to scroll past the last chapter
@@ -821,6 +833,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         loadedChapters,
     ValueNotifier<bool> loadingPrevious,
     ValueNotifier<bool> hasReachedStart,
+    ItemScrollController? scrollController,
+    ItemPositionsListener? positionsListener,
   ) async {
     loadingPrevious.value = true;
     try {
@@ -831,6 +845,27 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         final alreadyLoaded = loadedChapters.value
             .any((item) => item.chapterId == previousChapter.id);
         if (!alreadyLoaded) {
+          // Store current scroll position before adding the chapter
+          int? currentIndex;
+          if (scrollController != null && positionsListener != null) {
+            final positions = positionsListener.itemPositions.value.toList();
+            if (positions.isNotEmpty) {
+              // Find the most visible item
+              ItemPosition? mostVisible;
+              double bestVisibleArea = 0.0;
+              for (final position in positions) {
+                final visibleArea = _calculateVisibleArea(position);
+                if (visibleArea > bestVisibleArea) {
+                  bestVisibleArea = visibleArea;
+                  mostVisible = position;
+                }
+              }
+              currentIndex = mostVisible?.index;
+            }
+          }
+
+          final newChapterPageCount = prevChapterPages.pages.length;
+
           // Insert at the beginning
           loadedChapters.value = [
             (
@@ -840,6 +875,23 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             ),
             ...loadedChapters.value,
           ];
+
+          // Adjust scroll position to maintain current view after insertion
+          if (currentIndex != null && scrollController != null) {
+            // The new index should be the old index plus the number of pages in the new chapter
+            final newIndex = currentIndex + newChapterPageCount;
+
+            // Use a slight delay to ensure the list has been updated
+            Future.microtask(() {
+              try {
+                scrollController.jumpTo(index: newIndex);
+              } catch (e) {
+                // Fallback if jump fails
+                debugPrint(
+                    'Failed to adjust scroll position after loading previous chapter: $e');
+              }
+            });
+          }
         }
       } else {
         hasReachedStart.value = true;
