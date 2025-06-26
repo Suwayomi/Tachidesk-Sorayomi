@@ -160,7 +160,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           minCacheExtent: scrollDirection == Axis.vertical
               ? context.height * 2
               : context.width * 2,
-          separatorBuilder: (BuildContext context, int index) => const Gap(16),
+          separatorBuilder: (BuildContext context, int index) =>
+              const SizedBox.shrink(),
           itemBuilder: (BuildContext context, int index) {
             return _buildPageItem(context, index);
           },
@@ -667,7 +668,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     final isChapterBoundary = _isChapterBoundary(index, loadedChapters);
 
     if (!isChapterBoundary) {
-      return const Gap(16);
+      return const SizedBox
+          .shrink(); // No separator for pages within the same chapter
     }
 
     // Determine if this is a chapter start or end
