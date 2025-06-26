@@ -4,13 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -24,8 +22,12 @@ import '../../../../domain/chapter/chapter_model.dart';
 import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../../../manga_details/controller/manga_details_controller.dart';
-import '../../controller/reader_controller.dart';
 import '../reader_wrapper.dart';
+import 'infinity_continuous/infinity_continuous_chapter_loader.dart';
+import 'infinity_continuous/infinity_continuous_config.dart';
+import 'infinity_continuous/infinity_continuous_feedback.dart';
+import 'infinity_continuous/infinity_continuous_navigation.dart';
+import 'infinity_continuous/infinity_continuous_utils.dart';
 
 /// Infinity continuous reader mode with support for multi-chapter loading
 class InfinityContinuousReaderMode extends HookConsumerWidget {
@@ -87,9 +89,11 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         double bestVisibleArea = 0.0;
 
         for (final ItemPosition position in positions) {
-          final double visibleArea = _calculateVisibleArea(position);
+          final double visibleArea =
+              InfinityContinuousUtils.calculateVisibleArea(position);
 
-          if (visibleArea > bestVisibleArea && visibleArea > 0.4) {
+          if (visibleArea > bestVisibleArea &&
+              visibleArea > InfinityContinuousConfig.minVisibleAreaThreshold) {
             bestVisibleArea = visibleArea;
             mostVisible = position;
           }
@@ -129,13 +133,13 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         currentIndex.value = index;
         scrollController.jumpTo(index: index);
       },
-      onPrevious: () => _handleNavigation(
+      onPrevious: () => InfinityContinuousNavigation.handleNavigation(
         scrollController,
         positionsListener,
         isAnimationEnabled,
         isNext: false,
       ),
-      onNext: () => _handleNavigation(
+      onNext: () => InfinityContinuousNavigation.handleNavigation(
         scrollController,
         positionsListener,
         isAnimationEnabled,
@@ -145,7 +149,10 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         !kIsWeb &&
                 (Platform.isAndroid || Platform.isIOS) &&
                 isPinchToZoomEnabled
-            ? (Widget child) => InteractiveViewer(maxScale: 5, child: child)
+            ? (Widget child) => InteractiveViewer(
+                  maxScale: InfinityContinuousConfig.maxZoomScale,
+                  child: child,
+                )
             : null,
         ScrollablePositionedList.separated(
           itemScrollController: scrollController,
@@ -157,8 +164,10 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           reverse: reverse,
           itemCount: chapterPages.chapter.pageCount,
           minCacheExtent: scrollDirection == Axis.vertical
-              ? context.height * 2
-              : context.width * 2,
+              ? context.height *
+                  InfinityContinuousConfig.verticalCacheMultiplier
+              : context.width *
+                  InfinityContinuousConfig.horizontalCacheMultiplier,
           separatorBuilder: (BuildContext context, int index) =>
               const SizedBox.shrink(),
           itemBuilder: (BuildContext context, int index) {
@@ -193,12 +202,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     final loadingPrevious = useState(false);
     final hasReachedEnd = useState(false);
     final hasReachedStart = useState(false);
-
-    // Track scroll boundary state for fallback triggering
-    final isAtEnd = useState(false);
-    final isAtStart = useState(false);
-    final endBoundaryTimer = useRef<Timer?>(null);
-    final startBoundaryTimer = useRef<Timer?>(null);
 
     // Track the currently visible chapter for UI updates
     final currentVisibleChapter = useState<ChapterDto>(chapter);
@@ -246,25 +249,18 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         if (positions.isEmpty) return;
 
         // Update current index for UI display and track visible chapter
-        _updateCurrentIndexAndChapter(
+        InfinityContinuousUtils.updateCurrentIndexAndChapter(
           positions,
           currentIndex,
           loadedChapters.value,
           currentVisibleChapter,
           currentChapterPageIndex,
+          InfinityContinuousConfig.minVisibleAreaThreshold,
         );
       }
 
       positionsListener.itemPositions.addListener(listener);
       return () => positionsListener.itemPositions.removeListener(listener);
-    }, []);
-
-    // Cleanup timers
-    useEffect(() {
-      return () {
-        endBoundaryTimer.value?.cancel();
-        startBoundaryTimer.value?.cancel();
-      };
     }, []);
 
     // Notify page changes for UI updates
@@ -284,15 +280,16 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
 
     return ReaderWrapper(
       scrollDirection: scrollDirection,
-      chapterPages: _createChapterPagesDto(
-          loadedChapters.value, currentVisibleChapter.value),
+      chapterPages: InfinityContinuousUtils.createChapterPagesDto(
+          loadedChapters.value, currentVisibleChapter.value, chapterPages),
       chapter: currentVisibleChapter.value,
       manga: manga,
       showReaderLayoutAnimation: showReaderLayoutAnimation,
       currentIndex: currentChapterPageIndex.value,
       onChanged: (index) {
         // Convert chapter-relative index to global index and scroll
-        final globalIndex = _convertChapterIndexToGlobalIndex(
+        final globalIndex =
+            InfinityContinuousUtils.convertChapterIndexToGlobalIndex(
           index,
           loadedChapters.value,
           currentVisibleChapter.value.id,
@@ -302,13 +299,13 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           scrollController.jumpTo(index: globalIndex);
         }
       },
-      onPrevious: () => _handleNavigation(
+      onPrevious: () => InfinityContinuousNavigation.handleNavigation(
         scrollController,
         positionsListener,
         isAnimationEnabled,
         isNext: false,
       ),
-      onNext: () => _handleNavigation(
+      onNext: () => InfinityContinuousNavigation.handleNavigation(
         scrollController,
         positionsListener,
         isAnimationEnabled,
@@ -318,13 +315,14 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         !kIsWeb &&
                 (Platform.isAndroid || Platform.isIOS) &&
                 isPinchToZoomEnabled
-            ? (Widget child) => InteractiveViewer(maxScale: 5, child: child)
+            ? (Widget child) => InteractiveViewer(
+                  maxScale: InfinityContinuousConfig.maxZoomScale,
+                  child: child,
+                )
             : null,
         NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
-            // Handle overscroll for infinity mode chapter loading
-            if (notification is OverscrollNotification &&
-                notification.depth == 0) {
+            if (notification is OverscrollNotification) {
               _handleInfinityOverscroll(
                 notification,
                 ref,
@@ -341,59 +339,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                 positionsListener,
               );
             }
-
-            // Also check if we're at the scroll boundary for fallback
-            if (notification is ScrollUpdateNotification &&
-                notification.depth == 0) {
-              final metrics = notification.metrics;
-              final atEnd = metrics.pixels >= metrics.maxScrollExtent;
-              final atStart = metrics.pixels <= metrics.minScrollExtent;
-
-              // Handle end boundary
-              if (atEnd && !isAtEnd.value) {
-                isAtEnd.value = true;
-                endBoundaryTimer.value?.cancel();
-                endBoundaryTimer.value =
-                    Timer(const Duration(milliseconds: 200), () {
-                  if (isAtEnd.value &&
-                      !loadingNext.value &&
-                      !hasReachedEnd.value &&
-                      nextPrevChapterPair.value?.first != null) {
-                    _loadNextChapter(ref, nextPrevChapterPair.value!.first!,
-                        loadedChapters, loadingNext, hasReachedEnd);
-                  }
-                });
-              } else if (!atEnd && isAtEnd.value) {
-                isAtEnd.value = false;
-                endBoundaryTimer.value?.cancel();
-              }
-
-              // Handle start boundary
-              if (atStart && !isAtStart.value) {
-                isAtStart.value = true;
-                startBoundaryTimer.value?.cancel();
-                startBoundaryTimer.value =
-                    Timer(const Duration(milliseconds: 200), () {
-                  if (isAtStart.value &&
-                      !loadingPrevious.value &&
-                      !hasReachedStart.value &&
-                      nextPrevChapterPair.value?.second != null) {
-                    _loadPreviousChapter(
-                        ref,
-                        nextPrevChapterPair.value!.second!,
-                        loadedChapters,
-                        loadingPrevious,
-                        hasReachedStart,
-                        scrollController,
-                        positionsListener);
-                  }
-                });
-              } else if (!atStart && isAtStart.value) {
-                isAtStart.value = false;
-                startBoundaryTimer.value?.cancel();
-              }
-            }
-
             return false;
           },
           child: ScrollablePositionedList.separated(
@@ -404,8 +349,10 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                 : chapter.lastPageRead.getValueOnNullOrNegative(),
             scrollDirection: scrollDirection,
             reverse: reverse,
-            itemCount: _getTotalPages(loadedChapters.value),
-            minCacheExtent: context.height * 3,
+            itemCount:
+                InfinityContinuousUtils.getTotalPages(loadedChapters.value),
+            minCacheExtent: context.height *
+                InfinityContinuousConfig.verticalCacheMultiplier,
             separatorBuilder: (BuildContext context, int index) =>
                 _buildSeparator(context, index, loadedChapters.value),
             itemBuilder: (BuildContext context, int index) {
@@ -439,8 +386,12 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         ),
       ),
       wrapper: (Widget child) => SizedBox(
-        height: scrollDirection == Axis.vertical ? context.height * .7 : null,
-        width: scrollDirection != Axis.vertical ? context.width * .7 : null,
+        height: scrollDirection == Axis.vertical
+            ? context.height * InfinityContinuousConfig.verticalPageHeightRatio
+            : null,
+        width: scrollDirection != Axis.vertical
+            ? context.width * InfinityContinuousConfig.horizontalPageWidthRatio
+            : null,
         child: child,
       ),
     );
@@ -459,7 +410,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     bool hasReachedEnd,
     bool hasReachedStart,
   ) {
-    final chapterInfo = _getChapterInfoForIndex(index, loadedChapters);
+    final chapterInfo =
+        InfinityContinuousUtils.getChapterInfoForIndex(index, loadedChapters);
     if (chapterInfo == null) {
       return const SizedBox(
           height: 100, child: Center(child: CircularProgressIndicator()));
@@ -476,7 +428,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         ),
       ),
       wrapper: (Widget child) => SizedBox(
-        height: context.height * .7,
+        height:
+            context.height * InfinityContinuousConfig.verticalPageHeightRatio,
         child: child,
       ),
     );
@@ -502,138 +455,55 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     ItemScrollController scrollController,
     ItemPositionsListener positionsListener,
   ) {
-    const double kOverscrollThreshold =
-        10.0; // Minimum overscroll distance to trigger
-    const double kFeedbackThreshold =
-        30.0; // Higher threshold for user feedback to avoid spam
-
     // Load next chapter on overscroll down
-    if (notification.overscroll > kOverscrollThreshold &&
+    if (notification.overscroll >
+            InfinityContinuousConfig.overscrollThreshold &&
         !loadingNext.value &&
         !hasReachedEnd.value &&
         nextPrevChapterPair?.first != null) {
-      _loadNextChapter(ref, nextPrevChapterPair!.first!, loadedChapters,
-          loadingNext, hasReachedEnd);
+      InfinityContinuousChapterLoader.loadNextChapter(
+        ref,
+        nextPrevChapterPair!.first!,
+        loadedChapters,
+        loadingNext,
+        hasReachedEnd,
+      );
     }
 
     // Load previous chapter on overscroll up
-    if (notification.overscroll < -kOverscrollThreshold &&
+    if (notification.overscroll <
+            -InfinityContinuousConfig.overscrollThreshold &&
         !loadingPrevious.value &&
         !hasReachedStart.value &&
         nextPrevChapterPair?.second != null) {
-      _loadPreviousChapter(
-          ref,
-          nextPrevChapterPair!.second!,
-          loadedChapters,
-          loadingPrevious,
-          hasReachedStart,
-          scrollController,
-          positionsListener);
+      InfinityContinuousChapterLoader.loadPreviousChapter(
+        ref,
+        nextPrevChapterPair!.second!,
+        loadedChapters,
+        loadingPrevious,
+        hasReachedStart,
+        scrollController,
+        positionsListener,
+      );
     }
 
     // Show user feedback when trying to scroll past the last chapter
-    if (notification.overscroll > kFeedbackThreshold &&
+    if (notification.overscroll > InfinityContinuousConfig.feedbackThreshold &&
         hasReachedEnd.value &&
         !loadingNext.value &&
         nextPrevChapterPair?.first == null) {
-      _showEndOfMangaFeedback(context, lastEndFeedbackTime);
+      InfinityContinuousFeedback.showEndOfMangaFeedback(
+          context, lastEndFeedbackTime);
     }
 
     // Show user feedback when trying to scroll past the first chapter
-    if (notification.overscroll < -kFeedbackThreshold &&
+    if (notification.overscroll < -InfinityContinuousConfig.feedbackThreshold &&
         hasReachedStart.value &&
         !loadingPrevious.value &&
         nextPrevChapterPair?.second == null) {
-      _showStartOfMangaFeedback(context, lastStartFeedbackTime);
+      InfinityContinuousFeedback.showStartOfMangaFeedback(
+          context, lastStartFeedbackTime);
     }
-  }
-
-  /// Shows feedback when user tries to scroll past the last chapter
-  void _showEndOfMangaFeedback(
-      BuildContext context, ObjectRef<DateTime?> lastFeedbackTime) {
-    final now = DateTime.now();
-    const feedbackCooldown = Duration(seconds: 3);
-
-    // Debounce to prevent spam
-    if (lastFeedbackTime.value != null &&
-        now.difference(lastFeedbackTime.value!) < feedbackCooldown) {
-      return;
-    }
-
-    lastFeedbackTime.value = now;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(
-              Icons.auto_stories_rounded,
-              color: context.theme.colorScheme.onInverseSurface,
-            ),
-            const Gap(12),
-            Expanded(
-              child: Text(
-                context.l10n.lastChapterNotification,
-                style: TextStyle(
-                  color: context.theme.colorScheme.onInverseSurface,
-                ),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: context.theme.colorScheme.inverseSurface,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
-        duration: const Duration(seconds: 2),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    );
-  }
-
-  /// Shows feedback when user tries to scroll past the first chapter
-  void _showStartOfMangaFeedback(
-      BuildContext context, ObjectRef<DateTime?> lastFeedbackTime) {
-    final now = DateTime.now();
-    const feedbackCooldown = Duration(seconds: 3);
-
-    // Debounce to prevent spam
-    if (lastFeedbackTime.value != null &&
-        now.difference(lastFeedbackTime.value!) < feedbackCooldown) {
-      return;
-    }
-
-    lastFeedbackTime.value = now;
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(
-              Icons.first_page_rounded,
-              color: context.theme.colorScheme.onInverseSurface,
-            ),
-            const Gap(12),
-            Expanded(
-              child: Text(
-                context.l10n.firstChapterNotification,
-                style: TextStyle(
-                  color: context.theme.colorScheme.onInverseSurface,
-                ),
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: context.theme.colorScheme.inverseSurface,
-        behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
-        duration: const Duration(seconds: 2),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    );
   }
 
   /// Builds separator for continuous mode
@@ -642,7 +512,8 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
       int index,
       List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
           loadedChapters) {
-    final isChapterBoundary = _isChapterBoundary(index, loadedChapters);
+    final isChapterBoundary =
+        InfinityContinuousUtils.isChapterBoundary(index, loadedChapters);
 
     if (!isChapterBoundary) {
       return const SizedBox
@@ -656,462 +527,13 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     }
 
     // Determine if this is a chapter start or end
-    final separatorInfo = _getSeparatorInfo(index, loadedChapters);
+    final separatorInfo = InfinityContinuousChapterSeparator.getSeparatorInfo(
+        index, loadedChapters);
     if (separatorInfo == null) return const SizedBox.shrink();
 
-    return Column(
-      children: [
-        const Gap(32),
-        Container(
-          padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: separatorInfo.isChapterStart
-                ? context.theme.cardColor
-                : context.theme.cardColor.withValues(alpha: 0.8),
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: separatorInfo.isChapterStart
-                  ? context.theme.colorScheme.primary
-                  : context.theme.colorScheme.secondary,
-              width: 1,
-            ),
-          ),
-          child: Column(
-            children: [
-              Icon(
-                separatorInfo.isChapterStart
-                    ? Icons.auto_stories_rounded
-                    : Icons.bookmark_border_rounded,
-                size: 32,
-                color: separatorInfo.isChapterStart
-                    ? context.theme.colorScheme.primary
-                    : context.theme.colorScheme.secondary,
-              ),
-              const Gap(8),
-              Text(
-                separatorInfo.isChapterStart
-                    ? context.l10n.chapterSeparator
-                    : context.l10n.finished,
-                style: context.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: separatorInfo.isChapterStart
-                      ? null
-                      : context.theme.colorScheme.secondary,
-                ),
-              ),
-              const Gap(4),
-              Text(
-                separatorInfo.chapterName,
-                style: context.textTheme.bodyMedium?.copyWith(
-                  color: separatorInfo.isChapterStart
-                      ? null
-                      : context.theme.colorScheme.secondary,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              if (!separatorInfo.isChapterStart) ...[
-                const Gap(8),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.arrow_downward_rounded,
-                      size: 16,
-                      color: context.theme.colorScheme.secondary,
-                    ),
-                    const Gap(4),
-                    Text(
-                      context.l10n.loadingNextChapter,
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: context.theme.colorScheme.secondary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ],
-          ),
-        ),
-        const Gap(32),
-      ],
+    return InfinityContinuousChapterSeparator(
+      chapterName: separatorInfo.chapterName,
+      isChapterStart: separatorInfo.isChapterStart,
     );
-  }
-
-  /// Get separator information for the given index
-  ({String chapterName, bool isChapterStart})? _getSeparatorInfo(
-    int index,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-        loadedChapters,
-  ) {
-    int currentIndex = 0;
-    for (int i = 0; i < loadedChapters.length; i++) {
-      final chapterData = loadedChapters[i];
-
-      // Check if this is the start of a new chapter (except the first one)
-      if (index == currentIndex && currentIndex > 0) {
-        return (
-          chapterName: chapterData.chapter.name,
-          isChapterStart: true,
-        );
-      }
-
-      // Check if this is the end of a chapter (except the last one)
-      if (index == currentIndex + chapterData.pages.pages.length - 1 &&
-          i < loadedChapters.length - 1) {
-        return (
-          chapterName: chapterData.chapter.name,
-          isChapterStart: false,
-        );
-      }
-
-      currentIndex += chapterData.pages.pages.length;
-    }
-    return null;
-  }
-
-  /// Load next chapter
-  void _loadNextChapter(
-    WidgetRef ref,
-    ChapterDto nextChapter,
-    ValueNotifier<
-            List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>
-        loadedChapters,
-    ValueNotifier<bool> loadingNext,
-    ValueNotifier<bool> hasReachedEnd,
-  ) async {
-    loadingNext.value = true;
-    try {
-      final nextChapterPages = await ref
-          .read(chapterPagesProvider(chapterId: nextChapter.id).future);
-      if (nextChapterPages != null) {
-        // Check if chapter is already loaded to avoid duplicates
-        final alreadyLoaded = loadedChapters.value
-            .any((item) => item.chapterId == nextChapter.id);
-        if (!alreadyLoaded) {
-          loadedChapters.value = [
-            ...loadedChapters.value,
-            (
-              pages: nextChapterPages,
-              chapter: nextChapter,
-              chapterId: nextChapter.id
-            ),
-          ];
-        }
-      } else {
-        hasReachedEnd.value = true;
-      }
-    } catch (e) {
-      hasReachedEnd.value = true;
-    } finally {
-      loadingNext.value = false;
-    }
-  }
-
-  /// Load previous chapter
-  void _loadPreviousChapter(
-    WidgetRef ref,
-    ChapterDto previousChapter,
-    ValueNotifier<
-            List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>
-        loadedChapters,
-    ValueNotifier<bool> loadingPrevious,
-    ValueNotifier<bool> hasReachedStart,
-    ItemScrollController? scrollController,
-    ItemPositionsListener? positionsListener,
-  ) async {
-    loadingPrevious.value = true;
-    try {
-      final prevChapterPages = await ref
-          .read(chapterPagesProvider(chapterId: previousChapter.id).future);
-      if (prevChapterPages != null) {
-        // Check if chapter is already loaded to avoid duplicates
-        final alreadyLoaded = loadedChapters.value
-            .any((item) => item.chapterId == previousChapter.id);
-        if (!alreadyLoaded) {
-          // Store current scroll position before adding the chapter
-          int? currentIndex;
-          if (scrollController != null && positionsListener != null) {
-            final positions = positionsListener.itemPositions.value.toList();
-            if (positions.isNotEmpty) {
-              // Find the most visible item
-              ItemPosition? mostVisible;
-              double bestVisibleArea = 0.0;
-              for (final position in positions) {
-                final visibleArea = _calculateVisibleArea(position);
-                if (visibleArea > bestVisibleArea) {
-                  bestVisibleArea = visibleArea;
-                  mostVisible = position;
-                }
-              }
-              currentIndex = mostVisible?.index;
-            }
-          }
-
-          final newChapterPageCount = prevChapterPages.pages.length;
-
-          // Insert at the beginning
-          loadedChapters.value = [
-            (
-              pages: prevChapterPages,
-              chapter: previousChapter,
-              chapterId: previousChapter.id
-            ),
-            ...loadedChapters.value,
-          ];
-
-          // Adjust scroll position to maintain current view after insertion
-          if (currentIndex != null && scrollController != null) {
-            // The new index should be the old index plus the number of pages in the new chapter
-            final newIndex = currentIndex + newChapterPageCount;
-
-            // Use a slight delay to ensure the list has been updated
-            Future.microtask(() {
-              try {
-                scrollController.jumpTo(index: newIndex);
-              } catch (e) {
-                // Fallback if jump fails
-                debugPrint(
-                    'Failed to adjust scroll position after loading previous chapter: $e');
-              }
-            });
-          }
-        }
-      } else {
-        hasReachedStart.value = true;
-      }
-    } catch (e) {
-      hasReachedStart.value = true;
-    } finally {
-      loadingPrevious.value = false;
-    }
-  }
-
-  /// Calculate total pages across all loaded chapters
-  int _getTotalPages(
-      List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-          loadedChapters) {
-    return loadedChapters.fold(
-        0, (sum, chapterData) => sum + chapterData.pages.pages.length);
-  }
-
-  /// Get chapter info for a specific index
-  ({String page, String chapterName, int chapterId})? _getChapterInfoForIndex(
-    int index,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-        loadedChapters,
-  ) {
-    int currentIndex = 0;
-    for (final chapterData in loadedChapters) {
-      if (index >= currentIndex &&
-          index < currentIndex + chapterData.pages.pages.length) {
-        final pageIndex = index - currentIndex;
-        return (
-          page: chapterData.pages.pages[pageIndex],
-          chapterName: chapterData.chapter.name,
-          chapterId: chapterData.chapterId,
-        );
-      }
-      currentIndex += chapterData.pages.pages.length;
-    }
-    return null;
-  }
-
-  /// Check if the index is at a chapter boundary
-  bool _isChapterBoundary(
-      int index,
-      List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-          loadedChapters) {
-    int currentIndex = 0;
-    for (final chapterData in loadedChapters) {
-      // Check if this is the start of a new chapter (except the first one)
-      if (index == currentIndex && currentIndex > 0) {
-        return true;
-      }
-      // Check if this is the end of a chapter (except the last one)
-      if (index == currentIndex + chapterData.pages.pages.length - 1 &&
-          currentIndex + chapterData.pages.pages.length <
-              _getTotalPageCount(loadedChapters)) {
-        return true;
-      }
-      currentIndex += chapterData.pages.pages.length;
-    }
-    return false;
-  }
-
-  /// Get total page count across all loaded chapters
-  int _getTotalPageCount(
-      List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-          loadedChapters) {
-    return loadedChapters.fold(
-        0, (sum, chapter) => sum + chapter.pages.pages.length);
-  }
-
-  /// Update current index based on visible positions
-  void _updateCurrentIndexAndChapter(
-    List<ItemPosition> positions,
-    ValueNotifier<int> currentIndex,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-        loadedChapters,
-    ValueNotifier<ChapterDto> currentVisibleChapter,
-    ValueNotifier<int> currentChapterPageIndex,
-  ) {
-    if (positions.isEmpty) return;
-
-    // Find the item that's most visible
-    ItemPosition? mostVisible;
-    double bestVisibleArea = 0.0;
-
-    for (final ItemPosition position in positions) {
-      final double visibleArea = _calculateVisibleArea(position);
-
-      if (visibleArea > bestVisibleArea && visibleArea > 0.4) {
-        bestVisibleArea = visibleArea;
-        mostVisible = position;
-      }
-    }
-
-    if (mostVisible != null) {
-      currentIndex.value = mostVisible.index;
-
-      // Find which chapter this index belongs to and the page within that chapter
-      final chapterInfo =
-          _getChapterAndPageForGlobalIndex(mostVisible.index, loadedChapters);
-      if (chapterInfo != null) {
-        // Only update if the chapter has actually changed to avoid unnecessary rebuilds
-        if (currentVisibleChapter.value.id != chapterInfo.chapter.id) {
-          currentVisibleChapter.value = chapterInfo.chapter;
-        }
-        currentChapterPageIndex.value = chapterInfo.pageIndex;
-      }
-    }
-  }
-
-  /// Get chapter and page index for a global index
-  ({ChapterDto chapter, int pageIndex})? _getChapterAndPageForGlobalIndex(
-    int globalIndex,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-        loadedChapters,
-  ) {
-    int currentIndex = 0;
-    for (final chapterData in loadedChapters) {
-      if (globalIndex >= currentIndex &&
-          globalIndex < currentIndex + chapterData.pages.pages.length) {
-        final pageIndex = globalIndex - currentIndex;
-        return (
-          chapter: chapterData.chapter,
-          pageIndex: pageIndex,
-        );
-      }
-      currentIndex += chapterData.pages.pages.length;
-    }
-    return null;
-  }
-
-  /// Create ChapterPagesDto for the current visible chapter
-  ChapterPagesDto _createChapterPagesDto(
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-        loadedChapters,
-    ChapterDto currentChapter,
-  ) {
-    for (final chapterData in loadedChapters) {
-      if (chapterData.chapterId == currentChapter.id) {
-        return chapterData.pages;
-      }
-    }
-    // Fallback to original chapter pages if not found
-    return chapterPages;
-  }
-
-  /// Convert chapter-relative index to global index
-  int _convertChapterIndexToGlobalIndex(
-    int chapterIndex,
-    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
-        loadedChapters,
-    int chapterId,
-  ) {
-    int globalIndex = 0;
-    for (final chapterData in loadedChapters) {
-      if (chapterData.chapterId == chapterId) {
-        return globalIndex + chapterIndex;
-      }
-      globalIndex += chapterData.pages.pages.length;
-    }
-    return -1; // Chapter not found
-  }
-
-  /// Calculate visible area of an item position
-  static double _calculateVisibleArea(ItemPosition position) {
-    final double leadingEdge = position.itemLeadingEdge.clamp(0.0, 1.0);
-    final double trailingEdge = position.itemTrailingEdge.clamp(0.0, 1.0);
-
-    final double visibleStart = leadingEdge < 0 ? 0.0 : leadingEdge;
-    final double visibleEnd = trailingEdge > 1 ? 1.0 : trailingEdge;
-
-    return (visibleEnd - visibleStart).clamp(0.0, 1.0);
-  }
-
-  /// Handle navigation
-  static void _handleNavigation(
-    ItemScrollController scrollController,
-    ItemPositionsListener positionsListener,
-    bool isAnimationEnabled, {
-    required bool isNext,
-  }) {
-    final List<ItemPosition> positions =
-        positionsListener.itemPositions.value.toList();
-    if (positions.isEmpty) return;
-
-    // Find current position
-    ItemPosition? currentPosition;
-    for (final ItemPosition position in positions) {
-      final double visibleArea = _calculateVisibleArea(position);
-      if (visibleArea > 0.4) {
-        currentPosition = position;
-        break;
-      }
-    }
-
-    if (currentPosition == null) return;
-
-    final int targetIndex;
-    final double alignment;
-
-    if (isNext) {
-      // Move to next item
-      if (currentPosition.itemTrailingEdge > 0.8) {
-        targetIndex = currentPosition.index + 1;
-        alignment = 0.0;
-      } else {
-        targetIndex = currentPosition.index;
-        alignment = 0.0;
-      }
-    } else {
-      // Move to previous item
-      if (currentPosition.itemLeadingEdge < 0.2) {
-        targetIndex =
-            (currentPosition.index - 1).clamp(0, double.infinity).toInt();
-        alignment = 0.0;
-      } else {
-        targetIndex = currentPosition.index;
-        alignment = 0.0;
-      }
-    }
-
-    // Use gentle navigation
-    if (isAnimationEnabled) {
-      scrollController.scrollTo(
-        index: targetIndex,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeOut,
-        alignment: alignment,
-      );
-    } else {
-      scrollController.jumpTo(
-        index: targetIndex,
-        alignment: alignment,
-      );
-    }
   }
 }
