@@ -499,19 +499,23 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     final now = DateTime.now();
     const scrollCooldown = InfinityContinuousConfig.chapterLoadCooldown;
 
-    // Stack Overflow approach: Detect overscroll using scroll metrics
-    // Check if we've exceeded scroll bounds or are at edge trying to scroll further
-    final overscrollEnd = metrics.pixels > metrics.maxScrollExtent;
-    final atMaxScrollExtent = (metrics.pixels - metrics.maxScrollExtent).abs() <
-        InfinityContinuousConfig.scrollExtentTolerance;
+    // Define scroll direction variables
     final tryingToScrollDown =
         notification.scrollDelta != null && notification.scrollDelta! > 0;
-
-    final overscrollStart = metrics.pixels < metrics.minScrollExtent;
-    final atMinScrollExtent = (metrics.pixels - metrics.minScrollExtent).abs() <
-        InfinityContinuousConfig.scrollExtentTolerance;
     final tryingToScrollUp =
         notification.scrollDelta != null && notification.scrollDelta! < 0;
+
+    // Stack Overflow approach: Detect overscroll using scroll metrics
+    // Check if we've exceeded scroll bounds or are at edge trying to scroll further
+    final overscrollEnd = metrics.pixels > metrics.maxScrollExtent ||
+        (metrics.atEdge && lastVisibleIndex >= maxIndex && tryingToScrollDown);
+    final atMaxScrollExtent = (metrics.pixels - metrics.maxScrollExtent).abs() <
+        InfinityContinuousConfig.scrollExtentTolerance;
+
+    final overscrollStart = metrics.pixels < metrics.minScrollExtent ||
+        (metrics.atEdge && firstVisibleIndex <= 0 && tryingToScrollUp);
+    final atMinScrollExtent = (metrics.pixels - metrics.minScrollExtent).abs() <
+        InfinityContinuousConfig.scrollExtentTolerance;
 
     debugPrint(
         'Scroll metrics - pixels: ${metrics.pixels.toStringAsFixed(2)}, min: ${metrics.minScrollExtent.toStringAsFixed(2)}, max: ${metrics.maxScrollExtent.toStringAsFixed(2)}');
@@ -519,6 +523,10 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         'Position check - first: $firstVisibleIndex, last: $lastVisibleIndex, maxIndex: $maxIndex');
     debugPrint(
         'Overscroll check - end: $overscrollEnd, start: $overscrollStart, atEdge: ${metrics.atEdge}');
+    debugPrint(
+        'Chapter availability - next: ${nextPrevChapterPair?.first?.name ?? 'none'}, previous: ${nextPrevChapterPair?.second?.name ?? 'none'}');
+    debugPrint(
+        'Loading states - loadingNext: ${loadingNext.value}, loadingPrevious: ${loadingPrevious.value}');
 
     // Trigger next chapter loading on overscroll at end
     if ((overscrollEnd ||
@@ -542,6 +550,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           loadedChapters,
           loadingNext,
           hasReachedEnd,
+          context,
         );
       }
     }
@@ -570,24 +579,33 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           hasReachedStart,
           scrollController,
           positionsListener,
+          context,
         );
       }
     }
 
     // Show user feedback when trying to scroll past the last chapter
-    if (overscrollEnd &&
-        hasReachedEnd.value &&
+    if ((overscrollEnd ||
+            (atMaxScrollExtent &&
+                tryingToScrollDown &&
+                lastVisibleIndex >= maxIndex)) &&
         !loadingNext.value &&
-        nextPrevChapterPair?.first == null) {
+        (nextPrevChapterPair?.first == null || hasReachedEnd.value)) {
+      debugPrint(
+          '🔔 Triggering end of manga feedback - overscrollEnd: $overscrollEnd, atMaxScrollExtent: $atMaxScrollExtent, tryingToScrollDown: $tryingToScrollDown, lastVisibleIndex: $lastVisibleIndex, maxIndex: $maxIndex, loadingNext: ${loadingNext.value}, nextChapter: ${nextPrevChapterPair?.first?.name ?? 'none'}, hasReachedEnd: ${hasReachedEnd.value}');
       InfinityContinuousFeedback.showEndOfMangaFeedback(
           context, lastEndFeedbackTime);
     }
 
     // Show user feedback when trying to scroll past the first chapter
-    if (overscrollStart &&
-        hasReachedStart.value &&
+    if ((overscrollStart ||
+            (atMinScrollExtent &&
+                tryingToScrollUp &&
+                firstVisibleIndex <= 0)) &&
         !loadingPrevious.value &&
-        nextPrevChapterPair?.second == null) {
+        (nextPrevChapterPair?.second == null || hasReachedStart.value)) {
+      debugPrint(
+          '🔔 Triggering start of manga feedback - overscrollStart: $overscrollStart, atMinScrollExtent: $atMinScrollExtent, tryingToScrollUp: $tryingToScrollUp, firstVisibleIndex: $firstVisibleIndex, loadingPrevious: ${loadingPrevious.value}, previousChapter: ${nextPrevChapterPair?.second?.name ?? 'none'}, hasReachedStart: ${hasReachedStart.value}');
       InfinityContinuousFeedback.showStartOfMangaFeedback(
           context, lastStartFeedbackTime);
     }

@@ -6,13 +6,14 @@
 
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../domain/chapter/chapter_model.dart';
 import '../../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../controller/reader_controller.dart';
+import 'infinity_continuous_feedback.dart';
 
 /// Handles chapter loading logic for infinity continuous reader mode
 class InfinityContinuousChapterLoader {
@@ -27,8 +28,18 @@ class InfinityContinuousChapterLoader {
         loadedChapters,
     ValueNotifier<bool> loadingNext,
     ValueNotifier<bool> hasReachedEnd,
+    BuildContext? context,
   ) async {
     loadingNext.value = true;
+    
+    // Show loading feedback
+    if (context != null && context.mounted) {
+      InfinityContinuousFeedback.showLoadingNextChapterFeedback(
+        context, 
+        nextChapter.name,
+      );
+    }
+    
     try {
       final ChapterPagesDto? nextChapterPages = await ref
           .read(chapterPagesProvider(chapterId: nextChapter.id).future);
@@ -49,13 +60,37 @@ class InfinityContinuousChapterLoader {
           ];
           debugPrint(
               'Successfully loaded next chapter: ${nextChapter.name} with ${nextChapterPages.pages.length} pages');
+              
+          // Show success feedback
+          if (context != null && context.mounted) {
+            InfinityContinuousFeedback.showNextChapterLoadedFeedback(
+              context, 
+              nextChapter.name,
+            );
+          }
         }
       } else {
         hasReachedEnd.value = true;
+        // Show failure feedback
+        if (context != null && context.mounted) {
+          InfinityContinuousFeedback.showChapterLoadFailedFeedback(
+            context, 
+            nextChapter.name,
+            isNext: true,
+          );
+        }
       }
     } catch (e) {
       debugPrint('Error loading next chapter: $e');
       hasReachedEnd.value = true;
+      // Show failure feedback
+      if (context != null && context.mounted) {
+        InfinityContinuousFeedback.showChapterLoadFailedFeedback(
+          context, 
+          nextChapter.name,
+          isNext: true,
+        );
+      }
     } finally {
       loadingNext.value = false;
     }
@@ -72,9 +107,19 @@ class InfinityContinuousChapterLoader {
     ValueNotifier<bool> hasReachedStart,
     ItemScrollController? scrollController,
     ItemPositionsListener? positionsListener,
+    BuildContext? context,
   ) async {
     debugPrint('Starting to load previous chapter: ${previousChapter.name}');
     loadingPrevious.value = true;
+    
+    // Show loading feedback
+    if (context != null && context.mounted) {
+      InfinityContinuousFeedback.showLoadingPreviousChapterFeedback(
+        context, 
+        previousChapter.name,
+      );
+    }
+    
     try {
       final ChapterPagesDto? prevChapterPages = await ref
           .read(chapterPagesProvider(chapterId: previousChapter.id).future);
@@ -153,6 +198,14 @@ class InfinityContinuousChapterLoader {
 
           debugPrint(
               'Previous chapter inserted at beginning. Total chapters now: ${loadedChapters.value.length}');
+              
+          // Show success feedback
+          if (context != null && context.mounted) {
+            InfinityContinuousFeedback.showPreviousChapterLoadedFeedback(
+              context, 
+              previousChapter.name,
+            );
+          }
 
           // Adjust scroll position to maintain current view after insertion
           if (currentIndex != null && scrollController != null) {
@@ -203,10 +256,26 @@ class InfinityContinuousChapterLoader {
         debugPrint(
             'Previous chapter pages is null, setting hasReachedStart to true');
         hasReachedStart.value = true;
+        // Show failure feedback
+        if (context != null && context.mounted) {
+          InfinityContinuousFeedback.showChapterLoadFailedFeedback(
+            context, 
+            previousChapter.name,
+            isNext: false,
+          );
+        }
       }
     } catch (e) {
       debugPrint('Error loading previous chapter: $e');
       hasReachedStart.value = true;
+      // Show failure feedback
+      if (context != null && context.mounted) {
+        InfinityContinuousFeedback.showChapterLoadFailedFeedback(
+          context, 
+          previousChapter.name,
+          isNext: false,
+        );
+      }
     } finally {
       loadingPrevious.value = false;
       debugPrint(

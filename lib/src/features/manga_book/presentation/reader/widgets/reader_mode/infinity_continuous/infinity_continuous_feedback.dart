@@ -33,6 +33,8 @@ class InfinityContinuousFeedback {
 
     lastFeedbackTime.value = now;
 
+    debugPrint('🔔 Showing end of manga feedback');
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -54,7 +56,7 @@ class InfinityContinuousFeedback {
         ),
         backgroundColor: context.theme.colorScheme.inverseSurface,
         behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
         duration: const Duration(seconds: 2),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
@@ -79,6 +81,8 @@ class InfinityContinuousFeedback {
 
     lastFeedbackTime.value = now;
 
+    debugPrint('🔔 Showing start of manga feedback');
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
@@ -100,8 +104,201 @@ class InfinityContinuousFeedback {
         ),
         backgroundColor: context.theme.colorScheme.inverseSurface,
         behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
         duration: const Duration(seconds: 2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  /// Shows feedback when loading next chapter
+  static void showLoadingNextChapterFeedback(
+    BuildContext context,
+    String chapterName,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  context.theme.colorScheme.onInverseSurface,
+                ),
+              ),
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                'Loading next chapter...',
+                style: TextStyle(
+                  color: context.theme.colorScheme.onInverseSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.inverseSurface,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
+        duration: const Duration(seconds: 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  /// Shows feedback when loading previous chapter
+  static void showLoadingPreviousChapterFeedback(
+    BuildContext context,
+    String chapterName,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  context.theme.colorScheme.onInverseSurface,
+                ),
+              ),
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                'Loading previous chapter...',
+                style: TextStyle(
+                  color: context.theme.colorScheme.onInverseSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.inverseSurface,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
+        duration: const Duration(seconds: 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  /// Shows feedback when next chapter is successfully loaded
+  static void showNextChapterLoadedFeedback(
+    BuildContext context,
+    String chapterName,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.check_circle_outline,
+              color: context.theme.colorScheme.onInverseSurface,
+              size: 18,
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                'Loaded: $chapterName',
+                style: TextStyle(
+                  color: context.theme.colorScheme.onInverseSurface,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.inverseSurface,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
+        duration: const Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  /// Shows feedback when previous chapter is successfully loaded
+  static void showPreviousChapterLoadedFeedback(
+    BuildContext context,
+    String chapterName,
+  ) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.check_circle_outline,
+              color: context.theme.colorScheme.onInverseSurface,
+              size: 18,
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                'Loaded: $chapterName',
+                style: TextStyle(
+                  color: context.theme.colorScheme.onInverseSurface,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.inverseSurface,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
+        duration: const Duration(milliseconds: 1500),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  /// Shows feedback when chapter loading fails
+  static void showChapterLoadFailedFeedback(
+    BuildContext context,
+    String chapterName, {
+    bool isNext = true,
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: context.theme.colorScheme.onErrorContainer,
+              size: 18,
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                'Failed to load ${isNext ? 'next' : 'previous'} chapter',
+                style: TextStyle(
+                  color: context.theme.colorScheme.onErrorContainer,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.errorContainer,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(left: 16, right: 16, bottom: 80),
+        duration: const Duration(seconds: 3),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
