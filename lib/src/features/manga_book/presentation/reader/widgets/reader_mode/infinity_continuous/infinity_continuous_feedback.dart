@@ -350,16 +350,15 @@ class InfinityContinuousChapterSeparator extends StatelessWidget {
                     : context.theme.colorScheme.secondary,
               ),
               const Gap(8),
-              Text(
-                isChapterStart ? 'Starting' : 'Finished',
-                style: context.textTheme.titleMedium?.copyWith(
-                  color: isChapterStart
-                      ? context.theme.colorScheme.primary
-                      : context.theme.colorScheme.secondary,
-                  fontWeight: FontWeight.bold,
+              if (!isChapterStart)
+                Text(
+                  'Finished',
+                  style: context.textTheme.titleMedium?.copyWith(
+                    color: context.theme.colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              const Gap(4),
+              if (!isChapterStart) const Gap(4),
               Text(
                 chapterName,
                 style: context.textTheme.bodyMedium?.copyWith(
@@ -407,15 +406,7 @@ class InfinityContinuousChapterSeparator extends StatelessWidget {
     for (int i = 0; i < loadedChapters.length; i++) {
       final chapterData = loadedChapters[i];
 
-      // Check if this is the start of a new chapter (except the first one)
-      if (index == currentIndex && currentIndex > 0) {
-        return (
-          chapterName: chapterData.chapter.name,
-          isChapterStart: true,
-        );
-      }
-
-      // Check if this is the end of a chapter (except the last one)
+      // Only show separator at the end of a chapter (except the last one)
       if (index == currentIndex + chapterData.pages.pages.length - 1 &&
           i < loadedChapters.length - 1) {
         return (
