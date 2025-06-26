@@ -212,12 +212,14 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     final nextPrevChapterPair =
         useState<({ChapterDto? first, ChapterDto? second})?>(null);
 
+    // Debouncing for user feedback to prevent spam
+    final lastEndFeedbackTime = useRef<DateTime?>(null);
+    final lastStartFeedbackTime = useRef<DateTime?>(null);
+
     // Get next and previous chapters for the currently visible chapter
     useEffect(() {
       void updateNextPrevChapters() async {
         final currentChapterId = currentVisibleChapter.value.id;
-        print(
-            'Debug: Getting next/prev chapters for chapter $currentChapterId');
 
         try {
           final nextPrevChapters = ref.read(
@@ -227,10 +229,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             ),
           );
           nextPrevChapterPair.value = nextPrevChapters;
-          print(
-              'Debug: Updated next/prev chapters - next: ${nextPrevChapters?.first?.id}, prev: ${nextPrevChapters?.second?.id}');
         } catch (e) {
-          print('Debug: Error getting next/prev chapters: $e');
           nextPrevChapterPair.value = null;
         }
       }
@@ -323,26 +322,21 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
             : null,
         NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification notification) {
-            // Debug all scroll notifications
-            if (notification.depth == 0) {
-              print(
-                  'Debug: Scroll notification type: ${notification.runtimeType}');
-              print(
-                  'Debug: Scroll metrics - pixels: ${notification.metrics.pixels}, maxScrollExtent: ${notification.metrics.maxScrollExtent}');
-            }
-
             // Handle overscroll for infinity mode chapter loading
             if (notification is OverscrollNotification &&
                 notification.depth == 0) {
               _handleInfinityOverscroll(
                 notification,
                 ref,
+                context,
                 nextPrevChapterPair.value,
                 loadedChapters,
                 loadingNext,
                 loadingPrevious,
                 hasReachedEnd,
                 hasReachedStart,
+                lastEndFeedbackTime,
+                lastStartFeedbackTime,
               );
             }
 
@@ -356,7 +350,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
               // Handle end boundary
               if (atEnd && !isAtEnd.value) {
                 isAtEnd.value = true;
-                print('Debug: Reached end boundary, starting timer');
                 endBoundaryTimer.value?.cancel();
                 endBoundaryTimer.value =
                     Timer(const Duration(milliseconds: 200), () {
@@ -364,7 +357,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                       !loadingNext.value &&
                       !hasReachedEnd.value &&
                       nextPrevChapterPair.value?.first != null) {
-                    print('Debug: Fallback trigger - loading next chapter');
                     _loadNextChapter(ref, nextPrevChapterPair.value!.first!,
                         loadedChapters, loadingNext, hasReachedEnd);
                   }
@@ -377,7 +369,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
               // Handle start boundary
               if (atStart && !isAtStart.value) {
                 isAtStart.value = true;
-                print('Debug: Reached start boundary, starting timer');
                 startBoundaryTimer.value?.cancel();
                 startBoundaryTimer.value =
                     Timer(const Duration(milliseconds: 200), () {
@@ -385,7 +376,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
                       !loadingPrevious.value &&
                       !hasReachedStart.value &&
                       nextPrevChapterPair.value?.second != null) {
-                    print('Debug: Fallback trigger - loading previous chapter');
                     _loadPreviousChapter(
                         ref,
                         nextPrevChapterPair.value!.second!,
@@ -516,6 +506,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
   void _handleInfinityOverscroll(
     OverscrollNotification notification,
     WidgetRef ref,
+    BuildContext context,
     ({ChapterDto? first, ChapterDto? second})? nextPrevChapterPair,
     ValueNotifier<
             List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>>
@@ -524,25 +515,20 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     ValueNotifier<bool> loadingPrevious,
     ValueNotifier<bool> hasReachedEnd,
     ValueNotifier<bool> hasReachedStart,
+    ObjectRef<DateTime?> lastEndFeedbackTime,
+    ObjectRef<DateTime?> lastStartFeedbackTime,
   ) {
     const double kOverscrollThreshold =
         10.0; // Minimum overscroll distance to trigger
-
-    print(
-        'Debug: Overscroll detected: ${notification.overscroll}, threshold: $kOverscrollThreshold');
-    print(
-        'Debug: Next chapter available: ${nextPrevChapterPair?.first != null}');
-    print(
-        'Debug: Loading next: ${loadingNext.value}, reached end: ${hasReachedEnd.value}');
+    const double kFeedbackThreshold =
+        30.0; // Higher threshold for user feedback to avoid spam
 
     // Load next chapter on overscroll down
     if (notification.overscroll > kOverscrollThreshold &&
         !loadingNext.value &&
         !hasReachedEnd.value &&
         nextPrevChapterPair?.first != null) {
-      print(
-          'Debug: Triggering next chapter load for ${nextPrevChapterPair!.first!.id}');
-      _loadNextChapter(ref, nextPrevChapterPair.first!, loadedChapters,
+      _loadNextChapter(ref, nextPrevChapterPair!.first!, loadedChapters,
           loadingNext, hasReachedEnd);
     }
 
@@ -551,11 +537,113 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         !loadingPrevious.value &&
         !hasReachedStart.value &&
         nextPrevChapterPair?.second != null) {
-      print(
-          'Debug: Triggering previous chapter load for ${nextPrevChapterPair!.second!.id}');
-      _loadPreviousChapter(ref, nextPrevChapterPair.second!, loadedChapters,
+      _loadPreviousChapter(ref, nextPrevChapterPair!.second!, loadedChapters,
           loadingPrevious, hasReachedStart);
     }
+
+    // Show user feedback when trying to scroll past the last chapter
+    if (notification.overscroll > kFeedbackThreshold &&
+        hasReachedEnd.value &&
+        !loadingNext.value &&
+        nextPrevChapterPair?.first == null) {
+      _showEndOfMangaFeedback(context, lastEndFeedbackTime);
+    }
+
+    // Show user feedback when trying to scroll past the first chapter
+    if (notification.overscroll < -kFeedbackThreshold &&
+        hasReachedStart.value &&
+        !loadingPrevious.value &&
+        nextPrevChapterPair?.second == null) {
+      _showStartOfMangaFeedback(context, lastStartFeedbackTime);
+    }
+  }
+
+  /// Shows feedback when user tries to scroll past the last chapter
+  void _showEndOfMangaFeedback(
+      BuildContext context, ObjectRef<DateTime?> lastFeedbackTime) {
+    final now = DateTime.now();
+    const feedbackCooldown = Duration(seconds: 3);
+
+    // Debounce to prevent spam
+    if (lastFeedbackTime.value != null &&
+        now.difference(lastFeedbackTime.value!) < feedbackCooldown) {
+      return;
+    }
+
+    lastFeedbackTime.value = now;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.auto_stories_rounded,
+              color: context.theme.colorScheme.onInverseSurface,
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                "You've reached the end of this manga",
+                style: TextStyle(
+                  color: context.theme.colorScheme.onInverseSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.inverseSurface,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(16),
+        duration: const Duration(seconds: 2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+
+  /// Shows feedback when user tries to scroll past the first chapter
+  void _showStartOfMangaFeedback(
+      BuildContext context, ObjectRef<DateTime?> lastFeedbackTime) {
+    final now = DateTime.now();
+    const feedbackCooldown = Duration(seconds: 3);
+
+    // Debounce to prevent spam
+    if (lastFeedbackTime.value != null &&
+        now.difference(lastFeedbackTime.value!) < feedbackCooldown) {
+      return;
+    }
+
+    lastFeedbackTime.value = now;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.first_page_rounded,
+              color: context.theme.colorScheme.onInverseSurface,
+            ),
+            const Gap(12),
+            Expanded(
+              child: Text(
+                "You've reached the beginning of this manga",
+                style: TextStyle(
+                  color: context.theme.colorScheme.onInverseSurface,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: context.theme.colorScheme.inverseSurface,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(16),
+        duration: const Duration(seconds: 2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
   }
 
   /// Builds separator for continuous mode
@@ -696,14 +784,11 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     ValueNotifier<bool> loadingNext,
     ValueNotifier<bool> hasReachedEnd,
   ) async {
-    print('Debug: Starting to load next chapter ${nextChapter.id}');
     loadingNext.value = true;
     try {
       final nextChapterPages = await ref
           .read(chapterPagesProvider(chapterId: nextChapter.id).future);
       if (nextChapterPages != null) {
-        print(
-            'Debug: Successfully loaded next chapter ${nextChapter.id} with ${nextChapterPages.pages.length} pages');
         // Check if chapter is already loaded to avoid duplicates
         final alreadyLoaded = loadedChapters.value
             .any((item) => item.chapterId == nextChapter.id);
@@ -716,17 +801,11 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
               chapterId: nextChapter.id
             ),
           ];
-          print('Debug: Total loaded chapters: ${loadedChapters.value.length}');
-        } else {
-          print('Debug: Chapter ${nextChapter.id} already loaded, skipping');
         }
       } else {
-        print(
-            'Debug: Failed to load next chapter ${nextChapter.id} - nextChapterPages is null');
         hasReachedEnd.value = true;
       }
     } catch (e) {
-      print('Debug: Error loading next chapter ${nextChapter.id}: $e');
       hasReachedEnd.value = true;
     } finally {
       loadingNext.value = false;
@@ -866,8 +945,6 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         // Only update if the chapter has actually changed to avoid unnecessary rebuilds
         if (currentVisibleChapter.value.id != chapterInfo.chapter.id) {
           currentVisibleChapter.value = chapterInfo.chapter;
-          print(
-              'Debug: Switched to chapter ${chapterInfo.chapter.name} (ID: ${chapterInfo.chapter.id})');
         }
         currentChapterPageIndex.value = chapterInfo.pageIndex;
       }
