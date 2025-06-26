@@ -17,6 +17,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../widgets/server_image.dart';
+import '../../../../../settings/presentation/reader/widgets/reader_infinity_scrolling_mode_tile/reader_infinity_scrolling_mode_tile.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_pinch_to_zoom/reader_pinch_to_zoom.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
@@ -24,6 +25,7 @@ import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../chapter_separator.dart';
 import '../reader_wrapper.dart';
+import 'enhanced_continuous_reader_mode.dart';
 
 /// Configuration constants for improved scroll behavior
 class _ScrollConfig {
@@ -61,6 +63,22 @@ class ContinuousReaderMode extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Check if infinity scrolling mode is enabled
+    final infinityScrollingEnabled = ref.watch(infinityScrollingModeEnabledProvider).ifNull(false);
+    
+    // Use enhanced mode for webtoon with infinity scrolling enabled
+    if (infinityScrollingEnabled && scrollDirection == Axis.vertical && !showSeparator) {
+      return EnhancedContinuousReaderMode(
+        manga: manga,
+        chapter: chapter,
+        chapterPages: chapterPages,
+        onPageChanged: onPageChanged,
+        scrollDirection: scrollDirection,
+        reverse: reverse,
+        showReaderLayoutAnimation: showReaderLayoutAnimation,
+      );
+    }
+
     final ItemScrollController scrollController =
         useMemoized(() => ItemScrollController());
     final ItemPositionsListener positionsListener =

@@ -13,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../utils/extensions/custom_extensions.dart';
 import 'widgets/reader_ignore_safe_area_tile/reader_ignore_safe_area_tile.dart';
+import 'widgets/reader_infinity_scrolling_mode_tile/reader_infinity_scrolling_mode_tile.dart';
 import 'widgets/reader_initial_overlay_tile/reader_initial_overlay_tile.dart';
 import 'widgets/reader_invert_tap_tile/reader_invert_tap_tile.dart';
 import 'widgets/reader_last_page_swipe_tile/reader_last_page_swipe_tile.dart';
@@ -42,6 +43,7 @@ class ReaderSettingsScreen extends ConsumerWidget {
           const ReaderInitialOverlayTile(),
           const SwipeChapterToggleTile(),
           const ReaderLastPageSwipeTile(),
+          const ReaderInfinityScrollingModeTile(),
           const ReaderScrollAnimationTile(),
           const ReaderPaddingSlider(),
           const ReaderMagnifierSizeSlider(),
