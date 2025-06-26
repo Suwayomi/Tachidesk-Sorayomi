@@ -13,7 +13,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../../../domain/chapter/chapter_model.dart';
 import '../../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../controller/reader_controller.dart';
-import 'infinity_continuous_utils.dart';
 
 /// Handles chapter loading logic for infinity continuous reader mode
 class InfinityContinuousChapterLoader {
@@ -93,24 +92,49 @@ class InfinityContinuousChapterLoader {
         if (!alreadyLoaded) {
           // Store current scroll position before adding the chapter
           int? currentIndex;
+          double? currentAlignment;
           if (scrollController != null && positionsListener != null) {
             final positions = positionsListener.itemPositions.value.toList();
             debugPrint('Current positions count: ${positions.length}');
             if (positions.isNotEmpty) {
-              // Find the most visible item
-              ItemPosition? mostVisible;
-              double bestVisibleArea = 0.0;
+              // Find the first visible item that's at the top of the viewport
+              // This gives us a more stable reference point for scroll restoration
+              ItemPosition? topItem;
               for (final position in positions) {
-                final visibleArea =
-                    InfinityContinuousUtils.calculateVisibleArea(position);
-                if (visibleArea > bestVisibleArea) {
-                  bestVisibleArea = visibleArea;
-                  mostVisible = position;
+                if (position.itemLeadingEdge <= 0.0 &&
+                    position.itemTrailingEdge > 0.0) {
+                  topItem = position;
+                  break;
                 }
               }
-              currentIndex = mostVisible?.index;
-              debugPrint(
-                  'Current visible index before insertion: $currentIndex');
+
+              // If no item spans the top, use the first visible item
+              if (topItem == null && positions.isNotEmpty) {
+                topItem = positions.first;
+              }
+
+              if (topItem != null) {
+                currentIndex = topItem.index;
+
+                // Calculate alignment based on how much of the item is visible above the viewport
+                // If itemLeadingEdge is negative, the item extends above the viewport
+                // If itemLeadingEdge is positive, the item starts below the viewport top
+                if (topItem.itemLeadingEdge <= 0.0) {
+                  // Item extends above viewport - calculate how much is hidden
+                  final itemHeight =
+                      topItem.itemTrailingEdge - topItem.itemLeadingEdge;
+                  final hiddenAbove = -topItem.itemLeadingEdge;
+                  currentAlignment = hiddenAbove / itemHeight;
+                  // Clamp to valid range but preserve precision
+                  currentAlignment = currentAlignment.clamp(0.0, 1.0);
+                } else {
+                  // Item starts below viewport top
+                  currentAlignment = 0.0;
+                }
+
+                debugPrint(
+                    'Current visible index: $currentIndex, leading edge: ${topItem.itemLeadingEdge}, trailing edge: ${topItem.itemTrailingEdge}, calculated alignment: $currentAlignment');
+              }
             }
           }
 
@@ -137,33 +161,37 @@ class InfinityContinuousChapterLoader {
             debugPrint(
                 'Adjusting scroll position from $currentIndex to $newIndex');
 
-            // Use multiple approaches to ensure scroll position is maintained
+            // Use scrollTo with alignment to preserve the exact position
             Future.microtask(() {
               try {
-                // First attempt: direct jump
-                scrollController.jumpTo(index: newIndex);
-                debugPrint('Successfully jumped to index: $newIndex');
-              } catch (e) {
-                debugPrint('Direct jump failed: $e, trying scrollTo instead');
-                // Fallback: scroll with animation
-                try {
+                if (currentAlignment != null) {
+                  // Use scrollTo with calculated alignment to preserve exact scroll position
+                  debugPrint('Preserving scroll alignment: $currentAlignment');
                   scrollController.scrollTo(
                     index: newIndex,
-                    duration: const Duration(milliseconds: 100),
+                    duration: Duration.zero, // Instant, no animation
+                    alignment: currentAlignment, // Use the calculated alignment
                   );
-                  debugPrint('Successfully scrolled to index: $newIndex');
-                } catch (e2) {
-                  debugPrint('ScrollTo also failed: $e2');
-                  // Final fallback: try with a longer delay
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    try {
-                      scrollController.jumpTo(index: newIndex);
-                      debugPrint('Delayed jump successful to index: $newIndex');
-                    } catch (e3) {
-                      debugPrint('All scroll adjustment attempts failed: $e3');
-                    }
-                  });
+                  debugPrint(
+                      'Successfully preserved scroll position at index: $newIndex with alignment: $currentAlignment');
+                } else {
+                  // Fallback: jump to the item with default alignment
+                  scrollController.jumpTo(index: newIndex);
+                  debugPrint(
+                      'Successfully jumped to index: $newIndex (no alignment preserved)');
                 }
+              } catch (e) {
+                debugPrint(
+                    'Scroll position adjustment failed: $e, trying fallback');
+                // Final fallback: try with a delay
+                Future.delayed(const Duration(milliseconds: 50), () {
+                  try {
+                    scrollController.jumpTo(index: newIndex);
+                    debugPrint('Delayed jump successful to index: $newIndex');
+                  } catch (e3) {
+                    debugPrint('All scroll adjustment attempts failed: $e3');
+                  }
+                });
               }
             });
           } else {

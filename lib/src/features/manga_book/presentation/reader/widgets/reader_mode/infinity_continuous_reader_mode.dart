@@ -502,14 +502,14 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
     // Stack Overflow approach: Detect overscroll using scroll metrics
     // Check if we've exceeded scroll bounds or are at edge trying to scroll further
     final overscrollEnd = metrics.pixels > metrics.maxScrollExtent;
-    final atMaxScrollExtent =
-        (metrics.pixels - metrics.maxScrollExtent).abs() < InfinityContinuousConfig.scrollExtentTolerance;
+    final atMaxScrollExtent = (metrics.pixels - metrics.maxScrollExtent).abs() <
+        InfinityContinuousConfig.scrollExtentTolerance;
     final tryingToScrollDown =
         notification.scrollDelta != null && notification.scrollDelta! > 0;
 
     final overscrollStart = metrics.pixels < metrics.minScrollExtent;
-    final atMinScrollExtent =
-        (metrics.pixels - metrics.minScrollExtent).abs() < InfinityContinuousConfig.scrollExtentTolerance;
+    final atMinScrollExtent = (metrics.pixels - metrics.minScrollExtent).abs() <
+        InfinityContinuousConfig.scrollExtentTolerance;
     final tryingToScrollUp =
         notification.scrollDelta != null && notification.scrollDelta! < 0;
 
@@ -573,7 +573,7 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
         );
       }
     }
-    
+
     // Show user feedback when trying to scroll past the last chapter
     if (overscrollEnd &&
         hasReachedEnd.value &&
