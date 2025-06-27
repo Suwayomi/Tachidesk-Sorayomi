@@ -176,4 +176,71 @@ class InfinityContinuousUtils {
       }
     }
   }
+
+  /// Check if a specific chapter has been completed based on scroll position
+  /// Returns list of chapters that should be marked as completed
+  /// A chapter is considered complete when:
+  /// 1. The user has scrolled to view pages from a later chapter (previous chapters auto-complete)
+  /// 2. The user is viewing the very last page of a chapter with high visibility
+  static List<ChapterDto> getCompletedChapters(
+    List<ItemPosition> positions,
+    List<({ChapterPagesDto pages, ChapterDto chapter, int chapterId})>
+        loadedChapters,
+    double visibilityThreshold,
+  ) {
+    if (positions.isEmpty || loadedChapters.isEmpty) return [];
+
+    final completedChapters = <ChapterDto>[];
+
+    // Find the highest visible index with sufficient visibility
+    int maxVisibleIndex = -1;
+    double maxVisibility = 0.0;
+
+    for (final position in positions) {
+      final visibleArea = calculateVisibleArea(position);
+      if (visibleArea > visibilityThreshold) {
+        if (position.index > maxVisibleIndex) {
+          maxVisibleIndex = position.index;
+          maxVisibility = visibleArea;
+        }
+      }
+    }
+
+    if (maxVisibleIndex == -1) return [];
+
+    // Determine which chapter the max visible index belongs to
+    int currentIndex = 0;
+    int currentChapterIndex = -1;
+    for (int i = 0; i < loadedChapters.length; i++) {
+      final chapterData = loadedChapters[i];
+      final chapterEndIndex = currentIndex + chapterData.pages.pages.length - 1;
+
+      if (maxVisibleIndex >= currentIndex &&
+          maxVisibleIndex <= chapterEndIndex) {
+        currentChapterIndex = i;
+
+        // Check if user is viewing the very last page of this chapter with good visibility
+        if (maxVisibleIndex == chapterEndIndex &&
+            maxVisibility > 0.7 &&
+            !chapterData.chapter.isRead) {
+          completedChapters.add(chapterData.chapter);
+        }
+        break;
+      }
+
+      currentIndex += chapterData.pages.pages.length;
+    }
+
+    // Mark all previous chapters as complete if user has moved to a later chapter
+    if (currentChapterIndex > 0) {
+      for (int i = 0; i < currentChapterIndex; i++) {
+        final chapterData = loadedChapters[i];
+        if (!chapterData.chapter.isRead) {
+          completedChapters.add(chapterData.chapter);
+        }
+      }
+    }
+
+    return completedChapters;
+  }
 }

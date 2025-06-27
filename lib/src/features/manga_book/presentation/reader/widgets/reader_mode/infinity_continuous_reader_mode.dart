@@ -14,14 +14,19 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
+import '../../../../../../utils/misc/toast/toast.dart';
 import '../../../../../../widgets/server_image.dart';
+import '../../../../../history/presentation/history_controller.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_infinity_scrolling_mode_tile/reader_infinity_scrolling_mode_tile.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_pinch_to_zoom/reader_pinch_to_zoom.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
+import '../../../../data/manga_book/manga_book_repository.dart';
 import '../../../../domain/chapter/chapter_model.dart';
+import '../../../../domain/chapter_batch/chapter_batch_model.dart';
 import '../../../../domain/chapter_page/chapter_page_model.dart';
 import '../../../../domain/manga/manga_model.dart';
 import '../../../manga_details/controller/manga_details_controller.dart';
+import '../../controller/reader_controller.dart';
 import '../reader_wrapper.dart';
 import 'infinity_continuous/infinity_continuous_chapter_loader.dart';
 import 'infinity_continuous/infinity_continuous_config.dart';
@@ -244,7 +249,10 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
       return null;
     }, [currentVisibleChapter.value.id]);
 
-    // Update current index based on scroll position
+    // Track completed chapters to avoid duplicate API calls
+    final completedChapterIds = useRef<Set<int>>({});
+
+    // Update current index based on scroll position and track chapter completion
     useEffect(() {
       void listener() {
         final List<ItemPosition> positions =
@@ -260,6 +268,49 @@ class InfinityContinuousReaderMode extends HookConsumerWidget {
           currentChapterPageIndex,
           InfinityContinuousConfig.minVisibleAreaThreshold,
         );
+
+        // Check for completed chapters and mark them as read
+        final completedChapters = InfinityContinuousUtils.getCompletedChapters(
+          positions,
+          loadedChapters.value,
+          InfinityContinuousConfig.minVisibleAreaThreshold,
+        );
+
+        // Mark completed chapters as read (only if not already processed)
+        for (final completedChapter in completedChapters) {
+          if (!completedChapter.isRead &&
+              !completedChapterIds.value.contains(completedChapter.id)) {
+            // Add to processed set to avoid duplicate calls
+            completedChapterIds.value = {
+              ...completedChapterIds.value,
+              completedChapter.id,
+            };
+
+            // Asynchronously mark the chapter as read without blocking the UI
+            AsyncValue.guard(
+              () => ref.read(mangaBookRepositoryProvider).putChapter(
+                    chapterId: completedChapter.id,
+                    patch: ChapterChange(
+                      isRead: true,
+                      lastPageRead: 0, // Reset to 0 when fully read
+                    ),
+                  ),
+            ).then((result) {
+              if (result.hasError && context.mounted) {
+                // Remove from processed set if failed, so we can retry
+                completedChapterIds.value = {...completedChapterIds.value}
+                  ..remove(completedChapter.id);
+                // Optional: Show error toast if chapter marking fails
+                result.showToastOnError(ref.read(toastProvider));
+              } else {
+                // Invalidate relevant providers to refresh UI
+                ref.invalidate(chapterProvider(chapterId: completedChapter.id));
+                ref.invalidate(mangaChapterListProvider(mangaId: manga.id));
+                ref.invalidate(readingHistoryProvider);
+              }
+            });
+          }
+        }
       }
 
       positionsListener.itemPositions.addListener(listener);
