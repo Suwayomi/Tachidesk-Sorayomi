@@ -1392,5 +1392,21 @@
     "description": "Delay between auto retry attempts in seconds"
   },
   "autoRefreshRetryDelayDescription": "自動再試行の間隔（秒）",
-  "@autoRefreshRetryDelayDescription": {}
+  "@autoRefreshRetryDelayDescription": {},
+  "readerOverlay": "リーダー初期オーバーレイ",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "scanlators": "スキャンレーター",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "selectInBetween": "間を選択",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "thatHaventBeenStarted": "まだ始まっていない",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
+  }
 }
