@@ -1154,5 +1154,37 @@
   "themeModeDark": "ダーク",
   "@themeModeDark": {
     "description": "Radio button text for App theme - Dark"
+  },
+  "displayModeDescriptiveList": "説明付きリスト",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "mangaSortLastUpdated": "最後に更新された",
+  "@mangaSortLastUpdated": {
+    "description": "Radio button text for Manga sort Type - Last Updated"
+  },
+  "nChapters": "{n, plural, =0{なし} =1{1章} other{{n} 章}}",
+  "@nChapters": {
+    "description": "Text for showing N chapters"
+  },
+  "nDays": "{count, select, 01{1日} other{{count}日}}",
+  "@nDays": {
+    "description": "to show Number of days with plural"
+  },
+  "nHours": "{n, plural, =1{1時間} other{{n}時間}}",
+  "@nHours": {
+    "description": "Text to represent 'n' hours"
+  },
+  "nMinutes": "{n, plural, =1{1分} other{{n}分}}",
+  "@nMinutes": {
+    "description": "Text to represent 'n' Minutes"
+  },
+  "nRepo": "{n, plural, =1{1リポジトリ} other{{n}リポジトリ}}",
+  "@nRepo": {
+    "description": "Text to show n repo as subtitle"
+  },
+  "nSeconds": "{n, plural, =1{1秒} other{{n}秒}",
+  "@nSeconds": {
+    "description": "Text to represent 'n' seconds"
   }
 }
