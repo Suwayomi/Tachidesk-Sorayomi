@@ -1,0 +1,6 @@
+{
+  "about": "Sobre",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  }
+}

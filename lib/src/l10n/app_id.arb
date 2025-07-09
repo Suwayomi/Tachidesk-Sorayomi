@@ -63,7 +63,7 @@
   "@categoryUpdate": {
     "description": "Button text to update the mangas in the Category"
   },
-  "channel": "Channel",
+  "channel": "Saluran",
   "@channel": {
     "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
   },
@@ -372,5 +372,25 @@
   "missingTrackers": "Trackers Hilang",
   "@missingTrackers": {
     "description": "Group title to show the Missing Trackers when restoring Backup"
+  },
+  "automaticUpdate": "Perbarui Otomatis",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "Otomatis perbarui metadata",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "Periksa sampul dan detail baru saat memperbarui pustaka",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupAndRestore": "Cadangkan dan Pulihkan",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "Pembersihan Cadangan",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
   }
 }

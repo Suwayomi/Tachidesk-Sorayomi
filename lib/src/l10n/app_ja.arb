@@ -7,7 +7,7 @@
   "@addToLibrary": {
     "description": "Button text to add Manga to Library in Manga Details Screen"
   },
-  "about": "About",
+  "about": "情報",
   "@about": {
     "description": "Screen title and Button text of About screen"
   },
@@ -859,7 +859,7 @@
   "@channel": {
     "description": "Text title to show Channel of the Server (Stable, preview) in About Screen"
   },
-  "browse": "Browse",
+  "browse": "閲覧",
   "@browse": {
     "description": "Screen title, Navigation Bar text and Button text of both Browse screen and Browse Settings Screen"
   },
@@ -1154,5 +1154,259 @@
   "themeModeDark": "ダーク",
   "@themeModeDark": {
     "description": "Radio button text for App theme - Dark"
+  },
+  "displayModeDescriptiveList": "説明付きリスト",
+  "@displayModeDescriptiveList": {
+    "description": "Radio button text for Manga Cover display mode - Descriptive List"
+  },
+  "mangaSortLastUpdated": "最後に更新された",
+  "@mangaSortLastUpdated": {
+    "description": "Radio button text for Manga sort Type - Last Updated"
+  },
+  "nChapters": "{n, plural, =0{なし} =1{1章} other{{n} 章}}",
+  "@nChapters": {
+    "description": "Text for showing N chapters"
+  },
+  "nDays": "{count, select, 01{1日} other{{count}日}}",
+  "@nDays": {
+    "description": "to show Number of days with plural"
+  },
+  "nHours": "{n, plural, =1{1時間} other{{n}時間}}",
+  "@nHours": {
+    "description": "Text to represent 'n' hours"
+  },
+  "nMinutes": "{n, plural, =1{1分} other{{n}分}}",
+  "@nMinutes": {
+    "description": "Text to represent 'n' Minutes"
+  },
+  "nRepo": "{n, plural, =1{1リポジトリ} other{{n}リポジトリ}}",
+  "@nRepo": {
+    "description": "Text to show n repo as subtitle"
+  },
+  "nSeconds": "{n, plural, =1{1秒} other{{n}秒}}",
+  "@nSeconds": {
+    "description": "Text to represent 'n' seconds"
+  },
+  "nSources": "{n, plural, =1{1ソース} other{{n}ソース}}",
+  "@nSources": {
+    "description": "Text to represent n number Parallel source requests"
+  },
+  "nameCountDisplay": "{name}: {count}",
+  "@nameCountDisplay": {
+    "description": "Text pattern to display an name and count in a string",
+    "placeholders": {
+      "count": {
+        "example": "22",
+        "type": "int"
+      },
+      "name": {
+        "example": "Downloaded",
+        "type": "String"
+      }
+    }
+  },
+  "readerLastPageSwipeToggle": "最終ページでのスワイプ",
+  "@readerLastPageSwipeToggle": {
+    "description": "Last page swipe"
+  },
+  "readerLastPageSwipeToggleDescription": "最終ページでのみスワイプして次の章へ移動",
+  "@readerLastPageSwipeToggleDescription": {
+    "description": "Swipe to next chapter only at last page"
+  },
+  "readerIgnoreSafeAreaToggle": "セーフエリアを無視",
+  "@readerIgnoreSafeAreaToggle": {
+    "description": "Toggle text to ignore safe area in reader"
+  },
+  "readerIgnoreSafeAreaToggleDescription": "コンテンツをノッチやホームインジケーター領域まで表示可能にする",
+  "@readerIgnoreSafeAreaToggleDescription": {
+    "description": "Description for ignore safe area toggle in reader settings"
+  },
+  "migrate": "移行",
+  "@migrate": {},
+  "migrationSelectTargetSource": "移行先ソースを選択",
+  "@migrationSelectTargetSource": {},
+  "migrationSearchInSource": "{sourceName}内を検索",
+  "@migrationSearchInSource": {},
+  "migrationPreview": "移行プレビュー",
+  "@migrationPreview": {},
+  "migrationInProgress": "移行中",
+  "@migrationInProgress": {},
+  "migrationComplete": "移行が正常に完了しました",
+  "@migrationComplete": {},
+  "migrationFailed": "移行に失敗しました",
+  "@migrationFailed": {},
+  "migrationCancelled": "移行がキャンセルされました",
+  "@migrationCancelled": {},
+  "migrateChapters": "章の移行",
+  "@migrateChapters": {},
+  "migrateChaptersDescription": "章の読書状況を新しいソースにコピーする",
+  "@migrateChaptersDescription": {},
+  "migrateCategories": "カテゴリの移行",
+  "@migrateCategories": {},
+  "migrateCategoriesDescription": "漫画のカテゴリを新しいソースにコピーする",
+  "@migrateCategoriesDescription": {},
+  "migrateDownloads": "ダウンロードの移行",
+  "@migrateDownloads": {},
+  "migrateDownloadsDescription": "ダウンロード済みの章を新しいソースに移動する",
+  "@migrateDownloadsDescription": {},
+  "migrateTracking": "トラッキングの移行",
+  "@migrateTracking": {},
+  "migrateTrackingDescription": "トラッキング情報を新しいソースにコピーする",
+  "@migrateTrackingDescription": {},
+  "migrationOptions": "移行オプション",
+  "@migrationOptions": {},
+  "migrationSettings": "移行設定",
+  "@migrationSettings": {},
+  "selectTargetSource": "移行先ソースを選択",
+  "@selectTargetSource": {},
+  "noSourcesAvailable": "移行可能なソースがありません",
+  "@noSourcesAvailable": {},
+  "checkSourceConfiguration": "ソースの設定を確認してください",
+  "@checkSourceConfiguration": {},
+  "noAlternativeSources": "代替のソースがありません",
+  "@noAlternativeSources": {},
+  "installMoreSources": "移行を有効にするには、ソースを追加してください",
+  "@installMoreSources": {},
+  "errorLoadingSources": "ソースの読み込みエラー",
+  "@errorLoadingSources": {},
+  "errorGettingMigrationSources": "移行用ソースの取得に失敗しました",
+  "@errorGettingMigrationSources": {},
+  "errorSearchingMangaInSource": "ソース内の漫画検索に失敗しました",
+  "@errorSearchingMangaInSource": {},
+  "errorFetchingSourceManga": "ソースの漫画取得に失敗しました",
+  "@errorFetchingSourceManga": {},
+  "errorSourceMangaNotFound": "ソースの漫画が見つかりません",
+  "@errorSourceMangaNotFound": {},
+  "errorFetchingTargetManga": "移行先の漫画取得に失敗しました",
+  "@errorFetchingTargetManga": {},
+  "errorTargetMangaNotFound": "移行先の漫画が見つかりません",
+  "@errorTargetMangaNotFound": {},
+  "searchManga": "漫画を検索…",
+  "@searchManga": {},
+  "searchForManga": "移行先ソースで漫画を検索",
+  "@searchForManga": {},
+  "enterSearchTerm": "漫画を探すための検索語を入力してください",
+  "@enterSearchTerm": {},
+  "noResultsFound": "検索結果が見つかりません",
+  "@noResultsFound": {},
+  "tryDifferentSearch": "別の検索語を試してください",
+  "@tryDifferentSearch": {},
+  "searchError": "検索エラー",
+  "@searchError": {},
+  "importantNotice": "重要なお知らせ",
+  "@importantNotice": {},
+  "migrationWarning": "これにより漫画データが完全に移動されます。この操作は取り消せません。",
+  "@migrationWarning": {},
+  "deleteSourceWarning": "移行後、元の漫画はライブラリから削除されます。",
+  "@deleteSourceWarning": {},
+  "confirmMigration": "移行の確認",
+  "@confirmMigration": {},
+  "migrationConfirmationMessage": "この漫画を移行してもよろしいですか？この操作は取り消せません。",
+  "@migrationConfirmationMessage": {},
+  "startMigration": "移行を開始",
+  "@startMigration": {},
+  "preparingMigration": "移行を準備しています…",
+  "@preparingMigration": {},
+  "migrationCompleted": "移行が完了しました！",
+  "@migrationCompleted": {},
+  "migrationSuccessMessage": "漫画が新しいソースへ正常に移行されました。",
+  "@migrationSuccessMessage": {},
+  "migrationCancelledMessage": "移行処理はキャンセルされました。変更は行われていません。",
+  "@migrationCancelledMessage": {},
+  "cancelMigration": "移行をキャンセル",
+  "@cancelMigration": {},
+  "cancelMigrationConfirmation": "移行をキャンセルしてもよろしいですか？この操作は取り消せません。",
+  "@cancelMigrationConfirmation": {},
+  "quickPresets": "クイックプリセット",
+  "@quickPresets": {},
+  "quickMigration": "クイック",
+  "@quickMigration": {},
+  "fullMigration": "フル",
+  "@fullMigration": {},
+  "customMigration": "カスタム",
+  "@customMigration": {},
+  "deleteSourceManga": "元の漫画を削除",
+  "@deleteSourceManga": {},
+  "deleteSourceMangaDescription": "移行後、元の漫画をライブラリから削除します",
+  "@deleteSourceMangaDescription": {},
+  "done": "完了",
+  "@done": {},
+  "yes": "はい",
+  "@yes": {},
+  "no": "いいえ",
+  "@no": {},
+  "from": "から",
+  "@from": {},
+  "to": "へ",
+  "@to": {},
+  "migrationDetails": "移行の詳細",
+  "@migrationDetails": {},
+  "searchAllSources": "全てのソースを検索",
+  "@searchAllSources": {},
+  "searchingAllSources": "利用可能なすべてのソースを検索しています…",
+  "@searchingAllSources": {},
+  "noMatchingMangaFound": "どのソースにも該当する漫画が見つかりません",
+  "@noMatchingMangaFound": {},
+  "deleteSourceAfterMigration": "移行後に元の漫画を削除する",
+  "@deleteSourceAfterMigration": {},
+  "recentlyRead": "最近読んだ",
+  "@recentlyRead": {
+    "description": "Recently Read Text to show reading history grouping"
+  },
+  "history": "履歴",
+  "@history": {},
+  "searchHistory": "履歴を検索…",
+  "@searchHistory": {},
+  "noHistoryFound": "読書履歴が見つかりません",
+  "@noHistoryFound": {},
+  "startReadingToSeeHistory": "読書を始めるとここに履歴が表示されます",
+  "@startReadingToSeeHistory": {},
+  "noSearchResults": "検索結果がありません",
+  "@noSearchResults": {},
+  "tryDifferentSearchTerm": "別の検索語を試してください",
+  "@tryDifferentSearchTerm": {},
+  "errorOccurred": "エラーが発生しました",
+  "@errorOccurred": {},
+  "viewManga": "漫画を見る",
+  "@viewManga": {},
+  "removeFromHistory": "履歴から削除",
+  "@removeFromHistory": {},
+  "removeFromHistoryConfirmation": "この章を読書履歴から削除してもよろしいですか？",
+  "@removeFromHistoryConfirmation": {},
+  "timeoutSettings": "タイムアウト設定",
+  "@timeoutSettings": {},
+  "serverRequestTimeout": "サーバーリクエストのタイムアウト",
+  "@serverRequestTimeout": {
+    "description": "Controls how long to wait for server responses"
+  },
+  "serverRequestTimeoutDescription": "サーバー応答を待つ時間（秒）",
+  "@serverRequestTimeoutDescription": {},
+  "autoRefreshOnTimeout": "タイムアウト時の自動再試行",
+  "@autoRefreshOnTimeout": {
+    "description": "Toggle automatic retry on timeout"
+  },
+  "autoRefreshOnTimeoutDescription": "タイムアウトしたリクエストを自動的に再試行します",
+  "@autoRefreshOnTimeoutDescription": {},
+  "autoRefreshRetryDelay": "自動再試行の待機時間",
+  "@autoRefreshRetryDelay": {
+    "description": "Delay between auto retry attempts in seconds"
+  },
+  "autoRefreshRetryDelayDescription": "自動再試行の間隔（秒）",
+  "@autoRefreshRetryDelayDescription": {},
+  "readerOverlay": "リーダー初期オーバーレイ",
+  "@readerOverlay": {
+    "description": "Toggle subtile text for Initial Reader Overlay"
+  },
+  "scanlators": "スキャンレーター",
+  "@scanlators": {
+    "description": "Title text for Scanlators"
+  },
+  "selectInBetween": "間を選択",
+  "@selectInBetween": {
+    "description": "Toast Text for selecting chapters in between first and last Chapters"
+  },
+  "thatHaventBeenStarted": "まだ始まっていない",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
   }
 }
