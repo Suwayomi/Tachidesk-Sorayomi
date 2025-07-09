@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../constants/db_keys.dart';
 import '../../constants/endpoints.dart';
 import '../../constants/enum.dart';
 import '../../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
@@ -22,10 +23,29 @@ extension CacheManagerExtension on CacheManager {
       {bool appendApiToUrl = true}) async {
     final authType = ref.read(authTypeKeyProvider);
     final basicToken = ref.read(credentialsProvider);
+    
+    // Use automatic URL switching if enabled, never fallback to manual URL
+    final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
+    String baseUrl;
+    
+    if (automaticSwitching == true) {
+      try {
+        final activeUrl = await ref.read(activeServerUrlProvider.future);
+        // When automatic switching is enabled, only use the active URL
+        // If no automatic URL is available, use a placeholder that will fail gracefully
+        baseUrl = activeUrl ?? 'http://localhost:4567';
+      } catch (e) {
+        // Use placeholder when automatic switching fails
+        baseUrl = 'http://localhost:4567';
+      }
+    } else {
+      baseUrl = ref.read(serverUrlProvider) ?? DBKeys.serverUrl.initial;
+    }
+    
     final baseApi = "${Endpoints.baseApi(
-      baseUrl: ref.read(serverUrlProvider),
-      port: ref.read(serverPortProvider),
-      addPort: ref.read(serverPortToggleProvider).ifNull(),
+      baseUrl: baseUrl,
+      port: automaticSwitching == true ? null : ref.read(serverPortProvider),
+      addPort: automaticSwitching == true ? false : ref.read(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,
     )}"
         "$url";

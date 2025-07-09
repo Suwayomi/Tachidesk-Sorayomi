@@ -3,6 +3,9 @@
     "@about": {
         "description": "Screen title and Button text of About screen"
     },
+    "@add": {
+        "description": "Generic Add button text"
+    },
     "@addCategory": {
         "description": "Popup title and Button text to add new category in Edit Category Screen"
     },
@@ -38,6 +41,144 @@
     },
     "@authentication": {
         "description": "Section title for server authentication"
+    },
+    "@automaticUrlSwitching": {
+        "description": "Section title for automatic URL switching feature"
+    },
+    "@enableAutomaticUrlSwitching": {
+        "description": "Toggle title to enable/disable automatic URL switching"
+    },
+    "@automaticUrlSwitchingEnabled": {
+        "description": "Subtitle text when automatic URL switching is enabled"
+    },
+    "@automaticUrlSwitchingDisabled": {
+        "description": "Subtitle text when automatic URL switching is disabled"
+    },
+    "@currentActiveUrl": {
+        "description": "Title for current active URL status display"
+    },
+    "@noActiveUrlFound": {
+        "description": "Text shown when no active URL is found"
+    },
+    "@detectingNetwork": {
+        "description": "Text shown while detecting network status"
+    },
+    "@localWifiNetworkName": {
+        "description": "Title for local WiFi network name setting"
+    },
+    "@localWifiNetworkNameHint": {
+        "description": "Hint text for local WiFi network name input field"
+    },
+    "@localServerUrl": {
+        "description": "Title for local server URL setting"
+    },
+    "@localServerUrlHint": {
+        "description": "Hint text for local server URL input field"
+    },
+    "@localServerUrlSubtitle": {
+        "description": "Subtitle explaining local-ip placeholder usage"
+    },
+    "@externalUrls": {
+        "description": "Title for external URLs section"
+    },
+    "@addExternalUrl": {
+        "description": "Dialog title for adding external URL"
+    },
+    "@editExternalUrl": {
+        "description": "Dialog title for editing external URL"
+    },
+    "@externalUrlHint": {
+        "description": "Hint text for external URL input field"
+    },
+    "@externalUrlsConfigured": {
+        "description": "Text showing number of configured external URLs"
+    },
+    "@networkInformation": {
+        "description": "Title for network information section"
+    },
+    "@networkInformationDescription": {
+        "description": "Description of how automatic URL switching works"
+    },
+    "@localNetwork": {
+        "description": "Section title for local network configuration"
+    },
+    "@localNetworks": {
+        "description": "Title for local networks list"
+    },
+    "@localNetworksConfigured": {
+        "description": "Text showing number of configured local networks"
+    },
+    "@addLocalNetwork": {
+        "description": "Dialog title for adding local network"
+    },
+    "@editLocalNetwork": {
+        "description": "Dialog title for editing local network"
+    },
+    "@wifiNetworkName": {
+        "description": "Title for WiFi network name input field"
+    },
+    "@wifiNetworkNameHint": {
+        "description": "Hint text for WiFi network name input field"
+    },
+    "@serverUrl": {
+        "description": "Title for server URL input field"
+    },
+    "@serverUrlHint": {
+        "description": "Hint text for server URL input field"
+    },
+    "@globalAuthentication": {
+        "description": "Section title for global authentication"
+    },
+    "@enableGlobalAuthentication": {
+        "description": "Toggle title to enable/disable global authentication"
+    },
+    "@globalAuthenticationDescription": {
+        "description": "Description of how global authentication works"
+    },
+    "@externalNetwork": {
+        "description": "Section title for external network configuration"
+    },
+    "@urlValidationError": {
+        "description": "Error message for URL validation failure"
+    },
+    "@testConnection": {
+        "description": "Button text to test network connection"
+    },
+    "@testConnectionResult": {
+        "description": "Title for connection test result dialog"
+    },
+    "@connectionSuccessful": {
+        "description": "Message shown when connection test succeeds"
+    },
+    "@connectionFailed": {
+        "description": "Message shown when connection test fails"
+    },
+    "@testing": {
+        "description": "Text shown while testing connection"
+    },
+    "@permissionRequired": {
+        "description": "Title for permission request dialog"
+    },
+    "@permissionRequiredMessage": {
+        "description": "Message explaining why permission is needed"
+    },
+    "@permissionDeniedMessage": {
+        "description": "Message shown when permission is denied"
+    },
+    "@automaticUrlSwitchingEnabledWithoutPermission": {
+        "description": "Message shown when automatic URL switching is enabled but permission is not granted"
+    },
+    "@authenticationType": {
+        "description": "Label for authentication type dropdown"
+    },
+    "@username": {
+        "description": "Label for username input field"
+    },
+    "@openSettings": {
+        "description": "Button text to open app settings"
+    },
+    "@grantPermission": {
+        "description": "Button text to grant permission"
     },
     "@autoDownload": {
         "description": "Title for Auto-download Section in downloads settings"
@@ -939,6 +1080,7 @@
         "description": "Recently Read Text to show reading history grouping"
     },
     "about": "About",
+    "add": "Add",
     "addCategory": "Add Category",
     "addToLibrary": "Add to Library",
     "advanced": "Advanced",
@@ -951,6 +1093,52 @@
     "authTypeBasic": "Basic Auth",
     "authTypeNone": "None",
     "authentication": "Authentication",
+    "automaticUrlSwitching": "Automatic URL Switching",
+    "enableAutomaticUrlSwitching": "Enable Automatic URL Switching",
+    "automaticUrlSwitchingEnabled": "Automatically switch between local and external URLs",
+    "automaticUrlSwitchingDisabled": "Use manual server URL setting",
+    "currentActiveUrl": "Current Active URL",
+    "noActiveUrlFound": "No active URL found",
+    "detectingNetwork": "Detecting network...",
+    "localWifiNetworkName": "Local WiFi Network Name",
+    "localWifiNetworkNameHint": "Enter your home WiFi network name",
+    "localServerUrl": "Local Server URL",
+    "localServerUrlHint": "http://local-ip:4567",
+    "localServerUrlSubtitle": "Use 'local-ip' placeholder for automatic IP substitution",
+    "externalUrls": "External URLs",
+    "addExternalUrl": "Add External URL",
+    "editExternalUrl": "Edit External URL",
+    "externalUrlHint": "https://your-domain.com:4567",
+    "externalUrlsConfigured": "{count, plural, =0{No external URLs configured} =1{1 external URL configured} other{{count} external URLs configured}}",
+    "networkInformation": "Network Information",
+    "networkInformationDescription": "The app will automatically detect your WiFi network and switch to the appropriate server URL.",
+    "localNetwork": "Local Network",
+    "localNetworks": "Local Networks",
+    "localNetworksConfigured": "{count, plural, =0{No local networks configured} =1{1 local network configured} other{{count} local networks configured}}",
+    "addLocalNetwork": "Add Local Network",
+    "editLocalNetwork": "Edit Local Network",
+    "wifiNetworkName": "WiFi Network Name",
+    "wifiNetworkNameHint": "Enter WiFi network name (SSID)",
+    "serverUrl": "Server URL",
+    "serverUrlHint": "http://192.168.1.100:4567",
+    "globalAuthentication": "Global Authentication",
+    "enableGlobalAuthentication": "Enable Global Authentication",
+    "globalAuthenticationDescription": "Use the same authentication for all local and external networks",
+    "externalNetwork": "External Network",
+    "urlValidationError": "Error: {message}",
+    "testConnection": "Test Connection",
+    "testConnectionResult": "Connection Test Result",
+    "connectionSuccessful": "Connection successful",
+    "connectionFailed": "Connection failed",
+    "testing": "Testing...",
+    "permissionRequired": "Permission Required",
+    "permissionRequiredMessage": "Automatic URL switching requires location permission to detect WiFi network information. Would you like to grant this permission?",
+    "permissionDeniedMessage": "Location permission is required for automatic URL switching to work. Please enable it in app settings.",
+    "automaticUrlSwitchingEnabledWithoutPermission": "Automatic URL switching enabled, but location permission is required for it to work properly.",
+    "authenticationType": "Authentication Type",
+    "username": "Username",
+    "openSettings": "Open Settings",
+    "grantPermission": "Grant Permission",
     "autoDownload": "Auto-download",
     "autoDownloadNewChapters": "Download new chapters",
     "automaticBackup": "Automatic Backup",
@@ -1328,5 +1516,8 @@
     "autoRefreshOnTimeoutDescription": "Automatically retries requests that timeout",
     "autoRefreshRetryDelay": "Auto-refresh Retry Delay",
     "@autoRefreshRetryDelay": {"description": "Delay between auto retry attempts in seconds"},
-    "autoRefreshRetryDelayDescription": "Delay between auto retry attempts (in seconds)"
+    "autoRefreshRetryDelayDescription": "Delay between auto retry attempts (in seconds)",
+    "localNetworkConfiguration": "Local Network Configuration",
+    "configureLocalWifiSettings": "Configure local WiFi network settings",
+    "manageExternalServerUrls": "Manage external server URLs"
 }

@@ -56,10 +56,20 @@ enum DBKeys {
   flexScheme(FlexScheme.material),
   historyEnabled(true),
   historyRetentionDays(90),
-  // Timeout Settings
+  // Timeout settings
   serverRequestTimeout(5000), // milliseconds
   autoRefreshOnTimeout(false),
   autoRefreshRetryDelay(1000), // milliseconds
+  // Automatic URL Switching
+  automaticUrlSwitching(false),
+  localNetworkWifiName(''),
+  localNetworkServerUrl(''),
+  localNetworkConfigs(<String>[]),
+  externalNetworkUrls(<String>[]),
+  globalAuthenticationEnabled(false),
+  globalAuthType(AuthType.none),
+  globalUsername(''),
+  globalPassword(''),
   ;
 
   const DBKeys(this.initial);

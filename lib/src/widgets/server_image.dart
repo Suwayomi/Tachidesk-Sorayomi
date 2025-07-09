@@ -13,6 +13,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/app_sizes.dart';
+import '../constants/db_keys.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
@@ -51,10 +52,30 @@ class ServerImage extends HookConsumerWidget {
     final authType = ref.watch(authTypeKeyProvider);
     final basicToken = ref.watch(credentialsProvider);
 
+    // Use automatic URL switching if enabled, never fallback to manual URL
+    final automaticSwitching = ref.watch(automaticUrlSwitchingProvider);
+    final serverUrl = ref.watch(serverUrlProvider);
+    String baseUrl;
+    
+    if (automaticSwitching == true) {
+      final activeUrl = ref.watch(activeServerUrlProvider);
+      baseUrl = activeUrl.when(
+        data: (url) {
+          // When automatic switching is enabled, only use the active URL
+          // If no automatic URL is available, use a placeholder that will fail gracefully
+          return url ?? 'http://localhost:4567';
+        },
+        loading: () => 'http://localhost:4567', // Default placeholder while loading
+        error: (_, __) => 'http://localhost:4567', // Use placeholder when automatic switching fails
+      );
+    } else {
+      baseUrl = serverUrl ?? DBKeys.serverUrl.initial;
+    }
+
     final baseApi = "${Endpoints.baseApi(
-      baseUrl: ref.watch(serverUrlProvider),
-      port: ref.watch(serverPortProvider),
-      addPort: ref.watch(serverPortToggleProvider).ifNull(),
+      baseUrl: baseUrl,
+      port: automaticSwitching == true ? null : ref.watch(serverPortProvider),
+      addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
       appendApiToUrl: appendApiToUrl,
     )}"
         "$imageUrl";

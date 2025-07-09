@@ -49,7 +49,13 @@ class OperationMessageException implements Exception {
       if (linkException is ServerException) {
         toString.write((linkException.parsedResponse?.response).toToastString);
       } else {
-        toString.write(linkException.originalException);
+        // Handle JSON parsing errors more gracefully
+        final originalException = linkException.originalException;
+        if (originalException is FormatException) {
+          toString.write('Server response format error - possible connection issue with automatic URL switching');
+        } else {
+          toString.write(linkException.originalException);
+        }
       }
     }
     return toString.toString();

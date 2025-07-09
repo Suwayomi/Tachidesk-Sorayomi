@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../../../constants/db_keys.dart';
 import '../../../../../../../constants/endpoints.dart';
+import '../../../../../../../global_providers/global_providers.dart';
 import '../../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../../utils/launch_url_in_web.dart';
 import '../../../../../../../utils/misc/toast/toast.dart';
 import '../../../../../../../widgets/async_buttons/async_elevated_button.dart';
 import '../../../../../../../widgets/popup_widgets/pop_button.dart';
 import '../../../../server/widget/client/server_port_tile/server_port_tile.dart';
-import '../../../../server/widget/client/server_url_tile/server_url_tile.dart';
 import '../../../data/backup_settings_repository.dart';
 
 class CreateBackupDialog extends HookConsumerWidget {
@@ -57,12 +58,28 @@ class CreateBackupDialog extends HookConsumerWidget {
               return;
             }
 
+            // Store context before async operation
+            if (!context.mounted) return;
+            
+            // Use active server URL (which includes automatic switching logic)
+            final activeUrl = await ref.read(activeServerUrlProvider.future);
+            final automaticSwitching = ref.read(automaticUrlSwitchingProvider);
+            
+            // When automatic switching is enabled but no URL is available, show error
+            if (automaticSwitching == true && activeUrl == null) {
+              if (context.mounted) {
+                toast?.showError('No server URL available from automatic switching. Please configure local networks or external URLs.');
+              }
+              return;
+            }
+            
+            if (!context.mounted) return;
             launchUrlInWeb(
               context,
               Endpoints.baseApi(
-                    baseUrl: ref.read(serverUrlProvider),
-                    port: ref.read(serverPortProvider),
-                    addPort: ref.watch(serverPortToggleProvider).ifNull(),
+                    baseUrl: activeUrl ?? (automaticSwitching == true ? 'http://localhost:4567' : DBKeys.serverUrl.initial),
+                    port: automaticSwitching == true ? null : ref.read(serverPortProvider),
+                    addPort: automaticSwitching == true ? false : ref.watch(serverPortToggleProvider).ifNull(),
                     appendApiToUrl: false,
                   ) +
                   backupUrl.value!,
