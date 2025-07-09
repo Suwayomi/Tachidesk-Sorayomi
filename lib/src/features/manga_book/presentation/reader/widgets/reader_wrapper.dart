@@ -60,6 +60,7 @@ class ReaderWrapper extends HookConsumerWidget {
     this.showReaderLayoutAnimation = false,
     required this.chapterPages,
     this.pageController,
+    this.totalPageCount, // For infinity scrolling mode
   });
   final Widget child;
   final MangaDto manga;
@@ -72,6 +73,7 @@ class ReaderWrapper extends HookConsumerWidget {
   final bool showReaderLayoutAnimation;
   final ChapterPagesDto chapterPages;
   final PageController? pageController;
+  final int? totalPageCount; // For infinity scrolling mode
 
   /// Determine transition direction based on reading mode for proper animations
   /// Returns true for vertical transitions, false for horizontal transitions
@@ -455,7 +457,7 @@ class ReaderWrapper extends HookConsumerWidget {
                         Expanded(
                           child: PageNumberSlider(
                             currentValue: currentIndex,
-                            maxValue: chapterPages.chapter.pageCount,
+                            maxValue: totalPageCount ?? chapterPages.chapter.pageCount,
                             onChanged: (index) => onChanged(index),
                             inverted: invertTap,
                           ),
