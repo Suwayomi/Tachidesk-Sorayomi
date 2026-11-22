@@ -6,6 +6,7 @@
 
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,8 +18,9 @@ import 'global_providers/global_providers.dart';
 import 'l10n/generated/app_localizations.dart';
 import 'routes/router_config.dart';
 import 'utils/extensions/custom_extensions.dart';
+import 'utils/window_titlebar_theme.dart';
 
-class Sorayomi extends ConsumerWidget {
+class Sorayomi extends HookConsumerWidget {
   const Sorayomi({super.key});
 
   @override
@@ -29,6 +31,18 @@ class Sorayomi extends ConsumerWidget {
     final appScheme = ref.watch(appSchemeProvider);
     final isTrueBlack = ref.watch(isTrueBlackProvider);
     final client = ref.watch(graphQlClientNotifierProvider);
+
+    // Update Windows titlebar theme when app theme changes
+    useEffect(() {
+      final isDarkMode = themeMode == ThemeMode.dark ||
+          (themeMode == ThemeMode.system &&
+              WidgetsBinding.instance.platformDispatcher.platformBrightness ==
+                  Brightness.dark);
+
+      WindowTitlebarTheme.setDarkMode(isDarkMode);
+      return null;
+    }, [themeMode]);
+
     return GraphQLProvider(
       client: client,
       child: MaterialApp.router(

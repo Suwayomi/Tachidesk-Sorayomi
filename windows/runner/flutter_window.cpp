@@ -3,6 +3,9 @@
 #include <optional>
 
 #include "flutter/generated_plugin_registrant.h"
+#include "flutter/method_channel.h"
+#include "flutter/standard_method_codec.h"
+#include "flutter/encodable_value.h"
 
 FlutterWindow::FlutterWindow(const flutter::DartProject& project)
     : project_(project) {}
@@ -26,6 +29,39 @@ bool FlutterWindow::OnCreate() {
   }
   RegisterPlugins(flutter_controller_->engine());
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
+
+  // method channel for theme updates
+  flutter::MethodChannel<> channel(
+      flutter_controller_->engine()->messenger(), "dev.suwayomi.sorayomi/theme",
+      &flutter::StandardMethodCodec::GetInstance());
+  channel.SetMethodCallHandler(
+      [this](const flutter::MethodCall<>& call,
+             std::unique_ptr<flutter::MethodResult<>> result) {
+        if (call.method_name() == "setDarkMode") {
+          if (const auto* arguments = std::get_if<flutter::EncodableMap>(call.arguments())) {
+            auto it = arguments->find(flutter::EncodableValue("isDark"));
+            if (it != arguments->end() && std::holds_alternative<bool>(it->second)) {
+              bool is_dark = std::get<bool>(it->second);
+              Win32Window::SetTheme(GetHandle(), is_dark);
+              result->Success();
+              return;
+            }
+          }
+          result->Error("INVALID_ARGUMENT", "Expected boolean 'isDark' argument");
+        } else {
+          result->NotImplemented();
+        }
+      });
+
+  flutter_controller_->engine()->SetNextFrameCallback([&]() {
+    this->Show();
+  });
+
+  // Flutter can complete the first frame before the "show window" callback is
+  // registered. The following call ensures a frame is pending to ensure the
+  // window is shown. It is a no-op if the first frame hasn't completed yet.
+  flutter_controller_->ForceRedraw();
+
   return true;
 }
 
