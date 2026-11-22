@@ -1,3 +1,5 @@
+# This repo has been archived, you can migrate to [Suwayomi-Tsumiru](https://github.com/Suwayomi/Suwayomi-Tsumiru), which is a fork of Sorayomi and is actively maintained by @aaronbamblett
+
 <p align="center">
  <img width=200px height=200px src="assets/icons/launcher/sorayomi_icon.png" alt="Sorayomi logo"/>
 </p>
