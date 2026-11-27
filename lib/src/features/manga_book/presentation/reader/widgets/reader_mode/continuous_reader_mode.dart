@@ -97,7 +97,12 @@ class ContinuousReaderMode extends HookConsumerWidget {
         // Don't update position if we're navigating from slider
         if (!isNavigatingFromSlider.value) {
           // Always update position for UI display (navigation bar needs this)
-          _updatePositionForDisplay(positions, currentIndex, lastReportedIndex);
+          _updatePositionForDisplay(
+            positions,
+            currentIndex,
+            lastReportedIndex,
+            chapterPages.chapter.pageCount,
+          );
         }
 
         // Mark as user scrolling to prevent programmatic navigation
@@ -259,8 +264,26 @@ class ContinuousReaderMode extends HookConsumerWidget {
     List<ItemPosition> positions,
     ValueNotifier<int> currentIndex,
     ValueNotifier<int> lastReportedIndex,
+    int itemCount,
   ) {
     if (positions.isEmpty) return;
+
+    // When the last image is shorter than the viewport, the "most visible
+    // area" heuristic below can pick a larger image above instead of the
+    // last image, so currentIndex never reaches the end of the chapter and
+    // mark-as-read never fires. If the last item is in view and the scroll
+    // has reached its end (the last item's trailing edge is at or above
+    // the viewport bottom), force currentIndex to the last page so the
+    // read-marking pipeline downstream behaves correctly.
+    if (itemCount > 0) {
+      final int lastIndex = itemCount - 1;
+      for (final ItemPosition position in positions) {
+        if (position.index == lastIndex && position.itemTrailingEdge <= 1.0) {
+          currentIndex.value = lastIndex;
+          return;
+        }
+      }
+    }
 
     // Find the item that's most visible for display purposes
     ItemPosition? mostVisible;
