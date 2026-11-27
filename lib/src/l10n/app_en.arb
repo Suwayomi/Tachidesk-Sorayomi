@@ -408,11 +408,17 @@
     "@mangaSortDateAdded": {
         "description": "Radio button text for Manga sort Type - Date Added"
     },
+    "@mangaSortLastChapterDate": {
+        "description": "Radio button text for Manga sort Type - Last Chapter Date (upload date of the most recent chapter from the source)"
+    },
     "@mangaSortLastRead": {
         "description": "Radio button text for Manga sort Type - Last Read"
     },
     "@mangaSortLastUpdated": {
         "description": "Radio button text for Manga sort Type - Last Updated"
+    },
+    "@mangaSortTotalChapters": {
+        "description": "Radio button text for Manga sort Type - Total Chapters"
     },
     "@mangaSortUnread": {
         "description": "Radio button text for Manga sort Type - Unread"
@@ -844,6 +850,9 @@
     "@start": {
         "description": "Button text start reading the manga"
     },
+    "@started": {
+        "description": "Library filter label: manga the user has started reading (read at least one chapter)"
+    },
     "@systemTrayIcon": {
         "description": "Switch title to Show icon in system tray in settings"
     },
@@ -1070,8 +1079,10 @@
     "mangaMissingSources": "Manga Missing Sources",
     "mangaSortAlphabetical": "Alphabetical",
     "mangaSortDateAdded": "Date Added",
+    "mangaSortLastChapterDate": "Last Chapter Date",
     "mangaSortLastRead": "Last Read",
     "mangaSortLastUpdated": "Last Updated",
+    "mangaSortTotalChapters": "Total Chapters",
     "mangaSortUnread": "Unread",
     "mangaStatusCancelled": "Cancelled",
     "mangaStatusCompleted": "Completed",
@@ -1281,6 +1292,7 @@
     "sourceTypePopular": "Popular",
     "sources": "Sources",
     "start": "Start",
+    "started": "Started",
     "systemTrayIcon": "Show icon in system tray",
     "thatHaventBeenStarted": "That haven't been started",
     "themeModeDark": "Dark",

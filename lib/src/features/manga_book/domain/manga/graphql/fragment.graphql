@@ -2,6 +2,10 @@ fragment MangaDto on MangaType {
   age
   artist
   author
+  bookmarkCount
+  chapters {
+    totalCount
+  }
   chaptersAge
   chaptersLastFetchedAt
   description
