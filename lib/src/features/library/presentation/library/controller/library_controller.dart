@@ -82,6 +82,11 @@ class CategoryMangaListWithQueryAndFilter
                   .compareTo(
                       int.tryParse(m2.latestFetchedChapter?.fetchedAt ?? '0') ??
                           0),
+            MangaSort.lastRead =>
+              (int.tryParse(m2.lastReadChapter?.lastReadAt ?? '0') ?? 0)
+                  .compareTo(
+                      int.tryParse(m1.lastReadChapter?.lastReadAt ?? '0') ??
+                          0),
           }) *
           sortDirToggle;
     }
