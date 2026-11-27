@@ -129,6 +129,9 @@
     "@chapterSortUploadDate": {
         "description": "Radio button text for sort by Upload Date"
     },
+    "@chapterSeparator": {
+        "description": "Text for the separator between chapters in continuous reading mode"
+    },
     "@checkForServerUpdates": {
         "description": "Button text to check for Server updates"
     },
@@ -309,6 +312,9 @@
     "@finished": {
         "description": "Text to show the Currently Finished reading chapter in Reader Screen"
     },
+    "@firstChapterNotification": {
+        "description": "Notification text shown when user is at the first chapter"
+    },
     "@flareSolverr": {
         "description": "Toggle title to enable FlareSolverr"
     },
@@ -381,6 +387,9 @@
     "@languages": {
         "description": "Popup title to filter extensions based on language"
     },
+    "@lastChapterNotification": {
+        "description": "Notification text shown when user is at the last chapter"
+    },
     "@latest": {
         "description": "Button text to take user to the latest tab of Source manga screen"
     },
@@ -392,6 +401,48 @@
     },
     "@localSourceLocationDescription": {
         "description": "Description text for Local Source Location property"
+    },
+    "@loadingNextChapter": {
+        "description": "Loading text shown when loading next chapter in continuous reading"
+    },
+    "@loadingPreviousChapter": {
+        "description": "Loading text shown when loading previous chapter in continuous reading"
+    },
+    "@noMoreChaptersAhead": {
+        "description": "Notification text shown when user tries to scroll past the last chapter"
+    },
+    "@noMoreChaptersBehind": {
+        "description": "Notification text shown when user tries to scroll past the first chapter"
+    },
+    "@nextChapterLoaded": {
+        "description": "Success message shown when next chapter is loaded",
+        "placeholders": {
+            "chapterName": {
+                "type": "String",
+                "description": "The name of the loaded chapter"
+            }
+        }
+    },
+    "@previousChapterLoaded": {
+        "description": "Success message shown when previous chapter is loaded",
+        "placeholders": {
+            "chapterName": {
+                "type": "String",
+                "description": "The name of the loaded chapter"
+            }
+        }
+    },
+    "@failedToLoadNextChapter": {
+        "description": "Error message shown when next chapter fails to load"
+    },
+    "@failedToLoadPreviousChapter": {
+        "description": "Error message shown when previous chapter fails to load"
+    },
+    "@chapterCompleted": {
+        "description": "Text shown when a chapter is completed in continuous reading"
+    },
+    "@finished": {
+        "description": "Text shown when a chapter is finished in continuous reading"
     },
     "@manga": {
         "description": "Screen title and Button text of Manga details screen"
@@ -708,6 +759,12 @@
     },
     "@readerLastPageSwipeToggleDescription": {
         "description": "Swipe to next chapter only at last page"
+    },
+    "@readerInfinityScrollingMode": {
+        "description": "Switch title to toggle infinity scrolling mode in webtoon mode"
+    },
+    "@readerInfinityScrollingModeDescription": {
+        "description": "Switch tile description for infinity scrolling mode in webtoon mode"
     },
     "@readerVolumeTap": {
         "description": "Switch button text for Reader Page Navigation with Volume Tap"
@@ -1161,6 +1218,21 @@
     "readerSwipeChapterToggleDescription": "Swipe to change chapter in reader",
     "readerLastPageSwipeToggle": "Last page swipe",
     "readerLastPageSwipeToggleDescription": "Swipe to next chapter only at last page",
+    "readerInfinityScrollingMode": "Infinity Scrolling Mode",
+    "readerInfinityScrollingModeDescription": "Automatically load the next or previous chapter when scrolling reaches the end of a chapter.",
+    "chapterSeparator": "Chapter separator",
+    "lastChapterNotification": "This is the last chapter",
+    "firstChapterNotification": "This is the first chapter",
+    "loadingNextChapter": "Loading next chapter...",
+    "loadingPreviousChapter": "Loading previous chapter...",
+    "noMoreChaptersAhead": "No more chapters ahead",
+    "noMoreChaptersBehind": "No more chapters behind",
+    "nextChapterLoaded": "Loaded: {chapterName}",
+    "previousChapterLoaded": "Loaded: {chapterName}",
+    "failedToLoadNextChapter": "Failed to load next chapter",
+    "failedToLoadPreviousChapter": "Failed to load previous chapter",
+    "chapterCompleted": "Chapter Completed",
+    "finished": "Finished",
     "readerVolumeTap": "Volume Keys",
     "readerVolumeTapInvert": "Invert Volume Keys",
     "readerVolumeTapSubtitle": "Navigate with Volume Keys",
