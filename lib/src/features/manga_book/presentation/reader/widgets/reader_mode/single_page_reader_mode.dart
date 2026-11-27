@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:zoom_view/zoom_view.dart';
 
 import '../../../../../../constants/app_constants.dart';
 import '../../../../../../utils/extensions/cache_manager_extensions.dart';
@@ -110,47 +111,56 @@ class SinglePageReaderMode extends HookConsumerWidget {
         curve: kCurve,
       ),
       pageController: scrollController,
-      child: PageView.builder(
-        scrollDirection: scrollDirection,
-        reverse: reverse,
-        controller: scrollController,
-        allowImplicitScrolling: true,
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        itemBuilder: (BuildContext context, int index) {
-          // Show loading indicator if no pages are available yet
-          if (chapterPages.pages.isEmpty) {
-            return const Center(
-              child: CenterSorayomiShimmerIndicator(),
-            );
-          }
+      child: AppUtils.wrapOn(
+        !kIsWeb && (Platform.isAndroid || Platform.isIOS)
+            ? (Widget child) => ZoomView(
+                  controller: scrollController,
+                  scrollAxis: scrollDirection,
+                  maxScale: 5,
+                  doubleTapDrag: true,
+                  // Required so the scale recognizer wins the gesture
+                  // arena against the underlying PageView's pan
+                  // recognizer (closes #256).
+                  forceHoldOnPointerDown: true,
+                  child: child,
+                )
+            : null,
+        PageView.builder(
+          scrollDirection: scrollDirection,
+          reverse: reverse,
+          controller: scrollController,
+          allowImplicitScrolling: true,
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          itemBuilder: (BuildContext context, int index) {
+            // Show loading indicator if no pages are available yet
+            if (chapterPages.pages.isEmpty) {
+              return const Center(
+                child: CenterSorayomiShimmerIndicator(),
+              );
+            }
 
-          // Add bounds checking to prevent accessing non-existent pages
-          if (index >= chapterPages.pages.length) {
-            return const Center(
-              child: CenterSorayomiShimmerIndicator(),
-            );
-          }
+            // Add bounds checking to prevent accessing non-existent pages
+            if (index >= chapterPages.pages.length) {
+              return const Center(
+                child: CenterSorayomiShimmerIndicator(),
+              );
+            }
 
-          final image = ServerImage(
-            showReloadButton: true,
-            fit: BoxFit.contain,
-            size: Size.fromHeight(context.height),
-            appendApiToUrl: false,
-            imageUrl: chapterPages.pages[index],
-            progressIndicatorBuilder: (context, url, downloadProgress) =>
-                CenterSorayomiShimmerIndicator(
-              value: downloadProgress.progress,
-            ),
-          );
-          return AppUtils.wrapOn(
-            !kIsWeb && (Platform.isAndroid || Platform.isIOS)
-                ? (child) => InteractiveViewer(maxScale: 5, child: child)
-                : null,
-            image,
-          );
-        },
-        itemCount: chapterPages.pages.isEmpty ? 1 : chapterPages.pages.length,
+            return ServerImage(
+              showReloadButton: true,
+              fit: BoxFit.contain,
+              size: Size.fromHeight(context.height),
+              appendApiToUrl: false,
+              imageUrl: chapterPages.pages[index],
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  CenterSorayomiShimmerIndicator(
+                value: downloadProgress.progress,
+              ),
+            );
+          },
+          itemCount: chapterPages.pages.isEmpty ? 1 : chapterPages.pages.length,
+        ),
       ),
     );
   }

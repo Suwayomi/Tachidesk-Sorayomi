@@ -13,10 +13,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:zoom_view/zoom_view.dart';
 
 import '../../../../../../utils/extensions/custom_extensions.dart';
 import '../../../../../../utils/misc/app_utils.dart';
 import '../../../../../../widgets/server_image.dart';
+import '../../../../../../widgets/zoom/scroll_offset_to_scroll_controller.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_pinch_to_zoom/reader_pinch_to_zoom.dart';
 import '../../../../../settings/presentation/reader/widgets/reader_scroll_animation_tile/reader_scroll_animation_tile.dart';
 import '../../../../domain/chapter/chapter_model.dart';
@@ -65,6 +67,14 @@ class ContinuousReaderMode extends HookConsumerWidget {
         useMemoized(() => ItemScrollController());
     final ItemPositionsListener positionsListener =
         useMemoized(() => ItemPositionsListener.create());
+    final ScrollOffsetController scrollOffsetController =
+        useMemoized(() => ScrollOffsetController());
+    final ScrollController zoomScrollController = useMemoized(
+      () => ScrollOffsetToScrollController(
+        scrollOffsetController: scrollOffsetController,
+      ),
+      [scrollOffsetController],
+    );
 
     final ValueNotifier<int> currentIndex = useState(
       chapter.isRead.ifNull()
@@ -184,11 +194,22 @@ class ContinuousReaderMode extends HookConsumerWidget {
         !kIsWeb &&
                 (Platform.isAndroid || Platform.isIOS) &&
                 isPinchToZoomEnabled
-            ? (Widget child) => InteractiveViewer(maxScale: 5, child: child)
+            ? (Widget child) => ZoomView(
+                  controller: zoomScrollController,
+                  scrollAxis: scrollDirection,
+                  maxScale: 5,
+                  doubleTapDrag: true,
+                  // Required so the scale recognizer wins the gesture
+                  // arena against the underlying scrollable's drag
+                  // recognizer (closes #256).
+                  forceHoldOnPointerDown: true,
+                  child: child,
+                )
             : null,
         ScrollablePositionedList.separated(
           itemScrollController: scrollController,
           itemPositionsListener: positionsListener,
+          scrollOffsetController: scrollOffsetController,
           initialScrollIndex: chapter.isRead.ifNull()
               ? 0
               : chapter.lastPageRead.getValueOnNullOrNegative(),
