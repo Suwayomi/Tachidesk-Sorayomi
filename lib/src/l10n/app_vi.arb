@@ -335,7 +335,7 @@
   "@mangaStatusCancelled": {
     "description": "Text to show Manga Status Cancelled in Manga details screen"
   },
-  "mangaStatusCompleted": "Hoàn thành",
+  "mangaStatusCompleted": "Đã hoàn thành",
   "@mangaStatusCompleted": {
     "description": "Text to show Manga Status Completed in Manga details screen"
   },

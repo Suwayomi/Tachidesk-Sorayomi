@@ -517,5 +517,279 @@
   "isTrueBlack": "Negro verdadero",
   "@isTrueBlack": {
     "description": "Switch title to enable {} black theme"
-  }
+  },
+  "authentication": "Autenticación",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "Auto-Descargar",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "autoDownloadNewChapters": "Descargar nuevos capitulos",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticBackup": "Backup Automatico",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "automaticUpdate": "Actualizacion Automatica",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "Actualizar Metadata Automaticamente",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "Corroborar nuevos covers y detalles al actualizar la libreria",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backupAndRestore": "Backup y Restauracion",
+  "@backupAndRestore": {
+    "description": "Title for Backup and Restore section in settings"
+  },
+  "backupCleanup": "Limpieza de Backup",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupInterval": "Intervalo de Backups",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupLocation": "Localizar almacenamiento de Backup",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupLocationDescription": "La ruta al directorio en el servidor donde se deben guardar las copias de seguridad automáticas",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "backupTime": "Tiempo de Backup",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  },
+  "chapterDownloadLimit": "Limite de descarga de capitulos",
+  "@chapterDownloadLimit": {
+    "description": "Title Text for changing Chapter download limit settings"
+  },
+  "chapterDownloadLimitDesc": "Limite de descarga de capitulos nuevos a descargar.",
+  "@chapterDownloadLimitDesc": {
+    "description": "Sub Title Text for changing Chapter download limit settings"
+  },
+  "cloudflareBypass": "Omisión de Cloudflare",
+  "@cloudflareBypass": {
+    "description": "Section title for Cloudflare Bypass"
+  },
+  "copied": "Copiado!",
+  "@copied": {
+    "description": "Copied Text"
+  },
+  "debugLogs": "Regristo de Debugs",
+  "@debugLogs": {
+    "description": "Switch title for Debug logs in settings"
+  },
+  "downloadLocation": "Localizacion de Descargas",
+  "@downloadLocation": {
+    "description": "Settings label Text to update Download location"
+  },
+  "downloadLocationHint": "La ruta al directorio en el servidor donde se deben guardar los archivos descargados",
+  "@downloadLocationHint": {
+    "description": "Hint text for updating downloads location"
+  },
+  "downloading": "Descargando",
+  "@downloading": {
+    "description": "Text to show chapters downloading"
+  },
+  "enableSocksProxy": "Usar Proxy Stock",
+  "@enableSocksProxy": {
+    "description": "Switch title to enable SOCKS Proxy"
+  },
+  "enterProp": "Ingresar {prop}",
+  "@enterProp": {
+    "description": "Hint text for text field to enter value of Property"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Text to show error downloading chapters"
+  },
+  "errorBackupCreate": "Fallo al crear Backup",
+  "@errorBackupCreate": {
+    "description": "Error Text to show that backup creating failed"
+  },
+  "errorBackupRestore": "Fallo al restaurar Backup!",
+  "@errorBackupRestore": {
+    "description": "toast to show that backup restoration failed"
+  },
+  "excludeEntryWithUnreadChapters": "Ignorar las descargas automáticas de capítulos para entradas con capítulos no leídos",
+  "@excludeEntryWithUnreadChapters": {
+    "description": "Toggle's title to change Toggle Exclude Entry With Unread Chapters setting"
+  },
+  "extensionRepository": "Repositorio de Extensiones",
+  "@extensionRepository": {
+    "description": "Screen title text for Extension repository settings screen"
+  },
+  "extensionRepositoryDescription": "Agregar repositorios desde los cuales se pueden instalar extensiones",
+  "@extensionRepositoryDescription": {
+    "description": "Subtitle text for Extension repository settings property"
+  },
+  "flareSolverr": "FlareSolverr",
+  "@flareSolverr": {
+    "description": "Toggle title to enable FlareSolverr"
+  },
+  "flareSolverrRequestTimeout": "Tiempo de espera de la solicitud de FlareSolverr",
+  "@flareSolverrRequestTimeout": {
+    "description": "Title text for FlareSolverr Request Timeout property"
+  },
+  "flareSolverrServerUrl": "FlareSolverr Server Url",
+  "@flareSolverrServerUrl": {
+    "description": "Title text for FlareSolverr Server Url property"
+  },
+  "flareSolverrSessionName": "Nombre de la sesión de FlareSolverr",
+  "@flareSolverrSessionName": {
+    "description": "Title text for FlareSolverr Session Name property"
+  },
+  "flareSolverrSessionTTL": "TTL de la sesión de FlareSolverr",
+  "@flareSolverrSessionTTL": {
+    "description": "Title text for FlareSolverr Session TTL property"
+  },
+  "gqlDebugLogs": "Registros de depuración de Graphql",
+  "@gqlDebugLogs": {
+    "description": "Switch title for Graphql Debug logs in settings"
+  },
+  "gqlDebugLogsHint": "Esto incluye registros con información no segura para la privacidad",
+  "@gqlDebugLogsHint": {
+    "description": "Switch subTitle for Graphql Debug logs in settings"
+  },
+  "hideEmptyCategory": "Esconder Categoria Vacia",
+  "@hideEmptyCategory": {
+    "description": "Switch button text to Hide empty category in library"
+  },
+  "includeCategories": "Categorias",
+  "@includeCategories": {
+    "description": "Check box text to include categories during create backup"
+  },
+  "includeChapters": "Capitulos",
+  "@includeChapters": {
+    "description": "Check box text to include chapters during create backup"
+  },
+  "invalidPort": "Puerto Invalido",
+  "@invalidPort": {
+    "description": "Error when Submitted invalid Port Number"
+  },
+  "invalidProp": "Invalido {property}",
+  "@invalidProp": {
+    "description": "Toast text for select invalid property value"
+  },
+  "ip": "Direccion IP",
+  "@ip": {
+    "description": "Option title for Server IP Address in Server settings"
+  },
+  "ipHintText": "Introduzca la dirección IP de enlace del servidor",
+  "@ipHintText": {},
+  "localSourceLocation": "Ubicación de la fuente local",
+  "@localSourceLocation": {
+    "description": "Text for Local Source Location settings property"
+  },
+  "advanced": "Avanzado",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "withCompletedStatus": "Con Status Completo",
+  "@withCompletedStatus": {
+    "description": "Setting option Text for Skip updating entries to toggle With Completed status"
+  },
+  "withUnreadChapter": "Con Capitulo(s) no Leidos",
+  "@withUnreadChapter": {
+    "description": "Setting option Text for Skip updating entries to toggle With unread chapter(s)"
+  },
+  "validating": "Validando",
+  "@validating": {
+    "description": "toast to show backup validation is in progress"
+  },
+  "updateFailed": "No se pudo actualizar {property}",
+  "@updateFailed": {
+    "description": "Failed to update Text"
+  },
+  "systemTrayIcon": "Mostrar icono en la bandeja del sistema",
+  "@systemTrayIcon": {
+    "description": "Switch title to Show icon in system tray in settings"
+  },
+  "thatHaventBeenStarted": "Eso no se ha iniciado",
+  "@thatHaventBeenStarted": {
+    "description": "Setting option Text for Skip updating entries to toggle That haven't been started"
+  },
+  "socksVersion": "Version de SOCKS",
+  "@socksVersion": {
+    "description": "Title for Socks version picker"
+  },
+  "skipUpdatingEntries": "Omitir la actualización de entradas",
+  "@skipUpdatingEntries": {
+    "description": "Settings Text to update skip Updating Entries"
+  },
+  "socksHost": "SOCKS Host",
+  "@socksHost": {},
+  "socksPassword": "SOCKS Contraseña",
+  "@socksPassword": {},
+  "socksPort": "SOCKS Puerto",
+  "@socksPort": {},
+  "socksProxy": "SOCKS Proxy",
+  "@socksProxy": {
+    "description": "Section title for SOCKS Proxy settings"
+  },
+  "socksUserName": "SOCKS Nombre de Usuario",
+  "@socksUserName": {},
+  "serverBindings": "Enlaces del Servidor",
+  "@serverBindings": {
+    "description": "Title for server bindings settings"
+  },
+  "saveAsCBZArchive": "Guardar como archivo CBZ",
+  "@saveAsCBZArchive": {
+    "description": "Settings toggle label for Save as CBZ archive"
+  },
+  "restore": "Restaurar",
+  "@restore": {
+    "description": "Button Text to create backup"
+  },
+  "deleteSourceAfterMigration": "Eliminar el manga de origen después de la migración",
+  "@deleteSourceAfterMigration": {},
+  "noMatchingMangaFound": "No se encontró ningún manga coincidente en ninguna fuente",
+  "@noMatchingMangaFound": {},
+  "searchingAllSources": "Buscando en todas las fuentes disponibles...",
+  "@searchingAllSources": {},
+  "searchAllSources": "Buscar en todas las fuentes",
+  "@searchAllSources": {},
+  "migrationDetails": "Detalles de Migración",
+  "@migrationDetails": {},
+  "cancelMigration": "Cancelar Migración",
+  "@cancelMigration": {},
+  "cancelMigrationConfirmation": "¿Seguro que desea cancelar la migración? Esta acción no se puede deshacer.",
+  "@cancelMigrationConfirmation": {},
+  "quickPresets": "Ajustes preestablecidos rápidos",
+  "@quickPresets": {},
+  "quickMigration": "Migracion Rápida",
+  "@quickMigration": {},
+  "fullMigration": "Migración Total",
+  "@fullMigration": {},
+  "customMigration": "Migración Personalizada",
+  "@customMigration": {},
+  "deleteSourceManga": "Eliminar fuente Manga",
+  "@deleteSourceManga": {},
+  "deleteSourceMangaDescription": "Eliminar el manga original de la biblioteca después de la migración",
+  "@deleteSourceMangaDescription": {},
+  "done": "Hecho",
+  "@done": {},
+  "yes": "Si",
+  "@yes": {},
+  "no": "No",
+  "@no": {},
+  "from": "De donde",
+  "@from": {},
+  "to": "Para",
+  "@to": {},
+  "migrationSuccessMessage": "Tu manga ha sido migrado exitosamente a la nueva fuente.",
+  "@migrationSuccessMessage": {},
+  "migrationCancelledMessage": "El proceso de migración se ha cancelado. No se realizaron cambios.",
+  "@migrationCancelledMessage": {}
 }

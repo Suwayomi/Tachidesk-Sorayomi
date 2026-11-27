@@ -1,0 +1,102 @@
+{
+  "about": "Despre",
+  "@about": {
+    "description": "Screen title and Button text of About screen"
+  },
+  "automaticBackup": "Backup automat",
+  "@automaticBackup": {
+    "description": "Settings group title for automatic backup settings"
+  },
+  "addCategory": "Adaugă categorie",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "Adaugă în librărie",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "advanced": "Avansat",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "allScanlators": "Toți Scanlatorii",
+  "@allScanlators": {
+    "description": "Text for all Scanlators in manga description screen chapter filter"
+  },
+  "appLanguage": "Limba aplicației",
+  "@appLanguage": {
+    "description": "Popup title and Button text to change App Language"
+  },
+  "appTheme": "Tema Aplicației",
+  "@appTheme": {
+    "description": "Popup title and Button text to change App Theme Mode"
+  },
+  "appTitle": "Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Sorayomi in native script)"
+  },
+  "appearance": "Aparență",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
+  },
+  "authType": "Tip de autentificare",
+  "@authType": {
+    "description": "Popup title and Button text to change App Authentication"
+  },
+  "authTypeBasic": "Autentificare de bază",
+  "@authTypeBasic": {
+    "description": "Radio button text for the Basic Authentication type"
+  },
+  "authTypeNone": "Fară",
+  "@authTypeNone": {
+    "description": "Radio button text for no Authentication"
+  },
+  "authentication": "Autentificare",
+  "@authentication": {
+    "description": "Section title for server authentication"
+  },
+  "autoDownload": "Auto-descărcare",
+  "@autoDownload": {
+    "description": "Title for Auto-download Section in downloads settings"
+  },
+  "autoDownloadNewChapters": "Descărcă capitole noi",
+  "@autoDownloadNewChapters": {
+    "description": "Toggle's title to change Auto Download New Chapters settings"
+  },
+  "automaticUpdate": "Actualizare Automată",
+  "@automaticUpdate": {
+    "description": "Popup title and Settings text to update Automatic Global Update interval"
+  },
+  "automaticallyRefreshMetadata": "Împrospătează automat metadata",
+  "@automaticallyRefreshMetadata": {
+    "description": "Settings text to update Automatically refresh metadata"
+  },
+  "automaticallyRefreshMetadataSubtitle": "Caută coperte noi si detalii cănd actualizezi librăria",
+  "@automaticallyRefreshMetadataSubtitle": {
+    "description": "Settings sub title text to update Automatically refresh metadata"
+  },
+  "backup": "",
+  "@backup": {
+    "description": "Screen title and Button text of Backup & Restore screen"
+  },
+  "backupCleanup": "Curățare Backup",
+  "@backupCleanup": {
+    "description": "Title for file backup cleanup edit tile"
+  },
+  "backupInterval": "Interval de Backup",
+  "@backupInterval": {
+    "description": "Title for file backup interval edit tile"
+  },
+  "backupLocation": "Locație Backup",
+  "@backupLocation": {
+    "description": "Title for backup file storage location edit tile"
+  },
+  "backupLocationDescription": "Locația către fișierul de pe server unde backupurile automate ar trebui salvate",
+  "@backupLocationDescription": {
+    "description": "description for editing backup location"
+  },
+  "backupTime": "Timp pentru Backup",
+  "@backupTime": {
+    "description": "Title for file backup time edit tile"
+  }
+}

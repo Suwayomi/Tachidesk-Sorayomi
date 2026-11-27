@@ -1372,5 +1372,13 @@
   "fullMigration": "முழு",
   "@fullMigration": {},
   "customMigration": "தனிப்பயன்",
-  "@customMigration": {}
+  "@customMigration": {},
+  "readerLastPageSwipeToggle": "கடைசிப் பக்க தடவு",
+  "@readerLastPageSwipeToggle": {
+    "description": "Last page swipe"
+  },
+  "readerLastPageSwipeToggleDescription": "கடைசிப் பக்கத்தில் மட்டும் அடுத்த அத்தியாயத்திற்கு தடவவும்",
+  "@readerLastPageSwipeToggleDescription": {
+    "description": "Swipe to next chapter only at last page"
+  }
 }

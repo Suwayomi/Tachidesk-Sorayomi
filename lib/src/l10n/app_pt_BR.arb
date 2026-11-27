@@ -2,5 +2,25 @@
   "about": "Sobre",
   "@about": {
     "description": "Screen title and Button text of About screen"
+  },
+  "addCategory": "Adicionar categoria",
+  "@addCategory": {
+    "description": "Popup title and Button text to add new category in Edit Category Screen"
+  },
+  "addToLibrary": "Adicionar à Biblioteca",
+  "@addToLibrary": {
+    "description": "Button text to add Manga to Library in Manga Details Screen"
+  },
+  "advanced": "Avançado",
+  "@advanced": {
+    "description": "Section title Text for Advanced Section"
+  },
+  "appTitle": "Sorayomi",
+  "@appTitle": {
+    "description": "Name of the app (Sorayomi in native script)"
+  },
+  "appearance": "Aparência",
+  "@appearance": {
+    "description": "Screen title and Button text of Appearance screen"
   }
 }
