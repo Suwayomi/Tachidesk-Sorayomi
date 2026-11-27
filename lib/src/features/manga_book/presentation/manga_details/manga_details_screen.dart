@@ -25,6 +25,7 @@ import '../../domain/chapter/chapter_model.dart';
 import '../../widgets/chapter_actions/multi_chapters_actions_bottom_app_bar.dart';
 import 'controller/manga_details_controller.dart';
 import 'widgets/big_screen_manga_details.dart';
+import 'widgets/chapter_download_presets_button.dart';
 import 'widgets/edit_manga_category_dialog.dart';
 import 'widgets/manga_chapter_organizer.dart';
 import 'widgets/small_screen_manga_details.dart';
@@ -42,6 +43,7 @@ class MangaDetailsScreen extends HookConsumerWidget {
         mangaChapterListWithFilterProvider(mangaId: mangaId);
 
     final manga = ref.watch(mangaProvider);
+    final chapterList = ref.watch(chapterListProvider);
     final filteredChapterList = ref.watch(chapterListFilteredProvider);
     final firstUnreadChapter = ref.watch(
       firstUnreadInFilteredChapterListProvider(mangaId: mangaId),
@@ -180,6 +182,10 @@ class MangaDetailsScreen extends HookConsumerWidget {
                         icon: const Icon(Icons.open_in_new_rounded),
                       )
                     ],
+                    ChapterDownloadPresetsButton(
+                      chapterList: chapterList,
+                      refresh: refresh,
+                    ),
                     Builder(
                       builder: (context) => IconButton(
                         onPressed: () {
