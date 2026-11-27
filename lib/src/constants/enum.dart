@@ -12,11 +12,15 @@ import '../utils/extensions/custom_extensions.dart';
 
 enum AuthType {
   none,
-  basic;
+  basic,
+  simpleLogin,
+  uiLogin;
 
   String toLocale(BuildContext context) => switch (this) {
         AuthType.none => context.l10n.authTypeNone,
         AuthType.basic => context.l10n.authTypeBasic,
+        AuthType.simpleLogin => context.l10n.authTypeSimpleLogin,
+        AuthType.uiLogin => context.l10n.authTypeUiLogin,
       };
 }
 

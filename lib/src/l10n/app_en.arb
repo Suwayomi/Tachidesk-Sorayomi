@@ -33,6 +33,60 @@
     "@authTypeBasic": {
         "description": "Radio button text for the Basic Authentication type"
     },
+    "@authTypeSimpleLogin": {
+        "description": "Radio button text for Suwayomi server's simple_login auth mode"
+    },
+    "@authTypeUiLogin": {
+        "description": "Radio button text for Suwayomi server's ui_login (JWT) auth mode, marked as recommended"
+    },
+    "@authReverseProxyHelp": {
+        "description": "Helper text under the login fields explaining how to use Sorayomi with a reverse proxy in front of Suwayomi"
+    },
+    "@authTestConnection": {
+        "description": "Button text for testing the entered credentials against the server"
+    },
+    "@authTestConnectionSuccess": {
+        "description": "Success toast text after Test Connection succeeds"
+    },
+    "@authTestConnectionFailedNetwork": {
+        "description": "Error message when Test Connection cannot reach the server"
+    },
+    "@authTestConnectionFailedAuth": {
+        "description": "Error message when Test Connection reaches the server but credentials are rejected"
+    },
+    "@authTestConnectionFailedMode": {
+        "description": "Error message when Test Connection succeeds at login but the server appears to be in a different auth mode"
+    },
+    "@authTestConnectionFailedShape": {
+        "description": "Error message when the server's response is not the expected shape"
+    },
+    "@authTestConnectionFailedTls": {
+        "description": "Error message when the client sends TLS bytes to a plaintext server, or vice versa — typically a wrong scheme (http vs https) or wrong port"
+    },
+    "@authSessionExpired": {
+        "description": "Banner text shown at top of screens when the session has expired and the user must re-authenticate"
+    },
+    "@authReauthenticate": {
+        "description": "Button text on the session-expired banner that opens the re-auth prompt"
+    },
+    "@authInsecureTransportTitle": {
+        "description": "Title of the http:// warning confirmation dialog"
+    },
+    "@authInsecureTransportWarning": {
+        "description": "Warning body shown when the user is about to send credentials over http:// instead of https://"
+    },
+    "@authInsecureTransportContinue": {
+        "description": "Button text to acknowledge the http:// warning and proceed anyway"
+    },
+    "@authLogout": {
+        "description": "Tile title in settings to log out and clear stored credentials"
+    },
+    "@authLogoutConfirm": {
+        "description": "Confirmation dialog text shown when the user taps Log out"
+    },
+    "@authImageUrlLogWarning": {
+        "description": "Additional note in helper text explaining the ui_login image URL token leak risk"
+    },
     "@authTypeNone": {
         "description": "Radio button text for no Authentication"
     },
@@ -949,6 +1003,24 @@
     "appearance": "Appearance",
     "authType": "Authentication Type",
     "authTypeBasic": "Basic Auth",
+    "authTypeSimpleLogin": "Simple Login",
+    "authTypeUiLogin": "UI Login (recommended)",
+    "authReverseProxyHelp": "If you use a reverse proxy in front of Suwayomi (Pangolin, Authelia, Authentik, Cloudflare Access, etc.), configure the proxy to pass requests through and let Suwayomi handle authentication here. For public hostnames, turn OFF the 'Use Server Port' toggle on the Server screen so requests go to standard 443.",
+    "authTestConnection": "Test connection",
+    "authTestConnectionSuccess": "Connected.",
+    "authTestConnectionFailedNetwork": "Couldn't reach server. Check URL and connectivity.",
+    "authTestConnectionFailedAuth": "Login failed. Check username and password.",
+    "authTestConnectionFailedMode": "Server may not be in the selected auth mode. Check the server's authMode setting.",
+    "authTestConnectionFailedShape": "Server didn't respond as expected. Is your URL pointing at the Suwayomi API?",
+    "authTestConnectionFailedTls": "TLS handshake failed. Common causes: 1) Server is plain HTTP — switch your URL to http://. 2) Public hostname behind a reverse proxy — turn OFF the 'Use Server Port' toggle on the Server screen so requests go to standard 443.",
+    "authSessionExpired": "Session expired — sign in again.",
+    "authReauthenticate": "Re-authenticate",
+    "authInsecureTransportTitle": "Insecure connection",
+    "authInsecureTransportWarning": "Your server URL uses http:// — your username and password will be sent in cleartext over the network. Use https:// unless you trust the network entirely.",
+    "authInsecureTransportContinue": "I understand, continue",
+    "authLogout": "Log out",
+    "authLogoutConfirm": "Log out and clear stored credentials? You'll need to sign in again to use this server.",
+    "authImageUrlLogWarning": "Note: with UI Login, image URLs include your access token as a query parameter, which can appear in your server's access logs.",
     "authTypeNone": "None",
     "authentication": "Authentication",
     "autoDownload": "Auto-download",

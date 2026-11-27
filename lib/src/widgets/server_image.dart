@@ -15,6 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../constants/app_sizes.dart';
 import '../constants/endpoints.dart';
 import '../constants/enum.dart';
+import '../features/auth/data/auth_credentials_store.dart';
 import '../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
 import '../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
 import '../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
@@ -49,7 +50,8 @@ class ServerImage extends HookConsumerWidget {
     final key = useState(UniqueKey());
     // Providers
     final authType = ref.watch(authTypeKeyProvider);
-    final basicToken = ref.watch(credentialsProvider);
+    final basicToken = ref.watch(credentialsProvider).valueOrNull;
+    final creds = ref.watch(authCredentialsStoreProvider).valueOrNull;
 
     final baseApi = "${Endpoints.baseApi(
       baseUrl: ref.watch(serverUrlProvider),
@@ -59,13 +61,27 @@ class ServerImage extends HookConsumerWidget {
     )}"
         "$imageUrl";
 
-    final Map<String, String>? httpHeaders =
-        (authType == AuthType.basic && basicToken != null)
-            ? ({"Authorization": basicToken})
-            : null;
+    Map<String, String>? httpHeaders;
+    if (authType == AuthType.basic && basicToken != null) {
+      httpHeaders = {"Authorization": basicToken};
+    } else if (authType == AuthType.simpleLogin) {
+      httpHeaders = creds?.simpleLoginCookieHeader;
+    }
+
+    // For ui_login, append ?token= since cached_network_image can't
+    // reliably inject Authorization headers across platforms. Use the
+    // un-tokened URL as cacheKey so token rotation doesn't bust cache.
+    var fetchUrl = baseApi;
+    if (authType == AuthType.uiLogin &&
+        creds?.uiAccessToken != null &&
+        creds!.uiAccessToken!.isNotEmpty) {
+      final sep = fetchUrl.contains('?') ? '&' : '?';
+      fetchUrl =
+          '$fetchUrl${sep}token=${Uri.encodeQueryComponent(creds.uiAccessToken!)}';
+    }
 
     final ImageRenderMethodForWeb renderMethod;
-    if (authType == AuthType.basic && basicToken != null) {
+    if (httpHeaders != null) {
       renderMethod = ImageRenderMethodForWeb.HttpGet;
     } else {
       renderMethod = ImageRenderMethodForWeb.HtmlImage;
@@ -119,7 +135,8 @@ class ServerImage extends HookConsumerWidget {
 
     return CachedNetworkImage(
       key: key.value,
-      imageUrl: baseApi,
+      imageUrl: fetchUrl,
+      cacheKey: baseApi,
       height: size?.height,
       cacheManager: DefaultCacheManager(),
       httpHeaders: httpHeaders,

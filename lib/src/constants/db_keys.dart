@@ -20,6 +20,7 @@ enum DBKeys {
   isTrueBlack(false),
   authType(AuthType.none),
   basicCredentials(null),
+  authUsername(null),
   readerMode(ReaderMode.webtoon),
   readerPadding(0.0),
   readerMagnifierSize(1.0),

@@ -12,18 +12,28 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../../../../constants/db_keys.dart';
+import '../../../../../../features/auth/data/basic_auth_migration.dart';
+import '../../../../../../features/auth/data/secure_credentials_provider.dart';
 import '../../../../../../utils/extensions/custom_extensions.dart';
-import '../../../../../../utils/mixin/shared_preferences_client_mixin.dart';
 import '../../../../../../widgets/popup_widgets/pop_button.dart';
 
 part 'credentials_popup.g.dart';
 
 @riverpod
-class Credentials extends _$Credentials
-    with SharedPreferenceClientMixin<String> {
+class Credentials extends _$Credentials {
   @override
-  String? build() => initialize(DBKeys.basicCredentials);
+  Future<String?> build() async =>
+      ref.read(secureStorageProvider).read(key: kBasicCredentialsSecureKey);
+
+  Future<void> set(String? value) async {
+    state = AsyncData(value);
+    final storage = ref.read(secureStorageProvider);
+    if (value == null) {
+      await storage.delete(key: kBasicCredentialsSecureKey);
+    } else {
+      await storage.write(key: kBasicCredentialsSecureKey, value: value);
+    }
+  }
 }
 
 final formKey = GlobalKey<FormState>();
@@ -78,7 +88,7 @@ class CredentialsPopup extends HookConsumerWidget {
         ElevatedButton(
           onPressed: () async {
             if ((formKey.currentState?.validate()).ifNull()) {
-              ref.read(credentialsProvider.notifier).update(
+              ref.read(credentialsProvider.notifier).set(
                     _basicAuth(
                       userName: username.text,
                       password: password.text,

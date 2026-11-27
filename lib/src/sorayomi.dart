@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'features/auth/presentation/reauth_banner.dart';
 import 'features/settings/presentation/appearance/widgets/app_theme_selector/app_theme_selector.dart';
 import 'features/settings/presentation/appearance/widgets/is_true_black/is_true_black_tile.dart';
 import 'features/settings/widgets/app_theme_mode_tile/app_theme_mode_tile.dart';
@@ -32,7 +33,10 @@ class Sorayomi extends ConsumerWidget {
     return GraphQLProvider(
       client: client,
       child: MaterialApp.router(
-        builder: FToastBuilder(),
+        builder: (context, child) {
+          final toastWrapped = FToastBuilder()(context, child);
+          return ReauthBannerHost(child: toastWrapped);
+        },
         onGenerateTitle: (context) => context.l10n.appTitle,
         debugShowCheckedModeBanner: false,
         theme: FlexThemeData.light(

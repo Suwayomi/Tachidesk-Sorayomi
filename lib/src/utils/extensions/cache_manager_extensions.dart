@@ -11,6 +11,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/endpoints.dart';
 import '../../constants/enum.dart';
+import '../../features/auth/data/auth_credentials_store.dart';
 import '../../features/settings/presentation/server/widget/client/server_port_tile/server_port_tile.dart';
 import '../../features/settings/presentation/server/widget/client/server_url_tile/server_url_tile.dart';
 import '../../features/settings/presentation/server/widget/credential_popup/credentials_popup.dart';
@@ -21,7 +22,8 @@ extension CacheManagerExtension on CacheManager {
   Future<File> getServerFile(WidgetRef ref, String url,
       {bool appendApiToUrl = true}) async {
     final authType = ref.read(authTypeKeyProvider);
-    final basicToken = ref.read(credentialsProvider);
+    final basicToken = ref.read(credentialsProvider).valueOrNull;
+    final creds = ref.read(authCredentialsStoreProvider).valueOrNull;
     final baseApi = "${Endpoints.baseApi(
       baseUrl: ref.read(serverUrlProvider),
       port: ref.read(serverPortProvider),
@@ -29,11 +31,26 @@ extension CacheManagerExtension on CacheManager {
       appendApiToUrl: appendApiToUrl,
     )}"
         "$url";
-    return await getSingleFile(
-      baseApi,
-      headers: authType == AuthType.basic && basicToken != null
-          ? {"Authorization": basicToken}
-          : null,
-    );
+
+    Map<String, String>? headers;
+    if (authType == AuthType.basic && basicToken != null) {
+      headers = {"Authorization": basicToken};
+    } else if (authType == AuthType.simpleLogin) {
+      headers = creds?.simpleLoginCookieHeader;
+    }
+
+    // For ui_login, append ?token= because cached_network_image can't
+    // reliably forward Authorization headers on web. Use the un-tokened
+    // URL as cacheKey so token rotation doesn't bust the cache.
+    var fetchUrl = baseApi;
+    if (authType == AuthType.uiLogin &&
+        creds?.uiAccessToken != null &&
+        creds!.uiAccessToken!.isNotEmpty) {
+      final sep = fetchUrl.contains('?') ? '&' : '?';
+      fetchUrl =
+          '$fetchUrl${sep}token=${Uri.encodeQueryComponent(creds.uiAccessToken!)}';
+    }
+
+    return await getSingleFile(fetchUrl, key: baseApi, headers: headers);
   }
 }
