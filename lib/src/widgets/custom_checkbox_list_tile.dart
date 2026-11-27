@@ -10,6 +10,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../utils/extensions/custom_extensions.dart';
 
+/// Tri-state filter tile used across the library and chapter filter sheets.
+///
+/// Tristate cycle on tap: `null` (ignore) → `true` (include / require) →
+/// `false` (exclude) → `null`. This matches the convention users carry over
+/// from Mihon, Komikku, and Tachiyomi, where the default empty state means
+/// "do not filter" and the two active states clearly distinguish include
+/// from exclude with different icons.
+///
+/// In binary mode (`tristate: false`) the widget falls back to Flutter's
+/// `CheckboxListTile`, which is what existing display-preference callers
+/// (e.g. badge toggles) rely on.
 class CustomCheckboxListTile<NotifierT extends AutoDisposeNotifier<bool?>>
     extends ConsumerWidget {
   const CustomCheckboxListTile({
@@ -23,16 +34,45 @@ class CustomCheckboxListTile<NotifierT extends AutoDisposeNotifier<bool?>>
   final AutoDisposeNotifierProvider<NotifierT, bool?> provider;
   final ValueChanged<bool?> onChanged;
   final bool tristate;
+
+  static bool? _nextValue(bool? current) {
+    if (current == null) return true;
+    if (current == true) return false;
+    return null;
+  }
+
+  Widget _tristateLeading(BuildContext context, bool? value) {
+    final activeColor = context.theme.indicatorColor;
+    final excludeColor = context.theme.colorScheme.error;
+    if (value == null) {
+      return Icon(
+        Icons.check_box_outline_blank_rounded,
+        color: context.theme.unselectedWidgetColor,
+      );
+    } else if (value == true) {
+      return Icon(Icons.check_box_rounded, color: activeColor);
+    } else {
+      return Icon(Icons.disabled_by_default_rounded, color: excludeColor);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final val = ref.watch(provider);
-    return CheckboxListTile(
-      controlAffinity: ListTileControlAffinity.leading,
-      activeColor: context.theme.indicatorColor,
-      value: tristate ? val : val.ifNull(true),
+    if (!tristate) {
+      return CheckboxListTile(
+        controlAffinity: ListTileControlAffinity.leading,
+        activeColor: context.theme.indicatorColor,
+        value: val.ifNull(true),
+        title: Text(title),
+        tristate: false,
+        onChanged: onChanged,
+      );
+    }
+    return ListTile(
+      leading: _tristateLeading(context, val),
       title: Text(title),
-      tristate: tristate,
-      onChanged: onChanged,
+      onTap: () => onChanged(_nextValue(val)),
     );
   }
 }
