@@ -43,8 +43,18 @@ class MultiChaptersActionsBottomAppBar extends HookConsumerWidget {
 
     final selectedList = selectedChapters.value.values;
 
+    // This bar is a Scaffold bottomSheet inside the shell navigation, which
+    // zeroes the bottom MediaQuery insets — BOTH padding and viewPadding — for
+    // its descendants (confirmed on-device: MediaQuery reports 0 while the
+    // system navigation bar is really 48dp). Read the inset straight from the
+    // FlutterView, which no MediaQuery ancestor can consume, so the bar clears
+    // the Android navigation buttons.
+    final view = View.of(context);
+    final bottomInset = view.viewPadding.bottom / view.devicePixelRatio;
     return Padding(
-      padding: KEdgeInsets.a8.size,
+      padding: KEdgeInsets.a8.size.add(
+        EdgeInsets.only(bottom: bottomInset),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
