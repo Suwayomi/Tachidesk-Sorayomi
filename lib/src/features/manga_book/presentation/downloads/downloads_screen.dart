@@ -57,7 +57,6 @@ class DownloadsScreen extends ConsumerWidget {
             return RefreshIndicator(
               onRefresh: () => ref.refresh(downloadStatusProvider.future),
               child: ListView.builder(
-                itemExtent: 104,
                 itemBuilder: (context, index) {
                   if (index == downloadsCount) return const Gap(104);
                   final chapterId = downloadsChapterIds[index];
